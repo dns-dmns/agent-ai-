@@ -1,0 +1,7 @@
+{
+    "flow_name": "customer master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+    "timestamp": "2026-07-27 20:48:45",
+    "duration_seconds": 58,
+    "step_count": 25
+}

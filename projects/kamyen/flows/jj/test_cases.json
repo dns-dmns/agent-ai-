@@ -1,0 +1,458 @@
+[
+    {
+        "scenario_name": "Create Valid System User Record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "CLICK",
+                "selector": "div.oxd-form-row div.oxd-select-wrapper"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "qa_valid_user_01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "System saves record successfully, displays success toast message 'Successfully Saved', and redirects to user list."
+    },
+    {
+        "scenario_name": "Search System User Record by Username",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-table-filter input.oxd-input",
+                "value": "qa_valid_user_01"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Grid filters to display matching user 'qa_valid_user_01' in records list."
+    },
+    {
+        "scenario_name": "Update User Role and Status",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-table-filter input.oxd-input",
+                "value": "qa_valid_user_01"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button i.bi-pencil-fill"
+            },
+            {
+                "action": "CLICK",
+                "selector": "div.oxd-select-wrapper"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Record is updated successfully with toaster notification 'Successfully Updated'."
+    },
+    {
+        "scenario_name": "Delete System User Record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-table-filter input.oxd-input",
+                "value": "qa_valid_user_01"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button i.bi-trash"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Yes, Delete')"
+            }
+        ],
+        "expected_result": "Confirmation popup appears, record is deleted, and toast notification 'Successfully Deleted' is displayed."
+    },
+    {
+        "scenario_name": "Create User - Duplicate Username Error Check",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "Admin"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Inline validation error 'Username already exists' appears beneath the Username input field."
+    },
+    {
+        "scenario_name": "Create User - Isolated Empty Username Validation Check",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Validation error 'Required' is displayed specifically below the Username field."
+    },
+    {
+        "scenario_name": "Create User - Isolated Password Mismatch Check",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "qa_mismatch_usr"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Different@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Validation error 'Passwords do not match' appears beneath Confirm Password field."
+    },
+    {
+        "scenario_name": "Create User - Isolated Invalid Employee Name Check",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "NonExistentEmployeeXYZ"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "qa_invalid_emp"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Validation error 'Invalid' appears under Employee Name input field."
+    },
+    {
+        "scenario_name": "Create User - Isolated Lower Boundary Username (5 Chars)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "usr01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Username with exactly 5 characters is accepted and user creation succeeds."
+    },
+    {
+        "scenario_name": "Create User - Isolated Upper Boundary Username (40 Chars)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "usr_12345678901234567890123456789012345"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Welcome@1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Username with exactly 40 characters is accepted without truncation or error."
+    },
+    {
+        "scenario_name": "Create User - Isolated Minimum Password Length (8 Chars)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder='Type for hints...']",
+                "value": "Linda Jane Anderson"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": "qa_pass_bound"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[type='password']:first-of-type",
+                "value": "Pass123!"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row:nth-child(2) input[type='password']",
+                "value": "Pass123!"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Password with exactly 8 characters meets complexity and length rules."
+    },
+    {
+        "scenario_name": "Update User - Clear Required Username Field Validation",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-table-filter input.oxd-input",
+                "value": "qa_valid_user_01"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button i.bi-pencil-fill"
+            },
+            {
+                "action": "TYPE",
+                "selector": "div.oxd-form-row input.oxd-input:not([type='password'])",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type='submit']"
+            }
+        ],
+        "expected_result": "Validation error 'Required' displays under Username and form submission is prevented."
+    },
+    {
+        "scenario_name": "Bulk Delete Selected User Records",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "a[href*='admin/viewAdminModule']"
+            },
+            {
+                "action": "CLICK",
+                "selector": "div.oxd-table-card:nth-child(1) input[type='checkbox'] + span"
+            },
+            {
+                "action": "CLICK",
+                "selector": "div.oxd-table-card:nth-child(2) input[type='checkbox'] + span"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Delete Selected')"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Yes, Delete')"
+            }
+        ],
+        "expected_result": "Selected users are purged in bulk and confirmation notification appears."
+    }
+]

@@ -1,0 +1,1046 @@
+[
+    {
+        "scenario_name": "Navigate to Customer Master module",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            }
+        ],
+        "expected_result": "Customer Master page is displayed with the customer records grid and Add Customer button."
+    },
+    {
+        "scenario_name": "Create new customer with valid data (Happy Path)",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "#partyCode"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "CUST001"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Acme Corporation"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Maharashtra"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "West"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Customer record is saved successfully and visible in the customer list table."
+    },
+    {
+        "scenario_name": "Open and close Add Customer modal dialog",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog > div > div > div > div > button"
+            }
+        ],
+        "expected_result": "Add Customer dialog opens and closes without creating a record."
+    },
+    {
+        "scenario_name": "View Customer Details modal",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button"
+            }
+        ],
+        "expected_result": "View Customer modal dialog opens displaying customer details corresponding to the selected record."
+    },
+    {
+        "scenario_name": "Close View Customer Details modal",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog > div > div > div > div > button"
+            }
+        ],
+        "expected_result": "View Customer modal dialog closes and user returns to the Customer Master table."
+    },
+    {
+        "scenario_name": "Edit existing Customer record with modified details",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            },
+            {
+                "action": "CLICK",
+                "selector": "#customerName"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Acme Enterprises Updated"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "CLICK",
+                "selector": "#state"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Gujarat"
+            },
+            {
+                "action": "CLICK",
+                "selector": "#region"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "West Region"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Customer record updates successfully and the modified details appear in the table."
+    },
+    {
+        "scenario_name": "Delete customer record with confirmation",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Yes, Delete\")"
+            }
+        ],
+        "expected_result": "Selected customer record is deleted and removed from the customer table list."
+    },
+    {
+        "scenario_name": "Cancel delete action in confirmation dialog",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button"
+            }
+        ],
+        "expected_result": "Delete confirmation dialog is dismissed and record remains in table."
+    },
+    {
+        "scenario_name": "Submit empty Add Customer form validation",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation messages display for mandatory fields and form submission is prevented."
+    },
+    {
+        "scenario_name": "Form reset on reopen Add Customer dialog",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "TEMP01"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog > div > div > div > div > button"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            }
+        ],
+        "expected_result": "Add Customer dialog fields are cleared when reopened."
+    },
+    {
+        "scenario_name": "Create customer with minimum required fields",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "MIN001"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Minimal Cust"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Customer record created successfully with mandatory fields populated."
+    },
+    {
+        "scenario_name": "Verify edit dialog pre-populates existing customer field values",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            }
+        ],
+        "expected_result": "Edit form opens pre-filled with the selected customer's party code, customer name, country, state, and region."
+    },
+    {
+        "scenario_name": "Verify edit dialog fields cleared on cancel and reopen",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Unsaved Change Name"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog > div > div > div > div > button"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            }
+        ],
+        "expected_result": "Unsaved changes are discarded when edit dialog is cancelled and reopened."
+    },
+    {
+        "scenario_name": "Multiple field updates on edit customer details",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Global Traders"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Karnataka"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "South"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "All updated fields save successfully and table updates to reflect changes."
+    },
+    {
+        "scenario_name": "Verify secondary delete action opens dialog correctly",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button"
+            }
+        ],
+        "expected_result": "Delete confirmation modal opens and can be dismissed via close button."
+    },
+    {
+        "scenario_name": "Submit Add Customer form with all fields empty",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation messages display for mandatory fields and customer creation is blocked."
+    },
+    {
+        "scenario_name": "Create customer with existing duplicate Party Code",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "dinehs"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Duplicate Testing Ltd"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Gujarat"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "West"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "System displays error message 'Party Code already exists' and submission fails."
+    },
+    {
+        "scenario_name": "Security: XSS script payload injection in Customer Name",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "XSS101"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "<script>alert('XSS-Test')</script>"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Gujarat"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "West"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "System sanitizes input or displays validation error; script execution is prevented on table view."
+    },
+    {
+        "scenario_name": "Security: SQL injection payload in Party Code field",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "' OR 1=1 --"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "SQLi Testing Inc"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Maharashtra"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "West"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input is rejected or safely parameterized without causing backend database errors."
+    },
+    {
+        "scenario_name": "Whitespace-only input submission for required fields",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "   "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "     "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "   "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "   "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "   "
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation fails due to blank/whitespace-only input; form submission is prevented."
+    },
+    {
+        "scenario_name": "Boundary: Character overflow input exceeding 200 characters in Customer Name",
+        "type": "negative_boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "OVR200"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Delhi"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "North"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input is truncated at max limit or character boundary error message is displayed."
+    },
+    {
+        "scenario_name": "Boundary: Single character input in all text fields",
+        "type": "positive_boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "A"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "B"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "C"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "D"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "E"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "System processes single character inputs successfully if valid or shows min-length requirement."
+    },
+    {
+        "scenario_name": "Special characters injection in Country and State fields",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "SPEC01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Special Customer"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "@#$%^&*()"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "~!_+=[]{}|;:"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "Central"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "System validates format and displays error for invalid characters in location fields."
+    },
+    {
+        "scenario_name": "Security: HTML Injection payload in Region field",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "HTM001"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "HTML Test Org"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Karnataka"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "<h1>South Region</h1>"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "HTML tags are sanitized or rendered as literal text without altering layout or styling."
+    },
+    {
+        "scenario_name": "Boundary: Leading and trailing whitespace handling on form input",
+        "type": "positive_boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "  TRIM01  "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "  Auto Trimmed Customer  "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "  India  "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "  Goa  "
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "  West  "
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input strings are automatically trimmed before submission and saved cleanly."
+    },
+    {
+        "scenario_name": "Negative: Edit customer and clear mandatory Customer Name field",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            },
+            {
+                "action": "CLICK",
+                "selector": "#customerName"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation error appears indicating Customer Name cannot be empty, updating is prevented."
+    },
+    {
+        "scenario_name": "Emoji and Unicode symbols in input fields",
+        "type": "negative_boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "EMJ01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Customer \ud83c\udfe2 Enterprise \ud83d\ude80"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India \ud83c\uddee\ud83c\uddf3"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#state",
+                "value": "Punjab"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "North"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "System either handles UTF-8 unicode encoding gracefully or displays a character validation error."
+    },
+    {
+        "scenario_name": "Read-only enforcement on unique key in update mode",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": "NEW_MODIFIED_CODE"
+            }
+        ],
+        "expected_result": "Party Code field remains disabled/read-only during edit operations and cannot be modified."
+    },
+    {
+        "scenario_name": "Inactive Master Exclusion: Verification of inactive region selection",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#region",
+                "value": "InactiveRegionTest"
+            }
+        ],
+        "expected_result": "Regions marked as inactive in prerequisite masters are excluded and hidden from selection."
+    },
+    {
+        "scenario_name": "Cancel delete action in confirmation modal dialog",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button"
+            }
+        ],
+        "expected_result": "Delete modal dialog closes without deleting the selected customer record."
+    }
+]

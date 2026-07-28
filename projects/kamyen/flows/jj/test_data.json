@@ -1,0 +1,25 @@
+{
+    "valid": [
+        {
+            "user_role": "Admin",
+            "employee_name": "Linda Jane Anderson",
+            "status": "Enabled",
+            "username": "qa_valid_user_01",
+            "password": "Welcome@1234"
+        }
+    ],
+    "invalid": [
+        {
+            "username": "Admin",
+            "employee_name": "NonExistentEmployeeXYZ",
+            "password_confirm": "Mismatch123"
+        }
+    ],
+    "boundary": [
+        {
+            "username_min": "usr01",
+            "username_max": "usr_12345678901234567890123456789012345",
+            "password_min": "Pass123!"
+        }
+    ]
+}

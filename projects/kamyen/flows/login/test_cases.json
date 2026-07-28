@@ -1,0 +1,212 @@
+[
+    {
+        "scenario_name": "Successful authentication with valid credentials",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "Admin"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "admin123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "User is successfully authenticated and redirected to the dashboard page."
+    },
+    {
+        "scenario_name": "Authentication failure with incorrect password",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "Admin"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "asmin123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "An 'Invalid credentials' error message is displayed, and the user remains on the login page."
+    },
+    {
+        "scenario_name": "Login attempt with empty username field",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "admin123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "'Required' validation message is displayed under the username input field."
+    },
+    {
+        "scenario_name": "Login attempt with empty password field",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "Admin"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "'Required' validation message is displayed under the password input field."
+    },
+    {
+        "scenario_name": "Login attempt with empty username and password",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "'Required' validation messages are displayed under both username and password fields."
+    },
+    {
+        "scenario_name": "Case sensitivity validation for password",
+        "type": "security",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "Admin"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "ADMIN123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "Login fails with 'Invalid credentials' due to password case mismatch."
+    },
+    {
+        "scenario_name": "Boundary test with maximum allowed character length",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "SuperAdminUserWithAnExtremelyLongUsernameStringThatExceedsNormalLimits"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "ComplexPasswordStringWithExceededCharacterLength1234567890!"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "Input fields truncate input according to max length or return a valid error message without UI breakdown."
+    },
+    {
+        "scenario_name": "SQL Injection attempt in credentials fields",
+        "type": "security",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "' OR '1'='1"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "' OR '1'='1"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "Sanitized inputs result in 'Invalid credentials' error message with no database injection."
+    },
+    {
+        "scenario_name": "XSS Script Injection attempt in username field",
+        "type": "security",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"username\"]",
+                "value": "<script>alert('xss')</script>"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "admin123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button[type=\"submit\"]",
+                "value": ""
+            }
+        ],
+        "expected_result": "Script tag is escaped properly without executing scripts; login fails with 'Invalid credentials'."
+    },
+    {
+        "scenario_name": "Password field input masking verification",
+        "type": "ui",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "input[name=\"password\"]",
+                "value": "admin123"
+            }
+        ],
+        "expected_result": "The input characters in the password field are masked as dots or asterisks (attribute type='password')."
+    }
+]

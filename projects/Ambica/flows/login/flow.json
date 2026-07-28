@@ -1,0 +1,7 @@
+{
+    "flow_name": "login",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+    "timestamp": "2026-07-27 11:08:15",
+    "duration_seconds": 21,
+    "step_count": 5
+}

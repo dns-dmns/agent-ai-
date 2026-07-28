@@ -1,0 +1,11 @@
+{
+    "broken_selectors": [
+        "Replace generic text matching selectors (`button:has-text('Add')`) with explicit data attributes like `[data-v-00958319]` when available."
+    ],
+    "missing_validations": [
+        "Add validation for trailing whitespace trimming on Username field inputs."
+    ],
+    "recommendations": [
+        "Standardize custom testing attributes across OrangeHRM UI elements to improve automation stability."
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "broken_selectors": [
+        "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button",
+        "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-customer-master > div > p-dialog > div > div > div > div > button"
+    ],
+    "missing_validations": [
+        "Special character prohibition on Party Code field.",
+        "Leading/trailing whitespace trimming validation."
+    ],
+    "recommendations": [
+        "Add explicit data-testid attributes to PrimeNG buttons and tables.",
+        "Add toaster notification confirmation checks in automation scripts."
+    ]
+}

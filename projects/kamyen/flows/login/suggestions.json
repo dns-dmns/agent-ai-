@@ -1,0 +1,16 @@
+{
+    "broken_selectors": [
+        "The selector `button:has-text(\"Login\")` is dependent on text content which can break during internationalization (i18n). Use `button[type=\"submit\"]` instead.",
+        "Redundant clicks on input elements prior to typing (`input[name=\"username\"]`, `input[name=\"password\"]`) can be removed in automated tests."
+    ],
+    "missing_validations": [
+        "Validation for account lockout policy after multiple failed login attempts.",
+        "Inline validation messages checking for required fields when input fields are left blank.",
+        "Assertion verifying the error toast alert element when invalid credentials are provided."
+    ],
+    "recommendations": [
+        "Add `data-testid` attributes to username, password inputs, and the submit button for stronger automation reliability.",
+        "Ensure API status code 401 response handling is validated on failed auth requests.",
+        "Implement automated state reset or clear input actions between retry attempts in automated scripts."
+    ]
+}

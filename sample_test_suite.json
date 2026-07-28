@@ -1,0 +1,51 @@
+[
+    {
+        "scenario_name": "Create Record with Valid Details",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "selector": "#partyCode",
+                "value": "CUST1001"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#customerName",
+                "value": "Acme Corporation"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#country",
+                "value": "India"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Success toast is displayed and customer table updates."
+    },
+    {
+        "scenario_name": "Form Submission with Missing Required Fields",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Customer\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#partyCode",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation error appears under Customer Name field."
+    }
+]
