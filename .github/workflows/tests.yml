@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Unit tests
+        run: python -m pytest tests -q
+
+      - name: End-to-end verdict self test
+        # Runs the real Playwright engine against tests/selftest_app and asserts
+        # every scenario reaches its intended verdict. No API key required.
+        run: python tests/e2e_selftest.py
+
+      - name: Dashboard smoke test
+        run: python tests/smoke_ui.py
+
+      - name: API integration test (CI endpoints, auth, cancellation)
+        run: python tests/integration_api.py

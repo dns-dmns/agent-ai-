@@ -1,0 +1,2252 @@
+"""Playwright execution engine.
+
+Extracted out of ``qa_agent.py`` so the runner can be driven from three places
+with identical behaviour: the dashboard SSE stream, the CI/CD trigger endpoint,
+and the scheduler.
+
+What it adds over the original inline runner:
+
+* full step vocabulary — NAVIGATE / KEYPRESS / SELECT / UPLOAD / HOVER / WAIT /
+  CHECK / dialogs / downloads plus a much wider VERIFY_* family
+* native dialog interception (a ``confirm()`` no longer silently auto-dismisses)
+* download capture with row counting for export assertions
+* evidence collection feeding :mod:`verdict`, so an expectation is actually
+  checked instead of assumed
+* optional parallel workers, cancellation, per-step screenshots, Playwright
+  tracing, pagination-aware row lookup and visual-regression diffing
+"""
+
+from __future__ import annotations
+
+import asyncio
+import csv
+import json
+import os
+import re
+import shutil
+import time
+import uuid
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Awaitable, Callable
+
+from playwright.async_api import async_playwright
+
+from . import config
+from . import heuristics
+from . import verdict as verdict_engine
+
+log = config.get_logger("executor")
+
+Emit = Callable[[dict], Awaitable[None]]
+
+CRASH_MARKERS = (
+    "target closed",
+    "target page, context or browser has been closed",
+    "browser has been closed",
+    "connection refused",
+    "session closed",
+    "websocket",
+    "browser closed",
+)
+
+ASSERTION_ACTIONS = {
+    "VERIFY_STATE", "VERIFY_VISIBLE", "VERIFY_HIDDEN", "VERIFY_DISABLED",
+    "VERIFY_ENABLED", "VERIFY_READONLY", "VERIFY_VALUE", "ASSERT_VALUE",
+    "VERIFY_NON_ZERO", "VERIFY_TEXT", "VERIFY_ROW_CONTAINS", "VERIFY_TABLE_ROW",
+    "VERIFY_ROW_ABSENT", "VERIFY_URL", "VERIFY_COUNT", "VERIFY_DOWNLOAD",
+    "VERIFY_MESSAGE",
+}
+
+MESSAGE_SCAN_JS = """() => {
+    const selectors = [
+        'small.p-error', 'span.p-error', 'div.p-error', '.invalid-feedback',
+        '.error-message', '.field-error', '.p-toast-detail', '.p-toast-summary',
+        '.p-toast-message-error', '.p-toast-message-success', '.toast-message',
+        '.alert-danger', '.alert-success', '.text-danger', '.text-success',
+        '[role="alert"]', '.p-message-text', '.mat-error', '.ant-form-item-explain-error',
+        '.help-block', '.validation-message'
+    ];
+    const out = [];
+    for (const sel of selectors) {
+        document.querySelectorAll(sel).forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const visible = rect.width > 0 && rect.height > 0 &&
+                            window.getComputedStyle(el).visibility !== 'hidden' &&
+                            window.getComputedStyle(el).display !== 'none';
+            const text = (el.innerText || el.textContent || '').trim();
+            if (visible && text && text.length < 400) {
+                out.push({ text, selector: sel + ' ' + (el.className || '') });
+            }
+        });
+    }
+    return out;
+}"""
+
+
+class RunCancelled(Exception):
+    """Raised inside a scenario when the user stops the run."""
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Run registry (powers Stop, CI/CD polling and the scheduler)
+# ──────────────────────────────────────────────────────────────────────
+@dataclass
+class RunState:
+    run_id: str
+    project_name: str
+    flow_name: str
+    status: str = "running"          # running | complete | cancelled | error
+    started_at: float = field(default_factory=time.time)
+    finished_at: float | None = None
+    cancelled: bool = False
+    total: int = 0
+    completed: int = 0
+    passed: int = 0
+    failed: int = 0
+    unverified: int = 0
+    crashed: int = 0
+    report: dict | None = None
+    error: str = ""
+    events: list[dict] = field(default_factory=list)
+
+    def snapshot(self) -> dict:
+        return {
+            "run_id": self.run_id,
+            "project_name": self.project_name,
+            "flow_name": self.flow_name,
+            "status": self.status,
+            "started_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.started_at)),
+            "elapsed_seconds": int((self.finished_at or time.time()) - self.started_at),
+            "total": self.total,
+            "completed": self.completed,
+            "passed": self.passed,
+            "failed": self.failed,
+            "unverified": self.unverified,
+            "crashed": self.crashed,
+            "error": self.error,
+        }
+
+
+RUN_REGISTRY: dict[str, RunState] = {}
+_REGISTRY_LIMIT = 200
+
+
+def register_run(project_name: str, flow_name: str) -> RunState:
+    if len(RUN_REGISTRY) > _REGISTRY_LIMIT:
+        for key in sorted(RUN_REGISTRY, key=lambda k: RUN_REGISTRY[k].started_at)[:50]:
+            if RUN_REGISTRY[key].status != "running":
+                RUN_REGISTRY.pop(key, None)
+    state = RunState(run_id=uuid.uuid4().hex[:12], project_name=project_name, flow_name=flow_name)
+    RUN_REGISTRY[state.run_id] = state
+    return state
+
+
+def cancel_run(run_id: str) -> bool:
+    state = RUN_REGISTRY.get(run_id)
+    if not state or state.status != "running":
+        return False
+    state.cancelled = True
+    return True
+
+
+def cancel_all_runs() -> int:
+    return sum(1 for rid in list(RUN_REGISTRY) if cancel_run(rid))
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Run configuration
+# ──────────────────────────────────────────────────────────────────────
+@dataclass
+class RunConfig:
+    project_name: str
+    flow_name: str
+    num_cases: int = -1
+    mode: str = "headless"                 # headed | headless
+    test_types: str = ""
+    auth_flow: str = ""
+    auth_scenario: str = ""
+    dependencies: str = ""
+    case_ids: str = ""                     # comma separated _original_id values
+    workers: int = 1
+    verdict_mode: str = "rules"            # off | rules | ai
+    step_shots: str = "fail"               # off | fail | all
+    tracing: bool = False
+    dep_unique_data: bool = False
+    data_matrix: str = ""                  # csv filename under flow/data/
+    visual_check: bool = False
+    env_name: str = ""
+    api_seed: str = ""                     # seed template name to pre-run
+    triggered_by: str = "dashboard"
+
+    @property
+    def headless(self) -> bool:
+        return self.mode != "headed"
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Step parsing (string DSL + dict steps)
+# ──────────────────────────────────────────────────────────────────────
+def _strip_quotes(value: str) -> str:
+    value = (value or "").strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'`":
+        return value[1:-1]
+    return value
+
+
+def parse_step_string(raw: str) -> dict | None:
+    """Translate a natural-language step into an executable step dict.
+
+    Kept behaviour-compatible with the original parser and extended with the
+    verbs the AI agents already emit (NAVIGATE, KEYPRESS, SELECT, …).
+    """
+    raw_str = (raw or "").strip()
+    if not raw_str:
+        return None
+    upper = raw_str.upper()
+
+    if upper.startswith(("NAVIGATE TO ", "GOTO ", "GO TO ")):
+        for prefix in ("NAVIGATE TO ", "GOTO ", "GO TO "):
+            if upper.startswith(prefix):
+                return {"action": "NAVIGATE", "selector": raw_str[len(prefix):].strip()}
+    if upper.startswith("NAVIGATE "):
+        return {"action": "NAVIGATE", "selector": raw_str[9:].strip()}
+
+    if upper.startswith(("PRESS ", "KEYPRESS ", "KEY ")):
+        for prefix in ("KEYPRESS ", "PRESS ", "KEY "):
+            if upper.startswith(prefix):
+                rest = raw_str[len(prefix):].strip()
+                if " on " in rest.lower():
+                    idx = rest.lower().find(" on ")
+                    return {
+                        "action": "KEYPRESS",
+                        "value": _strip_quotes(rest[:idx]),
+                        "selector": rest[idx + 4:].strip(),
+                    }
+                return {"action": "KEYPRESS", "selector": "", "value": _strip_quotes(rest)}
+
+    if upper.startswith("SELECT "):
+        rest = raw_str[7:].strip()
+        for joiner in (" from ", " in ", " on "):
+            if joiner in rest.lower():
+                idx = rest.lower().find(joiner)
+                return {
+                    "action": "SELECT",
+                    "value": _strip_quotes(rest[:idx]),
+                    "selector": rest[idx + len(joiner):].strip(),
+                }
+        return {"action": "SELECT", "selector": rest, "value": ""}
+
+    if upper.startswith("UPLOAD "):
+        rest = raw_str[7:].strip()
+        if " to " in rest.lower():
+            idx = rest.lower().find(" to ")
+            return {
+                "action": "UPLOAD",
+                "value": _strip_quotes(rest[:idx]),
+                "selector": rest[idx + 4:].strip(),
+            }
+        return {"action": "UPLOAD", "selector": rest, "value": ""}
+
+    if upper.startswith("HOVER "):
+        rest = raw_str[6:].strip()
+        if rest.lower().startswith("on "):
+            rest = rest[3:].strip()
+        return {"action": "HOVER", "selector": rest}
+
+    if upper.startswith("WAIT"):
+        digits = re.search(r"(\d+)", raw_str)
+        return {"action": "WAIT", "selector": "", "value": digits.group(1) if digits else "1000"}
+
+    if upper.startswith(("CHECK ", "TICK ")):
+        prefix = 6 if upper.startswith("CHECK ") else 5
+        rest = raw_str[prefix:].strip()
+        if rest.lower().startswith("on "):
+            rest = rest[3:].strip()
+        return {"action": "CHECK", "selector": rest}
+
+    if upper.startswith("UNCHECK "):
+        rest = raw_str[8:].strip()
+        if rest.lower().startswith("on "):
+            rest = rest[3:].strip()
+        return {"action": "UNCHECK", "selector": rest}
+
+    if upper.startswith("CLEAR "):
+        rest = raw_str[6:].strip()
+        if rest.lower().startswith("on "):
+            rest = rest[3:].strip()
+        return {"action": "CLEAR", "selector": rest}
+
+    if upper.startswith("ACCEPT DIALOG"):
+        return {"action": "DIALOG", "selector": "", "value": "accept"}
+    if upper.startswith("DISMISS DIALOG"):
+        return {"action": "DIALOG", "selector": "", "value": "dismiss"}
+
+    if upper.startswith("CLICK ON "):
+        return {"action": "CLICK", "selector": raw_str[9:].strip()}
+    if upper.startswith("CLICK "):
+        return {"action": "CLICK", "selector": raw_str[6:].strip()}
+
+    if upper.startswith(("TYPE ON ", "TYPE ", "ENTER ", "FILL ")):
+        if upper.startswith("TYPE ON "):
+            prefix_len = 8
+        elif upper.startswith("TYPE "):
+            prefix_len = 5
+        elif upper.startswith("ENTER "):
+            prefix_len = 6
+        else:
+            prefix_len = 5
+        rest = raw_str[prefix_len:].strip()
+        lowered = rest.lower()
+        for joiner in (" with value ", " with ", " into ", " in "):
+            if joiner in lowered:
+                idx = lowered.find(joiner)
+                if joiner in (" into ", " in "):
+                    return {
+                        "action": "TYPE",
+                        "selector": rest[idx + len(joiner):].strip(),
+                        "value": _strip_quotes(rest[:idx]),
+                    }
+                return {
+                    "action": "TYPE",
+                    "selector": rest[:idx].strip(),
+                    "value": _strip_quotes(rest[idx + len(joiner):]),
+                }
+        return {"action": "TYPE", "selector": rest, "value": ""}
+
+    if upper.startswith(("VERIFY ", "ASSERT ", "CHECK THAT ", "EXPECT ")):
+        for prefix in ("VERIFY ", "ASSERT ", "CHECK THAT ", "EXPECT "):
+            if upper.startswith(prefix):
+                rest = raw_str[len(prefix):].strip()
+                break
+        if rest.upper().startswith("ON "):
+            rest = rest[3:].strip()
+        rest_upper = rest.upper()
+
+        if "IS DISABLED" in rest_upper:
+            return {"action": "VERIFY_DISABLED",
+                    "selector": rest[: rest_upper.find("IS DISABLED")].strip()}
+        if "IS ENABLED" in rest_upper:
+            return {"action": "VERIFY_ENABLED",
+                    "selector": rest[: rest_upper.find("IS ENABLED")].strip()}
+        if "IS READONLY" in rest_upper or "IS READ-ONLY" in rest_upper:
+            return {"action": "VERIFY_READONLY",
+                    "selector": rest[: rest_upper.find("IS READ")].strip()}
+        if "IS HIDDEN" in rest_upper or "IS NOT VISIBLE" in rest_upper:
+            marker = "IS HIDDEN" if "IS HIDDEN" in rest_upper else "IS NOT VISIBLE"
+            return {"action": "VERIFY_HIDDEN",
+                    "selector": rest[: rest_upper.find(marker)].strip()}
+        if "URL CONTAINS" in rest_upper or "URL IS" in rest_upper:
+            marker = "URL CONTAINS" if "URL CONTAINS" in rest_upper else "URL IS"
+            idx = rest_upper.find(marker)
+            return {"action": "VERIFY_URL", "selector": "",
+                    "value": _strip_quotes(rest[idx + len(marker):])}
+        if "ROW ABSENT" in rest_upper or "NOT IN TABLE" in rest_upper or \
+           "NO ROW" in rest_upper or "ROW REMOVED" in rest_upper:
+            match = re.search(r"(ROW\s+ABSENT|NOT\s+IN\s+TABLE|NO\s+ROW|ROW\s+REMOVED)",
+                              rest, re.IGNORECASE)
+            sel = rest[: match.start()].strip() if match else "table"
+            return {"action": "VERIFY_ROW_ABSENT", "selector": sel or "table",
+                    "value": _strip_quotes(rest[match.end():]) if match else ""}
+        if "HAS ROW" in rest_upper or "ROW CONTAINS" in rest_upper or "CONTAINS ROW" in rest_upper:
+            match = re.search(r"(HAS\s+ROW|ROW\s+CONTAINS|CONTAINS\s+ROW)", rest, re.IGNORECASE)
+            sel = rest[: match.start()].strip() if match else "table"
+            return {"action": "VERIFY_ROW_CONTAINS", "selector": sel or "table",
+                    "value": _strip_quotes(rest[match.end():])}
+        if "VALUE > 0" in rest_upper or "IS GREATER THAN 0" in rest_upper or \
+           "IS NOT ZERO" in rest_upper or "IS NON-ZERO" in rest_upper:
+            match = re.search(r"(VALUE\s*>|IS\s+GREATER|IS\s+NOT|IS\s+NON)", rest, re.IGNORECASE)
+            return {"action": "VERIFY_NON_ZERO",
+                    "selector": rest[: match.start()].strip() if match else rest}
+        if "HAS VALUE" in rest_upper or "VALUE IS" in rest_upper or "EQUALS" in rest_upper:
+            match = re.search(r"(HAS\s+VALUE|VALUE\s+IS|EQUALS)", rest, re.IGNORECASE)
+            return {"action": "VERIFY_VALUE", "selector": rest[: match.start()].strip(),
+                    "value": _strip_quotes(rest[match.end():])}
+        if "CONTAINS TEXT" in rest_upper or "HAS TEXT" in rest_upper or "SHOWS" in rest_upper:
+            match = re.search(r"(CONTAINS\s+TEXT|HAS\s+TEXT|SHOWS)", rest, re.IGNORECASE)
+            return {"action": "VERIFY_TEXT", "selector": rest[: match.start()].strip() or "body",
+                    "value": _strip_quotes(rest[match.end():])}
+        if "MESSAGE" in rest_upper and ("ERROR" in rest_upper or "VALIDATION" in rest_upper):
+            return {"action": "VERIFY_MESSAGE", "selector": "", "value": ""}
+        if "DOWNLOAD" in rest_upper:
+            return {"action": "VERIFY_DOWNLOAD", "selector": "", "value": ""}
+        return {"action": "VERIFY_STATE", "selector": rest}
+
+    # Unrecognised free text: preserve the original fallback (treat as a click).
+    return {"action": "CLICK", "selector": raw_str}
+
+
+def parse_steps(steps: list) -> list[dict]:
+    parsed: list[dict] = []
+    for step in steps or []:
+        if isinstance(step, dict):
+            normalised = dict(step)
+            action = (normalised.get("action") or "").upper().strip()
+            if not action:
+                action = "TYPE" if normalised.get("value") else "CLICK"
+            normalised["action"] = action
+            parsed.append(normalised)
+        elif isinstance(step, str):
+            converted = parse_step_string(step)
+            if converted:
+                parsed.append(converted)
+    return parsed
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Selector helpers
+# ──────────────────────────────────────────────────────────────────────
+looks_like_dismiss = heuristics.looks_like_dismiss
+
+
+def candidate_selectors(step: dict, action: str) -> list[str]:
+    """Build an ordered candidate list: recorded alternates first, then guesses."""
+    selector = (step.get("selector") or "").strip()
+    candidates: list[str] = []
+
+    for alt in step.get("selectors") or []:          # recorder-provided alternates
+        if isinstance(alt, str) and alt.strip() and alt.strip() not in candidates:
+            candidates.append(alt.strip())
+    if selector and selector not in candidates:
+        candidates.insert(0, selector)
+
+    clean_id = selector.lstrip("#").strip()
+    if clean_id and not any(ch in clean_id for ch in "[]()>:. "):
+        if action in ("TYPE", "CLEAR", "SELECT", "UPLOAD"):
+            candidates += [
+                f'input#{clean_id}', f'input[name="{clean_id}"]',
+                f'input[formcontrolname="{clean_id}"]', f'input[placeholder*="{clean_id}"]',
+                f'textarea#{clean_id}', f'textarea[name="{clean_id}"]',
+                f'select#{clean_id}', f'select[name="{clean_id}"]',
+                f'[data-testid="{clean_id}"]', f'[aria-label="{clean_id}"]',
+            ]
+        else:
+            candidates += [
+                f'[data-testid="{clean_id}"]', f'[aria-label="{clean_id}"]',
+                f'button[name="{clean_id}"]',
+            ]
+
+    if action == "CLICK" and looks_like_dismiss(selector):
+        candidates += [
+                'button:has-text("Cancel")', 'button:has-text("Close")',
+                'button:has-text("No")', 'button:has-text("Dismiss")',
+                '.p-dialog-footer button:has-text("Cancel")',
+                'button.p-dialog-header-close', '.p-dialog-header-close',
+                '.modal-footer button:has-text("Cancel")', '.modal-header .btn-close',
+                'button[aria-label="Close"]', 'button[type="reset"]',
+                'svg.close-icon', 'i.pi-times',
+            ]
+
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for cand in candidates:
+        if cand and cand not in seen:
+            seen.add(cand)
+            ordered.append(cand)
+    return ordered
+
+
+def is_destructive(step: dict) -> bool:
+    blob = f"{step.get('selector','')} {step.get('text','')} {step.get('value','')}".lower()
+    return any(word in blob for word in config.DESTRUCTIVE_KEYWORDS)
+
+
+def humanize_error(error: Exception | str, action: str = "", selector: str = "") -> str:
+    """Turn a Playwright stack message into something a manual tester can act on."""
+    raw = str(error)
+    low = raw.lower()
+    target = f" '{selector}'" if selector else ""
+
+    if "timeout" in low and "waiting for" in low:
+        return (
+            f"Could not interact with the {action or 'element'}{target} in time. "
+            "It may be hidden behind a dialog, disabled, or the page may have "
+            "changed since the flow was recorded."
+        )
+    if "strict mode violation" in low:
+        return (
+            f"The locator{target} matched several elements, so the step was "
+            "ambiguous. Make the selector more specific (add a row or table scope)."
+        )
+    if "not found" in low or "no element" in low or "count = 0" in low:
+        return (
+            f"The {action or 'element'}{target} was not found on the page. The "
+            "screen may not have loaded yet, or the field name changed."
+        )
+    if "not visible" in low or "not enabled" in low or "element is not" in low:
+        return (
+            f"The {action or 'element'}{target} exists but is not usable "
+            "(hidden or disabled) at this point in the flow."
+        )
+    if any(marker in low for marker in CRASH_MARKERS):
+        return "The browser closed unexpectedly during this scenario."
+    if "net::" in low or "err_" in low.upper().lower():
+        return f"The page failed to load ({raw.strip()[:160]}). Check the target URL and VPN/network access."
+    if "validation failed:" in low:
+        return raw.split("Validation failed:", 1)[-1].strip() or raw
+    return raw.strip()[:400]
+
+
+def infer_dialog_policy(scenario: dict) -> str:
+    """Decide whether native confirm() dialogs should be accepted or dismissed."""
+    blob = f"{scenario.get('scenario_name','')} {scenario.get('expected_result','')}".lower()
+    if re.search(r"\bcancel\b|\bdismiss\b|\bdo not (delete|remove|save)\b|\babort\b", blob) and \
+       re.search(r"\bconfirm|dialog|delete|remove\b", blob):
+        return "dismiss"
+    return "accept"
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Data helpers
+# ──────────────────────────────────────────────────────────────────────
+def load_data_matrix(flow_path: Path, filename: str) -> list[dict]:
+    """Load a CSV data matrix for data-driven execution."""
+    if not filename:
+        return []
+    csv_path = flow_path / "data" / filename
+    if not csv_path.exists():
+        csv_path = flow_path / filename
+    if not csv_path.exists():
+        return []
+    with open(csv_path, "r", encoding="utf-8-sig", newline="") as fh:
+        return [dict(row) for row in csv.DictReader(fh)]
+
+
+def unique_token() -> str:
+    return time.strftime("%H%M%S") + uuid.uuid4().hex[:3]
+
+
+CREDENTIAL_FIELD_MARKERS = (
+    "user", "login", "email", "pass", "pwd", "otp", "captcha", "token", "mobile", "phone",
+)
+
+
+def make_dep_value_unique(selector: str, value: str, token: str) -> str:
+    """Suffix prerequisite-flow input values so replays don't hit duplicate keys."""
+    if not value or not value.strip():
+        return value
+    low = selector.lower()
+    if any(marker in low for marker in CREDENTIAL_FIELD_MARKERS):
+        return value
+    if re.fullmatch(r"[\d\s./:-]+", value.strip()):     # numbers, dates, times
+        return value
+    if len(value) > 40:
+        return value
+    return f"{value}{token}"
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Evidence collection
+# ──────────────────────────────────────────────────────────────────────
+async def scan_messages(page, evidence: verdict_engine.Evidence) -> list[str]:
+    """Harvest visible inline/toast messages before they fade away."""
+    fresh: list[str] = []
+    try:
+        found = await page.evaluate(MESSAGE_SCAN_JS)
+    except Exception:
+        return fresh
+    for item in found or []:
+        text = (item.get("text") or "").strip()
+        if not text:
+            continue
+        before = len(evidence.messages)
+        evidence.add_message(text, item.get("selector", ""))
+        if len(evidence.messages) > before:
+            fresh.append(text)
+    return fresh
+
+
+async def wait_for_settle(page, timeout: int = 4000) -> None:
+    try:
+        await page.wait_for_load_state("networkidle", timeout=timeout)
+    except Exception:
+        try:
+            await page.wait_for_timeout(400)
+        except Exception:
+            pass
+    await heuristics.wait_for_ui_idle(page, max_wait_ms=timeout)
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Table verification (pagination + search aware)
+# ──────────────────────────────────────────────────────────────────────
+ROW_TABLE_SELECTORS = (
+    "table tbody", ".p-datatable-tbody", ".table tbody", "[role='grid']", "tbody",
+    ".ag-center-cols-container", ".mat-mdc-table",
+)
+SEARCH_INPUT_SELECTORS = (
+    "input[type='search']", ".p-input-icon-left input", "input[placeholder*='Search' i]",
+    "input[placeholder*='search' i]", "input[aria-label*='Search' i]",
+    ".p-datatable-header input", "#globalFilter", "input.form-control[placeholder*='earch']",
+)
+NEXT_PAGE_SELECTORS = (
+    "button.p-paginator-next:not(.p-disabled)", ".p-paginator-next:not(.p-disabled)",
+    "a[aria-label='Next']", "button[aria-label='Next Page']", "li.next:not(.disabled) a",
+    ".pagination .page-item:not(.disabled) a[rel='next']", "button:has-text('Next')",
+)
+
+
+async def _page_contains_token(page, selector: str, token: str) -> bool:
+    needle = token.lower()
+    for table in (selector, *ROW_TABLE_SELECTORS):
+        if not table:
+            continue
+        try:
+            loc = page.locator(table).first
+            if await loc.count() > 0:
+                text = (await loc.inner_text() or "").lower()
+                if needle in text:
+                    return True
+        except Exception:
+            continue
+    try:
+        row = page.locator(f"tr:has-text('{token}')").first
+        if await row.count() > 0 and await row.is_visible():
+            return True
+    except Exception:
+        pass
+    try:
+        return bool(await page.evaluate(
+            """(needle) => {
+                const cells = document.querySelectorAll(
+                    'table td, .p-datatable-tbody td, [role="gridcell"], .ag-cell');
+                const n = needle.toLowerCase();
+                for (const c of cells) {
+                    const txt = (c.innerText || '').toLowerCase();
+                    const title = (c.getAttribute('title') || '').toLowerCase();
+                    const aria = (c.getAttribute('aria-label') || '').toLowerCase();
+                    if (txt.includes(n) || title.includes(n) || aria.includes(n)) return true;
+                }
+                return false;
+            }""",
+            token,
+        ))
+    except Exception:
+        return False
+
+
+async def find_row(page, selector: str, expected: str, *, max_pages: int = 6,
+                   use_search: bool = True) -> tuple[bool, str]:
+    """Look for a table row across search box and pagination, not just page 1."""
+    tokens = [t for t in re.split(r"\s+", (expected or "").strip()) if len(t) > 2]
+    token = tokens[0] if tokens else (expected or "").strip()
+    if not token:
+        return False, "no expected value supplied"
+
+    if await _page_contains_token(page, selector, expected) or \
+       await _page_contains_token(page, selector, token):
+        return True, "found on the current page"
+
+    if use_search:
+        for search_sel in SEARCH_INPUT_SELECTORS:
+            try:
+                box = page.locator(search_sel).first
+                if await box.count() > 0 and await box.is_visible():
+                    await box.fill(token, timeout=3000)
+                    await box.press("Enter")
+                    await wait_for_settle(page, 3000)
+                    if await _page_contains_token(page, selector, token):
+                        return True, f"found after searching for {token!r}"
+                    break
+            except Exception:
+                continue
+
+    for page_no in range(2, max_pages + 1):
+        advanced = False
+        for next_sel in NEXT_PAGE_SELECTORS:
+            try:
+                nxt = page.locator(next_sel).first
+                if await nxt.count() > 0 and await nxt.is_visible() and await nxt.is_enabled():
+                    await nxt.click(timeout=3000)
+                    await wait_for_settle(page, 3000)
+                    advanced = True
+                    break
+            except Exception:
+                continue
+        if not advanced:
+            break
+        if await _page_contains_token(page, selector, token):
+            return True, f"found on table page {page_no}"
+
+    return False, f"{expected!r} (token {token!r}) not found on any inspected table page"
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Visual regression (optional — needs Pillow)
+# ──────────────────────────────────────────────────────────────────────
+def compare_visual(baseline: Path, current: Path, diff_out: Path) -> dict:
+    try:
+        from PIL import Image, ImageChops
+    except Exception:
+        return {"supported": False,
+                "note": "Visual diffing needs Pillow (pip install pillow)."}
+    try:
+        with Image.open(baseline) as base_img, Image.open(current) as cur_img:
+            base_rgb = base_img.convert("RGB")
+            cur_rgb = cur_img.convert("RGB")
+            if base_rgb.size != cur_rgb.size:
+                cur_rgb = cur_rgb.resize(base_rgb.size)
+            diff = ImageChops.difference(base_rgb, cur_rgb)
+            bbox = diff.getbbox()
+            histogram = diff.convert("L").histogram()
+            changed = sum(count for value, count in enumerate(histogram) if value > 24)
+            total = base_rgb.size[0] * base_rgb.size[1]
+            pct = round((changed / total) * 100, 3) if total else 0.0
+            if bbox:
+                diff.save(diff_out)
+            return {"supported": True, "diff_percent": pct,
+                    "diff_image": str(diff_out) if bbox else "", "changed_pixels": changed}
+    except Exception as err:
+        return {"supported": False, "note": f"Visual diff failed: {err}"}
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Single-step execution
+# ──────────────────────────────────────────────────────────────────────
+async def execute_step(page, step: dict, ctx: dict) -> dict:
+    """Run one step. Returns a dict describing what happened.
+
+    ``ctx`` carries: evidence, runtime_pool, headless, log (async callable),
+    dialog_policy (mutable dict), downloads list.
+    """
+    action = (step.get("action") or "").upper()
+    selector = (step.get("selector") or "").strip()
+    raw_value = step.get("value", "")
+    value = heuristics.resolve_dynamic_variables(str(raw_value or ""), ctx["runtime_pool"])
+    evidence: verdict_engine.Evidence = ctx["evidence"]
+    emit_log = ctx["log"]
+    headless = ctx["headless"]
+    result = {"action": action, "selector": selector, "healed": False}
+
+    async def highlight(loc) -> None:
+        if not headless:
+            try:
+                await loc.highlight()
+            except Exception:
+                pass
+
+    async def first_usable(cands: list[str], *, require_visible: bool = True):
+        """First candidate that resolves. Only the primary selector gets a wait,
+        so a genuinely missing element fails in seconds instead of minutes."""
+        for position, cand in enumerate(cands):
+            try:
+                loc = page.locator(cand).first
+                if position == 0 and require_visible:
+                    try:
+                        await loc.wait_for(state="visible", timeout=4000)
+                        return loc, cand
+                    except Exception:
+                        pass
+                if await loc.count() == 0:
+                    continue
+                if require_visible and not await loc.is_visible():
+                    continue
+                return loc, cand
+            except Exception:
+                continue
+        return None, ""
+
+    # ── Navigation ────────────────────────────────────────────────────
+    if action == "NAVIGATE":
+        target = value or selector
+        target = heuristics.resolve_dynamic_variables(target, ctx["runtime_pool"])
+        if not target or target.lower() in ("window", "page", "browser"):
+            result["skipped"] = "no URL supplied"
+            return result
+        if not target.startswith(("http://", "https://")):
+            base = ctx.get("base_url") or ""
+            target = base.rstrip("/") + "/" + target.lstrip("/") if base else target
+        await page.goto(target, wait_until="domcontentloaded", timeout=60000)
+        await wait_for_settle(page)
+        result["navigated_to"] = target
+        return result
+
+    if action in ("WAIT", "SLEEP"):
+        try:
+            millis = max(0, min(int(float(value or 1000)), 30000))
+        except Exception:
+            millis = 1000
+        await page.wait_for_timeout(millis)
+        return result
+
+    if action in ("WAIT_FOR", "WAIT_FOR_ELEMENT"):
+        loc, used = await first_usable(candidate_selectors(step, "CLICK"))
+        if not loc:
+            raise Exception(f"Validation failed: Element '{selector}' never became visible.")
+        result["selector_used"] = used
+        return result
+
+    if action == "DIALOG":
+        ctx["dialog_policy"]["mode"] = "dismiss" if "dismiss" in value.lower() else "accept"
+        await emit_log(f"🗨️ Native dialogs will now be {ctx['dialog_policy']['mode']}ed.")
+        return result
+
+    if action in ("SCREENSHOT", "CAPTURE"):
+        shot_dir = ctx["shots_dir"]
+        shot_dir.mkdir(parents=True, exist_ok=True)
+        path = shot_dir / f"case_{ctx['index']}_evidence_{int(time.time() * 1000)}.png"
+        await page.screenshot(path=str(path))
+        result["screenshot"] = str(path)
+        return result
+
+    # ── Interactions ──────────────────────────────────────────────────
+    if action == "TYPE":
+        if value.strip():
+            ctx["runtime_pool"]["last_typed_value"] = value.strip()
+        cands = candidate_selectors(step, "TYPE")
+        for attempt in range(3):
+            loc, used = await first_usable(cands)
+            if loc:
+                try:
+                    await highlight(loc)
+                    await loc.fill(value, timeout=5000 if headless else 8000)
+                    result["selector_used"] = used
+                    return result
+                except Exception as err:
+                    last = err
+            if attempt < 2:
+                await emit_log(
+                    f"🔄 [Retry {attempt + 1}/2] TYPE on '{selector}' failed — retrying in "
+                    f"{2 * (attempt + 1)}s..."
+                )
+                await page.wait_for_timeout(2000 * (attempt + 1))
+        healed = await heuristics.attempt_auto_healing(
+            page, "TYPE", selector, value, allow_vision=not is_destructive(step)
+        )
+        if healed:
+            evidence.healed_steps += 1
+            result["healed"] = True
+            await emit_log(f"🛠️ [Auto-Heal] Repaired input on '{selector}'")
+            return result
+        raise Exception(f"TYPE failed on '{selector}'")
+
+    if action == "CLEAR":
+        loc, used = await first_usable(candidate_selectors(step, "TYPE"))
+        if not loc:
+            raise Exception(f"CLEAR failed: '{selector}' not found.")
+        await loc.fill("")
+        result["selector_used"] = used
+        return result
+
+    if action in ("CLICK", "DOUBLE_CLICK", "RIGHT_CLICK"):
+        cands = candidate_selectors(step, "CLICK")
+        for attempt in range(3):
+            loc, used = await first_usable(cands)
+            if loc:
+                try:
+                    await highlight(loc)
+                    if action == "DOUBLE_CLICK":
+                        await loc.dblclick(timeout=5000 if headless else 8000)
+                    elif action == "RIGHT_CLICK":
+                        await loc.click(button="right", timeout=5000 if headless else 8000)
+                    else:
+                        await loc.click(timeout=5000 if headless else 8000)
+                    result["selector_used"] = used
+                    return result
+                except Exception:
+                    pass
+            if attempt < 2:
+                await emit_log(
+                    f"🔄 [Retry {attempt + 1}/2] CLICK on '{selector}' failed — retrying in "
+                    f"{2 * (attempt + 1)}s..."
+                )
+                await page.wait_for_timeout(2000 * (attempt + 1))
+        healed = await heuristics.attempt_auto_healing(
+            page, "CLICK", selector, "", allow_vision=not is_destructive(step)
+        )
+        if healed:
+            evidence.healed_steps += 1
+            result["healed"] = True
+            await emit_log(f"🛠️ [Auto-Heal] Recovered click on '{selector}'")
+            return result
+        raise Exception(f"CLICK failed on '{selector}'")
+
+    if action in ("SELECT", "SELECT_OPTION", "CHOOSE"):
+        cands = candidate_selectors(step, "SELECT")
+        loc, used = await first_usable(cands)
+        # Native <select>
+        if loc:
+            try:
+                tag = (await loc.evaluate("el => el.tagName") or "").lower()
+            except Exception:
+                tag = ""
+            if tag == "select":
+                try:
+                    await loc.select_option(label=value, timeout=4000)
+                except Exception:
+                    try:
+                        await loc.select_option(value=value, timeout=4000)
+                    except Exception:
+                        await loc.select_option(index=0, timeout=4000)
+                result["selector_used"] = used
+                result["selected"] = value
+                return result
+        # Framework dropdown: open the trigger, then pick the option by text.
+        trigger, used = await first_usable(
+            [*cands, f"{selector} .p-dropdown-trigger", ".p-dropdown", ".mat-mdc-select",
+             ".ant-select", "[role='combobox']"]
+        )
+        if trigger:
+            await highlight(trigger)
+            await trigger.click(timeout=4000)
+            await page.wait_for_timeout(400)
+        option_selectors = [
+            f".p-dropdown-item:has-text('{value}')", f"li[role='option']:has-text('{value}')",
+            f".mat-mdc-option:has-text('{value}')", f".ant-select-item:has-text('{value}')",
+            f"option:has-text('{value}')", f"[role='option']:has-text('{value}')",
+            f"li:has-text('{value}')",
+        ] if value else [".p-dropdown-item", "li[role='option']", "[role='option']"]
+        option, opt_used = await first_usable(option_selectors)
+        if not option:
+            raise Exception(
+                f"SELECT failed: option {value!r} not found in dropdown '{selector}'."
+            )
+        await option.click(timeout=4000)
+        result["selector_used"] = opt_used
+        result["selected"] = value
+        if value:
+            ctx["runtime_pool"]["last_selected_value"] = value
+        return result
+
+    if action in ("CHECK", "UNCHECK"):
+        loc, used = await first_usable(candidate_selectors(step, "CLICK"))
+        if not loc:
+            raise Exception(f"{action} failed: '{selector}' not found.")
+        try:
+            if action == "CHECK":
+                await loc.check(timeout=4000)
+            else:
+                await loc.uncheck(timeout=4000)
+        except Exception:
+            await loc.click(timeout=4000)
+        result["selector_used"] = used
+        return result
+
+    if action in ("KEYPRESS", "PRESS", "KEY"):
+        key = (value or "Enter").strip() or "Enter"
+        key = {"enter": "Enter", "tab": "Tab", "escape": "Escape", "esc": "Escape",
+               "space": "Space", "backspace": "Backspace", "delete": "Delete"}.get(
+                   key.lower(), key)
+        if selector:
+            loc, used = await first_usable(candidate_selectors(step, "CLICK"))
+            if loc:
+                await loc.press(key, timeout=4000)
+                result["selector_used"] = used
+                result["key"] = key
+                return result
+        await page.keyboard.press(key)
+        result["key"] = key
+        return result
+
+    if action in ("UPLOAD", "ATTACH"):
+        file_path = value
+        if not os.path.isabs(file_path):
+            candidate = ctx["flow_path"] / "data" / file_path
+            file_path = str(candidate if candidate.exists() else config.BASE_DIR / file_path)
+        if not os.path.exists(file_path):
+            raise Exception(
+                f"UPLOAD failed: file '{value}' not found. Place it in the flow's data/ folder."
+            )
+        loc, used = await first_usable(
+            [*candidate_selectors(step, "UPLOAD"), "input[type='file']"], require_visible=False
+        )
+        if not loc:
+            raise Exception(f"UPLOAD failed: no file input matched '{selector}'.")
+        await loc.set_input_files(file_path)
+        result["selector_used"] = used
+        result["uploaded"] = file_path
+        return result
+
+    if action == "HOVER":
+        loc, used = await first_usable(candidate_selectors(step, "CLICK"))
+        if not loc:
+            raise Exception(f"HOVER failed: '{selector}' not found.")
+        await loc.hover(timeout=4000)
+        result["selector_used"] = used
+        return result
+
+    if action in ("SCROLL_TO", "SCROLL"):
+        loc, used = await first_usable(candidate_selectors(step, "CLICK"), require_visible=False)
+        if loc:
+            await loc.scroll_into_view_if_needed(timeout=4000)
+            result["selector_used"] = used
+        else:
+            await page.mouse.wheel(0, 600)
+        return result
+
+    # ── Assertions ────────────────────────────────────────────────────
+    if action in ASSERTION_ACTIONS:
+        await wait_for_settle(page, 4000)
+        await scan_messages(page, evidence)
+        ok, detail = await run_assertion(page, action, step, selector, value, ctx)
+        evidence.assertions.append(
+            {"action": action, "selector": selector, "value": value, "ok": ok, "detail": detail}
+        )
+        result["assertion_ok"] = ok
+        result["detail"] = detail
+        if not ok:
+            raise Exception(f"Validation failed: {detail}")
+        await emit_log(f"✅ {action} passed — {detail}")
+        return result
+
+    result["skipped"] = f"unsupported action '{action}'"
+    await emit_log(f"⚠️ Step skipped: unsupported action '{action}'")
+    return result
+
+
+async def run_assertion(page, action: str, step: dict, selector: str, value: str,
+                        ctx: dict) -> tuple[bool, str]:
+    """Evaluate one VERIFY_* step. Returns (ok, human-readable detail)."""
+    evidence: verdict_engine.Evidence = ctx["evidence"]
+    pool = ctx["runtime_pool"]
+
+    async def locator():
+        for cand in candidate_selectors(step, "CLICK"):
+            try:
+                loc = page.locator(cand).first
+                if await loc.count() > 0:
+                    return loc
+            except Exception:
+                continue
+        return None
+
+    if action in ("VERIFY_STATE", "VERIFY_VISIBLE"):
+        loc = await locator()
+        if loc is None:
+            return False, f"element '{selector}' does not exist on the page"
+        visible = await loc.is_visible()
+        return visible, (
+            f"element '{selector}' is visible" if visible
+            else f"element '{selector}' exists but is not visible"
+        )
+
+    if action == "VERIFY_HIDDEN":
+        loc = await locator()
+        if loc is None:
+            return True, f"element '{selector}' is absent, as expected"
+        visible = await loc.is_visible()
+        return (not visible), (
+            f"element '{selector}' is hidden, as expected" if not visible
+            else f"element '{selector}' is still visible"
+        )
+
+    if action == "VERIFY_DISABLED":
+        loc = await locator()
+        if loc is None:
+            return False, f"element '{selector}' not found to verify disabled state"
+        if await loc.is_disabled():
+            return True, f"'{selector}' is disabled"
+        classes = (await loc.get_attribute("class")) or ""
+        if "disabled" in classes.lower() or "p-disabled" in classes.lower():
+            return True, f"'{selector}' is marked disabled via CSS class"
+        if (await loc.get_attribute("readonly")) is not None:
+            return True, f"'{selector}' is read-only"
+        return False, f"'{selector}' should be disabled but is editable"
+
+    if action == "VERIFY_ENABLED":
+        loc = await locator()
+        if loc is None:
+            return False, f"element '{selector}' not found"
+        enabled = await loc.is_enabled()
+        return enabled, f"'{selector}' is {'enabled' if enabled else 'disabled'}"
+
+    if action == "VERIFY_READONLY":
+        loc = await locator()
+        if loc is None:
+            return False, f"element '{selector}' not found to verify read-only state"
+        if (await loc.get_attribute("readonly")) is not None:
+            return True, f"'{selector}' is read-only"
+        classes = ((await loc.get_attribute("class")) or "").lower()
+        if "readonly" in classes or "disabled" in classes or "p-disabled" in classes:
+            return True, f"'{selector}' is read-only via CSS class"
+        if await loc.is_disabled():
+            return True, f"'{selector}' is disabled"
+        return False, f"'{selector}' should be read-only but accepts input"
+
+    if action in ("VERIFY_VALUE", "ASSERT_VALUE"):
+        loc = await locator()
+        if loc is None:
+            return False, f"element '{selector}' not found to verify value"
+        actual = await _read_value(loc)
+        expected = _strip_quotes(value)
+        ok = expected.lower() in actual.lower()
+        return ok, (
+            f"'{selector}' contains {expected!r}" if ok
+            else f"'{selector}' holds {actual!r}, expected {expected!r}"
+        )
+
+    if action == "VERIFY_NON_ZERO":
+        loc = await locator()
+        if loc is None:
+            return False, f"element '{selector}' not found to verify calculation"
+        actual = await _read_value(loc)
+        match = re.search(r"-?\d+(?:\.\d+)?", actual.replace(",", ""))
+        if not match:
+            return False, f"'{selector}' has no numeric value (found {actual!r})"
+        number = float(match.group(0))
+        return number > 0, (
+            f"'{selector}' calculated {number}" if number > 0
+            else f"'{selector}' calculated {number}, expected greater than 0"
+        )
+
+    if action == "VERIFY_TEXT":
+        target = selector or "body"
+        step_for_text = dict(step, selector=target)
+        loc = None
+        for cand in candidate_selectors(step_for_text, "CLICK"):
+            try:
+                candidate_loc = page.locator(cand).first
+                if await candidate_loc.count() > 0:
+                    loc = candidate_loc
+                    break
+            except Exception:
+                continue
+        if loc is None:
+            return False, f"element '{target}' not found"
+        text = (await loc.inner_text() or "").strip()
+        expected = _strip_quotes(value)
+        ok = expected.lower() in text.lower()
+        return ok, (
+            f"'{target}' shows {expected!r}" if ok
+            else f"'{target}' does not contain {expected!r}"
+        )
+
+    if action in ("VERIFY_ROW_CONTAINS", "VERIFY_TABLE_ROW"):
+        expected = _strip_quotes(value).strip()
+        if not expected or expected.lower() in (
+            "expected record name/code", "expected record name", "record_name",
+            "record name", "new record",
+        ):
+            expected = pool.get("last_typed_value", expected)
+        found, detail = await find_row(page, selector, expected)
+        return found, detail
+
+    if action == "VERIFY_ROW_ABSENT":
+        expected = _strip_quotes(value).strip() or pool.get("last_typed_value", "")
+        found, detail = await find_row(page, selector, expected, max_pages=3, use_search=True)
+        return (not found), (
+            f"{expected!r} is no longer listed, as expected" if not found
+            else f"{expected!r} is still present in the table ({detail})"
+        )
+
+    if action == "VERIFY_URL":
+        expected = _strip_quotes(value)
+        current = page.url
+        ok = expected.lower() in current.lower()
+        return ok, (
+            f"URL contains {expected!r}" if ok
+            else f"URL is {current!r}, expected it to contain {expected!r}"
+        )
+
+    if action == "VERIFY_COUNT":
+        loc_count = 0
+        for cand in candidate_selectors(step, "CLICK"):
+            try:
+                loc_count = await page.locator(cand).count()
+                if loc_count:
+                    break
+            except Exception:
+                continue
+        expected_raw = _strip_quotes(value)
+        match = re.search(r"\d+", expected_raw or "")
+        if match:
+            expected_n = int(match.group(0))
+            if "at least" in expected_raw.lower() or ">" in expected_raw:
+                return loc_count >= expected_n, f"found {loc_count} elements (expected ≥ {expected_n})"
+            return loc_count == expected_n, f"found {loc_count} elements (expected {expected_n})"
+        return loc_count > 0, f"found {loc_count} matching elements"
+
+    if action == "VERIFY_DOWNLOAD":
+        downloads = evidence.downloads
+        if not downloads:
+            return False, "no file was downloaded during this scenario"
+        expected_rows = None
+        match = re.search(r"\d+", value or "")
+        if match:
+            expected_rows = int(match.group(0))
+        latest = downloads[-1]
+        if expected_rows is not None and latest.get("row_count") is not None:
+            ok = latest["row_count"] >= expected_rows
+            return ok, (
+                f"downloaded {latest.get('suggested_filename')} with "
+                f"{latest['row_count']} data rows (expected ≥ {expected_rows})"
+            )
+        return True, (
+            f"downloaded {latest.get('suggested_filename')} "
+            f"({latest.get('row_count', 'unknown')} rows)"
+        )
+
+    if action == "VERIFY_MESSAGE":
+        expected = _strip_quotes(value)
+        pool_messages = [m["text"] for m in evidence.messages]
+        if not pool_messages:
+            return False, "no validation or toast message appeared on screen"
+        if expected:
+            ok = any(expected.lower() in m.lower() for m in pool_messages)
+            return ok, (
+                f"message {expected!r} shown" if ok
+                else f"messages on screen were {pool_messages[:3]}, expected {expected!r}"
+            )
+        return True, f"message shown: {pool_messages[0]!r}"
+
+    return False, f"unsupported assertion '{action}'"
+
+
+async def _read_value(loc) -> str:
+    for reader in ("input_value", "inner_text"):
+        try:
+            text = await getattr(loc, reader)()
+            if text and str(text).strip():
+                return str(text).strip()
+        except Exception:
+            continue
+    try:
+        attr = await loc.get_attribute("value")
+        if attr:
+            return attr.strip()
+    except Exception:
+        pass
+    return ""
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Download bookkeeping
+# ──────────────────────────────────────────────────────────────────────
+def count_export_rows(path: Path) -> int | None:
+    """Row count for a downloaded CSV/XLSX so export tests can assert totals."""
+    suffix = path.suffix.lower()
+    try:
+        if suffix in (".csv", ".txt"):
+            with open(path, "r", encoding="utf-8-sig", errors="replace", newline="") as fh:
+                rows = [r for r in csv.reader(fh) if any(c.strip() for c in r)]
+            return max(len(rows) - 1, 0)
+        if suffix in (".xlsx", ".xlsm"):
+            try:
+                from openpyxl import load_workbook
+            except Exception:
+                return None
+            workbook = load_workbook(filename=str(path), read_only=True)
+            total = 0
+            for sheet in workbook.worksheets:
+                total += max((sheet.max_row or 1) - 1, 0)
+            workbook.close()
+            return total
+    except Exception:
+        return None
+    return None
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Prerequisite chains and authentication
+# ──────────────────────────────────────────────────────────────────────
+AUTH_KEYWORDS = ("login", "auth", "session", "logout", "signin", "sign-in")
+
+
+def is_auth_flow(flow_name: str) -> bool:
+    return any(keyword in (flow_name or "").lower() for keyword in AUTH_KEYWORDS)
+
+
+async def replay_dependencies(page, cfg: RunConfig, ctx: dict, emit_log) -> None:
+    """Replay prerequisite flows (login → master A → master B → target)."""
+    deps = [d.strip() for d in (cfg.dependencies or "").split(",") if d.strip()]
+    if not deps:
+        return
+
+    token = ctx["runtime_pool"].setdefault("run_token", unique_token())
+    for dep in deps:
+        dep_path = config.flow_dir(cfg.project_name, dep) / "actions.json"
+        if not dep_path.exists():
+            await emit_log(f"⚠️ Prerequisite '{dep}' has no recording — skipped.")
+            continue
+
+        await emit_log(f"🔗 Resolving prerequisite dependency: [{dep}]...")
+        try:
+            with open(dep_path, "r", encoding="utf-8") as fh:
+                dep_actions = json.load(fh)
+        except Exception as err:
+            await emit_log(f"⚠️ Could not read prerequisite '{dep}': {err}")
+            continue
+
+        make_unique = cfg.dep_unique_data and not is_auth_flow(dep)
+        if make_unique:
+            await emit_log(
+                f"🎲 Unique-data mode: values typed during [{dep}] get the suffix "
+                f"'{token}' so repeat runs don't collide with existing records."
+            )
+
+        for step_no, act in enumerate(dep_actions, start=1):
+            if ctx["state"].cancelled:
+                raise RunCancelled()
+            action = (act.get("action") or "").upper()
+            selector = act.get("selector")
+            value = act.get("value", "")
+            if not action or not selector:
+                continue
+            if make_unique and action == "TYPE":
+                new_value = make_dep_value_unique(selector, value, token)
+                if new_value != value:
+                    ctx["runtime_pool"][f"dep_{dep}_{step_no}"] = new_value
+                    ctx["runtime_pool"]["last_unique_value"] = new_value
+                    value = new_value
+
+            await emit_log(f"🔗 [{dep}] Step {step_no}: {action} on '{selector}'")
+            try:
+                await execute_step(
+                    page,
+                    {"action": action, "selector": selector, "value": value,
+                     "selectors": act.get("selectors")},
+                    ctx,
+                )
+            except Exception as err:
+                await emit_log(
+                    f"⚠️ Prerequisite warning on '{selector}': "
+                    f"{humanize_error(err, action, selector)}"
+                )
+            await wait_for_settle(page, 3000)
+        await page.wait_for_timeout(1000)
+
+
+async def replay_authentication(page, context, cfg: RunConfig, ctx: dict, emit_log,
+                                target_url: str, credentials: dict,
+                                session_file: Path) -> bool:
+    """Log in when the target URL bounced us to a login screen."""
+    try:
+        on_login_page = "auth/login" in page.url or "login" in page.url.lower() or \
+            await page.locator("input[name='username'], input[type='password']").count() > 0
+    except Exception:
+        on_login_page = False
+
+    testing_auth_itself = (cfg.flow_name == cfg.auth_flow) or is_auth_flow(cfg.flow_name) or \
+        "auth/login" in (target_url or "")
+
+    if not on_login_page:
+        if not testing_auth_itself and not cfg.dependencies.strip():
+            await emit_log("🟢 Active login session detected. Bypassing auth flow.")
+        return False
+
+    if testing_auth_itself or not cfg.auth_flow or not cfg.auth_scenario:
+        if not testing_auth_itself:
+            await emit_log(
+                "⚠️ Landed on a login page but no authentication profile is configured. "
+                "Set 'Authentication Required' in the execution profile, or add 'login' "
+                "to Chain Prerequisites."
+            )
+        return False
+
+    await emit_log(f"🔑 Redirect detected. Executing auth scenario: "
+                   f"[{cfg.auth_flow} → {cfg.auth_scenario}]")
+
+    auth_cases_path = config.flow_dir(cfg.project_name, cfg.auth_flow) / "test_cases.json"
+    auth_steps: list = []
+    if auth_cases_path.exists():
+        try:
+            with open(auth_cases_path, "r", encoding="utf-8") as fh:
+                auth_matrix = json.load(fh)
+            auth_case = next(
+                (tc for tc in auth_matrix
+                 if (tc.get("scenario_name") or tc.get("scenario")) == cfg.auth_scenario),
+                None,
+            )
+            if auth_case:
+                auth_steps = auth_case.get("steps", [])
+        except Exception as err:
+            await emit_log(f"⚠️ Could not read the auth scenario: {err}")
+
+    if not auth_steps:
+        actions_path = config.flow_dir(cfg.project_name, cfg.auth_flow) / "actions.json"
+        if actions_path.exists():
+            try:
+                with open(actions_path, "r", encoding="utf-8") as fh:
+                    auth_steps = json.load(fh)
+                await emit_log("🔑 No matching auth scenario; replaying the raw login recording.")
+            except Exception:
+                pass
+
+    for step_no, step in enumerate(parse_steps(auth_steps), start=1):
+        if ctx["state"].cancelled:
+            raise RunCancelled()
+        action = (step.get("action") or "").upper()
+        selector = step.get("selector") or ""
+        value = step.get("value", "")
+        if action == "NAVIGATE":
+            continue
+        if not selector:
+            continue
+        if action == "TYPE":
+            low = selector.lower()
+            if "user" in low or "email" in low or "login" in low:
+                value = credentials.get("username", value)
+            elif "pass" in low or "pwd" in low:
+                value = credentials.get("password", value)
+
+        await emit_log(f"🔑 Replaying Auth Step {step_no}: {action} on '{selector}'")
+        try:
+            await execute_step(page, dict(step, value=value), ctx)
+        except Exception as err:
+            await emit_log(f"⚠️ Auth step warning: {humanize_error(err, action, selector)}")
+        await page.wait_for_timeout(600)
+
+    await wait_for_settle(page, 6000)
+
+    try:
+        still_login = "auth/login" in page.url or \
+            await page.locator("input[type='password']").count() > 0
+    except Exception:
+        still_login = False
+
+    if still_login:
+        await emit_log(
+            "⛔ Authentication did not complete — still on the login screen. Check the "
+            "credentials in the project settings (or login_data.json)."
+        )
+        return False
+
+    try:
+        session_file.parent.mkdir(parents=True, exist_ok=True)
+        await context.storage_state(path=str(session_file))
+        await emit_log(f"✅ Auth successful! Session cookies saved to {session_file.name}.")
+    except Exception as err:
+        await emit_log(f"⚠️ Could not persist session cookies: {err}")
+
+    await emit_log(f"Navigating back to target URL: {target_url}")
+    await page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
+    await wait_for_settle(page)
+    return True
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Scenario execution
+# ──────────────────────────────────────────────────────────────────────
+async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
+                       emit: Emit, state: RunState) -> dict:
+    """Execute one scenario in an isolated browser context and judge the result."""
+    index = scenario.get("_original_id", scenario.get("_run_seq", 0))
+    label = scenario.get("_label", "")
+    name = scenario.get("scenario_name") or scenario.get("scenario") or f"Test Case #{index}"
+    expected = scenario.get("expected_result") or scenario.get("expected") or ""
+    flow_path: Path = shared["flow_path"]
+    target_url: str = shared["target_url"]
+    prefix = f"#{index} " if cfg.workers > 1 else ""
+
+    async def emit_log(message: str) -> None:
+        await emit({"event": "log", "index": index, "message": f"{prefix}{message}"})
+
+    await emit({
+        "event": "test_start",
+        "index": index,
+        "run_seq": scenario.get("_run_seq", index),
+        "total_run": shared["total"],
+        "name": name + (f" [{label}]" if label else ""),
+        "type": scenario.get("type", "functional"),
+    })
+
+    evidence = verdict_engine.Evidence()
+    console_errors: list[str] = []
+    network_errors: list[str] = []
+    steps_executed: list[str] = []
+    step_durations: list[dict] = []
+    runtime_pool: dict = dict(shared.get("seed_pool") or {})
+    runtime_pool.update(scenario.get("_data_row") or {})
+    dialog_policy = {"mode": infer_dialog_policy(scenario)}
+    downloads_dir = flow_path / "downloads"
+    shots_dir = flow_path / "screenshots"
+    start_time = time.time()
+
+    context_args: dict[str, Any] = {"accept_downloads": True}
+    session_file: Path = shared["session_file"]
+    if session_file.exists():
+        context_args["storage_state"] = str(session_file)
+    if not cfg.headless:
+        context_args["no_viewport"] = True
+    video_dir = flow_path / "videos"
+    video_dir.mkdir(parents=True, exist_ok=True)
+    context_args["record_video_dir"] = str(video_dir)
+    context_args["record_video_size"] = {"width": 1280, "height": 720}
+
+    context = await browser.new_context(**context_args)
+    trace_path = ""
+    if cfg.tracing:
+        try:
+            await context.tracing.start(screenshots=True, snapshots=True, sources=False)
+        except Exception:
+            pass
+
+    page = await context.new_page()
+    page.set_default_timeout(15000 if not cfg.headless else 10000)
+
+    page.on("console", lambda msg: console_errors.append(f"[{msg.type}] {msg.text}")
+            if msg.type in ("error", "warning") else None)
+    page.on("requestfailed", lambda req: network_errors.append(
+        f"Network error: {req.method} {req.url} - {req.failure or 'failed'}"))
+
+    def on_dialog(dialog) -> None:
+        record = {"type": dialog.type, "message": dialog.message, "action": dialog_policy["mode"]}
+        evidence.dialogs.append(record)
+
+        async def resolve() -> None:
+            try:
+                if dialog_policy["mode"] == "dismiss":
+                    await dialog.dismiss()
+                else:
+                    await dialog.accept()
+            except Exception:
+                pass
+        asyncio.create_task(resolve())
+
+    page.on("dialog", on_dialog)
+
+    def on_download(download) -> None:
+        async def save() -> None:
+            try:
+                downloads_dir.mkdir(parents=True, exist_ok=True)
+                suggested = download.suggested_filename or f"download_{int(time.time())}"
+                dest = downloads_dir / f"case_{index}_{suggested}"
+                await download.save_as(str(dest))
+                rows = count_export_rows(dest)
+                evidence.downloads.append({
+                    "suggested_filename": suggested,
+                    "path": str(dest),
+                    "url": config.static_url(cfg.project_name, cfg.flow_name,
+                                             "downloads", dest.name),
+                    "row_count": rows,
+                    "size_bytes": dest.stat().st_size if dest.exists() else 0,
+                })
+            except Exception as err:
+                log.warning("Download capture failed: %s", err)
+        asyncio.create_task(save())
+
+    page.on("download", on_download)
+
+    ctx = {
+        "evidence": evidence,
+        "runtime_pool": runtime_pool,
+        "headless": cfg.headless,
+        "log": emit_log,
+        "dialog_policy": dialog_policy,
+        "flow_path": flow_path,
+        "shots_dir": shots_dir,
+        "index": index,
+        "base_url": target_url,
+        "state": state,
+    }
+
+    status = verdict_engine.PASS
+    verdict_obj: verdict_engine.Verdict | None = None
+    error_text = ""
+    screenshot_rel = ""
+    temp_video_path = ""
+    failed_step_no = 0
+
+    try:
+        if state.cancelled:
+            raise RunCancelled()
+
+        await emit_log(f"Navigating to target URL: {target_url}")
+        await page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
+        await wait_for_settle(page)
+        evidence.url_start = page.url
+
+        await replay_dependencies(page, cfg, ctx, emit_log)
+
+        if not cfg.dependencies.strip():
+            await replay_authentication(
+                page, context, cfg, ctx, emit_log, target_url,
+                shared["credentials"], session_file,
+            )
+        elif session_file.exists():
+            try:
+                if "auth/login" in page.url:
+                    await emit_log(
+                        "⚠️ The saved session looks expired (still on the login page)."
+                    )
+            except Exception:
+                pass
+
+        evidence.url_start = page.url
+        run_steps = parse_steps(scenario.get("steps", []))
+        evidence.steps_total = len(run_steps)
+
+        for step_no, step in enumerate(run_steps, start=1):
+            if state.cancelled:
+                raise RunCancelled()
+            action = (step.get("action") or "").upper()
+            selector = step.get("selector") or ""
+            value = heuristics.resolve_dynamic_variables(
+                str(step.get("value") or ""), runtime_pool
+            )
+            if not action:
+                action = "TYPE" if value else "CLICK"
+            if not selector and action not in (
+                "KEYPRESS", "PRESS", "KEY", "WAIT", "SLEEP", "DIALOG", "SCREENSHOT",
+                "CAPTURE", "VERIFY_URL", "VERIFY_DOWNLOAD", "VERIFY_MESSAGE", "NAVIGATE",
+                "SCROLL", "SCROLL_TO",
+            ):
+                continue
+
+            failed_step_no = step_no
+            step_desc = f"{action} on '{selector}'" + (
+                f" with value '{value}'" if action in ("TYPE", "SELECT", "KEYPRESS") and value
+                else ""
+            )
+            steps_executed.append(step_desc)
+            await emit({"event": "log", "index": index,
+                        "message": f"{prefix}Replaying Step {step_no}: {step_desc}"})
+
+            step_start = time.time()
+            step_result = await execute_step(page, dict(step, action=action), ctx)
+            elapsed_ms = int((time.time() - step_start) * 1000)
+            step_durations.append({
+                "step": step_no, "action": action, "selector": selector,
+                "duration_ms": elapsed_ms, "healed": step_result.get("healed", False),
+                "skipped": step_result.get("skipped", ""),
+            })
+            evidence.steps_executed = step_no
+
+            fresh = await scan_messages(page, evidence)
+            if fresh:
+                await emit_log(f"🔍 Screen message: {fresh}")
+
+            if cfg.step_shots == "all":
+                try:
+                    shots_dir.mkdir(parents=True, exist_ok=True)
+                    await page.screenshot(
+                        path=str(shots_dir / f"case_{index}_step_{step_no}.png")
+                    )
+                except Exception:
+                    pass
+
+            await page.wait_for_timeout(500 if cfg.headless else 800)
+
+        await wait_for_settle(page, 5000)
+        await scan_messages(page, evidence)
+        evidence.url_end = page.url
+
+        if evidence.messages:
+            await emit_log(
+                f"🔍 Live Screen Inspector: {[m['text'] for m in evidence.messages][:5]}"
+            )
+
+        shots_dir.mkdir(parents=True, exist_ok=True)
+        result_shot = shots_dir / f"result_test_{index}.png"
+        await page.screenshot(path=str(result_shot))
+        screenshot_rel = config.static_url(cfg.project_name, cfg.flow_name,
+                                           "screenshots", result_shot.name)
+
+        # ── Verdict ───────────────────────────────────────────────────
+        if cfg.verdict_mode == "off":
+            verdict_obj = verdict_engine.Verdict(
+                verdict_engine.PASS, "All steps executed (verdict checking disabled).",
+                "steps", 0.3, evidence.to_dict(),
+            )
+        else:
+            verdict_obj = verdict_engine.evaluate(expected, evidence,
+                                                  scenario.get("type", ""))
+            if cfg.verdict_mode == "ai" and verdict_obj.status == verdict_engine.UNVERIFIED:
+                try:
+                    shot_bytes = result_shot.read_bytes()
+                except Exception:
+                    shot_bytes = None
+                ai_verdict = await verdict_engine.ai_adjudicate(
+                    name, expected, steps_executed, evidence, shot_bytes
+                )
+                if ai_verdict:
+                    verdict_obj = ai_verdict
+        status = verdict_obj.status
+        await emit_log(
+            f"{'✅' if status == verdict_engine.PASS else '⚠️' if status == verdict_engine.UNVERIFIED else '❌'}"
+            f" Verdict [{status}] — {verdict_obj.reason}"
+        )
+
+    except RunCancelled:
+        status = "CANCELLED"
+        error_text = "Run stopped by the user."
+        verdict_obj = verdict_engine.Verdict(status, error_text, "steps", 1.0, evidence.to_dict())
+    except Exception as err:
+        raw = str(err)
+        is_crash = any(marker in raw.lower() for marker in CRASH_MARKERS)
+        status = "CRASH" if is_crash else verdict_engine.FAIL
+        error_text = humanize_error(err)
+        verdict_obj = verdict_engine.Verdict(
+            status,
+            f"Step {failed_step_no} failed: {error_text}" if failed_step_no else error_text,
+            "steps", 1.0, evidence.to_dict(),
+        )
+        try:
+            shots_dir.mkdir(parents=True, exist_ok=True)
+            fail_shot = shots_dir / f"failed_test_{index}.png"
+            await page.screenshot(path=str(fail_shot))
+            screenshot_rel = config.static_url(cfg.project_name, cfg.flow_name,
+                                               "screenshots", fail_shot.name)
+        except Exception:
+            screenshot_rel = ""
+        if cfg.step_shots in ("fail", "all"):
+            try:
+                await page.screenshot(
+                    path=str(shots_dir / f"case_{index}_step_{failed_step_no}_failure.png")
+                )
+            except Exception:
+                pass
+    finally:
+        try:
+            if page.video:
+                temp_video_path = await page.video.path()
+        except Exception:
+            temp_video_path = ""
+        if cfg.tracing:
+            try:
+                trace_file = flow_path / "traces"
+                trace_file.mkdir(parents=True, exist_ok=True)
+                dest = trace_file / f"case_{index}.zip"
+                await context.tracing.stop(path=str(dest))
+                trace_path = config.static_url(cfg.project_name, cfg.flow_name,
+                                                "traces", dest.name)
+            except Exception:
+                trace_path = ""
+        try:
+            await context.close()
+        except Exception:
+            pass
+        if temp_video_path and os.path.exists(temp_video_path):
+            target_video = video_dir / f"scenario_{index}.webm"
+            try:
+                if target_video.exists():
+                    target_video.unlink()
+                shutil.move(temp_video_path, target_video)
+            except Exception:
+                pass
+
+    video_url = (
+        config.static_url(cfg.project_name, cfg.flow_name, "videos", f"scenario_{index}.webm")
+        if temp_video_path else ""
+    )
+
+    # ── Optional visual regression ────────────────────────────────────
+    visual: dict = {}
+    if cfg.visual_check and screenshot_rel:
+        baseline_dir = flow_path / "baseline"
+        baseline_dir.mkdir(parents=True, exist_ok=True)
+        baseline = baseline_dir / f"case_{index}.png"
+        current = shots_dir / Path(screenshot_rel).name
+        if not baseline.exists() and current.exists():
+            try:
+                shutil.copy(current, baseline)
+                visual = {"baseline_created": True}
+                await emit_log("🖼️ Visual baseline captured for future comparisons.")
+            except Exception:
+                pass
+        elif baseline.exists() and current.exists():
+            visual = compare_visual(baseline, current, flow_path / "baseline" / f"diff_{index}.png")
+            if visual.get("supported") and visual.get("diff_percent", 0) > 1.0:
+                await emit_log(
+                    f"🖼️ Visual difference of {visual['diff_percent']}% against the baseline."
+                )
+            elif not visual.get("supported"):
+                await emit_log(f"🖼️ {visual.get('note')}")
+
+    duration = int(time.time() - start_time)
+    result = {
+        "index": index,
+        "name": name,
+        "label": label,
+        "type": scenario.get("type", ""),
+        "status": status,
+        "verdict": verdict_obj.to_dict() if verdict_obj else {},
+        "screenshot": screenshot_rel,
+        "video": video_url,
+        "trace": trace_path,
+        "duration": duration,
+        "steps_executed": steps_executed,
+        "step_durations": step_durations,
+        "expected": expected,
+        "messages": evidence.messages,
+        "dialogs": evidence.dialogs,
+        "downloads": evidence.downloads,
+        "assertions": evidence.assertions,
+        "healed_steps": evidence.healed_steps,
+        "console_errors": console_errors,
+        "network_errors": network_errors,
+        "visual": visual,
+        "failed_step": failed_step_no if status in ("FAIL", "CRASH") else 0,
+    }
+    if error_text:
+        result["error"] = error_text
+
+    state.completed += 1
+    if status == verdict_engine.PASS:
+        state.passed += 1
+    elif status == verdict_engine.UNVERIFIED:
+        state.unverified += 1
+    elif status == "CRASH":
+        state.crashed += 1
+    elif status != "CANCELLED":
+        state.failed += 1
+
+    icon = {"PASS": "🟢", "FAIL": "🔴", "UNVERIFIED": "🟡", "CRASH": "💥",
+            "CANCELLED": "⏹️"}.get(status, "⚪")
+    await emit({
+        "event": "test_end",
+        "index": index,
+        "name": name,
+        "status": status,
+        "verdict": result["verdict"],
+        "screenshot": f"{screenshot_rel}?t={int(time.time())}" if screenshot_rel else "",
+        "video": video_url,
+        "trace": trace_path,
+        "duration": duration,
+        "console_errors": console_errors,
+        "network_errors": network_errors,
+        "steps_executed": steps_executed,
+        "step_durations": step_durations,
+        "expected": expected,
+        "messages": evidence.messages,
+        "downloads": evidence.downloads,
+        "healed_steps": evidence.healed_steps,
+        "visual": visual,
+        "progress": {"completed": state.completed, "total": state.total},
+        **({"error": f"{icon} {error_text}"} if error_text else {}),
+    })
+    if status == "CRASH":
+        await emit({"event": "log", "index": index,
+                    "message": f"💥 [Crash Recovery] Scenario #{index} crashed the browser. "
+                               f"Continuing with the next scenario..."})
+    return result
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Suite orchestration
+# ──────────────────────────────────────────────────────────────────────
+def load_project_config(project_name: str) -> dict:
+    path = config.project_config_file(project_name)
+    if not path.exists():
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:
+        return {}
+
+
+def resolve_credentials(project_name: str) -> dict:
+    """Per-project credentials first, then the legacy global login_data.json."""
+    project_cfg = load_project_config(project_name)
+    creds = dict(project_cfg.get("credentials") or {})
+    if creds.get("username"):
+        return creds
+    if config.GLOBAL_LOGIN_DATA_FILE.exists():
+        try:
+            with open(config.GLOBAL_LOGIN_DATA_FILE, "r", encoding="utf-8") as fh:
+                legacy = json.load(fh)
+            legacy.update({k: v for k, v in creds.items() if v})
+            return legacy
+        except Exception:
+            pass
+    return creds
+
+
+def resolve_target_url(project_name: str, flow_meta: dict, env_name: str = "") -> str:
+    """Apply the selected environment's base URL to the recorded target URL."""
+    recorded = (flow_meta or {}).get("target_url", "") or ""
+    project_cfg = load_project_config(project_name)
+    environments = project_cfg.get("environments") or {}
+    chosen = env_name or project_cfg.get("active_env") or ""
+    base = (environments.get(chosen) or {}).get("base_url") if chosen else ""
+    if not base or not recorded:
+        return recorded
+    try:
+        from urllib.parse import urlsplit, urlunsplit
+
+        rec = urlsplit(recorded)
+        new = urlsplit(base if "//" in base else f"https://{base}")
+        return urlunsplit((new.scheme or rec.scheme, new.netloc or rec.netloc,
+                           rec.path, rec.query, rec.fragment))
+    except Exception:
+        return recorded
+
+
+def select_scenarios(raw_cases: list, cfg: RunConfig) -> list[dict]:
+    """Apply the id filter, the type checkboxes and the case-count limit."""
+    for original_index, scenario in enumerate(raw_cases, start=1):
+        scenario["_original_id"] = original_index
+
+    cases = list(raw_cases)
+
+    if cfg.case_ids.strip():
+        wanted = {c.strip() for c in cfg.case_ids.split(",") if c.strip()}
+        subset = [c for c in cases if str(c["_original_id"]) in wanted]
+        if subset:
+            cases = subset
+
+    if cfg.test_types.strip():
+        selected = [t.strip().lower() for t in cfg.test_types.split(",") if t.strip()]
+        filtered = [
+            c for c in cases
+            if any(st in (c.get("type", "").lower()) or (c.get("type", "").lower()) in st
+                   for st in selected)
+        ]
+        if filtered:
+            cases = filtered
+
+    if cfg.num_cases and cfg.num_cases != -1:
+        cases = cases[: cfg.num_cases]
+
+    for run_seq, scenario in enumerate(cases, start=1):
+        scenario["_run_seq"] = run_seq
+    return cases
+
+
+def expand_data_matrix(cases: list[dict], rows: list[dict]) -> list[dict]:
+    """Duplicate every scenario once per CSV row for data-driven execution."""
+    if not rows:
+        return cases
+    expanded: list[dict] = []
+    for scenario in cases:
+        for row_no, row in enumerate(rows, start=1):
+            clone = json.loads(json.dumps(scenario))
+            clone["_data_row"] = row
+            clone["_label"] = f"row {row_no}"
+            clone["_original_id"] = scenario["_original_id"]
+            expanded.append(clone)
+    return expanded
+
+
+async def execute_suite(cfg: RunConfig, emit: Emit,
+                        state: RunState | None = None) -> dict:
+    """Run a whole suite and persist the report. Returns the report dict."""
+    state = state or register_run(cfg.project_name, cfg.flow_name)
+    flow_path = config.flow_dir(cfg.project_name, cfg.flow_name)
+    cases_path = flow_path / "test_cases.json"
+
+    if not cases_path.exists():
+        state.status = "error"
+        state.error = "No test cases generated for this flow."
+        await emit({"event": "error", "message": state.error})
+        raise FileNotFoundError(state.error)
+
+    await emit({"event": "start", "run_id": state.run_id,
+                "message": f"Loading matrix test cases for flow '{cfg.flow_name}'..."})
+
+    with open(cases_path, "r", encoding="utf-8") as fh:
+        raw_cases = json.load(fh)
+
+    flow_meta = {}
+    meta_path = flow_path / "flow.json"
+    if meta_path.exists():
+        try:
+            with open(meta_path, "r", encoding="utf-8") as fh:
+                flow_meta = json.load(fh)
+        except Exception:
+            flow_meta = {}
+
+    target_url = resolve_target_url(cfg.project_name, flow_meta, cfg.env_name)
+    if not target_url:
+        state.status = "error"
+        state.error = "This flow has no target URL recorded."
+        await emit({"event": "error", "message": state.error})
+        raise ValueError(state.error)
+
+    cases = select_scenarios(raw_cases, cfg)
+    data_rows = load_data_matrix(flow_path, cfg.data_matrix)
+    if data_rows:
+        cases = expand_data_matrix(cases, data_rows)
+        await emit({"event": "info",
+                    "message": f"📊 Data-driven mode: {len(data_rows)} data row(s) × "
+                               f"{len(cases) // max(len(data_rows), 1)} scenario(s)."})
+
+    workers = max(1, min(cfg.workers, config.MAX_PARALLEL_WORKERS))
+    if not cfg.headless and workers > 1:
+        workers = 1
+        await emit({"event": "info",
+                    "message": "ℹ️ Headed mode runs one scenario at a time so you can watch it."})
+
+    state.total = len(cases)
+    await emit({"event": "info", "run_id": state.run_id,
+                "message": f"Prepared {len(cases)} scenarios to execute in {cfg.mode} mode"
+                           f"{f' across {workers} parallel workers' if workers > 1 else ''}."})
+    if cfg.verdict_mode != "off":
+        await emit({"event": "info",
+                    "message": f"⚖️ Verdict engine: {cfg.verdict_mode} — expectations are "
+                               f"checked against on-screen evidence, not just step success."})
+
+    seed_pool: dict = {"run_token": unique_token()}
+    if cfg.api_seed:
+        try:
+            from . import api_seed
+
+            seeded = await api_seed.run_seed(cfg.project_name, cfg.api_seed,
+                                            emit=lambda m: emit({"event": "log", "message": m}))
+            seed_pool.update(seeded)
+        except Exception as err:
+            await emit({"event": "log", "message": f"⚠️ API pre-seeding skipped: {err}"})
+
+    shared = {
+        "flow_path": flow_path,
+        "target_url": target_url,
+        "total": len(cases),
+        "credentials": resolve_credentials(cfg.project_name),
+        "session_file": config.project_session_file(cfg.project_name),
+        "seed_pool": seed_pool,
+    }
+
+    videos_dir = flow_path / "videos"
+    if videos_dir.exists():
+        shutil.rmtree(videos_dir, ignore_errors=True)
+    videos_dir.mkdir(parents=True, exist_ok=True)
+
+    run_results: list[dict] = []
+    started = time.time()
+
+    async with async_playwright() as playwright:
+        launch_args: dict[str, Any] = {"headless": cfg.headless}
+        if not cfg.headless:
+            launch_args["slow_mo"] = 300
+            launch_args["args"] = ["--start-maximized"]
+        browser = await playwright.chromium.launch(**launch_args)
+
+        semaphore = asyncio.Semaphore(workers)
+
+        async def guarded(scenario: dict) -> dict | None:
+            async with semaphore:
+                if state.cancelled:
+                    return None
+                try:
+                    return await run_scenario(browser, scenario, cfg, shared, emit, state)
+                except Exception as err:  # noqa: BLE001 - never lose the whole suite
+                    log.exception("Scenario crashed outside the guarded block")
+                    await emit({"event": "log",
+                                "message": f"💥 Scenario #{scenario.get('_original_id')} "
+                                           f"aborted: {humanize_error(err)}"})
+                    return {
+                        "index": scenario.get("_original_id"),
+                        "name": scenario.get("scenario_name", "unknown"),
+                        "status": "CRASH",
+                        "duration": 0,
+                        "steps_executed": [],
+                        "step_durations": [],
+                        "expected": scenario.get("expected_result", ""),
+                        "error": humanize_error(err),
+                        "verdict": {"status": "CRASH", "reason": humanize_error(err)},
+                    }
+
+        if workers > 1:
+            gathered = await asyncio.gather(*(guarded(sc) for sc in cases))
+            run_results = [r for r in gathered if r]
+        else:
+            for scenario in cases:
+                if state.cancelled:
+                    break
+                result = await guarded(scenario)
+                if result:
+                    run_results.append(result)
+
+        try:
+            await browser.close()
+        except Exception:
+            pass
+
+    run_results.sort(key=lambda r: (r.get("index") or 0, r.get("label") or ""))
+    report = build_report(cfg, run_results, started, state)
+    persist_report(cfg, report, run_results)
+
+    state.report = report
+    state.finished_at = time.time()
+    state.status = "cancelled" if state.cancelled else "complete"
+
+    if state.cancelled:
+        await emit({"event": "cancelled", "run_id": state.run_id,
+                    "message": "⏹️ Execution stopped by the user. Partial report saved."})
+    await emit({
+        "event": "complete",
+        "run_id": state.run_id,
+        "summary": {
+            "total": report["total_test_cases"],
+            "passed": report["passed_count"],
+            "failed": report["failed_count"],
+            "unverified": report["unverified_count"],
+            "crashed": report["crash_count"],
+        },
+        "message": f"Execution finished. Report saved to projects/{cfg.project_name}/flows/"
+                   f"{cfg.flow_name}/report.json",
+    })
+    return report
+
+
+def build_report(cfg: RunConfig, run_results: list[dict], started: float,
+                 state: RunState) -> dict:
+    passed = sum(1 for r in run_results if r.get("status") == verdict_engine.PASS)
+    failed = sum(1 for r in run_results if r.get("status") == verdict_engine.FAIL)
+    unverified = sum(1 for r in run_results if r.get("status") == verdict_engine.UNVERIFIED)
+    crashed = sum(1 for r in run_results if r.get("status") == "CRASH")
+    console_errors = sorted({e for r in run_results for e in r.get("console_errors", [])})
+    network_errors = sorted({e for r in run_results for e in r.get("network_errors", [])})
+
+    return {
+        "run_id": state.run_id,
+        "flow_name": cfg.flow_name,
+        "project_name": cfg.project_name,
+        "execution_date": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "duration_seconds": int(time.time() - started),
+        "wall_clock_seconds": int(time.time() - started),
+        "test_types_run": cfg.test_types,
+        "mode": cfg.mode,
+        "workers": cfg.workers,
+        "verdict_mode": cfg.verdict_mode,
+        "environment": cfg.env_name,
+        "triggered_by": cfg.triggered_by,
+        "total_test_cases": len(run_results),
+        "passed_count": passed,
+        "failed_count": failed,
+        "unverified_count": unverified,
+        "crash_count": crashed,
+        "cancelled": state.cancelled,
+        "console_errors": console_errors,
+        "network_errors": network_errors,
+        "checkpoints": run_results,
+    }
+
+
+def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> None:
+    """Write report.json, the timestamped copy, run history, bugs and JUnit XML."""
+    flow_path = config.flow_dir(cfg.project_name, cfg.flow_name)
+    reports_dir = flow_path / "reports"
+    reports_dir.mkdir(parents=True, exist_ok=True)
+
+    with open(flow_path / "report.json", "w", encoding="utf-8") as fh:
+        json.dump(report, fh, indent=4)
+
+    run_stamp = int(time.time())
+    report_file = reports_dir / f"report_{run_stamp}.json"
+    with open(report_file, "w", encoding="utf-8") as fh:
+        json.dump(report, fh, indent=4)
+
+    history_path = flow_path / "run_history.json"
+    history: list = []
+    if history_path.exists():
+        try:
+            with open(history_path, "r", encoding="utf-8") as fh:
+                history = json.load(fh)
+        except Exception:
+            history = []
+    history.append({
+        "run_id": report.get("run_id"),
+        "stamp": run_stamp,
+        "execution_date": report["execution_date"],
+        "duration_seconds": report["duration_seconds"],
+        "total": report["total_test_cases"],
+        "passed": report["passed_count"],
+        "failed": report["failed_count"],
+        "unverified": report["unverified_count"],
+        "crashed": report["crash_count"],
+        "test_types": report["test_types_run"],
+        "mode": report["mode"],
+        "verdict_mode": report.get("verdict_mode"),
+        "triggered_by": report.get("triggered_by"),
+        "report_file": f"reports/{report_file.name}",
+    })
+    with open(history_path, "w", encoding="utf-8") as fh:
+        json.dump(history[-200:], fh, indent=4)
+
+    # Bug list: refresh this flow's entries only.
+    bugs_path = config.project_dir(cfg.project_name) / "bugs.json"
+    bugs: list = []
+    if bugs_path.exists():
+        try:
+            with open(bugs_path, "r", encoding="utf-8") as fh:
+                bugs = json.load(fh)
+        except Exception:
+            bugs = []
+    bugs = [b for b in bugs if b.get("flow_name") != cfg.flow_name]
+
+    for result in run_results:
+        if result.get("status") not in (verdict_engine.FAIL, "CRASH", verdict_engine.UNVERIFIED):
+            continue
+        steps = result.get("steps_executed", [])
+        failed_step_no = result.get("failed_step") or len(steps)
+        failed_step_desc = steps[failed_step_no - 1] if 0 < failed_step_no <= len(steps) else (
+            steps[-1] if steps else "None")
+        verdict_info = result.get("verdict") or {}
+        reason = result.get("error") or verdict_info.get("reason", "Assertion failed")
+        severity = {
+            "CRASH": "high", verdict_engine.FAIL: "high", verdict_engine.UNVERIFIED: "low",
+        }.get(result.get("status"), "medium")
+
+        bugs.append({
+            "flow_name": cfg.flow_name,
+            "scenario_name": result.get("name"),
+            "scenario_type": result.get("type", ""),
+            "status": result.get("status"),
+            "severity": severity,
+            "failed_step_num": failed_step_no,
+            "failed_step_desc": failed_step_desc,
+            "error_message": reason,
+            "expected_result": result.get("expected", ""),
+            "observed_messages": [m.get("text") for m in result.get("messages", [])][:5],
+            "description": (
+                f"{cfg.flow_name} - {result.get('name')}: {result.get('status')} — {reason}"
+            ),
+            "screenshot": result.get("screenshot", ""),
+            "video": result.get("video", ""),
+            "run_id": report.get("run_id"),
+            "timestamp": report["execution_date"],
+        })
+
+    with open(bugs_path, "w", encoding="utf-8") as fh:
+        json.dump(bugs, fh, indent=4)
+
+    try:
+        (reports_dir / f"junit_{run_stamp}.xml").write_text(
+            build_junit_xml(report), encoding="utf-8"
+        )
+        (flow_path / "junit.xml").write_text(build_junit_xml(report), encoding="utf-8")
+    except Exception as err:
+        log.warning("Could not write JUnit XML: %s", err)
+
+    try:
+        from . import db
+
+        db.record_run(report)
+    except Exception as err:
+        log.warning("Could not write run to the database: %s", err)
+
+
+def _xml_escape(text: str) -> str:
+    return (
+        str(text)
+        .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        .replace('"', "&quot;").replace("'", "&apos;")
+    )
+
+
+def build_junit_xml(report: dict) -> str:
+    """JUnit XML so Jenkins / GitHub Actions / Azure DevOps can read the results."""
+    cases = report.get("checkpoints", [])
+    failures = report.get("failed_count", 0) + report.get("crash_count", 0)
+    skipped = report.get("unverified_count", 0)
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<testsuites name="{_xml_escape(report.get("project_name", ""))}" '
+        f'tests="{len(cases)}" failures="{failures}" skipped="{skipped}" '
+        f'time="{report.get("duration_seconds", 0)}">',
+        f'  <testsuite name="{_xml_escape(report.get("flow_name", ""))}" '
+        f'tests="{len(cases)}" failures="{failures}" skipped="{skipped}" '
+        f'time="{report.get("duration_seconds", 0)}" '
+        f'timestamp="{_xml_escape(report.get("execution_date", ""))}">',
+    ]
+    for case in cases:
+        name = _xml_escape(case.get("name", "scenario"))
+        classname = _xml_escape(f"{report.get('project_name')}.{report.get('flow_name')}")
+        lines.append(
+            f'    <testcase classname="{classname}" name="{name}" '
+            f'time="{case.get("duration", 0)}">'
+        )
+        status = case.get("status")
+        reason = _xml_escape((case.get("verdict") or {}).get("reason")
+                             or case.get("error") or "")
+        if status == verdict_engine.FAIL:
+            lines.append(f'      <failure message="{reason}">{reason}</failure>')
+        elif status == "CRASH":
+            lines.append(f'      <error message="{reason}">{reason}</error>')
+        elif status == verdict_engine.UNVERIFIED:
+            lines.append(f'      <skipped message="{reason}"/>')
+        lines.append("    </testcase>")
+    lines += ["  </testsuite>", "</testsuites>"]
+    return "\n".join(lines)

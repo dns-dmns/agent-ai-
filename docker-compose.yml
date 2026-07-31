@@ -1,0 +1,26 @@
+services:
+  qa-platform:
+    build: .
+    image: ai-qa-platform:latest
+    container_name: ai-qa-platform
+    ports:
+      - "8000:8000"
+    environment:
+      # Read from your shell or a sibling .env file; never bake keys into the image.
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.6-flash}
+      # Set this to require X-API-Key on every request once the port is exposed
+      # beyond localhost.
+      QA_API_KEY: ${QA_API_KEY:-}
+      QA_ALLOWED_ORIGINS: ${QA_ALLOWED_ORIGINS:-http://localhost:8000}
+      QA_MAX_WORKERS: ${QA_MAX_WORKERS:-5}
+      QA_LOG_LEVEL: ${QA_LOG_LEVEL:-INFO}
+    volumes:
+      # Test suites, reports, screenshots, videos and the SQLite history.
+      - qa-data:/data
+    # Chromium needs more than the default 64MB of shared memory.
+    shm_size: "1gb"
+    restart: unless-stopped
+
+volumes:
+  qa-data:

@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Widget Master — Self-Test App</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 20px; }
+    .field { margin-bottom: 10px; }
+    label { display: block; font-size: 12px; color: #555; }
+    input, select { padding: 6px; width: 220px; }
+    table { border-collapse: collapse; margin-top: 14px; width: 640px; }
+    th, td { border: 1px solid #ddd; padding: 6px 8px; font-size: 13px; text-align: left; }
+    .p-error { color: #c00; font-size: 12px; display: block; }
+    .p-toast-message-success { color: #060; font-weight: 600; margin-top: 8px; }
+    .p-toast-message-error { color: #c00; font-weight: 600; margin-top: 8px; }
+    .hidden { display: none; }
+    button { padding: 6px 12px; }
+  </style>
+</head>
+<body>
+  <h2>Widget Master</h2>
+  <p><a id="detailLink" href="detail.html">Open widget detail page</a></p>
+
+  <div class="field">
+    <label for="name">Widget Name</label>
+    <input id="name" name="name" formcontrolname="name" placeholder="Widget Name">
+    <small class="p-error hidden" id="nameError">Name is required</small>
+  </div>
+
+  <div class="field">
+    <label for="code">Widget Code</label>
+    <input id="code" name="code" placeholder="Widget Code">
+    <small class="p-error hidden" id="codeError">Code is required</small>
+  </div>
+
+  <div class="field">
+    <label for="qty">Quantity</label>
+    <input id="qty" name="qty" type="number" placeholder="Quantity">
+    <small class="p-error hidden" id="qtyError">Quantity must be greater than 0</small>
+  </div>
+
+  <div class="field">
+    <label for="status">Status</label>
+    <select id="status" name="status">
+      <option value="">-- Select --</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="total">Total (auto)</label>
+    <input id="total" name="total" value="0" readonly disabled>
+  </div>
+
+  <div class="field">
+    <label><input type="checkbox" id="featured" name="featured"> Featured</label>
+  </div>
+
+  <button id="saveBtn" type="button">Save</button>
+  <button id="cancelBtn" type="button">Cancel</button>
+  <button id="exportBtn" type="button">Export Excel</button>
+
+  <div id="toast"></div>
+
+  <div class="field" style="margin-top:18px">
+    <label for="search">Search</label>
+    <input id="search" type="search" placeholder="Search widgets">
+  </div>
+
+  <table id="grid">
+    <thead><tr><th>Code</th><th>Name</th><th>Qty</th><th>Status</th><th></th></tr></thead>
+    <tbody class="p-datatable-tbody"></tbody>
+  </table>
+  <div style="margin-top:8px">
+    <button class="p-paginator-prev" type="button">Prev</button>
+    <span id="pageLabel">Page 1</span>
+    <button class="p-paginator-next" type="button">Next</button>
+  </div>
+
+  <!-- Deliberately unsafe rendering, used to prove the platform detects an
+       XSS payload actually executing instead of reporting a false PASS. -->
+  <div class="field" style="margin-top:18px">
+    <label for="bio">Notes (rendered as HTML — intentionally vulnerable)</label>
+    <input id="bio" name="bio" placeholder="Notes">
+    <button id="renderBtn" type="button">Render notes</button>
+    <div id="bioOut"></div>
+  </div>
+
+<script>
+  var PAGE_SIZE = 10;
+  var page = 1;
+  var filter = '';
+  var records = [];
+  for (var i = 1; i <= 12; i++) {
+    records.push({
+      code: 'W' + String(i).padStart(3, '0'),
+      name: (i === 12 ? 'Page Two Widget' : 'Seed Widget ' + i),
+      qty: i,
+      status: 'active'
+    });
+  }
+
+  function toast(message, kind) {
+    document.getElementById('toast').innerHTML =
+      '<div class="p-toast-message-' + kind + '">' + message + '</div>';
+  }
+
+  function clearErrors() {
+    ['nameError', 'codeError', 'qtyError'].forEach(function (id) {
+      document.getElementById(id).classList.add('hidden');
+    });
+    document.getElementById('toast').innerHTML = '';
+  }
+
+  function visibleRecords() {
+    if (!filter) return records;
+    var needle = filter.toLowerCase();
+    return records.filter(function (r) {
+      return (r.code + ' ' + r.name).toLowerCase().indexOf(needle) !== -1;
+    });
+  }
+
+  function render() {
+    var rows = visibleRecords();
+    var maxPage = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+    if (page > maxPage) page = maxPage;
+    var slice = rows.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    var body = document.querySelector('#grid tbody');
+    body.innerHTML = slice.map(function (r) {
+      return '<tr><td title="' + r.code + '">' + r.code + '</td><td>' + r.name +
+             '</td><td>' + r.qty + '</td><td>' + r.status +
+             '</td><td><button class="delBtn" data-code="' + r.code +
+             '" type="button">Delete</button></td></tr>';
+    }).join('');
+    document.getElementById('pageLabel').innerText = 'Page ' + page + ' of ' + maxPage;
+    document.querySelector('.p-paginator-next').disabled = page >= maxPage;
+    document.querySelector('.p-paginator-prev').disabled = page <= 1;
+
+    body.querySelectorAll('.delBtn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.getAttribute('data-code');
+        // Native confirm(): Playwright auto-dismisses these unless the platform
+        // intercepts them, which is exactly what we are testing.
+        if (window.confirm('Delete widget ' + code + '?')) {
+          records = records.filter(function (r) { return r.code !== code; });
+          render();
+          toast('Widget deleted successfully', 'success');
+        }
+      });
+    });
+  }
+
+  document.getElementById('qty').addEventListener('input', function () {
+    var qty = parseFloat(document.getElementById('qty').value || '0');
+    document.getElementById('total').value = isNaN(qty) ? 0 : qty * 2;
+  });
+
+  document.getElementById('saveBtn').addEventListener('click', function () {
+    clearErrors();
+    var name = document.getElementById('name').value.trim();
+    var code = document.getElementById('code').value.trim();
+    var qtyRaw = document.getElementById('qty').value.trim();
+    var qty = parseFloat(qtyRaw);
+    var status = document.getElementById('status').value;
+    var invalid = false;
+
+    if (!name) { document.getElementById('nameError').classList.remove('hidden'); invalid = true; }
+    if (!code) { document.getElementById('codeError').classList.remove('hidden'); invalid = true; }
+    if (qtyRaw !== '' && (isNaN(qty) || qty <= 0)) {
+      document.getElementById('qtyError').classList.remove('hidden');
+      invalid = true;
+    }
+    if (invalid) return;
+
+    if (records.some(function (r) { return r.code.toLowerCase() === code.toLowerCase(); })) {
+      toast('Widget code already exists', 'error');
+      return;
+    }
+
+    records.push({ code: code, name: name, qty: isNaN(qty) ? 0 : qty,
+                   status: status || 'active' });
+    // New records land on the last page, so verification has to paginate/search.
+    page = Math.ceil(records.length / PAGE_SIZE);
+    render();
+    toast('Widget saved successfully', 'success');
+    document.getElementById('name').value = '';
+    document.getElementById('code').value = '';
+    document.getElementById('qty').value = '';
+  });
+
+  document.getElementById('cancelBtn').addEventListener('click', function () {
+    clearErrors();
+    document.getElementById('name').value = '';
+    document.getElementById('code').value = '';
+    toast('Changes discarded', 'success');
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', function () {
+    var lines = ['code,name,qty,status'];
+    records.forEach(function (r) {
+      lines.push([r.code, r.name, r.qty, r.status].join(','));
+    });
+    var blob = new Blob([lines.join('\n')], { type: 'text/csv' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'widgets.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+  document.getElementById('search').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      filter = document.getElementById('search').value.trim();
+      page = 1;
+      render();
+    }
+  });
+
+  document.querySelector('.p-paginator-next').addEventListener('click', function () {
+    page += 1; render();
+  });
+  document.querySelector('.p-paginator-prev').addEventListener('click', function () {
+    page = Math.max(1, page - 1); render();
+  });
+
+  document.getElementById('renderBtn').addEventListener('click', function () {
+    document.getElementById('bioOut').innerHTML = document.getElementById('bio').value;
+  });
+
+  render();
+</script>
+</body>
+</html>

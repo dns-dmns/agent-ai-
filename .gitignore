@@ -7,9 +7,30 @@ login_data.json
 scratch/
 .system_generated/
 agent-ai-/
+
+# Build / tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Runtime workspace folders
+.trash/
+.tmp/
+logs/
+*.db
+*.db-journal
+
 # Test execution media and temporary reports
 **/screenshots/
 **/videos/
+**/traces/
 **/reports/
+**/downloads/
+**/baseline/
+junit.xml
 *.png
 *.webm
+*.zip
+
+# Keep the self-test app assets tracked (they are source, not run output)
+!tests/selftest_app/**

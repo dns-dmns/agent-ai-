@@ -1,0 +1,180 @@
+======================================================================
+              QA AUTOMATION SUITE - GETTING STARTED GUIDE
+======================================================================
+
+The platform runs from whichever folder it is installed in. Wherever this
+guide says <project-folder>, use your own path (e.g. D:\Ai).
+
+----------------------------------------------------------------------
+STEP 0: ONE-TIME SETUP
+----------------------------------------------------------------------
+  cd /d <project-folder>
+  python -m venv .venv
+  .venv\Scripts\activate.bat
+  pip install -r requirements.txt
+  playwright install chromium
+  copy .env.example .env
+
+Then open ".env" and paste your GEMINI_API_KEY (get one free at
+https://aistudio.google.com/apikey).
+
+NOTE: Recording, execution, verdict checking and reporting all work
+without an API key. Only AI test-case GENERATION needs one.
+
+----------------------------------------------------------------------
+STEP 1: START THE APPLICATION SERVER
+----------------------------------------------------------------------
+Option A (Easiest):
+  Double-click "run_server.bat". It moves to its own folder, frees port
+  8000 if something is still listening, and starts the server.
+
+Option B (Command Prompt):
+  cd /d <project-folder>
+  .venv\Scripts\activate.bat
+  python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
+
+Option C (PowerShell):
+  cd '<project-folder>'
+  .\.venv\Scripts\Activate.ps1
+  python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
+
+Option D (Docker):
+  docker compose up --build
+
+----------------------------------------------------------------------
+STEP 2: OPEN THE WEB INTERFACE
+----------------------------------------------------------------------
+1. Open any browser and go to: http://127.0.0.1:8000
+2. Pick an existing project on the landing overlay, or type a new name
+   and click Create.
+3. The header shows the workspace path, whether AI is configured, and
+   whether the scheduler is running.
+
+----------------------------------------------------------------------
+STEP 3: RECORD A WORKFLOW (TAB 1)
+----------------------------------------------------------------------
+1. Open the tab "1. Flow Recorder".
+2. Enter a Flow Name (e.g. "customer_add") and the Start URL.
+3. Click "Launch Browser" (a Chromium window opens).
+4. Click "Start Recording", then perform your actions in Chromium.
+5. Click "Stop Recording".
+
+The recorder now captures clicks, typing, dropdown selections, checkbox
+state, Enter/Tab/Escape presses, file choices and SPA page changes. Each
+action stores several candidate selectors (data-testid, id, name,
+formcontrolname, aria-label, label text, structural path) so replays
+survive framework id changes such as PrimeNG's pn_id_8.
+
+SAFETY: if you forget to press "Start Recording", Stop will refuse to
+overwrite an existing recording instead of blanking it.
+
+Saved to: <project-folder>\projects\<project>\flows\<flow>\
+
+----------------------------------------------------------------------
+STEP 4: GENERATE TEST CASES & EXECUTE (TAB 2)
+----------------------------------------------------------------------
+1. Open "2. AI Execution Platform" and pick your flow.
+2. Generate the suite:
+     - "Multi-Agent Generate" = Builder + Breaker in parallel, then the
+       Auditor reviews coverage and fills gaps over up to 3 rounds.
+     - "Run AI Post Analysis" = single-pass enterprise QA specification.
+3. Click "Validate Selectors" first if the app has changed since you
+   recorded. It loads the page, reports selectors that no longer exist,
+   and can AI-repair the broken ones.
+4. Set the Execution Profile (target URL, authentication, chain
+   prerequisites) and open "4. Verdict & Performance Options":
+     - Verdict engine: rules (default) / rules+AI / off
+     - Parallel workers: 1-5 (headed mode always runs one at a time)
+     - Step screenshots, Playwright trace, unique prerequisite data,
+       environment, CSV data matrix, API pre-seed, visual regression
+5. Tick scenarios and press "Start Execution", or "Run Selected Only".
+   "Stop Execution" cancels a run and still saves a partial report.
+
+----------------------------------------------------------------------
+STEP 5: READ THE RESULT (IMPORTANT CHANGE)
+----------------------------------------------------------------------
+A scenario used to be marked PASS whenever no step threw an error. That
+meant negative tests "passed" just by typing bad data and clicking Save,
+without ever checking that the expected validation appeared.
+
+There are now four outcomes:
+
+  PASS        The expectation was confirmed by evidence (an assertion
+              passed, the expected validation appeared, a success toast
+              fired, a file downloaded, or the URL changed).
+  FAIL        The expectation was contradicted - including a negative
+              test where NO validation appeared, and an injected XSS or
+              SQL payload that actually executed.
+  UNVERIFIED  Every step ran, but nothing proved the outcome. This is
+              not a pass. Add a VERIFY step (use the pencil icon on the
+              scenario card) or switch the verdict engine to rules+AI.
+  CRASH       The browser died on that scenario; the suite continues.
+
+Expect previously all-green suites to show FAIL/UNVERIFIED the first
+time you run them. Those results were never actually proven before.
+Every card shows the exact reason under its status line.
+
+----------------------------------------------------------------------
+STEP 6: EVIDENCE, HISTORY & EXPORTS
+----------------------------------------------------------------------
+From the report card:
+  - Printable / PDF  : opens a self-contained report (Print > Save as PDF)
+  - CSV              : one row per scenario with the verdict reason
+  - JUnit XML        : for Jenkins / GitHub Actions / Azure DevOps
+  - Evidence ZIP     : report + screenshots + videos + traces
+  - Run History      : every past run, plus a Compare view showing which
+                       scenarios flipped between two runs
+Also available: "Flaky tests" (scenarios whose result oscillates) and
+"Schedules" (nightly/interval runs with a Slack-compatible webhook).
+
+----------------------------------------------------------------------
+STEP 7: PROJECT CONSOLE (TAB 3)
+----------------------------------------------------------------------
+1. Open "3. Project Console & Stats" for the workspace scorecard.
+2. Analysed vs unanalysed modules are listed with a one-click
+   "Run AI Analysis" action per row.
+
+----------------------------------------------------------------------
+CI / CD INTEGRATION
+----------------------------------------------------------------------
+  POST /trigger-run?project_name=X&flow_name=Y&workers=3   -> {"run_id"}
+  GET  /run-status/<run_id>                                -> status + exit_code
+  GET  /export-junit?project_name=X&flow_name=Y            -> JUnit XML
+
+Set QA_API_KEY in .env to require an API key (header X-API-Key,
+?api_key=, or the cookie the dashboard sets) on every endpoint.
+
+======================================================================
+TROUBLESHOOTING
+======================================================================
+PORT CONFLICT (ERRNO 10048 / address already in use)
+  Option 1: run "run_server.bat" - it clears the port automatically.
+  Option 2: CMD as Administrator:
+              netstat -ano | findstr :8000
+              taskkill /F /PID <PID_NUMBER>
+  Option 3: PowerShell:
+              Stop-Process -Id (Get-NetTCPConnection -LocalPort 8000).OwningProcess -Force
+
+"GEMINI_API_KEY is missing"
+  Copy .env.example to .env, paste the key, restart the server.
+  Execution still works without it; only generation is blocked.
+
+Everything fails with "element not found" after a deployment
+  Click "Validate Selectors". Framework ids change between builds; the
+  pre-flight check tells you exactly which locators died, and can repair
+  them automatically.
+
+Every scenario comes back UNVERIFIED
+  The suite has no VERIFY steps. Re-run Multi-Agent Generate (the
+  prompts now require assertions), add them with the pencil icon, or set
+  the verdict engine to "rules + AI adjudication".
+
+Prerequisite chains fail on the second run
+  The prerequisite recording re-creates the same master record, so the
+  app reports a duplicate. Tick "Unique prerequisite data" - values typed
+  during prerequisite flows get a unique suffix (credentials are never
+  modified).
+
+Where did my deleted flow go?
+  Nothing is hard-deleted. Look in <project-folder>\.trash\
+======================================================================

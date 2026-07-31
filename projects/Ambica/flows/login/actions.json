@@ -2,41 +2,89 @@
     {
         "action": "CLICK",
         "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
         "tag": "input",
         "text": "",
+        "label": "Username",
         "value": "",
         "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_1.png"
     },
     {
-        "action": "TYPE",
+        "action": "KEYPRESS",
         "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
         "tag": "input",
         "text": "",
-        "value": "dd",
+        "label": "Username",
+        "value": "Tab",
         "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_2.png"
     },
     {
-        "action": "CLICK",
-        "selector": "#password",
+        "action": "TYPE",
+        "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
         "tag": "input",
         "text": "",
-        "value": "",
+        "label": "Username",
+        "value": "d",
         "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_3.png"
     },
     {
         "action": "TYPE",
         "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
         "tag": "input",
         "text": "",
+        "label": "Password",
         "value": "123456",
         "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_4.png"
     },
     {
         "action": "CLICK",
         "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
         "tag": "button",
         "text": "Login",
+        "label": "",
         "value": "",
         "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_5.png"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home"
+        ],
+        "tag": "window",
+        "text": "Ambica",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_6.png"
     }
 ]
