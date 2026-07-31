@@ -1,0 +1,194 @@
+[
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Master Data\")",
+        "tag": "button",
+        "text": "Master Data",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_1.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(14) > a",
+        "tag": "a",
+        "text": "Sulzer Changeover",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_2.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Refresh\")",
+        "tag": "button",
+        "text": "Refresh",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_3.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_4.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "12:12:12",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_5.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_6.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "0:12:12:12",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_7.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_8.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "100:12:12:12",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_9.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_10.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "22:23:23:23",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_11.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "tag": "button",
+        "text": "Save",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_12.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"FC Knotting\")",
+        "tag": "button",
+        "text": "FC Knotting",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_13.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_14.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "00:00:00:12",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_15.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "tag": "button",
+        "text": "Save",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_16.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Threading\")",
+        "tag": "button",
+        "text": "Threading",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_17.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_18.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_19.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"DD:HH:MM:SS\"]",
+        "tag": "input",
+        "text": "",
+        "value": "12:12:12:12",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_20.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "tag": "button",
+        "text": "Save",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_21.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Refresh\")",
+        "tag": "button",
+        "text": "Refresh",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_22.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"FC Knotting\")",
+        "tag": "button",
+        "text": "FC Knotting",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_23.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Knotting\")",
+        "tag": "button",
+        "text": "Knotting",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Sulzer Changeover/screenshots/step_24.png"
+    }
+]

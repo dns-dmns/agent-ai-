@@ -3,7 +3,7 @@
 This framework provides a **universal, domain-agnostic architecture** to test dependent modules and relational master data across **ANY software project** (ERP, HRMS, Healthcare, Finance, Supply Chain, Inventory, E-commerce, etc.) with 100% accuracy.
 
 ---
-
+ 
 ## 🏗️ Universal 3-Layer Dependency Architecture
 
 ```mermaid

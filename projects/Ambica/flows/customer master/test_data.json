@@ -1,29 +1,29 @@
 {
     "valid": [
         {
-            "partyCode": "CUST101",
-            "customerName": "Acme Enterprise",
+            "partyCode": "HTM002",
+            "customerName": "Ambica Global",
             "country": "India",
-            "state": "Maharashtra",
+            "state": "Gujarat",
             "region": "West"
         }
     ],
     "invalid": [
         {
-            "partyCode": "",
-            "customerName": "Valid Customer",
-            "country": "India",
-            "state": "Maharashtra",
-            "region": "West"
+            "partyCode": "HTM001",
+            "customerName": "",
+            "country": "",
+            "state": "",
+            "region": ""
         }
     ],
     "boundary": [
         {
-            "partyCode": "P12345678901234567890123456789012345678901234567890",
-            "customerName": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "country": "I",
-            "state": "M",
-            "region": "W"
+            "partyCode": "P12345678901234567890",
+            "customerName": "A",
+            "country": "IN",
+            "state": "GJ",
+            "region": "12345"
         }
     ]
 }

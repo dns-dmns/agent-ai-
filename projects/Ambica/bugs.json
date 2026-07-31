@@ -1,0 +1,56 @@
+[
+    {
+        "flow_name": "Allocation Category",
+        "scenario_name": "Search Allocation Category by Exact Code",
+        "failed_step_num": 5,
+        "failed_step_desc": "VERIFY_ROW_CONTAINS on 'table#pn_id_8-table'",
+        "error_message": "Validation failed: Key table record matching 'dd0001' (token: 'dd0001') was not found in the UI list.",
+        "description": "Allocation Category - Search Allocation Category by Exact Code: failed on Step 5 (VERIFY_ROW_CONTAINS on 'table#pn_id_8-table'). Error: Validation failed: Key table record matching 'dd0001' (token: 'dd0001') was not found in the UI list.",
+        "timestamp": "2026-07-30 12:41:54"
+    },
+    {
+        "flow_name": "Allocation Category",
+        "scenario_name": "Verify Grid Data Export Functionality",
+        "failed_step_num": 3,
+        "failed_step_desc": "CLICK on 'button:has-text(\"Export\")'",
+        "error_message": "Page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"button:has-text(\\\"Export\\\")\")\n",
+        "description": "Allocation Category - Verify Grid Data Export Functionality: failed on Step 3 (CLICK on 'button:has-text(\"Export\")'). Error: Page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"button:has-text(\\\"Export\\\")\")\n",
+        "timestamp": "2026-07-30 12:41:54"
+    },
+    {
+        "flow_name": "Beam Length",
+        "scenario_name": "Enter non-numeric alphabetic characters in Denier field",
+        "failed_step_num": 4,
+        "failed_step_desc": "TYPE on '#denier' with value 'ABCDEF'",
+        "error_message": "TYPE failed on '#denier'",
+        "description": "Beam Length - Enter non-numeric alphabetic characters in Denier field: failed on Step 4 (TYPE on '#denier' with value 'ABCDEF'). Error: TYPE failed on '#denier'",
+        "timestamp": "2026-07-30 14:35:38"
+    },
+    {
+        "flow_name": "Beam Length",
+        "scenario_name": "Boundary Test - Special characters in Beam Length input fields",
+        "failed_step_num": 4,
+        "failed_step_desc": "TYPE on '#denier' with value '@#$%^&*()'",
+        "error_message": "TYPE failed on '#denier'",
+        "description": "Beam Length - Boundary Test - Special characters in Beam Length input fields: failed on Step 4 (TYPE on '#denier' with value '@#$%^&*()'). Error: TYPE failed on '#denier'",
+        "timestamp": "2026-07-30 14:35:38"
+    },
+    {
+        "flow_name": "Beam Length",
+        "scenario_name": "Select Active Master Dropdown Option in Beam Length Form",
+        "failed_step_num": 8,
+        "failed_step_desc": "VERIFY_ROW_CONTAINS on 'table'",
+        "error_message": "Validation failed: Key table record matching '150' (token: '150') was not found in the UI list.",
+        "description": "Beam Length - Select Active Master Dropdown Option in Beam Length Form: failed on Step 8 (VERIFY_ROW_CONTAINS on 'table'). Error: Validation failed: Key table record matching '150' (token: '150') was not found in the UI list.",
+        "timestamp": "2026-07-30 14:35:38"
+    },
+    {
+        "flow_name": "Beam Length",
+        "scenario_name": "Export Beam Length Grid Data to File",
+        "failed_step_num": 3,
+        "failed_step_desc": "CLICK on 'button:has-text(\"Export\")'",
+        "error_message": "Page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"button:has-text(\\\"Export\\\")\")\n",
+        "description": "Beam Length - Export Beam Length Grid Data to File: failed on Step 3 (CLICK on 'button:has-text(\"Export\")'). Error: Page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"button:has-text(\\\"Export\\\")\")\n",
+        "timestamp": "2026-07-30 14:35:38"
+    }
+]

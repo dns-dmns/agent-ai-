@@ -1,0 +1,14 @@
+{
+    "broken_selectors": [
+        "table#pn_id_8-table (dynamic PrimeNG table id should be replaced by static selector)",
+        "html > body > app-root > app-pages > div > aside... (deep structural selector should be replaced with link target text or data attribute)"
+    ],
+    "missing_validations": [
+        "Maximum length constraint warning message.",
+        "Inline validation for whitespace-only strings."
+    ],
+    "recommendations": [
+        "Introduce data-testid tags for table action buttons (e.g. data-testid='edit-btn').",
+        "Add confirmation notification toast messages upon successful creation or deletion."
+    ]
+}

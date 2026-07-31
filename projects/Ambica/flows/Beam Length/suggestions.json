@@ -1,0 +1,14 @@
+{
+    "broken_selectors": [
+        "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(7) > a",
+        "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button"
+    ],
+    "missing_validations": [
+        "Duplicate Denier + Reed error message verification.",
+        "Max character length limit on text inputs."
+    ],
+    "recommendations": [
+        "Add explicit `data-testid=\"beam-length-link\"` and `data-testid=\"btn-add-beam\"` attributes.",
+        "Integrate schema-based REST API tests in backend integration pipeline."
+    ]
+}

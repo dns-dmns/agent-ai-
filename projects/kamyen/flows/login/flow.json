@@ -1,7 +1,0 @@
-{
-    "flow_name": "login",
-    "target_url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
-    "timestamp": "2026-07-26 12:57:23",
-    "duration_seconds": 70,
-    "step_count": 8
-}

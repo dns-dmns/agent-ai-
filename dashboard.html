@@ -210,6 +210,119 @@
             color: var(--text-muted);
         }
 
+        .custom-multiselect-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .multiselect-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.35rem 0.6rem;
+            min-height: 40px;
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.2s;
+        }
+
+        .multiselect-trigger:hover,
+        .custom-multiselect-container.open .multiselect-trigger {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .selected-pills-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            align-items: center;
+            max-height: 60px;
+            overflow-y: auto;
+        }
+
+        .placeholder-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-left: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .custom-multiselect-container.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .multiselect-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            max-height: 220px;
+            overflow-y: auto;
+            padding: 0.4rem;
+        }
+
+        .custom-multiselect-container.open .multiselect-dropdown-menu {
+            display: block;
+        }
+
+        .multiselect-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.6rem;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s;
+            user-select: none;
+        }
+
+        .multiselect-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .multiselect-option input[type="checkbox"] {
+            accent-color: #3b82f6;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .multiselect-option-other {
+            border-top: 1px solid var(--border-color);
+            margin-top: 0.25rem;
+            padding-top: 0.5rem;
+            color: #93c5fd;
+            font-weight: 500;
+        }
+
+        .dep-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.72rem;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #93c5fd;
+        }
+
         input[type="text"],
         select {
             width: 100%;
@@ -728,7 +841,7 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
                     <div class="form-row">
                         <label>Flow Name (e.g. login, sales)</label>
-                        <input type="text" id="flowNameInput" placeholder="Enter flow name..." value="login">
+                        <input type="text" id="flowNameInput" placeholder="Enter flow name...">
                     </div>
                     <div class="form-row">
                         <label>Website URL</label>
@@ -803,7 +916,7 @@
                         <div><b>Target Page URL (Start URL):</b> <span id="metaUrl"
                                 style="color:#60a5fa; font-family: 'Fira Code', monospace; font-size: 0.8rem;">-</span>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 1rem; align-items: start;">
                             <div class="form-row">
                                 <label>Authentication Required:</label>
                                 <select id="profileAuthReq"
@@ -812,16 +925,49 @@
                                     <option value="no">No (Public Flow)</option>
                                 </select>
                             </div>
-                            <div class="form-row">
-                                <label>Chain Prerequisites / Dependencies:</label>
-                                <input type="text" id="profileDependencies"
-                                    placeholder="e.g. login,customer (comma separated)"
-                                    style="padding: 0.4rem; font-size: 0.8rem; background: rgba(0,0,0,0.3); border:1px solid var(--border-color); color:white; border-radius:4px;">
+                            <div class="form-row" style="position: relative;">
+                                <label style="display:flex; justify-content:space-between; align-items:center;">
+                                    <span><b>🔗 Chain Prerequisites / Dependencies:</b></span>
+                                    <span style="font-size:0.7rem; color:var(--text-muted);">Multi-Select
+                                        Dropdown</span>
+                                </label>
+
+                                <div class="custom-multiselect-container" id="depMultiselectContainer">
+                                    <div class="multiselect-trigger" id="depMultiselectTrigger"
+                                        onclick="toggleDepDropdown(event)">
+                                        <div id="depSelectedPills" class="selected-pills-area">
+                                            <span class="placeholder-text">Select flow prerequisites...</span>
+                                        </div>
+                                        <span class="dropdown-arrow">▼</span>
+                                    </div>
+
+                                    <div class="multiselect-dropdown-menu" id="depDropdownMenu">
+                                        <div id="depDropdownOptions">
+                                            <!-- Multi-select options rendered dynamically -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="profileDependencies" value="">
+
+                                <div id="depManualBox" style="display: none; margin-top: 0.35rem;">
+                                    <input type="text" id="profileDependenciesManual"
+                                        oninput="updateDependenciesHiddenInput()"
+                                        placeholder="Type custom flow names (comma separated)..."
+                                        style="padding: 0.4rem 0.6rem; font-size: 0.8rem; background: rgba(0,0,0,0.4); border: 1px solid #3b82f6; color: white; border-radius: 4px; width: 100%;">
+                                </div>
                             </div>
                         </div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
-                            Recorded Steps: <span id="metaSteps" style="color: white; font-weight:600;">-</span> |
-                            Recorded Date: <span id="metaDate" style="color: white; font-weight:600;">-</span>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                            <span>Recorded Steps: <span id="metaSteps" style="color: white; font-weight:600;">-</span></span>
+                            <span>|</span>
+                            <span>Recorded Date: <span id="metaDate" style="color: white; font-weight:600;">-</span></span>
+                            <span id="metaRecordingContainer" style="display: none; align-items: center; gap: 0.5rem;">
+                                <span>|</span>
+                                <button id="watchRecordingBtn" class="btn-green" style="padding: 0.15rem 0.5rem; font-size: 0.7rem; border-radius: 4px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.25rem; background: #10b981; color: white;">
+                                    🎬 Watch Flow Recording
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -836,7 +982,7 @@
                         </div>
                         <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
                             Upload your own JSON file containing test scenarios to run them directly.
-                            <a href="/static/sample_test_suite.json" download
+                            <a href="/static/projects/sample_test_suite.json" download
                                 style="color: #60a5fa; text-decoration: underline; margin-left: 0.5rem; font-weight: 500;">Download
                                 Sample JSON Template</a>
                         </div>
@@ -857,7 +1003,8 @@
                     <div style="display: flex; gap: 0.5rem;">
                         <button id="analyzeBtn" class="btn" style="background: var(--primary-glow);"
                             onclick="triggerAIAnalysis()" disabled>Run AI Post Analysis</button>
-                        <button id="multiAgentBtn" class="btn" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); border: none;"
+                        <button id="multiAgentBtn" class="btn"
+                            style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); border: none;"
                             onclick="triggerMultiAgentGeneration()" disabled>🤖 Multi-Agent Generate</button>
                     </div>
                 </div>
@@ -870,55 +1017,89 @@
                 </div>
 
                 <!-- 🤖 Multi-Agent Generation Progress Panel -->
-                <div id="multiAgentPanel" style="display: none; margin-top: 1rem; border: 1.5px solid rgba(139, 92, 246, 0.3); background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 20, 60, 0.6)); border-radius: 12px; padding: 1.25rem; animation: fade-in 0.3s ease;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(139, 92, 246, 0.2); padding-bottom: 0.6rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.05rem; font-weight: 700; color: #a78bfa; display: flex; align-items: center; gap: 0.5rem;">
+                <div id="multiAgentPanel"
+                    style="display: none; margin-top: 1rem; border: 1.5px solid rgba(139, 92, 246, 0.3); background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 20, 60, 0.6)); border-radius: 12px; padding: 1.25rem; animation: fade-in 0.3s ease;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(139, 92, 246, 0.2); padding-bottom: 0.6rem; margin-bottom: 1rem;">
+                        <span
+                            style="font-size: 1.05rem; font-weight: 700; color: #a78bfa; display: flex; align-items: center; gap: 0.5rem;">
                             🤖 Multi-Agent Test Generation Pipeline
                         </span>
-                        <span id="maRoundBadge" style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; padding: 0.2rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">Round 0/3</span>
+                        <span id="maRoundBadge"
+                            style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; padding: 0.2rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">Round
+                            0/3</span>
                     </div>
 
                     <!-- Agent Status Cards -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
-                        <div id="maAgent1Card" style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; transition: all 0.3s;">
-                            <div style="font-weight: 600; font-size: 0.8rem; color: #60a5fa; margin-bottom: 0.3rem;">🤖 Agent 1: The Builder</div>
-                            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;">Functional / CRUD / Workflow</div>
-                            <div id="maAgent1Status" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">⏳ Waiting...</div>
-                            <div id="maAgent1Count" style="font-size: 1.2rem; font-weight: 700; color: white; margin-top: 0.2rem;">0</div>
+                        <div id="maAgent1Card"
+                            style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; transition: all 0.3s;">
+                            <div style="font-weight: 600; font-size: 0.8rem; color: #60a5fa; margin-bottom: 0.3rem;">🤖
+                                Agent 1: The Builder</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;">Functional
+                                / CRUD / Workflow</div>
+                            <div id="maAgent1Status"
+                                style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">⏳ Waiting...
+                            </div>
+                            <div id="maAgent1Count"
+                                style="font-size: 1.2rem; font-weight: 700; color: white; margin-top: 0.2rem;">0</div>
                         </div>
-                        <div id="maAgent2Card" style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; transition: all 0.3s;">
-                            <div style="font-weight: 600; font-size: 0.8rem; color: #f87171; margin-bottom: 0.3rem;">🤖 Agent 2: The Breaker</div>
-                            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;">Edge Case / Security / Boundary</div>
-                            <div id="maAgent2Status" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">⏳ Waiting...</div>
-                            <div id="maAgent2Count" style="font-size: 1.2rem; font-weight: 700; color: white; margin-top: 0.2rem;">0</div>
+                        <div id="maAgent2Card"
+                            style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; transition: all 0.3s;">
+                            <div style="font-weight: 600; font-size: 0.8rem; color: #f87171; margin-bottom: 0.3rem;">🤖
+                                Agent 2: The Breaker</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;">Edge Case /
+                                Security / Boundary</div>
+                            <div id="maAgent2Status"
+                                style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">⏳ Waiting...
+                            </div>
+                            <div id="maAgent2Count"
+                                style="font-size: 1.2rem; font-weight: 700; color: white; margin-top: 0.2rem;">0</div>
                         </div>
-                        <div id="maAgent3Card" style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; transition: all 0.3s;">
-                            <div style="font-weight: 600; font-size: 0.8rem; color: #fbbf24; margin-bottom: 0.3rem;">🔍 Agent 3: The Auditor</div>
-                            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;">Coverage Review / Gap Analysis</div>
-                            <div id="maAgent3Status" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">⏳ Waiting...</div>
-                            <div id="maAgent3Count" style="font-size: 1.2rem; font-weight: 700; color: white; margin-top: 0.2rem;">—</div>
+                        <div id="maAgent3Card"
+                            style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; transition: all 0.3s;">
+                            <div style="font-weight: 600; font-size: 0.8rem; color: #fbbf24; margin-bottom: 0.3rem;">🔍
+                                Agent 3: The Auditor</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;">Coverage
+                                Review / Gap Analysis</div>
+                            <div id="maAgent3Status"
+                                style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">⏳ Waiting...
+                            </div>
+                            <div id="maAgent3Count"
+                                style="font-size: 1.2rem; font-weight: 700; color: white; margin-top: 0.2rem;">—</div>
                         </div>
                     </div>
 
                     <!-- Coverage Progress Bar -->
                     <div style="margin-bottom: 0.75rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-                            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">Coverage Progress</span>
-                            <span id="maCoveragePct" style="font-size: 0.85rem; font-weight: 700; color: #a78bfa;">0%</span>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">Coverage
+                                Progress</span>
+                            <span id="maCoveragePct"
+                                style="font-size: 0.85rem; font-weight: 700; color: #a78bfa;">0%</span>
                         </div>
-                        <div style="width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden;">
-                            <div id="maCoverageBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #8b5cf6, #3b82f6); border-radius: 4px; transition: width 0.5s ease;"></div>
+                        <div
+                            style="width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden;">
+                            <div id="maCoverageBar"
+                                style="width: 0%; height: 100%; background: linear-gradient(90deg, #8b5cf6, #3b82f6); border-radius: 4px; transition: width 0.5s ease;">
+                            </div>
                         </div>
                     </div>
 
                     <!-- Total Cases + Review Notes -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);">Total Unique Cases: <b id="maTotalCases" style="color: white;">0</b></span>
-                        <span id="maCoverageStatus" style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);"></span>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">Total Unique Cases: <b
+                                id="maTotalCases" style="color: white;">0</b></span>
+                        <span id="maCoverageStatus"
+                            style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);"></span>
                     </div>
 
                     <!-- Live Log -->
-                    <div id="maLogConsole" style="background: #05070c; border: 1px solid var(--border-color); border-radius: 6px; padding: 0.75rem; max-height: 200px; overflow-y: auto; font-family: 'Fira Code', monospace; font-size: 0.75rem; line-height: 1.6; color: #94a3b8;"></div>
+                    <div id="maLogConsole"
+                        style="background: #05070c; border: 1px solid var(--border-color); border-radius: 6px; padding: 0.75rem; max-height: 200px; overflow-y: auto; font-family: 'Fira Code', monospace; font-size: 0.75rem; line-height: 1.6; color: #94a3b8;">
+                    </div>
                 </div>
 
                 <!-- 📊 Principal QA Enterprise Architect Report -->
@@ -1333,6 +1514,49 @@
                             </table>
                         </div>
                     </div>
+
+                    <!-- 🐞 Active Project Bugs and Failures Card -->
+                    <div style="margin-top: 1.5rem; border: 1px solid rgba(239, 68, 68, 0.25); background: rgba(239, 68, 68, 0.02); padding: 1.25rem; border-radius: 12px;">
+                        <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--accent-red); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(239, 68, 68, 0.15); padding-bottom: 0.5rem;">
+                            <span>🐞 Active Project Bug Reports (Failing Test Cases)</span>
+                            <span id="bugsCountBadge" class="test-badge badge-negative" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px;">0 Bugs</span>
+                        </div>
+                        <div style="max-height: 250px; overflow-y: auto; font-family: 'Fira Code', monospace; font-size: 0.82rem; line-height: 1.6; padding: 0.5rem; color: #fca5a5;" id="projectBugsList">
+                            <div style="color: var(--text-muted); font-family: sans-serif; text-align: center; padding: 1.5rem;">No failing test cases found in this project. Everything is green!</div>
+                        </div>
+                    </div>
+
+                    <!-- 🔮 Project Test Case Explorer & Playback Hub Card -->
+                    <div style="margin-top: 1.5rem; border: 1px solid var(--border-color); background: rgba(255, 255, 255, 0.01); padding: 1.25rem; border-radius: 12px;">
+                        <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; color: #a78bfa; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                            <span>🔮 Project Test Explorer & Playback Hub</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; min-height: 250px;">
+                            <!-- Left panel: Project and Flow list selector -->
+                            <div style="border-right: 1px solid var(--border-color); padding-right: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+                                <div class="form-row">
+                                    <label style="font-weight: 600; color: var(--text-muted); font-size: 0.8rem;">Select Project:</label>
+                                    <select id="explorerProjectSelect" onchange="loadExplorerFlowsList()" style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.3); color: white;"></select>
+                                </div>
+                                <div>
+                                    <label style="font-weight: 600; color: var(--text-muted); font-size: 0.8rem; display: block; margin-bottom: 0.5rem;">Select Flow/Module:</label>
+                                    <div id="explorerFlowsListContainer" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 220px; overflow-y: auto; padding: 4px;">
+                                        <div style="color: var(--text-muted); font-size: 0.8rem;">Select a project first.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right panel: Test cases lists with video run link next to executed ones -->
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="font-size: 0.85rem; font-weight: 700; color: #60a5fa; margin-bottom: 0.25rem;">
+                                    📝 Test Cases for Flow: <span id="explorerSelectedFlowName" style="color: white;">None selected</span>
+                                </div>
+                                <div id="explorerTestCasesListContainer" style="flex: 1; max-height: 320px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; background: rgba(0,0,0,0.15);">
+                                    <div style="color: var(--text-muted); font-size: 0.82rem; text-align: center; margin-top: 2rem;">Click a flow module from the left list to explore its test cases and watch execution videos.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1340,8 +1564,16 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="modal" onclick="closeLightbox()">
-        <span class="modal-close">&times;</span>
+        <span class="modal-close" onclick="closeLightbox()">&times;</span>
         <img class="modal-content" id="lightboxImg" src="" alt="Test Screenshot">
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal" onclick="closeVideoModal()">
+        <span class="modal-close" onclick="closeVideoModal()">&times;</span>
+        <div class="modal-content" style="width: 80%; max-width: 960px; background: #000; border-radius: 8px; overflow: hidden; position: relative;" onclick="event.stopPropagation()">
+            <video id="flowVideoPlayer" controls style="width: 100%; height: auto; display: block;"></video>
+        </div>
     </div>
 
     <script>
@@ -1349,6 +1581,122 @@
         let currentFlowName = "";
         let flowMetadata = {};
         let flowSuggestions = {};
+
+        let globalAuthFlows = [];
+        let globalBusinessFlows = [];
+
+        // Toggle custom multi-select dropdown menu
+        function toggleDepDropdown(event) {
+            if (event) event.stopPropagation();
+            const container = document.getElementById('depMultiselectContainer');
+            if (container) {
+                container.classList.toggle('open');
+            }
+        }
+
+        // Close dropdown when clicking anywhere outside
+        document.addEventListener('click', function (e) {
+            const container = document.getElementById('depMultiselectContainer');
+            if (container && !container.contains(e.target)) {
+                container.classList.remove('open');
+            }
+        });
+
+        // Toggle manual dependency input box
+        function toggleDepManualInput() {
+            const box = document.getElementById('depManualBox');
+            const cb = document.getElementById('depOtherCheckbox');
+            if (box && cb) {
+                box.style.display = cb.checked ? 'block' : 'none';
+                if (cb.checked) {
+                    const manualInput = document.getElementById('profileDependenciesManual');
+                    if (manualInput) manualInput.focus();
+                }
+            }
+            updateDependenciesHiddenInput();
+        }
+
+        // Calculate and update the hidden #profileDependencies input value and selected pills display
+        function updateDependenciesHiddenInput() {
+            const selected = [];
+            const checkboxes = document.querySelectorAll('input[name="depFlowItem"]:checked');
+            checkboxes.forEach(cb => selected.push(cb.value));
+
+            const pillsArea = document.getElementById('depSelectedPills');
+            if (pillsArea) {
+                pillsArea.innerHTML = '';
+                if (selected.length === 0) {
+                    pillsArea.innerHTML = '<span class="placeholder-text">Select flow prerequisites...</span>';
+                } else {
+                    selected.forEach(item => {
+                        const isAuth = ["login", "auth", "session", "logout"].some(kw => item.toLowerCase().includes(kw));
+                        const pill = document.createElement('span');
+                        pill.className = 'dep-pill';
+                        pill.innerHTML = `<span>${isAuth ? '🔑' : '💼'} ${item}</span>`;
+                        pillsArea.appendChild(pill);
+                    });
+                }
+            }
+
+            const otherCb = document.getElementById('depOtherCheckbox');
+            if (otherCb && otherCb.checked) {
+                const manualInput = document.getElementById('profileDependenciesManual');
+                if (manualInput && manualInput.value.trim()) {
+                    const customItems = manualInput.value.split(',').map(s => s.trim()).filter(Boolean);
+                    customItems.forEach(item => {
+                        if (!selected.includes(item)) selected.push(item);
+                    });
+                }
+            }
+
+            const hiddenInput = document.getElementById('profileDependencies');
+            if (hiddenInput) {
+                hiddenInput.value = selected.join(',');
+            }
+        }
+
+        // Render dependency multi-select options inside custom dropdown
+        function renderDependencyOptions() {
+            const optionsContainer = document.getElementById('depDropdownOptions');
+            if (!optionsContainer) return;
+
+            optionsContainer.innerHTML = '';
+            const allFlows = [...globalAuthFlows, ...globalBusinessFlows];
+            const currentLower = (currentFlowName || "").toLowerCase();
+            const validFlows = allFlows.filter(f => f.toLowerCase() !== currentLower);
+
+            const isAuthFlowTarget = ["login", "auth", "session", "logout"].some(kw => currentLower.includes(kw));
+
+            if (validFlows.length === 0) {
+                optionsContainer.innerHTML = '<div style="font-size:0.78rem; color: var(--text-muted); padding: 0.4rem;">No other flows available in project</div>';
+            } else {
+                validFlows.forEach(flow => {
+                    const isAuth = ["login", "auth", "session", "logout"].some(kw => flow.toLowerCase().includes(kw));
+                    // Check 'login' or auth flows by default if target is a business flow
+                    const isChecked = (!isAuthFlowTarget && isAuth) ? 'checked' : '';
+
+                    const label = document.createElement('label');
+                    label.className = 'multiselect-option';
+                    label.innerHTML = `
+                        <input type="checkbox" name="depFlowItem" value="${flow}" ${isChecked} onchange="updateDependenciesHiddenInput()">
+                        <span>${isAuth ? '🔑' : '💼'} ${flow}</span>
+                    `;
+                    optionsContainer.appendChild(label);
+                });
+            }
+
+            // Always append 'Other / Custom' option
+            const otherLabel = document.createElement('label');
+            otherLabel.className = 'multiselect-option multiselect-option-other';
+            otherLabel.innerHTML = `
+                <input type="checkbox" id="depOtherCheckbox" onchange="toggleDepManualInput()">
+                <span>✏️ Other / Custom</span>
+            `;
+            optionsContainer.appendChild(otherLabel);
+
+            // Update hidden input and trigger pills display after rendering
+            updateDependenciesHiddenInput();
+        }
 
         // Toggle Views Javascript Controller
         function switchMainTab(viewId, btn) {
@@ -1373,7 +1721,7 @@
             document.getElementById('statsProjectName').innerText = currentProjectName;
 
             try {
-                const response = await fetch(`/list-flows?project_name=${encodeURIComponent(currentProjectName)}`);
+                const response = await fetch(`/list-flows?project_name=${encodeURIComponent(currentProjectName)}`, { cache: "no-store" });
                 const data = await response.json();
 
                 const flows = [...data.auth_flows, ...data.business_flows];
@@ -1396,7 +1744,7 @@
                 }
 
                 // Fetch details for all modules in parallel
-                const detailsPromises = flows.map(f => fetch(`/get-flow-details?flow_name=${encodeURIComponent(f)}&project_name=${encodeURIComponent(currentProjectName)}`).then(r => r.json()));
+                const detailsPromises = flows.map(f => fetch(`/get-flow-details?flow_name=${encodeURIComponent(f)}&project_name=${encodeURIComponent(currentProjectName)}`, { cache: "no-store" }).then(r => r.json()));
                 const detailsList = await Promise.all(detailsPromises);
 
                 detailsList.forEach((details, idx) => {
@@ -1438,10 +1786,167 @@
                 document.getElementById('statsPendingModules').innerText = pendingModules;
                 document.getElementById('statsTotalTestCases').innerText = totalTestCases;
 
+                // Fetch and render bugs list in Project Console
+                try {
+                    const bugsResponse = await fetch(`/get-project-bugs?project_name=${encodeURIComponent(currentProjectName)}`, { cache: "no-store" });
+                    if (bugsResponse.ok) {
+                        const bugsData = await bugsResponse.json();
+                        const bugsList = bugsData.bugs || [];
+                        
+                        const badge = document.getElementById('bugsCountBadge');
+                        const listContainer = document.getElementById('projectBugsList');
+                        
+                        badge.innerText = `${bugsList.length} Bugs`;
+                        
+                        if (bugsList.length === 0) {
+                            listContainer.innerHTML = `<div style="color: var(--text-muted); font-family: sans-serif; text-align: center; padding: 1.5rem;">No failing test cases found in this project. Everything is green!</div>`;
+                        } else {
+                            listContainer.innerHTML = '';
+                            bugsList.forEach((bug, idx) => {
+                                const line = document.createElement('div');
+                                line.style.borderBottom = '1px solid rgba(239, 68, 68, 0.15)';
+                                line.style.padding = '0.4rem 0.2rem';
+                                line.style.wordBreak = 'break-all';
+                                line.innerText = `${idx + 1}. ${bug.description}`;
+                                listContainer.appendChild(line);
+                            });
+                        }
+                    }
+                } catch (bugErr) {
+                    console.error("Error loading bugs:", bugErr);
+                }
+
             } catch (e) {
                 console.error(e);
             }
         }
+
+        // --- Project Test Cases Explorer & Playback Hub Javascript ---
+        async function loadExplorerFlowsList() {
+            const projectSelect = document.getElementById('explorerProjectSelect');
+            const flowsContainer = document.getElementById('explorerFlowsListContainer');
+            const selectedFlowLabel = document.getElementById('explorerSelectedFlowName');
+            const casesContainer = document.getElementById('explorerTestCasesListContainer');
+
+            selectedFlowLabel.innerText = "None selected";
+            casesContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.82rem; text-align: center; margin-top: 2rem;">Click a flow module from the left list to explore its test cases and watch execution videos.</div>`;
+            
+            if (!projectSelect) return;
+            const projectName = projectSelect.value;
+            if (!projectName) {
+                flowsContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.8rem;">Select a project first.</div>`;
+                return;
+            }
+
+            flowsContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.8rem;">Loading flows...</div>`;
+
+            try {
+                const response = await fetch(`/list-flows?project_name=${encodeURIComponent(projectName)}`, { cache: "no-store" });
+                const data = await response.json();
+                const flows = [...data.auth_flows, ...data.business_flows];
+
+                flowsContainer.innerHTML = '';
+                if (flows.length === 0) {
+                    flowsContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.8rem;">No flows registered in this project.</div>`;
+                    return;
+                }
+
+                flows.forEach(flow => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn btn-outline explorer-flow-btn';
+                    btn.style.width = '100%';
+                    btn.style.textAlign = 'left';
+                    btn.style.padding = '0.5rem 0.75rem';
+                    btn.style.fontSize = '0.8rem';
+                    btn.style.display = 'block';
+                    btn.style.marginBottom = '4px';
+                    btn.innerText = flow;
+                    btn.onclick = () => {
+                        // Highlight active button
+                        document.querySelectorAll('.explorer-flow-btn').forEach(b => {
+                            b.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                            b.style.background = 'transparent';
+                        });
+                        btn.style.borderColor = '#a78bfa';
+                        btn.style.background = 'rgba(167, 139, 250, 0.05)';
+                        loadExplorerTestCases(flow);
+                    };
+                    flowsContainer.appendChild(btn);
+                });
+            } catch (e) {
+                console.error(e);
+                flowsContainer.innerHTML = `<div style="color: var(--accent-red); font-size: 0.8rem;">Failed to load flows.</div>`;
+            }
+        }
+
+        async function loadExplorerTestCases(flowName) {
+            const projectSelect = document.getElementById('explorerProjectSelect');
+            const projectName = projectSelect.value;
+            const casesContainer = document.getElementById('explorerTestCasesListContainer');
+            const selectedFlowLabel = document.getElementById('explorerSelectedFlowName');
+
+            selectedFlowLabel.innerText = flowName;
+            casesContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.82rem; text-align: center; margin-top: 2rem;">Loading test scenarios...</div>`;
+
+            try {
+                const response = await fetch(`/get-flow-details?flow_name=${encodeURIComponent(flowName)}&project_name=${encodeURIComponent(projectName)}`, { cache: "no-store" });
+                const details = await response.json();
+                
+                const testCases = details.test_cases || [];
+
+                casesContainer.innerHTML = '';
+                if (testCases.length === 0) {
+                    casesContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.82rem; text-align: center; margin-top: 2rem;">No test scenarios generated yet for this flow.</div>`;
+                    return;
+                }
+
+                testCases.forEach((tc, tcIdx) => {
+                    let statusHtml = '<span style="color: var(--text-muted); font-size:0.75rem;">⚪ Not Executed</span>';
+                    let videoButtonHtml = '';
+                    
+                    if (details.latest_report && details.latest_report.checkpoints) {
+                        const matchedCheckpoint = details.latest_report.checkpoints.find(cp => 
+                            cp.name === tc.scenario_name || cp.name === tc.scenario || cp.index === (tcIdx + 1)
+                        );
+                        if (matchedCheckpoint) {
+                            const status = matchedCheckpoint.status;
+                            const statusColor = status === 'PASS' ? 'var(--accent-green)' : 'var(--accent-red)';
+                            statusHtml = `<span style="color: ${statusColor}; font-weight:600; font-size:0.75rem;">${status === 'PASS' ? '🟢 PASS' : '🔴 FAIL'}</span>`;
+                            if (matchedCheckpoint.video) {
+                                videoButtonHtml = `
+                                    <button class="btn" style="background: #10b981; color: white; padding: 2px 8px; font-size: 0.72rem; display: flex; align-items: center; gap: 4px; border-radius: 4px;" onclick="openVideoModal('${matchedCheckpoint.video}')">
+                                        🎥 Play Run
+                                    </button>
+                                `;
+                            }
+                        }
+                    }
+
+                    const item = document.createElement('div');
+                    item.style.padding = '0.5rem 0.25rem';
+                    item.style.borderBottom = '1px solid var(--border-color)';
+                    item.style.display = 'flex';
+                    item.style.justifyContent = 'space-between';
+                    item.style.alignItems = 'center';
+                    item.innerHTML = `
+                        <div style="max-width: 70%;">
+                            <div style="font-weight: 600; font-size:0.82rem; color:white;">${tcIdx + 1}. ${tc.scenario_name || tc.scenario}</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Type: ${tc.type || 'functional'}</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.6rem;">
+                            ${statusHtml}
+                            ${videoButtonHtml}
+                        </div>
+                    `;
+                    casesContainer.appendChild(item);
+                });
+            } catch (e) {
+                console.error(e);
+                casesContainer.innerHTML = `<div style="color: var(--accent-red); font-size: 0.82rem; text-align: center; margin-top: 2rem;">Failed to load test scenarios.</div>`;
+            }
+        }
+
+
 
         // Create new project from Tab 3 Project Console inputs
         async function createProjectFromConsole() {
@@ -1549,7 +2054,7 @@
         // Fetch Projects List in workspace on load
         async function fetchProjects(selectProjectName = "") {
             try {
-                const response = await fetch('/list-projects');
+                const response = await fetch('/list-projects', { cache: "no-store" });
                 const data = await response.json();
 
                 // Populate lander select list
@@ -1559,6 +2064,10 @@
                 // Populate header select list
                 const headerSelect = document.getElementById('projectSelect');
                 headerSelect.innerHTML = '';
+                
+                // Populate explorer select list
+                const explorerSelect = document.getElementById('explorerProjectSelect');
+                if (explorerSelect) explorerSelect.innerHTML = '';
 
                 data.projects.forEach(proj => {
                     const opt1 = document.createElement('option');
@@ -1568,13 +2077,26 @@
                     const opt2 = document.createElement('option');
                     opt2.value = proj; opt2.innerText = proj;
                     headerSelect.appendChild(opt2);
+                    
+                    if (explorerSelect) {
+                        const opt3 = document.createElement('option');
+                        opt3.value = proj; opt3.innerText = proj;
+                        explorerSelect.appendChild(opt3);
+                    }
                 });
 
                 if (selectProjectName) {
                     landerSelect.value = selectProjectName;
                     headerSelect.value = selectProjectName;
+                    if (explorerSelect) explorerSelect.value = selectProjectName;
                     currentProjectName = selectProjectName;
                     await switchProject();
+                } else {
+                    // Pre-select active project in explorer dropdown by default
+                    if (explorerSelect) {
+                        explorerSelect.value = currentProjectName;
+                        loadExplorerFlowsList();
+                    }
                 }
             } catch (e) {
                 console.error(e);
@@ -1611,8 +2133,11 @@
         // Fetch flows from project directory
         async function fetchSavedFlows(selectFlowName = "") {
             try {
-                const response = await fetch(`/list-flows?project_name=${encodeURIComponent(currentProjectName)}`);
+                const response = await fetch(`/list-flows?project_name=${encodeURIComponent(currentProjectName)}`, { cache: "no-store" });
                 const data = await response.json();
+
+                globalAuthFlows = data.auth_flows || [];
+                globalBusinessFlows = data.business_flows || [];
 
                 const select = document.getElementById('flowSelect');
                 const authGroup = document.getElementById('authFlowsGroup');
@@ -1657,7 +2182,7 @@
                 }
 
                 await loadAuthScenarios();
-
+                renderDependencyOptions();
             } catch (e) {
                 console.error(e);
             }
@@ -1672,7 +2197,7 @@
             if (!authFlow) return;
 
             try {
-                const response = await fetch(`/get-flow-details?flow_name=${encodeURIComponent(authFlow)}&project_name=${encodeURIComponent(currentProjectName)}`);
+                const response = await fetch(`/get-flow-details?flow_name=${encodeURIComponent(authFlow)}&project_name=${encodeURIComponent(currentProjectName)}`, { cache: "no-store" });
                 if (!response.ok) return;
 
                 const data = await response.json();
@@ -1717,7 +2242,7 @@
             }
 
             try {
-                const response = await fetch(`/get-flow-details?flow_name=${encodeURIComponent(flowName)}&project_name=${encodeURIComponent(currentProjectName)}`);
+                const response = await fetch(`/get-flow-details?flow_name=${encodeURIComponent(flowName)}&project_name=${encodeURIComponent(currentProjectName)}`, { cache: "no-store" });
                 if (!response.ok) throw new Error("Failed to load details");
 
                 const data = await response.json();
@@ -1728,18 +2253,22 @@
                 document.getElementById('metaUrl').innerText = data.flow.target_url;
                 document.getElementById('metaSteps').innerText = `${data.flow.step_count} steps`;
                 document.getElementById('metaDate').innerText = data.flow.timestamp;
+                
+                if (data.has_recording && data.recording_url) {
+                    document.getElementById('metaRecordingContainer').style.display = 'inline-flex';
+                    document.getElementById('watchRecordingBtn').onclick = () => openVideoModal(data.recording_url);
+                } else {
+                    document.getElementById('metaRecordingContainer').style.display = 'none';
+                }
+                
                 document.getElementById('flowDetailsCard').style.display = 'block';
 
                 // Set default Execution Profile parameters
                 const isAuthFlow = ["login", "auth", "session", "logout"].some(kw => flowName.toLowerCase().includes(kw));
                 document.getElementById('profileAuthReq').value = isAuthFlow ? 'no' : 'yes';
 
-                // Set default dependency string
-                if (isAuthFlow) {
-                    document.getElementById('profileDependencies').value = '';
-                } else {
-                    document.getElementById('profileDependencies').value = 'login';
-                }
+                // Render dependency multi-select options
+                renderDependencyOptions();
 
                 // Populate Enterprise QA Specification if present
                 const qaPanel = document.getElementById('enterpriseQAPanel');
@@ -1819,7 +2348,11 @@
                         </div>
                     `;
                 }
-                document.getElementById('reportCard').style.display = 'none';
+                if (data.has_report && data.latest_report) {
+                    restoreExecutionReport(data.latest_report);
+                } else {
+                    document.getElementById('reportCard').style.display = 'none';
+                }
                 document.getElementById('terminalConsole').style.display = 'none';
 
             } catch (e) {
@@ -2123,8 +2656,22 @@
                     // Add checkpoint screenshot thumbnail
                     const thumb = document.createElement('div');
                     thumb.className = 'screenshot-card';
+                    thumb.style.position = 'relative';
+                    
+                    let videoOverlay = '';
+                    if (data.video) {
+                        videoOverlay = `
+                            <div class="video-play-icon" onclick="event.stopPropagation(); openVideoModal('${data.video}')" 
+                                 style="position: absolute; top: 8px; right: 8px; background: #10b981; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; z-index: 10;" 
+                                 title="Watch Video Run">
+                                ▶
+                            </div>
+                        `;
+                    }
+                    
                     thumb.onclick = () => openLightbox(data.screenshot);
                     thumb.innerHTML = `
+                        ${videoOverlay}
                         <img src="${data.screenshot}" alt="Check ${data.index}">
                         <div class="screenshot-label">Case #${data.index} (${data.status})</div>
                     `;
@@ -2202,6 +2749,89 @@
             document.getElementById('reportCard').scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Restore historical execution report card metrics, thumbnails, and play overlay buttons on reload
+        function restoreExecutionReport(latestReport) {
+            if (!latestReport) return;
+            document.getElementById('statExecuted').innerText = latestReport.total_test_cases || (latestReport.passed_count + latestReport.failed_count);
+            document.getElementById('statPassed').innerText = latestReport.passed_count;
+            document.getElementById('statFailed').innerText = latestReport.failed_count;
+            document.getElementById('statDuration').innerText = `${latestReport.duration_seconds || 0}s`;
+
+            document.getElementById('reportFlowName').innerText = latestReport.flow_name || currentFlowName;
+            document.getElementById('reportDateTime').innerText = latestReport.execution_date || '';
+
+            // Format selected types
+            const rawTypes = latestReport.test_types_run;
+            const typesLabel = Array.isArray(rawTypes) ? rawTypes.map(t => t.toUpperCase()).join(', ') : (rawTypes || 'ALL SCENARIOS').toUpperCase();
+            document.getElementById('reportTypes').innerText = typesLabel;
+
+            const badge = document.getElementById('reportStatusBadge');
+            if (latestReport.failed_count > 0) {
+                badge.innerText = 'FAIL';
+                badge.className = 'test-badge btn-red';
+            } else {
+                badge.innerText = 'PASS';
+                badge.className = 'test-badge btn-green';
+            }
+
+            const errSection = document.getElementById('errorSection');
+            const errList = document.getElementById('errorLogList');
+            errList.innerHTML = '';
+
+            const consoleErrors = latestReport.console_errors || [];
+            const networkErrors = latestReport.network_errors || [];
+            const totalErrors = consoleErrors.length + networkErrors.length;
+            if (totalErrors > 0) {
+                errSection.style.display = 'flex';
+                consoleErrors.forEach(err => errList.innerHTML += `<div>[Console] ${err}</div>`);
+                networkErrors.forEach(err => errList.innerHTML += `<div>[Network] ${err}</div>`);
+            } else {
+                errSection.style.display = 'none';
+            }
+
+            // Render checkpoints thumbnails with play overlays
+            const screenshotGrid = document.getElementById('screenshotGrid');
+            screenshotGrid.innerHTML = '';
+
+            const checkpoints = latestReport.checkpoints || [];
+            checkpoints.forEach(cp => {
+                const thumb = document.createElement('div');
+                thumb.className = 'screenshot-card';
+                thumb.style.position = 'relative';
+
+                let videoOverlay = '';
+                if (cp.video) {
+                    videoOverlay = `
+                        <div class="video-play-icon" onclick="event.stopPropagation(); openVideoModal('${cp.video}')" 
+                             style="position: absolute; top: 8px; right: 8px; background: #10b981; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; z-index: 10;" 
+                             title="Watch Video Run">
+                            ▶
+                        </div>
+                    `;
+                }
+
+                thumb.onclick = () => { if (cp.screenshot) openLightbox(cp.screenshot); };
+                thumb.innerHTML = `
+                    ${videoOverlay}
+                    <img src="${cp.screenshot || '/static/placeholder.png'}" onerror="this.src='/static/placeholder.png'" alt="Case Checkpoint">
+                    <div class="screenshot-label">Case #${cp.index} (${cp.status})</div>
+                `;
+                screenshotGrid.appendChild(thumb);
+            });
+
+            // Restore AI Recommendations list
+            const recList = document.getElementById('recommendationList');
+            recList.innerHTML = '';
+            const recs = flowSuggestions.recommendations || [
+                "Implement input length boundaries to prevent layout displacement.",
+                "Inject duplicate check validations on employee IDs.",
+                "Ensure SSL redirects are enforced on login page."
+            ];
+            recs.forEach(rec => recList.innerHTML += `<li>${rec}</li>`);
+
+            document.getElementById('reportCard').style.display = 'flex';
+        }
+
         // Console logger
         function logConsole(message, isError = false) {
             const el = document.getElementById('recorderConsole');
@@ -2226,6 +2856,28 @@
             const img = document.getElementById('lightboxImg');
             img.src = src;
             modal.classList.add('open');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            modal.classList.remove('open');
+        }
+
+        // Video modal helpers
+        function openVideoModal(src) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('flowVideoPlayer');
+            video.src = src;
+            modal.classList.add('open');
+            video.play();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('flowVideoPlayer');
+            video.pause();
+            video.src = '';
+            modal.classList.remove('open');
         }
 
         // Upload custom test suite json file
@@ -2331,8 +2983,8 @@
                     const count = document.getElementById(`maAgent${data.agent}Count`);
                     status.innerText = '✅ Complete';
                     status.style.color = '#10b981';
-                    if (data.agent === 1) { agent1Total += data.count; count.innerText = agent1Total; }
-                    if (data.agent === 2) { agent2Total += data.count; count.innerText = agent2Total; }
+                    if (data.agent === 1) { agent1Total += (data.unique_added !== undefined ? data.unique_added : data.count); count.innerText = agent1Total; }
+                    if (data.agent === 2) { agent2Total += (data.unique_added !== undefined ? data.unique_added : data.count); count.innerText = agent2Total; }
                     document.getElementById(`maAgent${data.agent}Card`).style.borderColor = '#10b981';
                     maLog(data.message, '#10b981');
                 } else if (data.event === 'agent_error') {

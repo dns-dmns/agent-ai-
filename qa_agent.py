@@ -12,42 +12,34 @@ import json
 import google.generativeai as genai
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File, Response
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
+
+# Phase 4 Modularized Imports
+import ai_agents
+import heuristics
+import recorder
+import mimetypes
+
+mimetypes.add_type("video/webm", ".webm")
+mimetypes.add_type("video/mp4", ".mp4")
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = FastAPI()
 
-# Mount static folder
-app.mount("/static", StaticFiles(directory="D:/Ai"), name="static")
+# Mount static folder securely (exposes only projects subdirectory to prevent raw workspace file access)
+app.mount("/static/projects", StaticFiles(directory="D:/Ai/projects"), name="static")
 
-# Dynamic migration logic to move legacy folder structure to new Multi-Project layout
-def migrate_legacy_flows():
-    projects_dir = "D:/Ai/projects"
-    legacy_flows_dir = "D:/Ai/flows"
-    
-    if os.path.exists(legacy_flows_dir) and not os.path.exists(projects_dir):
-        default_project_flows = "D:/Ai/projects/ERP_Automation/flows"
-        os.makedirs(default_project_flows, exist_ok=True)
-        
-        for item in os.listdir(legacy_flows_dir):
-            src_path = os.path.join(legacy_flows_dir, item)
-            dst_path = os.path.join(default_project_flows, item)
-            try:
-                shutil.move(src_path, dst_path)
-            except Exception as e:
-                print(f"Error migrating {src_path}: {e}")
-                
-        try:
-            shutil.rmtree(legacy_flows_dir)
-        except Exception:
-            pass
-        print("Successfully migrated legacy flows to projects/ERP_Automation/flows/")
-
-migrate_legacy_flows()
+def validate_safe_path(*names: str):
+    """Prevent directory traversal attacks by validating path parameters."""
+    for name in names:
+        if not name:
+            continue
+        if ".." in name or "/" in name or "\\" in name:
+            raise HTTPException(status_code=400, detail="Invalid path parameter detected.")
 
 # Global session tracker for active recording browser
 active_session = {
@@ -63,81 +55,7 @@ active_session = {
     "start_time": 0
 }
 
-# Unique Selector Generator + Event Recorder JavaScript
-JS_RECORDER_SCRIPT = """
-(function() {
-    if (window.hasPlaywrightRecorder) return;
-    window.hasPlaywrightRecorder = true;
 
-    function getUniqueSelector(el) {
-        if (el.id) return `#${el.id}`;
-        if (el.name) return `${el.tagName.toLowerCase()}[name="${el.name}"]`;
-        if (el.placeholder) return `${el.tagName.toLowerCase()}[placeholder="${el.placeholder}"]`;
-        
-        if (el.tagName.toLowerCase() === 'button') {
-            const text = el.innerText.trim();
-            if (text) return `button:has-text("${text}")`;
-        }
-        
-        let path = [];
-        let current = el;
-        while (current && current.nodeType === Node.ELEMENT_NODE) {
-            let selector = current.tagName.toLowerCase();
-            if (current.id) {
-                selector += '#' + current.id;
-                path.unshift(selector);
-                break;
-            } else {
-                let sib = current, nth = 1;
-                while (sib = sib.previousElementSibling) {
-                    if (sib.tagName === current.tagName) nth++;
-                }
-                if (nth > 1) selector += `:nth-of-type(${nth})`;
-            }
-            path.unshift(selector);
-            current = current.parentNode;
-        }
-        return path.join(' > ');
-    }
-
-    document.addEventListener('click', (e) => {
-        const target = e.target.closest('button, input, select, textarea, a, [role="button"]');
-        if (!target) return;
-        
-        const selector = getUniqueSelector(target);
-        const tag = target.tagName.toLowerCase();
-        const text = target.innerText ? target.innerText.trim().substring(0, 50) : '';
-        
-        if (window.recordPlaywrightEvent) {
-            window.recordPlaywrightEvent({
-                action: 'CLICK',
-                selector: selector,
-                tag: tag,
-                text: text,
-                value: ''
-            });
-        }
-    }, true);
-
-    document.addEventListener('change', (e) => {
-        const target = e.target;
-        if (target.tagName.toLowerCase() !== 'input' && target.tagName.toLowerCase() !== 'textarea' && target.tagName.toLowerCase() !== 'select') return;
-        
-        const selector = getUniqueSelector(target);
-        const tag = target.tagName.toLowerCase();
-        
-        if (window.recordPlaywrightEvent) {
-            window.recordPlaywrightEvent({
-                action: 'TYPE',
-                selector: selector,
-                tag: tag,
-                text: '',
-                value: target.value
-            });
-        }
-    }, true);
-})();
-"""
 
 @app.get("/", response_class=HTMLResponse)
 async def get_dashboard():
@@ -149,7 +67,10 @@ async def get_session_status():
     return {"active": os.path.exists("session.json")}
 
 @app.get("/list-projects")
-async def list_projects_api():
+async def list_projects_api(response: Response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     projects_dir = "D:/Ai/projects"
     if not os.path.exists(projects_dir):
         os.makedirs(os.path.join(projects_dir, "ERP_Automation", "flows"), exist_ok=True)
@@ -162,6 +83,7 @@ async def list_projects_api():
 
 @app.post("/create-project")
 async def create_project_api(project_name: str):
+    validate_safe_path(project_name)
     if not project_name.strip():
         raise HTTPException(status_code=400, detail="Project name cannot be empty.")
     
@@ -170,7 +92,11 @@ async def create_project_api(project_name: str):
     return {"status": "success", "message": f"Project '{project_name}' created successfully."}
 
 @app.get("/list-flows")
-async def list_flows(project_name: str = "ERP_Automation"):
+async def list_flows(response: Response, project_name: str = "ERP_Automation"):
+    validate_safe_path(project_name)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     flows_dir = f"D:/Ai/projects/{project_name}/flows"
     if not os.path.exists(flows_dir):
         return {"auth_flows": [], "business_flows": []}
@@ -191,7 +117,11 @@ async def list_flows(project_name: str = "ERP_Automation"):
     return {"auth_flows": auth_flows, "business_flows": business_flows}
 
 @app.get("/get-flow-details")
-async def get_flow_details(flow_name: str, project_name: str = "ERP_Automation"):
+async def get_flow_details(flow_name: str, response: Response, project_name: str = "ERP_Automation"):
+    validate_safe_path(flow_name, project_name)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
     if not os.path.exists(flow_dir):
         raise HTTPException(status_code=404, detail="Flow not found.")
@@ -204,7 +134,9 @@ async def get_flow_details(flow_name: str, project_name: str = "ERP_Automation")
         "has_test_data": os.path.exists(f"{flow_dir}/test_data.json"),
         "has_documentation": os.path.exists(f"{flow_dir}/documentation.md"),
         "has_suggestions": os.path.exists(f"{flow_dir}/suggestions.json"),
-        "has_spec": os.path.exists(f"{flow_dir}/spec.json")
+        "has_spec": os.path.exists(f"{flow_dir}/spec.json"),
+        "has_recording": os.path.exists(f"{flow_dir}/recording.webm"),
+        "recording_url": f"/static/projects/{project_name}/flows/{flow_name}/recording.webm" if os.path.exists(f"{flow_dir}/recording.webm") else ""
     }
         
 
@@ -233,6 +165,17 @@ async def get_flow_details(flow_name: str, project_name: str = "ERP_Automation")
         if details["has_spec"]:
             with open(f"{flow_dir}/spec.json", "r", encoding="utf-8") as f:
                 details["spec"] = json.load(f)
+                
+        # Append latest run report if it exists
+        report_path = f"{flow_dir}/report.json"
+        details["has_report"] = os.path.exists(report_path)
+        details["latest_report"] = None
+        if details["has_report"]:
+            try:
+                with open(report_path, "r", encoding="utf-8") as f:
+                    details["latest_report"] = json.load(f)
+            except Exception:
+                pass
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
         
@@ -240,6 +183,7 @@ async def get_flow_details(flow_name: str, project_name: str = "ERP_Automation")
 
 @app.post("/create-empty-flow")
 async def create_empty_flow_api(flow_name: str, url: str, project_name: str = "ERP_Automation"):
+    validate_safe_path(flow_name, project_name)
     if not flow_name.strip():
         raise HTTPException(status_code=400, detail="Flow name cannot be empty.")
     if not url.strip():
@@ -266,6 +210,7 @@ async def create_empty_flow_api(flow_name: str, url: str, project_name: str = "E
 
 @app.post("/create-flow")
 async def create_flow_api(flow_name: str, url: str, project_name: str = "ERP_Automation"):
+    validate_safe_path(flow_name, project_name)
     if not flow_name.strip():
         raise HTTPException(status_code=400, detail="Flow name cannot be empty.")
     if not url.strip():
@@ -282,14 +227,25 @@ async def create_flow_api(flow_name: str, url: str, project_name: str = "ERP_Aut
     try:
         # Start headed browser for user interactions
         active_session["playwright"] = await async_playwright().start()
-        active_session["browser"] = await active_session["playwright"].chromium.launch(headless=False)
+        active_session["browser"] = await active_session["playwright"].chromium.launch(
+            headless=False,
+            args=["--start-maximized"]
+        )
         
         # Load session.json if it exists to preserve logged-in states in project folder
         session_file = f"D:/Ai/projects/{project_name}/session.json"
+        flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
+        os.makedirs(flow_dir, exist_ok=True)
+        
+        context_args = {
+            "no_viewport": True,
+            "record_video_dir": flow_dir,
+            "record_video_size": {"width": 1280, "height": 720}
+        }
         if os.path.exists(session_file):
-            active_session["context"] = await active_session["browser"].new_context(storage_state=session_file)
-        else:
-            active_session["context"] = await active_session["browser"].new_context()
+            context_args["storage_state"] = session_file
+            
+        active_session["context"] = await active_session["browser"].new_context(**context_args)
             
         active_session["page"] = await active_session["context"].new_page()
         active_session["flow_name"] = flow_name.strip()
@@ -336,10 +292,10 @@ async def start_recording_api():
         await page.expose_function("recordPlaywrightEvent", lambda ev: asyncio.create_task(handle_exposed_event(ev)))
         
         # Inject recording script on current page
-        await page.evaluate(JS_RECORDER_SCRIPT)
+        await page.evaluate(recorder.JS_RECORDER_SCRIPT)
         
         # Inject on future pages (redirects / frame loadings)
-        await context.add_init_script(JS_RECORDER_SCRIPT)
+        await context.add_init_script(recorder.JS_RECORDER_SCRIPT)
         
         return {"status": "success", "message": "Recording started. Go to browser and interact with the page."}
     except Exception as e:
@@ -370,6 +326,32 @@ async def stop_recording_api():
         
         # Create output folders under the active isolated project namespace
         flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
+        
+        # Find the WebM video file and rename it
+        import glob
+        webm_files = glob.glob(os.path.join(flow_dir, "*.webm"))
+        webm_files = [f for f in webm_files if os.path.basename(f) != "recording.webm"]
+        if webm_files:
+            webm_files.sort(key=os.path.getmtime)
+            latest_video = webm_files[-1]
+            target_video = os.path.join(flow_dir, "recording.webm")
+            if os.path.exists(target_video):
+                try:
+                    os.remove(target_video)
+                except Exception:
+                    pass
+            try:
+                shutil.move(latest_video, target_video)
+            except Exception as e:
+                print(f"Error moving video file: {e}")
+                
+            # Clean up other temporary webm files if any
+            for f in webm_files[:-1]:
+                try:
+                    os.remove(f)
+                except Exception:
+                    pass
+                    
         os.makedirs(f"{flow_dir}/screenshots", exist_ok=True)
         # Clear screenshots folder only to preserve test_cases.json and generated scripts
         shutil.rmtree(f"{flow_dir}/screenshots", ignore_errors=True)
@@ -407,6 +389,7 @@ async def stop_recording_api():
 
 @app.post("/analyze-flow")
 async def analyze_flow_api(flow_name: str, project_name: str = "ERP_Automation", test_types: str = ""):
+    validate_safe_path(flow_name, project_name)
     flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
     if not os.path.exists(flow_dir):
         raise HTTPException(status_code=404, detail="Flow not found.")
@@ -618,12 +601,14 @@ async def analyze_flow_api(flow_name: str, project_name: str = "ERP_Automation",
             json.dump(analysis, f, indent=4)
             
         return {"status": "success", "message": "AI analysis complete. Enterprise QA Specification generated successfully!"}
-        
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+
 @app.get("/run-matrix-stream")
 async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_name: str = "ERP_Automation", test_types: str = "", auth_flow: str = "", auth_scenario: str = "", dependencies: str = ""):
+    validate_safe_path(flow_name, project_name, auth_flow)
     session_file = "D:/Ai/session.json"
     flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
     login_data_path = "D:/Ai/login_data.json"
@@ -633,10 +618,21 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
         
     async def sse_generator():
         yield "data: " + json.dumps({"event": "start", "message": f"Loading matrix test cases for flow '{flow_name}'..."}) + "\n\n"
+        yield "data: " + json.dumps({"event": "log", "message": f"DEBUG: dependencies is '{dependencies}'"}) + "\n\n"
         
         # Load test cases
         with open(f"{flow_dir}/test_cases.json", "r", encoding="utf-8") as file:
             raw_test_cases = json.load(file)
+            
+        # Load flow metadata to get target URL
+        url = ""
+        if os.path.exists(f"{flow_dir}/flow.json"):
+            try:
+                with open(f"{flow_dir}/flow.json", "r", encoding="utf-8") as file:
+                    meta = json.load(file)
+                    url = meta.get("target_url", "")
+            except Exception:
+                pass
             
         # Annotate each scenario with its original 1-based index in test_cases.json
         for orig_idx, scenario in enumerate(raw_test_cases, start=1):
@@ -645,7 +641,13 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
         # Filter by test type checkboxes (if provided)
         if test_types.strip():
             selected_types = [t.strip().lower() for t in test_types.split(",")]
-            filtered_cases = [tc for tc in raw_test_cases if tc.get("type", "").lower() in selected_types]
+            filtered_cases = []
+            for tc in raw_test_cases:
+                tc_type = tc.get("type", "").lower()
+                # Match if any selected filter type is a substring of the test case type, or vice versa
+                if any(st in tc_type or tc_type in st for st in selected_types):
+                    filtered_cases.append(tc)
+                    
             if not filtered_cases:
                 yield "data: " + json.dumps({"event": "error", "message": f"No test cases found matching types: {test_types}. Running all instead."}) + "\n\n"
                 test_cases = raw_test_cases
@@ -677,6 +679,15 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                     login_credentials = json.load(lf)
             except Exception:
                 pass
+                
+        # Clean up existing videos folder to prevent accumulating random GUID webm files
+        flow_videos_dir = f"{flow_dir}/videos"
+        if os.path.exists(flow_videos_dir):
+            try:
+                shutil.rmtree(flow_videos_dir, ignore_errors=True)
+            except Exception:
+                pass
+        os.makedirs(flow_videos_dir, exist_ok=True)
         
         async with async_playwright() as p:
             launch_args = {"headless": headless_mode}
@@ -708,24 +719,33 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                     context_args["storage_state"] = session_file
                 if not headless_mode:
                     context_args["no_viewport"] = True
+                
+                # ── PHASE 3 (#8): Enable Playwright video recording per scenario ──
+                video_dir = f"{flow_dir}/videos"
+                os.makedirs(video_dir, exist_ok=True)
+                context_args["record_video_dir"] = video_dir
+                context_args["record_video_size"] = {"width": 1280, "height": 720}
+                
                 context = await browser.new_context(**context_args)
                 page = await context.new_page()
                 page.set_default_timeout(15000 if not headless_mode else 10000)
                 
-                # Active events logger lists
+                # Active events logger lists & PILLAR 1 Runtime Variable Pool
                 console_errors = []
                 network_errors = []
                 steps_executed = []
+                step_durations = []  # ── PHASE 3 (#10): Per-step duration tracking ──
+                runtime_pool = {}
                 start_time = time.time()
                 
                 # Set up listeners
                 page.on("console", lambda msg: console_errors.append(f"[{msg.type}] {msg.text}") if msg.type in ["error", "warning"] else None)
-                page.on("requestfailed", lambda req: network_errors.append(f"Network error: {req.method} {req.url} - {req.failure.error_text if req.failure else 'failed'}"))
+                page.on("requestfailed", lambda req: network_errors.append(f"Network error: {req.method} {req.url} - {req.failure if req.failure else 'failed'}"))
                 
                 try:
                     yield "data: " + json.dumps({"event": "log", "message": f"Navigating to target URL: {url}"}) + "\n\n"
                     await page.goto(url, wait_until="domcontentloaded", timeout=60000)
-                    await page.wait_for_timeout(2000)
+                    await heuristics.wait_for_ui_idle(page)
                     
                     # 🔗 FLOW DEPENDENCY / PREREQUISITE CHAIN RESOLUTION
                     if dependencies.strip():
@@ -859,6 +879,35 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                                     run_steps.append({"action": "TYPE", "selector": sel, "value": val})
                                 else:
                                     run_steps.append({"action": "TYPE", "selector": rest, "value": ""})
+                            elif raw_str.upper().startswith("VERIFY ") or raw_str.upper().startswith("ASSERT "):
+                                prefix_len = 7
+                                rest = raw_str[prefix_len:].strip()
+                                if rest.upper().startswith("ON "):
+                                    rest = rest[3:].strip()
+                                
+                                if "IS DISABLED" in rest.upper():
+                                    sel = rest[:rest.upper().find("IS DISABLED")].strip()
+                                    run_steps.append({"action": "VERIFY_DISABLED", "selector": sel})
+                                elif "IS READONLY" in rest.upper() or "IS READ-ONLY" in rest.upper():
+                                    sel = rest[:rest.upper().find("IS READ")].strip()
+                                    run_steps.append({"action": "VERIFY_READONLY", "selector": sel})
+                                elif "HAS ROW" in rest.upper() or "ROW CONTAINS" in rest.upper() or "CONTAINS ROW" in rest.upper():
+                                    import re
+                                    idx_val = re.search(r'(HAS\s+ROW|ROW\s+CONTAINS|CONTAINS\s+ROW)', rest, re.IGNORECASE)
+                                    sel = rest[:idx_val.start()].strip() if idx_val else "table"
+                                    val_part = rest[idx_val.end():].strip()
+                                    if (val_part.startswith('"') and val_part.endswith('"')) or (val_part.startswith("'") and val_part.endswith("'")):
+                                        val = val_part[1:-1]
+                                    else:
+                                        val = val_part
+                                    run_steps.append({"action": "VERIFY_ROW_CONTAINS", "selector": sel if sel else "table", "value": val})
+                                elif "VALUE > 0" in rest.upper() or "IS GREATER THAN 0" in rest.upper() or "IS NOT ZERO" in rest.upper() or "IS NON-ZERO" in rest.upper():
+                                    import re
+                                    idx_val = re.search(r'(VALUE\s*>|IS\s+GREATER|IS\s+NOT|IS\s+NON)', rest, re.IGNORECASE)
+                                    sel = rest[:idx_val.start()].strip() if idx_val else rest
+                                    run_steps.append({"action": "VERIFY_NON_ZERO", "selector": sel})
+                                else:
+                                    run_steps.append({"action": "VERIFY_STATE", "selector": rest})
                             else:
                                 run_steps.append({"action": "CLICK", "selector": raw_str})
 
@@ -867,12 +916,16 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                         selector = step.get("selector")
                         value = step.get("value", "")
                         
+                        # Resolve variable placeholders if present in step value
+                        value = heuristics.resolve_dynamic_variables(value, runtime_pool)
+                        
                         if not action:
                             action = "TYPE" if value else "CLICK"
                             
                         if not selector:
                             continue
-                            
+                        
+                        step_start_time = time.time()
                         step_desc = f"{action} on '{selector}'" + (f" with value '{value}'" if action == "TYPE" else "")
                         steps_executed.append(step_desc)
                         
@@ -881,7 +934,18 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                             "message": f"Replaying Step {step_num}: {step_desc}"
                         }) + "\n\n"
                         
+                        # ── PHASE 2 (#7): Network idle wait before ALL VERIFY assertions ──
+                        if action.startswith("VERIFY"):
+                            try:
+                                await page.wait_for_load_state("networkidle", timeout=5000)
+                            except Exception:
+                                await page.wait_for_timeout(500)
+                        
                         if action == "TYPE":
+                            # Store in runtime variable pool for downstream cross-flow assertions
+                            if value.strip():
+                                runtime_pool["last_typed_value"] = value.strip()
+                                
                             # Dynamic candidate locators fallback array for input fields
                             type_candidates = [selector]
                             clean_id = selector.lstrip("#").strip()
@@ -894,30 +958,60 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                                     f'textarea#{clean_id}',
                                     f'textarea[name="{clean_id}"]'
                                 ])
-                                
-                            typed_successfully = False
-                            for cand in type_candidates:
+                            
+                            # ── PHASE 2 (#4): Retry with backoff on TYPE steps ──
+                            max_retries = 2
+                            for attempt in range(max_retries + 1):
+                                typed_successfully = False
                                 try:
-                                    loc = page.locator(cand).first
-                                    if await loc.count() > 0 and await loc.is_visible():
-                                        if not headless_mode:
+                                    for cand in type_candidates:
+                                        try:
+                                            loc = page.locator(cand).first
+                                            # ── PHASE 2 (#6): Wait for element visibility before interaction ──
                                             try:
-                                                await loc.highlight()
+                                                await loc.wait_for(state="visible", timeout=5000)
                                             except Exception:
-                                                pass
-                                        await loc.fill(value, timeout=4000 if not headless_mode else 2500)
-                                        typed_successfully = True
-                                        break
-                                except Exception:
-                                    continue
-                                    
-                            if not typed_successfully:
-                                if not headless_mode:
-                                    try:
-                                        await page.locator(selector).first.highlight()
-                                    except Exception:
-                                        pass
-                                await page.fill(selector, value, timeout=10000 if not headless_mode else 5000)
+                                                if await loc.count() == 0:
+                                                    continue
+                                            if await loc.count() > 0 and await loc.is_visible():
+                                                if not headless_mode:
+                                                    try:
+                                                        await loc.highlight()
+                                                    except Exception:
+                                                        pass
+                                                await loc.fill(value, timeout=4000 if not headless_mode else 2500)
+                                                typed_successfully = True
+                                                break
+                                        except Exception:
+                                            continue
+                                            
+                                    if not typed_successfully:
+                                        try:
+                                            if not headless_mode:
+                                                try:
+                                                    await page.locator(selector).first.highlight()
+                                                except Exception:
+                                                    pass
+                                            await page.fill(selector, value, timeout=8000 if not headless_mode else 4000)
+                                            typed_successfully = True
+                                        except Exception:
+                                            # PILLAR 5: Self-Correcting Auto-Healing Loop
+                                            healed = await heuristics.attempt_auto_healing(page, "TYPE", selector, value)
+                                            if healed:
+                                                yield "data: " + json.dumps({"event": "log", "message": f"🛠️ [Auto-Heal] Repaired input on '{selector}'"}) + "\n\n"
+                                                typed_successfully = True
+                                                
+                                    if typed_successfully:
+                                        break  # Success — exit retry loop
+                                    else:
+                                        raise Exception(f"TYPE failed on '{selector}'")
+                                except Exception as type_err:
+                                    if attempt < max_retries:
+                                        backoff = 2 * (attempt + 1)  # 2s, 4s
+                                        yield "data: " + json.dumps({"event": "log", "message": f"🔄 [Retry {attempt+1}/{max_retries}] TYPE on '{selector}' failed, retrying in {backoff}s..."}) + "\n\n"
+                                        await page.wait_for_timeout(backoff * 1000)
+                                    else:
+                                        raise type_err
                         elif action == "CLICK":
                             # Dynamic candidate locators fallback array (handles Cancel, Close, Modal X without re-recording)
                             click_candidates = [selector]
@@ -939,32 +1033,183 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                                     'svg.close-icon',
                                     'i.pi-times'
                                 ])
-                                
-                            clicked_successfully = False
                             
-                            for cand in click_candidates:
+                            # ── PHASE 2 (#4): Retry with backoff on CLICK steps ──
+                            max_retries = 2
+                            for attempt in range(max_retries + 1):
+                                clicked_successfully = False
                                 try:
-                                    loc = page.locator(cand).first
-                                    if await loc.count() > 0 and await loc.is_visible():
+                                    for cand in click_candidates:
+                                        try:
+                                            loc = page.locator(cand).first
+                                            # ── PHASE 2 (#6): Wait for element visibility before click ──
+                                            try:
+                                                await loc.wait_for(state="visible", timeout=5000)
+                                            except Exception:
+                                                if await loc.count() == 0:
+                                                    continue
+                                            if await loc.count() > 0 and await loc.is_visible():
+                                                if not headless_mode:
+                                                    try:
+                                                        await loc.highlight()
+                                                    except Exception:
+                                                        pass
+                                                await loc.click(timeout=4000 if not headless_mode else 2500)
+                                                clicked_successfully = True
+                                                break
+                                        except Exception:
+                                            continue
+                                            
+                                    if not clicked_successfully:
+                                        # Safe visual fallback for close/cancel buttons
+                                        fallback_list = [
+                                            'button.p-dialog-header-close',
+                                            '.p-dialog-header-close',
+                                            'button[aria-label="Close"]',
+                                            'i.pi-times',
+                                            '.p-dialog-footer button:has-text("Cancel")',
+                                            'button:has-text("Cancel")',
+                                            'button:has-text("Close")',
+                                            'button:has-text("No")',
+                                            '.modal-header .btn-close'
+                                        ]
+                                        for fb_cand in fallback_list:
+                                            try:
+                                                loc = page.locator(fb_cand).first
+                                                if await loc.count() > 0 and await loc.is_visible():
+                                                    await loc.click(timeout=3000)
+                                                    clicked_successfully = True
+                                                    break
+                                            except Exception:
+                                                continue
+
+                                    if not clicked_successfully:
                                         if not headless_mode:
                                             try:
-                                                await loc.highlight()
+                                                await page.locator(selector).first.highlight()
                                             except Exception:
                                                 pass
-                                        await loc.click(timeout=4000 if not headless_mode else 2500)
+                                        await page.click(selector, timeout=10000 if not headless_mode else 5000)
                                         clicked_successfully = True
-                                        break
+                                    
+                                    break  # Success — exit retry loop
+                                except Exception as click_err:
+                                    if attempt < max_retries:
+                                        backoff = 2 * (attempt + 1)  # 2s, 4s
+                                        yield "data: " + json.dumps({"event": "log", "message": f"🔄 [Retry {attempt+1}/{max_retries}] CLICK on '{selector}' failed, retrying in {backoff}s..."}) + "\n\n"
+                                        await page.wait_for_timeout(backoff * 1000)
+                                    else:
+                                        raise click_err
+                        elif action == "VERIFY_DISABLED":
+                            loc = page.locator(selector).first
+                            if await loc.count() > 0:
+                                is_dis = await loc.is_disabled()
+                                if not is_dis:
+                                    classes = await loc.get_attribute("class") or ""
+                                    if "disabled" not in classes.lower() and "p-disabled" not in classes.lower():
+                                        raise Exception(f"Validation failed: Element '{selector}' should be disabled, but is enabled.")
+                            else:
+                                raise Exception(f"Validation failed: Element '{selector}' not found to verify disabled state.")
+                        elif action == "VERIFY_READONLY":
+                            loc = page.locator(selector).first
+                            if await loc.count() > 0:
+                                is_ro = await loc.get_attribute("readonly") is not None
+                                classes = await loc.get_attribute("class") or ""
+                                if not is_ro and "readonly" not in classes.lower() and "disabled" not in classes.lower() and "p-disabled" not in classes.lower():
+                                    is_dis = await loc.is_disabled()
+                                    if not is_dis:
+                                        raise Exception(f"Validation failed: Element '{selector}' should be read-only/disabled.")
+                            else:
+                                raise Exception(f"Validation failed: Element '{selector}' not found to verify read-only state.")
+                        elif action in ["VERIFY_VALUE", "ASSERT_VALUE"]:
+                            loc = page.locator(selector).first
+                            if await loc.count() > 0:
+                                val = (await loc.input_value() or await loc.inner_text() or await loc.get_attribute("value") or "").strip()
+                                clean_expected = value.strip('"\'')
+                                if clean_expected not in val:
+                                    raise Exception(f"Validation failed: Element '{selector}' value is '{val}', expected '{clean_expected}'")
+                            else:
+                                raise Exception(f"Validation failed: Element '{selector}' not found to verify value.")
+                        elif action == "VERIFY_NON_ZERO":
+                            loc = page.locator(selector).first
+                            if await loc.count() > 0:
+                                val = (await loc.input_value() or await loc.inner_text() or await loc.get_attribute("value") or "0").strip()
+                                import re
+                                num_match = re.search(r'-?\d+(?:\.\d+)?', val)
+                                if num_match:
+                                    float_val = float(num_match.group(0))
+                                    if float_val <= 0:
+                                        raise Exception(f"Validation failed: Element '{selector}' calculated value '{val}' is not greater than 0.")
+                                else:
+                                    if not val:
+                                        raise Exception(f"Validation failed: Element '{selector}' calculated value is empty.")
+                            else:
+                                raise Exception(f"Validation failed: Element '{selector}' not found to verify non-zero calculation.")
+                        elif action in ["VERIFY_ROW_CONTAINS", "VERIFY_TABLE_ROW"]:
+                            clean_expected = value.strip('"\'').strip()
+                            if not clean_expected or clean_expected.lower() in ["expected record name/code", "expected record name", "record_name"]:
+                                clean_expected = runtime_pool.get("last_typed_value", clean_expected)
+                                
+                            row_found = False
+                            
+                            # Extract primary key tokens (e.g. main Customer Name/Code) to handle tables showing only required summary columns
+                            tokens = [t.strip() for t in clean_expected.split() if len(t.strip()) > 2]
+                            primary_token = tokens[0] if tokens else clean_expected
+                            
+                            # 1. Exact or Substring Match across Table Containers
+                            table_selectors = [selector, "table tbody", ".p-datatable-tbody", ".table tbody", "[role='grid']", "tbody"]
+                            for tbl in table_selectors:
+                                try:
+                                    loc = page.locator(tbl).first
+                                    if await loc.count() > 0:
+                                        text = (await loc.inner_text() or "").strip()
+                                        if clean_expected.lower() in text.lower() or primary_token.lower() in text.lower():
+                                            row_found = True
+                                            break
                                 except Exception:
                                     continue
                                     
-                            if not clicked_successfully:
-                                if not headless_mode:
-                                    try:
-                                        await page.locator(selector).first.highlight()
-                                    except Exception:
-                                        pass
-                                await page.click(selector, timeout=10000 if not headless_mode else 5000)
+                            # 2. Fallback: Check individual table rows
+                            if not row_found:
+                                try:
+                                    matching_row = page.locator(f"tr:has-text('{primary_token}')").first
+                                    if await matching_row.count() > 0 and await matching_row.is_visible():
+                                        row_found = True
+                                except Exception:
+                                    pass
+                                    
+                            # 3. Fallback: Attribute inspection on table cells (handles CSS truncated text with title/aria-label attributes)
+                            if not row_found:
+                                try:
+                                    attr_matches = await page.evaluate("""(expectedStr) => {
+                                        const cells = document.querySelectorAll('table td, .p-datatable-tbody td, [role="gridcell"]');
+                                        const needle = expectedStr.toLowerCase();
+                                        for (const c of cells) {
+                                            const txt = (c.innerText || '').toLowerCase();
+                                            const title = (c.getAttribute('title') || '').toLowerCase();
+                                            const aria = (c.getAttribute('aria-label') || '').toLowerCase();
+                                            if (txt.includes(needle) || title.includes(needle) || aria.includes(needle)) {
+                                                return true;
+                                            }
+                                        }
+                                        return false;
+                                    }""", primary_token)
+                                    if attr_matches:
+                                        row_found = True
+                                except Exception:
+                                    pass
+                                    
+                            if not row_found:
+                                raise Exception(f"Validation failed: Key table record matching '{clean_expected}' (token: '{primary_token}') was not found in the UI list.")
+                        elif action == "VERIFY_STATE":
+                            loc = page.locator(selector).first
+                            if await loc.count() == 0 or not await loc.is_visible():
+                                raise Exception(f"Validation failed: Element '{selector}' should be visible/exists on page.")
                             
+                        # ── PHASE 3 (#10): Record per-step duration ──
+                        step_elapsed_ms = int((time.time() - step_start_time) * 1000)
+                        step_durations.append({"step": step_num, "action": action, "selector": selector, "duration_ms": step_elapsed_ms})
+                        
                         await page.wait_for_timeout(800 if not headless_mode else 500)
                         
                     # 🔍 LIVE SCREEN INSPECTOR: Auto-discover inline validation messages below input fields
@@ -1006,13 +1251,25 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                     allConsoleErrors.extend(console_errors)
                     allNetworkErrors.extend(network_errors)
                     
+                    # ── PHASE 3 (#8): Capture video path and map static URL ──
+                    temp_video_path = ""
+                    try:
+                        if page.video:
+                            temp_video_path = await page.video.path()
+                    except Exception:
+                        pass
+                    
+                    video_url = f"/static/projects/{project_name}/flows/{flow_name}/videos/scenario_{index}.webm" if temp_video_path else ""
+                    
                     result_item = {
                         "index": index,
                         "name": name,
                         "status": "PASS",
                         "screenshot": f"/static/projects/{project_name}/flows/{flow_name}/screenshots/result_test_{index}.png",
+                        "video": video_url,
                         "duration": elapsed,
                         "steps_executed": steps_executed,
+                        "step_durations": step_durations,
                         "expected": expected
                     }
                     run_results.append(result_item)
@@ -1022,16 +1279,37 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                         "index": index, 
                         "status": "PASS", 
                         "screenshot": f"/static/projects/{project_name}/flows/{flow_name}/screenshots/result_test_{index}.png?t={int(time.time())}",
+                        "video": video_url,
                         "duration": elapsed,
                         "console_errors": console_errors,
                         "network_errors": network_errors,
                         "steps_executed": steps_executed,
+                        "step_durations": step_durations,
                         "expected": expected
                     }) + "\n\n"
                     
                 except Exception as test_error:
-                    screenshot_path = f"{flow_dir}/screenshots/failed_test_{index}.png"
-                    await page.screenshot(path=screenshot_path)
+                    # ── PHASE 2 (#5): Browser crash detection & recovery ──
+                    error_str = str(test_error)
+                    is_crash = any(kw in error_str.lower() for kw in ["target closed", "browser has been closed", "target page, context or browser has been closed", "connection refused", "session closed"])
+                    status_label = "CRASH" if is_crash else "FAIL"
+                    
+                    try:
+                        screenshot_path = f"{flow_dir}/screenshots/failed_test_{index}.png"
+                        await page.screenshot(path=screenshot_path)
+                    except Exception:
+                        screenshot_path = ""
+                        
+                    # Capture video path on fail/crash
+                    temp_video_path = ""
+                    try:
+                        if page.video:
+                            temp_video_path = await page.video.path()
+                    except Exception:
+                        pass
+                    
+                    video_url = f"/static/projects/{project_name}/flows/{flow_name}/videos/scenario_{index}.webm" if temp_video_path else ""
+                        
                     elapsed = int(time.time() - start_time)
                     failedCount += 1
                     
@@ -1042,29 +1320,52 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                     result_item = {
                         "index": index,
                         "name": name,
-                        "status": "FAIL",
-                        "screenshot": f"/static/projects/{project_name}/flows/{flow_name}/screenshots/failed_test_{index}.png",
+                        "status": status_label,
+                        "screenshot": f"/static/projects/{project_name}/flows/{flow_name}/screenshots/failed_test_{index}.png" if screenshot_path else "",
+                        "video": video_url,
                         "duration": elapsed,
                         "steps_executed": steps_executed,
+                        "step_durations": step_durations,
                         "expected": expected,
-                        "error": str(test_error)
+                        "error": error_str
                     }
                     run_results.append(result_item)
                     
+                    crash_icon = "💥" if is_crash else "❌"
                     yield "data: " + json.dumps({
                         "event": "test_end", 
                         "index": index, 
-                        "status": "FAIL", 
-                        "screenshot": f"/static/projects/{project_name}/flows/{flow_name}/screenshots/failed_test_{index}.png?t={int(time.time())}",
-                        "error": str(test_error),
+                        "status": status_label, 
+                        "screenshot": (f"/static/projects/{project_name}/flows/{flow_name}/screenshots/failed_test_{index}.png?t={int(time.time())}" if screenshot_path else ""),
+                        "video": video_url,
+                        "error": f"{crash_icon} {error_str}",
                         "duration": elapsed,
                         "console_errors": console_errors,
                         "network_errors": network_errors,
                         "steps_executed": steps_executed,
                         "expected": expected
                     }) + "\n\n"
+                    
+                    if is_crash:
+                        yield "data: " + json.dumps({"event": "log", "message": f"💥 [Crash Recovery] Browser crashed on scenario #{index}. Continuing to next scenario..."}) + "\n\n"
                 finally:
-                    await context.close()
+                    try:
+                        await context.close()
+                    except Exception:
+                        pass  # Context may already be dead from a crash
+                    
+                    # Rename the video to a clean static filename scenario_{index}.webm
+                    if temp_video_path and os.path.exists(temp_video_path):
+                        target_video_path = f"{flow_dir}/videos/scenario_{index}.webm"
+                        if os.path.exists(target_video_path):
+                            try:
+                                os.remove(target_video_path)
+                            except Exception:
+                                pass
+                        try:
+                            shutil.move(temp_video_path, target_video_path)
+                        except Exception:
+                            pass
                     
             await browser.close()
             
@@ -1078,6 +1379,7 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
                 "total_test_cases": len(test_cases),
                 "passed_count": passedCount,
                 "failed_count": failedCount,
+                "crash_count": sum(1 for r in run_results if r.get("status") == "CRASH"),
                 "console_errors": list(set(allConsoleErrors)),
                 "network_errors": list(set(allNetworkErrors)),
                 "checkpoints": run_results
@@ -1088,9 +1390,70 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
             with open(f"{flow_dir}/report.json", "w", encoding="utf-8") as rf:
                 json.dump(report_data, rf, indent=4)
                 
-            timestamp_report_path = f"{flow_dir}/reports/report_{int(time.time())}.json"
+            run_timestamp = int(time.time())
+            timestamp_report_path = f"{flow_dir}/reports/report_{run_timestamp}.json"
             with open(timestamp_report_path, "w", encoding="utf-8") as rf:
                 json.dump(report_data, rf, indent=4)
+            
+            # ── PHASE 3 (#9): Append to run_history.json index ──
+            history_path = f"{flow_dir}/run_history.json"
+            run_history = []
+            if os.path.exists(history_path):
+                try:
+                    with open(history_path, "r", encoding="utf-8") as hf:
+                        run_history = json.load(hf)
+                except Exception:
+                    run_history = []
+            
+            run_entry = {
+                "run_id": run_timestamp,
+                "execution_date": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "duration_seconds": report_data["duration_seconds"],
+                "total": len(test_cases),
+                "passed": passedCount,
+                "failed": failedCount,
+                "crashed": report_data.get("crash_count", 0),
+                "test_types": test_types,
+                "mode": mode,
+                "report_file": f"reports/report_{run_timestamp}.json"
+            }
+            # ── Bug Report Generation ──
+            project_bugs_path = f"D:/Ai/projects/{project_name}/bugs.json"
+            project_bugs = []
+            if os.path.exists(project_bugs_path):
+                try:
+                    with open(project_bugs_path, "r", encoding="utf-8") as bf:
+                        project_bugs = json.load(bf)
+                except Exception:
+                    project_bugs = []
+            
+            # Filter out previous bug reports for this flow to overwrite/refresh
+            project_bugs = [b for b in project_bugs if b.get("flow_name") != flow_name]
+            
+            for r in run_results:
+                if r.get("status") in ["FAIL", "CRASH"]:
+                    steps_exec = r.get("steps_executed", [])
+                    failed_step_num = len(steps_exec)
+                    failed_step_desc = steps_exec[-1] if steps_exec else "None"
+                    error_msg = r.get("error", "Assertion failed")
+                    
+                    if r.get("status") == "CRASH":
+                        bug_desc = f"{flow_name} - {r.get('name')}: failed due to browser crash. Error: {error_msg}"
+                    else:
+                        bug_desc = f"{flow_name} - {r.get('name')}: failed on Step {failed_step_num} ({failed_step_desc}). Error: {error_msg}"
+                    
+                    project_bugs.append({
+                        "flow_name": flow_name,
+                        "scenario_name": r.get("name"),
+                        "failed_step_num": failed_step_num,
+                        "failed_step_desc": failed_step_desc,
+                        "error_message": error_msg,
+                        "description": bug_desc,
+                        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+                    })
+                    
+            with open(project_bugs_path, "w", encoding="utf-8") as bf:
+                json.dump(project_bugs, bf, indent=4)
                 
             yield "data: " + json.dumps({"event": "complete", "message": f"Execution finished. Report saved to projects/{project_name}/flows/{flow_name}/report.json"}) + "\n\n"
             
@@ -1098,6 +1461,7 @@ async def run_matrix_stream(flow_name: str, num_cases: int, mode: str, project_n
 
 @app.post("/upload-test-cases")
 async def upload_test_cases(flow_name: str, project_name: str = "ERP_Automation", file: UploadFile = File(...)):
+    validate_safe_path(flow_name, project_name)
     flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
     if not os.path.exists(flow_dir):
         raise HTTPException(status_code=404, detail="Flow not found.")
@@ -1122,233 +1486,14 @@ async def upload_test_cases(flow_name: str, project_name: str = "ERP_Automation"
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# ============================================================================
-# 🤖 MULTI-AGENT TEST CASE GENERATION SYSTEM
-# ============================================================================
 
-def _clean_json_response(raw_text: str) -> str:
-    """Strip markdown wrappers and repair LLM shorthand from Gemini responses."""
-    import re
-    raw_text = raw_text.strip()
-    if raw_text.startswith("```"):
-        lines = raw_text.splitlines()
-        if lines[0].startswith("```"):
-            lines = lines[1:]
-        if lines and lines[-1].startswith("```"):
-            lines = lines[:-1]
-        raw_text = "\n".join(lines).strip()
-    raw_text = re.sub(r'"([^"]+)"\.repeat\((\d+)\)', lambda m: '"' + (m.group(1) * int(m.group(2))) + '"', raw_text)
-    raw_text = re.sub(r'"([^"]+)"\s*\*\s*(\d+)', lambda m: '"' + (m.group(1) * int(m.group(2))) + '"', raw_text)
-    return raw_text
-
-
-def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "") -> str:
-    """Build Agent 1 (Functional Generator) prompt."""
-    missing_instruction = ""
-    if missing_scenarios:
-        missing_instruction = f"""
-        IMPORTANT: A previous review found MISSING scenarios. You MUST generate test cases SPECIFICALLY for these gaps:
-        {json.dumps(missing_scenarios, indent=2)}
-        Generate ONLY the missing scenarios listed above. Do NOT regenerate scenarios that already exist.
-        """
-    
-    type_filter_instruction = ""
-    if test_types.strip():
-        type_filter_instruction = f"\n    USER SELECTED TEST TYPE FILTER: Focus generation specifically on these categories: {test_types}\n"
-    
-    return f"""
-    You are Agent 1: The Functional Test Case Generator (The Builder).
-    Your ONLY job is to generate POSITIVE, CRUD, WORKFLOW, FIELD VALIDATION, and UI FUNCTIONAL test cases.
-    {type_filter_instruction}
-    DO NOT generate:
-    - Security tests (XSS, SQL injection, CSRF)
-    - Boundary value tests (max length, min length)
-    - Negative edge case tests (special characters, unicode)
-    - Performance or load tests
-    
-    You MUST generate test cases for these categories:
-    - Create with valid data (happy path, all fields, minimum required fields)
-    - Dependent Dropdown Selections: Selecting valid active options from prerequisite master dropdowns (e.g. Qualification, Skill, Department, Category)
-    - Read/View records (view details modal, field mapping verification)
-    - Update/Edit records (modify fields, save changes)
-    - Delete records (confirm delete, cancel delete)
-    - Search/Filter (exact match, partial match, case-insensitive)
-    - Sort columns (ascending/descending for each sortable column)
-    - Export functionality (Excel, PDF if available)
-    - Dialog interactions (open/close, cancel, form reset)
-    - Navigation (menu clicks, page transitions)
-    
-    Flow Name: {flow_name}
-    Target URL: {target_url}
-    Recorded Actions:
-    {actions_json}
-    
-    Fields & Context:
-    {fields_context}
-    
-    {missing_instruction}
-    
-    CRITICAL RULES:
-    - DO NOT generate login/authentication steps. Assume already logged in.
-    - Each test case MUST start with navigation steps to reach the target module page.
-    - Use the EXACT selectors from the recorded actions wherever possible.
-    - For dropdowns populated by master tables, use realistic active option names.
-    - Generate between 15-25 test cases (or as many as needed to cover all functional scenarios).
-    
-    Output ONLY a valid JSON array of test case objects in this format:
-    [
-        {{
-            "scenario_name": "Descriptive scenario name",
-            "type": "positive" | "positive_ui" | "positive_boundary",
-            "steps": [
-                {{"action": "CLICK", "selector": "CSS selector"}},
-                {{"action": "TYPE", "selector": "CSS selector", "value": "input value"}}
-            ],
-            "expected_result": "What should happen after execution"
-        }}
-    ]
-    """
-
-
-def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "") -> str:
-    """Build Agent 2 (Edge Case Generator) prompt."""
-    missing_instruction = ""
-    if missing_scenarios:
-        missing_instruction = f"""
-        IMPORTANT: A previous review found MISSING scenarios. You MUST generate test cases SPECIFICALLY for these gaps:
-        {json.dumps(missing_scenarios, indent=2)}
-        Generate ONLY the missing scenarios listed above. Do NOT regenerate scenarios that already exist.
-        """
-        
-    type_filter_instruction = ""
-    if test_types.strip():
-        type_filter_instruction = f"\n    USER SELECTED TEST TYPE FILTER: Focus generation specifically on these categories: {test_types}\n"
-    
-    return f"""
-    You are Agent 2: The Edge Case & Security Test Generator (The Breaker).
-    Your ONLY job is to generate BOUNDARY, NEGATIVE, SECURITY, INACTIVE EXCLUSION, and ERROR HANDLING test cases.
-    {type_filter_instruction}
-    
-    DO NOT generate:
-    - Basic CRUD happy-path scenarios (create with valid data, simple view, simple edit)
-    - Normal search or sort tests
-    - Standard dialog open/close tests
-    
-    You MUST generate test cases for these categories:
-    - Inactive Master Exclusion: Verify that items marked 'Status = Inactive' (or soft-deleted) in prerequisite master tables (e.g. Inactive Qualification, Inactive Skill, Inactive Department) are EXCLUDED and hidden from dependent selection dropdowns (expected result: item is not listed as a selectable option).
-    - Boundary values: Input at max character limit, input exceeding max limit, single character input
-    - Negative: Missing required fields, empty submissions, duplicate unique keys
-    - Whitespace: Leading/trailing spaces, whitespace-only input, tab characters
-    - Special characters: @#$%^&*() in input fields, HTML tags, emoji characters
-    - Security: XSS payload (<script>alert('XSS')</script>), SQL injection (' OR 1=1 --), HTML injection
-    - Error handling: Network failure graceful handling, timeout behavior, concurrent edits
-    - Data validation: Wrong data types (letters in numeric fields), format mismatches (email, phone)
-    - Read-only enforcement: Attempt to edit non-editable/disabled fields
-    - Overflow: Very long input strings (200+ chars), very large numeric values
-    
-    Flow Name: {flow_name}
-    Target URL: {target_url}
-    Recorded Actions:
-    {actions_json}
-    
-    Fields & Context:
-    {fields_context}
-    
-    {missing_instruction}
-    
-    CRITICAL RULES:
-    - DO NOT generate login/authentication steps. Assume already logged in.
-    - Each test case MUST start with navigation steps to reach the target module page.
-    - Use the EXACT selectors from the recorded actions wherever possible.
-    - Generate between 15-25 test cases (or as many as needed to cover all edge cases).
-    - For boundary tests, write out full strings literally (e.g., "AAAAAA..." not "A".repeat(50)).
-    
-    Output ONLY a valid JSON array of test case objects in this format:
-    [
-        {{
-            "scenario_name": "Descriptive scenario name",
-            "type": "negative" | "boundary" | "negative_boundary" | "security" | "positive_boundary",
-            "steps": [
-                {{"action": "CLICK", "selector": "CSS selector"}},
-                {{"action": "TYPE", "selector": "CSS selector", "value": "input value"}}
-            ],
-            "expected_result": "What should happen after execution"
-        }}
-    ]
-    """
-
-
-def _build_agent3_prompt(merged_cases: list, flow_name: str, fields_context: str) -> str:
-    """Build Agent 3 (QA Reviewer) prompt."""
-    return f"""
-    You are Agent 3: The QA Coverage Reviewer & Auditor.
-    Your job is to REVIEW a merged test suite and identify MISSING scenarios.
-    
-    You must NOT generate test cases yourself. You ONLY analyze and report gaps.
-    
-    Review the following merged test suite against this COVERAGE MATRIX:
-    
-    COVERAGE MATRIX (every item must have at least 1 matching test case):
-    {{
-        "create_happy_path": "At least 1 create with all valid fields",
-        "create_minimum_required": "Create with only required fields",
-        "dependent_dropdown_selection": "Select valid active master option in relational dropdowns",
-        "read_view_record": "View/read a single record details",
-        "update_edit_record": "Edit and save changes to a record",
-        "delete_confirm": "Delete with confirmation (Yes, Delete)",
-        "delete_cancel": "Cancel delete action",
-        "search_exact_match": "Search by exact value",
-        "search_case_insensitive": "Case-insensitive search",
-        "search_no_results": "Search returning no matches",
-        "sort_ascending_descending": "Sort by at least 2 columns",
-        "required_field_missing": "Submit with missing required field",
-        "duplicate_unique_key": "Submit duplicate unique key value",
-        "inactive_master_exclusion": "Verify items marked Inactive in master tables are hidden from dependent selection dropdowns",
-        "max_length_at_limit": "Input at maximum character limit",
-        "max_length_over_limit": "Input exceeding maximum character limit",
-        "special_characters_input": "Input with special characters (@#$%)",
-        "whitespace_only_input": "Input with only spaces",
-        "leading_trailing_spaces": "Input with leading/trailing whitespace",
-        "xss_injection": "XSS payload in input field",
-        "sql_injection": "SQL injection string in input field",
-        "cancel_dialog": "Cancel/close dialog without saving",
-        "export_data": "Export/download functionality (Excel/PDF)",
-        "empty_optional_fields": "Submit with empty optional fields",
-        "readonly_field_check": "Verify read-only fields cannot be edited"
-    }}
-    
-    Flow Name: {flow_name}
-    Fields & Context: {fields_context}
-    
-    MERGED TEST SUITE TO REVIEW:
-    {json.dumps(merged_cases, indent=2)}
-    
-    For each coverage matrix item, check if there is AT LEAST one matching test case in the suite.
-    
-    Output ONLY a valid JSON object in this format:
-    {{
-        "coverage_complete": true/false,
-        "coverage_percentage": 85,
-        "covered_items": ["create_happy_path", "delete_confirm", ...],
-        "missing_items": [
-            {{
-                "matrix_key": "xss_injection",
-                "description": "No test case found for XSS payload injection in any input field",
-                "suggested_type": "security",
-                "priority": "high"
-            }}
-        ],
-        "duplicate_scenarios": ["List of scenario names that appear duplicated"],
-        "review_notes": "Overall assessment of the test suite quality"
-    }}
-    """
 
 
 @app.get("/generate-multi-agent-stream")
 async def generate_multi_agent_stream(flow_name: str, project_name: str = "ERP_Automation", test_types: str = "", max_iterations: int = 3):
     """Multi-Agent Test Case Generation with SSE streaming progress."""
+    validate_safe_path(flow_name, project_name)
     flow_dir = f"D:/Ai/projects/{project_name}/flows/{flow_name}"
-    
     if not os.path.exists(flow_dir):
         raise HTTPException(status_code=404, detail="Flow not found.")
     
@@ -1408,54 +1553,88 @@ async def generate_multi_agent_stream(flow_name: str, project_name: str = "ERP_A
                 missing_for_agent1 = functional_gaps + untyped_gaps if functional_gaps or untyped_gaps else None
                 missing_for_agent2 = edge_gaps + untyped_gaps if edge_gaps or untyped_gaps else None
             
-            # ── Agent 1: Functional Generator ──
-            yield "data: " + json.dumps({"event": "agent_start", "agent": 1, "name": "Functional Generator (The Builder)", "message": "🤖 Agent 1 generating functional test cases..."}) + "\n\n"
+            # ── Agent 1 & Agent 2: Parallel Generation ──
+            yield "data: " + json.dumps({"event": "agent_start", "agent": 1, "name": "Functional Generator (The Builder)", "message": "🤖 Agent 1 & Agent 2 generating test cases in parallel..."}) + "\n\n"
+            
+            prompt1 = ai_agents._build_agent1_prompt(flow_name, target_url, actions_json, fields_context, missing_for_agent1, test_types=test_types)
+            prompt2 = ai_agents._build_agent2_prompt(flow_name, target_url, actions_json, fields_context, missing_for_agent2, test_types=test_types)
             
             agent1_cases = []
-            try:
-                prompt1 = _build_agent1_prompt(flow_name, target_url, actions_json, fields_context, missing_for_agent1, test_types=test_types)
-                response1 = model.generate_content(prompt1, generation_config=gen_config)
-                raw1 = _clean_json_response(response1.text)
-                agent1_cases = json.loads(raw1)
-                if not isinstance(agent1_cases, list):
-                    agent1_cases = []
-                yield "data: " + json.dumps({"event": "agent_done", "agent": 1, "count": len(agent1_cases), "message": f"✅ Agent 1 generated {len(agent1_cases)} functional test cases."}) + "\n\n"
-            except Exception as e:
-                yield "data: " + json.dumps({"event": "agent_error", "agent": 1, "message": f"⚠️ Agent 1 error: {str(e)}"}) + "\n\n"
-            
-            # ── Agent 2: Edge Case Generator ──
-            yield "data: " + json.dumps({"event": "agent_start", "agent": 2, "name": "Edge Case Generator (The Breaker)", "message": "🤖 Agent 2 generating edge case & security test cases..."}) + "\n\n"
-            
             agent2_cases = []
-            try:
-                prompt2 = _build_agent2_prompt(flow_name, target_url, actions_json, fields_context, missing_for_agent2, test_types=test_types)
-                response2 = model.generate_content(prompt2, generation_config=gen_config)
-                raw2 = _clean_json_response(response2.text)
-                agent2_cases = json.loads(raw2)
-                if not isinstance(agent2_cases, list):
-                    agent2_cases = []
-                yield "data: " + json.dumps({"event": "agent_done", "agent": 2, "count": len(agent2_cases), "message": f"✅ Agent 2 generated {len(agent2_cases)} edge case test cases."}) + "\n\n"
-            except Exception as e:
-                yield "data: " + json.dumps({"event": "agent_error", "agent": 2, "message": f"⚠️ Agent 2 error: {str(e)}"}) + "\n\n"
             
-            # ── Merge & Deduplicate ──
-            new_cases = agent1_cases + agent2_cases
+            try:
+                # Parallel LLM invocation for 2x faster response without quality loss
+                res1_task = asyncio.to_thread(model.generate_content, prompt1, generation_config=gen_config)
+                res2_task = asyncio.to_thread(model.generate_content, prompt2, generation_config=gen_config)
+                
+                response1, response2 = await asyncio.gather(res1_task, res2_task, return_exceptions=True)
+                
+                # Process Agent 1 output
+                if isinstance(response1, Exception):
+                    yield "data: " + json.dumps({"event": "agent_error", "agent": 1, "message": f"⚠️ Agent 1 error: {str(response1)}"}) + "\n\n"
+                else:
+                    raw1 = ai_agents._clean_json_response(response1.text)
+                    agent1_cases = json.loads(raw1)
+                    if not isinstance(agent1_cases, list):
+                        agent1_cases = []
+                    
+                # Process Agent 2 output
+                if isinstance(response2, Exception):
+                    yield "data: " + json.dumps({"event": "agent_error", "agent": 2, "message": f"⚠️ Agent 2 error: {str(response2)}"}) + "\n\n"
+                else:
+                    raw2 = ai_agents._clean_json_response(response2.text)
+                    agent2_cases = json.loads(raw2)
+                    if not isinstance(agent2_cases, list):
+                        agent2_cases = []
+            except Exception as gen_err:
+                yield "data: " + json.dumps({"event": "agent_error", "agent": 1, "message": f"⚠️ Parallel generation warning: {str(gen_err)}"}) + "\n\n"
+            
+            # ── Merge & Deduplicate (Agent 1 first) ──
+            added_agent1 = 0
             existing_names = {tc.get("scenario_name", "").lower() for tc in all_cases}
-            for tc in new_cases:
+            for tc in agent1_cases:
                 name = tc.get("scenario_name", "").lower()
                 if name and name not in existing_names:
                     all_cases.append(tc)
                     existing_names.add(name)
+                    added_agent1 += 1
+                    
+            yield "data: " + json.dumps({
+                "event": "agent_done", 
+                "agent": 1, 
+                "count": len(agent1_cases), 
+                "unique_added": added_agent1,
+                "message": f"✅ Agent 1 generated {len(agent1_cases)} functional test cases ({added_agent1} unique)."
+            }) + "\n\n"
+                
+            # ── Merge & Deduplicate (Agent 2 second) ──
+            added_agent2 = 0
+            existing_names = {tc.get("scenario_name", "").lower() for tc in all_cases}
+            for tc in agent2_cases:
+                name = tc.get("scenario_name", "").lower()
+                if name and name not in existing_names:
+                    all_cases.append(tc)
+                    existing_names.add(name)
+                    added_agent2 += 1
+                    
+            yield "data: " + json.dumps({
+                "event": "agent_done", 
+                "agent": 2, 
+                "count": len(agent2_cases), 
+                "unique_added": added_agent2,
+                "message": f"✅ Agent 2 generated {len(agent2_cases)} edge case test cases ({added_agent2} unique)."
+            }) + "\n\n"
             
-            yield "data: " + json.dumps({"event": "merge", "total": len(all_cases), "new_added": len(new_cases), "message": f"📋 Merged suite: {len(all_cases)} total unique test cases."}) + "\n\n"
+            total_added = added_agent1 + added_agent2
+            yield "data: " + json.dumps({"event": "merge", "total": len(all_cases), "new_added": total_added, "message": f"📋 Merged suite: {len(all_cases)} total unique test cases."}) + "\n\n"
             
             # ── Agent 3: QA Reviewer ──
             yield "data: " + json.dumps({"event": "agent_start", "agent": 3, "name": "QA Reviewer (The Auditor)", "message": "🔍 Agent 3 reviewing coverage and identifying gaps..."}) + "\n\n"
             
             try:
-                prompt3 = _build_agent3_prompt(all_cases, flow_name, fields_context)
+                prompt3 = ai_agents._build_agent3_prompt(all_cases, flow_name, fields_context)
                 response3 = model.generate_content(prompt3, generation_config=gen_config)
-                raw3 = _clean_json_response(response3.text)
+                raw3 = ai_agents._clean_json_response(response3.text)
                 review = json.loads(raw3)
                 
                 coverage_pct = review.get("coverage_percentage", 0)
@@ -1511,3 +1690,19 @@ async def generate_multi_agent_stream(flow_name: str, project_name: str = "ERP_A
         }) + "\n\n"
     
     return StreamingResponse(sse_generator(), media_type="text/event-stream")
+
+@app.get("/get-project-bugs")
+async def get_project_bugs(project_name: str, response: Response):
+    validate_safe_path(project_name)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    bugs_file = f"D:/Ai/projects/{project_name}/bugs.json"
+    if not os.path.exists(bugs_file):
+        return {"bugs": []}
+    try:
+        with open(bugs_file, "r", encoding="utf-8") as f:
+            bugs = json.load(f)
+            return {"bugs": bugs}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

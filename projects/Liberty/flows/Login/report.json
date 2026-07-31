@@ -1,0 +1,154 @@
+{
+    "flow_name": "Login",
+    "project_name": "Liberty",
+    "execution_date": "2026-07-30 21:58:02",
+    "duration_seconds": 14,
+    "test_types_run": "positive,negative,boundary",
+    "total_test_cases": 3,
+    "passed_count": 3,
+    "failed_count": 0,
+    "crash_count": 0,
+    "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 401 ()"
+    ],
+    "network_errors": [],
+    "checkpoints": [
+        {
+            "index": 1,
+            "name": "Successful Login with Valid Credentials",
+            "status": "PASS",
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_1.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_1.webm",
+            "duration": 6,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "CLICK on '#username'",
+                "TYPE on '#username' with value 'admin'",
+                "CLICK on '#password'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 0
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "#username",
+                    "duration_ms": 108
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 51
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#password",
+                    "duration_ms": 60
+                },
+                {
+                    "step": 5,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 26
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 45
+                }
+            ],
+            "expected": "User successfully logs in and is redirected to the dashboard."
+        },
+        {
+            "index": 3,
+            "name": "Login Form Input Field Typing and Focus Behavior",
+            "status": "PASS",
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_3.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_3.webm",
+            "duration": 5,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "CLICK on '#username'",
+                "TYPE on '#username' with value 'admin'",
+                "VERIFY_VALUE on '#username'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 0
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "#username",
+                    "duration_ms": 61
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 22
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VALUE",
+                    "selector": "#username",
+                    "duration_ms": 25
+                }
+            ],
+            "expected": "Username field accepts and displays the entered value."
+        },
+        {
+            "index": 4,
+            "name": "Password Input Field Typing Verification",
+            "status": "PASS",
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_4.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_4.webm",
+            "duration": 3,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "CLICK on '#password'",
+                "TYPE on '#password' with value '1234'",
+                "VERIFY_VALUE on '#password'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 0
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "#password",
+                    "duration_ms": 39
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 30
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VALUE",
+                    "selector": "#password",
+                    "duration_ms": 19
+                }
+            ],
+            "expected": "Password field accepts the entered password string."
+        }
+    ]
+}

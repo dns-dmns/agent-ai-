@@ -1,0 +1,14 @@
+{
+    "broken_selectors": [
+        "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(5) > a",
+        "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button"
+    ],
+    "missing_validations": [
+        "Check for trailing and leading space automatic trimming.",
+        "Check handling when deleting an outer packing record currently in use by active shipments."
+    ],
+    "recommendations": [
+        "Add data-testid attributes to all master table buttons and input controls.",
+        "Ensure backend error messages are localized and descriptive for constraint violations."
+    ]
+}

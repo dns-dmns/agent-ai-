@@ -1,0 +1,13 @@
+{
+    "broken_selectors": [
+        "Replace 'html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(14) > a' with 'a:has-text(\"Sulzer Changeover\")' or '[data-testid=\"sulzer-changeover-link\"]'."
+    ],
+    "missing_validations": [
+        "Client-side strict regex check for DD:HH:MM:SS field.",
+        "Unsaved changes warning dialog on tab click."
+    ],
+    "recommendations": [
+        "Adopt auto-formatting mask for duration field.",
+        "Include explicit test IDs across all tabs and buttons."
+    ]
+}

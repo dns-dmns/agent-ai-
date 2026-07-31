@@ -10,7 +10,7 @@ STEP 1: START THE APPLICATION SERVER
 Choose ONE of the options below to run the server:
 
 Option A (Easiest):
-  Double-click the file named "start_server.bat" in the D:\Ai folder.
+  Double-click the file named "run_server.bat" in the D:\Ai folder.
 
 Option B (Command Prompt / CMD):
   1. Open a Command Prompt (CMD) window.
@@ -76,6 +76,35 @@ STEP 5: HOW TO VIEW STATS & ACTION CHECKLISTS (MODULE 3)
    - "🟡 Unanalyzed" modules require AI analysis.
 4. Click the blue "⚡ Run AI Analysis" action link directly inside the table row to run background analysis on any pending modules instantly!
 ======================================================================
+TROUBLESHOOTING: PORT CONFLICTS / ADDRINUSE ERROR (ERRNO 10048)
+======================================================================
+If you encounter this error when starting the server:
+  "ERROR: [Errno 10048] error while attempting to bind on address..."
+  "Only one usage of each socket address is normally permitted"
+
+This means another process is already running on port 8000. Use one of the options below to resolve it:
+
+Option 1: Run the Automated Launcher (Easiest)
+  - Run the launcher file named "run_server.bat" in your project folder (D:\Ai).
+  - This script automatically detects any lingering process on port 8000, stops it, and starts uvicorn safely.
+
+Option 2: Manually Kill Port 8000 in Command Prompt (CMD)
+  1. Open Command Prompt (CMD) as Administrator.
+  2. Find the Process ID (PID) using port 8000:
+     netstat -ano | findstr :8000
+  3. Look at the last number on the right (e.g., 12345). That is the PID.
+  4. Stop that process by running:
+     taskkill /F /PID <PID_NUMBER>
+     (Replace <PID_NUMBER> with the number from step 3, e.g., taskkill /F /PID 12345)
+  5. Restart the server.
+
+Option 3: Manually Kill Port 8000 in PowerShell
+  1. Open PowerShell.
+  2. Stop any process listening on port 8000:
+     Stop-Process -Id (Get-NetTCPConnection -LocalPort 8000).OwningProcess -Force
+  3. Restart the server.
+======================================================================
+
 
 
 

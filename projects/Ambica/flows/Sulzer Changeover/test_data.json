@@ -1,0 +1,29 @@
+{
+    "valid": [
+        {
+            "duration": "00:01:30:00"
+        },
+        {
+            "duration": "02:12:45:10"
+        }
+    ],
+    "invalid": [
+        {
+            "duration": "00:25:10:00"
+        },
+        {
+            "duration": "00:10:60:00"
+        },
+        {
+            "duration": "INVALID_TIME"
+        }
+    ],
+    "boundary": [
+        {
+            "duration": "00:00:00:00"
+        },
+        {
+            "duration": "99:23:59:59"
+        }
+    ]
+}

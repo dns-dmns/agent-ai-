@@ -1,0 +1,7 @@
+{
+    "flow_name": "Outer Packing Master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+    "timestamp": "2026-07-29 14:20:20",
+    "duration_seconds": 42,
+    "step_count": 16
+}

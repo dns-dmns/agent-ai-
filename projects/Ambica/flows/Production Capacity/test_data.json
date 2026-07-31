@@ -1,0 +1,31 @@
+{
+    "valid": [
+        {
+            "search_term": "Width 23",
+            "capacity_value": "23232"
+        },
+        {
+            "search_term": "Category A",
+            "capacity_value": "1000"
+        }
+    ],
+    "invalid": [
+        {
+            "capacity_value": "-500"
+        },
+        {
+            "capacity_value": "INVALID_TEXT"
+        },
+        {
+            "capacity_value": "@#$%^&*"
+        }
+    ],
+    "boundary": [
+        {
+            "capacity_value": "1"
+        },
+        {
+            "capacity_value": "999999"
+        }
+    ]
+}

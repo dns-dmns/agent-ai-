@@ -1,0 +1,32 @@
+{
+    "valid": [
+        {
+            "uomName": "FEET"
+        },
+        {
+            "uomName": "METERS"
+        },
+        {
+            "uomName": "INCHES"
+        }
+    ],
+    "invalid": [
+        {
+            "uomName": ""
+        },
+        {
+            "uomName": "   "
+        },
+        {
+            "uomName": "<script>alert('xss')</script>"
+        }
+    ],
+    "boundary": [
+        {
+            "uomName": "A"
+        },
+        {
+            "uomName": "UOM_TEST_NAME_EXACTLY_FIFTY_CHARACTERS_LONG_BOUND"
+        }
+    ]
+}

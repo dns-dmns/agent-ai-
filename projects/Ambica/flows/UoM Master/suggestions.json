@@ -1,0 +1,14 @@
+{
+    "broken_selectors": [
+        "Replace 'html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(4) > a' with '[data-testid=\"uom-master-link\"]'",
+        "Replace 'table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button' with '[data-testid=\"edit-uom-btn\"]'"
+    ],
+    "missing_validations": [
+        "Check for leading and trailing spaces handling",
+        "Check handling of mixed case duplicate checks"
+    ],
+    "recommendations": [
+        "Add explicit automation data-testid properties to PrimeNG dialog buttons and input fields.",
+        "Include confirmation modal explicitly for record deletion."
+    ]
+}

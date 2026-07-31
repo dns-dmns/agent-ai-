@@ -5,7 +5,7 @@ Here are the step-by-step instructions to activate your Python environment and l
 ---
 
 ## ⚡ Option 1: Double-Click Startup (CMD Batch)
-Double-click the **`start_server.bat`** file located in the root `D:\Ai` folder. This automatically:
+Double-click the **`run_server.bat`** file located in the root `D:\Ai` folder. This automatically:
 1. Navigates to `D:\Ai`.
 2. Activates the `.venv` virtual environment correctly.
 3. Launches the Uvicorn server on port 8000.

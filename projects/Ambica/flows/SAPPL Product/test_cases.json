@@ -1,0 +1,362 @@
+[
+    {
+        "scenario_name": "Create new valid SAPPL Product Name",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": "SAPPL_ALPHA_001"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Product name is saved successfully and appears in the master data table."
+    },
+    {
+        "scenario_name": "Validate required field error when submitting empty product name",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation message displayed indicating product name is required; form submission blocked."
+    },
+    {
+        "scenario_name": "Validate maximum allowed character boundary (100 characters)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Product is accepted and saved successfully without truncation."
+    },
+    {
+        "scenario_name": "Validate character overflow rejection (101 characters)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input is rejected or truncated at 100 characters; user receives maximum length error."
+    },
+    {
+        "scenario_name": "Prevent creation of duplicate product name",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": "asdfadfadfad"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Error alert displayed stating product name already exists."
+    },
+    {
+        "scenario_name": "Sanitize script injections in product name",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": "<script>alert('xss')</script>"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input string is encoded or rejected; no script execution occurs on UI render."
+    },
+    {
+        "scenario_name": "Search for existing product record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"Search by SAPPL Product Name\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by SAPPL Product Name\"]",
+                "value": "sdd"
+            }
+        ],
+        "expected_result": "Data table filters dynamically to display only matching SAPPL product rows."
+    },
+    {
+        "scenario_name": "View detailed modal for selected product",
+        "type": "ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button"
+            }
+        ],
+        "expected_result": "View dialog opens showing details of selected SAPPL product."
+    },
+    {
+        "scenario_name": "Update existing SAPPL Product Name with valid content",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": "asdfadfadfadsdfadsfd"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Product details are updated successfully and reflected in table."
+    },
+    {
+        "scenario_name": "Attempt clearing product name during update operation",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#sapplProductName",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation error prevents submitting empty field during edit."
+    },
+    {
+        "scenario_name": "Delete SAPPL Product and confirm deletion",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Yes, Delete\")"
+            }
+        ],
+        "expected_result": "Confirmation popup appears, record is deleted and removed from data table."
+    },
+    {
+        "scenario_name": "Delete SAPPL Product and cancel confirmation dialog",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")"
+            }
+        ],
+        "expected_result": "Modal closes without deleting record; item remains intact in grid."
+    },
+    {
+        "scenario_name": "Dismiss Add Product modal using Cancel button",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Name\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")"
+            }
+        ],
+        "expected_result": "Add Product dialog closes without adding new record."
+    },
+    {
+        "scenario_name": "Validate SQL injection protection in search field",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"SAPPL Product\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"Search by SAPPL Product Name\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by SAPPL Product Name\"]",
+                "value": "' OR '1'='1"
+            }
+        ],
+        "expected_result": "Search query handles escape characters safely without returning full dataset or DB error."
+    }
+]

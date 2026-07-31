@@ -1,0 +1,366 @@
+[
+    {
+        "scenario_name": "Navigate to UoM Master page and verify grid list display",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            }
+        ],
+        "expected_result": "User is navigated to UoM Master view and grid table loaded with ADD UOM button visible."
+    },
+    {
+        "scenario_name": "Create a new UoM with valid standard name",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "METERS"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "UoM 'METERS' is created successfully and displayed in the grid list."
+    },
+    {
+        "scenario_name": "Attempt to create UoM with empty name input field",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "#uomName"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Validation error appears indicating UoM Name is required, form submission blocked."
+    },
+    {
+        "scenario_name": "Attempt to create duplicate UoM with existing name",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "FEET"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Toast notification or inline error indicates duplicate UoM name is not allowed."
+    },
+    {
+        "scenario_name": "Verify minimum single-character UoM Name creation",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "M"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Single character UoM 'M' is accepted and saved successfully."
+    },
+    {
+        "scenario_name": "Verify maximum character length (50 characters) UoM Name boundary",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "UOM_TEST_NAME_EXACTLY_FIFTY_CHARACTERS_LONG_BOUND"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "50 character UoM name is saved or truncated appropriately per field specs."
+    },
+    {
+        "scenario_name": "Attempt input exceeding maximum length constraint",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "UOM_VERY_LONG_NAME_EXCEEDING_THE_FIFTY_CHARACTER_LIMITATION_TESTING"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input is restricted at 50 chars or validation error displayed."
+    },
+    {
+        "scenario_name": "Attempt entering script characters for XSS prevention",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "<script>alert('xss')</script>"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input is sanitized or rejected; script tag is not executed upon render."
+    },
+    {
+        "scenario_name": "View UoM details in view modal dialog",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr:first-child > td:nth-of-type(4) > button:first-child"
+            }
+        ],
+        "expected_result": "View dialog opens showing details of selected UoM."
+    },
+    {
+        "scenario_name": "Edit existing UoM record name",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr:first-child > td:nth-of-type(4) > button:first-child"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "KILOGRAMS"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "UoM record is updated and reflected in table grid."
+    },
+    {
+        "scenario_name": "Delete an existing UoM record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr:first-child > td:nth-of-type(4) > button:nth-of-type(2)"
+            }
+        ],
+        "expected_result": "Confirmation prompt opens and UoM record is removed upon confirmation."
+    },
+    {
+        "scenario_name": "Cancel Add UoM modal dialog without saving",
+        "type": "ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "TEMP_CANCEL"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")"
+            }
+        ],
+        "expected_result": "Dialog closes, modal is dismissed, and no data is saved."
+    },
+    {
+        "scenario_name": "Verify whitespace stripping when creating UoM",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "  LITERS  "
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "UoM is trimmed and stored as 'LITERS' without leading or trailing spaces."
+    },
+    {
+        "scenario_name": "Dismiss success toast notification after save",
+        "type": "ui",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"UoM Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"ADD UOM\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#uomName",
+                "value": "GRAMS"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-toastitem button"
+            }
+        ],
+        "expected_result": "Toast notification dismisses immediately upon clicking close button."
+    }
+]

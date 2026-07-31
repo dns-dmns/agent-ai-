@@ -1,0 +1,347 @@
+[
+    {
+        "scenario_name": "Read - Search Production Capacity by Keyword",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by width/category\"]",
+                "value": "Width 23"
+            }
+        ],
+        "expected_result": "Grid filters dynamically to display only matching width/category records."
+    },
+    {
+        "scenario_name": "Update - Modify Production Capacity with Valid Value",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "23232"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Success notification displays, and capacity value '23232' is successfully persisted."
+    },
+    {
+        "scenario_name": "Update Boundary - Enter Minimum Allowed Capacity Value (1)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "1"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "System accepts minimum boundary value 1 and saves successfully."
+    },
+    {
+        "scenario_name": "Update Boundary - Enter Maximum Allowed Capacity Value (999999)",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "999999"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "System accepts upper boundary value 999999 and saves successfully."
+    },
+    {
+        "scenario_name": "Update Negative - Enter Capacity Below Minimum Allowed Value (0)",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "0"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Validation error message displays: 'Production Capacity must be greater than zero'."
+    },
+    {
+        "scenario_name": "Update Negative - Enter Negative Capacity Value",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "-500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Validation error triggers or negative sign is prevented from input."
+    },
+    {
+        "scenario_name": "Update Negative - Enter Alphabetic Input in Capacity Field",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "ABCDE"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Field rejects non-numeric keystrokes or presents 'Only numeric values allowed' validation error."
+    },
+    {
+        "scenario_name": "Update Negative - Enter Special Characters in Capacity Field",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "@#$%^&*"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Input field strips special characters or blocks submission with inline validation message."
+    },
+    {
+        "scenario_name": "Update Negative - Leave Capacity Field Blank",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"-\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Validation error appears indicating 'Capacity value is required'."
+    },
+    {
+        "scenario_name": "Read - Refresh Capacity Grid and Verify Reload",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Refresh\")"
+            }
+        ],
+        "expected_result": "Grid re-executes fetch API call and updates grid data to current DB state."
+    },
+    {
+        "scenario_name": "Create - Add New Production Capacity Category",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"Search by width/category\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by width/category\"]",
+                "value": "Category New"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "5000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "New capacity configuration record is successfully created and displayed in grid."
+    },
+    {
+        "scenario_name": "Delete - Reset or Clear Capacity Record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by width/category\"]",
+                "value": "Category New"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"-\"]",
+                "value": "0"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "System handles capacity reset/removal or soft-deletes record with confirmation."
+    },
+    {
+        "scenario_name": "Security - Inject SQL Script into Search Field",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(12) > a"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by width/category\"]",
+                "value": "' OR '1'='1"
+            }
+        ],
+        "expected_result": "Search query treats input as literal string, avoiding SQL injection vulnerabilities."
+    }
+]

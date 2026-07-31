@@ -1,0 +1,12 @@
+{
+    "broken_selectors": [
+        "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button (Replace PrimeNG auto-generated ID with custom data attribute)"
+    ],
+    "missing_validations": [
+        "Case sensitivity in duplicate name check.",
+        "Special character allowance in product naming conventions."
+    ],
+    "recommendations": [
+        "Add explicit toast feedback alerts upon successful creation/deletion actions."
+    ]
+}

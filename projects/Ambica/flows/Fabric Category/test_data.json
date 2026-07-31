@@ -1,0 +1,26 @@
+{
+    "valid": [
+        {
+            "fabricCategory": "Cotton Canvas Standard"
+        },
+        {
+            "fabricCategory": "Polyester Microfiber 200GSM"
+        }
+    ],
+    "invalid": [
+        {
+            "fabricCategory": ""
+        },
+        {
+            "fabricCategory": "   "
+        }
+    ],
+    "boundary": [
+        {
+            "fabricCategory": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+            "fabricCategory": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+    ]
+}

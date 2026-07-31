@@ -1,0 +1,425 @@
+[
+    {
+        "scenario_name": "Create Jumbo Type - Valid Submission",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "Standard Jumbo A1"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Jumbo Type is successfully created and appears in the table list."
+    },
+    {
+        "scenario_name": "Create Jumbo Type - Empty Input Validation",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Validation error message displayed indicating Jumbo Type field cannot be empty."
+    },
+    {
+        "scenario_name": "Create Jumbo Type - Minimum Boundary Length",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "J"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Record is saved successfully or minimum length validation rule is applied."
+    },
+    {
+        "scenario_name": "Create Jumbo Type - Maximum Boundary Length",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "JumboTypeMaxBoundaryLengthNameTestingFiftyCharacters"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Record is accepted up to allowed length or truncated cleanly with feedback."
+    },
+    {
+        "scenario_name": "Create Jumbo Type - Duplicate Entry Validation",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "asdfadfadf"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "System prevents duplicate entry and shows error 'Jumbo Type already exists'."
+    },
+    {
+        "scenario_name": "Create Jumbo Type - Cancel Action Verification",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "Temporary Draft"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Modal closes without saving record, table data remains unchanged."
+    },
+    {
+        "scenario_name": "Read Jumbo Type - View Details Modal",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-dialog button[aria-label=\"Close\"], app-jumbo-type-master p-dialog button",
+                "value": ""
+            }
+        ],
+        "expected_result": "View dialog displays correct Jumbo Type details and closes cleanly on close action."
+    },
+    {
+        "scenario_name": "Read Jumbo Type - Search Filter Exact Match",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "input[placeholder=\"Search by Jumbo Type\"]",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by Jumbo Type\"]",
+                "value": "gcc"
+            }
+        ],
+        "expected_result": "Table filters to show only records containing 'gcc'."
+    },
+    {
+        "scenario_name": "Read Jumbo Type - Search Reset Operation",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search by Jumbo Type\"]",
+                "value": "gcc"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Reset\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Search field is cleared and full list of records is restored."
+    },
+    {
+        "scenario_name": "Update Jumbo Type - Valid Value Edit",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > span > button",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "Updated Jumbo Type Name"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Record is updated successfully and reflected in the data table."
+    },
+    {
+        "scenario_name": "Update Jumbo Type - Empty Name Validation",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > span > button",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "System prevents saving empty Jumbo Type during edit."
+    },
+    {
+        "scenario_name": "Delete Jumbo Type - Cancel Confirmation Modal",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(3)",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Delete modal closes and target record remains in the table."
+    },
+    {
+        "scenario_name": "Delete Jumbo Type - Successful Record Removal",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(3)",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Yes, Delete\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Record is deleted from system and removed from grid."
+    },
+    {
+        "scenario_name": "Security Check - Script Tag Input Sanitization",
+        "type": "security",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Jumbo Type\")",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#jumboType",
+                "value": "<script>alert('xss')</script>"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")",
+                "value": ""
+            }
+        ],
+        "expected_result": "Input is sanitized or escaped without executing inline scripts."
+    }
+]

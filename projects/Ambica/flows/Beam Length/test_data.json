@@ -1,0 +1,29 @@
+{
+    "valid": [
+        {
+            "denier": "234",
+            "reed": "23",
+            "beamSize": "2323",
+            "beamMeter": "34",
+            "beamDish": "34"
+        }
+    ],
+    "invalid": [
+        {
+            "denier": "",
+            "reed": "INVALID_TEXT",
+            "beamSize": "2323",
+            "beamMeter": "-10",
+            "beamDish": "34"
+        }
+    ],
+    "boundary": [
+        {
+            "denier": "999999",
+            "reed": "1",
+            "beamSize": "1",
+            "beamMeter": "99999",
+            "beamDish": "1"
+        }
+    ]
+}

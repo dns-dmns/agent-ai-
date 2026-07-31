@@ -1,0 +1,272 @@
+[
+    {
+        "scenario_name": "Create Product Type - Valid Positive Scenario",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Master Data\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "a:has-text(\"Product Type Master\")"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": "Raw Material Batch"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "Primary raw materials inventory classification"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Product Type is successfully created and displayed in the master table grid."
+    },
+    {
+        "scenario_name": "Create Product Type - Empty Name Validation (Negative Input Isolation)",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": ""
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "Valid description text for isolation test"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Form submission is blocked and validation error 'Product Type Name is required' is displayed."
+    },
+    {
+        "scenario_name": "Create Product Type - Maximum Length Name Boundary Test",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "Valid description"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input accepts up to 50 characters without breaking layout or truncation error."
+    },
+    {
+        "scenario_name": "Create Product Type - Exceeding Length Name Boundary Test",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "Valid description"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Input is either truncated at 50 characters or shows 'Maximum length 50 characters exceeded' error."
+    },
+    {
+        "scenario_name": "Create Product Type - Maximum Description Length Boundary Test",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": "Valid Code Name"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Description accepts maximum boundary of 250 characters and record submits successfully."
+    },
+    {
+        "scenario_name": "Create Product Type - Duplicate Name Prevention",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": "Raw Material Batch"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "Attempting duplicate creation"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "System displays error message 'Product Type Name already exists'."
+    },
+    {
+        "scenario_name": "View Product Type Details Modal",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(6) > button"
+            }
+        ],
+        "expected_result": "Details dialog opens displaying read-only product type details."
+    },
+    {
+        "scenario_name": "Close View Details Dialog",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "app-product-type-master p-dialog button.p-dialog-header-close"
+            }
+        ],
+        "expected_result": "View modal closes and returns focus to the master table grid."
+    },
+    {
+        "scenario_name": "Update Product Type Description",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(6) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#description",
+                "value": "Updated description content for inventory tracking"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Record is updated successfully and grid displays updated description."
+    },
+    {
+        "scenario_name": "Update Product Type - Empty Name Input Isolation",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(6) > span > button"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": ""
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Submit\")"
+            }
+        ],
+        "expected_result": "Submission is prevented and error message highlights required Product Type Name field."
+    },
+    {
+        "scenario_name": "Confirm Delete Product Type",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(6) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Yes, Delete\")"
+            }
+        ],
+        "expected_result": "Record is permanently removed from the master list and success toast appears."
+    },
+    {
+        "scenario_name": "Cancel Delete Product Type Operation",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "table#pn_id_8-table > tbody > tr:nth-of-type(2) > td:nth-of-type(6) > button:nth-of-type(3)"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")"
+            }
+        ],
+        "expected_result": "Delete modal closes and target record remains unaffected in the table grid."
+    },
+    {
+        "scenario_name": "Cancel Add Product Type Modal",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Product Type\")"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#productTypeName",
+                "value": "Draft Record"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Cancel\")"
+            }
+        ],
+        "expected_result": "Add modal closes without saving data; subsequent opening shows clean form."
+    }
+]

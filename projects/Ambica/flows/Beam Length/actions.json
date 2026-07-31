@@ -1,0 +1,322 @@
+[
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Master Data\")",
+        "tag": "button",
+        "text": "Master Data",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_1.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(7) > a",
+        "tag": "a",
+        "text": "Beam Length",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_2.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Record\")",
+        "tag": "button",
+        "text": "Add Record",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_3.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#denier",
+        "tag": "input",
+        "text": "",
+        "value": "234",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_4.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#reed",
+        "tag": "input",
+        "text": "",
+        "value": "23",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_5.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#beamSize",
+        "tag": "input",
+        "text": "",
+        "value": "2323",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_6.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#beamMeter",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_7.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#beamMeter",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_8.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#beamMeter",
+        "tag": "input",
+        "text": "",
+        "value": "34",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_9.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#beamDish",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_10.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#beamDish",
+        "tag": "input",
+        "text": "",
+        "value": "34",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_11.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Submit\")",
+        "tag": "button",
+        "text": "Submit",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_12.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_13.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-beam-length-master > div > p-dialog > div > div > div > div > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_14.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > span > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_15.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#reed",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_16.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#reed",
+        "tag": "input",
+        "text": "",
+        "value": "2323",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_17.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#denier",
+        "tag": "input",
+        "text": "",
+        "value": "233",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_18.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#denier",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_19.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#denier",
+        "tag": "input",
+        "text": "",
+        "value": "233333",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_20.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#beamSize",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_21.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#beamSize",
+        "tag": "input",
+        "text": "",
+        "value": "232333",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_22.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#beamMeter",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_23.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#beamMeter",
+        "tag": "input",
+        "text": "",
+        "value": "34333",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_24.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#beamDish",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_25.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#beamDish",
+        "tag": "input",
+        "text": "",
+        "value": "343",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_26.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Submit\")",
+        "tag": "button",
+        "text": "Submit",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_27.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_28.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-beam-length-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_29.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_30.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Yes, Delete\")",
+        "tag": "button",
+        "text": "Yes, Delete",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_31.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_32.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-beam-length-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_33.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr:nth-of-type(2) > td:nth-of-type(8) > button:nth-of-type(3)",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_34.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "tag": "button",
+        "text": "Cancel",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_35.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Record\")",
+        "tag": "button",
+        "text": "Add Record",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_36.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "tag": "button",
+        "text": "Cancel",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_37.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Search by Denier, Reed\"]",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_38.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Search by Denier, Reed\"]",
+        "tag": "input",
+        "text": "",
+        "value": "100",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_39.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Reset\")",
+        "tag": "button",
+        "text": "Reset",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Beam Length/screenshots/step_40.png"
+    }
+]

@@ -1,0 +1,70 @@
+{
+    "flow_name": "Login",
+    "project_name": "Ambica",
+    "execution_date": "2026-07-30 12:52:28",
+    "duration_seconds": 6,
+    "test_types_run": "",
+    "total_test_cases": 1,
+    "passed_count": 1,
+    "failed_count": 0,
+    "crash_count": 0,
+    "console_errors": [],
+    "network_errors": [],
+    "checkpoints": [
+        {
+            "index": 1,
+            "name": "Successful Login with Valid Credentials",
+            "status": "PASS",
+            "screenshot": "/static/projects/Ambica/flows/Login/screenshots/result_test_1.png",
+            "video": "/static/projects/Ambica/flows/Login/videos/scenario_1.webm",
+            "duration": 6,
+            "steps_executed": [
+                "NAVIGATE on 'window'",
+                "CLICK on '#username'",
+                "TYPE on '#username' with value 'dd'",
+                "CLICK on '#password'",
+                "TYPE on '#password' with value '123456'",
+                "CLICK on 'button:has-text(\"Login\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "window",
+                    "duration_ms": 0
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "#username",
+                    "duration_ms": 197
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 78
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#password",
+                    "duration_ms": 57
+                },
+                {
+                    "step": 5,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 83
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 95
+                }
+            ],
+            "expected": "User should successfully authenticate and be redirected to the dashboard."
+        }
+    ]
+}

@@ -7,3 +7,9 @@ login_data.json
 scratch/
 .system_generated/
 agent-ai-/
+# Test execution media and temporary reports
+**/screenshots/
+**/videos/
+**/reports/
+*.png
+*.webm

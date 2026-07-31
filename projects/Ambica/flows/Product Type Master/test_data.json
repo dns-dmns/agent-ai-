@@ -1,0 +1,32 @@
+{
+    "valid": [
+        {
+            "productTypeName": "Chemical Solvents",
+            "description": "Industrial grade organic solvent solutions"
+        },
+        {
+            "productTypeName": "Packaging Material",
+            "description": "Corrugated cardboard boxes and wrap"
+        }
+    ],
+    "invalid": [
+        {
+            "productTypeName": "",
+            "description": "Missing product type name scenario"
+        },
+        {
+            "productTypeName": "    ",
+            "description": "Whitespace only name scenario"
+        }
+    ],
+    "boundary": [
+        {
+            "productTypeName": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "description": "50 character max boundary name"
+        },
+        {
+            "productTypeName": "Valid Name",
+            "description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+        }
+    ]
+}

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity QA Platform — Complete Documentation Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0c10;
+            --bg-secondary: #121620;
+            --bg-tertiary: #1b2130;
+            --accent-primary: #4f46e5;
+            --accent-primary-glow: rgba(79, 70, 229, 0.4);
+            --accent-secondary: #06b6d4;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --sidebar-width: 280px;
+            --glass-bg: rgba(18, 22, 32, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Glassmorphism Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-right: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 0 15px var(--accent-primary-glow);
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border-color);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0.15), rgba(6, 182, 212, 0.05));
+            border-color: rgba(79, 70, 229, 0.3);
+            box-shadow: inset 0 0 12px rgba(79, 70, 229, 0.1);
+        }
+
+        .nav-icon {
+            font-size: 18px;
+        }
+
+        .sidebar-footer {
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Main Content Container */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 48px;
+            max-width: 1200px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        /* Header Styling */
+        header {
+            margin-bottom: 48px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: #818cf8;
+            font-family: 'Outfit', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* Documentation Section Panels */
+        .doc-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .doc-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Rich Content Cards */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .card-title-icon {
+            color: var(--accent-secondary);
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        /* Grid System */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        /* Tables styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-tertiary);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        tr:hover td {
+            background-color: rgba(255,255,255,0.02);
+            color: #fff;
+        }
+
+        /* Codeblock styling */
+        pre {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 13.5px;
+            color: #e5e7eb;
+        }
+
+        /* Interactive Wireframe Simulator CSS */
+        .wireframe-container {
+            background: #181d28;
+            border: 2px solid #2a3447;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .wireframe-header {
+            background: #202737;
+            padding: 12px 20px;
+            border-bottom: 1px solid #2a3447;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wireframe-browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #22c55e; }
+
+        .wireframe-title {
+            color: #9ca3af;
+            font-size: 12px;
+            background: #181d28;
+            padding: 4px 16px;
+            border-radius: 4px;
+            width: 320px;
+            text-align: center;
+            border: 1px solid #2a3447;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .wireframe-body {
+            padding: 24px;
+            background: #121620;
+        }
+
+        .wireframe-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .wf-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #d1d5db;
+        }
+
+        .wf-input {
+            background: #1f2937;
+            border: 1px solid #374151;
+            padding: 10px 14px;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .wf-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .wf-input[disabled], .wf-input[readonly] {
+            background: #111827;
+            color: #9ca3af;
+            border-color: #1f2937;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .wf-badge-auto {
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #22d3ee;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .wireframe-footer {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #2a3447;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .wf-btn {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+            border: 1px solid transparent;
+        }
+
+        .wf-btn-cancel {
+            background: #374151;
+            color: #d1d5db;
+            border-color: #4b5563;
+        }
+
+        .wf-btn-cancel:hover {
+            background: #4b5563;
+            color: #fff;
+        }
+
+        .wf-btn-submit {
+            background: var(--accent-primary);
+            color: #fff;
+        }
+
+        .wf-btn-submit:hover {
+            background: #4338ca;
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Flow Diagrams */
+        .diagram-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        .flow-step-block {
+            display: flex;
+            align-items: center;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .flow-step-badge {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            margin-right: 16px;
+        }
+
+        .flow-step-content {
+            flex: 1;
+        }
+
+        .flow-step-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .flow-step-content p {
+            margin-bottom: 0;
+            font-size: 13.5px;
+        }
+
+        .flow-arrow {
+            display: flex;
+            justify-content: center;
+            color: var(--accent-secondary);
+            font-size: 20px;
+            margin: -8px 0;
+        }
+
+        /* Notification styles */
+        .info-note {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid var(--accent-secondary);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 24px;
+        }
+
+        .info-note p {
+            margin: 0;
+            color: #22d3ee;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Glassmorphic Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">▲</div>
+            <div class="logo-text">Antigravity QA</div>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-item active" onclick="switchSection('frd')">
+                <span class="nav-icon">📄</span>
+                <span>Product FRD</span>
+            </div>
+            <div class="nav-item" onclick="switchSection('wireframes')">
+                <span class="nav-icon">🖼️</span>
+                <span>Wireframe Simulator</span>
+            </div>
+            <div class="nav-item" onclick="switchSection('flows')">
+                <span class="nav-icon">🔄</span>
+                <span>Multi-Agent Workflows</span>
+            </div>
+            <div class="nav-item" onclick="switchSection('manual')">
+                <span class="nav-icon">🛠️</span>
+                <span>Operational Manual</span>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p style="font-size: 11px; margin-bottom: 4px;">v2.1.0 — Production</p>
+            <span>© 2026 Antigravity IDE</span>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        
+        <header>
+            <div class="badge">System Architecture & Specs</div>
+            <h1 id="main-title">Functional Requirement Document (FRD)</h1>
+            <p class="subtitle" id="main-subtitle">Detailed product specifications, dynamic wireframes, workflows, and operations guide for the automated AI QA suite.</p>
+        </header>
+
+        <!-- ==================== SECTION 1: FRD ==================== -->
+        <div id="frd" class="doc-section active">
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">🎯</span>
+                    <span>Product Purpose & Scope</span>
+                </div>
+                <p>
+                    The <strong>Antigravity QA Platform</strong> is a self-healing, multi-agent AI regression testing suite designed specifically for enterprise web apps, master data tables, and dynamic ERP platforms. 
+                    By combining browser actions, system relationships, and auto-generated assertions, the platform delivers zero-configuration, self-correcting test suite creation.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">📊</span>
+                    <span>Core Functional Specifications</span>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%">Feature Module</th>
+                            <th style="width: 45%">Requirement Specification</th>
+                            <th style="width: 30%">Auto-QA Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Multi-Agent Test Case Generator</strong></td>
+                            <td>Generates functional (happy paths, CRUD, selections) and boundary/negative/security scenarios based on target page structure and actions.</td>
+                            <td>Parallel execution of <strong>Agent 1 (Builder)</strong> and <strong>Agent 2 (Breaker)</strong> using asynchronous threading.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coverage Auditor & Gap Loops</strong></td>
+                            <td>Performs a rigorous 25-point audit matching every generated test suite against standard requirements (XSS, duplicates, missing cancels).</td>
+                            <td><strong>Agent 3 (Auditor)</strong> loops back to Builder/Breaker with specific gaps if coverage is under 100%.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relational Dependency Chaining</strong></td>
+                            <td>Resolves relational database requirements by pre-executing and seeding prerequisite master records prior to loading dependent modules.</td>
+                            <td>Extracts dependency tags (e.g. `qualification_master, skill_master -> student_master`) and pre-seeds variables.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inactive State Exclusions</strong></td>
+                            <td>Verifies cascade deletion rules: records disabled or marked <i>Status = Inactive</i> in masters must not appear in dependent selection menus.</td>
+                            <td>Checks dropdown values count matching active state; asserts count of inactive item is <code>0</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formula Fields & Calculated Inputs</strong></td>
+                            <td>Tests calculation rules in real-time. Calculated / read-only fields must display correct formats and values, preventing negatives or zeros.</td>
+                            <td>Blocks <code>TYPE</code> commands on read-only fields; applies <code>VERIFY_DISABLED</code> and <code>VERIFY_NON_ZERO</code> checks instead.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">🔒</span>
+                    <span>Security & Error Detection Rules</span>
+                </div>
+                <ul>
+                    <li><strong>XSS Injection Testing:</strong> Injects HTML elements <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> and checks if character sanitization occurs.</li>
+                    <li><strong>SQL Injection Testing:</strong> Appends sql payloads (e.g. <code>' OR 1=1 --</code>) to input forms to verify backend safety.</li>
+                    <li><strong>Live Screen Inspector:</strong> Injects a post-execution DOM observer to discover inline validation labels (e.g., <code>small.p-error</code>, <code>.invalid-feedback</code>) and maps form field failures immediately.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- ==================== SECTION 2: WIREFRAMES ==================== -->
+        <div id="wireframes" class="doc-section">
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">💻</span>
+                    <span>Interactive UI Component & Field Map</span>
+                </div>
+                <p>
+                    Below is the UI design specifications wireframe mapping how the QA dashboard and test-generation flow parses relational forms containing auto-populated calculations and state-restricted inputs.
+                </p>
+                
+                <div class="info-note">
+                    <p>💡 Formula Demo: Change input fields below. Notice how "Sort Ends (Auto)" recalculates instantly. The field is read-only so the AI cannot write into it, but must verify its non-zero calculation.</p>
+                </div>
+
+                <!-- Wireframe Simulator -->
+                <div class="wireframe-container">
+                    <div class="wireframe-header">
+                        <div class="wireframe-browser-dots">
+                            <div class="dot dot-red"></div>
+                            <div class="dot dot-yellow"></div>
+                            <div class="dot dot-green"></div>
+                        </div>
+                        <div class="wireframe-title">https://erp-portal.internal/sulzer-planning/master</div>
+                        <div style="width: 40px;"></div>
+                    </div>
+                    
+                    <div class="wireframe-body">
+                        <div class="wireframe-form">
+                            <div class="form-group">
+                                <label class="wf-label">Type Selected (Active Trigger)</label>
+                                <select class="wf-input" id="wf-type-select" onchange="recalculateWF()">
+                                    <option value="Standard">Standard</option>
+                                    <option value="GCS">GCS (Enables Marking Ends)</option>
+                                    <option value="Sulzer">Sulzer</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="wf-label">Jumbo Width (feet)</label>
+                                <input type="number" class="wf-input" id="wf-jumbo" value="65" oninput="recalculateWF()">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="wf-label">Machine Width (feet)</label>
+                                <input type="number" class="wf-input" id="wf-machine" value="5" oninput="recalculateWF()">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="wf-label">
+                                    Sort Ends (Auto-Populated)
+                                    <span class="wf-badge-auto">Formula</span>
+                                </label>
+                                <input type="text" class="wf-input" id="wf-sort-ends" value="13.00" readonly>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="wf-label">
+                                    Marking Ends
+                                    <span class="wf-badge-auto" id="wf-cond-badge">Disabled</span>
+                                </label>
+                                <input type="text" class="wf-input" id="wf-marking-ends" value="Disabled - GCS Only" disabled>
+                            </div>
+                        </div>
+                        
+                        <div class="wireframe-footer">
+                            <button class="wf-btn wf-btn-cancel" onclick="alert('Cancel Clicked - Playwright handles via candidate fallbacks')">Cancel</button>
+                            <button class="wf-btn wf-btn-submit" onclick="alert('Submit Clicked')">Submit Planning</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">🏷️</span>
+                    <span>Locator Specifications & Smart Fallbacks</span>
+                </div>
+                <p>
+                    Because web forms dynamically modify component classes, the Playwright engine maps elements using strict hierarchies, falling back dynamically if standard identifiers are absent.
+                </p>
+                <ul>
+                    <li><strong>Cancel/Close Fallbacks:</strong> <code>button:has-text("Cancel")</code> $\rightarrow$ <code>.p-dialog-footer button</code> $\rightarrow$ <code>.modal-header .btn-close</code>.</li>
+                    <li><strong>Calculation Input Fallbacks:</strong> <code>input#sort_ends_auto</code> $\rightarrow$ <code>input[name="sort_ends"]</code> $\rightarrow$ <code>input[readonly]</code>.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- ==================== SECTION 3: FLOWS ==================== -->
+        <div id="flows" class="doc-section">
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">⚡</span>
+                    <span>Multi-Agent Generation & Replay Execution Pipeline</span>
+                </div>
+                <p>
+                    The following flowchart details how the AI processes and validates code. Agent 1 and Agent 2 launch in parallel, optimizing time while maintaining 100% test accuracy.
+                </p>
+                
+                <div class="diagram-container">
+                    <div class="flow-step-block">
+                        <div class="flow-step-badge">1</div>
+                        <div class="flow-step-content">
+                            <h4>Record & Parse Session</h4>
+                            <p>Captured click/type browser events are serialized into actions context mapping input fields and form elements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow">▼</div>
+                    
+                    <div class="flow-step-block" style="border-color: rgba(79, 70, 229, 0.4); background: rgba(79, 70, 229, 0.05);">
+                        <div class="flow-step-badge" style="background: var(--accent-primary);">2</div>
+                        <div class="flow-step-content">
+                            <h4>Parallel Generation (Agent 1 & Agent 2)</h4>
+                            <p><strong>Builder (Agent 1)</strong> writes positive paths. <strong>Breaker (Agent 2)</strong> writes negative, boundary, and inactive master exclusion checks simultaneously.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow">▼</div>
+                    
+                    <div class="flow-step-block">
+                        <div class="flow-step-badge">3</div>
+                        <div class="flow-step-content">
+                            <h4>Audit Review Loop (Agent 3)</h4>
+                            <p>Auditor scans the merged array against the 25-point QA matrix. Any missing scenario requests a patch.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow">▼</div>
+                    
+                    <div class="flow-step-block" style="border-color: rgba(6, 182, 212, 0.4); background: rgba(6, 182, 212, 0.05);">
+                        <div class="flow-step-badge" style="background: var(--accent-secondary);">4</div>
+                        <div class="flow-step-content">
+                            <h4>Step Parser & Assertion Execution</h4>
+                            <p>Playwright executes commands. If it finds assertion actions (e.g. <code>VERIFY_NON_ZERO</code>), it reads calculated results and verifies values.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">📋</span>
+                    <span>Test Suite Spec Output Example</span>
+                </div>
+                <pre><code>[
+  {
+    "scenario_name": "Verify Sulzer Planning Calculation Happy Path",
+    "type": "positive",
+    "steps": [
+      { "action": "CLICK", "selector": "#wf-type-select" },
+      { "action": "TYPE", "selector": "#wf-jumbo", "value": "65" },
+      { "action": "TYPE", "selector": "#wf-machine", "value": "5" },
+      { "action": "VERIFY_DISABLED", "selector": "#wf-sort-ends" },
+      { "action": "VERIFY_NON_ZERO", "selector": "#wf-sort-ends" },
+      { "action": "VERIFY_VALUE", "selector": "#wf-sort-ends", "value": "13.00" }
+    ],
+    "expected_result": "Sort Ends (Auto) populates with 13.00 and is locked in disabled state"
+  }
+]</code></pre>
+            </div>
+
+        </div>
+
+        <!-- ==================== SECTION 4: OPERATIONS MANUAL ==================== -->
+        <div id="manual" class="doc-section">
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">🔧</span>
+                    <span>Operational Manual & Developer Setup</span>
+                </div>
+                <p>
+                    Follow these step-by-step developer guidelines to initiate, clean, and launch the server environment.
+                </p>
+                
+                <h3>1. Run Backend Server</h3>
+                <p>
+                    Avoid port conflicts (e.g., port <code>8000</code> already in use) by running the automated script launcher:
+                </p>
+                <pre><code>.\run_server.bat</code></pre>
+                
+                <h3>2. Execute Automated Regression Suites</h3>
+                <p>
+                    Launch the dashboard by navigating to <code>http://127.0.0.1:8000</code>. Select your target module, choose your test filters, and click <strong>Run Suite</strong>.
+                </p>
+
+                <h3>3. Environment Variables Configuration (<code>.env</code>)</h3>
+                <pre><code>GEMINI_API_KEY=your_gemini_api_key_here
+PORT=8000
+HOST=127.0.0.1</code></pre>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-title-icon">💡</span>
+                    <span>Playwright headed vs headless profiling</span>
+                </div>
+                <p>
+                    Modify test speed profiles dynamically in the dashboard UI:
+                </p>
+                <ul>
+                    <li><strong>Headed Mode (Visual Debug):</strong> Best for debugging. Slow-mo set to <code>300ms</code>. Highlight elements enabled.</li>
+                    <li><strong>Headless Mode (Continuous Integration):</strong> Optimized for speed. Runs inside thread pool instantly. Step delay set to <code>200ms</code>.</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Interactive Navigation Scripts -->
+    <script>
+        function switchSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.doc-section').forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Deactivate all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Activate selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Find clicking element & set active
+            const clickedItem = Array.from(document.querySelectorAll('.nav-item')).find(item => {
+                return item.getAttribute('onclick').includes(sectionId);
+            });
+            if (clickedItem) clickedItem.classList.add('active');
+            
+            // Update Title Headers dynamically
+            const headerTitles = {
+                'frd': 'Functional Requirement Document (FRD)',
+                'wireframes': 'Interactive Wireframe Simulator',
+                'flows': 'Multi-Agent Test Pipeline Flows',
+                'manual': 'Operational Manual & Setup Guide'
+            };
+            document.getElementById('main-title').innerText = headerTitles[sectionId];
+        }
+
+        // Wireframe Interaction JavaScript
+        function recalculateWF() {
+            const type = document.getElementById('wf-type-select').value;
+            const jumbo = parseFloat(document.getElementById('wf-jumbo').value) || 0;
+            const machine = parseFloat(document.getElementById('wf-machine').value) || 0;
+            
+            // Recalculate Sort Ends (Auto)
+            const sortEndsInput = document.getElementById('wf-sort-ends');
+            if (machine > 0) {
+                const result = (jumbo / machine).toFixed(2);
+                sortEndsInput.value = result;
+                if (result <= 0) {
+                    sortEndsInput.style.color = '#ef4444'; // Red if error
+                } else {
+                    sortEndsInput.style.color = '#22d3ee'; // Cyber cyan
+                }
+            } else {
+                sortEndsInput.value = 'Error (Div/0)';
+                sortEndsInput.style.color = '#ef4444';
+            }
+            
+            // Recalculate Marking Ends (Conditional visibility)
+            const markingInput = document.getElementById('wf-marking-ends');
+            const condBadge = document.getElementById('wf-cond-badge');
+            
+            if (type === 'GCS') {
+                markingInput.disabled = false;
+                markingInput.value = 'Active (Input Values Here)';
+                markingInput.style.background = '#1f2937';
+                markingInput.style.color = '#fff';
+                condBadge.innerText = 'Active';
+                condBadge.style.background = 'rgba(34, 197, 94, 0.15)';
+                condBadge.style.borderColor = 'rgba(34, 197, 94, 0.3)';
+                condBadge.style.color = '#4ade80';
+            } else {
+                markingInput.disabled = true;
+                markingInput.value = 'Disabled - GCS Only';
+                markingInput.style.background = '#111827';
+                markingInput.style.color = '#9ca3af';
+                condBadge.innerText = 'Disabled';
+                condBadge.style.background = 'rgba(239, 68, 68, 0.15)';
+                condBadge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                condBadge.style.color = '#f87171';
+            }
+        }
+    </script>
+</body>
+</html>

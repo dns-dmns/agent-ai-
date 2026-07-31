@@ -1,0 +1,14 @@
+[
+    {
+        "run_id": 1785392154,
+        "execution_date": "2026-07-30 11:45:54",
+        "duration_seconds": 572,
+        "total": 20,
+        "passed": 17,
+        "failed": 3,
+        "crashed": 0,
+        "test_types": "positive,negative,boundary",
+        "mode": "headed",
+        "report_file": "reports/report_1785392154.json"
+    }
+]

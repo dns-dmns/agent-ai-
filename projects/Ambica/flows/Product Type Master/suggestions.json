@@ -1,0 +1,15 @@
+{
+    "broken_selectors": [
+        "table#pn_id_8-table -> Change to data-testid='product-type-table'",
+        "div#pn_id_11 > div -> Change to data-testid='status-toggle-switch'",
+        "app-product-type-master > div > p-dialog:nth-of-type(2) -> Use semantic modal test identifiers"
+    ],
+    "missing_validations": [
+        "Check handling of special non-alphanumeric characters in Product Type Name.",
+        "Check multi-tenant data leakage by testing across different user org scopes."
+    ],
+    "recommendations": [
+        "Enforce standardized data-testid attributes across all PrimeNG UI components.",
+        "Add automated API integration tests to validate DB constraints prior to UI automated tests."
+    ]
+}

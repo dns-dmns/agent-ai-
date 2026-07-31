@@ -1,0 +1,122 @@
+[
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Master Data\")",
+        "tag": "button",
+        "text": "Master Data",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_1.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(2) > div > ul > li:nth-of-type(4) > a",
+        "tag": "a",
+        "text": "UoM Master",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_2.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"ADD UOM\")",
+        "tag": "button",
+        "text": "ADD UOM",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_3.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#uomName",
+        "tag": "input",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_4.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#uomName",
+        "tag": "input",
+        "text": "",
+        "value": "asdf",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_5.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Submit\")",
+        "tag": "button",
+        "text": "Submit",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_6.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_7.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-uom-master > div > p-dialog > div > div > div > div > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_8.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "table#pn_id_8-table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(2)",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_9.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-uom-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_10.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"ADD UOM\")",
+        "tag": "button",
+        "text": "ADD UOM",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_11.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#uomName",
+        "tag": "input",
+        "text": "",
+        "value": "FEET",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_12.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Submit\")",
+        "tag": "button",
+        "text": "Submit",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_13.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(2) > main > app-uom-master > div > p-toast > div > p-toastitem > div > div > button",
+        "tag": "button",
+        "text": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_14.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "tag": "button",
+        "text": "Cancel",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/UoM Master/screenshots/step_15.png"
+    }
+]

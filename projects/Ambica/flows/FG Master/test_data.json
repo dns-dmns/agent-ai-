@@ -1,0 +1,30 @@
+{
+    "valid": [
+        {
+            "item_code": "FG-COT-501",
+            "item_name": "Premium Cotton Yarn 50",
+            "width": "60",
+            "length": "100",
+            "gsm": "200",
+            "shrinkage": "1.5",
+            "distance": "5",
+            "minutes_per_unit": "12"
+        }
+    ],
+    "invalid": [
+        {
+            "item_code": "",
+            "item_name": "Test Missing Code",
+            "gsm": "INVALID_TEXT",
+            "minutes_per_unit": "-5"
+        }
+    ],
+    "boundary": [
+        {
+            "item_code": "FG123456789012345678",
+            "width": "9999.99",
+            "length": "0.01",
+            "gsm": "999"
+        }
+    ]
+}
