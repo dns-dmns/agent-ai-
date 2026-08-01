@@ -50,19 +50,27 @@ GLOBAL_LOGIN_DATA_FILE: Path = BASE_DIR / "login_data.json"
 DEFAULT_PROJECT = os.getenv("QA_DEFAULT_PROJECT", "ERP_Automation")
 
 
-def dashboard_file() -> Path:
-    """Locate dashboard.html.
+def web_dir() -> Path:
+    """Folder holding dashboard.html, styles.css, app.js and ui.js."""
+    for candidate in (REPO_ROOT / "web", BASE_DIR / "web"):
+        if (candidate / "dashboard.html").exists():
+            return candidate
+    return REPO_ROOT / "web"
+
+
+def dashboard_file(name: str = "dashboard.html") -> Path:
+    """Locate a UI file.
 
     Looked up at call time so a workspace override (Docker, tests) and older
     installs that keep dashboard.html in the root both keep working.
     """
-    for candidate in (REPO_ROOT / "web" / "dashboard.html",
-                      BASE_DIR / "web" / "dashboard.html",
-                      REPO_ROOT / "dashboard.html",
-                      BASE_DIR / "dashboard.html"):
+    for candidate in (REPO_ROOT / "web" / name,
+                      BASE_DIR / "web" / name,
+                      REPO_ROOT / name,
+                      BASE_DIR / name):
         if candidate.exists():
             return candidate
-    return REPO_ROOT / "web" / "dashboard.html"
+    return REPO_ROOT / "web" / name
 
 for _d in (PROJECTS_DIR, TEMP_DIR, LOG_DIR):
     _d.mkdir(parents=True, exist_ok=True)
@@ -80,8 +88,15 @@ def flow_dir(project_name: str, flow_name: str) -> Path:
     return PROJECTS_DIR / project_name / "flows" / flow_name
 
 
-def project_session_file(project_name: str) -> Path:
-    """Per-project storage state; falls back to the legacy global file."""
+def project_session_file(project_name: str, role: str = "") -> Path:
+    """Per-project (and optionally per-role) storage state.
+
+    Roles get their own file so a run can hold a creator and an approver
+    session side by side without one overwriting the other.
+    """
+    if role:
+        safe = "".join(ch for ch in role if ch.isalnum() or ch in "-_") or "role"
+        return project_dir(project_name) / f"session.{safe}.json"
     per_project = project_dir(project_name) / "session.json"
     if per_project.exists():
         return per_project

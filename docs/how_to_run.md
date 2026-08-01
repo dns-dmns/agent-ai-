@@ -31,6 +31,17 @@ python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
 
 ```powershell
 cd '<project-folder>'
+.\run_server.ps1                 # frees port 8000 first, then starts
+.\run_server.ps1 -Port 8080      # different port
+.\run_server.ps1 -Reload         # auto-restart on code changes
+```
+
+The raw command below also works, but it fails with **WinError 10048** if any
+previous server still holds the port — and uvicorn prints that error *after*
+"Application startup complete", which makes it look like the app started when it
+did not. `run_server.ps1` clears the port first, so that cannot happen.
+
+```powershell
 .\.venv\Scripts\Activate.ps1
 python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
 ```

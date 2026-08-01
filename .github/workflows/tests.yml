@@ -31,6 +31,11 @@ jobs:
         # every scenario reaches its intended verdict. No API key required.
         run: python tests/e2e_selftest.py
 
+      - name: Dependency chain, rules and polling self test
+        # Proves STORE / WAIT_FOR_STATE / VERIFY_OPTION_* and rule enforcement
+        # against the bundled chain app. Offline, no API key.
+        run: python tests/e2e_chain.py
+
       - name: Dashboard smoke test
         run: python tests/smoke_ui.py
 

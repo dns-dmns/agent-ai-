@@ -33,10 +33,11 @@ Option B (Command Prompt):
   .venv\Scripts\activate.bat
   python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
 
-Option C (PowerShell):
+Option C (PowerShell - recommended):
   cd '<project-folder>'
-  .\.venv\Scripts\Activate.ps1
-  python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
+  .\run_server.ps1
+    ...frees port 8000 first, so you never hit WinError 10048.
+    Options:  -Port 8080   -Reload   -Address 0.0.0.0
 
 Option D (Docker):
   docker compose up --build
@@ -148,6 +149,13 @@ Set QA_API_KEY in .env to require an API key (header X-API-Key,
 TROUBLESHOOTING
 ======================================================================
 PORT CONFLICT (ERRNO 10048 / address already in use)
+  Cause: a previous server is still holding the port. Note that uvicorn prints
+  "Application startup complete" BEFORE it reports the bind failure, so the app
+  looks like it started even though it did not.
+
+  Option 0 (best): use a launcher that frees the port for you -
+              PowerShell:  .\run_server.ps1
+              CMD:         run_server.bat
   Option 1: run "run_server.bat" - it clears the port automatically.
   Option 2: CMD as Administrator:
               netstat -ano | findstr :8000

@@ -13,6 +13,7 @@ import asyncio
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
+import csv
 import glob
 import io
 import json
@@ -38,10 +39,12 @@ from playwright.async_api import async_playwright
 from . import ai_agents
 from . import api_seed
 from . import config
+from . import contracts
 from . import db
 from . import executor
 from . import llm
 from . import recorder
+from . import rules
 from . import scheduler
 
 mimetypes.add_type("video/webm", ".webm")
@@ -68,7 +71,13 @@ app.mount(
     name="static",
 )
 
-PUBLIC_PATHS = ("/", "/health", "/favicon.ico", "/docs", "/openapi.json", "/redoc")
+# UI assets (stylesheet + scripts). Separate from /static/projects so test
+# evidence and application code never share a mount.
+_web_dir = config.web_dir()
+if _web_dir.exists():
+    app.mount("/assets", StaticFiles(directory=str(_web_dir)), name="assets")
+
+PUBLIC_PATHS = ("/", "/legacy", "/health", "/favicon.ico", "/docs", "/openapi.json", "/redoc")
 
 
 @app.middleware("http")
@@ -243,6 +252,15 @@ async def get_dashboard():
     return dashboard.read_text(encoding="utf-8")
 
 
+@app.get("/legacy", response_class=HTMLResponse)
+async def get_legacy_dashboard():
+    """The pre-redesign single-file UI, kept reachable as a fallback."""
+    legacy = config.web_dir() / "legacy" / "dashboard.legacy.html"
+    if not legacy.exists():
+        raise HTTPException(status_code=404, detail="The legacy dashboard is not installed.")
+    return legacy.read_text(encoding="utf-8")
+
+
 @app.get("/health")
 async def health():
     return {
@@ -341,6 +359,12 @@ async def get_project_config(project_name: str, response: Response):
     if creds.get("password"):
         creds["password"] = "********"          # never echo secrets back
     legacy = read_json(config.GLOBAL_LOGIN_DATA_FILE, {}) or {}
+    roles = {}
+    for role_name, role_creds in (cfg.get("roles") or {}).items():
+        masked = dict(role_creds or {})
+        if masked.get("password"):
+            masked["password"] = "********"
+        roles[role_name] = masked
     return {
         "environments": cfg.get("environments") or {},
         "active_env": cfg.get("active_env", ""),
@@ -349,6 +373,7 @@ async def get_project_config(project_name: str, response: Response):
                                 or legacy.get("username")),
         "defaults": cfg.get("defaults") or {},
         "notifications": cfg.get("notifications") or {},
+        "roles": roles,
     }
 
 
@@ -370,6 +395,27 @@ async def save_project_config(project_name: str, payload: dict = Body(...)):
                 continue
             creds[key] = value
         current["credentials"] = creds
+
+    # Per-role logins for SWITCH_ROLE: a creator, an approver and an operator are
+    # different people, and a workflow with an approval gate cannot be tested
+    # honestly with one account.
+    incoming_roles = payload.get("roles")
+    if isinstance(incoming_roles, dict):
+        roles = dict(current.get("roles") or {})
+        for role_name, role_creds in incoming_roles.items():
+            if not isinstance(role_creds, dict):
+                continue
+            if role_creds.get("_delete"):
+                roles.pop(role_name, None)
+                continue
+            existing = dict(roles.get(role_name) or {})
+            for key, value in role_creds.items():
+                if value == "********":          # unchanged masked field
+                    continue
+                existing[key] = value
+            if existing.get("username"):
+                roles[role_name] = existing
+        current["roles"] = roles
 
     config.project_dir(project_name).mkdir(parents=True, exist_ok=True)
     write_json(path, current)
@@ -818,6 +864,13 @@ async def generate_multi_agent_stream(flow_name: str,
         actions_json = llm.trim_for_prompt(json.dumps(actions, indent=2))
         fields_context = build_fields_context(actions)
 
+        # Your rules shape what gets generated, not just what gets checked.
+        active_rules = rules.applicable(project_name, flow_name)
+        rules_block = rules.as_prompt_block(active_rules)
+        if active_rules:
+            yield sse({"event": "log",
+                       "message": f"📏 {len(active_rules)} of your rules are guiding generation."})
+
         system_instruction = ("You are an expert software QA engineer. Output ONLY valid JSON. "
                               "No markdown, no explanations, no commentary.")
         all_cases: list[dict] = []
@@ -849,9 +902,11 @@ async def generate_multi_agent_stream(flow_name: str,
                        "message": "🤖 Agent 1 & Agent 2 generating test cases in parallel..."})
 
             prompt1 = ai_agents._build_agent1_prompt(
-                flow_name, target_url, actions_json, fields_context, missing_1, test_types)
+                flow_name, target_url, actions_json, fields_context, missing_1, test_types,
+                rules_block)
             prompt2 = ai_agents._build_agent2_prompt(
-                flow_name, target_url, actions_json, fields_context, missing_2, test_types)
+                flow_name, target_url, actions_json, fields_context, missing_2, test_types,
+                rules_block)
 
             results = await asyncio.gather(
                 llm.generate_json(prompt1, system_instruction=system_instruction),
@@ -900,7 +955,8 @@ async def generate_multi_agent_stream(flow_name: str,
                        "message": "🔍 Agent 3 reviewing coverage and identifying gaps..."})
             try:
                 review = await llm.generate_json(
-                    ai_agents._build_agent3_prompt(all_cases, flow_name, fields_context),
+                    ai_agents._build_agent3_prompt(all_cases, flow_name, fields_context,
+                                                   rules_block),
                     system_instruction=system_instruction,
                 )
                 if isinstance(review, list):
@@ -1257,7 +1313,9 @@ async def run_matrix_stream(flow_name: str, num_cases: int = -1, mode: str = "he
                             verdict_mode: str = "rules", step_shots: str = "fail",
                             tracing: bool = False, dep_unique_data: bool = False,
                             data_matrix: str = "", visual_check: bool = False,
-                            env_name: str = "", api_seed_name: str = ""):
+                            env_name: str = "", api_seed_name: str = "",
+                            seed_once: bool = True, relationship_checks: bool = False,
+                            apply_rules: bool = True):
     """Execute the suite, streaming progress over SSE (dashboard entry point)."""
     validate_safe_path(project_name, flow_name, auth_flow)
     flow_path = config.flow_dir(project_name, flow_name)
@@ -1271,7 +1329,8 @@ async def run_matrix_stream(flow_name: str, num_cases: int = -1, mode: str = "he
         verdict_mode=verdict_mode, step_shots=step_shots, tracing=tracing,
         dep_unique_data=dep_unique_data, data_matrix=data_matrix,
         visual_check=visual_check, env_name=env_name, api_seed=api_seed_name,
-        triggered_by="dashboard",
+        seed_once=seed_once, relationship_checks=relationship_checks,
+        apply_rules=apply_rules, triggered_by="dashboard",
     )
     state = executor.register_run(project_name, flow_name)
     queue: asyncio.Queue = asyncio.Queue()
@@ -1340,7 +1399,8 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
                       api_seed_name: str = "", case_ids: str = "", step_shots: str = "fail",
                       tracing: bool = False, dep_unique_data: bool = False,
                       data_matrix: str = "", visual_check: bool = False,
-                      triggered_by: str = "ci"):
+                      seed_once: bool = True, relationship_checks: bool = False,
+                      apply_rules: bool = True, triggered_by: str = "ci"):
     """Fire-and-forget entry point for CI/CD. Returns a run_id to poll.
 
     Accepts the same knobs as the dashboard stream so a pipeline can run a
@@ -1357,7 +1417,9 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
         auth_scenario=auth_scenario, workers=workers, verdict_mode=verdict_mode,
         env_name=env_name, api_seed=api_seed_name, case_ids=case_ids,
         step_shots=step_shots, tracing=tracing, dep_unique_data=dep_unique_data,
-        data_matrix=data_matrix, visual_check=visual_check, triggered_by=triggered_by,
+        data_matrix=data_matrix, visual_check=visual_check, seed_once=seed_once,
+        relationship_checks=relationship_checks, apply_rules=apply_rules,
+        triggered_by=triggered_by,
     )
     state = executor.register_run(project_name, flow_name)
 
@@ -1524,6 +1586,249 @@ async def scenario_history(project_name: str, flow_name: str, scenario_name: str
 async def flaky_tests(response: Response, project_name: str = "", window: int = 5):
     no_cache(response)
     return {"flaky": db.flaky_scenarios(project_name, window=window)}
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Rules — your knowledge of the application, enforced and generated from
+# ══════════════════════════════════════════════════════════════════════
+@app.get("/get-rules")
+async def get_rules(response: Response, project_name: str = config.DEFAULT_PROJECT,
+                    flow_name: str = ""):
+    no_cache(response)
+    validate_safe_path(project_name, flow_name)
+    return {
+        "project_rules": rules._read(rules.project_path(project_name)),
+        "flow_rules": rules._read(rules.flow_path(project_name, flow_name)) if flow_name else [],
+        "applicable": rules.applicable(project_name, flow_name) if flow_name else [],
+        "kinds": list(rules.KINDS),
+        "severities": list(rules.SEVERITIES),
+    }
+
+
+@app.post("/save-rule")
+async def save_rule(project_name: str = config.DEFAULT_PROJECT, flow_name: str = "",
+                    payload: dict = Body(...)):
+    validate_safe_path(project_name, flow_name)
+    try:
+        saved = rules.save(project_name, payload, flow_name)
+    except ValueError as err:
+        raise HTTPException(status_code=400, detail=str(err))
+    db.audit("save_rule", f"{project_name}/{flow_name or '*'}", details={"id": saved["id"]})
+    return {"status": "success", "rule": saved}
+
+
+@app.post("/save-rules")
+async def save_rules_bulk(project_name: str = config.DEFAULT_PROJECT, flow_name: str = "",
+                          payload: dict = Body(...)):
+    """Save a reviewed batch — used after translating plain English."""
+    validate_safe_path(project_name, flow_name)
+    items = payload.get("rules") if isinstance(payload, dict) else payload
+    if not isinstance(items, list):
+        raise HTTPException(status_code=400, detail="Expected a 'rules' array.")
+    try:
+        saved = rules.save_many(project_name, items, flow_name)
+    except ValueError as err:
+        raise HTTPException(status_code=400, detail=str(err))
+    return {"status": "success", "saved": len(saved), "rules": saved}
+
+
+@app.post("/delete-rule")
+async def delete_rule(rule_id: str, project_name: str = config.DEFAULT_PROJECT,
+                      flow_name: str = ""):
+    validate_safe_path(project_name, flow_name)
+    if not rules.delete(project_name, rule_id, flow_name):
+        raise HTTPException(status_code=404, detail="Rule not found.")
+    return {"status": "success", "message": f"Rule {rule_id} deleted."}
+
+
+@app.post("/translate-rules")
+async def translate_rules(project_name: str = config.DEFAULT_PROJECT, flow_name: str = "",
+                          payload: dict = Body(...)):
+    """Plain English in, structured rules out — for review, never auto-saved."""
+    validate_safe_path(project_name, flow_name)
+    text = (payload or {}).get("text", "").strip()
+    if not text:
+        raise HTTPException(status_code=400, detail="Write at least one rule first.")
+    if not config.GEMINI_API_KEY:
+        raise HTTPException(
+            status_code=400,
+            detail="GEMINI_API_KEY is not configured, so plain-English rules cannot be "
+                   "translated. You can still add rules manually.",
+        )
+    fields_context = ""
+    if flow_name:
+        flow_path = config.flow_dir(project_name, flow_name)
+        actions = read_json(flow_path / "actions.json", []) or []
+        fields_context = build_fields_context(actions)
+    try:
+        parsed = await llm.generate_json(
+            rules.build_translate_prompt(text, fields_context),
+            system_instruction="You output only a JSON array of rule objects.",
+        )
+    except Exception as err:
+        raise HTTPException(status_code=502, detail=f"Translation failed: {err}")
+    translated = rules.coerce_translated(parsed)
+    if not translated:
+        raise HTTPException(
+            status_code=422,
+            detail="Nothing usable came back. Try phrasing one rule per line, naming the "
+                   "field and the exact message or URL involved.",
+        )
+    return {"status": "success", "rules": translated,
+            "note": "Review these, then save. Nothing has been stored yet."}
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Dependency contracts — what a flow provides and requires
+# ══════════════════════════════════════════════════════════════════════
+@app.get("/get-contract")
+async def get_contract(response: Response, flow_name: str,
+                       project_name: str = config.DEFAULT_PROJECT, dependencies: str = ""):
+    no_cache(response)
+    require_flow(project_name, flow_name)
+    contract = contracts.load(project_name, flow_name)
+    return {
+        "contract": contract,
+        "providers": contracts.provider_map(project_name, dependencies),
+        "unresolved": contracts.unresolved_requirements(project_name, flow_name, dependencies),
+        "kinds": list(contracts.KINDS),
+    }
+
+
+@app.post("/save-contract")
+async def save_contract(flow_name: str, project_name: str = config.DEFAULT_PROJECT,
+                        payload: dict = Body(...)):
+    require_flow(project_name, flow_name)
+    try:
+        saved = contracts.save(project_name, flow_name, payload)
+    except ValueError as err:
+        raise HTTPException(status_code=400, detail=str(err))
+    return {"status": "success", "contract": saved}
+
+
+@app.get("/preview-relationship-checks")
+async def preview_relationship_checks(response: Response, flow_name: str,
+                                      project_name: str = config.DEFAULT_PROJECT,
+                                      dependencies: str = ""):
+    """What the engine would add for this chain, without running anything."""
+    no_cache(response)
+    require_flow(project_name, flow_name)
+    scenarios, notes = contracts.relationship_checks(project_name, flow_name, dependencies)
+    return {"scenarios": scenarios, "notes": notes, "count": len(scenarios)}
+
+
+@app.post("/add-relationship-checks")
+async def add_relationship_checks(flow_name: str, project_name: str = config.DEFAULT_PROJECT,
+                                  dependencies: str = ""):
+    """Append the generated relationship scenarios to the saved suite."""
+    flow_path = require_flow(project_name, flow_name)
+    scenarios, notes = contracts.relationship_checks(project_name, flow_name, dependencies)
+    if not scenarios:
+        raise HTTPException(
+            status_code=400,
+            detail="Nothing to add. " + (notes[0] if notes else
+                                         "Give this flow a contract with a 'requires' entry."),
+        )
+    cases = read_json(flow_path / "test_cases.json", []) or []
+    existing = {c.get("scenario_name") for c in cases}
+    added = [s for s in scenarios if s["scenario_name"] not in existing]
+    write_json(flow_path / "test_cases.json", cases + added)
+    return {"status": "success", "added": len(added), "skipped": len(scenarios) - len(added),
+            "notes": notes}
+
+
+def _matrix_rows(project_name: str, flow_names: list[str]) -> list[dict]:
+    """One row per scenario: Module | Scenario | Pre-condition | Steps | Expected | Priority."""
+    rows: list[dict] = []
+    for flow_name in flow_names:
+        flow_path = config.flow_dir(project_name, flow_name)
+        cases = read_json(flow_path / "test_cases.json", []) or []
+        contract = contracts.load(project_name, flow_name)
+        report = read_json(flow_path / "report.json", {}) or {}
+        last_status = {c.get("name"): c.get("status") for c in report.get("checkpoints", [])}
+
+        requires = ", ".join(f"{r['entity']} (via {r['selector']})" for r in contract["requires"])
+        base_precondition = "Logged in" + (f"; {requires} must exist" if requires else "")
+
+        for index, case in enumerate(cases, start=1):
+            steps = executor.parse_steps(case.get("steps") or [])
+            rendered = []
+            for number, step in enumerate(steps, start=1):
+                action = step.get("action", "")
+                detail = step.get("selector", "")
+                if step.get("value"):
+                    detail = f"{detail} = {step['value']}".strip(" =")
+                rendered.append(f"{number}. {action} {detail}".strip())
+
+            case_type = (case.get("type") or "").lower()
+            if case_type.startswith("positive") or case_type in ("smoke", "functional"):
+                priority = "P1"
+            elif case_type in ("negative", "boundary", "security"):
+                priority = "P2"
+            else:
+                priority = "P3"
+            if case.get("_generated") == "rule":
+                priority = "P1"          # a rule is something you already know matters
+
+            rows.append({
+                "Module": flow_name,
+                "ID": f"{flow_name[:12].replace(' ', '_')}-{index:03d}",
+                "Scenario": case.get("scenario_name") or case.get("scenario") or f"Case {index}",
+                "Type": case.get("type", ""),
+                "Pre-condition": case.get("precondition") or base_precondition,
+                "Steps": "\n".join(rendered),
+                "Expected Result": case.get("expected_result") or case.get("expected") or "",
+                "Priority": priority,
+                "Assertions": sum(1 for s in steps
+                                  if str(s.get("action", "")).upper().startswith("VERIFY")),
+                "Source": case.get("_generated") or "authored",
+                "Last Run": last_status.get(case.get("scenario_name"), "not run"),
+            })
+    return rows
+
+
+@app.get("/export-test-matrix")
+async def export_test_matrix(project_name: str = config.DEFAULT_PROJECT, flow_name: str = "",
+                             fmt: str = "csv"):
+    """The Test Case Matrix a QA lead hands to a team or imports into TestRail.
+
+    Covers one flow, or the whole project when ``flow_name`` is empty.
+    """
+    validate_safe_path(project_name, flow_name)
+    if flow_name:
+        require_flow(project_name, flow_name)
+        flows = [flow_name]
+    else:
+        flows_root = config.flows_dir(project_name)
+        flows = sorted(f.name for f in flows_root.iterdir() if f.is_dir()) \
+            if flows_root.exists() else []
+    rows = _matrix_rows(project_name, flows)
+    if not rows:
+        raise HTTPException(status_code=404, detail="No test cases found to export.")
+
+    columns = ["ID", "Module", "Scenario", "Type", "Pre-condition", "Steps",
+               "Expected Result", "Priority", "Assertions", "Source", "Last Run"]
+    stem = f"test_matrix_{project_name}" + (f"_{flow_name}" if flow_name else "")
+
+    if fmt == "markdown":
+        lines = ["| " + " | ".join(columns) + " |",
+                 "| " + " | ".join("---" for _ in columns) + " |"]
+        for row in rows:
+            cells = [str(row.get(c, "")).replace("\n", "<br>").replace("|", "\\|")
+                     for c in columns]
+            lines.append("| " + " | ".join(cells) + " |")
+        body = (f"# Test Case Matrix — {project_name}\n\n"
+                f"{len(rows)} scenarios across {len(flows)} module(s), "
+                f"generated {time.strftime('%Y-%m-%d %H:%M')}.\n\n" + "\n".join(lines) + "\n")
+        return PlainTextResponse(body, headers={
+            "Content-Disposition": f'attachment; filename="{stem}.md"'})
+
+    buffer = io.StringIO()
+    writer = csv.DictWriter(buffer, fieldnames=columns, extrasaction="ignore")
+    writer.writeheader()
+    writer.writerows(rows)
+    return PlainTextResponse(buffer.getvalue(), media_type="text/csv", headers={
+        "Content-Disposition": f'attachment; filename="{stem}.csv"'})
 
 
 @app.get("/export-junit", response_class=PlainTextResponse)

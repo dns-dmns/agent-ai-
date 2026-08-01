@@ -57,7 +57,7 @@ def _clean_json_response(raw_text: str) -> str:
     return raw_text
 
 
-def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "") -> str:
+def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "", rules_block: str = "") -> str:
     """Build Agent 1 (Functional Generator) prompt."""
     missing_instruction = ""
     if missing_scenarios:
@@ -71,10 +71,14 @@ def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fie
     if test_types.strip():
         type_filter_instruction = f"\n    USER SELECTED TEST TYPE FILTER: Focus generation specifically on these categories: {test_types}\n"
     
+    rules_instruction = ""
+    if rules_block.strip():
+        rules_instruction = chr(10) + rules_block.strip() + chr(10)
+
     return f"""
     You are Agent 1: The Functional Test Case Generator (The Builder).
     Your ONLY job is to generate POSITIVE, CRUD, WORKFLOW, FIELD VALIDATION, and UI FUNCTIONAL test cases.
-    {type_filter_instruction}
+    {type_filter_instruction}{rules_instruction}
     DO NOT generate:
     - Security tests (XSS, SQL injection, CSRF)
     - Boundary value tests (max length, min length)
@@ -141,7 +145,7 @@ def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fie
     """.replace("{STEP_VOCABULARY}", STEP_VOCABULARY)
 
 
-def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "") -> str:
+def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "", rules_block: str = "") -> str:
     """Build Agent 2 (Edge Case Generator) prompt."""
     missing_instruction = ""
     if missing_scenarios:
@@ -155,10 +159,14 @@ def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fie
     if test_types.strip():
         type_filter_instruction = f"\n    USER SELECTED TEST TYPE FILTER: Focus generation specifically on these categories: {test_types}\n"
     
+    rules_instruction = ""
+    if rules_block.strip():
+        rules_instruction = chr(10) + rules_block.strip() + chr(10)
+
     return f"""
     You are Agent 2: The Edge Case & Security Test Generator (The Breaker).
     Your ONLY job is to generate BOUNDARY, NEGATIVE, SECURITY, INACTIVE EXCLUSION, and ERROR HANDLING test cases.
-    {type_filter_instruction}
+    {type_filter_instruction}{rules_instruction}
     
     DO NOT generate:
     - Basic CRUD happy-path scenarios (create with valid data, simple view, simple edit)
@@ -222,10 +230,15 @@ def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fie
     """.replace("{STEP_VOCABULARY}", STEP_VOCABULARY)
 
 
-def _build_agent3_prompt(merged_cases: list, flow_name: str, fields_context: str) -> str:
+def _build_agent3_prompt(merged_cases: list, flow_name: str, fields_context: str,
+                         rules_block: str = "") -> str:
     """Build Agent 3 (QA Reviewer) prompt."""
+    rules_instruction = ""
+    if rules_block.strip():
+        rules_instruction = (chr(10) + rules_block.strip() + chr(10) +
+                             "    Treat any rule with no covering scenario as a coverage gap." + chr(10))
     return f"""
-    You are Agent 3: The QA Coverage Reviewer & Auditor.
+    You are Agent 3: The QA Coverage Reviewer & Auditor.{rules_instruction}
     Your job is to REVIEW a merged test suite and identify MISSING scenarios.
     
     You must NOT generate test cases yourself. You ONLY analyze and report gaps.

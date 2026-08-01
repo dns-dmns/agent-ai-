@@ -1,0 +1,71 @@
+[
+    {
+        "action": "CLICK",
+        "selector": "input[name=\"username\"]",
+        "selectors": [
+            "input[name=\"username\"]",
+            "input[placeholder=\"Username\"]",
+            "div > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/ornage/flows/Login/screenshots/step_1.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[name=\"username\"]",
+        "selectors": [
+            "input[name=\"username\"]",
+            "input[placeholder=\"Username\"]",
+            "div > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "value": "Admin",
+        "screenshot": "/static/projects/ornage/flows/Login/screenshots/step_2.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[name=\"password\"]",
+        "selectors": [
+            "input[name=\"password\"]",
+            "input[placeholder=\"Password\"]",
+            "div > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/ornage/flows/Login/screenshots/step_3.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[name=\"password\"]",
+        "selectors": [
+            "input[name=\"password\"]",
+            "input[placeholder=\"Password\"]",
+            "div > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "value": "admin123",
+        "screenshot": "/static/projects/ornage/flows/Login/screenshots/step_4.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "div > div > div > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/ornage/flows/Login/screenshots/step_5.png"
+    }
+]

@@ -1,0 +1,767 @@
+{
+    "run_id": "cef09a66a307",
+    "flow_name": "Login",
+    "project_name": "ornage",
+    "execution_date": "2026-08-01 20:12:15",
+    "duration_seconds": 74,
+    "wall_clock_seconds": 74,
+    "test_types_run": "",
+    "mode": "headless",
+    "workers": 1,
+    "verdict_mode": "rules",
+    "environment": "",
+    "triggered_by": "schedule:hi",
+    "total_test_cases": 6,
+    "passed_count": 5,
+    "failed_count": 1,
+    "unverified_count": 0,
+    "crash_count": 0,
+    "cancelled": false,
+    "console_errors": [],
+    "network_errors": [],
+    "rules_enforced": [
+        {
+            "id": "r22db0f61",
+            "title": "A failed login must never leave the login page",
+            "kind": "must_not_navigate",
+            "severity": "blocker",
+            "checked": 3,
+            "violations": 0,
+            "examples": []
+        }
+    ],
+    "rules_violated": 0,
+    "checkpoints": [
+        {
+            "index": 1,
+            "name": "Valid credentials reach the dashboard",
+            "label": "",
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_TEXT, VERIFY_URL).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "",
+                            "value": "/dashboard",
+                            "ok": true,
+                            "detail": "URL contains '/dashboard'"
+                        },
+                        {
+                            "action": "VERIFY_TEXT",
+                            "selector": "h6.oxd-topbar-header-breadcrumb-module",
+                            "value": "Dashboard",
+                            "ok": true,
+                            "detail": "'h6.oxd-topbar-header-breadcrumb-module' shows 'Dashboard'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "url_end": "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index",
+                    "steps_total": 6,
+                    "steps_executed": 6,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "admin123"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/ornage/flows/Login/screenshots/result_test_1.png",
+            "video": "/static/projects/ornage/flows/Login/videos/scenario_1.webm",
+            "trace": "",
+            "duration": 18,
+            "steps_executed": [
+                "TYPE on 'input[name='username']' with value 'Admin'",
+                "TYPE on 'input[name='password']' with value 'admin123'",
+                "CLICK on 'button:has-text('Login')'",
+                "WAIT on ''",
+                "VERIFY_URL on ''",
+                "VERIFY_TEXT on 'h6.oxd-topbar-header-breadcrumb-module'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "input[name='username']",
+                    "duration_ms": 96,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "input[name='password']",
+                    "duration_ms": 70,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text('Login')",
+                    "duration_ms": 1127,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "WAIT",
+                    "selector": "",
+                    "duration_ms": 1521,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "duration_ms": 367,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "VERIFY_TEXT",
+                    "selector": "h6.oxd-topbar-header-breadcrumb-module",
+                    "duration_ms": 163,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "The user is logged in successfully and the Dashboard is displayed.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "value": "/dashboard",
+                    "ok": true,
+                    "detail": "URL contains '/dashboard'"
+                },
+                {
+                    "action": "VERIFY_TEXT",
+                    "selector": "h6.oxd-topbar-header-breadcrumb-module",
+                    "value": "Dashboard",
+                    "ok": true,
+                    "detail": "'h6.oxd-topbar-header-breadcrumb-module' shows 'Dashboard'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 2,
+            "name": "Wrong password is rejected",
+            "label": "",
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expected validation surfaced: 'Invalid credentials' (matched 'Invalid credentials').",
+                "source": "rules",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Invalid credentials",
+                            "selector": "[role=\"alert\"] oxd-alert oxd-alert--error",
+                            "kind": "error"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "Invalid credentials",
+                            "ok": true,
+                            "detail": "message 'Invalid credentials' shown"
+                        },
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "",
+                            "value": "/auth/login",
+                            "ok": true,
+                            "detail": "URL contains '/auth/login'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "url_end": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "steps_total": 5,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [
+                {
+                    "id": "r22db0f61",
+                    "title": "A failed login must never leave the login page",
+                    "kind": "must_not_navigate",
+                    "severity": "blocker",
+                    "ok": true,
+                    "skipped": false,
+                    "detail": "stayed on '/auth/login'."
+                }
+            ],
+            "captured": {
+                "last_typed_value": "wrong-password"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/ornage/flows/Login/screenshots/result_test_2.png",
+            "video": "/static/projects/ornage/flows/Login/videos/scenario_2.webm",
+            "trace": "",
+            "duration": 12,
+            "steps_executed": [
+                "TYPE on 'input[name='username']' with value 'Admin'",
+                "TYPE on 'input[name='password']' with value 'wrong-password'",
+                "CLICK on 'button:has-text('Login')'",
+                "VERIFY_MESSAGE on ''",
+                "VERIFY_URL on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "input[name='username']",
+                    "duration_ms": 109,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "input[name='password']",
+                    "duration_ms": 60,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text('Login')",
+                    "duration_ms": 1101,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "duration_ms": 450,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "duration_ms": 97,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "An 'Invalid credentials' error appears and the user stays on the login page.",
+            "messages": [
+                {
+                    "text": "Invalid credentials",
+                    "selector": "[role=\"alert\"] oxd-alert oxd-alert--error",
+                    "kind": "error"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "Invalid credentials",
+                    "ok": true,
+                    "detail": "message 'Invalid credentials' shown"
+                },
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "value": "/auth/login",
+                    "ok": true,
+                    "detail": "URL contains '/auth/login'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 3,
+            "name": "Empty username is rejected",
+            "label": "",
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expected validation surfaced: 'Required' (matched 'Required').",
+                "source": "rules",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Required",
+                            "selector": ".oxd-input-field-error-message oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message",
+                            "kind": "error"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "Required",
+                            "ok": true,
+                            "detail": "message 'Required' shown"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "url_end": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "steps_total": 3,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [
+                {
+                    "id": "r22db0f61",
+                    "title": "A failed login must never leave the login page",
+                    "kind": "must_not_navigate",
+                    "severity": "blocker",
+                    "ok": true,
+                    "skipped": false,
+                    "detail": "stayed on '/auth/login'."
+                }
+            ],
+            "captured": {
+                "last_typed_value": "admin123"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/ornage/flows/Login/screenshots/result_test_3.png",
+            "video": "/static/projects/ornage/flows/Login/videos/scenario_3.webm",
+            "trace": "",
+            "duration": 11,
+            "steps_executed": [
+                "TYPE on 'input[name='password']' with value 'admin123'",
+                "CLICK on 'button:has-text('Login')'",
+                "VERIFY_MESSAGE on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "input[name='password']",
+                    "duration_ms": 115,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text('Login')",
+                    "duration_ms": 146,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "duration_ms": 152,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "A 'Required' validation message appears under the username field.",
+            "messages": [
+                {
+                    "text": "Required",
+                    "selector": ".oxd-input-field-error-message oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message",
+                    "kind": "error"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "Required",
+                    "ok": true,
+                    "detail": "message 'Required' shown"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 4,
+            "name": "Empty password is rejected",
+            "label": "",
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expected validation surfaced: 'Required' (matched 'Required').",
+                "source": "rules",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Required",
+                            "selector": ".oxd-input-field-error-message oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message",
+                            "kind": "error"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "Required",
+                            "ok": true,
+                            "detail": "message 'Required' shown"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "url_end": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "steps_total": 3,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [
+                {
+                    "id": "r22db0f61",
+                    "title": "A failed login must never leave the login page",
+                    "kind": "must_not_navigate",
+                    "severity": "blocker",
+                    "ok": true,
+                    "skipped": false,
+                    "detail": "stayed on '/auth/login'."
+                }
+            ],
+            "captured": {
+                "last_typed_value": "Admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/ornage/flows/Login/screenshots/result_test_4.png",
+            "video": "/static/projects/ornage/flows/Login/videos/scenario_4.webm",
+            "trace": "",
+            "duration": 9,
+            "steps_executed": [
+                "TYPE on 'input[name='username']' with value 'Admin'",
+                "CLICK on 'button:has-text('Login')'",
+                "VERIFY_MESSAGE on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "input[name='username']",
+                    "duration_ms": 98,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text('Login')",
+                    "duration_ms": 100,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "duration_ms": 146,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "A 'Required' validation message appears under the password field.",
+            "messages": [
+                {
+                    "text": "Required",
+                    "selector": ".oxd-input-field-error-message oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message",
+                    "kind": "error"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "Required",
+                    "ok": true,
+                    "detail": "message 'Required' shown"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 5,
+            "name": "Login page shows the branding and both fields",
+            "label": "",
+            "type": "positive_ui",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_TEXT, VERIFY_VISIBLE).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "input[name='username']",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'input[name='username']' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "input[name='password']",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'input[name='password']' is visible"
+                        },
+                        {
+                            "action": "VERIFY_TEXT",
+                            "selector": "h5.oxd-text--h5",
+                            "value": "Login",
+                            "ok": true,
+                            "detail": "'h5.oxd-text--h5' shows 'Login'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "url_end": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "steps_total": 3,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {},
+            "notes": [],
+            "screenshot": "/static/projects/ornage/flows/Login/screenshots/result_test_5.png",
+            "video": "/static/projects/ornage/flows/Login/videos/scenario_5.webm",
+            "trace": "",
+            "duration": 11,
+            "steps_executed": [
+                "VERIFY_VISIBLE on 'input[name='username']'",
+                "VERIFY_VISIBLE on 'input[name='password']'",
+                "VERIFY_TEXT on 'h5.oxd-text--h5'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input[name='username']",
+                    "duration_ms": 157,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input[name='password']",
+                    "duration_ms": 112,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_TEXT",
+                    "selector": "h5.oxd-text--h5",
+                    "duration_ms": 155,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "The login form is displayed with both fields ready for input.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input[name='username']",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'input[name='username']' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input[name='password']",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'input[name='password']' is visible"
+                },
+                {
+                    "action": "VERIFY_TEXT",
+                    "selector": "h5.oxd-text--h5",
+                    "value": "Login",
+                    "ok": true,
+                    "detail": "'h5.oxd-text--h5' shows 'Login'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 6,
+            "name": "SQL injection in the username is handled safely",
+            "label": "",
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: no validation or toast message appeared on screen",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "Invalid credentials",
+                            "ok": false,
+                            "detail": "no validation or toast message appeared on screen"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "' OR '1'='1"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/ornage/flows/Login/screenshots/failed_test_6.png",
+            "video": "/static/projects/ornage/flows/Login/videos/scenario_6.webm",
+            "trace": "",
+            "duration": 10,
+            "steps_executed": [
+                "TYPE on 'input[name='username']' with value '' OR '1'='1'",
+                "TYPE on 'input[name='password']' with value '' OR '1'='1'",
+                "CLICK on 'button:has-text('Login')'",
+                "VERIFY_MESSAGE on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "input[name='username']",
+                    "duration_ms": 110,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "input[name='password']",
+                    "duration_ms": 79,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text('Login')",
+                    "duration_ms": 86,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "The injection attempt is rejected with an invalid-credentials error and no access is granted.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "Invalid credentials",
+                    "ok": false,
+                    "detail": "no validation or toast message appeared on screen"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 4,
+            "error": "no validation or toast message appeared on screen"
+        }
+    ]
+}

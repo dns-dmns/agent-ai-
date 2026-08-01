@@ -304,11 +304,17 @@ def main() -> int:
         return 0 if not failures else 1
     finally:
         httpd.shutdown()
+        # terminate() can leave the socket held on Windows, which then breaks the
+        # next manual `uvicorn` start with WinError 10048. Always confirm it died.
         server.terminate()
         try:
             server.wait(timeout=10)
         except Exception:
             server.kill()
+            try:
+                server.wait(timeout=5)
+            except Exception:
+                pass
         shutil.rmtree(WORKSPACE, ignore_errors=True)
 
 

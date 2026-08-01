@@ -22,8 +22,10 @@ copy .env.example .env                 # then paste your GEMINI_API_KEY
 python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000
 ```
 
-Open <http://127.0.0.1:8000>. Or just double-click **`run_server.bat`** (it frees
-port 8000 first). Execution, reporting and verdicts work without an API key —
+Open <http://127.0.0.1:8000>. Better still, use a launcher that frees the port
+for you — **`.\run_server.ps1`** in PowerShell or **`run_server.bat`** in CMD.
+A raw `uvicorn` command fails with WinError 10048 if a previous server is still
+holding the port. Execution, reporting and verdicts work without an API key —
 only AI *generation* needs one.
 
 The workspace is the folder containing `qa_agent.py`; override with
@@ -60,16 +62,79 @@ the point: those results were never proven.
 
 ---
 
+## Dependency chains and your own rules
+
+Two things a recording can never tell the platform: what *you* know about the
+application, and how its modules depend on each other.
+
+### Contracts — what a flow provides and requires
+
+`projects/<p>/flows/<f>/contract.json` turns "replay some clicks first" into real
+integration testing:
+
+```json
+{ "provides": [{"entity": "category", "var": "category_name",
+                "name_field": "#catName", "status_field": "#catStatus",
+                "list_url": "/masters/category"}],
+  "requires": [{"entity": "category", "selector": "#categoryDropdown"}],
+  "run_once": true }
+```
+
+With that in place the engine:
+
+* seeds `run_once` masters **once per run** instead of before every scenario,
+* **captures** what the prerequisite created into `{{category_name}}`, usable in
+  any later step — including inside selectors, e.g. `tr:has-text('{{order_code}}')`,
+* generates the four cross-module checks you cannot express per-module: the active
+  master appears downstream, selecting it saves, an **inactive master is excluded**,
+  and a master in use **cannot be deleted**.
+
+Anything it cannot generate is explained rather than skipped silently.
+
+### Rules — your knowledge, enforced every run
+
+Write them in plain English — **Rules** in the sidebar. One Gemini call turns them
+into structured rules that **you review before anything is saved**:
+
+> *After saving a Fabric Category it must stay on /fabric-category.*
+> *Beam Length must reject 0 and negative values.*
+> *The Excel export must contain every record, not just the visible page.*
+
+Each rule then does three jobs:
+
+1. **Enforced** on every scenario — a violation fails the run even when the
+   scenario passes on its own terms, and every rule reports its own line.
+2. **Fed into generation** — the Builder, Breaker and Auditor all receive them,
+   and the Auditor treats an uncovered rule as a coverage gap.
+3. **Turned into test cases** — a rule marked `generate_scenario` produces its own
+   scenario, so an invariant you describe once is exercised directly.
+
+Kinds: `must_show` · `must_not_show` · `must_navigate` · `must_not_navigate` ·
+`field_rejects` · `field_accepts` · `export_complete` · `no_console_errors` ·
+`row_persists`.
+
+### Test Case Matrix
+
+`Test matrix` on the report (or `GET /export-test-matrix?fmt=csv|markdown`) exports
+**Module | Scenario | Pre-condition | Steps | Expected Result | Priority** for one
+flow or the whole workspace — ready for TestRail, Zephyr or Excel.
+
 ## Step vocabulary
 
 Actions: `NAVIGATE` · `CLICK` · `DOUBLE_CLICK` · `RIGHT_CLICK` · `TYPE` · `CLEAR` ·
 `SELECT` · `CHECK` / `UNCHECK` · `KEYPRESS` · `UPLOAD` · `HOVER` · `SCROLL_TO` ·
-`WAIT` · `DIALOG` (`accept` / `dismiss` for native `confirm()` boxes) · `SCREENSHOT`
+`WAIT` · `DIALOG` (`accept` / `dismiss` for native `confirm()` boxes) · `SCREENSHOT` ·
+`STORE` (capture a runtime value into a variable) · `WAIT_FOR_STATE` (poll until a
+field reaches a value, with a deadline — for approval queues and background jobs) ·
+`API_REQUEST` (reuses the browser session, so no separate token plumbing) ·
+`SWITCH_ROLE` (creator, approver and scanner are different people)
 
 Assertions: `VERIFY_MESSAGE` · `VERIFY_ROW_CONTAINS` · `VERIFY_ROW_ABSENT` ·
 `VERIFY_VALUE` · `VERIFY_TEXT` · `VERIFY_DISABLED` · `VERIFY_ENABLED` ·
 `VERIFY_READONLY` · `VERIFY_NON_ZERO` · `VERIFY_VISIBLE` · `VERIFY_HIDDEN` ·
-`VERIFY_URL` · `VERIFY_COUNT` · `VERIFY_DOWNLOAD`
+`VERIFY_URL` · `VERIFY_COUNT` · `VERIFY_DOWNLOAD` · `VERIFY_OPTION_PRESENT` ·
+`VERIFY_OPTION_ABSENT` (dropdown membership — native and PrimeNG/Material/Ant) ·
+`VERIFY_API`
 
 Natural-language steps still work (`CLICK ON #save`, `TYPE ON #name with value "Acme"`,
 `VERIFY ON table row contains 'Acme'`), so old suites keep running unchanged.
@@ -138,7 +203,14 @@ app/                        backend package
 ├── db.py                   SQLite history: runs, results, flaky detection, audit log
 └── config.py               Workspace paths, env config, logging
 
-web/dashboard.html          Single-page UI (3 tabs)
+web/                        the interface
+├── dashboard.html          shell: sidebar, workflow rail, four views
+├── styles.css              design system — type/space scales, semantic status
+│                           tokens, light + dark, focus states, motion
+├── app.js                  behaviour, kept identical to the original file
+├── ui.js                   presentation layer: sidebar bridge, rail, palette,
+│                           theme, redesigned renderers (wraps app.js, never edits it)
+└── legacy/                 the pre-redesign single-file UI, served at /legacy
 projects/                   TEST DATA — <project>/flows/<flow>/{flow,actions,test_cases,report}.json …
 tests/                      Unit tests, sample app, E2E, UI smoke, API integration, regression
 docs/                       Guides, architecture notes, design blueprint, audit, roadmap
@@ -149,6 +221,22 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 
 logs/, .tmp/, .trash/, qa_platform.db     created at runtime, all gitignored
 ```
+
+### The interface
+
+Navigation follows the actual workflow — **Record → Generate → Run & verify →
+Report** — as a rail across the top, with projects and flows in a persistent
+sidebar. A flow's last result shows as a coloured dot next to its name.
+
+* **Verdicts are the design centre.** Each scenario row carries a status glyph,
+  the verdict reason in plain language, and — when a scenario comes back
+  UNVERIFIED — an **Add assertion** button that opens the editor, because that
+  status is an instruction, not just a warning.
+* `Ctrl/⌘ K` opens a command palette over flows and every action; `1`–`5` jump
+  between views; `Esc` closes any overlay.
+* Light and dark both ship, following your system preference with a manual
+  toggle in the top bar.
+* The previous UI stays available at `/legacy` if you need it.
 
 Both entry points serve the same application:
 
@@ -166,15 +254,24 @@ version control or backed up regardless.
 ## Tests
 
 ```bash
-.venv\Scripts\python.exe -m pytest tests -q      # unit tests (parser, verdicts, scheduler)
-.venv\Scripts\python.exe tests\e2e_selftest.py   # real Playwright run vs the bundled sample app
-.venv\Scripts\python.exe tests\smoke_ui.py       # boots the server and drives the dashboard
+.venv\Scripts\python.exe -m pytest tests -q           # unit tests
+.venv\Scripts\python.exe tests\e2e_selftest.py        # verdict engine vs the sample app
+.venv\Scripts\python.exe tests\e2e_chain.py           # dependency chain, rules, polling
+.venv\Scripts\python.exe tests\smoke_ui.py            # boots the server, drives the dashboard
+.venv\Scripts\python.exe tests\integration_api.py     # CI endpoints, auth, cancellation
 ```
 
-`tests/e2e_selftest.py` is the important one: it runs 13 scenarios against
-`tests/selftest_app/` and asserts each reaches its intended verdict — including a
-boundary test the sample app silently accepts (must be FAIL) and an XSS payload
-that really executes (must be FAIL).
+Two of these carry the weight:
+
+* `tests/e2e_selftest.py` — 13 scenarios asserting each reaches its intended
+  verdict, including a boundary test the sample app silently accepts (must be
+  FAIL) and an XSS payload that really executes (must be FAIL).
+* `tests/e2e_chain.py` — 8 scenarios against `selftest_app/chain.html`, proving
+  the chain features actually work: a master's value captured and reused
+  downstream, a generated order code flowing between modules, an approval that
+  arrives four seconds later being polled for rather than slept through,
+  referential integrity, and — the decisive one — **a rule failing a scenario
+  that passed on its own terms**.
 
 ---
 

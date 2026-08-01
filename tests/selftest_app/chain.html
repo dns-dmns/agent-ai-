@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chain Demo — master → order → approval</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 24px; max-width: 900px; color: #111; }
+        h2 { margin: 28px 0 8px; font-size: 17px; }
+        section { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 18px; }
+        label { display: block; font-size: 13px; margin: 8px 0 3px; color: #444; }
+        input, select { padding: 6px 8px; font-size: 14px; min-width: 220px; }
+        button { padding: 7px 14px; font-size: 14px; cursor: pointer; margin-right: 6px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 12px; font-size: 14px; }
+        th, td { border-bottom: 1px solid #e5e5e5; padding: 7px 8px; text-align: left; }
+        .msg { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 14px; }
+        .error-message { background: #fdecea; color: #b3261e; }
+        .p-toast-message-success { background: #e7f6ec; color: #1b7f3b; }
+        .status { font-weight: 600; }
+    </style>
+</head>
+
+<body>
+    <h1>Chain demo</h1>
+    <p>A master feeds a dependent dropdown, an order gets a generated code, and an
+        approval state machine gates completion — the shape of a real workflow.</p>
+
+    <!-- ── M1: master data ─────────────────────────────────────────── -->
+    <section id="masterSection">
+        <h2>1. Category master</h2>
+        <label for="catName">Category name</label>
+        <input id="catName" type="text" placeholder="e.g. Cotton">
+        <label for="catStatus">Status</label>
+        <select id="catStatus">
+            <option value="Active" selected>Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+        <div style="margin-top:12px">
+            <button id="saveCatBtn" onclick="saveCategory()">Save category</button>
+        </div>
+        <div id="catMsg"></div>
+        <table id="catTable">
+            <thead><tr><th>Name</th><th>Status</th><th>Used by</th><th></th></tr></thead>
+            <tbody id="catBody"></tbody>
+        </table>
+    </section>
+
+    <!-- ── M2: dependent module ────────────────────────────────────── -->
+    <section id="orderSection">
+        <h2>2. Order (depends on the category master)</h2>
+        <label for="orderRef">Reference</label>
+        <input id="orderRef" type="text" placeholder="e.g. ORD-A">
+        <label for="categoryDropdown">Category — only active ones are offered</label>
+        <select id="categoryDropdown">
+            <option value="">-- select --</option>
+        </select>
+        <label for="orderQty">Quantity</label>
+        <input id="orderQty" type="number" value="1">
+        <div style="margin-top:12px">
+            <button id="saveOrderBtn" onclick="saveOrder()">Save order</button>
+        </div>
+        <div id="orderMsg"></div>
+        <label for="orderCode" style="margin-top:12px">Generated code</label>
+        <input id="orderCode" type="text" readonly>
+        <table id="orderTable">
+            <thead><tr><th>Code</th><th>Reference</th><th>Category</th><th>Status</th></tr></thead>
+            <tbody id="orderBody"></tbody>
+        </table>
+    </section>
+
+    <!-- ── M3: approval + completion gate ──────────────────────────── -->
+    <section id="approvalSection">
+        <h2>3. Approval &amp; completion</h2>
+        <label for="lookupCode">Look up an order by code</label>
+        <input id="lookupCode" type="text" placeholder="ORD-...">
+        <button id="lookupBtn" onclick="lookupOrder()">Fetch</button>
+        <div id="approvalMsg"></div>
+        <p style="margin-top:12px">Current state: <span id="approvalStatus" class="status">—</span></p>
+        <button id="approveBtn" onclick="decide('Approved')">Approve</button>
+        <button id="rejectBtn" onclick="decide('Rejected')">Reject</button>
+        <button id="pendingBtn" onclick="startBackgroundApproval()">Simulate background approval</button>
+        <p style="margin-top:12px">Completion gate:
+            <span id="gateStatus" class="status">Waiting</span></p>
+        <button id="completeBtn" onclick="complete()" disabled>Complete</button>
+    </section>
+
+    <script>
+        // Stored in localStorage, which Playwright captures in storage_state — so a
+        // record created during seeding is visible to later scenarios, the way
+        // server-side data would be in a real application.
+        const store = {
+            get(key, fallback) {
+                try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+                catch (e) { return fallback; }
+            },
+            set(key, value) { localStorage.setItem(key, JSON.stringify(value)); },
+        };
+
+        function show(hostId, text, ok) {
+            document.getElementById(hostId).innerHTML =
+                `<div class="msg ${ok ? 'p-toast-message-success' : 'error-message'}">${text}</div>`;
+        }
+
+        // ── Category master ──────────────────────────────────────────
+        function categories() { return store.get('categories', []); }
+
+        function saveCategory() {
+            const name = document.getElementById('catName').value.trim();
+            const status = document.getElementById('catStatus').value;
+            if (!name) return show('catMsg', 'Category name is required', false);
+
+            const all = categories();
+            const existing = all.find(c => c.name.toLowerCase() === name.toLowerCase());
+            if (existing) {
+                existing.status = status;                    // editing updates the status
+                store.set('categories', all);
+                show('catMsg', `Category ${name} updated successfully`, true);
+            } else {
+                all.push({ name, status });
+                store.set('categories', all);
+                show('catMsg', `Category ${name} saved successfully`, true);
+            }
+            render();
+        }
+
+        function deleteCategory(name) {
+            if (!confirm(`Delete category ${name}?`)) return;
+            const inUse = store.get('orders', []).some(o => o.category === name);
+            if (inUse) {
+                // Referential integrity: a master in use must not disappear.
+                return show('catMsg',
+                    `Cannot delete ${name}: it is used by an existing order`, false);
+            }
+            store.set('categories', categories().filter(c => c.name !== name));
+            show('catMsg', `Category ${name} deleted successfully`, true);
+            render();
+        }
+
+        // ── Orders ───────────────────────────────────────────────────
+        function orders() { return store.get('orders', []); }
+
+        function saveOrder() {
+            const ref = document.getElementById('orderRef').value.trim();
+            const category = document.getElementById('categoryDropdown').value;
+            const qty = Number(document.getElementById('orderQty').value || 0);
+            if (!ref) return show('orderMsg', 'Reference is required', false);
+            if (!category) return show('orderMsg', 'Category is required', false);
+            if (qty <= 0) return show('orderMsg', 'Quantity must be greater than 0', false);
+
+            const all = orders();
+            const code = 'ORD-' + String(1000 + all.length + 1);
+            all.push({ code, ref, category, qty, status: 'Pending' });
+            store.set('orders', all);
+            document.getElementById('orderCode').value = code;
+            show('orderMsg', `Order ${code} saved successfully`, true);
+            render();
+        }
+
+        // ── Approval state machine ───────────────────────────────────
+        let current = null;
+
+        function lookupOrder() {
+            const code = document.getElementById('lookupCode').value.trim();
+            current = orders().find(o => o.code === code) || null;
+            if (!current) {
+                document.getElementById('approvalStatus').innerText = '—';
+                return show('approvalMsg', `No order found for code ${code}`, false);
+            }
+            show('approvalMsg', `Order ${code} loaded successfully`, true);
+            renderApproval();
+        }
+
+        function decide(state) {
+            if (!current) return show('approvalMsg', 'Fetch an order first', false);
+            const all = orders();
+            const found = all.find(o => o.code === current.code);
+            found.status = state;
+            store.set('orders', all);
+            current = found;
+            show('approvalMsg', `Order ${current.code} ${state.toLowerCase()} successfully`, true);
+            renderApproval();
+            render();
+        }
+
+        // Approval arrives later, exactly like a human clicking in another tab —
+        // this is what a fixed sleep cannot handle reliably.
+        function startBackgroundApproval() {
+            if (!current) return show('approvalMsg', 'Fetch an order first', false);
+            const code = current.code;
+            show('approvalMsg', 'Approval requested — a decision will arrive shortly', true);
+            setTimeout(() => {
+                const all = orders();
+                const found = all.find(o => o.code === code);
+                if (found) { found.status = 'Approved'; store.set('orders', all); }
+                if (current && current.code === code) { current = found; renderApproval(); }
+                render();
+            }, 4000);
+        }
+
+        function renderApproval() {
+            const status = current ? current.status : '—';
+            document.getElementById('approvalStatus').innerText = status;
+            const gate = document.getElementById('gateStatus');
+            const button = document.getElementById('completeBtn');
+            if (status === 'Approved') { gate.innerText = 'Approved'; button.disabled = false; }
+            else if (status === 'Rejected') { gate.innerText = 'Cancelled'; button.disabled = true; }
+            else if (status === 'Completed') { gate.innerText = 'Completed'; button.disabled = true; }
+            else { gate.innerText = 'Waiting'; button.disabled = true; }
+        }
+
+        function complete() {
+            if (!current || current.status !== 'Approved') {
+                return show('approvalMsg', 'Completion is only allowed once approved', false);
+            }
+            const all = orders();
+            all.find(o => o.code === current.code).status = 'Completed';
+            store.set('orders', all);
+            current = all.find(o => o.code === current.code);
+            show('approvalMsg', `Order ${current.code} completed successfully`, true);
+            renderApproval();
+            render();
+        }
+
+        // ── Rendering ────────────────────────────────────────────────
+        function render() {
+            const cats = categories();
+            const ords = orders();
+
+            document.getElementById('catBody').innerHTML = cats.map(c => {
+                const used = ords.filter(o => o.category === c.name).length;
+                return `<tr><td>${c.name}</td><td>${c.status}</td><td>${used}</td>
+                        <td><button class="delete-btn" onclick="deleteCategory('${c.name}')">Delete</button></td></tr>`;
+            }).join('');
+
+            // The dependent dropdown offers ACTIVE categories only.
+            const dropdown = document.getElementById('categoryDropdown');
+            const chosen = dropdown.value;
+            dropdown.innerHTML = '<option value="">-- select --</option>' +
+                cats.filter(c => c.status === 'Active')
+                    .map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            if ([...dropdown.options].some(o => o.value === chosen)) dropdown.value = chosen;
+
+            document.getElementById('orderBody').innerHTML = ords.map(o =>
+                `<tr><td>${o.code}</td><td>${o.ref}</td><td>${o.category}</td>
+                 <td>${o.status}</td></tr>`).join('');
+        }
+
+        render();
+    </script>
+</body>
+
+</html>

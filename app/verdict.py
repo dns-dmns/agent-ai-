@@ -178,6 +178,8 @@ class Evidence:
     steps_total: int = 0
     steps_executed: int = 0
     healed_steps: int = 0
+    notes: list[str] = field(default_factory=list)      # captures, polls, API calls
+    rule_results: list[dict] = field(default_factory=list)  # {id, title, ok, detail}
 
     def add_message(self, text: str, selector: str = "") -> None:
         text = (text or "").strip()
@@ -223,6 +225,8 @@ class Evidence:
             "healed_steps": self.healed_steps,
             "console_error_count": len(self.console_errors),
             "network_error_count": len(self.network_errors),
+            "notes": self.notes,
+            "rule_results": self.rule_results,
         }
 
 

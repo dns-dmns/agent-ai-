@@ -26,14 +26,17 @@ import re
 import shutil
 import time
 import uuid
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Awaitable, Callable
 
 from playwright.async_api import async_playwright
 
+from . import api_seed
 from . import config
+from . import contracts
 from . import heuristics
+from . import rules as rules_engine
 from . import verdict as verdict_engine
 
 log = config.get_logger("executor")
@@ -56,7 +59,16 @@ ASSERTION_ACTIONS = {
     "VERIFY_NON_ZERO", "VERIFY_TEXT", "VERIFY_ROW_CONTAINS", "VERIFY_TABLE_ROW",
     "VERIFY_ROW_ABSENT", "VERIFY_URL", "VERIFY_COUNT", "VERIFY_DOWNLOAD",
     "VERIFY_MESSAGE",
+    # Dependency-chain and API assertions
+    "VERIFY_OPTION_PRESENT", "VERIFY_OPTION_ABSENT", "VERIFY_API",
 }
+
+# Options inside custom dropdown widgets (PrimeNG, Material, Ant, headless UI).
+OPTION_SELECTORS = (
+    "option", "[role='option']", ".p-dropdown-item", ".p-multiselect-item",
+    ".mat-option", ".ant-select-item-option", "li[data-value]", ".select2-results__option",
+    ".dropdown-item", ".choices__item--choice",
+)
 
 MESSAGE_SCAN_JS = """() => {
     const selectors = [
@@ -65,7 +77,15 @@ MESSAGE_SCAN_JS = """() => {
         '.p-toast-message-error', '.p-toast-message-success', '.toast-message',
         '.alert-danger', '.alert-success', '.text-danger', '.text-success',
         '[role="alert"]', '.p-message-text', '.mat-error', '.ant-form-item-explain-error',
-        '.help-block', '.validation-message'
+        '.help-block', '.validation-message',
+        // OrangeHRM / oxd — a real-world miss found while testing a live app:
+        // the field error was on screen but invisible to this scanner, which
+        // turned a correct application into a false FAIL.
+        '.oxd-input-field-error-message', '.oxd-input-group__message',
+        '.oxd-alert-content-text', '.oxd-toast-content-text',
+        // Bootstrap 5 / generic form frameworks
+        '.form-text.text-danger', '.error-text', '.field-validation-error',
+        '.Mui-error', '.MuiFormHelperText-root.Mui-error'
     ];
     const out = [];
     for (const sel of selectors) {
@@ -177,6 +197,9 @@ class RunConfig:
     visual_check: bool = False
     env_name: str = ""
     api_seed: str = ""                     # seed template name to pre-run
+    seed_once: bool = True                 # honour contract run_once seeding
+    relationship_checks: bool = False      # append generated dependency scenarios
+    apply_rules: bool = True               # enforce project/flow rules in verdicts
     triggered_by: str = "dashboard"
 
     @property
@@ -211,6 +234,51 @@ def parse_step_string(raw: str) -> dict | None:
                 return {"action": "NAVIGATE", "selector": raw_str[len(prefix):].strip()}
     if upper.startswith("NAVIGATE "):
         return {"action": "NAVIGATE", "selector": raw_str[9:].strip()}
+
+    # ── Dependency chaining, polling, API and role switching ──────────
+    if upper.startswith(("STORE ", "CAPTURE VALUE ", "REMEMBER ")):
+        # STORE #custCode AS m7_code   /   REMEMBER #code AS order_code
+        for prefix in ("CAPTURE VALUE ", "STORE ", "REMEMBER "):
+            if upper.startswith(prefix):
+                rest = raw_str[len(prefix):].strip()
+                match = re.split(r"\s+as\s+", rest, maxsplit=1, flags=re.IGNORECASE)
+                if len(match) == 2:
+                    return {"action": "STORE", "selector": match[0].strip(),
+                            "value": _strip_quotes(match[1])}
+                return {"action": "STORE", "selector": rest, "value": "captured_value"}
+
+    if upper.startswith(("WAIT FOR STATE ", "WAIT UNTIL ", "POLL UNTIL ")):
+        for prefix in ("WAIT FOR STATE ", "WAIT UNTIL ", "POLL UNTIL "):
+            if upper.startswith(prefix):
+                rest = raw_str[len(prefix):].strip()
+                match = re.split(r"\s+(?:is|equals|becomes|contains)\s+", rest,
+                                 maxsplit=1, flags=re.IGNORECASE)
+                if len(match) == 2:
+                    return {"action": "WAIT_FOR_STATE", "selector": match[0].strip(),
+                            "value": _strip_quotes(match[1])}
+                return {"action": "WAIT_FOR_STATE", "selector": rest, "value": ""}
+
+    if upper.startswith(("API GET ", "API POST ", "API PUT ", "API DELETE ", "API_REQUEST ")):
+        parts = raw_str.split(None, 2)
+        method = parts[1].upper() if len(parts) > 1 and parts[0].upper() == "API" else "GET"
+        rest = parts[2] if len(parts) > 2 else (parts[1] if len(parts) > 1 else "")
+        return {"action": "API_REQUEST", "method": method, "selector": rest.strip()}
+
+    if upper.startswith(("SWITCH ROLE ", "LOGIN AS ", "SWITCH TO ROLE ")):
+        for prefix in ("SWITCH TO ROLE ", "SWITCH ROLE ", "LOGIN AS "):
+            if upper.startswith(prefix):
+                return {"action": "SWITCH_ROLE", "value": _strip_quotes(raw_str[len(prefix):])}
+
+    if upper.startswith(("VERIFY OPTION ", "ASSERT OPTION ")):
+        rest = raw_str[14:].strip()
+        absent = re.search(r"\b(absent|missing|not present|excluded|gone)\b", rest, re.IGNORECASE)
+        cleaned = re.sub(r"\b(is\s+)?(absent|missing|not present|excluded|gone|present|listed|"
+                         r"available|offered)\b", "", rest, flags=re.IGNORECASE)
+        match = re.split(r"\s+in\s+", cleaned.strip(), maxsplit=1)
+        value = _strip_quotes(match[0].strip(" ,"))
+        selector = match[1].strip() if len(match) == 2 else "select"
+        return {"action": "VERIFY_OPTION_ABSENT" if absent else "VERIFY_OPTION_PRESENT",
+                "selector": selector, "value": value}
 
     if upper.startswith(("PRESS ", "KEYPRESS ", "KEY ")):
         for prefix in ("KEYPRESS ", "PRESS ", "KEY "):
@@ -710,12 +778,18 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     dialog_policy (mutable dict), downloads list.
     """
     action = (step.get("action") or "").upper()
-    selector = (step.get("selector") or "").strip()
+    # Placeholders are resolved in the selector too: targeting a row by the value
+    # a previous module produced — tr:has-text('{{order_code}}') — is the whole
+    # point of a dependency chain.
+    selector = heuristics.resolve_dynamic_variables(
+        (step.get("selector") or "").strip(), ctx["runtime_pool"])
     raw_value = step.get("value", "")
     value = heuristics.resolve_dynamic_variables(str(raw_value or ""), ctx["runtime_pool"])
     evidence: verdict_engine.Evidence = ctx["evidence"]
     emit_log = ctx["log"]
     headless = ctx["headless"]
+    if selector != (step.get("selector") or "").strip():
+        step = dict(step, selector=selector)
     result = {"action": action, "selector": selector, "healed": False}
 
     async def highlight(loc) -> None:
@@ -974,6 +1048,145 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
             await page.mouse.wheel(0, 600)
         return result
 
+    # ── STORE: capture a value so later modules can use it ────────────
+    # This is what makes a dependency chain real: module 7 generates a code,
+    # STORE puts it in the pool, module 8 reads it as {{m7_code}}.
+    if action in ("STORE", "CAPTURE_VALUE", "REMEMBER"):
+        name = (value or "captured_value").strip().strip("{}")
+        mode = (step.get("capture") or "value").lower()
+        captured = ""
+        if mode == "typed" and ctx["runtime_pool"].get("last_typed_value"):
+            captured = str(ctx["runtime_pool"]["last_typed_value"])
+        if not captured and selector:
+            loc, used = await first_usable(candidate_selectors(step, "TYPE"),
+                                           require_visible=False)
+            if not loc:
+                loc, used = await first_usable(candidate_selectors(step, "CLICK"),
+                                               require_visible=False)
+            if loc:
+                captured = await _read_value(loc)
+                result["selector_used"] = used
+        if not captured:
+            captured = str(ctx["runtime_pool"].get("last_typed_value", "")).strip()
+        if not captured:
+            raise Exception(
+                f"STORE failed: nothing to capture from '{selector}'. Point it at the field "
+                f"holding the generated value, or type the value earlier in the scenario."
+            )
+        ctx["runtime_pool"][name] = captured
+        evidence.notes.append(f"Captured {{{{{name}}}}} = {captured!r}")
+        await emit_log(f"   ⚓ stored {{{{{name}}}}} = {captured!r}")
+        result["stored"] = {name: captured}
+        return result
+
+    # ── WAIT_FOR_STATE: poll instead of sleeping ──────────────────────
+    # An approval queue moves from Pending to Approved on someone else's clock;
+    # a fixed sleep is either flaky or slow, so poll with a deadline.
+    if action in ("WAIT_FOR_STATE", "POLL_UNTIL", "WAIT_UNTIL"):
+        expected = (value or "").strip()
+        timeout_ms = int(step.get("timeout") or step.get("timeout_ms") or 60000)
+        interval_ms = int(step.get("interval") or 2000)
+        mode = (step.get("match") or "contains").lower()
+        deadline = time.time() + timeout_ms / 1000
+        seen = ""
+        attempts = 0
+        while time.time() < deadline:
+            attempts += 1
+            state: RunState | None = ctx.get("state")
+            if state and state.cancelled:
+                raise RunCancelled()
+            loc, used = await first_usable(candidate_selectors(step, "CLICK"),
+                                           require_visible=False)
+            if loc:
+                seen = (await _read_value(loc) or "").strip()
+                result["selector_used"] = used
+                if not expected:
+                    if seen:
+                        break
+                elif mode == "equals" and seen.lower() == expected.lower():
+                    break
+                elif mode != "equals" and expected.lower() in seen.lower():
+                    break
+            await page.wait_for_timeout(interval_ms)
+            # Reloading is opt-in: a single-page app updates the DOM in place, and
+            # a reload would discard the very state being waited for. Server-rendered
+            # status pages can set {"reload": true}.
+            if step.get("reload"):
+                try:
+                    await page.reload(wait_until="domcontentloaded", timeout=20000)
+                    await wait_for_settle(page, 3000)
+                except Exception:
+                    pass
+        else:
+            raise Exception(
+                f"Timed out after {timeout_ms // 1000}s waiting for '{selector}' to reach "
+                f"{expected!r} — it was {seen!r} at the last check ({attempts} polls). "
+                f"If this state is set by another user or a background job, confirm the "
+                f"expected SLA with the business."
+            )
+        evidence.notes.append(f"'{selector}' reached {seen!r} after {attempts} poll(s)")
+        await emit_log(f"   ⏱ '{selector}' reached {seen!r} after {attempts} poll(s)")
+        result["polled"] = {"value": seen, "attempts": attempts}
+        return result
+
+    # ── API_REQUEST: reuse the browser session for API-level checks ───
+    if action in ("API_REQUEST", "API_GET", "API_POST", "API_PUT", "API_DELETE"):
+        method = (step.get("method") or action.replace("API_", "") or "GET").upper()
+        if method == "REQUEST":
+            method = "GET"
+        url = heuristics.resolve_dynamic_variables(selector or step.get("url", ""),
+                                                   ctx["runtime_pool"])
+        if not url:
+            raise Exception("API_REQUEST needs a URL or path.")
+        if not url.startswith(("http://", "https://")):
+            base = (ctx.get("base_url") or "").rstrip("/")
+            root = "/".join(base.split("/")[:3]) if base else ""
+            url = root + "/" + url.lstrip("/")
+        body = step.get("json") or step.get("body")
+        if isinstance(body, (dict, list)):
+            body = json.loads(heuristics.resolve_dynamic_variables(
+                json.dumps(body), ctx["runtime_pool"]))
+        options: dict = {"timeout": 30000}
+        if body is not None:
+            options["data"] = body
+        # page.request shares the page's cookies, so an authenticated UI session
+        # authenticates the API call too — no separate token plumbing.
+        response = await page.request.fetch(url, method=method, **options)
+        text = await response.text()
+        try:
+            parsed = json.loads(text)
+        except Exception:
+            parsed = None
+        ctx["runtime_pool"]["api_status"] = response.status
+        ctx["runtime_pool"]["api_body"] = text[:4000]
+        ctx["api_last"] = {"status": response.status, "json": parsed, "text": text,
+                           "url": url, "method": method}
+        for name, path in (step.get("capture") or {}).items():
+            if not isinstance(path, str):
+                continue
+            found = api_seed._extract(parsed, path) if parsed is not None else None
+            if found is not None:
+                ctx["runtime_pool"][name] = found
+                await emit_log(f"   ⚓ api captured {{{{{name}}}}} = {found!r}")
+        evidence.notes.append(f"{method} {url} → HTTP {response.status}")
+        await emit_log(f"   🔌 {method} {url} → {response.status}")
+        result["api"] = {"status": response.status, "url": url}
+        return result
+
+    # ── SWITCH_ROLE: creator, approver and scanner are different people ──
+    if action in ("SWITCH_ROLE", "LOGIN_AS"):
+        role = (value or selector or "").strip()
+        if not role:
+            raise Exception("SWITCH_ROLE needs a role name.")
+        switcher = ctx.get("switch_role")
+        if not switcher:
+            raise Exception("Role switching is unavailable in this run.")
+        await switcher(role)
+        ctx["runtime_pool"]["current_role"] = role
+        evidence.notes.append(f"Switched to the '{role}' role")
+        result["role"] = role
+        return result
+
     # ── Assertions ────────────────────────────────────────────────────
     if action in ASSERTION_ACTIONS:
         await wait_for_settle(page, 4000)
@@ -994,6 +1207,77 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     return result
 
 
+async def read_options(page, step: dict, selector: str) -> list[str]:
+    """Every option a dropdown currently offers.
+
+    Native ``<select>`` elements can be read directly. Framework widgets
+    (PrimeNG, Material, Ant) render their list only once opened, so the control
+    is clicked, the list is read, then it is closed again with Escape so the
+    page is left exactly as it was found.
+    """
+    options: list[str] = []
+
+    # 1. Native select — no interaction needed.
+    for cand in candidate_selectors(step, "CLICK"):
+        try:
+            loc = page.locator(cand).first
+            if await loc.count() == 0:
+                continue
+            tag = (await loc.evaluate("el => el.tagName") or "").upper()
+            if tag == "SELECT":
+                texts = await loc.evaluate(
+                    "el => Array.from(el.options)"
+                    ".map(o => (o.textContent || o.value || '').trim())")
+                options = [t for t in (texts or []) if t]
+                if options:
+                    return options
+        except Exception:
+            continue
+
+    # 2. Framework widget — open it, read the rendered list, close it.
+    opened = False
+    for cand in candidate_selectors(step, "CLICK"):
+        try:
+            loc = page.locator(cand).first
+            if await loc.count() == 0 or not await loc.is_visible():
+                continue
+            await loc.click(timeout=3000)
+            opened = True
+            break
+        except Exception:
+            continue
+
+    if opened:
+        await page.wait_for_timeout(350)
+        for option_sel in OPTION_SELECTORS:
+            try:
+                if option_sel == "option":
+                    found = await page.eval_on_selector_all(
+                        option_sel,
+                        "els => els.map(e => (e.textContent || e.value || '').trim())")
+                else:
+                    found = await page.eval_on_selector_all(
+                        option_sel,
+                        "els => els.filter(e => e.offsetParent !== null)"
+                        ".map(e => (e.innerText || e.textContent || '').trim())")
+                options.extend([f for f in (found or []) if f])
+            except Exception:
+                continue
+        try:
+            await page.keyboard.press("Escape")
+        except Exception:
+            pass
+
+    # De-duplicate while keeping order.
+    seen: set[str] = set()
+    unique = []
+    for opt in options:
+        if opt not in seen:
+            seen.add(opt)
+            unique.append(opt)
+    return unique
+
+
 async def run_assertion(page, action: str, step: dict, selector: str, value: str,
                         ctx: dict) -> tuple[bool, str]:
     """Evaluate one VERIFY_* step. Returns (ok, human-readable detail)."""
@@ -1009,6 +1293,54 @@ async def run_assertion(page, action: str, step: dict, selector: str, value: str
             except Exception:
                 continue
         return None
+
+    # ── Dropdown membership: the inactive-master exclusion rule ───────
+    if action in ("VERIFY_OPTION_PRESENT", "VERIFY_OPTION_ABSENT"):
+        wanted = _strip_quotes(value).strip()
+        if not wanted:
+            return False, f"{action} needs the option text to look for."
+        options = await read_options(page, step, selector)
+        found = any(wanted.lower() in opt.lower() for opt in options)
+        shown = ", ".join(repr(o) for o in options[:12]) or "none"
+        if action == "VERIFY_OPTION_PRESENT":
+            if found:
+                return True, f"'{wanted}' is offered by '{selector}'."
+            return False, (
+                f"'{wanted}' is not offered by '{selector}'. Options found: {shown}. "
+                f"Either the master was never created, or it is not active."
+            )
+        if not found:
+            return True, f"'{wanted}' is correctly not offered by '{selector}'."
+        return False, (
+            f"'{wanted}' is still offered by '{selector}' even though it should be excluded. "
+            f"An inactive or deleted master must not remain selectable downstream."
+        )
+
+    # ── API response assertions ───────────────────────────────────────
+    if action == "VERIFY_API":
+        last = ctx.get("api_last")
+        if not last:
+            return False, "VERIFY_API used before any API_REQUEST step in this scenario."
+        expected_status = step.get("status")
+        if expected_status is not None and int(last["status"]) != int(expected_status):
+            return False, (f"{last['method']} {last['url']} returned HTTP {last['status']}, "
+                           f"expected {expected_status}.")
+        path = step.get("path") or selector
+        if path:
+            actual = api_seed._extract(last.get("json"), path)
+            wanted = _strip_quotes(value)
+            if wanted:
+                wanted_resolved = heuristics.resolve_dynamic_variables(wanted, pool)
+                if actual is None:
+                    return False, f"'{path}' is not present in the API response."
+                if str(wanted_resolved).lower() not in str(actual).lower():
+                    return False, (f"API field '{path}' is {actual!r}, expected "
+                                   f"{wanted_resolved!r}.")
+                return True, f"API field '{path}' is {actual!r} as expected."
+            if actual is None:
+                return False, f"'{path}' is missing from the API response."
+            return True, f"API field '{path}' is present ({actual!r})."
+        return True, f"{last['method']} {last['url']} returned HTTP {last['status']}."
 
     if action in ("VERIFY_STATE", "VERIFY_VISIBLE"):
         loc = await locator()
@@ -1246,9 +1578,15 @@ def is_auth_flow(flow_name: str) -> bool:
     return any(keyword in (flow_name or "").lower() for keyword in AUTH_KEYWORDS)
 
 
-async def replay_dependencies(page, cfg: RunConfig, ctx: dict, emit_log) -> None:
-    """Replay prerequisite flows (login → master A → master B → target)."""
-    deps = [d.strip() for d in (cfg.dependencies or "").split(",") if d.strip()]
+async def replay_dependencies(page, cfg: RunConfig, ctx: dict, emit_log,
+                              deps: list[str] | None = None) -> None:
+    """Replay prerequisite flows (login → master A → master B → target).
+
+    ``deps`` lets the caller replay a subset — the suite-level seeding phase
+    handles ``run_once`` masters, leaving only the per-scenario ones here.
+    """
+    if deps is None:
+        deps = contracts.dependency_list(cfg.dependencies)
     if not deps:
         return
 
@@ -1303,7 +1641,107 @@ async def replay_dependencies(page, cfg: RunConfig, ctx: dict, emit_log) -> None
                     f"{humanize_error(err, action, selector)}"
                 )
             await wait_for_settle(page, 3000)
+
+        # Capture what this prerequisite produced, so the dependent module can
+        # reference it by name instead of hardcoding a guess.
+        for capture in contracts.capture_steps(contracts.load(cfg.project_name, dep)):
+            try:
+                await execute_step(page, capture, ctx)
+            except Exception as err:
+                await emit_log(
+                    f"⚠️ Could not capture '{capture.get('value')}' from [{dep}]: "
+                    f"{humanize_error(err)}. Check the 'name_field' in its contract."
+                )
         await page.wait_for_timeout(1000)
+
+
+async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
+                             state: RunState, deps: list[str]) -> dict:
+    """Create the run-once master records and return the variables they produced.
+
+    Runs in its own context so a seeding failure can never leave a scenario's
+    browser in a strange state, and saves the resulting session so scenarios
+    start already authenticated.
+    """
+    session_file: Path = shared["session_file"]
+    context_args: dict[str, Any] = {"accept_downloads": True}
+    if session_file.exists():
+        context_args["storage_state"] = str(session_file)
+    if not cfg.headless:
+        context_args["no_viewport"] = True
+
+    context = await browser.new_context(**context_args)
+    page = await context.new_page()
+    page.set_default_timeout(15000)
+
+    evidence = verdict_engine.Evidence()
+    pool: dict = {"run_token": unique_token()}
+
+    async def emit_log(message: str) -> None:
+        await emit({"event": "log", "message": message})
+
+    ctx = {
+        "evidence": evidence,
+        "runtime_pool": pool,
+        "headless": cfg.headless,
+        "log": emit_log,
+        "dialog_policy": {"mode": "accept"},
+        "flow_path": shared["flow_path"],
+        "shots_dir": shared["flow_path"] / "screenshots",
+        "index": 0,
+        "base_url": shared["target_url"],
+        "state": state,
+    }
+
+    try:
+        await page.goto(shared["target_url"], wait_until="domcontentloaded", timeout=60000)
+        await wait_for_settle(page)
+        await replay_authentication(
+            page, context, cfg, ctx, emit_log, shared["target_url"],
+            shared["credentials"], session_file,
+        )
+        # Unique data is essential here: the seed runs on every execution, so
+        # fixed values would collide with the records the last run created.
+        seeding_cfg = replace(cfg, dep_unique_data=True)
+        await replay_dependencies(page, seeding_cfg, ctx, emit_log, deps)
+        try:
+            await context.storage_state(path=str(session_file))
+        except Exception:
+            pass
+    finally:
+        try:
+            await context.close()
+        except Exception:
+            pass
+
+    # Publish only the named contract variables, not the internal bookkeeping.
+    published = {}
+    for dep in deps:
+        for provide in contracts.load(cfg.project_name, dep)["provides"]:
+            var = provide["var"]
+            if pool.get(var):
+                published[var] = pool[var]
+    published["run_token"] = pool["run_token"]
+    return published
+
+
+def seedable_dependencies(cfg: RunConfig) -> tuple[list[str], list[str]]:
+    """Split prerequisites into those seeded once per run and those replayed per scenario.
+
+    A master module marked ``run_once`` creates a record that persists in the
+    application, so replaying it for all 30 scenarios only produces 30 duplicates
+    and 30× the runtime.
+    """
+    once: list[str] = []
+    each: list[str] = []
+    for dep in contracts.dependency_list(cfg.dependencies):
+        contract = contracts.load(cfg.project_name, dep)
+        if cfg.seed_once and contract.get("run_once") and contract.get("provides") \
+                and not is_auth_flow(dep):
+            once.append(dep)
+        else:
+            each.append(dep)
+    return once, each
 
 
 async def replay_authentication(page, context, cfg: RunConfig, ctx: dict, emit_log,
@@ -1446,6 +1884,7 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
     steps_executed: list[str] = []
     step_durations: list[dict] = []
     runtime_pool: dict = dict(shared.get("seed_pool") or {})
+    runtime_pool.update(shared.get("seeded_vars") or {})
     runtime_pool.update(scenario.get("_data_row") or {})
     dialog_policy = {"mode": infer_dialog_policy(scenario)}
     downloads_dir = flow_path / "downloads"
@@ -1530,6 +1969,35 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         "state": state,
     }
 
+    async def switch_role(role: str) -> None:
+        """Re-authenticate this context as a different person.
+
+        Module 6 is filled by a creator, module 9 approved by an approver and
+        module 10 scanned by an operator — a single credential set cannot test
+        that chain honestly.
+        """
+        creds = resolve_credentials(cfg.project_name, role)
+        if not creds.get("username"):
+            raise Exception(
+                f"No credentials configured for the '{role}' role. Add it under "
+                f"Settings → Roles for this project."
+            )
+        await emit_log(f"👤 Switching to the '{role}' role ({creds['username']})…")
+        try:
+            await context.clear_cookies()
+        except Exception:
+            pass
+        await page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
+        await wait_for_settle(page)
+        signed_in = await replay_authentication(
+            page, context, cfg, ctx, emit_log, target_url, creds,
+            config.project_session_file(cfg.project_name, role),
+        )
+        if not signed_in:
+            raise Exception(f"Could not sign in as '{role}'.")
+
+    ctx["switch_role"] = switch_role
+
     status = verdict_engine.PASS
     verdict_obj: verdict_engine.Verdict | None = None
     error_text = ""
@@ -1546,7 +2014,8 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         await wait_for_settle(page)
         evidence.url_start = page.url
 
-        await replay_dependencies(page, cfg, ctx, emit_log)
+        _seeded_once, per_scenario_deps = seedable_dependencies(cfg)
+        await replay_dependencies(page, cfg, ctx, emit_log, per_scenario_deps)
 
         if not cfg.dependencies.strip():
             await replay_authentication(
@@ -1651,6 +2120,31 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
                 )
                 if ai_verdict:
                     verdict_obj = ai_verdict
+
+        # ── Your own rules, checked independently of the verdict ──────
+        # A scenario can satisfy its own expectation and still break a rule you
+        # stated about the application; that is a failure worth surfacing.
+        if cfg.apply_rules:
+            rule_results = rules_engine.evaluate(
+                shared.get("rules") or [], evidence, scenario, run_steps)
+            evidence.rule_results = rule_results
+            broken = rules_engine.violations(rule_results)
+            for entry in rule_results:
+                if entry["skipped"]:
+                    continue
+                await emit_log(
+                    f"   {'📏' if entry['ok'] else '🚫'} Rule “{entry['title']}”: "
+                    f"{'holds' if entry['ok'] else 'VIOLATED'} — {entry['detail']}"
+                )
+            if broken:
+                worst = min(broken, key=lambda r: rules_engine.SEVERITIES.index(r["severity"]))
+                verdict_obj = verdict_engine.Verdict(
+                    verdict_engine.FAIL,
+                    f"Rule “{worst['title']}” was violated: {worst['detail']}"
+                    + (f" (+{len(broken) - 1} more)" if len(broken) > 1 else ""),
+                    "rules", 0.95, evidence.to_dict(),
+                )
+
         status = verdict_obj.status
         await emit_log(
             f"{'✅' if status == verdict_engine.PASS else '⚠️' if status == verdict_engine.UNVERIFIED else '❌'}"
@@ -1751,6 +2245,10 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         "type": scenario.get("type", ""),
         "status": status,
         "verdict": verdict_obj.to_dict() if verdict_obj else {},
+        "rule_results": [r for r in (evidence.rule_results or []) if not r["skipped"]],
+        "captured": {k: v for k, v in runtime_pool.items()
+                     if k not in ("run_token", "api_body") and not k.startswith("dep_")},
+        "notes": evidence.notes,
         "screenshot": screenshot_rel,
         "video": video_url,
         "trace": trace_path,
@@ -1826,9 +2324,20 @@ def load_project_config(project_name: str) -> dict:
         return {}
 
 
-def resolve_credentials(project_name: str) -> dict:
-    """Per-project credentials first, then the legacy global login_data.json."""
+def resolve_credentials(project_name: str, role: str = "") -> dict:
+    """Credentials for a project, or for one named role within it.
+
+    ``roles`` in the project config looks like::
+
+        "roles": {"approver": {"username": "...", "password": "..."}}
+    """
     project_cfg = load_project_config(project_name)
+    if role:
+        roles = project_cfg.get("roles") or {}
+        chosen = dict(roles.get(role) or {})
+        if chosen.get("username"):
+            return chosen
+        return {}
     creds = dict(project_cfg.get("credentials") or {})
     if creds.get("username"):
         return creds
@@ -1944,6 +2453,38 @@ async def execute_suite(cfg: RunConfig, emit: Emit,
         await emit({"event": "error", "message": state.error})
         raise ValueError(state.error)
 
+    # ── Rules and generated scenarios ─────────────────────────────────
+    active_rules = rules_engine.applicable(cfg.project_name, cfg.flow_name)         if cfg.apply_rules else []
+    if active_rules:
+        await emit({"event": "info",
+                    "message": f"📏 {len(active_rules)} rule(s) will be enforced on every "
+                               f"scenario in this run."})
+
+    generated: list[dict] = []
+    rule_scenarios = rules_engine.to_scenarios(active_rules)
+    if rule_scenarios:
+        generated.extend(rule_scenarios)
+        await emit({"event": "info",
+                    "message": f"📏 {len(rule_scenarios)} scenario(s) generated directly from "
+                               f"your rules."})
+
+    if cfg.relationship_checks:
+        checks, notes = contracts.relationship_checks(
+            cfg.project_name, cfg.flow_name, cfg.dependencies)
+        generated.extend(checks)
+        for note in notes:
+            await emit({"event": "log", "message": f"🔗 {note}"})
+        if checks:
+            await emit({"event": "info",
+                        "message": f"🔗 {len(checks)} dependency relationship check(s) added "
+                                   f"(dropdown membership, inactive exclusion, delete-in-use)."})
+
+    if generated:
+        base = len(raw_cases)
+        for offset, scenario in enumerate(generated, start=1):
+            scenario["_original_id"] = base + offset
+        raw_cases = list(raw_cases) + generated
+
     cases = select_scenarios(raw_cases, cfg)
     data_rows = load_data_matrix(flow_path, cfg.data_matrix)
     if data_rows:
@@ -1970,7 +2511,6 @@ async def execute_suite(cfg: RunConfig, emit: Emit,
     seed_pool: dict = {"run_token": unique_token()}
     if cfg.api_seed:
         try:
-            from . import api_seed
 
             seeded = await api_seed.run_seed(cfg.project_name, cfg.api_seed,
                                             emit=lambda m: emit({"event": "log", "message": m}))
@@ -1985,6 +2525,7 @@ async def execute_suite(cfg: RunConfig, emit: Emit,
         "credentials": resolve_credentials(cfg.project_name),
         "session_file": config.project_session_file(cfg.project_name),
         "seed_pool": seed_pool,
+        "rules": active_rules,
     }
 
     videos_dir = flow_path / "videos"
@@ -2001,6 +2542,35 @@ async def execute_suite(cfg: RunConfig, emit: Emit,
             launch_args["slow_mo"] = 300
             launch_args["args"] = ["--start-maximized"]
         browser = await playwright.chromium.launch(**launch_args)
+
+        # ── Suite-level seeding ───────────────────────────────────────
+        # Masters marked run_once in their contract are created once here and
+        # their values published to every scenario, instead of being recreated
+        # (and duplicated) ahead of all N scenarios.
+        seed_once, per_scenario = seedable_dependencies(cfg)
+        if seed_once:
+            await emit({"event": "info",
+                        "message": f"🌱 Seeding prerequisites once for the whole run: "
+                                   f"{', '.join(seed_once)}"})
+            try:
+                seeded = await seed_prerequisites(browser, cfg, shared, emit, state, seed_once)
+                shared["seeded_vars"] = seeded
+                if seeded:
+                    await emit({"event": "info",
+                                "message": "🌱 Available to every scenario: " +
+                                           ", ".join(f"{{{{{k}}}}}={v!r}"
+                                                     for k, v in seeded.items())})
+                else:
+                    await emit({"event": "log",
+                                "message": "🌱 Seeding produced no variables — add a "
+                                           "'provides' entry to the master's contract."})
+            except RunCancelled:
+                raise
+            except Exception as err:  # noqa: BLE001 - seeding must not kill the run
+                log.exception("Seeding failed")
+                await emit({"event": "error",
+                            "message": f"⚠️ Seeding failed: {humanize_error(err)}. "
+                                       f"Scenarios will run without the seeded values."})
 
         semaphore = asyncio.Semaphore(workers)
 
@@ -2079,6 +2649,23 @@ def build_report(cfg: RunConfig, run_results: list[dict], started: float,
     console_errors = sorted({e for r in run_results for e in r.get("console_errors", [])})
     network_errors = sorted({e for r in run_results for e in r.get("network_errors", [])})
 
+    # Roll the per-scenario rule outcomes up into one line per rule, so the
+    # report answers "did my rules hold?" without reading every scenario.
+    rule_summary: dict[str, dict] = {}
+    for result in run_results:
+        for entry in result.get("rule_results", []):
+            summary = rule_summary.setdefault(entry["id"], {
+                "id": entry["id"], "title": entry["title"], "kind": entry["kind"],
+                "severity": entry["severity"], "checked": 0, "violations": 0,
+                "examples": [],
+            })
+            summary["checked"] += 1
+            if not entry["ok"]:
+                summary["violations"] += 1
+                if len(summary["examples"]) < 3:
+                    summary["examples"].append(
+                        {"scenario": result.get("name"), "detail": entry["detail"]})
+
     return {
         "run_id": state.run_id,
         "flow_name": cfg.flow_name,
@@ -2100,6 +2687,8 @@ def build_report(cfg: RunConfig, run_results: list[dict], started: float,
         "cancelled": state.cancelled,
         "console_errors": console_errors,
         "network_errors": network_errors,
+        "rules_enforced": sorted(rule_summary.values(), key=lambda r: -r["violations"]),
+        "rules_violated": sum(1 for r in rule_summary.values() if r["violations"]),
         "checkpoints": run_results,
     }
 

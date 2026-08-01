@@ -36,6 +36,9 @@ FLOW = "demo master"
 IGNORED_CONSOLE = (
     "favicon", "Failed to load resource: net::ERR_FILE_NOT_FOUND",
     "placeholder.png", "recording.webm",
+    # The invalid-rule probe below deliberately provokes a 400 to prove the
+    # server refuses bad input with a readable reason.
+    "/save-rule",
 )
 
 
@@ -187,7 +190,7 @@ async def main() -> int:
 
             # Landing overlay → pick the seeded project
             await page.select_option("#landerProjectSelect", PROJECT)
-            await page.click("button:has-text('Load Project Workspace')")
+            await page.click("button:has-text('Open workspace')")
             await page.wait_for_timeout(900)
             record("project loaded", await page.locator("#projectLander").is_hidden())
 
@@ -195,28 +198,41 @@ async def main() -> int:
             record("platform status bar", "AI ready" in status_text or "no API key" in status_text,
                    status_text)
 
-            # Tab 2 → select the seeded flow
-            await page.click("button:has-text('2. AI Execution Platform')")
-            await page.wait_for_timeout(400)
-            await page.select_option("#flowSelect", FLOW)
-            await page.wait_for_timeout(1200)
+            # Sidebar lists the flows and drives the hidden <select> the logic reads
+            record("sidebar lists flows",
+                   await page.locator("#sidebarFlowList .row").count() >= 1)
+            await page.click(f"#sidebarFlowList .row:has-text('{FLOW}')")
+            await page.wait_for_timeout(1500)
+            record("breadcrumb follows selection",
+                   FLOW in (await page.locator("#crumbFlow").inner_text()))
+
+            # Rail step 3 holds the suite and execution profile
+            await page.click(".rail-step:has-text('Run & verify')")
+            await page.wait_for_timeout(600)
 
             record("suite rendered", await page.locator("#suiteCard-1").count() > 0)
             record("assertion warning shown",
                    "no VERIFY step" in (await page.locator("#suiteList").inner_text()))
             record("unverified tile restored",
                    (await page.locator("#statUnverified").inner_text()) == "1")
+            await page.click(".rail-step:has-text('Report')")
+            await page.wait_for_timeout(500)
             record("report badge reflects failure",
                    (await page.locator("#reportStatusBadge").inner_text()).strip() == "FAIL")
+            record("badge is a semantic status chip",
+                   "fail" in (await page.get_attribute("#reportStatusBadge", "class") or ""))
+            await page.click(".rail-step:has-text('Run & verify')")
+            await page.wait_for_timeout(400)
             card_verdict = await page.locator("#suiteCardVerdict-2").inner_text()
             record("verdict reason on card", "showed none" in card_verdict, card_verdict)
             verdict_notes = await page.locator("#verdictLogList").inner_text()
             record("verdict notes list", "#2 FAIL" in verdict_notes and "#3 UNVERIFIED" in verdict_notes)
 
-            # Advanced options panel
-            await page.click("text=4. Verdict & Performance Options")
+            # Verdict engine is a primary control now, evidence options are disclosed
+            record("verdict control visible", await page.locator("#verdictModeSelect").is_visible())
+            await page.click("summary:has-text('Evidence & data options')")
             await page.wait_for_timeout(300)
-            record("advanced options open", await page.locator("#verdictModeSelect").is_visible())
+            record("evidence options open", await page.locator("#stepShotsSelect").is_visible())
             record("env options loaded", await page.locator("#envSelect").count() > 0)
 
             # Search + selection + selective-run button
@@ -232,7 +248,7 @@ async def main() -> int:
             await page.uncheck(".caseSelect >> nth=0")
 
             # Scenario editor
-            await page.click("#suiteCard-1 button[title='Edit this scenario']")
+            await page.click("#suiteCard-1 button[title='Edit scenario']")
             await page.wait_for_timeout(400)
             editor_text = await page.locator("#caseEditorText").input_value()
             record("editor prefilled", "Create record" in editor_text)
@@ -240,7 +256,7 @@ async def main() -> int:
             await page.wait_for_timeout(200)
 
             # Run history + comparison
-            await page.click("button:has-text('Run History & Compare')")
+            await page.click(".sidebar-footer .row:has-text('Run history')")
             await page.wait_for_timeout(600)
             history_text = await page.locator("#genericModalBody").inner_text()
             record("history listed", "2026-07-31 09:30:00" in history_text)
@@ -254,14 +270,14 @@ async def main() -> int:
             await page.wait_for_timeout(200)
 
             # Project settings
-            await page.click("button:has-text('Project settings')")
+            await page.click(".sidebar-footer .row:has-text('Settings')")
             await page.wait_for_timeout(600)
             record("settings modal", await page.locator("#settingsEnvJson").count() > 0)
             await page.click("#genericModalFooter button:has-text('Cancel')")
             await page.wait_for_timeout(200)
 
             # Schedules
-            await page.click("button:has-text('Schedules')")
+            await page.click(".sidebar-footer .row:has-text('Schedules')")
             await page.wait_for_timeout(600)
             record("schedule modal", await page.locator("#schedName").count() > 0)
             await page.fill("#schedName", "Smoke nightly")
@@ -274,18 +290,105 @@ async def main() -> int:
             await page.wait_for_timeout(200)
 
             # Flaky report
-            await page.click("button:has-text('Flaky')")
+            await page.click(".sidebar-footer .row:has-text('Flaky')")
             await page.wait_for_timeout(600)
             record("flaky modal", "Flaky scenarios" in
                    (await page.locator("#genericModalTitle").inner_text()))
             await page.click("#genericModalFooter button:has-text('Close')")
             await page.wait_for_timeout(200)
 
-            # Tab 3 stats still work
-            await page.click("button:has-text('3.')")
+            # Console still works
+            await page.click(".rail-step:has-text('Console')")
             await page.wait_for_timeout(900)
             record("project console renders",
                    await page.locator("#project-view").is_visible())
+
+            # ── Rules surface ─────────────────────────────────────────
+            await page.click(".sidebar-footer .row:has-text('Rules')")
+            await page.wait_for_timeout(700)
+            record("rules manager opens", await page.locator("#ruleText").count() > 0)
+            await page.click("#genericModalFooter button:has-text('Add manually')")
+            await page.wait_for_timeout(400)
+            editor = await page.locator("#ruleEditJson").input_value()
+            record("rule editor prefilled", "must_show" in editor)
+
+            await page.fill("#ruleEditJson", json.dumps({
+                "title": "Smoke rule", "kind": "field_rejects",
+                "selector": "#name", "values": ["0"], "severity": "major",
+                "generate_scenario": False,
+            }, indent=2))
+            await page.click("#genericModalFooter button:has-text('Save rule')")
+            await page.wait_for_timeout(900)
+            record("rule saved and listed",
+                   "Smoke rule" in (await page.locator("#genericModalBody").inner_text()))
+            record("rules badge updates",
+                   (await page.locator("#rulesCountBadge").inner_text()).strip() != "")
+
+            # An invalid rule must be refused with a readable reason.
+            await page.click("#genericModalFooter button:has-text('Add manually')")
+            await page.wait_for_timeout(400)
+            await page.fill("#ruleEditJson", '{"kind": "field_rejects", "title": "bad"}')
+            await page.click("#genericModalFooter button:has-text('Save rule')")
+            await page.wait_for_timeout(700)
+            record("invalid rule refused with a reason",
+                   "selector" in (await page.locator("#ruleEditError").inner_text()))
+            await page.click("#genericModalFooter button:has-text('Back')")
+            await page.wait_for_timeout(600)
+            await page.click("#genericModalClose")
+            await page.wait_for_timeout(300)
+
+            # ── Dependency contract surface ───────────────────────────
+            await page.click(".sidebar-footer .row:has-text('Dependencies')")
+            await page.wait_for_timeout(700)
+            record("contract editor opens", await page.locator("#contractJson").count() > 0)
+            await page.fill("#contractJson", json.dumps({
+                "provides": [], "run_once": True,
+                "requires": [{"entity": "category", "selector": "#cat", "kind": "dropdown"}],
+            }, indent=2))
+            await page.click("#genericModalFooter button:has-text('Save contract')")
+            await page.wait_for_timeout(900)
+            record("contract saved",
+                   "category" in (await page.locator("#contractJson").input_value()))
+            await page.click("#genericModalFooter button:has-text('Preview checks')")
+            await page.wait_for_timeout(800)
+            preview = await page.locator("#genericModalBody").inner_text()
+            record("preview explains the missing provider",
+                   "No chained prerequisite provides" in preview, preview[:120])
+            await page.click("#genericModalFooter button:has-text('Back')")
+            await page.wait_for_timeout(500)
+            await page.click("#genericModalClose")
+            await page.wait_for_timeout(300)
+
+            # ── New execution options ─────────────────────────────────
+            await page.click(".rail-step:has-text('Run & verify')")
+            await page.wait_for_timeout(400)
+            record("new run options present",
+                   await page.locator("#seedOnceCheck").count() > 0 and
+                   await page.locator("#relationshipCheck").count() > 0 and
+                   await page.locator("#applyRulesCheck").count() > 0)
+
+            # ── Redesign-specific behaviour ───────────────────────────
+            theme_before = await page.get_attribute("html", "data-theme")
+            await page.click("#themeToggle")
+            await page.wait_for_timeout(400)
+            record("theme toggle flips appearance",
+                   await page.get_attribute("html", "data-theme") != theme_before)
+
+            await page.keyboard.press("Control+k")
+            await page.wait_for_timeout(500)
+            record("command palette opens",
+                   await page.locator("#paletteList .row").count() > 5)
+            await page.fill("#paletteInput", "report")
+            await page.wait_for_timeout(300)
+            record("command palette filters",
+                   await page.locator("#paletteList .row").count() >= 1)
+            await page.keyboard.press("Escape")
+            await page.wait_for_timeout(300)
+            record("palette closes on Escape",
+                   not await page.locator("#paletteScrim").is_visible())
+
+            record("workflow rail marks completed steps",
+                   await page.locator(".rail-step.done").count() >= 1)
 
             await browser.close()
 
@@ -294,6 +397,9 @@ async def main() -> int:
             (f"/export-report-html?project_name={PROJECT}&flow_name={FLOW}", "QA Execution Report"),
             (f"/export-junit?project_name={PROJECT}&flow_name={FLOW}", "<testsuite"),
             (f"/export-report-csv?project_name={PROJECT}&flow_name={FLOW}", "Scenario"),
+            (f"/export-test-matrix?project_name={PROJECT}&flow_name={FLOW}", "Pre-condition"),
+            (f"/export-test-matrix?project_name={PROJECT}&flow_name={FLOW}&fmt=markdown",
+             "Test Case Matrix"),
         ):
             url = base + path.replace(" ", "%20")
             try:
@@ -317,11 +423,17 @@ async def main() -> int:
         print("\n" + ("UI SMOKE TEST PASSED ✅" if ok else "UI SMOKE TEST FAILED ❌"))
         return 0 if ok else 1
     finally:
+        # terminate() can leave the socket held on Windows, which then breaks the
+        # next manual `uvicorn` start with WinError 10048. Always confirm it died.
         server.terminate()
         try:
             server.wait(timeout=10)
         except Exception:
             server.kill()
+            try:
+                server.wait(timeout=5)
+            except Exception:
+                pass
         shutil.rmtree(WORKSPACE, ignore_errors=True)
 
 
