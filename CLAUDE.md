@@ -158,8 +158,43 @@ the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI p
 
 ## Current state
 
-All six suites pass: 63 unit tests, `e2e_selftest` 13/13, `e2e_chain` 8/8,
-`smoke_ui` 32/32, `integration_api` 32/32, `regression_existing_data` 9/9.
+All six suites pass: 81 unit tests, `e2e_selftest` 13/13, `e2e_chain` 18/18,
+`smoke_ui` 32/32, `integration_api` 32/32, `regression_existing_data` 18/18.
+
+### Handling application quirks without hand-fixing
+
+A recorded selector is one literal spelling of one control, and a real screen
+defeats it in predictable ways. Each of these is handled in the engine, so the
+same test case keeps working without anyone editing it — `chain.html` section 7
+reproduces all of them and `e2e_chain` proves them:
+
+- **A closed dialog left in the DOM ahead of the open one.** `p-dialog` used to
+  resolve to the invisible first match ("exists but is not visible"). Both
+  `first_usable()` and the assertion `locator()` now scan matches for one that is
+  actually on screen; `FORM_INVENTORY_JS` and `EMPTY_REQUIRED_JS` pick a *visible*
+  container, without which the form inventory described a dialog nobody could see
+  and self-completion silently did nothing.
+- **The dialog wins outright.** `first_usable()` tries *every* candidate scoped to
+  the open dialog before trying any of them page-wide. Candidate-by-candidate
+  scoping was not enough: a recorded `button:has-text("Save")` matched a Save
+  button on the page behind the dialog rather than the dialog's own "Update".
+- **Different words for the same control.** `heuristics.synonym_selectors()`
+  expands Save↔Update↔Submit, No↔Cancel↔Close, Export↔Download plus icon-only
+  buttons (`button:has(i.pi-file-excel)`, `[title*=…]`). Reject synonyms never
+  include confirm words — offering "Yes" for "No" would pass the wrong test.
+- **A widget that refuses the keystrokes.** A numeric field dropping letters *is*
+  the application validating, at the input layer. `note_input_rejection()` records
+  it and verdict branch 2c resolves the expectation, replacing the backwards
+  "the invalid input appears to have been accepted".
+- **Empty-grid wording.** "No data available" satisfies an assertion written as
+  "No records found" (`EMPTY_STATE_PHRASES`) — a framework difference is not a
+  defect.
+- **`VERIFY_READONLY` against a probe selector.** When `input[readonly]` matches
+  nothing, `READONLY_SCAN_JS` reports which fields are locked, or that none are —
+  which is itself the finding, not a selector error.
+
+`column_not_empty` is a rule kind, so "audit history always shows date and user"
+is stated once and enforced on every scenario.
 
 Rules, contracts, the Test Case Matrix, per-role logins and the extra run flags
 (`seed_once`, `relationship_checks`, `apply_rules`) all have both endpoints and UI —

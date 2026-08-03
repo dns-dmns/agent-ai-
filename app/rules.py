@@ -44,6 +44,7 @@ KINDS = (
     "export_complete",     # a download must contain at least N rows
     "no_console_errors",   # the page must not log errors
     "row_persists",        # a record must still be listed afterwards
+    "column_not_empty",    # a grid column must never be blank (audit date/user)
 )
 
 SEVERITIES = ("blocker", "major", "minor")
@@ -173,6 +174,9 @@ def validate(raw: dict) -> dict:
             raise ValueError(f"'{rule['kind']}' needs at least one entry in 'values'.")
     if rule["kind"] == "export_complete" and not rule["min_rows"]:
         raise ValueError("'export_complete' needs 'min_rows'.")
+    if rule["kind"] == "column_not_empty" and not str(rule["value"]).strip():
+        raise ValueError("'column_not_empty' needs the column name(s) in 'value', "
+                         "for example \"Date/Time, User\".")
     return rule
 
 
@@ -295,6 +299,19 @@ def evaluate(rules: list[dict], evidence, scenario: dict, steps: list | None = N
                               else f"export contained only {best} rows, fewer than the "
                                    f"{rule['min_rows']} required.")
 
+        elif kind == "column_not_empty":
+            checks = [a for a in getattr(evidence, "assertions", [])
+                      if str(a.get("action", "")).upper() == "VERIFY_COLUMN_NOT_EMPTY"]
+            if not checks:
+                skipped = True
+                detail = ("this scenario never inspected a grid's columns — add a "
+                          "VERIFY_COLUMN_NOT_EMPTY step to prove it.")
+            else:
+                bad = [c for c in checks if not c.get("ok")]
+                ok = not bad
+                detail = (f"columns {rule['value']} were populated." if ok
+                          else str(bad[0].get("detail", ""))[:200])
+
         elif kind == "no_console_errors":
             severe = [e for e in getattr(evidence, "console_errors", [])
                       if e.lower().startswith("[error]")]
@@ -405,6 +422,20 @@ def to_scenarios(rules: list[dict]) -> list[dict]:
                 ),
             })
 
+        elif kind == "column_not_empty":
+            scenarios.append({
+                "scenario_name": f"[rule] {rule['value']} is never blank",
+                "type": "positive",
+                "_generated": "rule", "_rule_id": rule["id"],
+                "steps": [
+                    {"action": "VERIFY_COLUMN_NOT_EMPTY",
+                     "selector": rule["selector"] or "table", "value": str(rule["value"])},
+                ],
+                "expected_result": (
+                    f"Every row shows data in {rule['value']}. ({rule['title']})"
+                ),
+            })
+
         elif kind == "must_show":
             scenarios.append({
                 "scenario_name": f"[rule] Shows {str(rule['value'])[:40]!r}",
@@ -464,6 +495,8 @@ Available kinds and their required fields:
 - export_complete     min_rows, selector? (a download must have at least N rows)
 - no_console_errors   (no fields)
 - row_persists        value        (the record must remain listed)
+- column_not_empty    selector?, value  (grid columns that must never be blank,
+                      comma-separated, e.g. "Date/Time, User" for an audit trail)
 
 Context — selectors seen in this module's recording:
 {fields}
@@ -482,7 +515,8 @@ Return ONLY a JSON array. One object per rule:
 Rules:
 - Prefer a selector that actually appears in the context above; if none fits, leave it empty.
 - Set generate_scenario to true when the rule can be proven by a short scenario
-  (field_rejects, field_accepts, export_complete, must_not_navigate), false otherwise.
+  (field_rejects, field_accepts, export_complete, must_not_navigate,
+  column_not_empty), false otherwise.
 - Never invent rules the tester did not write. One input rule -> one output object.
 """
 

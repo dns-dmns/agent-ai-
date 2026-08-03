@@ -154,6 +154,82 @@ async def vision_ai_locate_element(page, selector: str) -> tuple[int, int, float
         return None
 
 
+# Controls that every CRUD screen has, and the words applications actually use
+# for them. A recording made against one wording ("Save") must not fail on a
+# screen that says "Update"; a confirm dialog's reject button is "No" in one
+# framework and "Cancel" in the next. Ordered — the closest synonym wins.
+CONTROL_SYNONYMS: tuple[tuple[tuple[str, ...], tuple[str, ...]], ...] = (
+    (("save", "submit", "update", "create", "add", "confirm", "ok", "yes", "apply"),
+     ("Save", "Submit", "Update", "Create", "Add", "Confirm", "OK", "Yes", "Apply")),
+    (("no", "cancel", "close", "discard", "keep", "back", "reject"),
+     ("No", "Cancel", "Close", "Discard", "Keep", "Back")),
+    (("export", "download", "excel", "csv", "xlsx", "print"),
+     ("Export", "Download", "Excel", "CSV", "Export to Excel")),
+    (("search", "find", "filter", "go"),
+     ("Search", "Find", "Filter", "Go")),
+    (("delete", "remove", "trash"),
+     ("Delete", "Remove")),
+    (("edit", "modify", "change"),
+     ("Edit", "Modify", "Change")),
+)
+
+_TEXT_IN_SELECTOR = re.compile(r"""has[-_]text\(\s*['"](?P<label>[^'"]+)['"]\s*\)""",
+                               re.IGNORECASE)
+
+ICON_HINTS = {
+    "export": ("pi-file-excel", "pi-download", "pi-file-export", "fa-file-excel"),
+    "download": ("pi-download", "pi-cloud-download"),
+    "search": ("pi-search", "fa-search"),
+    "delete": ("pi-trash", "fa-trash"),
+    "edit": ("pi-pencil", "fa-pencil", "fa-edit"),
+    "close": ("pi-times", "fa-times", "fa-close"),
+    "history": ("pi-history", "pi-clock", "fa-history"),
+}
+
+
+def label_in_selector(selector: str) -> str:
+    """The visible label a text-based selector is looking for, if any."""
+    found = _TEXT_IN_SELECTOR.search(selector or "")
+    return found.group("label").strip() if found else ""
+
+
+def synonym_selectors(selector: str) -> list[str]:
+    """Alternative selectors for the same control, by label and by icon.
+
+    A recorded ``button:has-text("Save")`` is one wording of one control. When
+    the application renders it as "Update", or as an unlabelled icon button, the
+    step is not wrong — the selector is too literal. Rather than fail (or worse,
+    fall through to some other button), offer the same control's other spellings.
+    """
+    label = label_in_selector(selector)
+    if not label:
+        return []
+    needle = label.strip().lower()
+    alternatives: list[str] = []
+    for triggers, labels in CONTROL_SYNONYMS:
+        if not any(needle == t or needle.startswith(t + " ") or t == needle.rstrip("s")
+                   for t in triggers):
+            continue
+        for word in labels:
+            if word.lower() == needle:
+                continue
+            alternatives.append(selector.replace(label, word))
+        for trigger in triggers:
+            for icon in ICON_HINTS.get(trigger, ()):
+                alternatives.append(f"button:has(i.{icon})")
+                alternatives.append(f"a:has(i.{icon})")
+        alternatives.append(f"button[title*='{label}' i]")
+        alternatives.append(f"button[aria-label*='{label}' i]")
+        break
+    # De-duplicate, keep order.
+    seen, unique = set(), []
+    for alt in alternatives:
+        if alt not in seen:
+            seen.add(alt)
+            unique.append(alt)
+    return unique
+
+
 async def attempt_auto_healing(page, action: str, selector: str, value: str = "",
                                allow_vision: bool = True) -> bool:
     """PILLAR 5 + 2: clear blockers, retry candidate locators, then Vision AI."""
@@ -206,6 +282,7 @@ async def attempt_auto_healing(page, action: str, selector: str, value: str = ""
     else:
         candidates = [
             selector,
+            *synonym_selectors(selector),
             f"button:has-text('{clean_id}')",
             f"a:has-text('{clean_id}')",
             f"[aria-label='{clean_id}']",

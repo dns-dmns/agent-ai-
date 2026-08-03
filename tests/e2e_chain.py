@@ -256,6 +256,159 @@ SUITE = [
         ],
         "expected_result": "The Complete button stays disabled while the order is Pending.",
     },
+    {
+        "scenario_name": "Gated form completes itself when the recording missed a field",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "SELF-HEALING — Save is disabled until width and grade are set, and "
+                   "neither is in this scenario. The engine finds them and fills them.",
+        "steps": [
+            {"action": "TYPE", "selector": "#gName", "value": "SelfHeal {{run_token}}"},
+            {"action": "CLICK", "selector": "#gSaveBtn"},
+            {"action": "VERIFY_MESSAGE", "value": "saved successfully"},
+            {"action": "VERIFY_ROW_CONTAINS", "selector": "#gTable", "value": "SelfHeal"},
+        ],
+        "expected_result": "The item is saved successfully and appears in the table.",
+    },
+    {
+        "scenario_name": "Empty gated form is refused by the application",
+        "type": "negative",
+        "_expect": "PASS",
+        "_proves": "a disabled Save IS the validation — the engine must not auto-fill a "
+                   "field the scenario is testing, and must not call this a failure",
+        "steps": [
+            {"action": "CLICK", "selector": "#gSaveBtn"},
+        ],
+        "expected_result": "A validation error prevents the item from being created when "
+                           "the Item name is empty.",
+    },
+    {
+        "scenario_name": "Dialog fields win over identical ones behind the dialog",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "THE BACKGROUND-FIELD BUG — 'Days' and a bare p-dropdown exist both "
+                   "in the dialog and on the page behind it, background copies first in "
+                   "the DOM. Selectors must resolve inside the open dialog.",
+        "steps": [
+            {"action": "CLICK", "selector": "#openDecoyBtn"},
+            {"action": "TYPE", "selector": "#dlgName", "value": "Scoped {{run_token}}"},
+            {"action": "TYPE", "selector": 'input[placeholder="Days"]', "value": "7"},
+            {"action": "SELECT", "selector": "p-dropdown > div select", "value": "Night"},
+            {"action": "CLICK", "selector": "#dlgSaveBtn"},
+            {"action": "VERIFY_MESSAGE", "value": "saved successfully"},
+            {"action": "VERIFY_ROW_CONTAINS", "selector": "#decoyTable", "value": "Scoped"},
+            {"action": "VERIFY_ROW_CONTAINS", "selector": "#decoyTable", "value": "Night"},
+        ],
+        "expected_result": "The record is saved successfully with the values typed into the "
+                           "dialog, and the background copy of the field is left untouched.",
+    },
+    {
+        "scenario_name": "Audit history records who changed what and when",
+        "type": "positive",
+        "_expect": "FAIL",
+        "_proves": "THE AUDIT BUG — every row is present and every step succeeds, but "
+                   "DATE/TIME and USER are blank, so the history proves nothing. A "
+                   "conventional suite reports this as a pass.",
+        "steps": [
+            {"action": "CLICK", "selector": "#openAuditBtn"},
+            {"action": "VERIFY_COLUMN_NOT_EMPTY", "selector": "#auditTable",
+             "value": "Date/Time, User"},
+        ],
+        "expected_result": "The audit history shows the date, the user and the field "
+                           "changed for every entry.",
+    },
+    {
+        "scenario_name": "Audit history does not record changes that never happened",
+        "type": "positive",
+        "_expect": "FAIL",
+        "_proves": "no-op audit rows (2344.0000 -> 2344, and — -> —) are noise that "
+                   "hides the real changes",
+        "steps": [
+            {"action": "CLICK", "selector": "#openAuditBtn"},
+            {"action": "VERIFY_NO_NOOP_ROWS", "selector": "#auditTable",
+             "value": "Old Value, New Value"},
+        ],
+        "expected_result": "Every audit entry records a genuine change.",
+    },
+    # ── The five literal-selector traps (section 7) ──────────────────
+    # Each of these was a FAIL on a live suite where the *application* was
+    # correct and only the recorded selector was too literal. They must pass
+    # now without anyone editing the test case.
+    {
+        "scenario_name": "Create a machine although the dialog and its Save button differ",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "THE LITERAL-SELECTOR TRAPS — a closed p-dialog sits first in the "
+                   "DOM and the submit button says 'Update', not 'Save'. The engine "
+                   "must find the visible dialog and the synonymous button.",
+        "steps": [
+            {"action": "CLICK", "selector": "#openQuirkBtn"},
+            {"action": "VERIFY_VISIBLE", "selector": "p-dialog"},
+            {"action": "TYPE", "selector": "#qName", "value": "Trap-Beater"},
+            {"action": "TYPE", "selector": "#qWidth", "value": "72"},
+            {"action": "CLICK", "selector": 'button:has-text("Save")'},
+            {"action": "VERIFY_ROW_CONTAINS", "selector": "#quirkTable", "value": "Trap-Beater"},
+        ],
+        "expected_result": "The machine is created successfully and appears in the table.",
+    },
+    {
+        "scenario_name": "Machine Width rejects letters",
+        "type": "negative",
+        "_expect": "PASS",
+        "_proves": "INPUT-LAYER VALIDATION — the field silently drops letters, so no "
+                   "error message ever appears. The old engine called this 'the "
+                   "invalid input appears to have been accepted'.",
+        "steps": [
+            {"action": "CLICK", "selector": "#openQuirkBtn"},
+            {"action": "TYPE", "selector": "#qName", "value": "Width-Check"},
+            {"action": "TYPE", "selector": "#qWidth", "value": "abcd"},
+        ],
+        "expected_result": "The application should reject the non-numeric width.",
+    },
+    {
+        "scenario_name": "Export the machine list",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "an Export button with no text at all is still found, by its icon "
+                   "and title",
+        "steps": [
+            {"action": "CLICK", "selector": 'button:has-text("Export")'},
+            {"action": "VERIFY_DOWNLOAD", "selector": "", "value": ".csv"},
+        ],
+        "expected_result": "The machine list is exported as a file.",
+    },
+    {
+        "scenario_name": "Cancelling the delete confirmation keeps the record",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "the confirm dialog's reject button is 'Cancel', not the recorded "
+                   "'No' — and the synonym must never resolve to 'Yes'",
+        # Creates its own record first: a scenario must never assert on data some
+        # other scenario happened to leave behind.
+        "steps": [
+            {"action": "CLICK", "selector": "#openQuirkBtn"},
+            {"action": "TYPE", "selector": "#qName", "value": "Keep-Me"},
+            {"action": "TYPE", "selector": "#qWidth", "value": "48"},
+            {"action": "CLICK", "selector": 'button:has-text("Save")'},
+            {"action": "CLICK", "selector": "#quirkDeleteBtn"},
+            {"action": "CLICK", "selector": 'p-confirmdialog button:has-text("No")'},
+            {"action": "VERIFY_ROW_CONTAINS", "selector": "#quirkTable", "value": "Keep-Me"},
+        ],
+        "expected_result": "The machine is still listed because the deletion was cancelled.",
+    },
+    {
+        "scenario_name": "An empty grid says so, whatever wording it uses",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "'No data available' satisfies an assertion written as 'No records "
+                   "found' — a framework difference is not an application defect",
+        "steps": [
+            {"action": "CLICK", "selector": "#quirkDeleteBtn"},
+            {"action": "CLICK", "selector": 'p-confirmdialog button:has-text("Yes")'},
+            {"action": "VERIFY_TEXT", "selector": "#quirkSection", "value": "No records found"},
+        ],
+        "expected_result": "The grid reports that there are no records to show.",
+    },
 ]
 
 

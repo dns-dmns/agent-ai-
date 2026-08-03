@@ -84,6 +84,161 @@
         <button id="completeBtn" onclick="complete()" disabled>Complete</button>
     </section>
 
+
+    <!-- ── M4: a form that gates submission, like a real ERP dialog ── -->
+    <section id="gatedSection">
+        <h2>4. Gated form (Save disabled until valid)</h2>
+        <label for="gName">Item name *</label>
+        <input id="gName" type="text" placeholder="Enter name" required>
+        <label for="gWidth">Width (inch) *</label>
+        <input id="gWidth" type="number" min="1" max="500" placeholder="Enter width" required>
+        <label for="gGrade">Grade *</label>
+        <select id="gGrade" required>
+            <option value="">-- select --</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+        </select>
+        <label for="gNote">Note (optional)</label>
+        <input id="gNote" type="text" placeholder="Optional note">
+        <div style="margin-top:12px">
+            <button id="gSaveBtn" onclick="saveGated()" disabled>Save item</button>
+        </div>
+        <div id="gMsg"></div>
+        <table id="gTable">
+            <thead><tr><th>Name</th><th>Width</th><th>Grade</th></tr></thead>
+            <tbody id="gBody"></tbody>
+        </table>
+    </section>
+
+
+    <!-- ── M5: a dialog whose fields are duplicated on the page behind it ──
+         This is the trap that made a real replay type into the background:
+         identical placeholders and a bare p-dropdown exist both here and in
+         the dialog, and the background copies come FIRST in the DOM. -->
+    <section id="decoySection">
+        <h2>5. Decoy fields (background copies, deliberately first in the DOM)</h2>
+        <label for="bgDays">Days (background copy)</label>
+        <input id="bgDays" type="text" placeholder="Days">
+        <label>Rows per page (background dropdown)</label>
+        <p-dropdown><div><select id="bgPageSize">
+            <option value="10">10</option><option value="25">25</option>
+        </select></div></p-dropdown>
+        <div style="margin-top:12px">
+            <button id="openDecoyBtn" onclick="openDecoy()">Add record</button>
+        </div>
+        <div id="decoyMsg"></div>
+        <table id="decoyTable">
+            <thead><tr><th>Name</th><th>Days</th><th>Shift</th></tr></thead>
+            <tbody id="decoyBody"></tbody>
+        </table>
+    </section>
+
+    <div id="decoyDialog" role="dialog" style="display:none; position:fixed; inset:12% 20% auto;
+         background:#fff; border:1px solid #bbb; border-radius:10px; padding:20px;
+         box-shadow:0 18px 50px rgba(0,0,0,.3); z-index:9000">
+        <h3 style="margin:0 0 10px">Add record</h3>
+        <label for="dlgName">Name *</label>
+        <input id="dlgName" type="text" placeholder="Enter name">
+        <label>Days *</label>
+        <input type="text" placeholder="Days">
+        <label>Shift *</label>
+        <p-dropdown><div><select id="dlgShift">
+            <option value="">-- select --</option>
+            <option value="Day">Day</option><option value="Night">Night</option>
+        </select></div></p-dropdown>
+        <div style="margin-top:14px">
+            <button id="dlgSaveBtn" onclick="saveDecoy()">Save</button>
+            <button onclick="closeDecoy()">Cancel</button>
+        </div>
+        <div id="dlgMsg"></div>
+    </div>
+
+
+    <!-- ── M6: an Audit History dialog carrying two real defects ──────
+         Reproduced from a live ERP: every row is present and every step
+         "succeeds", but DATE/TIME and USER are blank, and some rows record a
+         change that never happened (2344.0000 -> 2344). A conventional suite
+         sees nothing wrong. -->
+    <section id="auditSection">
+        <h2>6. Audit history</h2>
+        <button id="openAuditBtn" onclick="openAudit()">Audit History</button>
+    </section>
+
+    <div id="auditDialog" role="dialog" style="display:none; position:fixed; inset:8% 12% auto;
+         background:#fff; border:1px solid #bbb; border-radius:10px; padding:18px;
+         box-shadow:0 18px 50px rgba(0,0,0,.3); z-index:9100">
+        <h3 style="margin:0 0 12px">Audit History</h3>
+        <table id="auditTable">
+            <thead><tr>
+                <th>Date/Time</th><th>User</th><th>Field</th>
+                <th>Old Value</th><th>New Value</th>
+            </tr></thead>
+            <tbody id="auditBody"></tbody>
+        </table>
+        <div style="margin-top:12px">
+            <button onclick="document.getElementById('auditDialog').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <!-- ── M7: the five ways a real screen defeats a literal selector ───
+         Every one of these was a FAIL on a live ERP suite where the application
+         was behaving correctly and only the selector was too literal:
+           1. a closed dialog left in the DOM *before* the open one
+           2. the submit button is labelled "Update", not "Save"
+           3. the confirm dialog's reject button is "Cancel", not "No"
+           4. Export is an icon with no text
+           5. the empty grid says "No data available", not "No records found"
+         Plus a numeric field that silently drops letters — the application
+         validating at the input layer, which used to be reported as
+         "the invalid input appears to have been accepted". -->
+    <section id="quirkSection">
+        <h2>7. Literal-selector traps</h2>
+        <button id="openQuirkBtn" onclick="openQuirk()">Add Machine</button>
+        <button id="quirkExportBtn" title="Export to Excel"
+                onclick="quirkExport()"><i class="pi pi-file-excel"></i></button>
+        <button id="quirkDeleteBtn" onclick="askQuirkDelete()">Delete</button>
+        <div id="quirkMsg"></div>
+        <table id="quirkTable">
+            <thead><tr><th>Machine Name</th><th>Width</th></tr></thead>
+            <tbody id="quirkBody"></tbody>
+        </table>
+        <div id="quirkEmpty" style="display:none">No data available</div>
+    </section>
+
+    <!-- Trap 1: this dialog is closed, but it comes first in the DOM, so
+         `p-dialog` and `.p-dialog` resolve to it. -->
+    <p-dialog id="quirkStaleDialog" class="p-dialog" role="dialog" style="display:none">
+        <h3>Stale dialog nobody can see</h3>
+        <input id="staleName" placeholder="Machine Name">
+        <button>Save</button>
+    </p-dialog>
+
+    <p-dialog id="quirkDialog" class="p-dialog" role="dialog"
+              style="display:none; position:fixed; inset:10% 18% auto; background:#fff;
+                     border:1px solid #bbb; border-radius:10px; padding:18px;
+                     box-shadow:0 18px 50px rgba(0,0,0,.3); z-index:9200">
+        <h3 style="margin:0 0 12px">Add Machine</h3>
+        <label for="qName">Machine Name *</label>
+        <input id="qName">
+        <!-- Trap: a numeric field that refuses anything but digits. -->
+        <label for="qWidth">Machine Width (inch) *</label>
+        <input id="qWidth" oninput="this.value = this.value.replace(/[^0-9.]/g, '')">
+        <div style="margin-top:12px">
+            <!-- Trap 2: "Update", not "Save". -->
+            <button id="qUpdateBtn" onclick="saveQuirk()">Update</button>
+            <button onclick="document.getElementById('quirkDialog').style.display='none'">Close</button>
+        </div>
+    </p-dialog>
+
+    <!-- Trap 3: reject is "Cancel", and the confirm dialog is a p-confirmdialog. -->
+    <p-confirmdialog id="quirkConfirm" role="dialog"
+                     style="display:none; position:fixed; inset:30% 30% auto; background:#fff;
+                            border:1px solid #bbb; padding:18px; z-index:9300">
+        <p>Delete this machine?</p>
+        <button onclick="doQuirkDelete()">Yes</button>
+        <button onclick="document.getElementById('quirkConfirm').style.display='none'">Cancel</button>
+    </p-confirmdialog>
+
     <script>
         // Stored in localStorage, which Playwright captures in storage_state — so a
         // record created during seeding is visible to later scenarios, the way
@@ -245,6 +400,148 @@
                  <td>${o.status}</td></tr>`).join('');
         }
 
+
+        // ── Gated form: Save is enabled only when the form is valid ──
+        function gatedValid() {
+            return document.getElementById('gName').value.trim() !== '' &&
+                   document.getElementById('gWidth').value.trim() !== '' &&
+                   document.getElementById('gGrade').value !== '';
+        }
+
+        function refreshGate() {
+            document.getElementById('gSaveBtn').disabled = !gatedValid();
+        }
+
+        ['gName', 'gWidth', 'gGrade'].forEach(function (id) {
+            var el = document.getElementById(id);
+            el.addEventListener('input', refreshGate);
+            el.addEventListener('change', refreshGate);
+        });
+
+        function saveGated() {
+            if (!gatedValid()) return;
+            var items = store.get('items', []);
+            items.push({
+                name: document.getElementById('gName').value.trim(),
+                width: document.getElementById('gWidth').value,
+                grade: document.getElementById('gGrade').value,
+            });
+            store.set('items', items);
+            show('gMsg', 'Item ' + items[items.length - 1].name + ' saved successfully', true);
+            renderGated();
+        }
+
+        function renderGated() {
+            document.getElementById('gBody').innerHTML = store.get('items', []).map(function (i) {
+                return '<tr><td>' + i.name + '</td><td>' + i.width + '</td><td>' + i.grade + '</td></tr>';
+            }).join('');
+        }
+
+
+        // ── Decoy dialog ─────────────────────────────────────────────
+        function openDecoy() {
+            document.getElementById('decoyDialog').style.display = 'block';
+            document.getElementById('dlgMsg').innerHTML = '';
+        }
+        function closeDecoy() {
+            document.getElementById('decoyDialog').style.display = 'none';
+        }
+        function saveDecoy() {
+            var dlg = document.getElementById('decoyDialog');
+            var name = document.getElementById('dlgName').value.trim();
+            var days = dlg.querySelector('input[placeholder="Days"]').value.trim();
+            var shift = document.getElementById('dlgShift').value;
+            if (!name) return show('dlgMsg', 'Name is required', false);
+            if (!days) return show('dlgMsg', 'Days is required', false);
+            if (!shift) return show('dlgMsg', 'Shift is required', false);
+            var rows = store.get('decoys', []);
+            rows.push({ name: name, days: days, shift: shift });
+            store.set('decoys', rows);
+            show('dlgMsg', 'Record ' + name + ' saved successfully', true);
+            renderDecoys();
+        }
+        function renderDecoys() {
+            document.getElementById('decoyBody').innerHTML =
+                store.get('decoys', []).map(function (r) {
+                    return '<tr><td>' + r.name + '</td><td>' + r.days +
+                           '</td><td>' + r.shift + '</td></tr>';
+                }).join('');
+        }
+
+
+        // ── Audit history, faithfully reproducing the two defects ────
+        var AUDIT_ROWS = [
+            { when: '', who: '', field: 'Status',                 old: 'Active',     nu: 'Inactive' },
+            { when: '', who: '', field: 'Sizechangethreadingdays', old: '2344.0000', nu: '2344' },
+            { when: '', who: '', field: 'Sizechangeoverdays',      old: '43434.0000', nu: '43434' },
+            { when: '', who: '', field: 'Machinetype',             old: '—',          nu: '—' },
+            { when: '', who: '', field: 'Plantlocation',           old: '423',        nu: 'Plant-B' }
+        ];
+
+        function openAudit() {
+            document.getElementById('auditBody').innerHTML = AUDIT_ROWS.map(function (r) {
+                return '<tr><td>' + r.when + '</td><td>' + r.who + '</td><td>' +
+                       r.field + '</td><td>' + r.old + '</td><td>' + r.nu + '</td></tr>';
+            }).join('');
+            document.getElementById('auditDialog').style.display = 'block';
+        }
+
+        // ── M7: literal-selector traps ────────────────────────────────
+        function openQuirk() {
+            document.getElementById('qName').value = '';
+            document.getElementById('qWidth').value = '';
+            document.getElementById('quirkDialog').style.display = 'block';
+        }
+
+        function saveQuirk() {
+            var name = document.getElementById('qName').value.trim();
+            var width = document.getElementById('qWidth').value.trim();
+            if (!name || !width) {
+                show('quirkMsg', 'Machine Name and Width are required', false);
+                return;
+            }
+            var rows = store.get('quirks', []);
+            rows.push({ name: name, width: width });
+            store.set('quirks', rows);
+            document.getElementById('quirkDialog').style.display = 'none';
+            show('quirkMsg', 'Machine ' + name + ' added successfully', true);
+            renderQuirks();
+        }
+
+        function quirkExport() {
+            var blob = new Blob(['Machine Name,Width\n' +
+                store.get('quirks', []).map(function (r) {
+                    return r.name + ',' + r.width;
+                }).join('\n')], { type: 'text/csv' });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'machines.csv';
+            a.click();
+        }
+
+        function askQuirkDelete() {
+            document.getElementById('quirkConfirm').style.display = 'block';
+        }
+
+        function doQuirkDelete() {
+            store.set('quirks', []);
+            document.getElementById('quirkConfirm').style.display = 'none';
+            show('quirkMsg', 'Machine deleted', true);
+            renderQuirks();
+        }
+
+        function renderQuirks() {
+            var rows = store.get('quirks', []);
+            document.getElementById('quirkBody').innerHTML = rows.map(function (r) {
+                return '<tr><td>' + r.name + '</td><td>' + r.width + '</td></tr>';
+            }).join('');
+            document.getElementById('quirkEmpty').style.display = rows.length ? 'none' : 'block';
+        }
+
+        renderQuirks();
+        renderDecoys();
+        refreshGate();
+        renderGated();
         render();
     </script>
 </body>

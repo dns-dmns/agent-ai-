@@ -36,6 +36,7 @@ from . import api_seed
 from . import config
 from . import contracts
 from . import heuristics
+from . import learned
 from . import rules as rules_engine
 from . import verdict as verdict_engine
 
@@ -61,6 +62,8 @@ ASSERTION_ACTIONS = {
     "VERIFY_MESSAGE",
     # Dependency-chain and API assertions
     "VERIFY_OPTION_PRESENT", "VERIFY_OPTION_ABSENT", "VERIFY_API",
+    # Data-quality assertions for grids and audit dialogs
+    "VERIFY_COLUMN_NOT_EMPTY", "VERIFY_NO_NOOP_ROWS",
 }
 
 # Options inside custom dropdown widgets (PrimeNG, Material, Ant, headless UI).
@@ -198,6 +201,7 @@ class RunConfig:
     env_name: str = ""
     api_seed: str = ""                     # seed template name to pre-run
     seed_once: bool = True                 # honour contract run_once seeding
+    auto_complete: bool = True             # let the engine fill required fields it finds
     relationship_checks: bool = False      # append generated dependency scenarios
     apply_rules: bool = True               # enforce project/flow rules in verdicts
     triggered_by: str = "dashboard"
@@ -494,6 +498,12 @@ def candidate_selectors(step: dict, action: str) -> list[str]:
                 f'button[name="{clean_id}"]',
             ]
 
+    # A label the application spells differently ("Update" for "Save", "Cancel"
+    # for "No", an icon button for "Export") is the same control, so offer its
+    # other spellings before the step is allowed to fail.
+    if action in ("CLICK", "DOUBLE_CLICK"):
+        candidates += heuristics.synonym_selectors(selector)
+
     if action == "CLICK" and looks_like_dismiss(selector):
         candidates += [
                 'button:has-text("Cancel")', 'button:has-text("Close")',
@@ -524,6 +534,18 @@ def humanize_error(error: Exception | str, action: str = "", selector: str = "")
     raw = str(error)
     low = raw.lower()
     target = f" '{selector}'" if selector else ""
+
+    # An assertion has already produced a precise, human-written explanation
+    # ("Row 'Dinesh' was not found in the table"). This must be checked FIRST:
+    # the generic rules below would otherwise rewrite it into "the element was
+    # not found… the field name changed", which sends the reader hunting for a
+    # selector problem that does not exist.
+    if "validation failed:" in low:
+        return raw.split("Validation failed:", 1)[-1].strip() or raw
+
+    # Our own diagnostics are already phrased for a tester — do not rewrite them.
+    if "the control is disabled" in low or "no element on the page matches" in low:
+        return raw.strip()[:400]
 
     if "timeout" in low and "waiting for" in low:
         return (
@@ -606,6 +628,93 @@ def make_dep_value_unique(selector: str, value: str, token: str) -> str:
 # ──────────────────────────────────────────────────────────────────────
 # Evidence collection
 # ──────────────────────────────────────────────────────────────────────
+EMPTY_STATE_PHRASES = (
+    "no records found", "no record found", "no records", "no data found",
+    "no data available", "no data", "no results found", "no results",
+    "no matching records", "no matching", "nothing to show", "nothing found",
+    "no rows", "no entries", "empty", "0 records",
+)
+
+
+def looks_like_empty_state(text: str) -> bool:
+    lowered = (text or "").strip().lower()
+    return bool(lowered) and any(p in lowered for p in EMPTY_STATE_PHRASES)
+
+
+def find_empty_state(text: str) -> str:
+    """The empty-grid wording this application actually uses, if it is showing one."""
+    lowered = (text or "").lower()
+    for phrase in EMPTY_STATE_PHRASES:
+        index = lowered.find(phrase)
+        if index >= 0:
+            return text[index:index + len(phrase)]
+    return ""
+
+
+def _same_input(typed: str, actual: str) -> bool:
+    """Did the field keep what was typed? Trimming and formatting don't count."""
+    left = (typed or "").strip()
+    right = (actual or "").strip()
+    if left == right:
+        return True
+    # Numeric widgets reformat legitimately: 2344 -> 2,344.00 is still 2344.
+    strip_format = lambda s: re.sub(r"[,\s]", "", s).rstrip("0").rstrip(".")
+    if strip_format(left) and strip_format(left) == strip_format(right):
+        return True
+    return False
+
+
+async def note_input_rejection(page, loc, step: dict, typed: str, evidence) -> None:
+    """Record when a widget refuses the value instead of storing it.
+
+    A numeric field that silently drops letters, or a maxlength that truncates,
+    *is* the application enforcing its rule — at the input layer rather than on
+    submit. Without this the run reached the end with a clean form and reported
+    "the invalid input appears to have been accepted", which is the opposite of
+    what happened. The verdict engine reads this to resolve such expectations.
+    """
+    if not typed or not str(typed).strip():
+        return
+    try:
+        actual = await loc.input_value(timeout=1500)
+    except Exception:
+        try:
+            actual = await loc.evaluate("el => el.value ?? el.textContent ?? ''")
+        except Exception:
+            return
+    if _same_input(str(typed), str(actual)):
+        return
+    field_name = (step.get("selector") or "").strip()
+    if str(actual).strip() == "":
+        how = "refused the value outright — the field is still empty"
+    elif str(typed).startswith(str(actual)) or str(actual) in str(typed):
+        how = f"kept only {str(actual)[:60]!r}"
+    else:
+        how = f"changed it to {str(actual)[:60]!r}"
+    evidence.input_rejected.append(
+        {"selector": field_name, "typed": str(typed)[:120], "kept": str(actual)[:120],
+         "detail": f"{field_name or 'the field'} {how}"}
+    )
+    evidence.notes.append(
+        f"Input filtered at the keyboard layer: {field_name or 'field'} was given "
+        f"{str(typed)[:40]!r} and {how}."
+    )
+
+
+def note_created_record(pool: dict, messages: list[dict]) -> None:
+    """After a success message, the value typed first becomes the created record.
+
+    Later assertions should verify that record rather than a literal copied from
+    the original recording, which this run never created.
+    """
+    if pool.get("created_record"):
+        return
+    if any(m.get("kind") == "success" for m in messages):
+        identity = pool.get("first_typed_value") or pool.get("last_typed_value")
+        if identity:
+            pool["created_record"] = identity
+
+
 async def scan_messages(page, evidence: verdict_engine.Evidence) -> list[str]:
     """Harvest visible inline/toast messages before they fade away."""
     fresh: list[str] = []
@@ -800,24 +909,79 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
                 pass
 
     async def first_usable(cands: list[str], *, require_visible: bool = True):
-        """First candidate that resolves. Only the primary selector gets a wait,
-        so a genuinely missing element fails in seconds instead of minutes."""
-        for position, cand in enumerate(cands):
+        """First candidate that resolves — inside the open dialog when there is one.
+
+        Without the scoping step this used ``.first()`` on the whole page, which
+        takes whatever appears first in the DOM. With a dialog open that is
+        usually an element *behind* it: a value meant for the dialog's "Days"
+        field went into a look-alike on the page underneath, and a Status
+        dropdown selector matched the pagination dropdown in the footer.
+        """
+        surface = await mark_active_surface(page)
+
+        async def attempt(sel: str, *, wait: bool):
+            """Resolve a selector to a *usable* element, not merely the first one.
+
+            ``.first`` alone made a whole class of runs fail on applications that
+            keep closed dialogs in the DOM: `p-dialog` matched the hidden one that
+            was rendered first, and the step was reported as "exists but is not
+            visible" while the dialog the user could actually see sat two nodes
+            later. So scan the matches and take the first that is visible.
+            """
+            root = page.locator(sel)
+            if wait and require_visible:
+                try:
+                    await root.first.wait_for(state="visible", timeout=4000)
+                    return root.first
+                except Exception:
+                    pass                      # fall through to the match scan
             try:
-                loc = page.locator(cand).first
-                if position == 0 and require_visible:
-                    try:
-                        await loc.wait_for(state="visible", timeout=4000)
-                        return loc, cand
-                    except Exception:
-                        pass
-                if await loc.count() == 0:
-                    continue
-                if require_visible and not await loc.is_visible():
-                    continue
-                return loc, cand
+                total = await root.count()
             except Exception:
+                return None
+            if total == 0:
+                return None
+            if not require_visible:
+                return root.first
+            for index in range(min(total, 12)):
+                candidate_loc = root.nth(index)
+                try:
+                    if await candidate_loc.is_visible():
+                        return candidate_loc
+                except Exception:
+                    continue
+            return None
+
+        async def resolve(sel: str, *, wait: bool):
+            try:
+                loc = await attempt(sel, wait=wait)
+                if loc is None and wait:
+                    loc = await attempt(sel, wait=False)
+                return loc
+            except Exception:
+                return None
+
+        # Two passes, and the order matters. Every candidate is tried inside the
+        # open dialog before *any* of them is tried on the page: a recorded
+        # `button:has-text("Save")` would otherwise match a Save button on the
+        # page behind the dialog, in preference to the dialog's own button that
+        # happens to be labelled "Update". Whatever the dialog offers is what the
+        # user is looking at, so it wins outright.
+        if surface:
+            for position, cand in enumerate(cands):
+                scoped = scope_to_surface(cand)
+                if not scoped:
+                    continue
+                loc = await resolve(scoped, wait=position == 0)
+                if loc is not None:
+                    return loc, scoped
+
+        for position, cand in enumerate(cands):
+            if not cand:
                 continue
+            loc = await resolve(cand, wait=position == 0 and not surface)
+            if loc is not None:
+                return loc, cand
         return None, ""
 
     # ── Navigation ────────────────────────────────────────────────────
@@ -867,6 +1031,9 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     if action == "TYPE":
         if value.strip():
             ctx["runtime_pool"]["last_typed_value"] = value.strip()
+            # The first value typed into a form is almost always the record's
+            # name/code — the identity any later assertion should verify.
+            ctx["runtime_pool"].setdefault("first_typed_value", value.strip())
         cands = candidate_selectors(step, "TYPE")
         for attempt in range(3):
             loc, used = await first_usable(cands)
@@ -875,6 +1042,7 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
                     await highlight(loc)
                     await loc.fill(value, timeout=5000 if headless else 8000)
                     result["selector_used"] = used
+                    await note_input_rejection(page, loc, step, value, evidence)
                     return result
                 except Exception as err:
                     last = err
@@ -933,7 +1101,55 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
             result["healed"] = True
             await emit_log(f"🛠️ [Auto-Heal] Recovered click on '{selector}'")
             return result
-        raise Exception(f"CLICK failed on '{selector}'")
+        # ── Self-healing: an application that gates submission ────────
+        # Rather than reporting "CLICK failed on Save" and waiting for a human to
+        # re-record, work out why the control is disabled and fix what can be
+        # fixed safely: fill the required fields this scenario does not own, then
+        # try once more.
+        if ctx.get("auto_complete", True) and looks_like_submit(step, selector) \
+                and not ctx.get("_autocompleted"):
+            gated = await is_disabled_now(page, selector)
+            if gated:
+                ctx["_autocompleted"] = True          # only ever attempt this once
+                learned.remember_submit_gating(
+                    ctx["project_name"], ctx["flow_name"], "disabled")
+                outcome = await autocomplete_form(page, step, ctx["scenario"], ctx, selector)
+                evidence.auto_filled.extend(outcome["filled"])
+
+                if outcome["filled"] and not await is_disabled_now(page, selector):
+                    loc, used = await first_usable(candidate_selectors(step, "CLICK"))
+                    if loc:
+                        await highlight(loc)
+                        await loc.click(timeout=6000)
+                        result["selector_used"] = used
+                        result["healed"] = True
+                        result["auto_filled"] = outcome["filled"]
+                        if used and used != selector:
+                            learned.remember_healed(ctx["project_name"], ctx["flow_name"],
+                                                     selector, used)
+                        evidence.healed_steps += 1
+                        await emit_log(
+                            f"   ✅ recovered: filled {len(outcome['filled'])} required field(s) "
+                            f"the recording had missed, then clicked '{selector}'"
+                        )
+                        return result
+
+                if outcome["blocked"]:
+                    # The scenario deliberately left a mandatory field empty and the
+                    # application refused to submit. That refusal IS the validation.
+                    evidence.submission_blocked = {
+                        "control": selector,
+                        "empty_required": outcome["blocked"],
+                    }
+                    await emit_log(
+                        f"   🚧 '{selector}' stayed disabled because "
+                        f"{', '.join(str(b) for b in outcome['blocked'])} "
+                        f"{'is' if len(outcome['blocked']) == 1 else 'are'} empty — "
+                        f"the application blocked the invalid submission."
+                    )
+                    return result
+
+        raise Exception(await explain_click_failure(page, step, selector))
 
     if action in ("SELECT", "SELECT_OPTION", "CHOOSE"):
         cands = candidate_selectors(step, "SELECT")
@@ -1191,6 +1407,7 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     if action in ASSERTION_ACTIONS:
         await wait_for_settle(page, 4000)
         await scan_messages(page, evidence)
+        note_created_record(ctx["runtime_pool"], evidence.messages)
         ok, detail = await run_assertion(page, action, step, selector, value, ctx)
         evidence.assertions.append(
             {"action": action, "selector": selector, "value": value, "ok": ok, "detail": detail}
@@ -1205,6 +1422,536 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     result["skipped"] = f"unsupported action '{action}'"
     await emit_log(f"⚠️ Step skipped: unsupported action '{action}'")
     return result
+
+
+FORM_INVENTORY_JS = """(selector) => {
+    // Everything the form actually contains — not just what a recording touched.
+    // This is how the platform learns about a required field nobody recorded.
+    let target = null;
+    try { target = document.querySelector(selector); } catch (e) { target = null; }
+
+    // Which form are we looking at? The container holding the control we tried to
+    // click, if it has one. Otherwise the first *visible* form-like container —
+    // applications routinely leave closed dialogs in the DOM ahead of the real
+    // content, and taking the first match blindly made this inventory describe a
+    // dialog nobody could see, so no required field was ever found.
+    const onScreen = (el) => {
+        if (!el) return false;
+        const style = getComputedStyle(el);
+        if (style.display === 'none' || style.visibility === 'hidden') return false;
+        const rect = el.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+    };
+    const CONTAINERS = 'p-dialog, .p-dialog, form, .modal, dialog';
+    let scope = null;
+    if (target) {
+        const owner = target.closest(CONTAINERS);
+        if (onScreen(owner)) scope = owner;
+    }
+    if (!scope) {
+        const marked = document.querySelector('[data-qa-surface]');
+        if (onScreen(marked)) scope = marked;
+    }
+    if (!scope) {
+        for (const el of document.querySelectorAll(CONTAINERS)) {
+            if (onScreen(el)) { scope = el; break; }
+        }
+    }
+    if (!scope) scope = document.body;
+
+    const cssEscape = (v) => (window.CSS && CSS.escape) ? CSS.escape(v) : v;
+
+    const labelFor = (el) => {
+        try {
+            if (el.id) {
+                const l = document.querySelector('label[for="' + cssEscape(el.id) + '"]');
+                if (l && l.innerText.trim()) return l.innerText.trim();
+            }
+            const w = el.closest('.field, .form-group, .p-field, .form-row, .mb-3, .col, .grid');
+            const l2 = w && w.querySelector('label');
+            if (l2 && l2.innerText.trim()) return l2.innerText.trim();
+        } catch (e) {}
+        return el.getAttribute('placeholder') || el.getAttribute('formcontrolname') || '';
+    };
+
+    const stableSelector = (el) => {
+        for (const attr of ['data-testid', 'data-test', 'data-cy']) {
+            const v = el.getAttribute(attr);
+            if (v) return '[' + attr + '="' + v + '"]';
+        }
+        if (el.id && !/^(pn_id_|p-|mat-|cdk-|ng-)/i.test(el.id)) return '#' + cssEscape(el.id);
+        const fcn = el.getAttribute('formcontrolname');
+        if (fcn) return el.tagName.toLowerCase() + '[formcontrolname="' + fcn + '"]';
+        if (el.name) return el.tagName.toLowerCase() + '[name="' + el.name + '"]';
+        const ph = el.getAttribute('placeholder');
+        if (ph) return el.tagName.toLowerCase() + '[placeholder="' + ph + '"]';
+        return '';
+    };
+
+    const out = [];
+    const seen = new Set();
+
+    // 1. Native controls.
+    scope.querySelectorAll('input, textarea, select').forEach((el) => {
+        if (el.type === 'hidden') return;
+        if (!onScreen(el)) return;          // a closed dialog's fields are not fillable
+        const sel = stableSelector(el);
+        if (!sel || seen.has(sel)) return;
+        seen.add(sel);
+        const label = labelFor(el);
+        const entry = {
+            selector: sel,
+            label: label,
+            kind: el.tagName.toLowerCase() === 'select' ? 'select'
+                  : (el.getAttribute('type') || 'text').toLowerCase(),
+            required: !!el.required || el.getAttribute('aria-required') === 'true' ||
+                      /\\*\\s*$/.test(label),
+            value: (el.value == null ? '' : String(el.value)).trim(),
+            disabled: !!el.disabled || el.hasAttribute('readonly'),
+        };
+        if (el.getAttribute('min') != null) entry.min = el.getAttribute('min');
+        if (el.getAttribute('max') != null) entry.max = el.getAttribute('max');
+        if (el.getAttribute('maxlength') != null) entry.maxlength = el.getAttribute('maxlength');
+        if (entry.kind === 'select') {
+            // Skip the placeholder ("-- select --"): choosing it leaves the form
+            // invalid, which is exactly the state we are trying to escape.
+            entry.options = [...el.options]
+                .filter(o => String(o.value || '').trim() !== '')
+                .map(o => (o.innerText || o.value || '').trim())
+                .filter(Boolean);
+        }
+        out.push(entry);
+    });
+
+    // 2. Component wrappers, whose own element carries the validity state.
+    scope.querySelectorAll('p-dropdown, p-inputnumber, p-calendar, p-multiselect,' +
+                           ' p-autocomplete, mat-select, nz-select').forEach((el) => {
+        const sel = stableSelector(el);
+        if (!sel || seen.has(sel)) return;
+        seen.add(sel);
+        const cls = String(el.className || '');
+        const label = labelFor(el);
+        const inner = el.querySelector('input');
+        out.push({
+            selector: sel,
+            label: label,
+            kind: el.tagName.toLowerCase().includes('inputnumber') ? 'number' : 'dropdown',
+            // ng-invalid on an untouched control is the framework saying "required".
+            required: /\\bng-invalid\\b/.test(cls) || /\\*\\s*$/.test(label),
+            value: inner ? (inner.value || '').trim() : '',
+            filled: /\\bp-inputwrapper-filled\\b/.test(cls),
+            component: true,
+        });
+    });
+
+    return out;
+}"""
+
+
+READONLY_SCAN_JS = """() => {
+    // Inside the open dialog if there is one, otherwise the page.
+    const surface = document.querySelector('[data-qa-surface]') || document;
+    const label = (el) => {
+        const id = el.getAttribute('id');
+        if (id) {
+            const lab = document.querySelector(`label[for="${id}"]`);
+            if (lab && lab.innerText.trim()) return lab.innerText.trim();
+        }
+        const wrap = el.closest('.field, .form-group, .p-field, td, div');
+        const lab = wrap && wrap.querySelector('label');
+        if (lab && lab.innerText.trim()) return lab.innerText.trim();
+        return el.getAttribute('placeholder') || el.getAttribute('name')
+            || el.getAttribute('formcontrolname') || el.tagName.toLowerCase();
+    };
+    const out = [];
+    surface.querySelectorAll('input, textarea, select').forEach((el) => {
+        if (el.type === 'hidden' || el.offsetParent === null) return;
+        const cls = (el.className || '') + ' ' + ((el.closest('.p-inputwrapper') || {}).className || '');
+        const locked = el.readOnly || el.disabled || el.hasAttribute('readonly')
+            || /\\breadonly\\b|\\bp-disabled\\b/.test(cls);
+        if (locked) out.push(label(el));
+    });
+    return out;
+}"""
+
+
+EMPTY_REQUIRED_JS = """(selector) => {
+    // Find the form or dialog the control belongs to, then report which of its
+    // mandatory fields are still empty. Covers plain inputs and the component
+    // wrappers (PrimeNG / Material / Ant) whose own element holds the state.
+    let target = null;
+    try { target = document.querySelector(selector); } catch (e) { target = null; }
+
+    // Same rule as the form inventory: never describe a dialog that is closed.
+    const onScreen = (el) => {
+        if (!el) return false;
+        const style = getComputedStyle(el);
+        if (style.display === 'none' || style.visibility === 'hidden') return false;
+        const rect = el.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+    };
+    const CONTAINERS = 'p-dialog, .p-dialog, form, .modal, dialog';
+    let scope = null;
+    if (target) {
+        const owner = target.closest(CONTAINERS);
+        if (onScreen(owner)) scope = owner;
+    }
+    if (!scope) {
+        const marked = document.querySelector('[data-qa-surface]');
+        if (onScreen(marked)) scope = marked;
+    }
+    if (!scope) {
+        for (const el of document.querySelectorAll(CONTAINERS)) {
+            if (onScreen(el)) { scope = el; break; }
+        }
+    }
+    if (!scope) scope = document.body;
+
+    const labelFor = (el) => {
+        try {
+            if (el.id) {
+                const l = document.querySelector('label[for="' + CSS.escape(el.id) + '"]');
+                if (l && l.innerText.trim()) return l.innerText.trim();
+            }
+            const w = el.closest('.field, .form-group, .p-field, .form-row, .mb-3, .col, .grid');
+            const l2 = w && w.querySelector('label');
+            if (l2 && l2.innerText.trim()) return l2.innerText.trim();
+        } catch (e) {}
+        return el.getAttribute('placeholder') || el.getAttribute('formcontrolname') ||
+               el.id || el.tagName.toLowerCase();
+    };
+
+    const requiredLabel = (el) => {
+        const text = labelFor(el);
+        return /\\*\\s*$/.test(text) || el.required ||
+               el.getAttribute('aria-required') === 'true';
+    };
+
+    const empty = [];
+    // 1. Plain fields the browser knows about.
+    scope.querySelectorAll('input, textarea, select').forEach((el) => {
+        if (el.type === 'hidden' || el.disabled) return;
+        const value = (el.value == null ? '' : String(el.value)).trim();
+        if (!value && requiredLabel(el)) empty.push(labelFor(el));
+    });
+    // 2. Angular/PrimeNG components: ng-invalid on an untouched control is the
+    //    framework itself saying "this is required and not filled".
+    scope.querySelectorAll('[formcontrolname], p-dropdown, p-inputnumber, p-calendar,' +
+                           ' p-multiselect, p-autocomplete').forEach((el) => {
+        const cls = String(el.className || '');
+        if (!/\\bng-invalid\\b/.test(cls)) return;
+        if (/\\bp-inputwrapper-filled\\b/.test(cls)) return;
+        const name = labelFor(el);
+        if (name && empty.indexOf(name) === -1) empty.push(name);
+    });
+    return [...new Set(empty)].slice(0, 8);
+}"""
+
+
+# The overlay containers every major component library uses for modals.
+SURFACE_MARK = "data-qa-surface"
+ACTIVE_SURFACE_JS = """(mark) => {
+    const containers = [
+        'p-dialog', '.p-dialog', '[role="dialog"]', '[role="alertdialog"]',
+        'dialog[open]', '.modal.show', '.modal.in', '.mat-dialog-container',
+        '.mat-mdc-dialog-container', '.ant-modal', '.MuiDialog-container',
+        '.cdk-overlay-pane', '.p-sidebar', '.offcanvas.show', '.swal2-popup',
+    ];
+    document.querySelectorAll('[' + mark + ']').forEach(el => el.removeAttribute(mark));
+
+    let best = null;
+    let bestScore = -1;
+    containers.forEach((sel) => {
+        let found = [];
+        try { found = document.querySelectorAll(sel); } catch (e) { return; }
+        found.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            const style = getComputedStyle(el);
+            // A real, open dialog: on screen, big enough to hold a form, visible.
+            if (rect.width < 80 || rect.height < 60) return;
+            if (style.display === 'none' || style.visibility === 'hidden') return;
+            if (parseFloat(style.opacity || '1') < 0.1) return;
+            if (!el.querySelector('input, select, textarea, button')) return;
+            // Topmost wins: z-index first, then depth in the document.
+            let z = 0;
+            for (let node = el; node; node = node.parentElement) {
+                const value = parseInt(getComputedStyle(node).zIndex, 10);
+                if (!Number.isNaN(value)) { z = Math.max(z, value); }
+            }
+            let depth = 0;
+            for (let node = el; node; node = node.parentElement) depth++;
+            const score = z * 1000 + depth;
+            if (score >= bestScore) { bestScore = score; best = el; }
+        });
+    });
+
+    if (!best) return '';
+    best.setAttribute(mark, '1');
+    return best.tagName.toLowerCase();
+}"""
+
+
+async def mark_active_surface(page) -> str:
+    """Tag the topmost open dialog so selectors can be scoped to it.
+
+    Returns the dialog's tag name, or "" when the page has no modal open.
+    Marking is used instead of returning a selector because several dialogs can
+    share the same class and only one of them is actually on screen.
+    """
+    try:
+        return await page.evaluate(ACTIVE_SURFACE_JS, SURFACE_MARK)
+    except Exception:
+        return ""
+
+
+def scope_to_surface(selector: str) -> str:
+    """Rewrite a selector so it only matches inside the marked dialog."""
+    sel = (selector or "").strip()
+    if not sel or ">>" in sel or sel.startswith(("xpath=", "text=", "/", "(")):
+        return ""                      # engine-specific syntax: leave it alone
+    if SURFACE_MARK in sel:
+        return sel
+    # A comma-separated list needs every branch scoped, not just the first.
+    parts = [p.strip() for p in sel.split(",") if p.strip()]
+    return ", ".join(f"[{SURFACE_MARK}] {part}" for part in parts)
+
+
+async def is_disabled_now(page, selector: str) -> bool:
+    """Is the control present but not clickable? Covers native and CSS-only disabling."""
+    try:
+        loc = page.locator(selector).first
+        if await loc.count() == 0:
+            return False
+        if await loc.is_disabled():
+            return True
+        classes = (await loc.get_attribute("class")) or ""
+        return "p-disabled" in classes or "disabled" in classes.split()
+    except Exception:
+        return False
+
+
+SUBMIT_WORDS = ("save", "submit", "create", "add", "update", "confirm", "ok",
+                "apply", "send", "post", "register", "next", "finish")
+
+
+def looks_like_submit(step: dict, selector: str) -> bool:
+    blob = f"{selector} {step.get('value','')} {step.get('label','')}".lower()
+    return any(word in blob for word in SUBMIT_WORDS)
+
+
+def scenario_owns_field(scenario: dict, field: dict) -> bool:
+    """True when the scenario itself is exercising this field.
+
+    The line the platform must never cross: a scenario testing "empty name is
+    rejected" must not have its name auto-filled, or the test would silently
+    prove the opposite of what it claims.
+    """
+    blob = json.dumps(scenario.get("steps") or []).lower()
+    expectation = str(scenario.get("expected_result", "")).lower()
+    name = str(scenario.get("scenario_name", "")).lower()
+    for token in (field.get("selector"), field.get("label")):
+        text = str(token or "").strip().rstrip("*").strip().lower()
+        if len(text) < 3:
+            continue
+        if text in blob:
+            return True
+        # "Machine Name" in the title/expectation means the scenario is about it.
+        words = [w for w in re.split(r"[^a-z0-9]+", text) if len(w) > 3]
+        if words and all(w in expectation or w in name for w in words):
+            return True
+    return False
+
+
+async def autocomplete_form(page, step: dict, scenario: dict, ctx: dict,
+                            selector: str) -> dict:
+    """Fill required fields the scenario never mentions, so a submit can proceed.
+
+    This is the platform handling an application's own rules instead of asking a
+    human to re-record: many forms keep Save disabled until every mandatory field
+    is valid, and a generated scenario cannot know about a field the recording
+    never captured.
+
+    Returns ``{"filled": [...], "blocked": [...]}`` — ``blocked`` lists required
+    fields the scenario deliberately owns, which are left untouched because
+    filling them would invalidate the test.
+    """
+    result: dict = {"filled": [], "blocked": []}
+    try:
+        inventory = await page.evaluate(FORM_INVENTORY_JS, selector)
+    except Exception:
+        return result
+    if not isinstance(inventory, list):
+        return result
+
+    # Everything observed goes into the profile, whether we fill it or not.
+    ctx.setdefault("observed_fields", []).extend(inventory)
+
+    token = str(ctx["runtime_pool"].get("run_token", ""))[:6]
+    emit_log = ctx["log"]
+
+    for field in inventory:
+        if not field.get("required"):
+            continue
+        if field.get("value") or field.get("filled"):
+            continue
+        if field.get("disabled"):
+            continue
+        if learned.is_sensitive(field):
+            result["blocked"].append(field.get("label") or field.get("selector"))
+            continue
+        if scenario_owns_field(scenario, field):
+            # The scenario is testing this field — leaving it empty is the point.
+            result["blocked"].append(field.get("label") or field.get("selector"))
+            continue
+
+        target = field.get("selector")
+        if not target:
+            continue
+        value = learned.synthetic_value(field, token)
+        try:
+            if field.get("kind") in ("dropdown", "select"):
+                await execute_step(page, {"action": "SELECT", "selector": target,
+                                          "value": str(value)}, ctx)
+            else:
+                await execute_step(page, {"action": "TYPE", "selector": target,
+                                          "value": str(value)}, ctx)
+            result["filled"].append({"selector": target,
+                                     "label": field.get("label") or target,
+                                     "value": str(value)})
+            await emit_log(
+                f"   🩹 auto-filled required field {field.get('label') or target!r} "
+                f"= {value!r} (the recording never captured it)"
+            )
+        except Exception as err:
+            log.info("Auto-fill failed for %s: %s", target, err)
+
+    if result["filled"]:
+        await wait_for_settle(page, 2500)
+    return result
+
+
+async def explain_click_failure(page, step: dict, selector: str) -> str:
+    """Turn "CLICK failed" into something a tester can act on."""
+    base = f"CLICK failed on '{selector}'"
+    try:
+        loc = page.locator(selector).first
+        if await loc.count() == 0:
+            return f"{base} — no element on the page matches that selector."
+        disabled = False
+        try:
+            disabled = await loc.is_disabled()
+        except Exception:
+            pass
+        if not disabled:
+            classes = (await loc.get_attribute("class")) or ""
+            disabled = "p-disabled" in classes or "disabled" in classes.split()
+        if not disabled:
+            if not await loc.is_visible():
+                return (f"{base} — the element exists but is not visible. It may be behind an "
+                        f"overlay, or the dialog it belongs to is not open yet.")
+            return base
+        empty = await page.evaluate(EMPTY_REQUIRED_JS, selector)
+        if empty:
+            return (f"{base} — the control is DISABLED because these required fields are "
+                    f"still empty: {', '.join(empty)}. Fill them earlier in the scenario, "
+                    f"or assert that the button is disabled instead of clicking it.")
+        return (f"{base} — the control is DISABLED. The form is probably incomplete or "
+                f"unchanged; the application will not enable it until it validates.")
+    except Exception:
+        return base
+
+
+COLUMN_QUALITY_JS = """({ table, columns }) => {
+    let host = null;
+    try { host = document.querySelector(table); } catch (e) { return { error: 'bad selector' }; }
+    if (!host) {
+        // Fall back to the table inside the dialog that is currently open.
+        const dlg = document.querySelector('[data-qa-surface], p-dialog, [role="dialog"], .modal.show');
+        host = dlg ? dlg.querySelector('table') : document.querySelector('table');
+    }
+    if (!host) return { error: 'no table found on the page' };
+    if (host.tagName !== 'TABLE') host = host.querySelector('table') || host;
+
+    const headerCells = [...host.querySelectorAll('thead th, thead td')]
+        .map(th => (th.innerText || '').trim());
+    const bodyRows = [...host.querySelectorAll('tbody tr')]
+        .filter(tr => tr.querySelectorAll('td').length > 0 &&
+                      !/no records|no data|empty/i.test(tr.innerText || ''));
+    if (!bodyRows.length) return { rows: 0, headers: headerCells };
+
+    const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    // Default: every column that has a header. Explicit list wins when given.
+    const targets = (columns && columns.length)
+        ? columns
+        : headerCells.filter(Boolean);
+
+    const checked = [];
+    const emptyColumns = [];
+    targets.forEach((name) => {
+        const index = headerCells.findIndex(h => norm(h) === norm(name) ||
+                                                 norm(h).includes(norm(name)));
+        if (index === -1) return;                       // column not on screen
+        checked.push(headerCells[index]);
+        let blank = 0;
+        bodyRows.forEach((tr) => {
+            const cell = tr.querySelectorAll('td')[index];
+            if (!cell) { blank++; return; }
+            const text = (cell.innerText || '').replace(/[\\s\\u2014\\u2013-]/g, '').trim();
+            if (!text && !cell.querySelector('input, img, svg, i, .p-checkbox')) blank++;
+        });
+        if (blank === bodyRows.length) {
+            emptyColumns.push({ column: headerCells[index], blank: blank });
+        }
+    });
+    return { rows: bodyRows.length, headers: headerCells,
+             checked: checked, empty_columns: emptyColumns };
+}"""
+
+
+NOOP_ROWS_JS = """({ table, columns }) => {
+    let host = null;
+    try { host = document.querySelector(table); } catch (e) { return { error: 'bad selector' }; }
+    if (!host) {
+        const dlg = document.querySelector('[data-qa-surface], p-dialog, [role="dialog"], .modal.show');
+        host = dlg ? dlg.querySelector('table') : document.querySelector('table');
+    }
+    if (!host) return { error: 'no table found on the page' };
+    if (host.tagName !== 'TABLE') host = host.querySelector('table') || host;
+
+    const headers = [...host.querySelectorAll('thead th, thead td')]
+        .map(th => (th.innerText || '').trim());
+    const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const indexOf = (name) => headers.findIndex(h => norm(h) === norm(name) ||
+                                                     norm(h).includes(norm(name)));
+    const oldIdx = indexOf(columns[0]);
+    const newIdx = indexOf(columns[1]);
+    if (oldIdx === -1 || newIdx === -1) {
+        return { error: 'columns ' + columns.join(' / ') + ' are not in this table' };
+    }
+
+    // "2344.0000" and "2344" are the same number; "—" and "" are both nothing.
+    const canonical = (raw) => {
+        const text = String(raw || '').replace(/[\\u2014\\u2013]/g, '').trim();
+        if (!text) return '';
+        const asNumber = Number(text.replace(/,/g, ''));
+        if (!Number.isNaN(asNumber) && text !== '') return String(asNumber);
+        return text.toLowerCase();
+    };
+
+    const rows = [...host.querySelectorAll('tbody tr')]
+        .filter(tr => tr.querySelectorAll('td').length > Math.max(oldIdx, newIdx));
+    const noop = [];
+    rows.forEach((tr) => {
+        const cells = tr.querySelectorAll('td');
+        const before = (cells[oldIdx].innerText || '').trim();
+        const after = (cells[newIdx].innerText || '').trim();
+        if (canonical(before) === canonical(after)) {
+            noop.push({ label: (cells[0].innerText || '').trim().slice(0, 40),
+                        old: before, new: after });
+        }
+    });
+    return { rows: rows.length, noop: noop };
+}"""
 
 
 async def read_options(page, step: dict, selector: str) -> list[str]:
@@ -1284,15 +2031,87 @@ async def run_assertion(page, action: str, step: dict, selector: str, value: str
     evidence: verdict_engine.Evidence = ctx["evidence"]
     pool = ctx["runtime_pool"]
 
-    async def locator():
+    async def locator(*, prefer_visible: bool = True):
+        """Resolve the assertion's target, preferring an element on screen.
+
+        ``.first`` alone reported "p-dialog exists but is not visible" on any
+        application that leaves closed dialogs in the DOM — the assertion was
+        looking at the wrong one of several matches.
+        """
+        fallback = None
         for cand in candidate_selectors(step, "CLICK"):
             try:
-                loc = page.locator(cand).first
-                if await loc.count() > 0:
-                    return loc
+                root = page.locator(cand)
+                total = await root.count()
             except Exception:
                 continue
-        return None
+            if total == 0:
+                continue
+            if not prefer_visible:
+                return root.first
+            for index in range(min(total, 12)):
+                match = root.nth(index)
+                try:
+                    if await match.is_visible():
+                        return match
+                except Exception:
+                    continue
+            if fallback is None:
+                fallback = root.first          # present but hidden — still reportable
+        return fallback
+
+    # ── Grid data quality: empty columns and no-op rows ───────────────
+    # An audit dialog that lists field changes but leaves DATE/TIME and USER
+    # blank is worthless for traceability, yet every step "succeeds" and every
+    # row is present, so nothing in a conventional suite notices.
+    if action == "VERIFY_COLUMN_NOT_EMPTY":
+        wanted = [c.strip() for c in re.split(r"[,;]", _strip_quotes(value)) if c.strip()]
+        table_sel = selector or "table"
+        try:
+            report = await page.evaluate(COLUMN_QUALITY_JS,
+                                         {"table": table_sel, "columns": wanted})
+        except Exception as err:
+            return False, f"Could not inspect '{table_sel}': {err}"
+        if report.get("error"):
+            return False, report["error"]
+        if not report.get("rows"):
+            return False, (f"'{table_sel}' has no data rows, so its columns cannot be "
+                           f"checked. Open the dialog or grid first.")
+
+        empty = report.get("empty_columns") or []
+        if empty:
+            names = ", ".join(f"{c['column']} (blank in {c['blank']}/{report['rows']} rows)"
+                              for c in empty)
+            return False, (
+                f"Columns that must always carry data are blank: {names}. "
+                f"A history/audit view without a timestamp or a user cannot be used "
+                f"for traceability, even though every row is present."
+            )
+        checked = ", ".join(report.get("checked") or wanted) or "all columns"
+        return True, f"Every row in '{table_sel}' has data in {checked}."
+
+    if action == "VERIFY_NO_NOOP_ROWS":
+        table_sel = selector or "table"
+        pair = [c.strip() for c in re.split(r"[,;]", _strip_quotes(value)) if c.strip()]
+        if len(pair) < 2:
+            pair = ["Old Value", "New Value"]
+        try:
+            report = await page.evaluate(NOOP_ROWS_JS,
+                                         {"table": table_sel, "columns": pair})
+        except Exception as err:
+            return False, f"Could not inspect '{table_sel}': {err}"
+        if report.get("error"):
+            return False, report["error"]
+        noop = report.get("noop") or []
+        if noop:
+            sample = "; ".join(f"{r['label']}: {r['old']!r} → {r['new']!r}" for r in noop[:3])
+            return False, (
+                f"{len(noop)} of {report.get('rows', 0)} history rows record a change that "
+                f"did not happen — {pair[0]} and {pair[1]} are equivalent: {sample}. "
+                f"These entries are noise (often a formatting difference such as "
+                f"2344.0000 vs 2344) and they hide the real changes."
+            )
+        return True, f"No no-op rows: every entry in '{table_sel}' records a real change."
 
     # ── Dropdown membership: the inactive-master exclusion rule ───────
     if action in ("VERIFY_OPTION_PRESENT", "VERIFY_OPTION_ABSENT"):
@@ -1385,7 +2204,18 @@ async def run_assertion(page, action: str, step: dict, selector: str, value: str
     if action == "VERIFY_READONLY":
         loc = await locator()
         if loc is None:
-            return False, f"element '{selector}' not found to verify read-only state"
+            # A selector like `input[readonly]` is a probe, not a real element: if
+            # nothing matches, the honest answer is what the form actually does,
+            # not "selector not found". Inspect it and say which fields are
+            # locked — or that none are, which is itself the finding.
+            locked = await page.evaluate(READONLY_SCAN_JS)
+            if locked:
+                names = ", ".join(locked[:6])
+                return True, (f"read-only fields on this form: {names}"
+                              + (f" (+{len(locked) - 6} more)" if len(locked) > 6 else ""))
+            return False, ("no field on this form is read-only or disabled — a "
+                           "system-generated value that must not be edited is "
+                           "editable here")
         if (await loc.get_attribute("readonly")) is not None:
             return True, f"'{selector}' is read-only"
         classes = ((await loc.get_attribute("class")) or "").lower()
@@ -1437,11 +2267,18 @@ async def run_assertion(page, action: str, step: dict, selector: str, value: str
             return False, f"element '{target}' not found"
         text = (await loc.inner_text() or "").strip()
         expected = _strip_quotes(value)
-        ok = expected.lower() in text.lower()
-        return ok, (
-            f"'{target}' shows {expected!r}" if ok
-            else f"'{target}' does not contain {expected!r}"
-        )
+        if expected.lower() in text.lower():
+            return True, f"'{target}' shows {expected!r}"
+        # Every framework words its empty grid differently — "No records found",
+        # "No data available", "Nothing to show". Asserting one wording and
+        # failing on another says nothing about the application, so accept any
+        # recognised empty-state phrase and report which one appeared.
+        if looks_like_empty_state(expected):
+            actual_phrase = find_empty_state(text)
+            if actual_phrase:
+                return True, (f"the grid reported it is empty — it shows "
+                              f"{actual_phrase!r} rather than {expected!r}")
+        return False, f"'{target}' does not contain {expected!r}"
 
     if action in ("VERIFY_ROW_CONTAINS", "VERIFY_TABLE_ROW"):
         expected = _strip_quotes(value).strip()
@@ -1451,7 +2288,27 @@ async def run_assertion(page, action: str, step: dict, selector: str, value: str
         ):
             expected = pool.get("last_typed_value", expected)
         found, detail = await find_row(page, selector, expected)
-        return found, detail
+        if found:
+            return True, detail
+
+        # A generated scenario often asserts on a literal copied from the original
+        # recording ('asdfdsfds'), which this run never created — so the row is
+        # legitimately absent and the failure says nothing about the application.
+        # Verify against the record THIS scenario created instead, and say so.
+        own = [pool.get("created_record"), pool.get("first_typed_value"),
+               pool.get("last_typed_value")]
+        for candidate in own:
+            candidate = str(candidate or "").strip()
+            if not candidate or candidate.lower() == expected.lower():
+                continue
+            found_own, detail_own = await find_row(page, selector, candidate)
+            if found_own:
+                return True, (
+                    f"{expected!r} is not in the table — that value came from the original "
+                    f"recording, not from this run. Verified instead against the record this "
+                    f"scenario actually created, {candidate!r}: {detail_own}"
+                )
+        return False, detail
 
     if action == "VERIFY_ROW_ABSENT":
         expected = _strip_quotes(value).strip() or pool.get("last_typed_value", "")
@@ -1691,6 +2548,10 @@ async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
         "index": 0,
         "base_url": shared["target_url"],
         "state": state,
+        "project_name": cfg.project_name,
+        "flow_name": cfg.flow_name,
+        "scenario": {},
+        "auto_complete": cfg.auto_complete,
     }
 
     try:
@@ -1967,6 +2828,10 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         "index": index,
         "base_url": target_url,
         "state": state,
+        "project_name": cfg.project_name,
+        "flow_name": cfg.flow_name,
+        "scenario": scenario,
+        "auto_complete": cfg.auto_complete,
     }
 
     async def switch_role(role: str) -> None:
@@ -2236,6 +3101,17 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
                 )
             elif not visual.get("supported"):
                 await emit_log(f"🖼️ {visual.get('note')}")
+
+    # Keep what this scenario observed about the application. Written every run,
+    # so the profile sharpens over time without anyone maintaining it.
+    try:
+        if ctx.get("observed_fields"):
+            learned.remember_fields(cfg.project_name, cfg.flow_name, ctx["observed_fields"])
+        for message in evidence.messages:
+            if message.get("kind") in ("error", "success"):
+                learned.remember_message_selector(cfg.project_name, message.get("selector", ""))
+    except Exception as err:      # learning must never break a run
+        log.info("Could not persist learned profile: %s", err)
 
     duration = int(time.time() - start_time)
     result = {

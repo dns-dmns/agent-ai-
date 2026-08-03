@@ -1,19 +1,19 @@
 [
     {
         "flow_name": "Login",
-        "scenario_name": "SQL injection in the username is handled safely",
-        "scenario_type": "security",
+        "scenario_name": "Valid credentials reach the dashboard",
+        "scenario_type": "positive",
         "status": "FAIL",
         "severity": "high",
-        "failed_step_num": 4,
-        "failed_step_desc": "VERIFY_MESSAGE on ''",
-        "error_message": "no validation or toast message appeared on screen",
-        "expected_result": "The injection attempt is rejected with an invalid-credentials error and no access is granted.",
+        "failed_step_num": 3,
+        "failed_step_desc": "CLICK on 'button:has-text('Login')'",
+        "error_message": "CLICK failed on 'button:has-text('Login')' \u2014 no element on the page matches that selector.",
+        "expected_result": "The user is logged in successfully and the Dashboard is displayed.",
         "observed_messages": [],
-        "description": "Login - SQL injection in the username is handled safely: FAIL \u2014 no validation or toast message appeared on screen",
-        "screenshot": "/static/projects/ornage/flows/Login/screenshots/failed_test_6.png",
-        "video": "/static/projects/ornage/flows/Login/videos/scenario_6.webm",
-        "run_id": "cef09a66a307",
-        "timestamp": "2026-08-01 20:12:15"
+        "description": "Login - Valid credentials reach the dashboard: FAIL \u2014 CLICK failed on 'button:has-text('Login')' \u2014 no element on the page matches that selector.",
+        "screenshot": "/static/projects/ornage/flows/Login/screenshots/failed_test_1.png",
+        "video": "/static/projects/ornage/flows/Login/videos/scenario_1.webm",
+        "run_id": "cfc88c052e8c",
+        "timestamp": "2026-08-03 14:59:13"
     }
 ]

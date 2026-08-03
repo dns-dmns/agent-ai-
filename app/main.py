@@ -42,6 +42,7 @@ from . import config
 from . import contracts
 from . import db
 from . import executor
+from . import learned
 from . import llm
 from . import recorder
 from . import rules
@@ -744,8 +745,16 @@ async def stop_recording_api(force: bool = False):
 # ──────────────────────────────────────────────────────────────────────
 # AI generation (Tab 2)
 # ──────────────────────────────────────────────────────────────────────
-def build_fields_context(actions: list) -> str:
+def build_fields_context(actions: list, project_name: str = "", flow_name: str = "") -> str:
+    """Describe the fields a recording touched, marking the mandatory ones.
+
+    Marking them matters: when an application keeps its Save button disabled
+    until every required field is filled, a scenario that skips one can never
+    click Save — the step fails for a reason that has nothing to do with what
+    the scenario was trying to test.
+    """
     fields: list[str] = []
+    required: list[str] = []
     for act in actions:
         selector = act.get("selector", "")
         tag = act.get("tag", "")
@@ -754,10 +763,58 @@ def build_fields_context(actions: list) -> str:
         if not selector:
             continue
         if action_type in ("TYPE", "SELECT") or tag in ("input", "select", "textarea"):
-            fields.append(f"Field: {selector} (tag: {tag}, label: {text})")
+            flag = " [REQUIRED]" if act.get("required") else ""
+            entry = f"Field: {selector} (tag: {tag}, label: {text}){flag}"
+            if entry not in fields:
+                fields.append(entry)
+            if act.get("required") and selector not in required:
+                required.append(selector)
         elif action_type == "CLICK" and text:
-            fields.append(f"Button/Link: {selector} (text: {text})")
-    return "\n".join(fields) if fields else "No specific fields detected from recording."
+            entry = f"Button/Link: {selector} (text: {text})"
+            if entry not in fields:
+                fields.append(entry)
+
+    # Fields the engine discovered on the live page during earlier runs. A
+    # recording only shows what the tester touched; this is everything the form
+    # actually has, including the required field nobody recorded.
+    if project_name and flow_name:
+        try:
+            profile = learned.flow_profile(project_name, flow_name)
+            for observed in profile.get("fields", []):
+                selector = observed.get("selector")
+                if not selector or any(selector in line for line in fields):
+                    continue
+                flag = " [REQUIRED]" if observed.get("required") else ""
+                options = observed.get("options") or []
+                choices = f" options: {options[:6]}" if options else ""
+                fields.append(
+                    f"Field (discovered on the page, not in the recording): {selector} "
+                    f"(kind: {observed.get('kind', 'text')}, label: {observed.get('label', '')})"
+                    f"{flag}{choices}"
+                )
+                if observed.get("required") and selector not in required:
+                    required.append(selector)
+            if profile.get("submit_gating") == "disabled":
+                fields.append(
+                    "OBSERVED BEHAVIOUR: this application keeps its submit button DISABLED "
+                    "until the whole form is valid. It never shows a validation message for "
+                    "an empty form, so a scenario that clicks Save and waits for one can "
+                    "never pass. Assert VERIFY_DISABLED on the submit button instead."
+                )
+        except Exception:
+            pass
+
+    if not fields:
+        return "No specific fields detected from recording."
+    if required:
+        fields.append(
+            "MANDATORY FIELDS: " + ", ".join(required) + ". Every scenario that expects a "
+            "successful save must fill all of them, because this application keeps its "
+            "submit button disabled until the form is valid. To test the empty-form case, "
+            "assert the submit button is DISABLED (VERIFY_DISABLED) rather than clicking it "
+            "and waiting for a validation message that will never appear."
+        )
+    return "\n".join(fields)
 
 
 @app.post("/analyze-flow")
@@ -862,7 +919,7 @@ async def generate_multi_agent_stream(flow_name: str,
         meta = read_json(flow_path / "flow.json", {}) or {}
         target_url = meta.get("target_url", "")
         actions_json = llm.trim_for_prompt(json.dumps(actions, indent=2))
-        fields_context = build_fields_context(actions)
+        fields_context = build_fields_context(actions, project_name, flow_name)
 
         # Your rules shape what gets generated, not just what gets checked.
         active_rules = rules.applicable(project_name, flow_name)
@@ -1659,7 +1716,7 @@ async def translate_rules(project_name: str = config.DEFAULT_PROJECT, flow_name:
     if flow_name:
         flow_path = config.flow_dir(project_name, flow_name)
         actions = read_json(flow_path / "actions.json", []) or []
-        fields_context = build_fields_context(actions)
+        fields_context = build_fields_context(actions, project_name, flow_name)
     try:
         parsed = await llm.generate_json(
             rules.build_translate_prompt(text, fields_context),

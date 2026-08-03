@@ -191,7 +191,7 @@
                     esc(JSON.stringify(rule, null, 2))}</textarea>
                 <span class="field-hint">kinds: must_show · must_not_show · must_navigate ·
                     must_not_navigate · field_rejects · field_accepts · export_complete ·
-                    no_console_errors · row_persists</span>
+                    no_console_errors · row_persists · column_not_empty</span>
             </div>
             <div class="field">
                 <span class="field-label">Applies to</span>

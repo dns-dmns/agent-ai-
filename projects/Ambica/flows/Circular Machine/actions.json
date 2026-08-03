@@ -1,0 +1,529 @@
+[
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Machines Data\")",
+        "selectors": [
+            "button:has-text(\"Machines Data\")",
+            "app-pages > div > aside > app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "Machines Data",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_1.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "a:has-text(\"Circular Machine\")",
+        "selectors": [
+            "a:has-text(\"Circular Machine\")",
+            "app-sidebar > nav > div:nth-of-type(2) > ul > li:nth-of-type(3) > div > ul > li:nth-of-type(3) > a"
+        ],
+        "tag": "a",
+        "text": "Circular Machine",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_2.png"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/circular",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/circular"
+        ],
+        "tag": "window",
+        "text": "Ambica",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/circular",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_3.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add New\")",
+        "selectors": [
+            "button:has-text(\"Add New\")",
+            "div:nth-of-type(2) > main > app-circular-machine-master > div > app-masters-table > div > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Add New",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_4.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"machineName\"]",
+        "selectors": [
+            "input[formcontrolname=\"machineName\"]",
+            "input[placeholder=\"Enter machine name\"]",
+            "input[placeholder=\"Machine Name *\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Name *",
+        "value": "asdfdsfds",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_5.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"machineType\"]",
+        "selectors": [
+            "input[formcontrolname=\"machineType\"]",
+            "input[placeholder=\"Enter machine type\"]",
+            "input[placeholder=\"Machine Type *\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Type *",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_6.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"machineType\"]",
+        "selectors": [
+            "input[formcontrolname=\"machineType\"]",
+            "input[placeholder=\"Enter machine type\"]",
+            "input[placeholder=\"Machine Type *\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Type *",
+        "value": "fsddsfsdf",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_7.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Width\"]",
+        "selectors": [
+            "input[placeholder=\"Width\"]",
+            "input[placeholder=\"Machine Width (inch) *\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Width (inch) *",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_8.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Enter capacity\"]",
+        "selectors": [
+            "input[placeholder=\"Enter capacity\"]",
+            "input[placeholder=\"Production Capacity (m/day)\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Production Capacity (m/day)",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_9.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Days\"]",
+        "selectors": [
+            "input[placeholder=\"Days\"]",
+            "input[placeholder=\"Size Changeover (days)\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Size Changeover (days)",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_10.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Days\"]",
+        "selectors": [
+            "input[placeholder=\"Days\"]",
+            "input[placeholder=\"Size Change + Threading (days)\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Size Change + Threading (days)",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_11.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"plantLocation\"]",
+        "selectors": [
+            "input[formcontrolname=\"plantLocation\"]",
+            "input[placeholder=\"Enter plant location\"]",
+            "input[placeholder=\"Plant Location\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Plant Location",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_12.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"plantLocation\"]",
+        "selectors": [
+            "input[formcontrolname=\"plantLocation\"]",
+            "input[placeholder=\"Enter plant location\"]",
+            "input[placeholder=\"Plant Location\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Plant Location",
+        "value": "123",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_13.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#pn_id_11",
+        "selectors": [
+            "#pn_id_11",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(8) > p-dropdown > div"
+        ],
+        "tag": "div",
+        "text": "Active",
+        "label": "Status *",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_14.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Active\"]",
+        "selectors": [
+            "[aria-label=\"Active\"]",
+            "#pn_id_11_0",
+            "html > body > div > div > div > div > ul > p-dropdownitem > li"
+        ],
+        "tag": "li",
+        "text": "Active",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_15.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Select purchase date\"]",
+        "selectors": [
+            "input[placeholder=\"Select purchase date\"]",
+            "input[placeholder=\"Purchase Date\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > p-calendar > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Purchase Date",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_16.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "div:nth-of-type(2) > main > app-circular-machine-master > div > p-dialog > div > div > div:nth-of-type(3) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_17.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button",
+        "selectors": [
+            "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_18.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Close\"]",
+        "selectors": [
+            "[aria-label=\"Close\"]",
+            "main > app-circular-machine-master > div > p-toast > div > p-toastitem > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_19.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "main > app-circular-machine-master > div > p-dialog > div > div > div > div > button",
+        "selectors": [
+            "main > app-circular-machine-master > div > p-dialog > div > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_20.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "p-table > div > div > table > tbody > tr > td:nth-of-type(12) > span > button",
+        "selectors": [
+            "p-table > div > div > table > tbody > tr > td:nth-of-type(12) > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_21.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Enter capacity\"]",
+        "selectors": [
+            "input[placeholder=\"Enter capacity\"]",
+            "input[placeholder=\"Production Capacity (m/day)\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Production Capacity (m/day)",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_22.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Width\"]",
+        "selectors": [
+            "input[placeholder=\"Width\"]",
+            "input[placeholder=\"Machine Width (inch) *\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Width (inch) *",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_23.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Days\"]",
+        "selectors": [
+            "input[placeholder=\"Days\"]",
+            "input[placeholder=\"Size Changeover (days)\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Size Changeover (days)",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_24.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Days\"]",
+        "selectors": [
+            "input[placeholder=\"Days\"]",
+            "input[placeholder=\"Size Change + Threading (days)\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Size Change + Threading (days)",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_25.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"plantLocation\"]",
+        "selectors": [
+            "input[formcontrolname=\"plantLocation\"]",
+            "input[placeholder=\"Enter plant location\"]",
+            "input[placeholder=\"Plant Location\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Plant Location",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_26.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"plantLocation\"]",
+        "selectors": [
+            "input[formcontrolname=\"plantLocation\"]",
+            "input[placeholder=\"Enter plant location\"]",
+            "input[placeholder=\"Plant Location\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Plant Location",
+        "value": "1233",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_27.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#pn_id_11",
+        "selectors": [
+            "#pn_id_11",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(8) > p-dropdown > div"
+        ],
+        "tag": "div",
+        "text": "Active",
+        "label": "Status *",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_28.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Inactive\"]",
+        "selectors": [
+            "[aria-label=\"Inactive\"]",
+            "#pn_id_11_1",
+            "html > body > div > div > div > div > ul > p-dropdownitem:nth-of-type(2) > li"
+        ],
+        "tag": "li",
+        "text": "Inactive",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_29.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Select purchase date\"]",
+        "selectors": [
+            "input[placeholder=\"Select purchase date\"]",
+            "input[placeholder=\"Purchase Date\"]",
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > p-calendar > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Purchase Date",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_30.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"machineType\"]",
+        "selectors": [
+            "input[formcontrolname=\"machineType\"]",
+            "input[placeholder=\"Enter machine type\"]",
+            "input[placeholder=\"Machine Type *\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Type *",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_31.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"machineType\"]",
+        "selectors": [
+            "input[formcontrolname=\"machineType\"]",
+            "input[placeholder=\"Enter machine type\"]",
+            "input[placeholder=\"Machine Type *\"]",
+            "div > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Machine Type *",
+        "value": "fsddsfsdf323",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_32.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "div:nth-of-type(2) > main > app-circular-machine-master > div > p-dialog > div > div > div:nth-of-type(3) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_33.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button:nth-of-type(2)",
+        "selectors": [
+            "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_34.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "main > app-circular-machine-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button",
+        "selectors": [
+            "main > app-circular-machine-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_35.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button:nth-of-type(2)",
+        "selectors": [
+            "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_36.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "main > app-circular-machine-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button",
+        "selectors": [
+            "main > app-circular-machine-master > div > p-dialog:nth-of-type(2) > div > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_37.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button:nth-of-type(3)",
+        "selectors": [
+            "div > p-table > div > div > table > tbody > tr > td:nth-of-type(12) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_38.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Yes, Delete\")",
+        "selectors": [
+            "button:has-text(\"Yes, Delete\")",
+            "main > app-circular-machine-master > div > app-masters-table > p-confirmdialog > div > div > div:nth-of-type(3) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Yes, Delete",
+        "label": "",
+        "value": "",
+        "screenshot": "/static/projects/Ambica/flows/Circular Machine/screenshots/step_39.png"
+    }
+]

@@ -390,3 +390,137 @@ def test_daily_schedule_fires_once_per_slot():
     assert scheduler.is_due(entry, now) is True
     entry["last_run"] = now.replace(hour=9, minute=1).strftime("%Y-%m-%d %H:%M:%S")
     assert scheduler.is_due(entry, now) is False
+
+
+def test_assertion_detail_survives_the_humanizer():
+    """Regression: a precise assertion message was being rewritten into a generic
+    "the element was not found… the field name changed", which sent testers
+    hunting for a selector problem that did not exist."""
+    raw = ("Validation failed: Key table record matching 'Dinesh' (token: 'Dinesh') "
+           "was not found in the UI list.")
+    out = executor.humanize_error(raw, "VERIFY_ROW_CONTAINS", "table")
+    assert "Dinesh" in out
+    assert "field name changed" not in out
+
+
+def test_disabled_diagnostics_are_not_rewritten():
+    """explain_click_failure already writes for a tester; the humanizer must not
+    replace its explanation with a generic one."""
+    raw = ("CLICK failed on 'button:has-text(\"Save\")' — the control is DISABLED because "
+           "these required fields are still empty: M/C Width (inch) *.")
+    out = executor.humanize_error(raw, "CLICK", 'button:has-text("Save")')
+    assert "M/C Width" in out
+    assert "DISABLED" in out
+
+
+def test_generic_humanising_still_applies_to_raw_playwright_errors():
+    out = executor.humanize_error("locator.click: Timeout 5000ms exceeded waiting for locator",
+                                  "CLICK", "#save")
+    assert "Could not interact with" in out
+
+
+def test_required_fields_reach_the_generation_prompt():
+    """A recording that marks a field required must tell the agents so, or they
+    generate a save scenario that can never click a disabled Save button."""
+    from app import main as app_main
+    context = app_main.build_fields_context([
+        {"action": "TYPE", "selector": "#machineName", "tag": "input",
+         "label": "M/C (Machine Name) *", "required": True},
+        {"action": "TYPE", "selector": 'input[placeholder="Enter width"]', "tag": "input",
+         "label": "M/C Width (inch) *", "required": True},
+        {"action": "CLICK", "selector": 'button:has-text("Save")', "text": "Save"},
+    ])
+    assert "[REQUIRED]" in context
+    assert "MANDATORY FIELDS" in context
+    assert "#machineName" in context and "Enter width" in context
+    assert "VERIFY_DISABLED" in context      # tells the agent what to do instead
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Self-healing guardrails — the line the engine must never cross
+# ──────────────────────────────────────────────────────────────────────
+def test_engine_will_not_fill_the_field_a_scenario_is_testing():
+    """Auto-completing a required field is right when the scenario ignores it,
+    and catastrophic when the scenario is testing it: filling the name in
+    "empty name is rejected" would silently prove the opposite."""
+    scenario = {
+        "scenario_name": "Verify validation on empty Machine Name",
+        "expected_result": "A validation error appears because the Machine Name is empty.",
+        "steps": [{"action": "CLICK", "selector": 'button:has-text("Save")'}],
+    }
+    name_field = {"selector": "#machineName", "label": "M/C (Machine Name) *"}
+    width_field = {"selector": 'input[placeholder="Enter width"]', "label": "M/C Width (inch) *"}
+
+    assert executor.scenario_owns_field(scenario, name_field) is True
+    assert executor.scenario_owns_field(scenario, width_field) is False
+
+
+def test_a_field_named_in_the_steps_counts_as_owned():
+    scenario = {
+        "scenario_name": "Create with valid data",
+        "expected_result": "The record is saved successfully.",
+        "steps": [{"action": "TYPE", "selector": "#machineName", "value": "X"}],
+    }
+    assert executor.scenario_owns_field(scenario, {"selector": "#machineName"}) is True
+    assert executor.scenario_owns_field(scenario, {"selector": "#machineWidth"}) is False
+
+
+def test_submit_controls_are_recognised():
+    assert executor.looks_like_submit({}, 'button:has-text("Save")') is True
+    assert executor.looks_like_submit({}, "#gSaveBtn") is True
+    assert executor.looks_like_submit({}, 'button:has-text("Add New")') is True
+    assert executor.looks_like_submit({}, "#searchBox") is False
+
+
+def test_never_invents_a_value_for_a_secret():
+    from app import learned
+    assert learned.is_sensitive({"label": "Password *"}) is True
+    assert learned.is_sensitive({"selector": "#otpCode"}) is True
+    assert learned.is_sensitive({"label": "M/C Width (inch) *"}) is False
+
+
+def test_synthetic_values_respect_the_constraints_the_dom_advertises():
+    from app import learned
+    assert learned.synthetic_value({"kind": "number", "min": "5", "max": "500"}) == "5"
+    assert learned.synthetic_value({"kind": "number", "min": "-10"}) == "1"
+    assert len(learned.synthetic_value({"kind": "text", "maxlength": "4"}, "abcdef")) <= 4
+    assert learned.synthetic_value({"kind": "select", "options": ["A", "B"]}) == "A"
+    assert learned.synthetic_value({"kind": "email"}).endswith("@example.com")
+
+
+def test_blocked_submission_satisfies_a_negative_expectation():
+    """The app refusing to submit IS the validation — a stronger guarantee than
+    an error message, because the invalid data never reached the server."""
+    evidence = v.Evidence(steps_total=1, steps_executed=1)
+    evidence.submission_blocked = {"control": "#saveBtn", "empty_required": ["Item name *"]}
+    result = v.evaluate("A validation error prevents the item from being created",
+                        evidence, "negative")
+    assert result.status == v.PASS
+    assert "blocked the submission" in result.reason
+
+
+def test_blocked_submission_fails_a_positive_expectation():
+    evidence = v.Evidence(steps_total=1, steps_executed=1)
+    evidence.submission_blocked = {"control": "#saveBtn", "empty_required": ["Width *"]}
+    result = v.evaluate("The record is saved successfully and appears in the grid",
+                        evidence, "positive")
+    assert result.status == v.FAIL
+    assert "Width" in result.reason
+
+
+def test_selectors_are_scoped_to_the_open_dialog():
+    """The background-field bug: with a dialog open, an unscoped selector matches
+    a look-alike behind it (DOM order puts the background first), so the value
+    never reaches the form the tester filled."""
+    mark = executor.SURFACE_MARK
+    assert executor.scope_to_surface('input[placeholder="Days"]') == \
+        f'[{mark}] input[placeholder="Days"]'
+    # Every branch of a comma list must be scoped, not just the first.
+    assert executor.scope_to_surface("input[readonly], input[disabled]") == \
+        f"[{mark}] input[readonly], [{mark}] input[disabled]"
+    # Engine-specific syntax is left alone rather than corrupted.
+    assert executor.scope_to_surface("xpath=//button") == ""
+    assert executor.scope_to_surface("text=Save") == ""
+    assert executor.scope_to_surface("p-dialog >> button") == ""
+    # Already scoped stays as-is.
+    assert executor.scope_to_surface(f"[{mark}] button") == f"[{mark}] button"

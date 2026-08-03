@@ -25,12 +25,36 @@ STEP_VOCABULARY = """
     - "VERIFY_TEXT"        : {"selector": "css", "value": "expected text"} element shows text.
     - "VERIFY_DISABLED", "VERIFY_ENABLED", "VERIFY_READONLY", "VERIFY_NON_ZERO"
     - "VERIFY_VISIBLE", "VERIFY_HIDDEN", "VERIFY_URL", "VERIFY_COUNT", "VERIFY_DOWNLOAD"
+    - "VERIFY_OPTION_PRESENT" / "VERIFY_OPTION_ABSENT" : dropdown membership
+          {"action": "VERIFY_OPTION_ABSENT", "selector": "#categoryDropdown", "value": "Cotton"}
+    - "VERIFY_COLUMN_NOT_EMPTY" : columns that must always carry data
+          {"action": "VERIFY_COLUMN_NOT_EMPTY", "selector": "#auditTable",
+           "value": "Date/Time, User"}
+    - "VERIFY_NO_NOOP_ROWS" : history rows that record a change that never happened
+          {"action": "VERIFY_NO_NOOP_ROWS", "selector": "#auditTable",
+           "value": "Old Value, New Value"}
+    - "STORE" : capture a value the application generated, for use later
+          {"action": "STORE", "selector": "#customerCode", "value": "customer_code"}
 
     MANDATORY ASSERTION RULES:
     - A negative / boundary / security scenario MUST end with "VERIFY_MESSAGE" (the
       validation the app is expected to show) and, where relevant,
       "VERIFY_ROW_ABSENT" to prove the bad record was not saved.
     - A create / update scenario MUST end with "VERIFY_ROW_CONTAINS" for the record.
+    - ASSERT ONLY ON DATA THIS SCENARIO CREATED. Never assert on a value that came
+      from the recording (an old machine name, a code someone typed once). That
+      record may not exist any more, and the failure would say nothing about the
+      application. Use the value this scenario itself typed, or {{run_token}} to
+      make it unique, and verify that.
+    - A row action column is usually four unlabelled icon buttons: view, edit,
+      history/audit and delete. Generate a scenario for EACH of them, using the
+      icon-based selector from the recording (e.g. button:has(i.pi-history)),
+      never a positional one such as td:nth-of-type(12) > button.
+    - For a history / audit dialog, asserting that rows exist is not enough. Add
+      "VERIFY_COLUMN_NOT_EMPTY" with the columns that must always be populated
+      (typically "Date/Time, User") and "VERIFY_NO_NOOP_ROWS" for Old/New value
+      pairs, because a trail with blank timestamps or entries recording no real
+      change is useless for traceability even though every row is present.
     - A delete scenario MUST end with "VERIFY_ROW_ABSENT"; a cancel-delete scenario
       MUST end with "VERIFY_ROW_CONTAINS" (the record must survive) and include
       {"action": "DIALOG", "value": "dismiss"} before the delete click if the app

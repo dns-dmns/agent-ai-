@@ -1,0 +1,4096 @@
+{
+    "run_id": "ea442c1bf5c2",
+    "flow_name": "Beamer Machine",
+    "project_name": "Ambica",
+    "execution_date": "2026-08-03 11:13:45",
+    "duration_seconds": 1402,
+    "wall_clock_seconds": 1402,
+    "test_types_run": "positive,negative,boundary,security,ui,smoke,regression",
+    "mode": "headed",
+    "workers": 1,
+    "verdict_mode": "rules",
+    "environment": "",
+    "triggered_by": "dashboard",
+    "total_test_cases": 35,
+    "passed_count": 10,
+    "failed_count": 25,
+    "unverified_count": 0,
+    "crash_count": 0,
+    "cancelled": false,
+    "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 404 ()",
+        "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+        "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+    ],
+    "network_errors": [
+        "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica-backend/api/beamer-machines?page=0&size=10&sortField=id&sortDir=desc&search=Dinesh - net::ERR_ABORTED",
+        "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+    ],
+    "rules_enforced": [],
+    "rules_violated": 0,
+    "checkpoints": [
+        {
+            "index": 1,
+            "name": "Navigate to Beamer Machine Master Page",
+            "label": "",
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_URL).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                            "value": "",
+                            "ok": true,
+                            "detail": "URL contains ''"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 3,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_1.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_1.webm",
+            "trace": "",
+            "duration": 9,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "VERIFY_URL on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 423,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 510,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_URL",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 72,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "User is successfully navigated to the Beamer Machine page.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "value": "",
+                    "ok": true,
+                    "detail": "URL contains ''"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 404 ()",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 2,
+            "name": "Create Beamer Machine with All Valid Fields",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 9 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 10,
+                    "steps_executed": 8,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Dinesh"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_2.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_2.webm",
+            "trace": "",
+            "duration": 61,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'Dinesh'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on '#plantLocation'",
+                "CLICK on '#plantLocation_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 416,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 747,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 560,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 413,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 606,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 615,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 7,
+                    "action": "CLICK",
+                    "selector": "#plantLocation",
+                    "duration_ms": 598,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 8,
+                    "action": "CLICK",
+                    "selector": "#plantLocation_0",
+                    "duration_ms": 585,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "New Beamer Machine record 'Dinesh' is saved and displayed in the data table.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 9,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 3,
+            "name": "Create Machine with Sectional Warping Machine Type",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 9 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 10,
+                    "steps_executed": 8,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Machine-SW-01"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_3.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_3.webm",
+            "trace": "",
+            "duration": 63,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'Machine-SW-01'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_1'",
+                "CLICK on '#plantLocation'",
+                "CLICK on '#plantLocation_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 448,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 730,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 541,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 421,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 501,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "#machineType_1",
+                    "duration_ms": 604,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 7,
+                    "action": "CLICK",
+                    "selector": "#plantLocation",
+                    "duration_ms": 574,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 8,
+                    "action": "CLICK",
+                    "selector": "#plantLocation_0",
+                    "duration_ms": 606,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Machine with Sectional Warping type is created and added to the table.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 9,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 4,
+            "name": "View Beamer Machine Record Details",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: The element exists but is not usable (hidden or disabled) at this point in the flow.",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "main > app-beamer-machine-master > div > p-dialog",
+                            "value": "",
+                            "ok": false,
+                            "detail": "element 'main > app-beamer-machine-master > div > p-dialog' exists but is not visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_4.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_4.webm",
+            "trace": "",
+            "duration": 17,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button'",
+                "VERIFY_VISIBLE on 'main > app-beamer-machine-master > div > p-dialog'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 409,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 502,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button",
+                    "duration_ms": 447,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Machine details modal dialog is displayed and closed successfully.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "main > app-beamer-machine-master > div > p-dialog",
+                    "value": "",
+                    "ok": false,
+                    "detail": "element 'main > app-beamer-machine-master > div > p-dialog' exists but is not visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 4,
+            "error": "The element exists but is not usable (hidden or disabled) at this point in the flow."
+        },
+        {
+            "index": 5,
+            "name": "Edit Beamer Machine Type and Plant Location",
+            "label": "",
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_ROW_CONTAINS).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Machine updated successfully",
+                            "selector": ".p-toast-detail p-toast-detail ng-tns-c396721875-9",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Success",
+                            "selector": ".p-toast-summary p-toast-summary ng-tns-c396721875-9",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Success\nMachine updated successfully",
+                            "selector": ".p-toast-message-success ng-tns-c396721875-9 ng-trigger ng-trigger-messageState p-toast-message-success p-toast-message ng-animating",
+                            "kind": "success"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_CONTAINS",
+                            "selector": "table",
+                            "value": "Sectional Warping",
+                            "ok": true,
+                            "detail": "found on the current page"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 9,
+                    "steps_executed": 9,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_5.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_5.webm",
+            "trace": "",
+            "duration": 19,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'p-table > div > div > table > tbody > tr > td:nth-of-type(8) > span > button'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_1'",
+                "CLICK on '#plantLocation'",
+                "CLICK on '#plantLocation_0'",
+                "CLICK on 'button:has-text(\"Save\")'",
+                "VERIFY_ROW_CONTAINS on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 448,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 728,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "p-table > div > div > table > tbody > tr > td:nth-of-type(8) > span > button",
+                    "duration_ms": 605,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 481,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_1",
+                    "duration_ms": 529,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "#plantLocation",
+                    "duration_ms": 495,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 7,
+                    "action": "CLICK",
+                    "selector": "#plantLocation_0",
+                    "duration_ms": 519,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 8,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Save\")",
+                    "duration_ms": 636,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 9,
+                    "action": "VERIFY_ROW_CONTAINS",
+                    "selector": "table",
+                    "duration_ms": 112,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Beamer Machine record is successfully updated with the new machine type.",
+            "messages": [
+                {
+                    "text": "Machine updated successfully",
+                    "selector": ".p-toast-detail p-toast-detail ng-tns-c396721875-9",
+                    "kind": "success"
+                },
+                {
+                    "text": "Success",
+                    "selector": ".p-toast-summary p-toast-summary ng-tns-c396721875-9",
+                    "kind": "success"
+                },
+                {
+                    "text": "Success\nMachine updated successfully",
+                    "selector": ".p-toast-message-success ng-tns-c396721875-9 ng-trigger ng-trigger-messageState p-toast-message-success p-toast-message ng-animating",
+                    "kind": "success"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_CONTAINS",
+                    "selector": "table",
+                    "value": "Sectional Warping",
+                    "ok": true,
+                    "detail": "found on the current page"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 6,
+            "name": "Delete Beamer Machine Record",
+            "label": "",
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_ROW_ABSENT).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_ABSENT",
+                            "selector": "table",
+                            "value": "Dinesh",
+                            "ok": true,
+                            "detail": "'Dinesh' is no longer listed, as expected"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 5,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_6.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_6.webm",
+            "trace": "",
+            "duration": 14,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)'",
+                "CLICK on 'button:has-text(\"Yes, Delete\")'",
+                "VERIFY_ROW_ABSENT on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 428,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 678,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)",
+                    "duration_ms": 519,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Yes, Delete\")",
+                    "duration_ms": 570,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "table",
+                    "duration_ms": 1802,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Beamer Machine record is removed from the table upon deletion confirmation.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "table",
+                    "value": "Dinesh",
+                    "ok": true,
+                    "detail": "'Dinesh' is no longer listed, as expected"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 7,
+            "name": "Search Beamer Machine by Exact Name",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: The element was not found on the page. The screen may not have loaded yet, or the field name changed.",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_CONTAINS",
+                            "selector": "table",
+                            "value": "Dinesh",
+                            "ok": false,
+                            "detail": "'Dinesh' (token 'Dinesh') not found on any inspected table page"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 4,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Dinesh"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_7.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_7.webm",
+            "trace": "",
+            "duration": 12,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "TYPE on 'input[placeholder=\"Search by M/C\"]' with value 'Dinesh'",
+                "VERIFY_ROW_CONTAINS on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 459,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 747,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 386,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Table filters to show only records matching the exact search query.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_CONTAINS",
+                    "selector": "table",
+                    "value": "Dinesh",
+                    "ok": false,
+                    "detail": "'Dinesh' (token 'Dinesh') not found on any inspected table page"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 4,
+            "error": "The element was not found on the page. The screen may not have loaded yet, or the field name changed."
+        },
+        {
+            "index": 8,
+            "name": "Search Beamer Machine by Partial Keyword",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: The element was not found on the page. The screen may not have loaded yet, or the field name changed.",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_CONTAINS",
+                            "selector": "table",
+                            "value": "Dinesh",
+                            "ok": false,
+                            "detail": "'Dinesh' (token 'Dinesh') not found on any inspected table page"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 4,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Din"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_8.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_8.webm",
+            "trace": "",
+            "duration": 12,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "TYPE on 'input[placeholder=\"Search by M/C\"]' with value 'Din'",
+                "VERIFY_ROW_CONTAINS on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 445,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 730,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 380,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Table filters records matching partial keyword search.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_CONTAINS",
+                    "selector": "table",
+                    "value": "Dinesh",
+                    "ok": false,
+                    "detail": "'Dinesh' (token 'Dinesh') not found on any inspected table page"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 4,
+            "error": "The element was not found on the page. The screen may not have loaded yet, or the field name changed."
+        },
+        {
+            "index": 9,
+            "name": "Export Beamer Machine Table to Excel",
+            "label": "",
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_DOWNLOAD).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_DOWNLOAD",
+                            "selector": "button:has-text(\"Excel\")",
+                            "value": "",
+                            "ok": true,
+                            "detail": "downloaded export.xlsx (None rows)"
+                        }
+                    ],
+                    "downloads": [
+                        {
+                            "suggested_filename": "export.xlsx",
+                            "path": "D:\\new ai\\agent-ai-\\projects\\Ambica\\flows\\Beamer Machine\\downloads\\case_9_export.xlsx",
+                            "url": "/static/projects/Ambica/flows/Beamer Machine/downloads/case_9_export.xlsx",
+                            "row_count": null,
+                            "size_bytes": 17599
+                        }
+                    ],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 4,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_9.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_9.webm",
+            "trace": "",
+            "duration": 12,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Excel\")'",
+                "VERIFY_DOWNLOAD on 'button:has-text(\"Excel\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 439,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 723,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Excel\")",
+                    "duration_ms": 491,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_DOWNLOAD",
+                    "selector": "button:has-text(\"Excel\")",
+                    "duration_ms": 84,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Excel export is triggered and file is downloaded.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [
+                {
+                    "suggested_filename": "export.xlsx",
+                    "path": "D:\\new ai\\agent-ai-\\projects\\Ambica\\flows\\Beamer Machine\\downloads\\case_9_export.xlsx",
+                    "url": "/static/projects/Ambica/flows/Beamer Machine/downloads/case_9_export.xlsx",
+                    "row_count": null,
+                    "size_bytes": 17599
+                }
+            ],
+            "assertions": [
+                {
+                    "action": "VERIFY_DOWNLOAD",
+                    "selector": "button:has-text(\"Excel\")",
+                    "value": "",
+                    "ok": true,
+                    "detail": "downloaded export.xlsx (None rows)"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 10,
+            "name": "Open and Close Add New Dialog without Saving",
+            "label": "",
+            "type": "positive_ui",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: element '#machineName' is still visible",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "#machineName",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element '#machineName' is visible"
+                        },
+                        {
+                            "action": "VERIFY_HIDDEN",
+                            "selector": "#machineName",
+                            "value": "",
+                            "ok": false,
+                            "detail": "element '#machineName' is still visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 6,
+                    "steps_executed": 5,
+                    "healed_steps": 1,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_10.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_10.webm",
+            "trace": "",
+            "duration": 97,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "VERIFY_VISIBLE on '#machineName'",
+                "CLICK on 'main > app-beamer-machine-master > div > p-dialog > div > div > div > div > button'",
+                "VERIFY_HIDDEN on '#machineName'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 403,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 659,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 525,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineName",
+                    "duration_ms": 6136,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "main > app-beamer-machine-master > div > p-dialog > div > div > div > div > button",
+                    "duration_ms": 71014,
+                    "healed": true,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Add New dialog opens and closes without persisting any changes.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineName",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element '#machineName' is visible"
+                },
+                {
+                    "action": "VERIFY_HIDDEN",
+                    "selector": "#machineName",
+                    "value": "",
+                    "ok": false,
+                    "detail": "element '#machineName' is still visible"
+                }
+            ],
+            "healed_steps": 1,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "element '#machineName' is still visible"
+        },
+        {
+            "index": 11,
+            "name": "Verify Beamer Machine Form Field Options",
+            "label": "",
+            "type": "positive_ui",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Explicit assertions passed.",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "#machineName",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element '#machineName' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "#machineType_0",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element '#machineType_0' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "#machineType_1",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element '#machineType_1' is visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 7,
+                    "steps_executed": 7,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_11.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_11.webm",
+            "trace": "",
+            "duration": 46,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "VERIFY_VISIBLE on '#machineName'",
+                "CLICK on '#machineType'",
+                "VERIFY_VISIBLE on '#machineType_0'",
+                "VERIFY_VISIBLE on '#machineType_1'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 437,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 712,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 513,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineName",
+                    "duration_ms": 6140,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 550,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineType_0",
+                    "duration_ms": 6151,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 7,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineType_1",
+                    "duration_ms": 6147,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Machine type dropdown options Beamer and Sectional Warping are visible.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineName",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element '#machineName' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineType_0",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element '#machineType_0' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#machineType_1",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element '#machineType_1' is visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 12,
+            "name": "Verify Table Structure and Action Buttons",
+            "label": "",
+            "type": "positive_ui",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Explicit assertions passed.",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "input[placeholder=\"Search by M/C\"]",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'input[placeholder=\"Search by M/C\"]' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "button:has-text(\"Add New\")",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'button:has-text(\"Add New\")' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "button:has-text(\"Excel\")",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'button:has-text(\"Excel\")' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "table",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'table' is visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 6,
+                    "steps_executed": 6,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_12.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_12.webm",
+            "trace": "",
+            "duration": 13,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "VERIFY_VISIBLE on 'input[placeholder=\"Search by M/C\"]'",
+                "VERIFY_VISIBLE on 'button:has-text(\"Add New\")'",
+                "VERIFY_VISIBLE on 'button:has-text(\"Excel\")'",
+                "VERIFY_VISIBLE on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 450,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 715,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 110,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 58,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "button:has-text(\"Excel\")",
+                    "duration_ms": 62,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "table",
+                    "duration_ms": 66,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Beamer Machine page elements and data table are loaded properly.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'input[placeholder=\"Search by M/C\"]' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "button:has-text(\"Add New\")",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'button:has-text(\"Add New\")' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "button:has-text(\"Excel\")",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'button:has-text(\"Excel\")' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "table",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'table' is visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 13,
+            "name": "Verify validation error on submitting empty form",
+            "label": "",
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 3 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 4,
+                    "steps_executed": 2,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_13.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_13.webm",
+            "trace": "",
+            "duration": 45,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1352,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 528,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Validation error message 'Machine name is required' is displayed and record is not saved",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 3,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 14,
+            "name": "Verify machine name input exceeding maximum allowed character limit",
+            "label": "",
+            "type": "boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_14.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_14.webm",
+            "trace": "",
+            "duration": 60,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1395,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 507,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 382,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 495,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 530,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System shows validation error 'Machine name cannot exceed 100 characters' and prevents saving",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 15,
+            "name": "Verify machine name input exactly at maximum boundary limit (100 chars)",
+            "label": "",
+            "type": "positive_boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 7,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_15.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_15.webm",
+            "trace": "",
+            "duration": 51,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1103,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 430,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 352,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 409,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 400,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Machine with 100 character long name is successfully saved and displayed in table",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 16,
+            "name": "Verify machine name with single character input",
+            "label": "",
+            "type": "boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 7,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "M"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_16.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_16.webm",
+            "trace": "",
+            "duration": 60,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'M'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1523,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 611,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 371,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 487,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 448,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Single character machine name is accepted and saved successfully",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 17,
+            "name": "Verify XSS payload injection handling in Machine Name field",
+            "label": "",
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "<script>alert('XSS')</script>"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_17.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_17.webm",
+            "trace": "",
+            "duration": 58,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value '<script>alert('XSS')</script>'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1244,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 443,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 367,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 439,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 409,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System sanitizes or rejects script tag input and shows validation message 'Invalid characters in machine name'",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 18,
+            "name": "Verify SQL Injection attempt in Machine Name field",
+            "label": "",
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "' OR 1=1 --"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_18.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_18.webm",
+            "trace": "",
+            "duration": 60,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value '' OR 1=1 --'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1363,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 436,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 364,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 439,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 403,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "SQL injection string is safely handled without error exposure and rejected by validation",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 19,
+            "name": "Verify HTML Injection in Machine Name field",
+            "label": "",
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "<h1>Test Machine</h1>"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_19.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_19.webm",
+            "trace": "",
+            "duration": 51,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value '<h1>Test Machine</h1>'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1141,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 484,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 367,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 416,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 412,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "HTML tags are sanitized/escaped and prevented from rendering or saving",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 20,
+            "name": "Verify whitespace-only input in Machine Name field",
+            "label": "",
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 7,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_20.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_20.webm",
+            "trace": "",
+            "duration": 59,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value '     '",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1361,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 501,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 384,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 495,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 501,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Whitespace-only input is trimmed and validation error 'Machine name cannot be blank' is displayed",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 21,
+            "name": "Verify leading and trailing whitespaces are trimmed from Machine Name",
+            "label": "",
+            "type": "boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 7,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Trimmed Machine"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_21.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_21.webm",
+            "trace": "",
+            "duration": 59,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value '  Trimmed Machine  '",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1245,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 454,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 370,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 463,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 412,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Leading and trailing spaces are trimmed automatically and record saved as 'Trimmed Machine'",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 22,
+            "name": "Verify special characters handling in Machine Name field",
+            "label": "",
+            "type": "boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "MC-@#$%^&*()"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_22.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_22.webm",
+            "trace": "",
+            "duration": 57,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'MC-@#$%^&*()'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1159,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 448,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 366,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 434,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 403,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System displays error message 'Special characters are not allowed' when non-standard symbols are submitted",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 23,
+            "name": "Verify error message on duplicate Machine Name entry",
+            "label": "",
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 7,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Dinesh"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_23.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_23.webm",
+            "trace": "",
+            "duration": 59,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'Dinesh'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1342,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 517,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 387,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 465,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 445,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System displays error 'Machine name already exists' when attempting to save duplicate name",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 24,
+            "name": "Verify inactive plant location is excluded from selection dropdown",
+            "label": "",
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_ROW_ABSENT).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_ABSENT",
+                            "selector": "ul[role=\"listbox\"]",
+                            "value": "Inactive Plant Unit B",
+                            "ok": true,
+                            "detail": "'Inactive Plant Unit B' is no longer listed, as expected"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 4,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_24.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_24.webm",
+            "trace": "",
+            "duration": 31,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "CLICK on '#plantLocation'",
+                "VERIFY_ROW_ABSENT on 'ul[role=\"listbox\"]'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1088,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 530,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "#plantLocation",
+                    "duration_ms": 467,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "ul[role=\"listbox\"]",
+                    "duration_ms": 12120,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Plants marked with status 'Inactive' in master tables are excluded from selection list",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "ul[role=\"listbox\"]",
+                    "value": "Inactive Plant Unit B",
+                    "ok": true,
+                    "detail": "'Inactive Plant Unit B' is no longer listed, as expected"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 25,
+            "name": "Verify search filter behavior with special characters payload",
+            "label": "",
+            "type": "security",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Input was handled without executing a payload or logging errors, and the explicit assertions passed.",
+                "source": "assertions",
+                "confidence": 0.9,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_ABSENT",
+                            "selector": "table",
+                            "value": "<script>alert('SearchXSS')</script>",
+                            "ok": true,
+                            "detail": "\"<script>alert('SearchXSS')</script>\" is no longer listed, as expected"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 4,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "<script>alert('SearchXSS')</script>"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_25.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_25.webm",
+            "trace": "",
+            "duration": 13,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "TYPE on 'input[placeholder=\"Search by M/C\"]' with value '<script>alert('SearchXSS')</script>'",
+                "KEYPRESS on 'input[placeholder=\"Search by M/C\"]' with value 'Enter'",
+                "VERIFY_ROW_ABSENT on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1276,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 388,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "KEYPRESS",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 369,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "table",
+                    "duration_ms": 1491,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Search input safely encodes special characters without executing payload or crashing application",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "table",
+                    "value": "<script>alert('SearchXSS')</script>",
+                    "ok": true,
+                    "detail": "\"<script>alert('SearchXSS')</script>\" is no longer listed, as expected"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 26,
+            "name": "Verify overflow handling with 250+ characters string in Machine Name",
+            "label": "",
+            "type": "negative_boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 6 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 7,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "OverflowStringTest_VeryLongMachineName_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_26.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_26.webm",
+            "trace": "",
+            "duration": 60,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'OverflowStringTest_VeryLongMachineName_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890_1234567890'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1372,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 518,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 364,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 482,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 426,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System prevents submission of overflow string over 200 characters with appropriate error message",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 6,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 27,
+            "name": "Verify canceling deletion preserves the machine record in grid",
+            "label": "",
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 3 failed: CLICK failed on 'div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 2,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "Dinesh"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_27.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_27.webm",
+            "trace": "",
+            "duration": 74,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "TYPE on 'input[placeholder=\"Search by M/C\"]' with value 'Dinesh'",
+                "CLICK on 'div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1360,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 379,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Machine record remains intact in table after clicking No on delete confirmation",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 3,
+            "error": "CLICK failed on 'div > p-table > div > div > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)'"
+        },
+        {
+            "index": 28,
+            "name": "Verify Excel export action downloads machine data report",
+            "label": "",
+            "type": "positive_boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 3 failed: no file was downloaded during this scenario",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_DOWNLOAD",
+                            "selector": "",
+                            "value": "",
+                            "ok": false,
+                            "detail": "no file was downloaded during this scenario"
+                        }
+                    ],
+                    "downloads": [
+                        {
+                            "suggested_filename": "export.xlsx",
+                            "path": "D:\\new ai\\agent-ai-\\projects\\Ambica\\flows\\Beamer Machine\\downloads\\case_28_export.xlsx",
+                            "url": "/static/projects/Ambica/flows/Beamer Machine/downloads/case_28_export.xlsx",
+                            "row_count": null,
+                            "size_bytes": 17599
+                        }
+                    ],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 3,
+                    "steps_executed": 2,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_28.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_28.webm",
+            "trace": "",
+            "duration": 9,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Excel\")'",
+                "VERIFY_DOWNLOAD on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1043,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Excel\")",
+                    "duration_ms": 483,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Excel download triggers successfully and exports machine records file",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [
+                {
+                    "suggested_filename": "export.xlsx",
+                    "path": "D:\\new ai\\agent-ai-\\projects\\Ambica\\flows\\Beamer Machine\\downloads\\case_28_export.xlsx",
+                    "url": "/static/projects/Ambica/flows/Beamer Machine/downloads/case_28_export.xlsx",
+                    "row_count": null,
+                    "size_bytes": 17599
+                }
+            ],
+            "assertions": [
+                {
+                    "action": "VERIFY_DOWNLOAD",
+                    "selector": "",
+                    "value": "",
+                    "ok": false,
+                    "detail": "no file was downloaded during this scenario"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 3,
+            "error": "no file was downloaded during this scenario"
+        },
+        {
+            "index": 29,
+            "name": "Verify Machine Type field requirement validation",
+            "label": "",
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 6,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "MachineTypeTest"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_29.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_29.webm",
+            "trace": "",
+            "duration": 46,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'MachineTypeTest'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1226,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 499,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 352,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Validation error 'Machine Type is required' displays when mandatory Machine Type dropdown is omitted",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 4,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 30,
+            "name": "Create Beamer Machine with Minimum Required Fields Only",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 7 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 6,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "MinReqMachine"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_30.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_30.webm",
+            "trace": "",
+            "duration": 51,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'MinReqMachine'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 435,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 721,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 587,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 416,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 594,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 555,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "The machine record is created successfully using only required fields and appears in the table.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 7,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 31,
+            "name": "Verify Search Functionality with Case-Insensitive Input",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: The element was not found on the page. The screen may not have loaded yet, or the field name changed.",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_CONTAINS",
+                            "selector": "table",
+                            "value": "Dinesh",
+                            "ok": false,
+                            "detail": "'Dinesh' (token 'Dinesh') not found on any inspected table page"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 4,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "dinesh"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_31.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_31.webm",
+            "trace": "",
+            "duration": 11,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "TYPE on 'input[placeholder=\"Search by M/C\"]' with value 'dinesh'",
+                "VERIFY_ROW_CONTAINS on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 428,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 684,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 391,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Matching machine records are displayed in the table regardless of search query character casing.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_CONTAINS",
+                    "selector": "table",
+                    "value": "Dinesh",
+                    "ok": false,
+                    "detail": "'Dinesh' (token 'Dinesh') not found on any inspected table page"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED",
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica-backend/api/beamer-machines?page=0&size=10&sortField=id&sortDir=desc&search=Dinesh - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 4,
+            "error": "The element was not found on the page. The screen may not have loaded yet, or the field name changed."
+        },
+        {
+            "index": 32,
+            "name": "Verify Sorting Functionality on Table Columns",
+            "label": "",
+            "type": "positive_ui",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_VISIBLE).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "table",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'table' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "table",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'table' is visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 6,
+                    "steps_executed": 6,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_32.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_32.webm",
+            "trace": "",
+            "duration": 14,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'p-table div table thead tr th:nth-child(1)'",
+                "VERIFY_VISIBLE on 'table'",
+                "CLICK on 'p-table div table thead tr th:nth-child(1)'",
+                "VERIFY_VISIBLE on 'table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 427,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 729,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "p-table div table thead tr th:nth-child(1)",
+                    "duration_ms": 440,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "table",
+                    "duration_ms": 63,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "p-table div table thead tr th:nth-child(1)",
+                    "duration_ms": 403,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "table",
+                    "duration_ms": 60,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Machine table records sort sequentially in ascending and descending order when column header is clicked.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "table",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'table' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "table",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'table' is visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 33,
+            "name": "Create Machine Record Leaving Optional Fields Empty",
+            "label": "",
+            "type": "positive",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 7 failed: CLICK failed on 'button:has-text(\"Save\")'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 8,
+                    "steps_executed": 6,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "NoPlantMachine"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_33.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_33.webm",
+            "trace": "",
+            "duration": 52,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "TYPE on '#machineName' with value 'NoPlantMachine'",
+                "CLICK on '#machineType'",
+                "CLICK on '#machineType_0'",
+                "CLICK on 'button:has-text(\"Save\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 419,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 624,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 499,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "TYPE",
+                    "selector": "#machineName",
+                    "duration_ms": 384,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "CLICK",
+                    "selector": "#machineType",
+                    "duration_ms": 458,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "#machineType_0",
+                    "duration_ms": 547,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Form saves successfully and creates record when non-mandatory fields like Plant Location are left empty.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 7,
+            "error": "CLICK failed on 'button:has-text(\"Save\")'"
+        },
+        {
+            "index": 34,
+            "name": "Verify Read-Only or Auto-Populated Fields Status",
+            "label": "",
+            "type": "positive_ui",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 4 failed: The element was not found on the page. The screen may not have loaded yet, or the field name changed.",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_DISABLED",
+                            "selector": "input[readonly], input[disabled]",
+                            "value": "",
+                            "ok": false,
+                            "detail": "element 'input[readonly], input[disabled]' not found to verify disabled state"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "",
+                    "steps_total": 4,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "123456"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/failed_test_34.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_34.webm",
+            "trace": "",
+            "duration": 16,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Machines Data\")'",
+                "CLICK on 'a:has-text(\"Beamer Machine\")'",
+                "CLICK on 'button:has-text(\"Add New\")'",
+                "VERIFY_DISABLED on 'input[readonly], input[disabled]'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Machines Data\")",
+                    "duration_ms": 406,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "a:has-text(\"Beamer Machine\")",
+                    "duration_ms": 628,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Add New\")",
+                    "duration_ms": 507,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Designated read-only or auto-populated form fields are locked and cannot be typed into.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_DISABLED",
+                    "selector": "input[readonly], input[disabled]",
+                    "value": "",
+                    "ok": false,
+                    "detail": "element 'input[readonly], input[disabled]' not found to verify disabled state"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 4,
+            "error": "The element was not found on the page. The screen may not have loaded yet, or the field name changed."
+        },
+        {
+            "index": 35,
+            "name": "Verify search behavior when searching for a non-existent machine name",
+            "label": "",
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Explicit assertions passed.",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_ROW_ABSENT",
+                            "selector": "p-table",
+                            "value": "NON_EXISTENT_MACHINE_9999",
+                            "ok": true,
+                            "detail": "'NON_EXISTENT_MACHINE_9999' is no longer listed, as expected"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "steps_total": 3,
+                    "steps_executed": 3,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "NON_EXISTENT_MACHINE_9999"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Ambica/flows/Beamer Machine/screenshots/result_test_35.png",
+            "video": "/static/projects/Ambica/flows/Beamer Machine/videos/scenario_35.webm",
+            "trace": "",
+            "duration": 11,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer'",
+                "TYPE on 'input[placeholder=\"Search by M/C\"]' with value 'NON_EXISTENT_MACHINE_9999'",
+                "VERIFY_ROW_ABSENT on 'p-table'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/machines/beamer",
+                    "duration_ms": 1514,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "input[placeholder=\"Search by M/C\"]",
+                    "duration_ms": 377,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "p-table",
+                    "duration_ms": 1039,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "No records matching 'NON_EXISTENT_MACHINE_9999' should be displayed in the table",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_ROW_ABSENT",
+                    "selector": "p-table",
+                    "value": "NON_EXISTENT_MACHINE_9999",
+                    "ok": true,
+                    "detail": "'NON_EXISTENT_MACHINE_9999' is no longer listed, as expected"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT",
+                "[warning] Failed to decode downloaded font: https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/Inter-roman.var-5VGNBR6A.woff2?v=3.19",
+                "[warning] OTS parsing error: Failed to convert WOFF 2.0 font to SFNT"
+            ],
+            "network_errors": [
+                "Network error: GET https://gc-dev.centralindia.cloudapp.azure.com/ambica/media/primeicons-4GST5W3O.woff2 - net::ERR_ABORTED"
+            ],
+            "visual": {},
+            "failed_step": 0
+        }
+    ]
+}

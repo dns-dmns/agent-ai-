@@ -199,7 +199,7 @@ def scenario_history(project_name: str, flow_name: str, scenario_name: str,
                        FROM results JOIN runs ON runs.run_id = results.run_id
                        WHERE results.project_name = ? AND results.flow_name = ?
                          AND results.scenario_name = ?
-                       ORDER BY results.epoch DESC LIMIT ?""",
+                       ORDER BY results.epoch DESC, results.id DESC LIMIT ?""",
                     (project_name, flow_name, scenario_name, limit),
                 )
             ]
@@ -213,13 +213,16 @@ def scenario_history(project_name: str, flow_name: str, scenario_name: str,
 def flaky_scenarios(project_name: str = "", window: int = 5,
                     min_flips: int = 2) -> list[dict]:
     """Scenarios whose status flips back and forth across recent runs."""
-    query = """SELECT project_name, flow_name, scenario_name, status, epoch
+    query = """SELECT id, project_name, flow_name, scenario_name, status, epoch
                FROM results"""
     params: list = []
     if project_name:
         query += " WHERE project_name = ?"
         params.append(project_name)
-    query += " ORDER BY epoch DESC"
+    # id breaks ties: several runs recorded within the same second would
+    # otherwise come back in arbitrary order, and since flakiness is measured
+    # from the SEQUENCE of statuses, the verdict itself became non-deterministic.
+    query += " ORDER BY epoch DESC, id DESC"
     try:
         with connect() as conn:
             rows = [dict(r) for r in conn.execute(query, params)]

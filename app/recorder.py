@@ -101,12 +101,68 @@ JS_RECORDER_SCRIPT = r"""
             push(tag + '[placeholder="' + quote(label) + '"]');
         }
 
+        // A control inside a modal must say so. Otherwise a selector like
+        // 'input[placeholder="Days"]' or 'p-dropdown > div' also matches a
+        // look-alike on the page behind the dialog, and the replay types into
+        // the wrong one — the value never reaches the form the tester filled.
+        var surface = el.closest('p-dialog, .p-dialog, [role="dialog"], dialog, .modal, ' +
+                                 '.mat-dialog-container, .mat-mdc-dialog-container, ' +
+                                 '.ant-modal, .MuiDialog-container, .cdk-overlay-pane');
+        if (surface) {
+            var scope = surface.tagName.toLowerCase();
+            var scopedBase = [];
+            if (el.id && isStableId(el.id)) scopedBase.push('#' + cssEscape(el.id));
+            if (fcn) scopedBase.push(tag + '[formcontrolname="' + quote(fcn) + '"]');
+            if (el.name) scopedBase.push(tag + '[name="' + quote(el.name) + '"]');
+            if (el.placeholder) scopedBase.push(tag + '[placeholder="' + quote(el.placeholder) + '"]');
+            scopedBase.forEach(function(base) { push(scope + ' ' + base); });
+        }
+
         var text = (el.innerText || '').trim().split('\n')[0];
         if (text && text.length < 40) {
             if (tag === 'button' || el.getAttribute('role') === 'button') {
                 push('button:has-text("' + quote(text) + '")');
             } else if (tag === 'a') {
                 push('a:has-text("' + quote(text) + '")');
+            }
+        }
+
+        // Icon-only controls. A grid's action column is usually four unlabelled
+        // icon buttons (view / edit / history / delete); recorded as
+        // 'td:nth-of-type(12) > button' they are indistinguishable, so neither a
+        // replay nor the generator can tell which one does what. The tooltip and
+        // the icon class name carry that meaning.
+        if (!text && (tag === 'button' || tag === 'a' || el.getAttribute('role') === 'button')) {
+            var title = el.getAttribute('title') || el.getAttribute('aria-label') ||
+                        el.getAttribute('pTooltip') || el.getAttribute('ng-reflect-text') || '';
+            if (title) {
+                push(tag + '[title="' + quote(title) + '"]');
+                push('[aria-label="' + quote(title) + '"]');
+            }
+            var icon = el.querySelector('i[class], span[class*="pi-"], mat-icon, svg[class]');
+            if (icon) {
+                var iconClasses = String(icon.getAttribute('class') || '').split(/\s+/);
+                for (var ic = 0; ic < iconClasses.length; ic++) {
+                    var cls = iconClasses[ic];
+                    // pi-history, pi-eye, pi-pencil, pi-trash, fa-download, …
+                    if (/^(pi|fa|bi|mdi|material-icons|icon)-[a-z0-9-]+$/i.test(cls) &&
+                        cls.indexOf('-fw') === -1) {
+                        push(tag + ':has(' + icon.tagName.toLowerCase() + '.' + cls + ')');
+                    }
+                }
+                var iconText = (icon.innerText || '').trim();
+                if (iconText && iconText.length < 24) {
+                    push(tag + ':has-text("' + quote(iconText) + '")');
+                }
+            }
+            // Scoped to its row, so it survives re-ordering and paging.
+            var row = el.closest('tr');
+            if (row) {
+                var rowText = (row.innerText || '').trim().split('\n')[0];
+                if (rowText && rowText.length < 40 && (title || icon)) {
+                    var inner = title ? ('[title="' + quote(title) + '"]') : tag;
+                    push('tr:has-text("' + quote(rowText) + '") ' + inner);
+                }
             }
         }
         if (el.id && !isStableId(el.id)) push('#' + cssEscape(el.id));
@@ -120,6 +176,27 @@ JS_RECORDER_SCRIPT = r"""
         } catch (e) {}
     }
 
+    // A field the application marks as mandatory. Knowing this is what stops the
+    // agents generating a "click Save" scenario that can never work, because the
+    // application keeps Save disabled until every required field is filled.
+    function isRequired(el) {
+        try {
+            if (el.required || el.getAttribute('aria-required') === 'true') return true;
+            var wrapper = el.closest('.field, .form-group, .p-field, .form-row, .mb-3') ||
+                          el.parentElement;
+            if (wrapper) {
+                var lab = wrapper.querySelector('label');
+                // A trailing asterisk is the near-universal convention for it.
+                if (lab && /\*\s*$/.test(lab.innerText || '')) return true;
+                if (wrapper.querySelector('.required, .p-error, [class*="required"]')) return true;
+            }
+            var host = el.closest('[formcontrolname]') || el;
+            if (host && /\bng-invalid\b/.test(host.className || '') &&
+                /\bng-pristine\b/.test(host.className || '')) return true;
+        } catch (e) {}
+        return false;
+    }
+
     function emit(action, el, extra) {
         var selectors = candidateSelectors(el);
         var tag = el.tagName ? el.tagName.toLowerCase() : '';
@@ -130,6 +207,7 @@ JS_RECORDER_SCRIPT = r"""
             tag: tag,
             text: (el.innerText ? el.innerText.trim().substring(0, 50) : ''),
             label: labelTextFor(el),
+            required: isRequired(el),
             value: ''
         };
         if (extra) {
@@ -138,8 +216,53 @@ JS_RECORDER_SCRIPT = r"""
         send(payload);
     }
 
+    // ── Value tracking ────────────────────────────────────────────────
+    // Component libraries (PrimeNG InputNumber/Calendar, Material, Ant) write the
+    // value programmatically, which fires NO native 'change' event — so a field
+    // the tester filled was recorded as if it had never been touched. Tracking
+    // the value across focus catches those regardless of how it was set.
+    var valueAtFocus = new WeakMap();
+    var valueRecorded = new WeakMap();
+
+    function readValue(el) {
+        try { return el.value == null ? '' : String(el.value); } catch (err) { return ''; }
+    }
+
+    function isTextField(el) {
+        if (!el || !el.tagName) return false;
+        var tag = el.tagName.toLowerCase();
+        if (tag !== 'input' && tag !== 'textarea') return false;
+        var type = (el.getAttribute('type') || '').toLowerCase();
+        return ['checkbox', 'radio', 'file', 'submit', 'button', 'reset', 'image']
+            .indexOf(type) === -1;
+    }
+
+    function flushValue(el) {
+        if (!isTextField(el)) return;
+        var now = readValue(el);
+        var before = valueAtFocus.has(el) ? valueAtFocus.get(el) : '';
+        if (now === before) return;                       // nothing changed
+        if (valueRecorded.get(el) === now) return;        // 'change' already got it
+        valueRecorded.set(el, now);
+        valueAtFocus.set(el, now);
+        emit('TYPE', el, { value: now });
+    }
+
+    document.addEventListener('focusin', function(e) {
+        if (isTextField(e.target)) valueAtFocus.set(e.target, readValue(e.target));
+    }, true);
+
+    document.addEventListener('focusout', function(e) {
+        flushValue(e.target);
+    }, true);
+
     // ── Clicks ────────────────────────────────────────────────────────
     document.addEventListener('click', function(e) {
+        // A click on Save must not be recorded before the value typed into the
+        // field that still has focus.
+        var focused = document.activeElement;
+        if (focused && focused !== e.target) flushValue(focused);
+
         var target = e.target.closest(
             'button, input, select, textarea, a, [role="button"], [role="option"], ' +
             '.p-dropdown, .p-dropdown-item, .p-checkbox, .mat-mdc-select, .ant-select, ' +
@@ -182,6 +305,8 @@ JS_RECORDER_SCRIPT = r"""
                 emit('UPLOAD', target, { value: names.join(',') });
                 return;
             }
+            valueRecorded.set(target, target.value);
+            valueAtFocus.set(target, target.value);
             emit('TYPE', target, { value: target.value });
         }
     }, true);

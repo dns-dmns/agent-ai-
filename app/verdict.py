@@ -179,6 +179,9 @@ class Evidence:
     steps_executed: int = 0
     healed_steps: int = 0
     notes: list[str] = field(default_factory=list)      # captures, polls, API calls
+    auto_filled: list[dict] = field(default_factory=list)   # fields the engine completed itself
+    submission_blocked: dict = field(default_factory=dict)  # the app refused an invalid submit
+    input_rejected: list[dict] = field(default_factory=list)  # widget refused the keystrokes
     rule_results: list[dict] = field(default_factory=list)  # {id, title, ok, detail}
 
     def add_message(self, text: str, selector: str = "") -> None:
@@ -227,6 +230,9 @@ class Evidence:
             "network_error_count": len(self.network_errors),
             "notes": self.notes,
             "rule_results": self.rule_results,
+            "auto_filled": self.auto_filled,
+            "submission_blocked": self.submission_blocked,
+            "input_rejected": self.input_rejected,
         }
 
 
@@ -279,6 +285,51 @@ def evaluate(expected_result: str, evidence: Evidence, scenario_type: str = "") 
             )
 
     quoted = extract_quoted_values(expected_result)
+
+    # 2b. The application refused to submit at all.
+    #     Many forms keep Save disabled until every mandatory field is valid. That
+    #     refusal is the validation — it is a stronger guarantee than an error
+    #     message, because the invalid data never reached the server. A scenario
+    #     that expected rejection has been satisfied; one that expected a save has
+    #     genuinely failed.
+    blocked = getattr(evidence, "submission_blocked", None)
+    if blocked:
+        empty = ", ".join(str(x) for x in (blocked.get("empty_required") or []))
+        if intent["expects_error"] or intent["expects_absence"]:
+            return Verdict(
+                PASS,
+                f"The application blocked the submission: '{blocked.get('control')}' stayed "
+                f"disabled because {empty or 'a required field'} was empty, so the invalid "
+                f"record was never created.",
+                "rules", 0.9, summary,
+            )
+        if intent["expects_success"]:
+            missing = empty or "a required field"
+            return Verdict(
+                FAIL,
+                f"A successful save was expected, but the application would not accept the "
+                f"form: '{blocked.get('control')}' is disabled while {missing} is empty. "
+                f"The scenario is missing a value this form demands.",
+                "rules", 0.9, summary,
+            )
+
+    # 2c. The field itself refused the keystrokes.
+    #     A numeric input that drops letters, or a maxlength that truncates, is
+    #     the application enforcing its rule at the input layer. Nothing invalid
+    #     was ever submitted, so there is no error message to find — reporting
+    #     "the invalid input appears to have been accepted" would be exactly
+    #     backwards.
+    refused = getattr(evidence, "input_rejected", None)
+    if refused and (intent["expects_error"] or intent["expects_absence"]) \
+            and not evidence.error_messages:
+        first = refused[0]
+        return Verdict(
+            PASS,
+            f"The field rejected the input before it could be submitted: "
+            f"{first.get('detail')}. The application enforces this at the input "
+            f"layer rather than with a message, so nothing invalid was stored.",
+            "rules", 0.85, summary,
+        )
 
     # 3. Negative / validation expectations.
     if intent["expects_error"]:

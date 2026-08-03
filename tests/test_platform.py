@@ -336,3 +336,115 @@ def test_rules_can_be_scoped_to_scenario_types():
                               {"type": "negative"})[0]
     assert negative["skipped"] is False and negative["ok"] is False
 
+
+
+def test_column_not_empty_rule_round_trip_and_generation():
+    """An audit trail with blank Date/User is useless even though every row is
+    present — statable once as a rule, enforced on every run."""
+    rule = rules.validate({
+        "title": "Audit history always shows date and user",
+        "kind": "column_not_empty", "selector": "#auditTable",
+        "value": "Date/Time, User", "severity": "blocker",
+        "generate_scenario": True,
+    })
+    assert rule["kind"] == "column_not_empty"
+
+    import pytest
+    with pytest.raises(ValueError, match="column_not_empty"):
+        rules.validate({"title": "x", "kind": "column_not_empty"})
+
+    generated = rules.to_scenarios([rule])
+    assert generated and generated[0]["steps"][0]["action"] == "VERIFY_COLUMN_NOT_EMPTY"
+    assert generated[0]["steps"][0]["value"] == "Date/Time, User"
+
+
+def test_column_not_empty_rule_reads_the_assertion_result():
+    passing = _Ev()
+    passing.assertions = [{"action": "VERIFY_COLUMN_NOT_EMPTY", "ok": True,
+                           "detail": "every row has data"}]
+    failing = _Ev()
+    failing.assertions = [{"action": "VERIFY_COLUMN_NOT_EMPTY", "ok": False,
+                           "detail": "Date/Time (blank in 5/5 rows)"}]
+    rule = rules.validate({"title": "audit", "kind": "column_not_empty",
+                           "value": "Date/Time, User"})
+
+    assert rules.evaluate([rule], passing, {"type": "positive"})[0]["ok"] is True
+    bad = rules.evaluate([rule], failing, {"type": "positive"})[0]
+    assert bad["ok"] is False and "blank in 5/5" in bad["detail"]
+
+    # A scenario that never looked is skipped, not silently passed.
+    assert rules.evaluate([rule], _Ev(), {"type": "positive"})[0]["skipped"] is True
+
+
+# ── Generic handling of application quirks (Circular Machine findings) ──
+def test_control_synonyms_cover_the_words_applications_actually_use():
+    """A recorded "Save" must still find the button on a screen that says
+    "Update", and an Export that is only an icon."""
+    from app import heuristics
+
+    save = heuristics.synonym_selectors('button:has-text("Save")')
+    assert 'button:has-text("Update")' in save
+    assert 'button:has-text("Submit")' in save
+    assert 'button:has-text("Save")' not in save          # no pointless retry
+
+    reject = heuristics.synonym_selectors('p-confirmdialog button:has-text("No")')
+    assert 'p-confirmdialog button:has-text("Cancel")' in reject
+    assert 'p-confirmdialog button:has-text("Close")' in reject
+
+    export = heuristics.synonym_selectors('button:has-text("Export")')
+    assert "button:has(i.pi-file-excel)" in export        # unlabelled icon button
+    assert any("title*='Export'" in s for s in export)
+
+    # A confirm button must never be offered as an alternative for a reject one.
+    assert 'p-confirmdialog button:has-text("Yes")' not in reject
+    # Nothing to expand when the selector has no label.
+    assert heuristics.synonym_selectors("#saveBtn") == []
+
+
+def test_empty_state_wording_is_not_a_test_failure():
+    """"No records found" vs "No data available" is a framework difference, not
+    an application defect."""
+    from app import executor
+
+    assert executor.looks_like_empty_state("No records found") is True
+    assert executor.looks_like_empty_state("Multi-Feed Circular") is False
+    assert executor.find_empty_state("  No data available  ") == "No data available"
+    assert executor.find_empty_state("Name Width Grade") == ""
+
+
+def test_input_refused_by_the_widget_is_the_app_validating():
+    """A numeric field that drops letters enforces its rule at the input layer.
+    Reporting "the invalid input was accepted" would be exactly backwards."""
+    from app import executor
+
+    assert executor._same_input("2344", "2,344.00") is True     # reformatting
+    assert executor._same_input(" abc ", "abc") is True          # trimming
+    assert executor._same_input("abc", "") is False              # refused
+    assert executor._same_input("12345", "1234") is False        # truncated
+
+    from app import verdict
+    ev = verdict.Evidence(steps_total=6, steps_executed=6)
+    ev.input_rejected = [{"selector": "#machineWidth", "typed": "abcd", "kept": "",
+                          "detail": "#machineWidth refused the value outright — "
+                                    "the field is still empty"}]
+    result = verdict.evaluate(
+        "The application should reject non-numeric input.", ev, "negative")
+    assert result.status == verdict.PASS
+    assert "rejected the input" in result.reason
+
+    # The same evidence must NOT rescue a scenario that expected a save.
+    positive = verdict.evaluate(
+        "The machine is created successfully.", ev, "positive")
+    assert positive.status != verdict.PASS
+
+
+def test_a_real_error_message_still_wins_over_the_input_layer_reason():
+    from app import verdict
+    ev = verdict.Evidence(steps_total=6, steps_executed=6)
+    ev.input_rejected = [{"selector": "#width", "typed": "abc", "kept": "",
+                          "detail": "refused"}]
+    ev.add_message("Machine Width must be numeric", ".p-error")
+    result = verdict.evaluate(
+        "An error 'Machine Width must be numeric' is shown.", ev, "negative")
+    assert result.status == verdict.PASS
+    assert "Machine Width must be numeric" in result.reason
