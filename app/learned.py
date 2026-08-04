@@ -29,6 +29,7 @@ runner on later runs.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -135,20 +136,58 @@ def remember_submit_gating(project_name: str, flow_name: str, gating: str) -> No
     log.info("Learned: %s/%s gates submission = %s", project_name, flow_name, gating)
 
 
+#: Classes that describe layout rather than a message. Learning these would make
+#: the scanner report every panel on the page as a validation message.
+GENERIC_CLASSES = frozenset({
+    "ng-star-inserted", "ng-tns", "row", "col", "container", "wrapper", "content",
+    "text", "label", "value", "item", "cell", "block", "inner", "outer", "body",
+    "flex", "grid", "hidden", "show", "active", "open", "small", "large",
+})
+
+
+def _message_classes(selector: str) -> list[str]:
+    """The reusable class parts of a selector, most specific last.
+
+    ``div.wrapper > span.my-err`` yields ``['.wrapper', '.my-err']``. Keeping only
+    tokens that *begin* with a dot — as this used to — silently learned nothing
+    from ``span.my-err``, which is how most frameworks actually write it.
+    A full path is not kept: it is too brittle to reuse on the next run.
+    """
+    found: list[str] = []
+    for raw in re.findall(r"\.([A-Za-z_][\w-]*)", selector or ""):
+        name = raw.strip()
+        if not name or len(name) < 3:
+            continue
+        if name.lower() in GENERIC_CLASSES:
+            continue
+        candidate = f".{name}"
+        if candidate not in found:
+            found.append(candidate)
+    return found
+
+
 def remember_message_selector(project_name: str, selector: str) -> None:
-    """Learn where this application renders messages, so the next run sees them."""
+    """Learn where this application renders messages, so the next run sees them.
+
+    Only worth anything because something *other* than the seed list discovers
+    the selector — the DOM-diff scan. Fed from the seed scan alone this could
+    only ever re-learn what it already knew.
+    """
     selector = (selector or "").strip()
-    if not selector or len(selector) > 120:
+    if not selector or len(selector) > 160:
+        return
+    classes = _message_classes(selector)
+    if not classes:
         return
     profile = load(project_name)
     known = profile.setdefault("message_selectors", [])
-    # Keep the class-based part; a full path is too brittle to reuse.
-    for token in selector.split():
-        if token.startswith(".") and token not in known:
-            known.append(token)
-            save(project_name, profile)
-            log.info("Learned message selector for %s: %s", project_name, token)
-            return
+    added = [c for c in classes if c not in known]
+    if not added:
+        return
+    known.extend(added)
+    del known[:-40]                    # a cap, so a chatty app cannot grow forever
+    save(project_name, profile)
+    log.info("Learned message selector(s) for %s: %s", project_name, ", ".join(added))
 
 
 def remember_healed(project_name: str, flow_name: str, original: str, working: str) -> None:

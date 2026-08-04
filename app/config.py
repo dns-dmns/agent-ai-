@@ -135,7 +135,31 @@ ALLOWED_ORIGINS = [
     ).split(",")
     if o.strip()
 ]
-VISION_HEALING_ENABLED = os.getenv("QA_VISION_HEALING", "1") not in ("0", "false", "False")
+# Message detection layer 2: treat text that appeared after an action as a
+# message, whatever its CSS. On by default — it only *adds* messages the static
+# selector list could not see, which is how a false FAIL on a correct
+# application gets avoided.
+DOM_DIFF_MESSAGES = os.getenv("QA_DOM_DIFF_MESSAGES", "1") not in ("0", "false", "False")
+
+# "Never convert ignorance into a FAIL". When the engine has never seen where
+# this application renders messages, a negative scenario that found nothing is
+# UNVERIFIED ("calibrate this flow"), not FAIL. Off by default because it moves
+# existing verdict numbers — some current FAILs become UNVERIFIED, which is the
+# safe direction but should be a deliberate choice.
+STRICT_MESSAGE_CONFIDENCE = os.getenv("QA_STRICT_MESSAGE_CONFIDENCE", "0") not in (
+    "0", "false", "False")
+
+# Assumed daily request allowance, used only to warn before a run that cannot
+# finish. The API does not report it, so this is a guess: 20 is the free tier
+# for a current flash model. Set 0 to disable the warning entirely (correct
+# once billing is enabled).
+LLM_DAILY_BUDGET = int(os.getenv("QA_LLM_DAILY_BUDGET", "20"))
+
+# Vision healing sends a screenshot to Gemini when a selector fails. Off by
+# default: it costs 15-20s per failed step and, on a free tier of 20 requests
+# a day, a single run with several broken selectors can consume the whole
+# allowance — so *running tests* silently competed with generating them.
+VISION_HEALING_ENABLED = os.getenv("QA_VISION_HEALING", "0") not in ("0", "false", "False")
 VISION_MIN_CONFIDENCE = float(os.getenv("QA_VISION_MIN_CONFIDENCE", "0.6"))
 MAX_PARALLEL_WORKERS = int(os.getenv("QA_MAX_WORKERS", "5"))
 SCHEDULER_ENABLED = os.getenv("QA_SCHEDULER", "1") not in ("0", "false", "False")

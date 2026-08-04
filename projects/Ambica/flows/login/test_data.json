@@ -1,0 +1,25 @@
+{
+    "valid": [
+        {
+            "username": "d",
+            "password": "123456",
+            "role": "Admin"
+        }
+    ],
+    "invalid": [
+        {
+            "username": "d",
+            "password": "WrongPassword!"
+        },
+        {
+            "username": "invalidUser",
+            "password": "123456"
+        }
+    ],
+    "boundary": [
+        {
+            "username": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "password": "123456"
+        }
+    ]
+}

@@ -1,9 +1,45 @@
 # Enhancement Plan — recording fidelity, coverage and data flow
 
 **Created:** 2026-08-02
-**Status:** proposed — nothing in this document is implemented yet
+**Updated:** 2026-08-03
+**Status:** §1–§3 and §5 implemented and covered by tests. §4c (ordered scenario
+chains) and §6 (Surveyor agent) deliberately deferred — see the status table below.
 **Source:** issues found while running the platform against the OrangeHRM demo
 (`projects/ornage`) and while planning the 10-module workflow in `QA Strat/`
+
+---
+
+## Implementation status
+
+| § | Item | State | Where |
+| :-- | :--- | :--- | :--- |
+| 1 | Effect capture while recording | **Done** | `recorder.py` `captureEffect()`, attached by `main.handle_exposed_event` |
+| 1 | Effects fed into generation | **Done** | `main.describe_recorded_effects()` → the Builder/Breaker prompt |
+| 2 | Layer 1 seed selector list | Done (pre-existing) | `executor.MESSAGE_SCAN_JS` |
+| 2 | Layer 2 DOM-diff detection | **Done** | `executor.DOM_DIFF_INSTALL_JS`, flag `QA_DOM_DIFF_MESSAGES` (default **on**) |
+| 2 | Layer 3 calibration / learning | **Done** | `learned.remember_message_selector()`, now read back by `scan_messages()` |
+| 2 | Layer 4 AI adjudication | Done (pre-existing) | `verdict_mode=ai` |
+| 2 | "Never FAIL on ignorance" | **Done** | flag `QA_STRICT_MESSAGE_CONFIDENCE` (default **off** — it moves verdict numbers) |
+| 3 | Page inventory + uncovered controls | **Done** | `/page-coverage`, `main.CONTROL_INVENTORY_JS`, `triage_control()` |
+| 3 | Coverage panel | **Done** | `web/ui-coverage.js` → Coverage → Page coverage |
+| 4a | `STORE` + `{{var}}` in one scenario | Done (pre-existing) | proven by `e2e_chain` |
+| 4b | Cross-flow contracts | Done (pre-existing) | proven by `e2e_chain` |
+| 4c | Ordered scenario chains | **Deferred** | trades away isolation; nothing needs it yet |
+| 5a | `{{var}}` never uniquified | **Done** | `executor.make_dep_value_unique()` |
+| 5b | `unique_by` declaration | **Done** | `contracts.normalise()` |
+| 5c | Two-phase duplicate pattern | **Done** | `contracts.duplicate_scenarios()`, `/preview-duplicate-checks` |
+| 6 | Surveyor agent | **Deferred** | needs an API key and can touch data it was not told to touch |
+| 7 | Self-test proof for all of the above | **Done** | `chain.html` §8–§9, `e2e_chain`, `integration_api` |
+
+Two things learned while building it, both now guarded by tests:
+
+* `remember_message_selector()` was **write-only** — the platform recorded where
+  messages appeared and then scanned without that knowledge. Worse, the seed scan
+  could only ever report a selector already in the list, so nothing new was ever
+  learned. Layer 2 is what makes layer 3 worth having.
+* A generated `expected_result` must avoid negative vocabulary in explanatory
+  asides. "Refusing it would mean…" made the intent classifier read a correct
+  save as expecting an error, failing a scenario that behaved properly.
 
 ---
 

@@ -1,0 +1,11 @@
+{
+    "broken_selectors": [
+        "html > body > app-root > app-login... positional selector is fragile; keep using 'button:has-text(\"Login\")' or 'button.btn-login'."
+    ],
+    "missing_validations": [
+        "Add explicit verification for 'Remember Me' persistence if feature is introduced."
+    ],
+    "recommendations": [
+        "Use dedicated QA data attribute identifiers like data-testid='login-button' across Angular components."
+    ]
+}

@@ -38,7 +38,10 @@ APP_DIR = HERE / "selftest_app"
 WORKSPACE = Path(tempfile.mkdtemp(prefix="qa_chain_"))
 os.environ["QA_WORKSPACE"] = str(WORKSPACE)
 os.environ["QA_SCHEDULER"] = "0"
-os.environ.pop("GEMINI_API_KEY", None)
+# Set to empty rather than popped: config.py calls load_dotenv(), which
+# fills in anything ABSENT from the environment — so popping the key let a
+# developer's .env put it back, and these suites only ran offline on CI.
+os.environ["GEMINI_API_KEY"] = ""
 sys.path.insert(0, str(ROOT))
 
 for _stream in (sys.stdout, sys.stderr):
@@ -107,6 +110,9 @@ def seed_workspace(base_url: str) -> None:
     contracts.save(PROJECT, TARGET, {
         "requires": [{"entity": "category", "selector": "#categoryDropdown",
                       "kind": "dropdown"}],
+        # What this application treats as a duplicate: the name alone is not
+        # enough, so a test that only repeats the name proves nothing.
+        "unique_by": ["#dupName", "#dupDate"],
         "run_once": False,
     })
 
@@ -124,6 +130,18 @@ def seed_workspace(base_url: str) -> None:
         "kind": "field_rejects", "selector": "#orderQty", "values": ["5000"],
         "severity": "blocker", "generate_scenario": False,
     }, TARGET)
+
+    duplicate_cases, dup_notes = contracts.duplicate_scenarios(
+        PROJECT, TARGET, open_steps=[], submit_selector="#dupSaveBtn")
+    assert not dup_notes, f"unexpected notes from duplicate_scenarios: {dup_notes}"
+    assert len(duplicate_cases) == 2, duplicate_cases
+    # Both must pass: the application behaves correctly on each.
+    for case in duplicate_cases:
+        case["_expect"] = "PASS"
+        case["_proves"] = ("UNIQUE_BY — phase 1 creates a fresh original, phase 2 repeats "
+                           "the stored values, so a real duplicate happens; changing only "
+                           "the date is correctly allowed")
+    SUITE.extend(duplicate_cases)
 
     (target_dir / "test_cases.json").write_text(json.dumps(SUITE, indent=2), encoding="utf-8")
 
@@ -409,6 +427,62 @@ SUITE = [
         ],
         "expected_result": "The grid reports that there are no records to show.",
     },
+    # ── A message in a class no framework list has ever heard of ─────
+    {
+        "scenario_name": "Empty reference is rejected by a bespoke message surface",
+        "type": "negative",
+        "_expect": "PASS",
+        "_proves": "DOM-DIFF MESSAGES — '.zx-note-9' is in no framework list, so the "
+                   "static scan is blind to it. This is the false-FAIL case: the app "
+                   "validated correctly and the engine used to report 'no validation "
+                   "message appeared'.",
+        "steps": [
+            {"action": "CLICK", "selector": "#bespokeSaveBtn"},
+        ],
+        "expected_result": "A validation message says the reference is required.",
+    },
+    {
+        "scenario_name": "A valid reference is accepted, message read from the same surface",
+        "type": "positive",
+        "_expect": "PASS",
+        "_proves": "the same unknown surface is read for a success message too",
+        "steps": [
+            {"action": "TYPE", "selector": "#bespokeName", "value": "REF-{{run_token}}"},
+            {"action": "CLICK", "selector": "#bespokeSaveBtn"},
+        ],
+        "expected_result": "A message confirms the reference was accepted.",
+    },
+    # ── One scenario, three test cases ───────────────────────────────
+    # The two-level model: the steps are a template, each data row is a test
+    # case with its own expected result, and the report groups them back up.
+    {
+        "scenario_name": "Machine Name accepts and rejects the right values",
+        "type": "negative",
+        "field_under_test": "#qName",
+        "_expect_rows": {
+            "a valid name is accepted": "PASS",
+            "empty is rejected": "PASS",
+            "whitespace only is rejected": "PASS",
+        },
+        "_proves": "SCENARIO -> TEST CASES — one set of steps, three data rows, three "
+                   "verdicts, grouped under one scenario in the report",
+        "steps": [
+            {"action": "CLICK", "selector": "#openQuirkBtn"},
+            {"action": "TYPE", "selector": "#qName", "value": "{{value}}"},
+            {"action": "TYPE", "selector": "#qWidth", "value": "60"},
+            {"action": "CLICK", "selector": 'button:has-text("Save")'},
+        ],
+        "expected_result": "Each value is handled according to the field's rules.",
+        "data_table": [
+            {"case_name": "a valid name is accepted", "values": {"value": "Param-Valid"},
+             "type": "positive",
+             "expected_result": "The machine is added successfully."},
+            {"case_name": "empty is rejected", "values": {"value": ""},
+             "expected_result": "A validation message says the name is required."},
+            {"case_name": "whitespace only is rejected", "values": {"value": "   "},
+             "expected_result": "A validation message says the name is required."},
+        ],
+    },
 ]
 
 
@@ -452,7 +526,20 @@ async def main() -> int:
     print("-" * 112)
     failures = []
     for case in SUITE:
-        name = case["scenario_name"]
+        parent = case["scenario_name"]
+        # A scenario with a data table produced one checkpoint per row, named
+        # "<scenario> — <case>". Check each row against its own expectation.
+        for row_case, want in (case.get("_expect_rows") or {}).items():
+            name = f"{parent} — {row_case}"
+            got = by_name.get(name, {}).get("status", "MISSING")
+            if got != want:
+                failures.append((name, want, got,
+                                 (by_name.get(name, {}).get("verdict") or {}).get("reason", "")))
+            print(f"{'OK' if got == want else 'XX':4}{name[:56]:58}{want:7}{got:12}"
+                  f"{case['_proves'][:44]}")
+        if case.get("_expect_rows"):
+            continue
+        name = parent
         want = case["_expect"]
         got = by_name.get(name, {}).get("status", "MISSING")
         ok = got == want
@@ -461,6 +548,22 @@ async def main() -> int:
                              (by_name.get(name, {}).get("verdict") or {}).get("reason", "")))
         print(f"{'OK' if ok else 'XX':4}{name[:56]:58}{want:7}{got:12}{case['_proves'][:44]}")
     print("=" * 112)
+
+    # The grouping is the point of the two-level model: three failing data rows
+    # against one field must read as one finding, not three.
+    groups = {g["scenario"]: g for g in report.get("scenario_groups", [])}
+    parameterised = groups.get("Machine Name accepts and rejects the right values")
+    if not parameterised:
+        failures.append(("scenario_groups", "a group for the parameterised scenario",
+                         "missing", "build_report did not roll the rows up"))
+    else:
+        print(f"Grouped: {parameterised['scenario']} -> {parameterised['summary']} "
+              f"(verdict {parameterised['verdict']})")
+        if parameterised["total"] != 3:
+            failures.append(("scenario_groups", "3 test cases",
+                             str(parameterised["total"]), "expansion produced the wrong count"))
+    print(f"Report counts: {report['total_scenarios']} scenarios, "
+          f"{report['total_test_cases']} test cases")
 
     captured = {}
     for checkpoint in report["checkpoints"]:

@@ -524,3 +524,257 @@ def test_selectors_are_scoped_to_the_open_dialog():
     assert executor.scope_to_surface("p-dialog >> button") == ""
     # Already scoped stays as-is.
     assert executor.scope_to_surface(f"[{mark}] button") == f"[{mark}] button"
+
+
+# ── Scenarios vs test cases ────────────────────────────────────────────
+def test_a_scenario_expands_into_one_test_case_per_data_row():
+    """A scenario is the objective; each data row is a test case. Nine values
+    for one field used to mean nine hand-written entries repeating the same
+    steps — and coverage depended on the model remembering all nine."""
+    from app import coverage
+
+    scenario = {
+        "scenario_name": "Machine Name validation",
+        "type": "negative",
+        "steps": [
+            {"action": "CLICK", "selector": "#addBtn"},
+            {"action": "TYPE", "selector": "#name", "value": "{{value}}"},
+            {"action": "CLICK", "selector": "#save"},
+        ],
+        "expected_result": "handled per the rules",
+        "data_table": [
+            {"case_name": "empty is rejected", "values": {"value": ""},
+             "expected_result": "Required is shown"},
+            {"case_name": "255 characters accepted", "values": {"value": "A" * 255},
+             "expected_result": "saves", "type": "boundary"},
+        ],
+    }
+    cases = coverage.expand_scenarios([scenario])
+
+    assert len(cases) == 2
+    assert cases[0]["scenario_name"] == "Machine Name validation — empty is rejected"
+    assert cases[0]["_parent_name"] == "Machine Name validation"
+    assert cases[0]["_data_row"] == {"value": ""}
+    assert cases[0]["expected_result"] == "Required is shown"
+    assert cases[0]["type"] == "negative"          # inherited from the scenario
+    assert cases[1]["type"] == "boundary"          # row overrides it
+    assert cases[1]["_case_no"] == 2 and cases[1]["_case_total"] == 2
+    # The template is not carried into the runnable case.
+    assert "data_table" not in cases[0]
+    # Steps are intact, so {{value}} resolves from _data_row at run time.
+    assert cases[0]["steps"][1]["value"] == "{{value}}"
+
+
+def test_a_flat_suite_passes_through_untouched():
+    """Every suite generated before this existed must run exactly as before."""
+    from app import coverage
+
+    flat = [{"scenario_name": "Login works", "steps": [], "expected_result": "in"}]
+    assert coverage.expand_scenarios(flat) == flat
+
+
+def test_the_global_csv_no_longer_multiplies_a_parameterised_scenario():
+    """9 enumerated values × 6 CSV rows = 54 runs nobody asked for."""
+    from app import executor
+
+    own = {"scenario_name": "Name validation", "_parent_name": "Name validation",
+           "_original_id": 1, "steps": []}
+    plain = {"scenario_name": "Create machine", "_original_id": 2, "steps": []}
+    rows = [{"city": "Pune"}, {"city": "Surat"}]
+
+    out = executor.expand_data_matrix([own, plain], rows)
+    names = [c["scenario_name"] for c in out]
+    assert names.count("Name validation") == 1      # left alone
+    assert names.count("Create machine") == 2       # still data-driven
+
+
+def test_field_enumeration_is_derived_from_the_field_not_from_judgement():
+    """The whole point: coverage you can count. A text field always gets its
+    empty / boundary / over-boundary / injection cases, because they are
+    enumerated from the field's own type — no model decides."""
+    from app import coverage
+
+    rows = coverage.enumerate_field_cases({
+        "selector": "#machineName", "label": "Machine Name *",
+        "kind": "text", "required": True, "max_length": 100,
+    })
+    names = [r["case_name"] for r in rows]
+
+    for expected in ("empty is rejected", "whitespace only is rejected",
+                     "single character is accepted",
+                     "maximum length (100) is accepted",
+                     "one over the maximum (101) is refused",
+                     "leading and trailing spaces are trimmed",
+                     "unicode and emoji are handled",
+                     "SQL injection is stored as text",
+                     "HTML and script injection is escaped"):
+        assert expected in names, f"missing {expected!r}"
+
+    by_name = {r["case_name"]: r for r in rows}
+    assert len(by_name["maximum length (100) is accepted"]["values"]["value"]) == 100
+    assert len(by_name["one over the maximum (101) is refused"]["values"]["value"]) == 101
+    assert by_name["SQL injection is stored as text"]["type"] == "security"
+
+
+def test_number_enumeration_covers_the_two_real_bugs_we_found():
+    """Circular Machine accepted a negative Production Capacity and leaked
+    'Numeric value out of range of int' to the user. Both are now enumerated
+    for every numeric field, so no suite can omit them."""
+    from app import coverage
+
+    rows = coverage.enumerate_field_cases({
+        "selector": "#capacity", "label": "Production Capacity (m/day)",
+        "kind": "number", "required": False,
+    })
+    by_name = {r["case_name"]: r for r in rows}
+
+    assert by_name["negative value is rejected"]["values"]["value"] == "-1"
+    assert "defect" in by_name["negative value is rejected"]["expected_result"]
+
+    overflow = by_name["numeric overflow is refused gracefully"]
+    assert overflow["values"]["value"] == "1" + "0" * 18
+    assert "Numeric value out of range" in overflow["expected_result"]
+
+    assert by_name["non-numeric text is rejected"]["values"]["value"] == "abcd"
+
+
+def test_a_dropdown_enumerates_its_options_and_a_password_is_never_fuzzed():
+    from app import coverage
+
+    choices = coverage.enumerate_field_cases({
+        "selector": "#status", "label": "Status *", "kind": "dropdown",
+        "required": True, "options": ["Active", "Inactive"],
+    })
+    names = [c["case_name"] for c in choices]
+    assert "no selection is rejected" in names
+    assert "'Active' can be selected" in names
+    assert "'Inactive' can be selected" in names
+
+    # Fuzzing a password locks the account and every later scenario fails for a
+    # reason that has nothing to do with it.
+    assert coverage.enumerate_field_cases(
+        {"selector": "#password", "label": "Password *", "kind": "password",
+         "required": True}) == []
+    assert coverage.enumerate_field_cases(
+        {"selector": "#otpCode", "label": "OTP", "kind": "text"}) == []
+
+
+def test_results_group_back_under_their_scenario():
+    """26 failures that are really 3 defects hit with different data should read
+    as 3 findings."""
+    from app import coverage
+
+    checkpoints = [
+        {"name": "Name validation — empty", "parent": "Name validation",
+         "case": "empty", "status": "PASS"},
+        {"name": "Name validation — 256 chars", "parent": "Name validation",
+         "case": "256 chars", "status": "FAIL"},
+        {"name": "Name validation — emoji", "parent": "Name validation",
+         "case": "emoji", "status": "FAIL"},
+        {"name": "Export the list", "parent": "", "status": "PASS"},
+    ]
+    groups = coverage.group_results(checkpoints)
+
+    assert len(groups) == 2
+    first = groups[0]
+    assert first["scenario"] == "Name validation"
+    assert first["summary"] == "1 of 3 test cases passed"
+    assert first["verdict"] == "FAIL"
+    assert first["failures"] == ["256 chars", "emoji"]
+    # A flat case still forms its own group, so the old presentation survives.
+    assert groups[1]["scenario"] == "Export the list"
+    assert groups[1]["summary"] == "1 of 1 test cases passed"
+
+
+def test_the_checklist_names_the_behaviours_a_suite_never_touched():
+    """This is what would have caught the missing audit-history coverage on
+    Circular Machine before the suite was ever run."""
+    from app import coverage
+
+    suite = [
+        {"scenario_name": "Create Circular Machine with all valid fields",
+         "steps": [], "expected_result": "saved"},
+        {"scenario_name": "Search machine by exact name", "steps": [],
+         "expected_result": "found"},
+    ]
+    gaps = {g["id"] for g in coverage.checklist_gaps(suite)}
+
+    assert "audit" in gaps           # the bug that was never raised
+    assert "export" in gaps
+    assert "delete" in gaps
+    assert "readonly" in gaps
+    assert "create_all" not in gaps  # it is covered
+    assert "search_exact" not in gaps
+
+    summary = coverage.coverage_summary(suite)
+    assert summary["test_cases"] == 2
+    assert summary["checklist_total"] == len(coverage.SCENARIO_CHECKLIST)
+    assert 0 < summary["checklist_percent"] < 100
+
+
+def test_a_checklist_word_cannot_hide_inside_another_word():
+    """"log" must not match *login* or *dialog*. A plain substring test reported
+    audit-trail coverage for a suite that only had login scenarios — the same
+    mistake that once let a failed click on #taxCode fall through to Cancel."""
+    from app import coverage
+
+    login_only = [
+        {"scenario_name": "Login with valid credentials", "steps": [],
+         "expected_result": "the dashboard loads"},
+        {"scenario_name": "Close the dialog without saving", "steps": [],
+         "expected_result": "nothing is saved"},
+    ]
+    gaps = {g["id"] for g in coverage.checklist_gaps(login_only)}
+    assert "audit" in gaps, "login/dialog must not count as audit-trail coverage"
+
+    real_audit = login_only + [
+        {"scenario_name": "Audit history shows date and user", "steps": [],
+         "expected_result": "every row has a timestamp"},
+    ]
+    assert "audit" not in {g["id"] for g in coverage.checklist_gaps(real_audit)}
+
+    # And the word still matches with punctuation or casing around it.
+    assert coverage._mentions("open the audit-trail dialog", "audit")
+    assert coverage._mentions("check history, then close", "history")
+    assert not coverage._mentions("prehistory of the module", "history")
+
+
+# ── §2: never convert ignorance into a FAIL ────────────────────────────
+def test_unknown_message_surface_yields_unverified_not_fail(monkeypatch):
+    """A false FAIL is the most damaging thing this tool can produce: it blames a
+    working application. When the engine has never seen where this app renders
+    messages, "nothing appeared" and "something appeared I cannot read" are
+    indistinguishable, so the honest answer is UNVERIFIED."""
+    from app import config, verdict
+
+    ev = verdict.Evidence(steps_total=4, steps_executed=4)
+    expectation = "A validation error should appear because the field is required."
+
+    # Default behaviour is unchanged — existing verdict numbers do not move.
+    assert config.STRICT_MESSAGE_CONFIDENCE is False
+    assert verdict.evaluate(expectation, ev, "negative",
+                            message_surface_known=False).status == verdict.FAIL
+
+    monkeypatch.setattr(config, "STRICT_MESSAGE_CONFIDENCE", True)
+    unknown = verdict.evaluate(expectation, ev, "negative", message_surface_known=False)
+    assert unknown.status == verdict.UNVERIFIED
+    assert "never been observed" in unknown.reason
+
+    # Once the surface IS known, silence is real evidence and FAIL is correct.
+    known = verdict.evaluate(expectation, ev, "negative", message_surface_known=True)
+    assert known.status == verdict.FAIL
+
+
+def test_more_success_wordings_are_recognised():
+    """"was accepted" is a success confirmation. Classifying it "unknown" left
+    scenarios UNVERIFIED that had visible proof on screen."""
+    from app import verdict
+
+    for text in ("Reference REF-1 was accepted", "Record approved",
+                 "Machine activated", "File uploaded"):
+        assert verdict.classify_message(text, "div.zx-note-9") == "success", text
+
+    # Negation must not flip to success.
+    assert verdict.classify_message("Machine not accepted - invalid width",
+                                    "div.zx-note-9") != "success"
+    assert verdict.classify_message("Upload failed", "div.zx-note-9") == "error"

@@ -1,0 +1,13 @@
+Defect ID,Date,Module,Description,Steps to Reproduce,Expected Result,Actual Result,Priority,Status
+AM-001,03-06-2026,Master Data -> Paper Core,"When creating a Paper Core, there is no validation to ensure Outer Diameter (mm) is greater than Inner Diameter (mm). A paper core's outer diameter must always be larger than its inner diameter.","1. Navigate to Master Data -> Paper Core.
+2. Click to create a new Paper Core.
+3. Enter an Inner Diameter (mm) value.
+4. Enter an Outer Diameter (mm) value that is less than or equal to the Inner Diameter.
+5. Attempt to save/submit.","System should validate that Outer Diameter (mm) is strictly greater than Inner Diameter (mm). If not, a validation error should be shown and submission blocked.","No validation exists — a Paper Core can be saved with Outer Diameter less than or equal to Inner Diameter, which is physically invalid.",Medium,Open
+AM-002,03-06-2026,Master Data -> Beam Length,"The field label ""Beam Dish"" in Beam Length Master creation form is incorrect. It should be labelled ""Beam Disk"".","1. Navigate to Master Data -> Beam Length.
+2. Click to create a new Beam Length entry.
+3. Observe the field labelled ""Beam Dish"".","The field should be labelled ""Beam Disk"" (not ""Beam Dish"").","Field is incorrectly labelled as ""Beam Dish"" instead of ""Beam Disk"".",Low,Open
+AM-003,09-06-2026,Master Data -> Customer Master,"While creating a Customer Master entry, the Country and State fields accept any text input including wrong/invalid details. To prevent incorrect data entry, these fields should be dropdowns with predefined valid options.","1. Navigate to Master Data -> Customer Master.
+2. Click to create a new customer.
+3. Observe the Country and State fields — they are free-text input fields.
+4. Enter invalid or misspelled values in Country and State.",Country and State fields should be dropdowns with predefined valid options to prevent incorrect data entry.,Country and State fields are accepting any free-text input including invalid/wrong details — no dropdown or validation exists.,Medium,Open

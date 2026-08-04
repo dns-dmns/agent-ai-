@@ -32,6 +32,7 @@ checks that a chain of modules actually needs — most importantly that an
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from . import config
@@ -108,9 +109,16 @@ def normalise(raw: dict) -> dict:
             "optional": bool(item.get("optional", False)),
         })
 
+    # What the application considers a duplicate. If the uniqueness key is
+    # name + date, two records sharing a name but not a date are legitimately
+    # NOT duplicates — so a test that only repeats the name proves nothing.
+    unique_by = [str(sel).strip() for sel in (raw.get("unique_by") or [])
+                 if str(sel).strip()]
+
     return {
         "provides": provides,
         "requires": requires,
+        "unique_by": unique_by,
         "run_once": bool(raw.get("run_once", True)),
     }
 
@@ -304,3 +312,111 @@ def relationship_checks(project_name: str, flow_name: str,
             )
 
     return scenarios, notes
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Duplicate testing — the two-phase pattern
+# ──────────────────────────────────────────────────────────────────────
+def duplicate_scenarios(project_name: str, flow_name: str,
+                        open_steps: list[dict] | None = None,
+                        submit_selector: str = "") -> tuple[list[dict], list[str]]:
+    """Scenarios that genuinely create a duplicate, and one that must not.
+
+    A duplicate test used to prove nothing. To stop repeat runs colliding, the
+    platform appends a unique token, so the "duplicate" submission was unique
+    too, no duplicate ever occurred, and the scenario passed having tested
+    nothing. And when the application's uniqueness key is *name + date*, two
+    records sharing only the name are legitimately not duplicates either.
+
+    Both are fixed by phase 1 creating a fresh original and phase 2 repeating
+    **every** field in ``unique_by`` from stored variables — which
+    :func:`executor.make_dep_value_unique` now leaves untouched.
+
+    The bonus scenario is the more interesting one: change *only* the last field
+    of the key and the save must SUCCEED, proving the uniqueness key is exactly
+    what the business says it is, neither narrower nor wider.
+    """
+    contract = load(project_name, flow_name)
+    key = contract.get("unique_by") or []
+    notes: list[str] = []
+    if not key:
+        return [], ["This flow has no 'unique_by' in its contract, so the engine cannot "
+                    "know what the application treats as a duplicate. Add the selectors "
+                    "that together must match, for example "
+                    '["#custName", "#effectiveDate"].']
+
+    opener = [dict(step) for step in (open_steps or [])]
+    submit = submit_selector or 'button:has-text("Save")'
+
+    def slug(selector: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "_", selector.lower()).strip("_") or "field"
+
+    def phase_one() -> list[dict]:
+        """Create the original and store every key field exactly as submitted."""
+        steps = list(opener)
+        for index, selector in enumerate(key):
+            # A date field needs a date; anything else gets a tokenised name so
+            # phase 1 never collides with a record left by an earlier run.
+            value = ("2026-08-03" if _looks_like_date(selector)
+                     else f"DUP{{{{run_token}}}}{index}" if index else "DUP{{run_token}}")
+            steps.append({"action": "TYPE", "selector": selector, "value": value})
+        steps.append({"action": "CLICK", "selector": submit})
+        steps.append({"action": "VERIFY_MESSAGE", "value": "success"})
+        for selector in key:
+            steps.append({"action": "STORE", "selector": selector,
+                          "value": f"dup_{slug(selector)}", "capture": "value"})
+        return steps
+
+    scenarios = [{
+        "scenario_name": "A record repeating the whole uniqueness key is refused",
+        "type": "negative",
+        "_generated": "duplicate",
+        "steps": phase_one() + opener + [
+            {"action": "TYPE", "selector": selector, "value": f"{{{{dup_{slug(selector)}}}}}"}
+            for selector in key
+        ] + [
+            {"action": "CLICK", "selector": submit},
+        ],
+        "expected_result": (
+            "A duplicate validation message appears and no second record is created, "
+            f"because {', '.join(key)} all match an existing record."
+        ),
+    }]
+
+    # Only meaningful for a composite key: with one field there is nothing to vary.
+    if len(key) > 1:
+        varied = key[-1]
+        scenarios.append({
+            "scenario_name": f"Changing only {varied} is not a duplicate",
+            "type": "positive",
+            "_generated": "duplicate",
+            "steps": phase_one() + opener + [
+                {"action": "TYPE", "selector": selector,
+                 "value": f"{{{{dup_{slug(selector)}}}}}"}
+                for selector in key[:-1]
+            ] + [
+                {"action": "TYPE", "selector": varied,
+                 "value": "2027-01-01" if _looks_like_date(varied) else "VARIED{{run_token}}"},
+                {"action": "CLICK", "selector": submit},
+            ],
+            # Careful with the wording: the verdict engine classifies intent from
+            # this sentence, and words like "duplicate", "refuse" or "invalid"
+            # make it read as a negative expectation even in an explanatory
+            # aside — which would fail a scenario that behaved correctly.
+            "expected_result": (
+                f"The record is saved successfully because {varied} differs from the "
+                f"existing entry, so the two are separate records."
+            ),
+        })
+    else:
+        notes.append(
+            f"'unique_by' has a single field ({key[0]}), so the engine cannot generate "
+            f"the 'changing only one field is allowed' case. Add every field the "
+            f"application really compares."
+        )
+    return scenarios, notes
+
+
+def _looks_like_date(selector: str) -> bool:
+    low = selector.lower()
+    return any(word in low for word in ("date", "dob", "from", "till", "until", "effective"))

@@ -97,6 +97,14 @@
                 <button class="row" onclick="openContractEditor()">
                     <span class="row-icon">⇄</span><span class="row-text">Dependencies</span>
                 </button>
+                <button class="row" onclick="openDefectLog()">
+                    <span class="row-icon">⚑</span><span class="row-text">Defect log</span>
+                    <span class="row-meta" id="defectCountBadge"></span>
+                </button>
+                <button class="row" onclick="openCoverageReport()">
+                    <span class="row-icon">◨</span><span class="row-text">Coverage</span>
+                    <span class="row-meta status idle" id="coverageBadge">—</span>
+                </button>
                 <button class="row" onclick="openRunHistory()">
                     <span class="row-icon">◔</span><span class="row-text">Run history</span>
                 </button>
@@ -613,6 +621,11 @@
                                     <div id="rulesSummaryList" class="stack-sm"></div>
                                 </div>
 
+                                <div id="scenarioGroupSection" class="stack-sm hidden">
+                                    <span class="field-label">Results by scenario</span>
+                                    <div class="stack-sm" id="scenarioGroups"></div>
+                                </div>
+
                                 <div id="verdictSection" class="stack-sm hidden">
                                     <span class="field-label text-unverified">Why these did not pass</span>
                                     <div class="logbox" id="verdictLogList"></div>
@@ -779,6 +792,8 @@
     <script src="/assets/app.js"></script>
     <script src="/assets/ui.js"></script>
     <script src="/assets/ui-rules.js"></script>
+    <script src="/assets/ui-coverage.js"></script>
+    <script src="/assets/ui-defects.js"></script>
 </body>
 
 </html>

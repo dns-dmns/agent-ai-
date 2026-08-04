@@ -133,7 +133,10 @@ async def main() -> int:
     seed_workspace()
     port = free_port()
     env = dict(os.environ, QA_WORKSPACE=str(WORKSPACE), QA_SCHEDULER="0", QA_LOG_LEVEL="WARNING")
-    env.pop("GEMINI_API_KEY", None)
+    # Set to empty rather than popped: config.py calls load_dotenv(), which
+    # fills in anything ABSENT from the environment — so popping the key let a
+    # developer's .env put it back, and these suites only ran offline on CI.
+    env["GEMINI_API_KEY"] = ""
 
     server = subprocess.Popen(
         # sys.executable keeps this working on Linux CI as well as a Windows venv.
@@ -195,8 +198,14 @@ async def main() -> int:
             record("project loaded", await page.locator("#projectLander").is_hidden())
 
             status_text = await page.locator("#platformStatus").inner_text()
-            record("platform status bar", "AI ready" in status_text or "no API key" in status_text,
-                   status_text)
+            # Case-insensitive: app.js writes "no API key" and the ui.js redesign
+            # writes "No API key". Matching the old casing meant this only ever
+            # passed where a key was configured — so it went green locally and red
+            # on CI, which has none.
+            lowered = status_text.lower()
+            record("platform status bar",
+                   "ai ready" in lowered or "no api key" in lowered,
+                   repr(status_text))
 
             # Sidebar lists the flows and drives the hidden <select> the logic reads
             record("sidebar lists flows",
@@ -337,6 +346,35 @@ async def main() -> int:
             await page.click("#genericModalClose")
             await page.wait_for_timeout(300)
 
+            # ── Coverage surface: scenarios, test cases, named gaps ───
+            # The badge is the fastest signal that a suite is thin, so it has to
+            # be populated by the time a module finishes loading.
+            badge = (await page.locator("#coverageBadge").inner_text()).strip()
+            record("coverage badge is populated", badge not in ("", "—"), badge)
+
+            await page.click(".sidebar-footer .row:has-text('Coverage')")
+            await page.wait_for_timeout(800)
+            body = await page.locator("#genericModalBody").inner_text()
+            record("coverage report opens", "test cases" in body.lower(), body[:120])
+            record("coverage names the behaviours with no test case",
+                   "Behaviours with no test case" in body, body[:120])
+            # The gap that mattered: nothing in the suite opens an audit trail.
+            record("audit history is reported as a gap",
+                   "Audit / history" in body, body[:200])
+
+            await page.click("#genericModalFooter button:has-text('Enumerate field cases')")
+            await page.wait_for_timeout(1200)
+            # text_content(), not inner_text(): the per-field tables live inside
+            # collapsed <details>, and inner_text() only returns rendered text.
+            enumerated = await page.locator("#genericModalBody").text_content() or ""
+            title = await page.locator("#genericModalTitle").inner_text()
+            record("field cases are enumerated without an API key",
+                   "Enumerated" in title and "test cases" in enumerated.lower()
+                   and "single character is accepted" in enumerated,
+                   f"title={title!r} len={len(enumerated)} body={enumerated[:200]!r}")
+            await page.click("#genericModalClose")
+            await page.wait_for_timeout(300)
+
             # ── Dependency contract surface ───────────────────────────
             await page.click(".sidebar-footer .row:has-text('Dependencies')")
             await page.wait_for_timeout(700)
@@ -400,6 +438,11 @@ async def main() -> int:
             (f"/export-test-matrix?project_name={PROJECT}&flow_name={FLOW}", "Pre-condition"),
             (f"/export-test-matrix?project_name={PROJECT}&flow_name={FLOW}&fmt=markdown",
              "Test Case Matrix"),
+            # The matrix now separates the objective from the concrete case.
+            (f"/export-test-matrix?project_name={PROJECT}&flow_name={FLOW}", "Test Case"),
+            # Coverage: countable scenarios, test cases and named gaps.
+            (f"/coverage-report?project_name={PROJECT}&flow_name={FLOW}", "checklist_percent"),
+            (f"/coverage-report?project_name={PROJECT}&flow_name={FLOW}", "test_cases"),
         ):
             url = base + path.replace(" ", "%20")
             try:

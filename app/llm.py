@@ -8,6 +8,7 @@ generation round, and so token spend is recorded in ``logs/llm_usage.jsonl``.
 import asyncio
 import json
 import random
+import re
 import time
 import warnings
 from pathlib import Path
@@ -61,6 +62,76 @@ RETRYABLE_MARKERS = (
     "internal error",
     "overloaded",
 )
+
+#: A *daily* quota cannot recover inside a 30-second backoff, so retrying it is
+#: pure waste — and on a free tier of 20 requests a day, each retry spends one of
+#: them. Three retries turned every exhausted call into four, which is how a
+#: day's allowance disappeared in a handful of clicks.
+DAILY_QUOTA_MARKERS = (
+    "perdayperproject",
+    "requestsperday",
+    "per day",
+    "daily limit",
+    "generaterequestsperdayperprojectpermodel",
+)
+PER_MINUTE_QUOTA_MARKERS = (
+    "perminuteperproject",
+    "requestsperminute",
+    "per minute",
+)
+
+_RETRY_DELAY_RE = re.compile(r"retry_delay\s*\{\s*seconds:\s*(\d+)", re.IGNORECASE)
+
+
+class QuotaKind(str):
+    """How a quota failure should be handled: not at all, or after a wait."""
+
+
+def classify_quota_error(err: object) -> str:
+    """``"daily"``, ``"per_minute"`` or ``""`` for anything that is not a quota."""
+    text = str(err).lower()
+    if "429" not in text and "quota" not in text and "resource has been exhausted" not in text:
+        return ""
+    if any(marker in text for marker in DAILY_QUOTA_MARKERS):
+        return "daily"
+    if any(marker in text for marker in PER_MINUTE_QUOTA_MARKERS):
+        return "per_minute"
+    return "per_minute"          # unknown window: a short wait is the safe guess
+
+
+def suggested_retry_delay(err: object, fallback: float) -> float:
+    """The wait Google actually asked for, when it named one."""
+    found = _RETRY_DELAY_RE.search(str(err))
+    if not found:
+        return fallback
+    try:
+        return min(float(found.group(1)) + 1.0, 65.0)
+    except ValueError:
+        return fallback
+
+
+def quota_message(model_name: str, kind: str) -> str:
+    """What a human should do about it — never "check your API key"."""
+    used = calls_today(model_name)
+    if kind == "daily":
+        return "\n\n".join([
+            f"The daily free-tier quota for {model_name} is exhausted "
+            f"({used} request(s) logged today). This resets at midnight "
+            f"US/Pacific — waiting a few seconds cannot help.",
+
+            "Your options: enable billing on the Google Cloud project (a "
+            "generation run costs a few cents), switch GEMINI_MODEL to a model "
+            "with a larger free allowance, or use a key from a different "
+            "project. Nothing is wrong with your API key.",
+
+            "Running suites, verdicts, self-healing and reporting need no key "
+            "at all — only generation does.",
+        ])
+    return (
+        f"{model_name} is rate-limited for the moment (per-minute quota, "
+        f"{used} request(s) logged today). Wait a minute and retry; if this "
+        f"keeps happening, generate one module at a time."
+    )
 
 
 class LLMError(RuntimeError):
@@ -203,9 +274,25 @@ async def generate_text(
             return text
         except Exception as err:  # noqa: BLE001 - provider raises many types
             last_error = err
+            quota = classify_quota_error(err)
+
+            # A daily quota cannot recover inside a backoff window, and on a free
+            # tier each attempt spends one of the day's requests. Retrying it
+            # three times turned one exhausted call into four — which is how an
+            # allowance of 20 vanished in a handful of clicks.
+            if quota == "daily":
+                _record_usage(resolved_model, prompt, "", time.time() - started,
+                              attempt, False)
+                log.warning("Daily quota exhausted for %s — not retrying.", resolved_model)
+                raise LLMError(quota_message(resolved_model, "daily")) from err
+
             if attempt > retries or not _is_retryable(err):
                 break
+
             backoff = min(2 ** attempt, 30) + random.uniform(0, 0.75)
+            if quota == "per_minute":
+                # Google says how long to wait; guessing shorter just fails again.
+                backoff = suggested_retry_delay(err, backoff)
             log.warning(
                 "Gemini call failed (attempt %s/%s): %s — retrying in %.1fs",
                 attempt, retries + 1, err, backoff,
@@ -213,6 +300,8 @@ async def generate_text(
             await asyncio.sleep(backoff)
 
     _record_usage(resolved_model, prompt, "", time.time() - started, retries + 1, False)
+    if classify_quota_error(last_error) == "per_minute":
+        raise LLMError(quota_message(resolved_model, "per_minute")) from last_error
     raise LLMError(f"Gemini request failed after {retries + 1} attempt(s): {last_error}")
 
 
@@ -279,6 +368,87 @@ async def generate_json(
     except Exception as err:
         log.warning("Direct JSON parse failed (%s); attempting salvage.", err)
         return _salvage_json(cleaned)
+
+
+def calls_today(model_name: str = "") -> int:
+    """Requests logged today, optionally for one model.
+
+    Every attempt is logged, including the failed ones, because Google counts
+    them all against the quota. This is the number that matters when deciding
+    whether a nine-call generation can even finish.
+    """
+    if not _USAGE_LOG.exists():
+        return 0
+    today = time.strftime("%Y-%m-%d")
+    count = 0
+    try:
+        with open(_USAGE_LOG, "r", encoding="utf-8") as fh:
+            for row in fh:
+                if today not in row:
+                    continue                    # cheap pre-filter
+                try:
+                    entry = json.loads(row)
+                except Exception:
+                    continue
+                if not str(entry.get("ts", "")).startswith(today):
+                    continue
+                if model_name and entry.get("model") != model_name:
+                    continue
+                count += int(entry.get("attempts") or 1)
+    except Exception:
+        pass
+    return count
+
+
+async def list_models() -> list[str]:
+    """Model ids this key can call ``generateContent`` on.
+
+    Uses the REST metadata endpoint rather than a generation call, so it costs
+    nothing against the quota — which makes it safe to run while exhausted, and
+    it is the quickest way to tell an invalid key from a spent allowance.
+    """
+    import urllib.request
+
+    require_key()
+    url = ("https://generativelanguage.googleapis.com/v1beta/models"
+           f"?key={config.GEMINI_API_KEY}&pageSize=200")
+
+    def fetch() -> list[str]:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            payload = json.loads(response.read())
+        return sorted(
+            entry["name"].replace("models/", "")
+            for entry in payload.get("models", [])
+            if "generateContent" in (entry.get("supportedGenerationMethods") or [])
+        )
+
+    return await asyncio.to_thread(fetch)
+
+
+def budget_status(model_name: str = "", planned_calls: int = 1) -> dict:
+    """Whether the day's allowance can plausibly cover a run of ``planned_calls``.
+
+    The free tier is small enough that a multi-agent generation — three agents
+    across up to three rounds — can exhaust it in one click. Saying so first is
+    better than failing halfway through and leaving a partial suite behind.
+
+    ``limit`` is a best guess, not something the API reports, so this warns and
+    never blocks: an account with billing enabled has a far larger allowance and
+    must not be second-guessed.
+    """
+    model = model_name or config.GEMINI_MODEL
+    used = calls_today(model)
+    limit = config.LLM_DAILY_BUDGET
+    remaining = max(0, limit - used) if limit else None
+    return {
+        "model": model,
+        "calls_today": used,
+        "assumed_daily_limit": limit,
+        "remaining": remaining,
+        "planned_calls": planned_calls,
+        "enough": True if not limit else remaining >= planned_calls,
+        "exhausted": bool(limit) and remaining == 0,
+    }
 
 
 def usage_summary(limit: int = 500) -> dict:

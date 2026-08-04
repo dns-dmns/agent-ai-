@@ -142,6 +142,40 @@ def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fie
     
     {missing_instruction}
     
+
+    SCENARIOS AND THEIR TEST CASES — use the two-level shape:
+    A scenario is the objective. Its test cases are the concrete data rows that
+    cover it. When several cases differ ONLY by the value put in one field,
+    write ONE scenario with a "data_table" instead of repeating the steps:
+
+        {{
+            "scenario_name": "Machine Name accepts and rejects the right values",
+            "type": "negative",
+            "field_under_test": "#machineName",
+            "steps": [
+                {{"action": "CLICK", "selector": "#addBtn"}},
+                {{"action": "TYPE", "selector": "#machineName", "value": "{{{{value}}}}"}},
+                {{"action": "TYPE", "selector": "#machineWidth", "value": "72"}},
+                {{"action": "CLICK", "selector": "button:has-text('Save')"}}
+            ],
+            "expected_result": "Each value is handled according to the field's rules.",
+            "data_table": [
+                {{"case_name": "empty is rejected", "values": {{"value": ""}},
+                 "expected_result": "A required-field validation message appears"}},
+                {{"case_name": "255 characters accepted", "values": {{"value": "AAA...255"}},
+                 "expected_result": "The record saves", "type": "boundary"}}
+            ]
+        }}
+
+    Rules for data tables:
+    - The steps are a TEMPLATE. Refer to the varying value as {{{{value}}}}; every row
+      supplies it under "values". Fill every OTHER mandatory field with a valid
+      literal, so each row fails only for its own reason.
+    - Every row needs its own "expected_result" — that is what is machine-verified.
+    - Give each row a short "case_name"; it names the test case in the report.
+    - Use a flat scenario (no data_table) when the steps genuinely differ:
+      create, edit, delete, search, export, audit history.
+
     CRITICAL RULES:
     - DO NOT generate login/authentication steps. Assume already logged in.
     - Each test case MUST start with navigation steps to reach the target module page.
@@ -163,7 +197,14 @@ def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fie
                 {{"action": "SELECT", "selector": "CSS selector", "value": "Option label"}},
                 {{"action": "VERIFY_ROW_CONTAINS", "selector": "table", "value": "Record name"}}
             ],
-            "expected_result": "What should happen after execution"
+            "expected_result": "What should happen after execution",
+            "field_under_test": "optional — the selector this scenario varies",
+            "data_table": [
+                {{"case_name": "short name of the test case",
+                  "values": {{"value": "the concrete input"}},
+                  "expected_result": "what must happen for THIS row",
+                  "type": "optional per-row override"}}
+            ]
         }}
     ]
     """.replace("{STEP_VOCABULARY}", STEP_VOCABULARY)
@@ -226,6 +267,40 @@ def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fie
     
     {missing_instruction}
     
+
+    SCENARIOS AND THEIR TEST CASES — use the two-level shape:
+    A scenario is the objective. Its test cases are the concrete data rows that
+    cover it. When several cases differ ONLY by the value put in one field,
+    write ONE scenario with a "data_table" instead of repeating the steps:
+
+        {{
+            "scenario_name": "Machine Name accepts and rejects the right values",
+            "type": "negative",
+            "field_under_test": "#machineName",
+            "steps": [
+                {{"action": "CLICK", "selector": "#addBtn"}},
+                {{"action": "TYPE", "selector": "#machineName", "value": "{{{{value}}}}"}},
+                {{"action": "TYPE", "selector": "#machineWidth", "value": "72"}},
+                {{"action": "CLICK", "selector": "button:has-text('Save')"}}
+            ],
+            "expected_result": "Each value is handled according to the field's rules.",
+            "data_table": [
+                {{"case_name": "empty is rejected", "values": {{"value": ""}},
+                 "expected_result": "A required-field validation message appears"}},
+                {{"case_name": "255 characters accepted", "values": {{"value": "AAA...255"}},
+                 "expected_result": "The record saves", "type": "boundary"}}
+            ]
+        }}
+
+    Rules for data tables:
+    - The steps are a TEMPLATE. Refer to the varying value as {{{{value}}}}; every row
+      supplies it under "values". Fill every OTHER mandatory field with a valid
+      literal, so each row fails only for its own reason.
+    - Every row needs its own "expected_result" — that is what is machine-verified.
+    - Give each row a short "case_name"; it names the test case in the report.
+    - Use a flat scenario (no data_table) when the steps genuinely differ:
+      create, edit, delete, search, export, audit history.
+
     CRITICAL RULES:
     - DO NOT generate login/authentication steps. Assume already logged in.
     - Each test case MUST start with navigation steps to reach the target module page.
@@ -248,7 +323,14 @@ def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fie
                 {{"action": "VERIFY_MESSAGE", "value": "Name is required"}},
                 {{"action": "VERIFY_ROW_ABSENT", "selector": "table", "value": "input value"}}
             ],
-            "expected_result": "What should happen after execution"
+            "expected_result": "What should happen after execution",
+            "field_under_test": "optional — the selector this scenario varies",
+            "data_table": [
+                {{"case_name": "short name of the test case",
+                  "values": {{"value": "the concrete input"}},
+                  "expected_result": "what must happen for THIS row",
+                  "type": "optional per-row override"}}
+            ]
         }}
     ]
     """.replace("{STEP_VOCABULARY}", STEP_VOCABULARY)
@@ -256,11 +338,36 @@ def _build_agent2_prompt(flow_name: str, target_url: str, actions_json: str, fie
 
 def _build_agent3_prompt(merged_cases: list, flow_name: str, fields_context: str,
                          rules_block: str = "") -> str:
-    """Build Agent 3 (QA Reviewer) prompt."""
-    rules_instruction = ""
+    """Build Agent 3 (QA Reviewer) prompt.
+
+    The checklist is computed before the model is asked anything: word-matching
+    over the merged suite is deterministic, so the gaps it reports are facts the
+    reviewer is told, not conclusions it has to reach. It can still find gaps of
+    its own — it just cannot miss these.
+    """
+    from . import coverage as coverage_engine
+
+    computed = coverage_engine.checklist_gaps(merged_cases)
+    summary = coverage_engine.coverage_summary(merged_cases)
+    measured = (
+        f"{chr(10)}    MEASURED COVERAGE (computed from the suite, not your opinion):{chr(10)}"
+        f"    {summary['test_cases']} test cases across {summary['scenarios']} scenarios; "
+        f"{summary['checklist_covered']}/{summary['checklist_total']} checklist items "
+        f"({summary['checklist_percent']}%).{chr(10)}"
+    )
+    if computed:
+        measured += ("    These behaviours have NO matching test case and MUST appear in your "
+                     f"missing list:{chr(10)}")
+        for gap in computed:
+            measured += f"      - {gap['id']}: {gap['title']} ({gap['type']}){chr(10)}"
+    else:
+        measured += (f"    Every checklist item is matched. Look for gaps the checklist does "
+                     f"not cover: data permutations, role differences, dependent masters.{chr(10)}")
+
+    rules_instruction = measured
     if rules_block.strip():
-        rules_instruction = (chr(10) + rules_block.strip() + chr(10) +
-                             "    Treat any rule with no covering scenario as a coverage gap." + chr(10))
+        rules_instruction += (chr(10) + rules_block.strip() + chr(10) +
+                              "    Treat any rule with no covering scenario as a coverage gap." + chr(10))
     return f"""
     You are Agent 3: The QA Coverage Reviewer & Auditor.{rules_instruction}
     Your job is to REVIEW a merged test suite and identify MISSING scenarios.

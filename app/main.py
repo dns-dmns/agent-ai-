@@ -19,6 +19,7 @@ import io
 import json
 import mimetypes
 import os
+import re
 import shutil
 import time
 import zipfile
@@ -40,7 +41,9 @@ from . import ai_agents
 from . import api_seed
 from . import config
 from . import contracts
+from . import coverage
 from . import db
+from . import defects
 from . import executor
 from . import learned
 from . import llm
@@ -615,9 +618,30 @@ async def create_flow_api(flow_name: str, url: str,
 
 
 async def handle_exposed_event(event: dict) -> None:
-    """Persist one recorded interaction plus a step screenshot."""
+    """Persist one recorded interaction plus a step screenshot.
+
+    An ``__EFFECT__`` event is not a step — it describes what the *previous* step
+    caused, so it is attached to that action rather than appended. A recording
+    then carries the message the application really showed, which is what lets a
+    generated scenario assert real wording instead of invented wording.
+    """
     if not active_session["recording"]:
         return
+
+    if (event.get("action") or "") == "__EFFECT__":
+        actions = active_session["actions"]
+        target = None
+        # The most recent action with a matching selector, else simply the last.
+        for candidate in reversed(actions):
+            if candidate.get("selector") == event.get("selector"):
+                target = candidate
+                break
+        if target is None and actions:
+            target = actions[-1]
+        if target is not None:
+            target["effect"] = event.get("effect") or {}
+        return
+
     active_session["actions"].append(event)
     step_num = len(active_session["actions"])
     temp_path = config.TEMP_DIR / f"rec_{int(active_session['start_time'])}_step_{step_num}.png"
@@ -745,6 +769,155 @@ async def stop_recording_api(force: bool = False):
 # ──────────────────────────────────────────────────────────────────────
 # AI generation (Tab 2)
 # ──────────────────────────────────────────────────────────────────────
+LOGIN_URL_MARKERS = ("login", "signin", "sign-in", "auth", "logon", "session")
+
+
+def _is_login_url(url: str) -> bool:
+    return any(marker in (url or "").lower() for marker in LOGIN_URL_MARKERS)
+
+
+def recording_grounding(actions: list) -> dict:
+    """What the recording actually touched, split into credentials and the rest.
+
+    A recording is the only evidence the generator has about a page. When it
+    contains nothing but a username and a password, the agents have no fields,
+    no buttons and no grid to write about — and a model handed a URL like
+    ``/masters/beamer-capacity`` will invent an entire module from those two
+    words. That is what this exists to stop.
+    """
+    credential, business, buttons = [], [], []
+    for act in actions or []:
+        selector = (act.get("selector") or "").strip()
+        if not selector or selector.startswith(("http://", "https://")):
+            continue
+        action = (act.get("action") or "").upper()
+        blob = f"{selector} {act.get('label', '')} {act.get('text', '')}".lower()
+        if any(marker in blob for marker in executor.CREDENTIAL_FIELD_MARKERS):
+            credential.append(selector)
+        elif action in ("TYPE", "SELECT", "CHECK", "UNCHECK", "UPLOAD"):
+            business.append(selector)
+        elif action in ("CLICK", "DOUBLE_CLICK"):
+            buttons.append(selector)
+    return {
+        "credential_fields": sorted(set(credential)),
+        "business_fields": sorted(set(business)),
+        "clicked_controls": sorted(set(buttons)),
+        # Login pages have a submit button, so a button alone does not make a
+        # recording substantive.
+        "credentials_only": bool(credential) and not business,
+    }
+
+
+def assert_recording_can_ground_generation(project_name: str, flow_name: str,
+                                           actions: list, target_url: str) -> None:
+    """Refuse to generate a suite the recording cannot possibly support.
+
+    The failure this prevents, seen in real use: a flow named ``login`` was
+    launched at ``/masters/beamer-capacity``, the app bounced to the login
+    screen, and the recording captured only the credentials. Generation then
+    produced 17 scenarios for a master-data module in which **every one of the
+    27 selectors was invented** — the model had nothing but the URL to go on.
+    Running them could only ever produce 17 failures that say nothing about the
+    application.
+    """
+    grounding = recording_grounding(actions)
+    if not grounding["credentials_only"]:
+        return
+    # A genuine login flow is credentials-only, and that is correct.
+    if _is_login_url(target_url) or executor.is_auth_flow(flow_name):
+        if _is_login_url(target_url):
+            return
+    learned_fields = learned.flow_profile(project_name, flow_name).get("fields") or []
+    if learned_fields:
+        return          # the engine has since inventoried the real page
+
+    raise HTTPException(
+        status_code=400,
+        detail=(
+            f"This recording only captured a login — the controls it touched are "
+            f"{', '.join(grounding['credential_fields'] + grounding['clicked_controls'])}, "
+            f"and no field belonging to the module — but the "
+            f"flow's target URL is {target_url}. The agents would have to invent every "
+            f"selector on that page, and the resulting suite would fail everywhere "
+            f"without telling you anything about the application.\n\n"
+            f"Re-record so the recording reaches the module itself: launch the browser, "
+            f"log in, then navigate to the page, open its Add form and fill the fields. "
+            f"Keep the login as its own separate flow — every other flow reuses the "
+            f"stored session automatically."
+        ),
+    )
+
+
+def generation_grounding(actions: list, cases: list) -> dict:
+    """How much of a generated suite refers to something that was actually seen.
+
+    A model must be allowed to name a Save button nobody recorded. It must not be
+    allowed to invent a whole form. Reporting the ratio is what turns "17
+    scenarios generated" into something a human can trust or reject.
+    """
+    recorded: set[str] = set()
+    for act in actions or []:
+        for candidate in [act.get("selector")] + list(act.get("selectors") or []):
+            if candidate:
+                recorded.add(str(candidate).strip())
+
+    used: set[str] = set()
+    for case in coverage.expand_scenarios(cases or []):
+        for step in executor.parse_steps(case.get("steps") or []):
+            selector = (step.get("selector") or "").strip()
+            if selector and not selector.startswith(("http://", "https://")):
+                used.add(selector)
+
+    invented = sorted(s for s in used if s not in recorded)
+    percent = round(len(invented) * 100 / len(used)) if used else 0
+    return {
+        "selectors_used": len(used),
+        "selectors_recorded": len(recorded),
+        "invented": invented[:20],
+        "invented_count": len(invented),
+        "invented_percent": percent,
+        "grounded": percent <= 70,
+    }
+
+
+def describe_recorded_effects(actions: list) -> str:
+    """The observed consequences of the recorded clicks, for the generation prompt.
+
+    A recording that only lists clicks forces the agents to guess the expected
+    result. When the recorder captured what followed — the exact message text,
+    the URL change — the agents can assert reality instead.
+    """
+    lines: list[str] = []
+    messages: list[str] = []
+    for act in actions or []:
+        effect = act.get("effect")
+        if not isinstance(effect, dict):
+            continue
+        selector = act.get("selector") or "?"
+        for message in (effect.get("messages") or [])[:2]:
+            text = (message.get("text") or "").strip()
+            if not text or text in messages:
+                continue
+            messages.append(text)
+            lines.append(
+                f'After clicking {selector} the application showed: "{text}" '
+                f'(in {message.get("selector") or "unknown element"})'
+            )
+        before, after = effect.get("url_before", ""), effect.get("url_after", "")
+        if before and after and before != after:
+            lines.append(f"After clicking {selector} the URL changed to {after}")
+    if not lines:
+        return ""
+    joined = "\n  ".join(lines[:12])
+    return (
+        "OBSERVED EFFECTS captured while recording — assert THESE, do not invent "
+        f"wording:\n  {joined}\n"
+        "  Use the exact text above in VERIFY_MESSAGE steps and in "
+        "expected_result. If a message here is a success confirmation, the "
+        "matching positive scenario MUST assert it."
+    )
+
+
 def build_fields_context(actions: list, project_name: str = "", flow_name: str = "") -> str:
     """Describe the fields a recording touched, marking the mandatory ones.
 
@@ -782,7 +955,18 @@ def build_fields_context(actions: list, project_name: str = "", flow_name: str =
             profile = learned.flow_profile(project_name, flow_name)
             for observed in profile.get("fields", []):
                 selector = observed.get("selector")
-                if not selector or any(selector in line for line in fields):
+                if not selector:
+                    continue
+                # Record required-ness BEFORE the de-duplication. Skipping the
+                # whole entry because the recording already described the field
+                # threw away the one thing the recording could not know — that it
+                # is mandatory. The result was a MANDATORY FIELDS line listing
+                # only the fields the tester had *not* touched, which is exactly
+                # backwards: Machine Name and Machine Type were dropped precisely
+                # because they were recorded.
+                if observed.get("required") and selector not in required:
+                    required.append(selector)
+                if any(selector in line for line in fields):
                     continue
                 flag = " [REQUIRED]" if observed.get("required") else ""
                 options = observed.get("options") or []
@@ -803,6 +987,13 @@ def build_fields_context(actions: list, project_name: str = "", flow_name: str =
                 )
         except Exception:
             pass
+
+    # What the recording observed *happening* — the effect of each click. This is
+    # the difference between an agent inventing "a success message appears" and
+    # writing VERIFY_MESSAGE with the wording the application actually showed.
+    observed_effects = describe_recorded_effects(actions)
+    if observed_effects:
+        fields.append(observed_effects)
 
     if not fields:
         return "No specific fields detected from recording."
@@ -825,6 +1016,14 @@ async def analyze_flow_api(flow_name: str, project_name: str = config.DEFAULT_PR
     meta = read_json(flow_path / "flow.json", {}) or {}
     if not meta.get("target_url"):
         raise HTTPException(status_code=400, detail="This flow has no target URL recorded.")
+    budget = llm.budget_status(planned_calls=1)
+    if budget["exhausted"]:
+        raise HTTPException(status_code=429,
+                            detail=llm.quota_message(budget["model"], "daily"))
+
+    # Before spending an API call: can this recording support a suite at all?
+    assert_recording_can_ground_generation(
+        project_name, flow_name, actions, meta["target_url"])
 
     if test_types.strip():
         types_guideline = (
@@ -891,11 +1090,21 @@ async def analyze_flow_api(flow_name: str, project_name: str = config.DEFAULT_PR
     write_json(flow_path / "suggestions.json", analysis.get("suggestions", {
         "broken_selectors": [], "missing_validations": [], "recommendations": []}))
     write_json(flow_path / "spec.json", analysis)
+    grounding = generation_grounding(actions, analysis.get("test_cases", []))
     db.audit("analyze_flow", f"{project_name}/{flow_name}",
-             details={"cases": len(analysis.get("test_cases", []))})
+             details={"cases": len(analysis.get("test_cases", [])),
+                      "invented_percent": grounding["invented_percent"]})
 
-    return {"status": "success",
-            "message": "AI analysis complete. Enterprise QA Specification generated successfully!"}
+    message = "AI analysis complete. Enterprise QA Specification generated successfully!"
+    if not grounding["grounded"]:
+        message = (
+            f"Specification generated, but {grounding['invented_percent']}% of its "
+            f"selectors ({grounding['invented_count']} of {grounding['selectors_used']}) "
+            f"do not appear in the recording — the agents had to guess them. Run the "
+            f"selector pre-flight before trusting this suite, or re-record the module "
+            f"so the fields are captured."
+        )
+    return {"status": "success", "message": message, "grounding": grounding}
 
 
 @app.get("/generate-multi-agent-stream")
@@ -918,6 +1127,32 @@ async def generate_multi_agent_stream(flow_name: str,
         actions = read_json(flow_path / "actions.json", []) or []
         meta = read_json(flow_path / "flow.json", {}) or {}
         target_url = meta.get("target_url", "")
+        # Three agents across up to three rounds is up to nine requests. On a
+        # small free tier that can exhaust the day mid-run and leave a partial
+        # suite behind, so say so before starting rather than after failing.
+        budget = llm.budget_status(planned_calls=3 * max(1, max_iterations))
+        if budget["exhausted"]:
+            yield sse({"event": "error",
+                       "message": llm.quota_message(budget["model"], "daily")})
+            return
+        if not budget["enough"]:
+            yield sse({"event": "log",
+                       "message": f"⚠️ {budget['remaining']} request(s) likely remain today "
+                                  f"for {budget['model']} and this run may need up to "
+                                  f"{budget['planned_calls']}. It may stop part-way. "
+                                  f"Reduce the rounds, or set QA_LLM_DAILY_BUDGET=0 if "
+                                  f"billing is enabled."})
+
+        # A recording that never reached the module cannot ground a suite for it.
+        # Without this the agents invent every selector from the URL alone, which
+        # burns API calls and produces scenarios that can only ever fail.
+        try:
+            assert_recording_can_ground_generation(
+                project_name, flow_name, actions, target_url)
+        except HTTPException as guard:
+            yield sse({"event": "error", "message": guard.detail})
+            return
+
         actions_json = llm.trim_for_prompt(json.dumps(actions, indent=2))
         fields_context = build_fields_context(actions, project_name, flow_name)
 
@@ -1060,8 +1295,18 @@ async def generate_multi_agent_stream(flow_name: str,
                 for s in c.get("steps", [])
             )
         ]
+        grounding = generation_grounding(actions, all_cases)
+        if not grounding["grounded"]:
+            yield sse({"event": "log",
+                       "message": f"⚠️ {grounding['invented_percent']}% of the generated "
+                                  f"selectors ({grounding['invented_count']} of "
+                                  f"{grounding['selectors_used']}) are not in the recording "
+                                  f"— the agents guessed them. Run the selector pre-flight "
+                                  f"before trusting this suite."})
+
         write_json(flow_path / "test_cases.json", all_cases)
         write_json(flow_path / "generation_meta.json", {
+            "grounding": grounding,
             "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
             "rounds": iteration,
             "coverage_percentage": coverage_pct,
@@ -1774,6 +2019,650 @@ async def preview_relationship_checks(response: Response, flow_name: str,
     return {"scenarios": scenarios, "notes": notes, "count": len(scenarios)}
 
 
+# ──────────────────────────────────────────────────────────────────────
+# Coverage — scenarios, their test cases, and what is missing
+# ──────────────────────────────────────────────────────────────────────
+def _form_fields(project_name: str, flow_name: str) -> list[dict]:
+    """Fields for this module: what the engine discovered, then the recording.
+
+    The learned profile is preferred because it is the whole form, including the
+    mandatory field nobody recorded. The recording is the fallback for a flow
+    that has never run.
+    """
+    fields = list(learned.flow_profile(project_name, flow_name).get("fields") or [])
+    if fields:
+        return fields
+    flow_path = config.flow_dir(project_name, flow_name)
+    seen: set[str] = set()
+    for act in read_json(flow_path / "actions.json", []) or []:
+        selector = (act.get("selector") or "").strip()
+        action = (act.get("action") or "").upper()
+        tag = act.get("tag", "")
+        if not selector or selector in seen:
+            continue
+        if action in ("TYPE", "SELECT") or tag in ("input", "select", "textarea"):
+            seen.add(selector)
+            fields.append({"selector": selector, "label": act.get("label") or act.get("text", ""),
+                           "kind": "text", "required": bool(act.get("required"))})
+    return fields
+
+
+CONTROL_INVENTORY_JS = """() => {
+    const visible = (el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return false;
+        const style = getComputedStyle(el);
+        return style.visibility !== 'hidden' && style.display !== 'none';
+    };
+    const label = (el) => {
+        const own = (el.innerText || el.value || '').trim();
+        if (own) return own.substring(0, 60);
+        for (const attr of ['aria-label', 'title', 'placeholder', 'name']) {
+            const v = el.getAttribute(attr);
+            if (v) return v.substring(0, 60);
+        }
+        if (el.id) {
+            const lab = document.querySelector(`label[for="${el.id}"]`);
+            if (lab && lab.innerText.trim()) return lab.innerText.trim().substring(0, 60);
+        }
+        return '';
+    };
+    const stable = (el) => {
+        for (const attr of ['data-testid', 'data-test', 'data-cy']) {
+            const v = el.getAttribute(attr);
+            if (v) return `[${attr}="${v}"]`;
+        }
+        if (el.id && !/^(pn_id_|p-|mat-|cdk-|ng-)/i.test(el.id)) return '#' + el.id;
+        const fcn = el.getAttribute('formcontrolname');
+        if (fcn) return `${el.tagName.toLowerCase()}[formcontrolname="${fcn}"]`;
+        if (el.getAttribute('name')) {
+            return `${el.tagName.toLowerCase()}[name="${el.getAttribute('name')}"]`;
+        }
+        const text = (el.innerText || '').trim();
+        if (text && text.length < 40) {
+            return `${el.tagName.toLowerCase()}:has-text("${text.replace(/"/g, '')}")`;
+        }
+        const ph = el.getAttribute('placeholder');
+        if (ph) return `${el.tagName.toLowerCase()}[placeholder="${ph}"]`;
+        return '';
+    };
+
+    const out = [];
+    const seen = new Set();
+    document.querySelectorAll(
+        'input, select, textarea, button, a[href], [role="button"], [role="link"], ' +
+        '[role="tab"], [role="checkbox"], [role="switch"]'
+    ).forEach((el) => {
+        if (out.length > 300) return;
+        const type = (el.getAttribute('type') || '').toLowerCase();
+        if (type === 'hidden') return;
+        if (!visible(el)) return;
+        const selector = stable(el);
+        if (!selector || seen.has(selector)) return;
+        seen.add(selector);
+        const href = el.getAttribute('href') || '';
+        out.push({
+            selector,
+            tag: el.tagName.toLowerCase(),
+            type,
+            label: label(el),
+            href: href.startsWith('javascript:') ? '' : href,
+        });
+    });
+    return out;
+}"""
+
+#: Controls whose absence from a suite is never worth reporting.
+IGNORABLE_CONTROL_WORDS = (
+    "cookie", "privacy", "terms", "copyright", "©", "linkedin", "facebook",
+    "twitter", "instagram", "youtube", "powered by", "version", "help",
+    "language", "theme", "dark mode", "skip to",
+)
+
+#: Controls that almost always matter and are almost never recorded.
+NOTABLE_CONTROL_WORDS = (
+    "forgot", "reset password", "change password", "sign up", "register",
+    "remember me", "export", "download", "import", "print", "audit", "history",
+    "approve", "reject", "cancel", "delete", "activate", "deactivate",
+    "bulk", "upload", "filter", "advanced search", "reset",
+)
+
+
+def triage_control(control: dict) -> str:
+    """``notable`` / ``ignorable`` / ``unknown`` — no LLM involved.
+
+    Deliberately conservative. "Forgot your password?" is the case this exists
+    for: a control that plainly matters and that no recording ever touches,
+    because the tester was recording a successful login.
+    """
+    blob = f"{control.get('label', '')} {control.get('selector', '')} " \
+           f"{control.get('href', '')}".lower()
+    if any(word in blob for word in NOTABLE_CONTROL_WORDS):
+        return "notable"
+    if any(word in blob for word in IGNORABLE_CONTROL_WORDS):
+        return "ignorable"
+    return "unknown"
+
+
+def _suite_selectors(flow_path: Path) -> set[str]:
+    """Every selector the recording touched or the suite references."""
+    used: set[str] = set()
+    for act in read_json(flow_path / "actions.json", []) or []:
+        for candidate in [act.get("selector")] + list(act.get("selectors") or []):
+            if candidate:
+                used.add(str(candidate).strip())
+    for case in coverage.expand_scenarios(read_json(flow_path / "test_cases.json", []) or []):
+        for step in executor.parse_steps(case.get("steps") or []):
+            selector = (step.get("selector") or "").strip()
+            if selector:
+                used.add(selector)
+    return used
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Defect log — an additional feature, deliberately isolated
+#
+# Nothing here writes to a flow's test_cases.json, so a normal Run, the coverage
+# numbers and the existing report are exactly what they were. Defect scenarios
+# get their own flow ("<Flow> [defects]") and therefore their own report.
+# ──────────────────────────────────────────────────────────────────────
+def list_flow_names(project_name: str) -> list[str]:
+    """Every flow folder in a project, in name order."""
+    flows_root = config.flows_dir(project_name)
+    if not flows_root.exists():
+        return []
+    return sorted(p.name for p in flows_root.iterdir() if p.is_dir())
+
+
+def _defect_context(project_name: str, flow_name: str) -> dict:
+    """Everything needed to turn one module's defects into runnable steps."""
+    flow_path = config.flow_dir(project_name, flow_name)
+    actions = read_json(flow_path / "actions.json", []) or []
+    return {
+        "fields": _form_fields(project_name, flow_name),
+        "add_selector": next(
+            (a.get("selector") for a in actions
+             if (a.get("action") or "").upper() == "CLICK"
+             and any(word in f"{a.get('text', '')} {a.get('selector', '')}".lower()
+                     for word in ("add", "new", "create"))), ""),
+        "submit_selector": coverage_submit_selector(actions),
+        "target_url": (read_json(flow_path / "flow.json", {}) or {}).get("target_url", ""),
+        "actions": actions,
+    }
+
+
+def _build_defect_plan(project_name: str, records: list[dict]) -> dict:
+    """Map every defect to a flow and to steps, reporting what is not runnable."""
+    flow_names = list_flow_names(project_name)
+    planned, blocked = [], []
+    contexts: dict[str, dict] = {}
+
+    for defect in records:
+        flow = defects.match_flow(defect["module"], flow_names)
+        if not flow:
+            blocked.append({
+                "defect": defect, "flow": "",
+                "reason": (f"No recorded module matches {defect['module']!r}. Record "
+                           f"that module first, or rename the flow to match."),
+            })
+            continue
+        if flow not in contexts:
+            contexts[flow] = _defect_context(project_name, flow)
+        context = contexts[flow]
+        built = defects.build_scenario(
+            defect, context["fields"],
+            add_selector=context["add_selector"],
+            submit_selector=context["submit_selector"])
+        built["flow"] = flow
+        if built["runnable"]:
+            planned.append(built)
+        else:
+            blocked.append({
+                "defect": defect, "flow": flow,
+                "reason": "; ".join(built["unresolved"]) or "no steps could be derived",
+                "suggestions": built["suggestions"],
+                "fields_known": len(context["fields"]),
+            })
+    return {"planned": planned, "blocked": blocked, "flows": sorted(contexts)}
+
+
+def _write_defect_flows(project_name: str,
+                        records: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Build one ``<Flow> [defects]`` flow per module. Returns (written, blocked).
+
+    Every write goes to the defect flow. The real module's folder is only ever
+    read, which is what keeps this feature disconnected from the main flow.
+    """
+    plan = _build_defect_plan(project_name, records)
+    by_flow: dict[str, list[dict]] = {}
+    for entry in plan["planned"]:
+        by_flow.setdefault(entry["flow"], []).append(entry["scenario"])
+
+    written: list[dict] = []
+    for flow, scenarios in sorted(by_flow.items()):
+        source = config.flow_dir(project_name, flow)
+        target_name = defects.defect_flow_name(flow)
+        target = config.flow_dir(project_name, target_name)
+        assert_inside_projects(target)
+        target.mkdir(parents=True, exist_ok=True)
+
+        # Copy the recording metadata so auth, the target URL and the selector
+        # fallbacks behave as they do for the real module.
+        meta = read_json(source / "flow.json", {}) or {}
+        write_json(target / "flow.json", {
+            "flow_name": target_name,
+            "target_url": meta.get("target_url", ""),
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "step_count": 0,
+            "_defects_for": flow,
+        })
+        write_json(target / "actions.json", read_json(source / "actions.json", []) or [])
+        write_json(target / "test_cases.json", scenarios)
+        written.append({"flow": target_name, "scenarios": len(scenarios)})
+
+    blocked = [{"defect_id": b["defect"]["defect_id"],
+                "module": b["defect"]["module"], "flow": b["flow"],
+                "reason": b["reason"], "suggestions": b.get("suggestions") or {}}
+               for b in plan["blocked"]]
+    return written, blocked
+
+
+@app.post("/preview-defect-import")
+async def preview_defect_import(file: UploadFile = File(...),
+                                project_name: str = config.DEFAULT_PROJECT):
+    """Parse a defect sheet and show what would happen. Writes nothing."""
+    require_name(project_name=project_name)
+    try:
+        records = defects.read_sheet(await file.read(), file.filename or "")
+    except defects.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+    except Exception as err:
+        raise HTTPException(status_code=400,
+                            detail=f"Could not read the sheet: {err}") from err
+
+    plan = _build_defect_plan(project_name, records)
+    return {
+        "total": len(records),
+        "runnable": len(plan["planned"]),
+        "needs_input": len(plan["blocked"]),
+        "flows": plan["flows"],
+        "planned": [{"defect_id": p["defect"]["defect_id"], "flow": p["flow"],
+                     "scenario_name": p["scenario"]["scenario_name"],
+                     "steps": p["scenario"]["steps"],
+                     "expected_result": p["scenario"]["expected_result"],
+                     "known_defect": p["scenario"]["_known_defect"]}
+                    for p in plan["planned"]],
+        "blocked": [{"defect_id": b["defect"]["defect_id"],
+                     "module": b["defect"]["module"], "flow": b["flow"],
+                     "reason": b["reason"],
+                     "suggestions": b.get("suggestions") or {}}
+                    for b in plan["blocked"]],
+    }
+
+
+@app.post("/import-defects")
+async def import_defects(file: UploadFile = File(...),
+                         project_name: str = config.DEFAULT_PROJECT):
+    """Store the defect log and build a separate [defects] flow per module.
+
+    The main suites are never touched: each defect flow is its own folder with
+    its own ``test_cases.json``, so running it, or not running it, has no effect
+    on the module's real results.
+    """
+    require_name(project_name=project_name)
+    try:
+        records = defects.read_sheet(await file.read(), file.filename or "")
+    except defects.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    merged, added, updated = defects.merge(defects.load(project_name), records)
+    defects.save(project_name, merged)
+
+    # Plan from the merged log so any values accepted earlier are honoured — the
+    # upload itself never carries them.
+    written, blocked = _write_defect_flows(project_name, merged)
+
+    runnable = sum(w["scenarios"] for w in written)
+    db.audit("import_defects", project_name,
+             details={"added": added, "updated": updated, "runnable": runnable})
+    return {
+        "status": "success",
+        "stored": len(merged), "added": added, "updated": updated,
+        "flows_written": written,
+        "needs_input": blocked,
+        "message": (
+            f"{added} new and {updated} updated defect(s) stored. "
+            f"{runnable} runnable scenario(s) written to {len(written)} separate "
+            f"[defects] flow(s) — your existing suites are untouched."
+            + (f" {len(blocked)} defect(s) need a value or a recording first."
+               if blocked else "")
+        ),
+    }
+
+
+@app.post("/save-defect-data")
+async def save_defect_data(project_name: str = config.DEFAULT_PROJECT,
+                           payload: dict = Body(...)):
+    """Accept concrete values for a defect whose steps were left relative.
+
+    The sheet says "a value less than or equal to the Inner Diameter"; this is
+    where that becomes 40. Stored on the defect record so it survives a
+    re-import, and applied by :func:`defects.build_scenario`.
+    """
+    require_name(project_name=project_name)
+    defect_id = str(payload.get("defect_id") or "").strip()
+    data = payload.get("data")
+    if not defect_id or not isinstance(data, dict):
+        raise HTTPException(status_code=400,
+                            detail="Send {'defect_id': '...', 'data': {selector: value}}.")
+
+    stored = defects.load(project_name)
+    for record in stored:
+        if record.get("defect_id") == defect_id:
+            record["data"] = {str(k): str(v) for k, v in data.items() if str(k).strip()}
+            break
+    else:
+        raise HTTPException(status_code=404,
+                            detail=f"No imported defect with id {defect_id!r}.")
+    defects.save(project_name, stored)
+    return {"status": "success", "defect_id": defect_id,
+            "message": "Values saved. Rebuild the defect flows to use them."}
+
+
+@app.post("/rebuild-defect-flows")
+async def rebuild_defect_flows(project_name: str = config.DEFAULT_PROJECT):
+    """Regenerate the [defects] flows from the stored log."""
+    require_name(project_name=project_name)
+    stored = defects.load(project_name)
+    if not stored:
+        raise HTTPException(status_code=400,
+                            detail="No defect log imported for this workspace yet.")
+    written, blocked = _write_defect_flows(project_name, stored)
+    return {"status": "success", "flows_written": written,
+            "needs_input": blocked,
+            "message": (f"{sum(w['scenarios'] for w in written)} scenario(s) across "
+                        f"{len(written)} [defects] flow(s). Existing suites untouched.")}
+
+
+@app.get("/defect-status")
+async def defect_status(response: Response, project_name: str = config.DEFAULT_PROJECT):
+    """Per defect: still open, fixed, or a regression.
+
+    Computed here from each [defects] flow's own report, so the verdict engine
+    keeps its PASS/FAIL meaning and nothing about the main report changes.
+    """
+    no_cache(response)
+    require_name(project_name=project_name)
+    log_rows = defects.load(project_name)
+
+    latest: dict[str, dict] = {}
+    for flow in list_flow_names(project_name):
+        if not flow.endswith(defects.DEFECT_FLOW_SUFFIX):
+            continue
+        report = read_json(config.flow_dir(project_name, flow) / "report.json", {}) or {}
+        for checkpoint in report.get("checkpoints", []):
+            name = checkpoint.get("name") or ""
+            found = re.match(r"\[([^\]]+)\]", name)
+            if found:
+                latest[found.group(1)] = checkpoint
+
+    rows = []
+    for defect in log_rows:
+        checkpoint = latest.get(defect.get("defect_id"))
+        rows.append({
+            "defect_id": defect.get("defect_id"),
+            "module": defect.get("module"),
+            "priority": defect.get("priority"),
+            "sheet_status": defect.get("status"),
+            "last_result": (checkpoint or {}).get("status", "not run"),
+            "outcome": (defects.outcome((checkpoint or {}).get("status", ""),
+                                        bool(defect.get("is_open")))
+                        if checkpoint else "not_run"),
+            "reason": ((checkpoint or {}).get("verdict") or {}).get("reason", "")[:220],
+        })
+    tally: dict[str, int] = {}
+    for row in rows:
+        tally[row["outcome"]] = tally.get(row["outcome"], 0) + 1
+    return {"defects": rows, "total": len(rows), "summary": tally}
+
+
+@app.get("/llm-status")
+async def llm_status(response: Response, probe: bool = False):
+    """Is the key valid, which model, how much of today's allowance is left.
+
+    Answers the question the old error message sent people down the wrong path
+    on — "check the API key" — when the key was fine and the daily quota was
+    simply spent. ``probe=true`` lists the models the key can actually reach,
+    which costs no generation quota.
+    """
+    no_cache(response)
+    budget = llm.budget_status()
+    payload = {
+        "key_configured": bool(config.GEMINI_API_KEY),
+        "model": config.GEMINI_MODEL,
+        "vision_healing": config.VISION_HEALING_ENABLED,
+        "max_retries": config.GEMINI_MAX_RETRIES,
+        "usage": llm.usage_summary(),
+        "budget": budget,
+        "note": "",
+    }
+    if budget["exhausted"]:
+        payload["note"] = llm.quota_message(budget["model"], "daily")
+
+    if probe and config.GEMINI_API_KEY:
+        try:
+            payload["reachable_models"] = await llm.list_models()
+            payload["model_available"] = config.GEMINI_MODEL in payload["reachable_models"]
+        except Exception as err:
+            payload["reachable_models"] = []
+            payload["probe_error"] = str(err)[:300]
+    return payload
+
+
+@app.get("/page-coverage")
+async def page_coverage(response: Response, flow_name: str,
+                        project_name: str = config.DEFAULT_PROJECT,
+                        mode: str = "headless"):
+    """Which interactive controls on the page no test ever touches.
+
+    The recording is a *lower bound* on what the application contains, and the
+    platform used to treat it as the upper bound — so "Forgot your password?" was
+    never tested, and nothing ever said so. This loads the real page, enumerates
+    every control, and subtracts everything the recording and the suite mention.
+    """
+    no_cache(response)
+    flow_path = require_flow(project_name, flow_name)
+    meta = read_json(flow_path / "flow.json", {}) or {}
+    target_url = executor.resolve_target_url(project_name, meta)
+    if not target_url:
+        raise HTTPException(status_code=400, detail="This flow has no target URL recorded.")
+
+    used = _suite_selectors(flow_path)
+    controls: list[dict] = []
+    note = ""
+    async with async_playwright() as playwright:
+        browser = await playwright.chromium.launch(headless=(mode != "headed"))
+        try:
+            context_args: dict[str, Any] = {}
+            session_file = config.project_session_file(project_name)
+            if session_file.exists():
+                context_args["storage_state"] = str(session_file)
+            context = await browser.new_context(**context_args)
+            page = await context.new_page()
+            page.set_default_timeout(8000)
+            await page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
+            await executor.wait_for_settle(page)
+            if "login" in page.url.lower() and "login" not in flow_name.lower():
+                note = ("Redirected to the login page, so this is the login screen's "
+                        "inventory. Run the suite once to store a session, then re-check.")
+            controls = await page.evaluate(CONTROL_INVENTORY_JS) or []
+        except Exception as err:
+            raise HTTPException(status_code=502,
+                                detail=f"Could not load {target_url}: {err}") from err
+        finally:
+            await browser.close()
+
+    exercised, uncovered = [], []
+    for control in controls:
+        selector = control["selector"]
+        # A control counts as exercised if the suite names it, or names something
+        # that contains it — a recorded `#loginBtn` covers `button#loginBtn`.
+        touched = selector in used or any(
+            selector in candidate or candidate in selector for candidate in used)
+        if touched:
+            exercised.append(control)
+        else:
+            control["verdict"] = triage_control(control)
+            uncovered.append(control)
+
+    order = {"notable": 0, "unknown": 1, "ignorable": 2}
+    uncovered.sort(key=lambda c: order.get(c["verdict"], 1))
+    return {
+        "flow_name": flow_name,
+        "target_url": target_url,
+        "note": note,
+        "total": len(controls),
+        "exercised": len(exercised),
+        "uncovered": uncovered,
+        "notable": [c for c in uncovered if c["verdict"] == "notable"],
+    }
+
+
+@app.get("/coverage-report")
+async def coverage_report(response: Response, flow_name: str,
+                          project_name: str = config.DEFAULT_PROJECT):
+    """How many scenarios, how many test cases, and which behaviours are missing."""
+    no_cache(response)
+    flow_path = require_flow(project_name, flow_name)
+    cases = read_json(flow_path / "test_cases.json", []) or []
+    summary = coverage.coverage_summary(cases)
+    summary["fields_known"] = len(_form_fields(project_name, flow_name))
+    summary["flow_name"] = flow_name
+    return summary
+
+
+@app.get("/preview-coverage-cases")
+async def preview_coverage_cases(response: Response, flow_name: str,
+                                 project_name: str = config.DEFAULT_PROJECT):
+    """The enumerated field scenarios, without saving anything.
+
+    Enumeration rather than generation: the cases come from each field's own
+    type and constraints, so the same form always yields the same set and no
+    API key is involved.
+    """
+    no_cache(response)
+    flow_path = require_flow(project_name, flow_name)
+    fields = _form_fields(project_name, flow_name)
+    if not fields:
+        raise HTTPException(
+            status_code=400,
+            detail="No fields are known for this module yet. Record the flow, or run "
+                   "it once so the engine can inventory the form.")
+
+    actions = read_json(flow_path / "actions.json", []) or []
+    open_steps = coverage_open_steps(actions)
+    submit = coverage_submit_selector(actions)
+    scenarios = coverage.build_field_scenarios(
+        fields, open_steps=open_steps, submit_selector=submit)
+    return {
+        "scenarios": scenarios,
+        "scenario_count": len(scenarios),
+        "test_case_count": sum(len(s["data_table"]) for s in scenarios),
+        "submit_selector": submit,
+        "open_steps": open_steps,
+        "skipped_fields": [f.get("selector") for f in fields
+                           if learned.is_sensitive(f)],
+    }
+
+
+def coverage_open_steps(actions: list) -> list[dict]:
+    """The clicks that reach the form, taken from the recording up to the first TYPE."""
+    steps: list[dict] = []
+    for act in actions:
+        action = (act.get("action") or "").upper()
+        selector = (act.get("selector") or "").strip()
+        if action == "TYPE":
+            break
+        if action == "CLICK" and selector:
+            steps.append({"action": "CLICK", "selector": selector})
+    return steps[:4]
+
+
+def coverage_submit_selector(actions: list) -> str:
+    """The submit control this module actually uses, else a labelled fallback."""
+    for act in reversed(actions):
+        selector = (act.get("selector") or "").strip()
+        text = (act.get("text") or "").lower()
+        if (act.get("action") or "").upper() != "CLICK" or not selector:
+            continue
+        if any(word in text for word in executor.SUBMIT_WORDS):
+            return selector
+    return 'button:has-text("Save")'
+
+
+@app.post("/add-coverage-cases")
+async def add_coverage_cases(flow_name: str, project_name: str = config.DEFAULT_PROJECT,
+                             replace: bool = False):
+    """Append the enumerated field scenarios to the suite.
+
+    Appends by default: a generated suite is the tester's work and must not be
+    silently replaced. Existing scenarios with the same name are skipped rather
+    than duplicated.
+    """
+    flow_path = require_flow(project_name, flow_name)
+    preview = await preview_coverage_cases(Response(), flow_name, project_name)
+    scenarios = preview["scenarios"]
+
+    existing = [] if replace else (read_json(flow_path / "test_cases.json", []) or [])
+    names = {c.get("scenario_name") for c in existing}
+    added = [s for s in scenarios if s["scenario_name"] not in names]
+    write_json(flow_path / "test_cases.json", existing + added)
+    db.audit("add_coverage_cases", f"{project_name}/{flow_name}",
+             details={"scenarios": len(added),
+                      "test_cases": sum(len(s["data_table"]) for s in added)})
+    return {"status": "success", "added": len(added),
+            "skipped": len(scenarios) - len(added),
+            "test_cases": sum(len(s["data_table"]) for s in added),
+            "total_scenarios": len(existing) + len(added)}
+
+
+@app.get("/preview-duplicate-checks")
+async def preview_duplicate_checks(response: Response, flow_name: str,
+                                   project_name: str = config.DEFAULT_PROJECT):
+    """The two-phase duplicate scenarios this flow's uniqueness key implies."""
+    no_cache(response)
+    flow_path = require_flow(project_name, flow_name)
+    actions = read_json(flow_path / "actions.json", []) or []
+    scenarios, notes = contracts.duplicate_scenarios(
+        project_name, flow_name,
+        open_steps=coverage_open_steps(actions),
+        submit_selector=coverage_submit_selector(actions),
+    )
+    return {"scenarios": scenarios, "notes": notes, "count": len(scenarios)}
+
+
+@app.post("/add-duplicate-checks")
+async def add_duplicate_checks(flow_name: str,
+                               project_name: str = config.DEFAULT_PROJECT):
+    """Append the duplicate scenarios, de-duplicated by name."""
+    flow_path = require_flow(project_name, flow_name)
+    preview = await preview_duplicate_checks(Response(), flow_name, project_name)
+    scenarios = preview["scenarios"]
+    if not scenarios:
+        raise HTTPException(
+            status_code=400,
+            detail=preview["notes"][0] if preview["notes"] else
+            "Nothing to add — give this flow a 'unique_by' in its contract.")
+    cases = read_json(flow_path / "test_cases.json", []) or []
+    existing = {c.get("scenario_name") for c in cases}
+    added = [s for s in scenarios if s["scenario_name"] not in existing]
+    write_json(flow_path / "test_cases.json", cases + added)
+    db.audit("add_duplicate_checks", f"{project_name}/{flow_name}",
+             details={"scenarios": len(added)})
+    return {"status": "success", "added": len(added),
+            "skipped": len(scenarios) - len(added), "notes": preview["notes"]}
+
+
 @app.post("/add-relationship-checks")
 async def add_relationship_checks(flow_name: str, project_name: str = config.DEFAULT_PROJECT,
                                   dependencies: str = ""):
@@ -1795,11 +2684,17 @@ async def add_relationship_checks(flow_name: str, project_name: str = config.DEF
 
 
 def _matrix_rows(project_name: str, flow_names: list[str]) -> list[dict]:
-    """One row per scenario: Module | Scenario | Pre-condition | Steps | Expected | Priority."""
+    """One row per **test case**: Module | Scenario | Test Case | Steps | Expected.
+
+    A scenario states the objective; its test cases are the concrete data rows
+    that cover it. Expanding here means the exported matrix is what a tester
+    actually executes, and the Scenario column finally holds a scenario rather
+    than a test case wearing its name.
+    """
     rows: list[dict] = []
     for flow_name in flow_names:
         flow_path = config.flow_dir(project_name, flow_name)
-        cases = read_json(flow_path / "test_cases.json", []) or []
+        cases = coverage.expand_scenarios(read_json(flow_path / "test_cases.json", []) or [])
         contract = contracts.load(project_name, flow_name)
         report = read_json(flow_path / "report.json", {}) or {}
         last_status = {c.get("name"): c.get("status") for c in report.get("checkpoints", [])}
@@ -1830,7 +2725,13 @@ def _matrix_rows(project_name: str, flow_names: list[str]) -> list[dict]:
             rows.append({
                 "Module": flow_name,
                 "ID": f"{flow_name[:12].replace(' ', '_')}-{index:03d}",
-                "Scenario": case.get("scenario_name") or case.get("scenario") or f"Case {index}",
+                "Scenario": (case.get("_parent_name")
+                             or case.get("scenario_name") or case.get("scenario")
+                             or f"Case {index}"),
+                "Test Case": (case.get("_case_name")
+                              or case.get("scenario_name") or f"Case {index}"),
+                "Data": ", ".join(f"{k}={v!r}" for k, v in
+                                  (case.get("_data_row") or {}).items()),
                 "Type": case.get("type", ""),
                 "Pre-condition": case.get("precondition") or base_precondition,
                 "Steps": "\n".join(rendered),
@@ -1863,8 +2764,9 @@ async def export_test_matrix(project_name: str = config.DEFAULT_PROJECT, flow_na
     if not rows:
         raise HTTPException(status_code=404, detail="No test cases found to export.")
 
-    columns = ["ID", "Module", "Scenario", "Type", "Pre-condition", "Steps",
-               "Expected Result", "Priority", "Assertions", "Source", "Last Run"]
+    columns = ["ID", "Module", "Scenario", "Test Case", "Data", "Type",
+               "Pre-condition", "Steps", "Expected Result", "Priority",
+               "Assertions", "Source", "Last Run"]
     stem = f"test_matrix_{project_name}" + (f"_{flow_name}" if flow_name else "")
 
     if fmt == "markdown":
@@ -1875,7 +2777,7 @@ async def export_test_matrix(project_name: str = config.DEFAULT_PROJECT, flow_na
                      for c in columns]
             lines.append("| " + " | ".join(cells) + " |")
         body = (f"# Test Case Matrix — {project_name}\n\n"
-                f"{len(rows)} scenarios across {len(flows)} module(s), "
+                f"{len(rows)} test cases across {len(flows)} module(s), "
                 f"generated {time.strftime('%Y-%m-%d %H:%M')}.\n\n" + "\n".join(lines) + "\n")
         return PlainTextResponse(body, headers={
             "Content-Disposition": f'attachment; filename="{stem}.md"'})

@@ -130,4 +130,7 @@ verdictSection
 videoModal
 visualCheck
 watchRecordingBtn
-workersSelect
+workersSelectcoverageBadge
+scenarioGroupSection
+scenarioGroups
+defectCountBadge

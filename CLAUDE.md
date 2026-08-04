@@ -105,6 +105,204 @@ presentation. This matters because:
 
 The pre-redesign single-file UI is preserved at `web/legacy/` and served at `/legacy`.
 
+### Scenarios and their test cases
+
+`app/coverage.py` holds the level the platform was missing. A **scenario** is the
+objective plus a steps template using `{{placeholders}}`; a **test case** is one
+row of concrete data with its own `expected_result`. A scenario carries a
+`data_table`, and `coverage.expand_scenarios()` — called from
+`executor.select_scenarios()` — turns it into one runnable case per row.
+
+Three things follow, and they are the reason this exists:
+
+- **Coverage is enumerated, not judged.** `enumerate_field_cases()` derives the
+  permutations from the field's own type and constraints: empty, whitespace,
+  min/max boundary, over-boundary, wrong type, unicode, SQL/HTML/template
+  injection, and for numbers zero, negative, decimal and int32 overflow. Nothing
+  depends on a model remembering. Sensitive fields (password/OTP/captcha) are
+  never fuzzed — `learned.is_sensitive` skips them, because a locked account
+  fails every later scenario for reasons that have nothing to do with them.
+- **Results group.** `build_report` adds `scenario_groups`, so nine failures
+  against one field read as one finding — "7 of 9 test cases passed" — instead
+  of nine lines that look like nine defects.
+- **Gaps are named before a run.** `SCENARIO_CHECKLIST` lists the 16 behaviours a
+  CRUD module needs whatever its fields are, and `checklist_gaps()` says which a
+  suite never touches. This is what would have caught the missing audit-history
+  coverage on Circular Machine. The Auditor agent is *told* the computed gaps
+  rather than asked to find them.
+
+Matching is whole-word (`_mentions`): a plain substring test let `"log"` match
+*login* and *dialog* and reported audit coverage that did not exist — the same
+mistake as the `x`/"close" selector bug below.
+
+A suite with no `data_table` anywhere behaves exactly as before, which is what
+keeps existing flows working. The global CSV data matrix
+(`expand_data_matrix`) now skips scenarios that carry their own table — 9
+enumerated values × 6 CSV rows was a cartesian product nobody wanted.
+
+Endpoints: `/coverage-report`, `/preview-coverage-cases`, `/add-coverage-cases`
+(appends, de-duplicated by name). UI in `web/ui-coverage.js` — the sidebar
+"Coverage" row, its badge, and the grouped results panel.
+
+### Defect log — an additional feature, deliberately disconnected
+
+`app/defects.py` imports a defect sheet and re-tests the bugs it records. It is
+kept at arm's length from the main flow on purpose:
+
+- Defect scenarios **never** enter a module's `test_cases.json`. Each module's
+  defects get their own flow, `<Flow> [defects]`, with a copy of the recording
+  metadata (so auth and the target URL behave) and their own `report.json`. The
+  real flow folder is only ever read — `integration_api` asserts the module's own
+  suite is byte-for-byte unchanged after an import.
+- Nothing in `executor.py` or `verdict.py` changes. This module emits ordinary
+  scenarios and the existing engine runs them.
+
+Two column meanings carry the feature. **Expected Result** is a human-written
+checkable sentence, which is exactly what `verdict.classify_expectation` reads —
+so a defect row is usually judged correctly with nothing invented. **Steps to
+Reproduce** is prose: field names resolve against the labels already in
+`learned.json` (free and exact), and anything that cannot resolve that way is
+*reported, not guessed*. A relative value — "an Outer Diameter less than the
+Inner Diameter" — yields a suggestion the user accepts via `/save-defect-data`,
+because a fabricated number would make a defect look tested when it was not.
+An observation step asserts the wording the *expectation* quotes, so "Observe
+the field labelled 'Beam Dish'" becomes `VERIFY_TEXT body = "Beam Disk"` rather
+than typing the label into the field.
+
+`defects.outcome()` is what makes the report readable, and it lives outside the
+verdict engine so PASS/FAIL keeps its meaning: an **open** defect that fails is
+`still_open` (not news), one that passes is `fixed` (the repair landed), and a
+**closed** defect that fails is `regressed`.
+
+Endpoints: `/preview-defect-import` (writes nothing), `/import-defects`,
+`/save-defect-data`, `/rebuild-defect-flows`, `/defect-status`. CSV needs no
+extra package; `.xlsx` needs `openpyxl` and says so if it is missing. UI in
+`web/ui-defects.js`.
+
+### Gemini quota — the platform was making it worse
+
+The free tier is **20 requests per day per model**. Three things turned that into
+far fewer:
+
+- **Retry amplification.** `RETRYABLE_MARKERS` matches `429`/`quota`, and
+  `GEMINI_MAX_RETRIES=3`, so an exhausted *daily* cap was retried three more
+  times — four requests spent to fail once. `llm.classify_quota_error()` now
+  tells `daily` from `per_minute`: a daily cap raises immediately, a per-minute
+  one waits for the delay Google actually named (`suggested_retry_delay`).
+- **Vision healing was on by default** and fires on every failed step, so
+  *running* a suite competed with *generating* one. `QA_VISION_HEALING` now
+  defaults to `0`. Note an explicit `.env` entry still wins.
+- **No budget awareness.** A multi-agent run is up to 9 requests (3 agents ×
+  3 rounds). `llm.budget_status()` refuses when the day is spent and warns when
+  the remainder cannot cover the run. `QA_LLM_DAILY_BUDGET=0` disables the
+  warning, which is correct once billing is enabled.
+
+`llm.quota_message()` never says "check your API key" — that message sent a user
+to check a key that was working perfectly while the real cause was the cap.
+`/llm-status` reports key/model/usage/remaining, and `?probe=true` lists the
+models the key can reach via the REST metadata endpoint, which costs no
+generation quota and distinguishes an invalid key from a spent allowance.
+
+### Generation must be grounded in the recording
+
+A model handed `target_url = /masters/beamer-capacity` and a recording containing
+only `#username` and `#password` invented an entire master-data module from those
+two words in the URL — 17 scenarios in which **all 27 selectors were fabricated**.
+The prompt had even said "AUTHENTICATION workflow, do NOT generate business
+transactional test cases"; the URL won.
+
+Two checks now make that impossible, both deterministic and free:
+
+- `assert_recording_can_ground_generation()` runs **before** any API call in both
+  `/analyze-flow` and `/generate-multi-agent-stream`. If the recording is
+  credentials-only (`recording_grounding().credentials_only`) while the target URL
+  is not a login page and no learned field inventory exists, it refuses with a
+  message that says how to fix it. A genuine login flow — credentials-only *and* a
+  login URL — is still allowed, as is any recording that reached a real form.
+- `generation_grounding()` runs **after**, and reports what fraction of the
+  generated selectors appear nowhere in the recording. A model may legitimately
+  name a Save button nobody recorded, so the threshold is 70%, not zero; above it
+  the suite is flagged in the response, in `generation_meta.json`, and in the UI.
+
+`app.js` turns any non-OK `/analyze-flow` response into the generic "AI analysis
+failed.", so `web/ui-coverage.js` replaces `triggerAIAnalysis` (using the
+`activeProject()`/`activeFlow()` helpers, since `app.js` keeps those in closure
+scope) to show the refusal and the grounding warning in full.
+
+**`node --check` every file in `web/`** — `test_platform.py` does. A syntax error
+in an adapter file silently disables every function in it: a broken regex literal
+in `ui-coverage.js` made the whole Coverage panel dead, and it surfaced only as a
+30-second Playwright timeout.
+
+### Recording fidelity — the effect, not just the action
+
+`actions.json` used to record only *what was clicked*. It said nothing about what
+happened next, so the generation agents had to invent the expected result and the
+runner had to guess where the application renders its messages. The recorder now
+watches for ~1.2s after every CLICK/SELECT (`captureEffect` in `recorder.py`) and
+attaches an `effect` block — `url_before`/`url_after`, the messages that appeared
+with their selectors, ids that appeared and disappeared.
+`main.handle_exposed_event` recognises the `__EFFECT__` event and attaches it to
+the *previous* action rather than appending a step, and
+`main.describe_recorded_effects()` puts it in the Builder/Breaker prompt as
+"assert THESE, do not invent wording". Old recordings have no `effect` key and
+behave exactly as before.
+
+### Message detection — four layers
+
+A false FAIL is the most damaging thing this tool can produce: it blames a
+working application. Two OrangeHRM scenarios reported "no validation message
+appeared" while `Required` was on screen.
+
+1. **Seed list** — `MESSAGE_SCAN_JS`, the framework selectors.
+2. **DOM diff** — `DOM_DIFF_INSTALL_JS` installs a `MutationObserver` (via
+   `add_init_script`, so it survives navigation) and treats *text that appeared
+   after an action* as a message, whatever its CSS. Flag
+   `QA_DOM_DIFF_MESSAGES`, default **on**; it only ever adds messages the static
+   list could not see. Noise is filtered by ignoring numeric/clock/pagination
+   text, requiring visibility, and skipping anything inside a table body.
+3. **Learning** — `learned.remember_message_selector()` persists the classes a
+   diff-discovered message used, and `scan_messages()` now reads them back.
+   This was **write-only** before: the platform recorded where messages appeared
+   and then scanned without that knowledge. Layer 2 is what makes it worth
+   having — the seed scan can only ever report a selector already in the list.
+4. **AI adjudication** — the pre-existing `verdict_mode=ai`.
+
+**Never convert ignorance into a FAIL.** When no message surface has ever been
+observed, "nothing appeared" and "something appeared I cannot read" are
+indistinguishable, so the verdict is UNVERIFIED with a next action. Behind
+`QA_STRICT_MESSAGE_CONFIDENCE`, default **off**, because it moves existing
+verdict numbers (some FAILs become UNVERIFIED — the safe direction).
+
+### Page coverage — controls nobody tested
+
+A recording is a *lower bound* on what the application contains, and the platform
+used to treat it as the upper bound, so "Forgot your password?" was never tested
+and nothing said so. `/page-coverage` loads the real page, enumerates every
+interactive control (`CONTROL_INVENTORY_JS`, including `a[href]`), subtracts
+everything the recording and the suite mention, and triages the remainder with
+`triage_control()` — `notable` (forgot/export/audit/approve…), `ignorable`
+(cookie/privacy/copyright…) or `unknown`. No LLM involved.
+
+### Duplicate testing and uniqueness keys
+
+Duplicate tests used to pass without testing anything. To stop replays colliding
+the engine appends a token, so the "duplicate" submission was unique too — and
+`make_dep_value_unique()` did that even to a `{{variable}}`, which is deliberate
+reuse. That was the actual bug; variables are now left alone.
+
+A contract declares `unique_by: ["#custName", "#effectiveDate"]` — what must
+match for a duplicate to *be* one, the date included.
+`contracts.duplicate_scenarios()` then builds the two-phase pattern: phase 1
+creates a fresh original and `STORE`s every key field; phase 2 replays them all
+from those variables. It also generates the more interesting inverse — change
+**only** the last key field and the save must succeed, proving the key is neither
+narrower nor wider than the business rule.
+
+One trap worth knowing: a generated `expected_result` must avoid negative
+vocabulary in explanatory asides. "Refusing it would mean…" made
+`classify_expectation` read a correct save as expecting an error.
+
 ### Tester-knowledge layers
 
 Two things a recording cannot capture, both feeding the same run:
@@ -146,6 +344,16 @@ the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI p
 - **SQLite joins**: `runs` and `results` share `epoch`, `project_name`, `flow_name` —
   qualify every column or SQLite raises "ambiguous column name" (which the `except`
   blocks would swallow into an empty list).
+- **`.env` beats a popped env var**: `config.py` calls `load_dotenv()`, which fills
+  in anything *absent* from the environment. So `env.pop("GEMINI_API_KEY")` did not
+  make a suite offline — a developer's `.env` put the key straight back, and the
+  four suites that claim "offline, no API key" only ran offline on CI. They now set
+  it to `""`, which `load_dotenv(override=False)` leaves alone. The same trap
+  applies to any `QA_*` flag: to test a default, run from a directory outside the
+  repo. `test_platform.py` does exactly that for `QA_VISION_HEALING`.
+- **CI-only failures are usually this**: an assertion that passes because of local
+  configuration. `smoke_ui` checked for `"no API key"` while the `ui.js` redesign
+  renders `"No API key"` — green locally with a key, red on CI without one.
 - **Test isolation**: every test sets `QA_WORKSPACE` to a temp dir *before* importing
   `config`. The one exception is `regression_existing_data.py`, which runs against the
   real workspace and must stay strictly read-only (and keeps `QA_SCHEDULER=0`).
@@ -158,8 +366,11 @@ the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI p
 
 ## Current state
 
-All six suites pass: 81 unit tests, `e2e_selftest` 13/13, `e2e_chain` 18/18,
-`smoke_ui` 32/32, `integration_api` 32/32, `regression_existing_data` 18/18.
+All six suites pass: 117 unit tests, `e2e_selftest` 13/13, `e2e_chain` 25/25
+(verified over 3 consecutive runs), `smoke_ui` 51/51, `integration_api` 51/51,
+`regression_existing_data` 4/4 (that last one only compares against real
+`projects/` data, and the workspace is currently empty — it skips the report
+checks rather than failing).
 
 ### Handling application quirks without hand-fixing
 

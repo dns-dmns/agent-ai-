@@ -1005,6 +1005,70 @@ input[type="checkbox"]:checked::after {
 }
 .sidebar-toggle { display: none; }
 
+/* ── Coverage: scenarios, their test cases, and the gaps ──────────────
+   A scenario is the objective and its test cases are the data rows that cover
+   it, so results roll up: "7 of 9 test cases passed" reads as one finding
+   rather than nine unrelated failures. */
+.stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block-end: var(--space-4);
+}
+
+.stat {
+    flex: 1 1 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+    box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.stat-value { font-size: 1.35rem; font-weight: 600; line-height: 1.1; }
+.stat-label { font-size: 0.75rem; color: var(--text-secondary); }
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.data-table th,
+.data-table td {
+    padding: var(--space-2) var(--space-3);
+    text-align: start;
+    vertical-align: top;
+    border-block-end: 1px solid var(--border);
+}
+
+.data-table th { color: var(--text-secondary); font-weight: 500; white-space: nowrap; }
+
+/* Wide tables scroll inside their own box; the page never scrolls sideways. */
+.spec-block { overflow-x: auto; }
+
+.group-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+    box-shadow: inset 3px 0 0 0 var(--border-strong);
+}
+
+.group-row.pass { box-shadow: inset 3px 0 0 0 var(--pass); }
+.group-row.fail { box-shadow: inset 3px 0 0 0 var(--fail); }
+.group-row.unverified { box-shadow: inset 3px 0 0 0 var(--unverified); }
+.group-row.crash { box-shadow: inset 3px 0 0 0 var(--fail); }
+
+.group-name { flex: 1 1 220px; font-weight: 500; }
+.group-summary { color: var(--text-secondary); font-size: 0.85rem; white-space: nowrap; }
+.group-failures { flex: 1 1 100%; color: var(--fail); font-size: 0.8rem; }
+
 @media print {
     .sidebar, .topbar, .rail, .suite-toolbar, .card-foot { display: none !important; }
     body { overflow: visible; }

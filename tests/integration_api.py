@@ -131,7 +131,10 @@ def main() -> int:
 
     env = dict(os.environ, QA_WORKSPACE=str(WORKSPACE), QA_SCHEDULER="0",
                QA_API_KEY=API_KEY, QA_LOG_LEVEL="WARNING")
-    env.pop("GEMINI_API_KEY", None)
+    # Set to empty rather than popped: config.py calls load_dotenv(), which
+    # fills in anything ABSENT from the environment — so popping the key let a
+    # developer's .env put it back, and these suites only ran offline on CI.
+    env["GEMINI_API_KEY"] = ""
     server = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "qa_agent:app", "--host", "127.0.0.1",
          "--port", str(api_port), "--log-level", "warning"],
@@ -295,6 +298,138 @@ def main() -> int:
         record("password never echoed back",
                loaded["credentials"]["password"] == "********",
                str(loaded["credentials"]))
+
+        # ── Coverage: scenarios, test cases, and enumerated permutations ──
+        summary = call(base, "/coverage-report", project_name=PROJECT, flow_name=FLOW)
+        record("coverage report counts test cases",
+               summary["test_cases"] == 3 and summary["scenarios"] == 3, str(summary)[:150])
+        record("coverage names the behaviours with no test case",
+               any(g["id"] == "audit" for g in summary["gaps"]),
+               str([g["id"] for g in summary["gaps"]]))
+
+        enumerated = call(base, "/preview-coverage-cases", project_name=PROJECT, flow_name=FLOW)
+        record("field permutations are enumerated with no API key",
+               enumerated["scenario_count"] >= 1 and enumerated["test_case_count"] >= 8,
+               str({k: enumerated[k] for k in ("scenario_count", "test_case_count")}))
+        rows = enumerated["scenarios"][0]["data_table"]
+        names = [r["case_name"] for r in rows]
+        record("enumeration includes the boundary and injection cases",
+               any("maximum" in n for n in names) and any("injection" in n for n in names),
+               str(names)[:180])
+
+        added = call(base, "/add-coverage-cases", method="POST",
+                     project_name=PROJECT, flow_name=FLOW)
+        record("coverage cases append rather than replace",
+               added["added"] >= 1 and added["total_scenarios"] == 3 + added["added"],
+               str(added))
+
+        again = call(base, "/add-coverage-cases", method="POST",
+                     project_name=PROJECT, flow_name=FLOW)
+        record("adding twice does not duplicate",
+               again["added"] == 0 and again["skipped"] >= 1, str(again))
+
+        after = call(base, "/coverage-report", project_name=PROJECT, flow_name=FLOW)
+        record("the added scenario expands into its test cases",
+               after["test_cases"] > summary["test_cases"]
+               and after["parameterised_scenarios"] >= 1, str(after)[:150])
+
+        # ── §3: controls on the page that no test ever touches ────────
+        # The "Forgot your password?" case: a recording is a lower bound on what
+        # the application contains, and the platform used to treat it as the
+        # upper bound, so a link that plainly matters was never tested and
+        # nothing said so.
+        page_cov = call(base, "/page-coverage", project_name=PROJECT, flow_name=FLOW)
+        record("page coverage enumerates the live controls",
+               page_cov["total"] >= 5, str({k: page_cov[k] for k in
+                                            ("total", "exercised")}))
+        labels = {c["label"] for c in page_cov["uncovered"]}
+        record("an untested control that matters is called out",
+               any("Forgot" in (c["label"] or "") for c in page_cov["notable"]),
+               str([c["label"] for c in page_cov["notable"]])[:200])
+        record("the recorded control is not reported as untested",
+               not any(c["selector"] == "#name" for c in page_cov["uncovered"]),
+               str(sorted(labels))[:200])
+        record("a footer link is triaged as ignorable, not notable",
+               all("Privacy" not in (c["label"] or "") for c in page_cov["notable"]),
+               str([c["label"] for c in page_cov["notable"]])[:200])
+
+        # ── Generation must be grounded in what was recorded ──────────
+        # A login-only recording cannot support a suite for a master-data page:
+        # the agents would invent every selector from the URL alone. This is
+        # checked before any API call is spent.
+        login_flow = "LoginOnly"
+        login_dir = WORKSPACE / "projects" / PROJECT / "flows" / login_flow
+        login_dir.mkdir(parents=True, exist_ok=True)
+        (login_dir / "flow.json").write_text(json.dumps({
+            "flow_name": login_flow,
+            "target_url": f"{app_url}/pages/masters/beamer-capacity",
+        }), encoding="utf-8")
+        (login_dir / "actions.json").write_text(json.dumps([
+            {"action": "TYPE", "selector": "#username", "value": "admin", "label": "Username"},
+            {"action": "TYPE", "selector": "#password", "value": "pw", "label": "Password"},
+            {"action": "CLICK", "selector": 'button:has-text("Login")'},
+        ]), encoding="utf-8")
+
+        refused = False
+        detail = ""
+        try:
+            call(base, "/analyze-flow", method="POST",
+                 project_name=PROJECT, flow_name=login_flow)
+        except urllib.error.HTTPError as err:
+            refused = err.code == 400
+            detail = err.read().decode("utf-8", "replace")
+        record("a login-only recording cannot generate a master-data suite",
+               refused and "only captured a login" in detail, detail[:200])
+        record("the refusal says how to fix it",
+               "Re-record" in detail, detail[:200])
+
+        # ── Defect log: additional, and disconnected from the main flow ──
+        before = call(base, "/get-flow-details", project_name=PROJECT, flow_name=FLOW)
+        cases_before = json.dumps(before["test_cases"], sort_keys=True)
+
+        sheet = (HERE / "fixtures" / "defect_log.csv").read_bytes()
+        # CRLF from byte values: hand-written escapes are what broke this the
+        # first time round.
+        boundary = "qaDefectBoundary1234"
+        crlf = bytes([13, 10])
+        disposition = ("Content-Disposition: form-data; name=\"file\";"
+                       " filename=\"defect_log.csv\"").encode()
+        body = (
+            b"--" + boundary.encode() + crlf
+            + disposition + crlf
+            + b"Content-Type: text/csv" + crlf + crlf
+            + sheet + crlf
+            + b"--" + boundary.encode() + b"--" + crlf
+        )
+        request = urllib.request.Request(
+            f"{base}/import-defects?project_name={urllib.parse.quote(PROJECT)}",
+            data=body, method="POST",
+            headers={"Content-Type": f"multipart/form-data; boundary={boundary}",
+                     "X-API-Key": API_KEY})
+        with urllib.request.urlopen(request, timeout=60) as response:
+            imported = json.loads(response.read())
+        record("a defect sheet imports", imported.get("status") == "success",
+               str(imported)[:180])
+        record("defects with no matching module are reported, not dropped",
+               len(imported["needs_input"]) >= 1,
+               str(imported["needs_input"])[:150])
+
+        after = call(base, "/get-flow-details", project_name=PROJECT, flow_name=FLOW)
+        record("the module's own suite is byte-for-byte unchanged",
+               json.dumps(after["test_cases"], sort_keys=True) == cases_before,
+               "the defect import modified the real suite")
+
+        flows = call(base, "/list-flows", project_name=PROJECT)
+        every = flows["auth_flows"] + flows["business_flows"]
+        record("no [defects] flow was created for an unmatched module",
+               not any(f.startswith("Customer Master") for f in every), str(every)[:150])
+
+        status = call(base, "/defect-status", project_name=PROJECT)
+        record("defect status lists every imported defect",
+               status["total"] == 3, str(status["summary"]))
+        record("an unrun defect is 'not_run', never a pass",
+               all(d["outcome"] == "not_run" for d in status["defects"]),
+               str([d["outcome"] for d in status["defects"]]))
 
         failures = [c for c in checks if not c[1]]
         print("\n" + "=" * 92)

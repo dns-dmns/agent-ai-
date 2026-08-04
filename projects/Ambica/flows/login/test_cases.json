@@ -1,0 +1,626 @@
+[
+    {
+        "scenario_name": "Navigate to Beamer Capacity Master page",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "h1, .page-title",
+                "value": "Beamer Capacity"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "button:has-text('Add')"
+            }
+        ],
+        "expected_result": "Beamer Capacity Master page loaded successfully with header and Add button visible."
+    },
+    {
+        "scenario_name": "Create new Beamer Capacity record with all valid fields",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#beamerCode",
+                "value": "BMC-1001"
+            },
+            {
+                "action": "SELECT",
+                "selector": "#beamerType",
+                "value": "High Capacity Beamer"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#capacity",
+                "value": "1500"
+            },
+            {
+                "action": "SELECT",
+                "selector": "#unit",
+                "value": "Meters"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Save')"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Record saved successfully"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "BMC-1001"
+            }
+        ],
+        "expected_result": "New Beamer Capacity record is created and appears in the data table."
+    },
+    {
+        "scenario_name": "Create Beamer Capacity record with minimum required fields",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#beamerCode",
+                "value": "BMC-MIN-01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#capacity",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Save')"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Record saved successfully"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "BMC-MIN-01"
+            }
+        ],
+        "expected_result": "Record is created successfully filling only minimum required fields."
+    },
+    {
+        "scenario_name": "Verify dependent dropdown options selection for Beamer Type and Model",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "SELECT",
+                "selector": "#department",
+                "value": "Warping Department"
+            },
+            {
+                "action": "VERIFY_OPTION_PRESENT",
+                "selector": "#beamerType",
+                "value": "Direct Beamer"
+            },
+            {
+                "action": "SELECT",
+                "selector": "#beamerType",
+                "value": "Direct Beamer"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#beamerCode",
+                "value": "BMC-DEP-01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#capacity",
+                "value": "1200"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Save')"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "BMC-DEP-01"
+            }
+        ],
+        "expected_result": "Dependent dropdowns update active options based on prerequisite master selection and save successfully."
+    },
+    {
+        "scenario_name": "View record details modal and verify field mapping",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has(i.pi-eye)"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".modal-dialog, .p-dialog"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".modal-title, .p-dialog-title",
+                "value": "Beamer Capacity Details"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Close')"
+            },
+            {
+                "action": "VERIFY_HIDDEN",
+                "selector": ".modal-dialog, .p-dialog"
+            }
+        ],
+        "expected_result": "Details modal displays record information accurately and closes properly."
+    },
+    {
+        "scenario_name": "Update/Edit existing Beamer Capacity record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has(i.pi-pencil)"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "#capacity"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#capacity",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Save')"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Record updated successfully"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "2000"
+            }
+        ],
+        "expected_result": "Existing record is updated with new capacity value and verified in data table."
+    },
+    {
+        "scenario_name": "Cancel record edit operation without saving changes",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has(i.pi-pencil)"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "#capacity"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#capacity",
+                "value": "9999"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Cancel')"
+            },
+            {
+                "action": "VERIFY_HIDDEN",
+                "selector": ".modal-dialog, .p-dialog"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "9999"
+            }
+        ],
+        "expected_result": "Edit modal closes and modified capacity value is not saved to data table."
+    },
+    {
+        "scenario_name": "Cancel delete action on Beamer Capacity record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "DIALOG",
+                "value": "dismiss"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has(i.pi-trash)"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "BMC-1001"
+            }
+        ],
+        "expected_result": "Deletion is cancelled and the record remains visible in the data table."
+    },
+    {
+        "scenario_name": "Confirm and Delete Beamer Capacity record",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "DIALOG",
+                "value": "accept"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has(i.pi-trash)"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Record deleted successfully"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "BMC-MIN-01"
+            }
+        ],
+        "expected_result": "Record is successfully deleted and removed from the data table."
+    },
+    {
+        "scenario_name": "Search Beamer Capacity records by exact match",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder*='Search']",
+                "value": "BMC-1001"
+            },
+            {
+                "action": "KEYPRESS",
+                "selector": "input[placeholder*='Search']",
+                "value": "Enter"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "BMC-1001"
+            }
+        ],
+        "expected_result": "Search results display only the record matching the exact code entered."
+    },
+    {
+        "scenario_name": "Search Beamer Capacity records by partial match and case-insensitive string",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder*='Search']",
+                "value": "bmc"
+            },
+            {
+                "action": "KEYPRESS",
+                "selector": "input[placeholder*='Search']",
+                "value": "Enter"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "BMC"
+            }
+        ],
+        "expected_result": "Search returns all matching records regardless of letter case."
+    },
+    {
+        "scenario_name": "Sort table columns in ascending and descending order",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "th:has-text('Beamer Code')"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "th:has-text('Beamer Code') .pi-sort-amount-up, th:has-text('Beamer Code') .pi-sort-up"
+            },
+            {
+                "action": "CLICK",
+                "selector": "th:has-text('Beamer Code')"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "th:has-text('Beamer Code') .pi-sort-amount-down, th:has-text('Beamer Code') .pi-sort-down"
+            }
+        ],
+        "expected_result": "Table data reorders properly according to selected column header sorting clicks."
+    },
+    {
+        "scenario_name": "Export Beamer Capacity records to Excel",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Excel')"
+            },
+            {
+                "action": "VERIFY_DOWNLOAD"
+            }
+        ],
+        "expected_result": "Excel export file downloads successfully."
+    },
+    {
+        "scenario_name": "Export Beamer Capacity records to PDF",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('PDF')"
+            },
+            {
+                "action": "VERIFY_DOWNLOAD"
+            }
+        ],
+        "expected_result": "PDF export file downloads successfully."
+    },
+    {
+        "scenario_name": "Verify disabled system-generated and calculated formula fields",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "VERIFY_DISABLED",
+                "selector": "#systemGeneratedCode, input[readonly]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#capacity",
+                "value": "1000"
+            },
+            {
+                "action": "VERIFY_NON_ZERO",
+                "selector": "#calculatedTotalCapacity"
+            }
+        ],
+        "expected_result": "Auto-populated/system code fields are disabled and calculated formula outputs produce valid numbers."
+    },
+    {
+        "scenario_name": "Open Add dialog and close using form cancel button",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Add')"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".modal-dialog, .p-dialog"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text('Cancel')"
+            },
+            {
+                "action": "VERIFY_HIDDEN",
+                "selector": ".modal-dialog, .p-dialog"
+            }
+        ],
+        "expected_result": "Add Record modal opens and closes properly upon clicking Cancel."
+    },
+    {
+        "scenario_name": "Verify Audit History dialog for Beamer Capacity record",
+        "type": "positive_ui",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has(i.pi-history)"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "#auditTable, .audit-history-dialog"
+            },
+            {
+                "action": "VERIFY_COLUMN_NOT_EMPTY",
+                "selector": "#auditTable",
+                "value": "Date/Time, User"
+            },
+            {
+                "action": "VERIFY_NO_NOOP_ROWS",
+                "selector": "#auditTable",
+                "value": "Old Value, New Value"
+            }
+        ],
+        "expected_result": "Audit history trail displays non-empty timestamp/user details and valid change entries."
+    },
+    {
+        "scenario_name": "Username accepts and rejects the right values",
+        "type": "negative",
+        "field_under_test": "#username",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "#username"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "{{value}}"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Each value is handled according to Username's rules.",
+        "data_table": [
+            {
+                "case_name": "empty is rejected",
+                "values": {
+                    "value": ""
+                },
+                "expected_result": "Username is mandatory, so the application refuses the submission \u2014 either a validation message names Username, or the submit control stays disabled or hidden.",
+                "type": "negative"
+            },
+            {
+                "case_name": "whitespace only is rejected",
+                "values": {
+                    "value": "   "
+                },
+                "expected_result": "Spaces are not a value: Username is still treated as empty and the submission is refused.",
+                "type": "negative"
+            },
+            {
+                "case_name": "single character is accepted",
+                "values": {
+                    "value": "A"
+                },
+                "expected_result": "One character is a legal Username and the record saves.",
+                "type": "boundary"
+            },
+            {
+                "case_name": "maximum length (255) is accepted",
+                "values": {
+                    "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                },
+                "expected_result": "A Username of exactly 255 characters saves without truncation.",
+                "type": "boundary"
+            },
+            {
+                "case_name": "one over the maximum (256) is refused",
+                "values": {
+                    "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                },
+                "expected_result": "The application refuses 256 characters \u2014 a validation message appears, or the field itself stops accepting input at 255. It must not silently truncate and report success.",
+                "type": "boundary"
+            },
+            {
+                "case_name": "leading and trailing spaces are trimmed",
+                "values": {
+                    "value": "  Trimmed Value  "
+                },
+                "expected_result": "The record is stored as 'Trimmed Value' \u2014 the surrounding spaces are removed rather than saved.",
+                "type": "positive"
+            },
+            {
+                "case_name": "special characters are handled",
+                "values": {
+                    "value": "Test-Value_01 (A/B) &%#"
+                },
+                "expected_result": "Punctuation is either accepted as a legal Username or rejected with a validation message. It must not raise a server error.",
+                "type": "negative"
+            },
+            {
+                "case_name": "unicode and emoji are handled",
+                "values": {
+                    "value": "\u03a9mega \u00dcnit \ud83d\ude80"
+                },
+                "expected_result": "Non-ASCII text is stored and displayed unchanged, or rejected with a validation message \u2014 never mangled into question marks.",
+                "type": "negative"
+            },
+            {
+                "case_name": "SQL injection is stored as text",
+                "values": {
+                    "value": "'; DROP TABLE machines;--"
+                },
+                "expected_result": "The value is treated as literal text \u2014 it is stored or rejected with a validation message, and no database error is shown.",
+                "type": "security"
+            },
+            {
+                "case_name": "HTML and script injection is escaped",
+                "values": {
+                    "value": "<script>alert('xss')</script>"
+                },
+                "expected_result": "The markup is escaped and rendered as text \u2014 no alert fires and no raw HTML reaches the page.",
+                "type": "security"
+            },
+            {
+                "case_name": "template injection is not evaluated",
+                "values": {
+                    "value": "{{7*7}}"
+                },
+                "expected_result": "The value is stored verbatim \u2014 the page never shows 49.",
+                "type": "security"
+            }
+        ],
+        "_generated": "coverage"
+    }
+]

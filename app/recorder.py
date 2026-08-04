@@ -214,6 +214,118 @@ JS_RECORDER_SCRIPT = r"""
             for (var k in extra) { if (extra.hasOwnProperty(k)) payload[k] = extra[k]; }
         }
         send(payload);
+        // Watch what this action caused. CLICK and SELECT are what change state;
+        // watching every keystroke would be noise.
+        if (action === 'CLICK' || action === 'SELECT' || action === 'CHECK'
+                || action === 'UNCHECK') {
+            captureEffect(action, payload.selector);
+        }
+    }
+
+    // ── Effect capture ────────────────────────────────────────────────
+    // A recording used to say only *what was clicked*. It said nothing about what
+    // happened next, so the generation agents had to invent the expected result
+    // and the runner had to guess where this application renders its messages.
+    //
+    // After each action, watch for ~1.2s and report the effect: the URL change,
+    // any text that appeared, and elements that came or went. The exact wording
+    // is captured while recording, so a scenario can assert the message the
+    // application really shows instead of one the model made up.
+    var effectSeq = 0;
+
+    function visibleNow(el) {
+        try {
+            var rect = el.getBoundingClientRect();
+            if (rect.width <= 0 || rect.height <= 0) return false;
+            var style = getComputedStyle(el);
+            return style.visibility !== 'hidden' && style.display !== 'none';
+        } catch (e) { return false; }
+    }
+
+    function idsOnScreen() {
+        var out = {};
+        try {
+            document.querySelectorAll('[id]').forEach(function (el) {
+                if (el.id && visibleNow(el)) out[el.id] = true;
+            });
+        } catch (e) {}
+        return out;
+    }
+
+    function describeNode(el) {
+        if (!el || !el.tagName) return '';
+        var tag = el.tagName.toLowerCase();
+        var cls = (typeof el.className === 'string' ? el.className : '')
+            .trim().split(/\s+/).filter(Boolean).slice(0, 3);
+        return cls.length ? tag + '.' + cls.join('.') : tag;
+    }
+
+    var NOISE_TEXT = [
+        /^[\d\s.,:%/-]+$/,
+        /^\d{1,2}:\d{2}(:\d{2})?\s*(am|pm)?$/i,
+        /^(showing|page|rows?|total|of|items?)/i
+    ];
+
+    function captureEffect(action, selector) {
+        var token = ++effectSeq;
+        var urlBefore = location.href;
+        var idsBefore = idsOnScreen();
+        var messages = [];
+
+        var observer = new MutationObserver(function (records) {
+            records.forEach(function (record) {
+                var nodes = [];
+                record.addedNodes.forEach(function (n) { nodes.push(n); });
+                if (record.type === 'characterData') nodes.push(record.target);
+                nodes.forEach(function (node) {
+                    if (node && node.nodeType === Node.TEXT_NODE) node = node.parentElement;
+                    if (!node || node.nodeType !== Node.ELEMENT_NODE) return;
+                    var text = (node.innerText || node.textContent || '').trim();
+                    if (!text || text.length > 200) return;
+                    if (text.split(/\s+/).length > 25) return;
+                    if (NOISE_TEXT.some(function (re) { return re.test(text); })) return;
+                    if (node.closest && node.closest('tbody, table, [role="rowgroup"]')) return;
+                    if (!visibleNow(node)) return;
+                    if (messages.some(function (m) { return m.text === text; })) return;
+                    messages.push({ text: text, selector: describeNode(node) });
+                });
+            });
+        });
+
+        try {
+            observer.observe(document.body, {
+                childList: true, subtree: true, characterData: true
+            });
+        } catch (e) { return; }
+
+        setTimeout(function () {
+            observer.disconnect();
+            if (token !== effectSeq) return;       // a newer action superseded us
+            var idsAfter = idsOnScreen();
+            var appeared = Object.keys(idsAfter).filter(function (id) {
+                return !idsBefore[id];
+            }).slice(0, 12);
+            var disappeared = Object.keys(idsBefore).filter(function (id) {
+                return !idsAfter[id];
+            }).slice(0, 12);
+            var urlAfter = location.href;
+            if (!messages.length && urlBefore === urlAfter
+                && !appeared.length && !disappeared.length) {
+                return;                            // nothing observable happened
+            }
+            send({
+                action: '__EFFECT__',
+                selector: selector || '',
+                for_action: action,
+                effect: {
+                    url_before: urlBefore,
+                    url_after: urlAfter,
+                    messages: messages.slice(0, 6),
+                    appeared: appeared,
+                    disappeared: disappeared
+                }
+            });
+        }, 1200);
     }
 
     // ── Value tracking ────────────────────────────────────────────────

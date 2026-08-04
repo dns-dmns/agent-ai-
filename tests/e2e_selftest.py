@@ -33,7 +33,10 @@ APP_DIR = HERE / "selftest_app"
 WORKSPACE = Path(tempfile.mkdtemp(prefix="qa_selftest_"))
 os.environ["QA_WORKSPACE"] = str(WORKSPACE)
 os.environ["QA_SCHEDULER"] = "0"
-os.environ.pop("GEMINI_API_KEY", None)          # keep the run fully offline
+# Set to empty rather than popped: config.py calls load_dotenv(), which
+# fills in anything ABSENT from the environment — so popping the key let a
+# developer's .env put it back, and these suites only ran offline on CI.
+os.environ["GEMINI_API_KEY"] = ""
 sys.path.insert(0, str(ROOT))
 
 from app import config      # noqa: E402

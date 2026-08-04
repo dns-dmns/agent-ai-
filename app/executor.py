@@ -35,6 +35,7 @@ from playwright.async_api import async_playwright
 from . import api_seed
 from . import config
 from . import contracts
+from . import coverage
 from . import heuristics
 from . import learned
 from . import rules as rules_engine
@@ -73,8 +74,117 @@ OPTION_SELECTORS = (
     ".dropdown-item", ".choices__item--choice",
 )
 
-MESSAGE_SCAN_JS = """() => {
+# Layer 2 of message detection: a message is *text that appeared after an action
+# and was not there before*. Installed once per page, it needs no knowledge of the
+# application's CSS, which is the whole point — the static list below could not see
+# OrangeHRM's `.oxd-input-field-error-message` until someone added it by hand, and
+# the next application will have a class nobody has heard of either.
+#
+# The noise filters matter more than the detection: a grid refreshing, a clock
+# ticking or a row count changing all insert text too.
+DOM_DIFF_INSTALL_JS = """() => {
+    if (window.__qaDiff) { window.__qaDiff.seen.length = 0; return true; }
+
+    const state = { seen: [], ready: false };
+    const IGNORE_TAGS = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEMPLATE', 'SVG', 'PATH']);
+    // Text that changes on its own is not a response to what we did.
+    const NOISE = [
+        /^[\\d\\s.,:%/-]+$/,                       // numbers, dates, times, counters
+        /^\\d{1,2}:\\d{2}(:\\d{2})?\\s*(am|pm)?$/i,   // clocks
+        /^(showing|page|rows?|total|of|items?)\\b/i, // pagination furniture
+    ];
+
+    const describe = (el) => {
+        if (!el || !el.tagName) return '';
+        const tag = el.tagName.toLowerCase();
+        const cls = (typeof el.className === 'string' ? el.className : '')
+            .trim().split(/\\s+/).filter(Boolean).slice(0, 3);
+        return cls.length ? `${tag}.${cls.join('.')}` : tag;
+    };
+
+    const insideGrid = (el) => !!(el.closest &&
+        el.closest('tbody, .p-datatable-tbody, [role="rowgroup"], table'));
+
+    const visible = (el) => {
+        try {
+            const rect = el.getBoundingClientRect();
+            if (rect.width <= 0 || rect.height <= 0) return false;
+            const style = getComputedStyle(el);
+            return style.visibility !== 'hidden' && style.display !== 'none'
+                && parseFloat(style.opacity || '1') > 0.05;
+        } catch (e) { return false; }
+    };
+
+    const consider = (node) => {
+        if (!node) return;
+        if (node.nodeType === Node.TEXT_NODE) { node = node.parentElement; }
+        if (!node || node.nodeType !== Node.ELEMENT_NODE) return;
+        if (IGNORE_TAGS.has(node.tagName)) return;
+        if (node.tagName === 'LABEL') return;              // form furniture
+        // A node containing controls is a container that was inserted, not the
+        // message itself. Without this, opening a dialog whose label reads
+        // "Name is required" was classified as a validation error and failed a
+        // positive scenario.
+        if (node.querySelector && node.querySelector('input, select, textarea, button')) {
+            return;
+        }
+        // A whole dialog or panel being inserted is not itself a message; the
+        // message is the leaf that carries the words.
+        const text = (node.innerText || node.textContent || '').trim();
+        if (!text || text.length > 220) return;
+        if (text.split(/\\s+/).length > 30) return;
+        if (NOISE.some((re) => re.test(text))) return;
+        if (insideGrid(node)) return;
+        if (!visible(node)) return;
+        // Prefer the innermost element that still holds the whole text.
+        let host = node;
+        for (let i = 0; i < 4; i++) {
+            const child = Array.from(host.children || []).find(
+                (c) => ((c.innerText || c.textContent || '').trim() === text));
+            if (!child) break;
+            host = child;
+        }
+        const selector = describe(host);
+        if (!selector) return;
+        if (state.seen.some((s) => s.text === text)) return;
+        state.seen.push({ text, selector, source: 'dom-diff' });
+        if (state.seen.length > 25) state.seen.shift();
+    };
+
+    const observer = new MutationObserver((records) => {
+        if (!state.ready) return;
+        for (const record of records) {
+            record.addedNodes.forEach(consider);
+            // An empty element being filled in is an insertion too: Angular
+            // renders the error container up front and only sets its text later.
+            if (record.type === 'characterData') consider(record.target);
+        }
+    });
+    // An init script runs before the document has a body, so wait for one.
+    const attach = () => {
+        if (!document.body) { setTimeout(attach, 30); return; }
+        observer.observe(document.body, {
+            childList: true, subtree: true, characterData: true,
+        });
+        // Ignore the initial render — only what happens after a step counts.
+        setTimeout(() => { state.ready = true; }, 350);
+    };
+    attach();
+    window.__qaDiff = state;
+    return true;
+}"""
+
+DOM_DIFF_DRAIN_JS = """() => {
+    if (!window.__qaDiff) return [];
+    const out = window.__qaDiff.seen.slice();
+    window.__qaDiff.seen.length = 0;
+    return out;
+}"""
+
+
+MESSAGE_SCAN_JS = """(extra) => {
     const selectors = [
+        ...(extra || []),
         'small.p-error', 'span.p-error', 'div.p-error', '.invalid-feedback',
         '.error-message', '.field-error', '.p-toast-detail', '.p-toast-summary',
         '.p-toast-message-error', '.p-toast-message-success', '.toast-message',
@@ -612,8 +722,16 @@ CREDENTIAL_FIELD_MARKERS = (
 
 
 def make_dep_value_unique(selector: str, value: str, token: str) -> str:
-    """Suffix prerequisite-flow input values so replays don't hit duplicate keys."""
+    """Suffix prerequisite-flow input values so replays don't hit duplicate keys.
+
+    A ``{{variable}}`` is left alone. Reusing a captured value is always
+    deliberate — it is how a duplicate test submits the same value twice — so
+    tokenising it silently produced a *different* value and the duplicate never
+    happened. The scenario then "passed" having proven nothing.
+    """
     if not value or not value.strip():
+        return value
+    if "{{" in value:
         return value
     low = selector.lower()
     if any(marker in low for marker in CREDENTIAL_FIELD_MARKERS):
@@ -715,21 +833,71 @@ def note_created_record(pool: dict, messages: list[dict]) -> None:
             pool["created_record"] = identity
 
 
-async def scan_messages(page, evidence: verdict_engine.Evidence) -> list[str]:
-    """Harvest visible inline/toast messages before they fade away."""
-    fresh: list[str] = []
+async def install_message_observer(page) -> None:
+    """Watch for text that appears, on this page and on every later navigation.
+
+    ``add_init_script`` covers the navigations — a single-page app replacing its
+    body, or a real page load — because an observer installed once is lost the
+    moment the document changes.
+    """
+    if not config.DOM_DIFF_MESSAGES:
+        return
     try:
-        found = await page.evaluate(MESSAGE_SCAN_JS)
+        # Self-invoking: a bare "() => {…}" passed as a script body only declares
+        # a function and throws it away, so the observer never started and every
+        # navigation lost it.
+        await page.add_init_script(f"({DOM_DIFF_INSTALL_JS})();")
     except Exception:
-        return fresh
-    for item in found or []:
+        pass
+    try:
+        await page.evaluate(DOM_DIFF_INSTALL_JS)      # the document already open
+    except Exception:
+        pass
+
+
+async def scan_messages(page, evidence: verdict_engine.Evidence,
+                        extra_selectors: list[str] | None = None,
+                        project_name: str = "") -> list[str]:
+    """Harvest visible inline/toast messages before they fade away.
+
+    ``extra_selectors`` are the message surfaces this application has already been
+    seen to use, persisted per project by :func:`learned.remember_message_selector`.
+    Passing them in is what closes the loop: the platform was recording where a
+    message appeared and then scanning without that knowledge on the next run,
+    so an application whose error class is in no framework list stayed invisible
+    and a correct app was reported as a false FAIL.
+    """
+    fresh: list[str] = []
+    found: list[dict] = []
+    try:
+        found = await page.evaluate(MESSAGE_SCAN_JS, list(extra_selectors or [])) or []
+    except Exception:
+        found = []
+
+    # Layer 2: whatever appeared since the last drain, whether or not its CSS is
+    # in any list we hold. This is what makes an unknown framework readable.
+    if config.DOM_DIFF_MESSAGES:
+        try:
+            found = list(found) + (await page.evaluate(DOM_DIFF_DRAIN_JS) or [])
+        except Exception:
+            pass
+
+    for item in found:
         text = (item.get("text") or "").strip()
         if not text:
             continue
+        selector = item.get("selector", "")
         before = len(evidence.messages)
-        evidence.add_message(text, item.get("selector", ""))
-        if len(evidence.messages) > before:
-            fresh.append(text)
+        evidence.add_message(text, selector)
+        if len(evidence.messages) <= before:
+            continue
+        fresh.append(text)
+        # Only a diff-discovered surface is worth learning — the seed scan can
+        # only ever report a selector we already had.
+        if item.get("source") == "dom-diff" and project_name:
+            kind = verdict_engine.classify_message(text, selector)
+            if kind in ("error", "success"):
+                learned.remember_message_selector(project_name, selector)
     return fresh
 
 
@@ -1406,7 +1574,8 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     # ── Assertions ────────────────────────────────────────────────────
     if action in ASSERTION_ACTIONS:
         await wait_for_settle(page, 4000)
-        await scan_messages(page, evidence)
+        await scan_messages(page, evidence, ctx.get("message_selectors"),
+                            ctx.get("project_name", ""))
         note_created_record(ctx["runtime_pool"], evidence.messages)
         ok, detail = await run_assertion(page, action, step, selector, value, ctx)
         evidence.assertions.append(
@@ -2346,9 +2515,20 @@ async def run_assertion(page, action: str, step: dict, selector: str, value: str
         return loc_count > 0, f"found {loc_count} matching elements"
 
     if action == "VERIFY_DOWNLOAD":
+        # The download handler saves the file in a background task, so sampling
+        # `evidence.downloads` once races it: the assertion intermittently
+        # reported "no file was downloaded" for an export that worked. Wait for
+        # the file to land instead of guessing.
         downloads = evidence.downloads
         if not downloads:
-            return False, "no file was downloaded during this scenario"
+            for _ in range(20):
+                await page.wait_for_timeout(250)
+                if evidence.downloads:
+                    break
+            downloads = evidence.downloads
+        if not downloads:
+            return False, ("no file was downloaded during this scenario (waited 5s "
+                           "after the export click)")
         expected_rows = None
         match = re.search(r"\d+", value or "")
         if match:
@@ -2530,6 +2710,7 @@ async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
     context = await browser.new_context(**context_args)
     page = await context.new_page()
     page.set_default_timeout(15000)
+    await install_message_observer(page)
 
     evidence = verdict_engine.Evidence()
     pool: dict = {"run_token": unique_token()}
@@ -2740,6 +2921,10 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
     })
 
     evidence = verdict_engine.Evidence()
+    # Message surfaces this application has already been seen to use. Written by
+    # remember_message_selector() on every run, so the scanner gets sharper the
+    # more the project is exercised — no framework list can cover every app.
+    known_message_selectors = learned.message_selectors(cfg.project_name)
     console_errors: list[str] = []
     network_errors: list[str] = []
     steps_executed: list[str] = []
@@ -2773,6 +2958,7 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
 
     page = await context.new_page()
     page.set_default_timeout(15000 if not cfg.headless else 10000)
+    await install_message_observer(page)
 
     page.on("console", lambda msg: console_errors.append(f"[{msg.type}] {msg.text}")
             if msg.type in ("error", "warning") else None)
@@ -2832,6 +3018,7 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         "flow_name": cfg.flow_name,
         "scenario": scenario,
         "auto_complete": cfg.auto_complete,
+        "message_selectors": known_message_selectors,
     }
 
     async def switch_role(role: str) -> None:
@@ -2936,7 +3123,8 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
             })
             evidence.steps_executed = step_no
 
-            fresh = await scan_messages(page, evidence)
+            fresh = await scan_messages(page, evidence, known_message_selectors,
+                                        cfg.project_name)
             if fresh:
                 await emit_log(f"🔍 Screen message: {fresh}")
 
@@ -2952,7 +3140,7 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
             await page.wait_for_timeout(500 if cfg.headless else 800)
 
         await wait_for_settle(page, 5000)
-        await scan_messages(page, evidence)
+        await scan_messages(page, evidence, known_message_selectors, cfg.project_name)
         evidence.url_end = page.url
 
         if evidence.messages:
@@ -2973,8 +3161,13 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
                 "steps", 0.3, evidence.to_dict(),
             )
         else:
+            # "Message surface known" means the engine has some grounds for
+            # believing it can read this application's messages: it has learned a
+            # selector before, or it saw a message during this very scenario.
+            surface_known = bool(known_message_selectors) or bool(evidence.messages)
             verdict_obj = verdict_engine.evaluate(expected, evidence,
-                                                  scenario.get("type", ""))
+                                                  scenario.get("type", ""),
+                                                  message_surface_known=surface_known)
             if cfg.verdict_mode == "ai" and verdict_obj.status == verdict_engine.UNVERIFIED:
                 try:
                     shot_bytes = result_shot.read_bytes()
@@ -3118,6 +3311,14 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         "index": index,
         "name": name,
         "label": label,
+        # The scenario this test case belongs to, and which case of it this is.
+        # Both empty for a flat suite, which is what makes the old presentation
+        # survive untouched.
+        "parent": scenario.get("_parent_name", ""),
+        "case": scenario.get("_case_name", ""),
+        "case_no": scenario.get("_case_no", 0),
+        "case_total": scenario.get("_case_total", 0),
+        "data_row": scenario.get("_data_row") or {},
         "type": scenario.get("type", ""),
         "status": status,
         "verdict": verdict_obj.to_dict() if verdict_obj else {},
@@ -3249,7 +3450,11 @@ def resolve_target_url(project_name: str, flow_meta: dict, env_name: str = "") -
 
 
 def select_scenarios(raw_cases: list, cfg: RunConfig) -> list[dict]:
-    """Apply the id filter, the type checkboxes and the case-count limit."""
+    """Expand scenarios into test cases, then apply the filters and the limit."""
+    # A scenario with a data_table is an objective plus N concrete cases. Expand
+    # first so everything downstream — ids, filters, the report — counts real
+    # test cases rather than templates.
+    raw_cases = coverage.expand_scenarios(list(raw_cases))
     for original_index, scenario in enumerate(raw_cases, start=1):
         scenario["_original_id"] = original_index
 
@@ -3280,11 +3485,20 @@ def select_scenarios(raw_cases: list, cfg: RunConfig) -> list[dict]:
 
 
 def expand_data_matrix(cases: list[dict], rows: list[dict]) -> list[dict]:
-    """Duplicate every scenario once per CSV row for data-driven execution."""
+    """Duplicate every scenario once per CSV row for data-driven execution.
+
+    A scenario that carries its own ``data_table`` is left alone. Multiplying
+    the two would be a cartesian product — 9 enumerated values × 6 CSV rows —
+    which is never what anyone means, and it made the global CSV useless for
+    per-field permutations.
+    """
     if not rows:
         return cases
     expanded: list[dict] = []
     for scenario in cases:
+        if scenario.get("_parent_name") or coverage.has_data_table(scenario):
+            expanded.append(scenario)
+            continue
         for row_no, row in enumerate(rows, start=1):
             clone = json.loads(json.dumps(scenario))
             clone["_data_row"] = row
@@ -3464,6 +3678,8 @@ async def execute_suite(cfg: RunConfig, emit: Emit,
                     return {
                         "index": scenario.get("_original_id"),
                         "name": scenario.get("scenario_name", "unknown"),
+                        "parent": scenario.get("_parent_name", ""),
+                        "case": scenario.get("_case_name", ""),
                         "status": "CRASH",
                         "duration": 0,
                         "steps_executed": [],
@@ -3563,8 +3779,21 @@ def build_report(cfg: RunConfig, run_results: list[dict], started: float,
         "cancelled": state.cancelled,
         "console_errors": console_errors,
         "network_errors": network_errors,
+        # Which detection layers were active. The document that specified DOM-diff
+        # asked for "a note in the report", because turning it on moves verdict
+        # numbers once: a positive scenario that had been silently ignoring an
+        # on-screen error now correctly fails.
+        "message_detection": (["seed-selectors"]
+                              + (["dom-diff"] if config.DOM_DIFF_MESSAGES else [])
+                              + (["strict-confidence"] if config.STRICT_MESSAGE_CONFIDENCE
+                                 else [])),
         "rules_enforced": sorted(rule_summary.values(), key=lambda r: -r["violations"]),
         "rules_violated": sum(1 for r in rule_summary.values() if r["violations"]),
+        # Test cases rolled back up under the scenario they belong to. Nine data
+        # rows against one field read as one finding — "7 of 9 passed" — instead
+        # of nine unrelated lines that look like nine separate defects.
+        "scenario_groups": coverage.group_results(run_results),
+        "total_scenarios": len({r.get("parent") or r.get("name") for r in run_results}),
         "checkpoints": run_results,
     }
 

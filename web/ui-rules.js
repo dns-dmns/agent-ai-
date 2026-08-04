@@ -280,11 +280,14 @@
                     <textarea id="contractJson" rows="15" class="mono-sm">${
                         esc(JSON.stringify(data.contract, null, 2))}</textarea>
                     <span class="field-hint">provides[]: entity, var, name_field, status_field,
-                        list_url &nbsp;·&nbsp; requires[]: entity, selector, kind &nbsp;·&nbsp; run_once</span>
+                        list_url &nbsp;·&nbsp; requires[]: entity, selector, kind &nbsp;·&nbsp; run_once
+                        &nbsp;·&nbsp; unique_by[]: the selectors that together make a duplicate,
+                        e.g. ["#custName", "#effectiveDate"]</span>
                 </div>
                 <div id="contractError" class="text-fail mono-sm"></div>`,
                 `<button class="btn btn-primary" onclick="saveContract()">Save contract</button>
                  <button class="btn" onclick="previewRelationshipChecks()">Preview checks</button>
+                 <button class="btn" onclick="previewDuplicateChecks()">Duplicate checks</button>
                  <button class="btn" style="background:#334155" onclick="closeModal()">Close</button>`);
         } catch (e) {
             window.toast(e.message, "error");
@@ -528,6 +531,54 @@
             }
         };
     }
+
+
+    /* ══ Duplicate checks from the uniqueness key ════════════════════ */
+    window.previewDuplicateChecks = async function () {
+        let data;
+        try {
+            data = await api(`/preview-duplicate-checks?${flowQ()}`);
+        } catch (e) {
+            return window.toast(e.message, "error");
+        }
+        const render = (sc) => `
+            <details class="spec-block">
+                <summary><strong>${esc(sc.scenario_name)}</strong>
+                    <span class="pill">${esc(sc.type)}</span></summary>
+                <ol class="spec-list">${sc.steps.map((st) => `
+                    <li class="mono-sm">${esc(st.action)} ${esc(st.selector || "")}${
+                        st.value ? ` = ${esc(st.value)}` : ""}</li>`).join("")}
+                </ol>
+                <p class="field-hint">${esc(sc.expected_result)}</p>
+            </details>`;
+
+        window.openModal("Duplicate checks", `
+            <p class="field-hint">Phase 1 creates a fresh original and stores the exact
+               values; phase 2 repeats every field in the uniqueness key from those
+               stored variables, so a real duplicate happens — on the hundredth run too.
+               A <code>{{variable}}</code> is never re-tokenised, which is what used to
+               make these tests pass without testing anything.</p>
+            ${data.notes.length ? `<div class="nudge"><span>!</span><span>${
+                data.notes.map(esc).join(" ")}</span></div>` : ""}
+            ${data.scenarios.map(render).join("") ||
+              '<p class="muted">Nothing to generate yet.</p>'}
+        `,
+            (data.count ? `<button class="btn btn-primary" onclick="addDuplicateChecks()">
+                Add ${data.count} scenario(s)</button>` : "") +
+            `<button class="btn" style="background:#334155"
+                onclick="openContractEditor()">Back</button>`);
+    };
+
+    window.addDuplicateChecks = async function () {
+        try {
+            const result = await api(`/add-duplicate-checks?${flowQ()}`, { method: "POST" });
+            window.toast(`Added ${result.added} duplicate scenario(s)`, "success");
+            window.closeModal();
+            await window.loadSelectedFlow?.();
+        } catch (e) {
+            window.toast(e.message, "error");
+        }
+    };
 
     /* ══ Keep the rules badge current ════════════════════════════════ */
     const originalLoad = window.loadSelectedFlow;

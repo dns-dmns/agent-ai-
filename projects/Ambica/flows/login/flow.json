@@ -1,0 +1,7 @@
+{
+    "flow_name": "login",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/masters/beamer-capacity",
+    "timestamp": "2026-08-04 11:55:43",
+    "duration_seconds": 20,
+    "step_count": 6
+}

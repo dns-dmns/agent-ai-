@@ -51,6 +51,11 @@ ERROR_TEXT_HINTS = (
 SUCCESS_TEXT_HINTS = (
     "success", "successfully", "saved", "created", "updated", "deleted",
     "added", "completed", "submitted",
+    # Wordings real applications use for the same thing. Without them the message
+    # was classified "unknown", so a scenario that had visible confirmation on
+    # screen still came back UNVERIFIED.
+    "accepted", "approved", "activated", "deactivated", "registered",
+    "uploaded", "downloaded", "exported", "imported", "sent",
 )
 
 
@@ -257,7 +262,8 @@ class Verdict:
 # ──────────────────────────────────────────────────────────────────────
 # Rule-based evaluation
 # ──────────────────────────────────────────────────────────────────────
-def evaluate(expected_result: str, evidence: Evidence, scenario_type: str = "") -> Verdict:
+def evaluate(expected_result: str, evidence: Evidence, scenario_type: str = "",
+             message_surface_known: bool = True) -> Verdict:
     """Judge a scenario that completed all of its steps without throwing."""
     intent = classify_expectation(expected_result)
     summary = evidence.to_dict()
@@ -361,6 +367,20 @@ def evaluate(expected_result: str, evidence: Evidence, scenario_type: str = "") 
                 "confirmed the stored value is escaped. Add a VERIFY step to assert "
                 "the rendered text.",
                 "rules", 0.5, summary,
+            )
+        # Never convert ignorance into a FAIL. If this application's message
+        # surface has never been observed, "nothing appeared" and "something
+        # appeared that I cannot read" are indistinguishable, and blaming a
+        # working application is the most damaging thing this tool can do.
+        from . import config as _config       # lazy, as elsewhere in this module
+        if _config.STRICT_MESSAGE_CONFIDENCE and not message_surface_known:
+            return Verdict(
+                UNVERIFIED,
+                "No validation was detected, but this application's message surface "
+                "has never been observed — a message may have appeared that the "
+                "scanner cannot read. Run the flow once with a deliberate failure so "
+                "the engine can learn where messages render, then re-run.",
+                "rules", 0.4, summary,
             )
         return Verdict(
             FAIL,

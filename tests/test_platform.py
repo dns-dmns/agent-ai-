@@ -7,6 +7,8 @@ import importlib
 import os
 import sys
 import tempfile
+
+import pytest
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -448,3 +450,553 @@ def test_a_real_error_message_still_wins_over_the_input_layer_reason():
         "An error 'Machine Width must be numeric' is shown.", ev, "negative")
     assert result.status == verdict.PASS
     assert "Machine Width must be numeric" in result.reason
+
+
+# ── §2 layer 3: the learned message surface is actually used ───────────
+def test_learned_message_selectors_are_read_back_into_the_scan():
+    """The platform was recording where messages appear and then scanning
+    without that knowledge, so an app whose error class is in no framework list
+    stayed invisible and a correct app was reported as a false FAIL."""
+    from app import executor, learned
+
+    learned.remember_message_selector("SurfaceTest", ".totally-bespoke-error")
+    assert ".totally-bespoke-error" in learned.message_selectors("SurfaceTest")
+
+    # The scan script must accept them, and the seed list must survive.
+    assert executor.MESSAGE_SCAN_JS.startswith("(extra) =>")
+    assert "...(extra || [])" in executor.MESSAGE_SCAN_JS
+    assert ".oxd-input-field-error-message" in executor.MESSAGE_SCAN_JS
+
+    # A full path is too brittle to reuse; only the class part is kept.
+    learned.remember_message_selector("SurfaceTest", "div.wrapper > span.my-err")
+    kept = learned.message_selectors("SurfaceTest")
+    assert ".my-err" in kept
+    assert "div.wrapper" not in kept
+
+
+def test_a_variable_is_never_uniquified():
+    """§5a — the actual bug behind duplicate tests that pass without testing.
+    Reusing a captured value is deliberate: it is how the second submission
+    matches the first."""
+    from app import executor
+
+    assert executor.make_dep_value_unique(
+        "#custName", "{{dup_name}}", "abc123") == "{{dup_name}}"
+    assert executor.make_dep_value_unique(
+        "#custName", "ACME {{run_token}}", "abc123") == "ACME {{run_token}}"
+    # A plain literal is still made unique, which is what stops replay collisions.
+    assert executor.make_dep_value_unique("#custName", "ACME", "abc123") == "ACMEabc123"
+    # And credentials / dates are still left alone, as before.
+    assert executor.make_dep_value_unique("#username", "Admin", "abc123") == "Admin"
+    assert executor.make_dep_value_unique("#date", "2026-08-03", "abc123") == "2026-08-03"
+
+
+def test_mandatory_fields_include_the_ones_the_recording_also_touched():
+    """The bug: de-duplication dropped a learned field's `required` flag whenever
+    the recording had described the same field, so MANDATORY FIELDS listed only
+    the fields the tester had NOT touched — exactly backwards."""
+    import importlib
+    from app import learned, main as main_module
+    importlib.reload(learned)
+
+    learned.remember_fields("MandatoryTest", "Machines", [
+        {"selector": "#machineName", "label": "Machine Name *", "required": True},
+        {"selector": "#machineType", "label": "Machine Type *", "required": True},
+        {"selector": "#status", "label": "Status *", "required": True},
+    ])
+    # The recording touched two of the three.
+    actions = [
+        {"action": "TYPE", "selector": "#machineName", "tag": "input", "label": "Machine Name *"},
+        {"action": "TYPE", "selector": "#machineType", "tag": "input", "label": "Machine Type *"},
+        {"action": "CLICK", "selector": "#saveBtn", "tag": "button", "text": "Save"},
+    ]
+    context = main_module.build_fields_context(actions, "MandatoryTest", "Machines")
+    mandatory = [line for line in context.splitlines()
+                 if line.startswith("MANDATORY FIELDS:")]
+    assert mandatory, context
+    for selector in ("#machineName", "#machineType", "#status"):
+        assert selector in mandatory[0], f"{selector} missing from {mandatory[0]!r}"
+
+
+def test_recorded_effects_reach_the_generation_prompt():
+    """§1 — the agents must assert the wording the application really showed."""
+    from app import main as main_module
+
+    actions = [
+        {"action": "CLICK", "selector": "#saveBtn", "tag": "button", "text": "Save",
+         "effect": {"url_before": "/new", "url_after": "/list",
+                    "messages": [{"text": "Customer ACME saved successfully",
+                                  "selector": "div.zx-note-9"}],
+                    "appeared": ["#customerCode"], "disappeared": []}},
+    ]
+    described = main_module.describe_recorded_effects(actions)
+    assert "Customer ACME saved successfully" in described
+    assert "div.zx-note-9" in described
+    assert "/list" in described
+    assert "do not invent" in described
+
+    # A recording made before effect capture existed yields nothing, and the
+    # prompt is unchanged for it.
+    assert main_module.describe_recorded_effects(
+        [{"action": "CLICK", "selector": "#saveBtn"}]) == ""
+
+
+# ── §5b/c: unique_by and the two-phase duplicate pattern ───────────────
+def test_duplicate_scenarios_repeat_the_whole_uniqueness_key():
+    """A duplicate test used to prove nothing: uniquification made the second
+    submission unique too. Phase 1 creates a fresh original and phase 2 repeats
+    every key field from stored variables, which are never re-tokenised."""
+    from app import contracts
+
+    contracts.save("DupTest", "Customers",
+                   {"unique_by": ["#custName", "#effectiveDate"], "run_once": False})
+    scenarios, notes = contracts.duplicate_scenarios(
+        "DupTest", "Customers",
+        open_steps=[{"action": "CLICK", "selector": "#newBtn"}],
+        submit_selector="#saveBtn")
+    assert notes == []
+    assert len(scenarios) == 2
+
+    dup = scenarios[0]
+    actions = [(s["action"], s.get("selector", ""), s.get("value", "")) for s in dup["steps"]]
+    # Phase 1 stores both key fields...
+    assert ("STORE", "#custName", "dup_custname") in actions
+    assert ("STORE", "#effectiveDate", "dup_effectivedate") in actions
+    # ...and phase 2 replays both from those variables, the date included.
+    assert ("TYPE", "#custName", "{{dup_custname}}") in actions
+    assert ("TYPE", "#effectiveDate", "{{dup_effectivedate}}") in actions
+
+    # The bonus case: change only the last key field and the save must succeed.
+    varied = scenarios[1]
+    assert varied["type"] == "positive"
+    assert "#dupDate" not in varied["scenario_name"]
+    assert ("TYPE", "#custName", "{{dup_custname}}") in [
+        (s["action"], s.get("selector", ""), s.get("value", "")) for s in varied["steps"]]
+
+
+def test_a_duplicate_expectation_is_not_misread_as_a_negative_one():
+    """The generated wording feeds the intent classifier. "Refusing it would
+    mean…" in an explanatory aside made a correct save read as expecting an
+    error, and the scenario failed for behaving properly."""
+    from app import contracts, verdict
+
+    contracts.save("DupWording", "Customers",
+                   {"unique_by": ["#name", "#date"], "run_once": False})
+    scenarios, _ = contracts.duplicate_scenarios("DupWording", "Customers")
+
+    negative = verdict.classify_expectation(scenarios[0]["expected_result"])
+    assert negative["expects_error"] is True
+
+    positive = verdict.classify_expectation(scenarios[1]["expected_result"])
+    assert positive["expects_success"] is True
+    assert positive["expects_error"] is False, scenarios[1]["expected_result"]
+
+
+def test_unique_by_survives_a_contract_round_trip():
+    from app import contracts
+
+    saved = contracts.save("DupRound", "Customers",
+                           {"unique_by": ["#a", " #b ", ""], "run_once": True})
+    assert saved["unique_by"] == ["#a", "#b"]
+    assert contracts.load("DupRound", "Customers")["unique_by"] == ["#a", "#b"]
+
+    # A flow with no key says so instead of generating a test that proves nothing.
+    contracts.save("DupRound", "Other", {"run_once": True})
+    scenarios, notes = contracts.duplicate_scenarios("DupRound", "Other")
+    assert scenarios == []
+    assert notes and "unique_by" in notes[0]
+
+
+# ── Generation must be grounded in what was actually recorded ──────────
+def test_a_login_only_recording_cannot_generate_a_master_data_suite():
+    """The real failure this prevents: a flow named 'login' was launched at
+    /masters/beamer-capacity, the app bounced to the login screen, and the
+    recording captured only the credentials. Generation then produced 17
+    scenarios in which all 27 selectors were invented from the URL alone."""
+    import pytest
+    from fastapi import HTTPException
+    from app import main as main_module
+
+    login_only = [
+        {"action": "CLICK", "selector": "#username", "label": "Username"},
+        {"action": "TYPE", "selector": "#username", "value": "d", "label": "Username"},
+        {"action": "CLICK", "selector": "#password", "label": "Password"},
+        {"action": "TYPE", "selector": "#password", "value": "123456", "label": "Password"},
+        {"action": "CLICK", "selector": 'button:has-text("Login")'},
+    ]
+    grounding = main_module.recording_grounding(login_only)
+    assert grounding["credentials_only"] is True
+    assert grounding["business_fields"] == []
+
+    with pytest.raises(HTTPException) as raised:
+        main_module.assert_recording_can_ground_generation(
+            "GroundTest", "login", login_only,
+            "https://erp.example.com/ambica/pages/masters/beamer-capacity")
+    assert raised.value.status_code == 400
+    assert "only captured a login" in raised.value.detail
+    assert "Re-record" in raised.value.detail
+
+
+def test_a_genuine_login_flow_is_still_allowed():
+    """A login flow IS credentials-only, and that is correct — the guard must
+    not block the one flow that legitimately looks like this."""
+    from app import main as main_module
+
+    login_only = [
+        {"action": "TYPE", "selector": "#username", "value": "admin", "label": "Username"},
+        {"action": "TYPE", "selector": "#password", "value": "pw", "label": "Password"},
+        {"action": "CLICK", "selector": 'button:has-text("Login")'},
+    ]
+    # No exception: the target URL is the login page.
+    main_module.assert_recording_can_ground_generation(
+        "GroundTest", "login", login_only, "https://erp.example.com/auth/login")
+
+    # And a recording that reached a real form is always allowed.
+    real = login_only + [
+        {"action": "TYPE", "selector": "#machineName", "value": "M1", "label": "Machine Name *"},
+    ]
+    main_module.assert_recording_can_ground_generation(
+        "GroundTest", "Beamer Capacity", real,
+        "https://erp.example.com/pages/masters/beamer-capacity")
+
+
+def test_a_recording_that_reached_the_form_is_not_blocked_even_without_login():
+    from app import main as main_module
+
+    business = [
+        {"action": "CLICK", "selector": "#addBtn", "text": "Add"},
+        {"action": "TYPE", "selector": "#beamerCode", "value": "BC1", "label": "Code *"},
+        {"action": "CLICK", "selector": "#saveBtn", "text": "Save"},
+    ]
+    assert main_module.recording_grounding(business)["credentials_only"] is False
+    main_module.assert_recording_can_ground_generation(
+        "GroundTest", "Beamer Capacity", business,
+        "https://erp.example.com/pages/masters/beamer-capacity")
+
+
+def test_grounding_reports_how_much_of_a_suite_was_invented():
+    """A model may name a Save button nobody recorded. It may not invent a whole
+    form — and the report has to say which happened."""
+    from app import main as main_module
+
+    actions = [
+        {"action": "TYPE", "selector": "#username", "selectors": ["#username", "input#username"]},
+        {"action": "TYPE", "selector": "#password"},
+    ]
+    fabricated = [{"scenario_name": "Create Beamer Capacity", "steps": [
+        {"action": "TYPE", "selector": "#beamerCode", "value": "X"},
+        {"action": "TYPE", "selector": "#capacity", "value": "1"},
+        {"action": "CLICK", "selector": "#saveBtn"},
+    ]}]
+    report = main_module.generation_grounding(actions, fabricated)
+    assert report["invented_percent"] == 100
+    assert report["grounded"] is False
+    assert "#beamerCode" in report["invented"]
+
+    honest = [{"scenario_name": "Log in", "steps": [
+        {"action": "TYPE", "selector": "#username", "value": "a"},
+        {"action": "TYPE", "selector": "#password", "value": "b"},
+        {"action": "CLICK", "selector": "#loginBtn"},
+    ]}]
+    good = main_module.generation_grounding(actions, honest)
+    assert good["grounded"] is True                # one guessed button is fine
+    assert good["invented"] == ["#loginBtn"]
+
+
+def test_every_web_script_parses():
+    """A syntax error in an adapter file silently disables every function in it:
+    `ui-coverage.js` failed to parse and the Coverage panel simply did nothing,
+    which surfaced only as a 30-second Playwright timeout in smoke_ui. Parsing
+    is a millisecond check that names the file and line instead."""
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if not node:
+        import pytest
+        pytest.skip("node is not installed; smoke_ui still covers this indirectly")
+
+    web = Path(__file__).resolve().parent.parent / "web"
+    scripts = sorted(web.glob("*.js"))
+    assert scripts, "no web scripts found — has the layout changed?"
+    for script in scripts:
+        result = subprocess.run([node, "--check", str(script)],
+                                capture_output=True, text=True, timeout=30)
+        assert result.returncode == 0, f"{script.name} does not parse:\n{result.stderr}"
+
+
+# ── Quota handling: a daily cap must never be retried ──────────────────
+DAILY_429 = (
+    "429 RESOURCE_EXHAUSTED. quota_metric: "
+    '"generativelanguage.googleapis.com/generate_content_free_tier_requests" '
+    'quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier" quota_value: 20, '
+    "retry_delay { seconds: 28 }"
+)
+MINUTE_429 = (
+    "429 RESOURCE_EXHAUSTED. "
+    'quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier" quota_value: 10, '
+    "retry_delay { seconds: 28 }"
+)
+
+
+def test_a_daily_quota_error_is_told_apart_from_a_per_minute_one():
+    """Retrying a *daily* cap cannot succeed inside a 30s backoff, and on a free
+    tier of 20 requests each attempt spends one of them: three retries turned one
+    exhausted call into four."""
+    from app import llm
+
+    assert llm.classify_quota_error(DAILY_429) == "daily"
+    assert llm.classify_quota_error(MINUTE_429) == "per_minute"
+    assert llm.classify_quota_error("503 Service Unavailable: overloaded") == ""
+    assert llm.classify_quota_error("400 Invalid argument") == ""
+    # An unlabelled 429 gets the safe treatment: wait, do not give up.
+    assert llm.classify_quota_error("429 Too Many Requests") == "per_minute"
+
+
+def test_googles_own_retry_delay_is_honoured():
+    from app import llm
+
+    assert llm.suggested_retry_delay(MINUTE_429, 4.0) == 29.0
+    # No delay named: keep the caller's backoff.
+    assert llm.suggested_retry_delay("429 Too Many Requests", 4.0) == 4.0
+    # And never wait absurdly long.
+    assert llm.suggested_retry_delay("retry_delay { seconds: 9999 }", 4.0) == 65.0
+
+
+def test_the_quota_message_never_blames_the_api_key():
+    """The old message sent people to check a key that was working perfectly."""
+    from app import llm
+
+    daily = llm.quota_message("gemini-3.6-flash", "daily")
+    assert "Nothing is wrong with your API key" in daily
+    assert "midnight" in daily and "Pacific" in daily
+    assert "no key at all" in daily          # running suites needs no key
+    assert "gemini-3.6-flash" in daily
+
+    minute = llm.quota_message("gemini-3.6-flash", "per_minute")
+    assert "rate-limited" in minute and "Wait a minute" in minute
+
+
+def test_the_budget_guard_warns_before_a_run_that_cannot_finish(monkeypatch):
+    """Three agents over three rounds is nine requests. Saying so first beats
+    failing half-way and leaving a partial suite behind."""
+    from app import config, llm
+
+    monkeypatch.setattr(llm, "calls_today", lambda model_name="": 14)
+    monkeypatch.setattr(config, "LLM_DAILY_BUDGET", 20)
+
+    ok = llm.budget_status("m", planned_calls=1)
+    assert ok["remaining"] == 6 and ok["enough"] is True and ok["exhausted"] is False
+
+    tight = llm.budget_status("m", planned_calls=9)
+    assert tight["enough"] is False and tight["exhausted"] is False
+
+    monkeypatch.setattr(llm, "calls_today", lambda model_name="": 25)
+    spent = llm.budget_status("m", planned_calls=1)
+    assert spent["remaining"] == 0 and spent["exhausted"] is True
+
+    # Billing enabled ⇒ no assumed cap ⇒ never second-guess the user.
+    monkeypatch.setattr(config, "LLM_DAILY_BUDGET", 0)
+    unlimited = llm.budget_status("m", planned_calls=99)
+    assert unlimited["enough"] is True and unlimited["exhausted"] is False
+    assert unlimited["remaining"] is None
+
+
+def test_vision_healing_is_opt_in_so_runs_do_not_spend_generation_quota():
+    """A run with several broken selectors could consume a whole day's allowance
+    through vision healing, so *running* tests silently competed with
+    *generating* them."""
+    import subprocess
+    import sys as _sys
+
+    root = Path(__file__).resolve().parent.parent
+    probe = "import app.config as c; print('VALUE=' + str(c.VISION_HEALING_ENABLED))"
+
+    def run(cwd, **extra_env):
+        # cwd matters: config.py calls load_dotenv(), which walks up from the
+        # working directory — so the repo's own .env would override the default.
+        env = {k: v for k, v in os.environ.items() if k != "QA_VISION_HEALING"}
+        env["PYTHONPATH"] = str(root)
+        env.update(extra_env)
+        done = subprocess.run([_sys.executable, "-c", probe], capture_output=True,
+                              text=True, cwd=str(cwd), env=env, timeout=60)
+        assert "VALUE=" in done.stdout, done.stdout + done.stderr
+        return done.stdout.split("VALUE=")[1].strip()
+
+    with tempfile.TemporaryDirectory() as outside:
+        assert run(outside) == "False", "vision healing must default to off"
+        assert run(outside, QA_VISION_HEALING="1") == "True", "the env var must still win"
+
+
+# ── Defect log: an additional feature, disconnected from the main flow ──
+DEFECT_CSV = (
+    "Defect ID,Date,Module,Description,Steps to Reproduce,Expected Result,"
+    "Actual Result,Priority,Status\r\n"
+    'AM-001,03-06-2026,Master Data -> Paper Core,No validation of diameters,'
+    '"1. Navigate to Master Data -> Paper Core.\n'
+    "2. Click to create a new Paper Core.\n"
+    "3. Enter an Inner Diameter (mm) value.\n"
+    "4. Enter an Outer Diameter (mm) value that is less than or equal to the Inner Diameter.\n"
+    '5. Attempt to save/submit.",'
+    '"System should validate that Outer Diameter (mm) is strictly greater than Inner '
+    'Diameter (mm). If not, a validation error should be shown and submission blocked.",'
+    "No validation exists,Medium,Open\r\n"
+    'AM-002,03-06-2026,Master Data -> Beam Length,Label typo,'
+    '"1. Navigate to Master Data -> Beam Length.\n'
+    '2. Observe the field labelled ""Beam Dish""."'
+    ',"The field should be labelled ""Beam Disk"" (not ""Beam Dish"")."'
+    ',Wrong label,Low,Open\r\n'
+)
+
+PAPER_FIELDS = [
+    {"selector": 'input[formcontrolname="innerDiameter"]',
+     "label": "Inner Diameter (mm) *", "kind": "number"},
+    {"selector": 'input[formcontrolname="outerDiameter"]',
+     "label": "Outer Diameter (mm) *", "kind": "number"},
+]
+
+
+def test_a_defect_sheet_is_parsed_whatever_the_header_spelling():
+    from app import defects
+
+    records = defects.read_sheet(DEFECT_CSV.encode("utf-8"), "log.csv")
+    assert [r["defect_id"] for r in records] == ["AM-001", "AM-002"]
+    assert records[0]["module"] == "Master Data -> Paper Core"
+    assert records[0]["priority"] == "Medium"
+    assert records[0]["is_open"] is True
+    assert "strictly greater" in records[0]["expected"]
+
+    # A sheet without the two required columns says which are missing.
+    import pytest
+    with pytest.raises(defects.DefectImportError, match="header row"):
+        defects.read_sheet(b"Foo,Bar\r\n1,2\r\n", "log.csv")
+    with pytest.raises(defects.DefectImportError, match="openpyxl|not supported"):
+        defects.read_sheet(b"nonsense", "log.xls")
+
+
+def test_a_module_label_maps_to_a_recorded_flow_or_to_nothing():
+    """"Master Data -> Paper Core" is the flow "Paper Core". A defect aimed at
+    the wrong module would fail for reasons unrelated to the defect, so a poor
+    guess is worse than no match."""
+    from app import defects
+
+    flows = ["Paper Core", "Beam Length", "Circular Machine", "Paper Core [defects]"]
+    assert defects.match_flow("Master Data -> Paper Core", flows) == "Paper Core"
+    assert defects.match_flow("Paper Core", flows) == "Paper Core"
+    assert defects.match_flow("Masters / Beam Length", flows) == "Beam Length"
+    assert defects.match_flow("Master Data -> Customer Master", flows) == ""
+    assert defects.match_flow("", flows) == ""
+    # A [defects] flow is never itself a target.
+    assert not defects.match_flow("Paper Core", flows).endswith("[defects]")
+
+
+def test_prose_steps_resolve_by_label_and_are_never_guessed():
+    """Field names resolve against the labels the engine already inventoried —
+    free and exact. A step the sheet leaves relative is reported, not invented."""
+    from app import defects
+
+    records = defects.read_sheet(DEFECT_CSV.encode("utf-8"), "log.csv")
+    built = defects.build_scenario(records[0], PAPER_FIELDS,
+                                   add_selector="#addBtn", submit_selector="#saveBtn")
+    assert built["runnable"] is False
+    assert len(built["unresolved"]) == 2
+    assert any("relative terms" in u for u in built["unresolved"])
+    # Suggestions are offered for acceptance, and satisfy "outer <= inner".
+    assert built["suggestions"]['input[formcontrolname="innerDiameter"]'] == "50"
+    assert built["suggestions"]['input[formcontrolname="outerDiameter"]'] == "40"
+    # No TYPE step was emitted with an empty value.
+    assert not any(s["action"] == "TYPE" and not s.get("value")
+                   for s in built["scenario"]["steps"])
+
+    # With the values accepted it becomes runnable, and only then.
+    accepted = defects.build_scenario(
+        records[0], PAPER_FIELDS, add_selector="#addBtn", submit_selector="#saveBtn",
+        data={'input[formcontrolname="innerDiameter"]': "50",
+              'input[formcontrolname="outerDiameter"]': "40"})
+    assert accepted["runnable"] is True
+    typed = [(s["selector"], s["value"]) for s in accepted["scenario"]["steps"]
+             if s["action"] == "TYPE"]
+    assert typed == [('input[formcontrolname="innerDiameter"]', "50"),
+                     ('input[formcontrolname="outerDiameter"]', "40")]
+
+
+def test_an_observation_defect_asserts_the_wording_the_sheet_quotes():
+    """"Observe the field labelled 'Beam Dish'" must not type the label into the
+    field — it must assert the *correct* wording, which the expectation quotes."""
+    from app import defects
+
+    records = defects.read_sheet(DEFECT_CSV.encode("utf-8"), "log.csv")
+    beam = [{"selector": 'input[formcontrolname="beamDish"]', "label": "Beam Dish",
+             "kind": "text"}]
+    built = defects.build_scenario(records[1], beam, add_selector="#addBtn")
+    assert built["runnable"] is True
+    verify = [s for s in built["scenario"]["steps"] if s["action"] == "VERIFY_TEXT"]
+    assert verify and verify[0]["value"] == "Beam Disk"
+    assert not any(s["action"] == "TYPE" for s in built["scenario"]["steps"])
+
+
+def test_an_open_defect_that_fails_is_not_a_regression():
+    """The distinction that makes a defect report readable, computed outside the
+    verdict engine so PASS/FAIL keeps its meaning."""
+    from app import defects
+
+    assert defects.outcome("FAIL", known_defect=True) == "still_open"
+    assert defects.outcome("PASS", known_defect=True) == "fixed"
+    assert defects.outcome("FAIL", known_defect=False) == "regressed"
+    assert defects.outcome("PASS", known_defect=False) == "holding"
+    assert defects.outcome("UNVERIFIED", known_defect=True) == "unverified"
+    assert defects.outcome("", known_defect=True) == "unverified"
+
+
+def test_the_defect_log_merges_by_id_and_keeps_accepted_values():
+    from app import defects
+
+    stored = [{"defect_id": "AM-001", "status": "Open", "data": {"#a": "50"}}]
+    incoming = [{"defect_id": "AM-001", "status": "Closed"},
+                {"defect_id": "AM-009", "status": "Open"}]
+    merged, added, updated = defects.merge(stored, incoming)
+    assert (added, updated) == (1, 1)
+    by_id = {d["defect_id"]: d for d in merged}
+    assert by_id["AM-001"]["status"] == "Closed"
+    # A re-import must not discard values the user accepted earlier.
+    assert by_id["AM-001"]["data"] == {"#a": "50"}
+
+
+def test_an_xlsx_defect_sheet_parses_the_same_as_csv():
+    """openpyxl is declared in requirements.txt but was not actually installed,
+    so .xlsx upload failed and .xlsx export row-counting was silently degraded."""
+    import io
+    from app import defects
+
+    openpyxl = pytest.importorskip("openpyxl")
+
+    book = openpyxl.Workbook()
+    sheet = book.active
+    # Real exports often carry a title row above the header.
+    sheet.append(["Ambica bug list"])
+    sheet.append([])
+    sheet.append(["Defect ID", "Module", "Steps to Reproduce", "Expected Result",
+                  "Priority", "Status"])
+    sheet.append(["AM-002", "Master Data -> Beam Length",
+                  '1. Observe the field labelled "Beam Dish".',
+                  'The field should be labelled "Beam Disk".', "Low", "Open"])
+    buffer = io.BytesIO()
+    book.save(buffer)
+
+    records = defects.read_sheet(buffer.getvalue(), "Ambica bug list.xlsx")
+    assert len(records) == 1
+    assert records[0]["defect_id"] == "AM-002"
+    assert records[0]["module"] == "Master Data -> Beam Length"
+    assert records[0]["is_open"] is True
+    assert "Beam Disk" in records[0]["expected"]
+
+
+def test_openpyxl_is_importable_so_xlsx_paths_work():
+    """Two features depend on it: defect-sheet import and counting the rows in a
+    downloaded .xlsx export."""
+    import importlib.util
+    assert importlib.util.find_spec("openpyxl") is not None, (
+        "openpyxl is missing — run 'pip install -r requirements.txt'. "
+        "Without it .xlsx defect sheets cannot be imported and VERIFY_DOWNLOAD "
+        "cannot count rows in an .xlsx export."
+    )

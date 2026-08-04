@@ -239,6 +239,42 @@
         <button onclick="document.getElementById('quirkConfirm').style.display='none'">Cancel</button>
     </p-confirmdialog>
 
+    <!-- ── M8: a message in a class no framework list has ever heard of ──
+         The false-FAIL case, reproduced. `.zx-note-9` belongs to no framework,
+         so the static selector scan is blind to it and the engine reports "no
+         validation message appeared" about an application that validated
+         correctly. DOM-diff detection finds it with no prior knowledge.
+         The section also carries a control no recording ever touches. -->
+    <section id="bespokeSection">
+        <h2>8. Bespoke message surface</h2>
+        <input id="bespokeName" placeholder="Reference">
+        <button id="bespokeSaveBtn" onclick="saveBespoke()">Submit</button>
+        <div id="bespokeHost"></div>
+        <!-- Never recorded, never generated: the "Forgot password" case. -->
+        <a id="bespokeForgotLink" href="#reset">Forgot your reference?</a>
+        <select id="bespokeLang"><option>English</option><option>Hindi</option></select>
+    </section>
+
+    <!-- ── M9: a composite uniqueness key (name + date) ───────────────
+         The duplicate-testing conflict, reproduced. Two records with the same
+         name but different dates are legitimately NOT duplicates, so a test
+         that only repeats the name proves nothing. Repeating BOTH must fail. -->
+    <section id="dupSection">
+        <h2>9. Composite uniqueness key</h2>
+        <label for="dupName">Customer name</label>
+        <input id="dupName" type="text" placeholder="Name">
+        <label for="dupDate">Effective date</label>
+        <input id="dupDate" type="text" placeholder="YYYY-MM-DD">
+        <div style="margin-top:12px">
+            <button id="dupSaveBtn" onclick="saveDup()">Save customer</button>
+        </div>
+        <div id="dupMsg"></div>
+        <table id="dupTable">
+            <thead><tr><th>Name</th><th>Effective date</th></tr></thead>
+            <tbody id="dupBody"></tbody>
+        </table>
+    </section>
+
     <script>
         // Stored in localStorage, which Playwright captures in storage_state — so a
         // record created during seeding is visible to later scenarios, the way
@@ -486,6 +522,50 @@
             document.getElementById('auditDialog').style.display = 'block';
         }
 
+        // ── M9: uniqueness is name + date, not name alone ─────────────
+        function saveDup() {
+            var name = document.getElementById('dupName').value.trim();
+            var date = document.getElementById('dupDate').value.trim();
+            if (!name || !date) {
+                show('dupMsg', 'Name and effective date are required', false);
+                return;
+            }
+            var rows = store.get('dups', []);
+            var clash = rows.some(function (r) {
+                return r.name === name && r.date === date;   // BOTH must match
+            });
+            if (clash) {
+                show('dupMsg', 'A customer with this name and effective date already exists',
+                     false);
+                return;
+            }
+            rows.push({ name: name, date: date });
+            store.set('dups', rows);
+            show('dupMsg', 'Customer ' + name + ' saved successfully', true);
+            renderDups();
+        }
+
+        function renderDups() {
+            document.getElementById('dupBody').innerHTML =
+                store.get('dups', []).map(function (r) {
+                    return '<tr><td>' + r.name + '</td><td>' + r.date + '</td></tr>';
+                }).join('');
+        }
+
+        // ── M8: a validation message in a bespoke class ───────────────
+        function saveBespoke() {
+            var value = document.getElementById('bespokeName').value.trim();
+            var host = document.getElementById('bespokeHost');
+            host.innerHTML = '';
+            // Rendered *after* the click, in a class no seed list contains.
+            var note = document.createElement('div');
+            note.className = 'zx-note-9';
+            note.textContent = value
+                ? 'Reference ' + value + ' was accepted'
+                : 'Reference is required';
+            host.appendChild(note);
+        }
+
         // ── M7: literal-selector traps ────────────────────────────────
         function openQuirk() {
             document.getElementById('qName').value = '';
@@ -506,6 +586,7 @@
             document.getElementById('quirkDialog').style.display = 'none';
             show('quirkMsg', 'Machine ' + name + ' added successfully', true);
             renderQuirks();
+        renderDups();
         }
 
         function quirkExport() {
