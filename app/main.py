@@ -45,6 +45,7 @@ from . import coverage
 from . import db
 from . import defects
 from . import executor
+from . import export_project
 from . import learned
 from . import llm
 from . import recorder
@@ -2424,6 +2425,333 @@ async def defect_status(response: Response, project_name: str = config.DEFAULT_P
     for row in rows:
         tally[row["outcome"]] = tally.get(row["outcome"], 0) + 1
     return {"defects": rows, "total": len(rows), "summary": tally}
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Project export — a separate, strictly read-only feature
+#
+# It reads flow folders and returns generated files. It writes nothing: no flow
+# folder is modified, no test_cases.json is touched, and neither the executor nor
+# the verdict engine is involved. Removing this section would change nothing
+# about how the platform records, generates or runs.
+# ──────────────────────────────────────────────────────────────────────
+def _export_modules(project_name: str, only_flow: str = "") -> list[dict]:
+    """Gather each flow's recording, field inventory and scenarios. Read-only."""
+    modules: list[dict] = []
+    for flow in list_flow_names(project_name):
+        if flow.endswith(defects.DEFECT_FLOW_SUFFIX):
+            continue                      # defect flows are their own feature
+        if only_flow and flow != only_flow:
+            continue
+        flow_path = config.flow_dir(project_name, flow)
+        meta = read_json(flow_path / "flow.json", {}) or {}
+        raw_cases = read_json(flow_path / "test_cases.json", []) or []
+        modules.append({
+            "flow": flow,
+            "target_url": meta.get("target_url", ""),
+            "actions": read_json(flow_path / "actions.json", []) or [],
+            "fields": _form_fields(project_name, flow),
+            # Expanded, so a scenario carrying a data table exports as the
+            # concrete test cases a tester would actually run.
+            "scenarios": coverage.expand_scenarios(raw_cases),
+        })
+    return modules
+
+
+@app.get("/preview-export")
+async def preview_export(response: Response, project_name: str = config.DEFAULT_PROJECT,
+                         flow_name: str = ""):
+    """The file tree the export would produce, plus one file to eyeball."""
+    no_cache(response)
+    require_name(project_name=project_name)
+    modules = _export_modules(project_name, flow_name)
+    if not modules:
+        raise HTTPException(status_code=400,
+                            detail="No recorded flows to export in this workspace.")
+
+    files = export_project.build_project(project_name, modules)
+    runnable = [m for m in modules if m["scenarios"]]
+    return {
+        "project": project_name,
+        "modules": [{"flow": m["flow"], "scenarios": len(m["scenarios"]),
+                     "fields": len(m["fields"]),
+                     "exported": bool(m["scenarios"])} for m in modules],
+        "files": [{"path": path, "bytes": len(content)}
+                  for path, content in sorted(files.items())],
+        "total_files": len(files),
+        "total_scenarios": sum(len(m["scenarios"]) for m in runnable),
+        "sample_path": next((p for p in sorted(files) if p.startswith("pages/")
+                             and p != "pages/BasePage.js"), "pages/BasePage.js"),
+        "sample": files.get(
+            next((p for p in sorted(files) if p.startswith("pages/")
+                  and p != "pages/BasePage.js"), "pages/BasePage.js"), "")[:4000],
+        "skipped": [m["flow"] for m in modules if not m["scenarios"]],
+    }
+
+
+@app.get("/download-project")
+async def download_project(project_name: str = config.DEFAULT_PROJECT,
+                           flow_name: str = ""):
+    """Stream the generated Playwright project as a zip. Writes nothing."""
+    require_name(project_name=project_name)
+    modules = _export_modules(project_name, flow_name)
+    if not modules:
+        raise HTTPException(status_code=400,
+                            detail="No recorded flows to export in this workspace.")
+
+    files = export_project.build_project(project_name, modules)
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as bundle:
+        for path, content in sorted(files.items()):
+            bundle.writestr(path, content)
+    buffer.seek(0)
+    db.audit("export_project", project_name,
+             details={"files": len(files), "modules": len(modules)})
+    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
+    filename = re.sub(r"[^A-Za-z0-9_.-]+", "_", stem) + ".zip"
+    return StreamingResponse(
+        buffer, media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Wording corrections — close the loop on a guessed message literal
+#
+# A generated VERIFY_MESSAGE carries the wording a model imagined. The run then
+# observes what the application really says. Rather than leaving the user to
+# reconcile the two by hand, the mismatch is offered as a concrete edit.
+# ──────────────────────────────────────────────────────────────────────
+#: A toast reports its severity as its own element, so the scan sees "ERROR"
+#: alongside the real text. Asserting on the severity would pass against *any*
+#: error, which is barely a check at all.
+SEVERITY_LABELS = {"error", "success", "warn", "warning", "info", "danger",
+                   "fail", "failed", "ok"}
+
+
+def _best_message_text(candidates: list[str]) -> str:
+    """The most specific line among what the scan saw, or "" if none is useful.
+
+    Toast frameworks surface three strings for one message — the severity, the
+    detail, and the two joined — and only the detail is worth asserting on.
+    """
+    useful: list[str] = []
+    for raw in candidates:
+        text = str(raw or "").strip()
+        if not text or text.lower() in SEVERITY_LABELS:
+            continue
+        if "\n" in text or "\r" in text:
+            # The composite: keep the part that is not the severity.
+            parts = [p.strip() for p in re.split(r"[\r\n]+", text) if p.strip()]
+            parts = [p for p in parts if p.lower() not in SEVERITY_LABELS]
+            if parts:
+                useful.append(max(parts, key=len))
+            continue
+        useful.append(text)
+    if not useful:
+        return ""
+    # Most specific wins, but keep it short enough to be a stable assertion.
+    return max(useful, key=len)[:120]
+
+
+def _wording_fixes(project_name: str, flow_name: str) -> list[dict]:
+    """Every step whose expected message differs from what the app showed."""
+    flow_path = config.flow_dir(project_name, flow_name)
+    report = read_json(flow_path / "report.json", {}) or {}
+    cases = read_json(flow_path / "test_cases.json", []) or []
+    by_name = {c.get("scenario_name"): c for c in cases}
+
+    fixes: list[dict] = []
+    for checkpoint in report.get("checkpoints", []):
+        evidence = (checkpoint.get("verdict") or {}).get("evidence") or {}
+        mismatches = list(evidence.get("wording_mismatches") or [])
+
+        # Reports written before mismatches were recorded still hold the same
+        # facts — a failed VERIFY_MESSAGE while messages were on screen — so the
+        # corrections are recoverable from a run that has already happened.
+        if not mismatches:
+            seen = [m.get("text", "") for m in evidence.get("messages") or []]
+            for assertion in evidence.get("assertions") or []:
+                if (str(assertion.get("action") or "").upper() == "VERIFY_MESSAGE"
+                        and not assertion.get("ok") and seen):
+                    mismatches.append({"expected": assertion.get("value", ""),
+                                       "actual": seen[:3]})
+
+        for mismatch in mismatches:
+            scenario = by_name.get(checkpoint.get("name"))
+            if not scenario:
+                continue
+            expected = str(mismatch.get("expected") or "")
+            actual = [a for a in (mismatch.get("actual") or []) if a]
+            if not actual:
+                continue
+            # Prefer the most specific line: toast wrappers repeat the text with
+            best = _best_message_text(actual)
+            if not best:
+                continue
+            for index, step in enumerate(scenario.get("steps") or []):
+                if str(step.get("action") or "").upper() != "VERIFY_MESSAGE":
+                    continue
+                if str(step.get("value") or "") != expected:
+                    continue
+                # A correction is only safe when it is genuinely about wording.
+                # Two cases where it is not, and both must be visible:
+                typed = [str(st.get("value") or "") for st in scenario.get("steps") or []
+                         if str(st.get("action") or "").upper() == "TYPE"]
+                # Compare against the untruncated text: a long input would
+                # otherwise fall outside the shortened message and look clean.
+                whole = " ".join(actual)
+                data_coupled = any(v and len(v) > 3 and (v in best or v[:40] in whole)
+                                   for v in typed)
+                requirement = str(scenario.get("expected_result") or "")
+
+                warning = ""
+                if _literal_matched_the_requirement(expected, requirement, best):
+                    warning = ("The wording this step expected reflects the behaviour "
+                               "the scenario requires, and the application said "
+                               "something unrelated — so the behaviour looks absent, "
+                               "not merely worded differently. Applying this would "
+                               "make the scenario pass forever without testing it.")
+                elif data_coupled:
+                    warning = ("This message repeats the value the scenario typed, so "
+                               "asserting on it would only ever pass for that input. "
+                               "Assert on the stable part of the sentence instead.")
+                elif _contradicts_requirement(requirement, best):
+                    warning = ("The application's message appears to contradict what "
+                               "this scenario requires — that looks like a real defect, "
+                               "not a wording mistake. Do not apply this without "
+                               "reading it.")
+
+                fixes.append({
+                    "scenario": checkpoint.get("name"),
+                    "step_index": index,
+                    "expected": expected,
+                    "actual": best,
+                    "all_seen": actual,
+                    "expected_result": requirement,
+                    "warning": warning,
+                    "safe": not warning,
+                })
+                break
+    return fixes
+
+
+#: Phrases that state a constraint on *what the message may say*. When the real
+#: message violates one, the mismatch is a finding rather than a typo.
+LEAK_REQUIREMENTS = (
+    ("without giving away", "generic"), ("does not reveal", "generic"),
+    ("without revealing", "generic"), ("generic error", "generic"),
+    ("must not disclose", "generic"), ("without disclosing", "generic"),
+)
+
+
+STOPWORDS = {"the", "and", "for", "with", "that", "this", "from", "have", "has",
+             "was", "are", "been", "not", "but", "you", "your", "its", "it",
+             "message", "error", "shown", "displayed", "appears", "should"}
+
+
+def _content_words(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z]{4,}", (text or "").lower())
+            if w not in STOPWORDS}
+
+
+def _literal_matched_the_requirement(expected_literal: str, requirement: str,
+                                     actual: str) -> bool:
+    """Was the step's wording an expression of the requirement, not a guess?
+
+    "Too many attempts" against a requirement about rate limiting is the
+    requirement restated; the application replying "Invalid Password" means the
+    behaviour is missing. Rewriting the step to match would bury that finding.
+
+    A literal the requirement never mentions — "Invalid credentials" against
+    "an error message is displayed" — is just an invented spelling, and
+    correcting it is safe.
+    """
+    literal_words = _content_words(expected_literal)
+    if not literal_words:
+        return False
+    # If the step's wording echoes the requirement at all, the assertion is
+    # carrying the requirement — so a mismatch is a finding until a human says
+    # otherwise. Deliberately conservative: over-flagging costs a read, while
+    # under-flagging silently rewrites a real defect into expected behaviour.
+    return bool(literal_words & _content_words(requirement))
+
+
+def _contradicts_requirement(requirement: str, actual: str) -> bool:
+    """Does the observed message break a constraint the expectation states?
+
+    Deliberately narrow. The case it exists for: an expectation asking for a
+    *generic* error while the application names the account it could not find —
+    applying that as a "fix" would bake a real security finding into the suite
+    as the expected behaviour.
+    """
+    low = (requirement or "").lower()
+    if not any(phrase in low for phrase, _ in LEAK_REQUIREMENTS):
+        return False
+    # A generic error does not name a specific account, field or identifier.
+    return bool(re.search(r":\s*\S", actual or "")) or "username" in (actual or "").lower()
+
+
+@app.get("/wording-fixes")
+async def wording_fixes(response: Response, flow_name: str,
+                        project_name: str = config.DEFAULT_PROJECT):
+    """Steps whose expected wording the application does not use. Writes nothing."""
+    no_cache(response)
+    require_flow(project_name, flow_name)
+    fixes = _wording_fixes(project_name, flow_name)
+    return {"flow_name": flow_name, "count": len(fixes), "fixes": fixes}
+
+
+@app.post("/apply-wording-fixes")
+async def apply_wording_fixes(flow_name: str,
+                              project_name: str = config.DEFAULT_PROJECT,
+                              payload: dict = Body(default=None)):
+    """Rewrite the chosen VERIFY_MESSAGE steps to the wording the app really uses."""
+    flow_path = require_flow(project_name, flow_name)
+    fixes = _wording_fixes(project_name, flow_name)
+    if not fixes:
+        raise HTTPException(status_code=400,
+                            detail="No wording mismatches were recorded in the last run.")
+
+    # Only the corrections that are genuinely about wording are applied without
+    # being named. Anything carrying a warning must be chosen deliberately —
+    # several of these "mismatches" are real defects the application is
+    # reporting, and silently adopting them as expected behaviour would hide it.
+    if payload and isinstance(payload.get("apply"), list):
+        wanted = {(str(x.get("scenario")), int(x.get("step_index", -1)))
+                  for x in payload["apply"]}
+    else:
+        wanted = {(f["scenario"], f["step_index"]) for f in fixes if f["safe"]}
+
+    cases = read_json(flow_path / "test_cases.json", []) or []
+    by_name = {c.get("scenario_name"): c for c in cases}
+    applied = []
+    for fix in fixes:
+        if (fix["scenario"], fix["step_index"]) not in wanted:
+            continue
+        scenario = by_name.get(fix["scenario"])
+        if not scenario:
+            continue
+        steps = scenario.get("steps") or []
+        if fix["step_index"] >= len(steps):
+            continue
+        steps[fix["step_index"]]["value"] = fix["actual"]
+        applied.append({"scenario": fix["scenario"], "from": fix["expected"],
+                        "to": fix["actual"]})
+
+    if applied:
+        write_json(flow_path / "test_cases.json", cases)
+        db.audit("apply_wording_fixes", f"{project_name}/{flow_name}",
+                 details={"applied": len(applied)})
+    skipped = [{"scenario": f["scenario"], "reason": f["warning"]}
+               for f in fixes if f["warning"]
+               and (f["scenario"], f["step_index"]) not in wanted]
+    return {"status": "success", "applied": len(applied), "changes": applied,
+            "skipped": skipped,
+            "message": (f"{len(applied)} step(s) now expect the wording the "
+                        f"application actually uses. Re-run to confirm."
+                        + (f" {len(skipped)} left alone — read them first."
+                           if skipped else ""))}
 
 
 @app.get("/llm-status")

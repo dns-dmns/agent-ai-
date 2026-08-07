@@ -1584,6 +1584,26 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
         result["assertion_ok"] = ok
         result["detail"] = detail
         if not ok:
+            # A VERIFY_MESSAGE that failed *only because the wording differs* is
+            # not evidence the application misbehaved. The literal in the step is
+            # a guess — usually a model's — while the message on screen is what
+            # the application really says. Failing the scenario here blames a
+            # working app for a wording mistake in its own test, which is the most
+            # damaging thing this tool can do. Record the mismatch and let the
+            # verdict engine judge from the evidence instead.
+            if action == "VERIFY_MESSAGE" and evidence.messages:
+                evidence.wording_mismatches.append({
+                    "expected": str(value),
+                    "actual": [m["text"] for m in evidence.messages][:3],
+                    "selector": selector,
+                    "step": ctx.get("step_number", 0),
+                })
+                await emit_log(
+                    f"⚠️ {action}: the application said "
+                    f"{evidence.messages[0]['text']!r}, this step expected "
+                    f"{str(value)!r} — recorded as a wording mismatch, not a failure."
+                )
+                return result
             raise Exception(f"Validation failed: {detail}")
         await emit_log(f"✅ {action} passed — {detail}")
         return result

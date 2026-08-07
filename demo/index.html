@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI QA Platform — demo guide</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --surface: #f6f7f9;
+    --surface-2: #eef0f4;
+    --text: #12151a;
+    --text-dim: #5a6272;
+    --border: #d9dde5;
+    --accent: #2f6fed;
+    --accent-quiet: #e7effd;
+    --pass: #147a3d;
+    --pass-quiet: #e6f5ec;
+    --fail: #c02626;
+    --fail-quiet: #fdeaea;
+    --warn: #9a6100;
+    --warn-quiet: #fdf3e2;
+    --mono: ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+    --radius: 10px;
+    --maxw: 62rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1015;
+      --surface: #151a21;
+      --surface-2: #1c222b;
+      --text: #e7eaf0;
+      --text-dim: #99a2b3;
+      --border: #2a323d;
+      --accent: #6fa0ff;
+      --accent-quiet: #16233c;
+      --pass: #4ed08a;
+      --pass-quiet: #102a1c;
+      --fail: #ff8080;
+      --fail-quiet: #2e1416;
+      --warn: #f0b95c;
+      --warn-quiet: #2c2210;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header.hero {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.75rem;
+    margin-bottom: 2.25rem;
+  }
+  h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 .5rem; letter-spacing: -.02em; }
+  .tagline { color: var(--text-dim); font-size: 1.05rem; margin: 0; max-width: 46rem; }
+  h2 {
+    font-size: 1.35rem; margin: 3rem 0 .85rem; letter-spacing: -.01em;
+    padding-top: 1.4rem; border-top: 1px solid var(--border);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+  h3 { font-size: 1.05rem; margin: 1.9rem 0 .5rem; }
+  h4 { font-size: .95rem; margin: 1.25rem 0 .4rem; color: var(--text-dim);
+       text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  p, li { max-width: 52rem; }
+  code {
+    font-family: var(--mono); font-size: .875em;
+    background: var(--surface-2); padding: .12em .38em; border-radius: 4px;
+  }
+  pre {
+    font-family: var(--mono); font-size: .82rem; line-height: 1.55;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: .9rem 1rem; overflow-x: auto; margin: .8rem 0;
+  }
+  pre code { background: none; padding: 0; font-size: 1em; }
+  .cols { display: grid; gap: 1rem;
+          grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+  .cols > * { min-width: 0; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 1.1rem;
+  }
+  .card h3 { margin-top: 0; }
+  /* Wide content scrolls inside its own box; the page never scrolls sideways. */
+  .tablewrap { overflow-x: auto; margin: 1rem 0; min-width: 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .9rem; min-width: 34rem; }
+  th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--text-dim); font-weight: 600; font-size: .8rem;
+       text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .tag {
+    display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+    padding: .14em .5em; border-radius: 999px; white-space: nowrap;
+  }
+  .t-free { background: var(--pass-quiet); color: var(--pass); }
+  .t-key  { background: var(--warn-quiet); color: var(--warn); }
+  .t-risk { background: var(--fail-quiet); color: var(--fail); }
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--accent-quiet);
+    padding: .85rem 1rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.1rem 0;
+  }
+  .callout.warn { border-color: var(--warn); background: var(--warn-quiet); }
+  .callout.bad  { border-color: var(--fail); background: var(--fail-quiet); }
+  .callout p:first-child { margin-top: 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  /* minmax(0, 1fr), not 1fr: a grid column refuses to shrink below its content's
+     min-content width, so a wide table inside it pushed the whole page sideways
+     instead of scrolling within its own .tablewrap. */
+  .step {
+    display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: .9rem;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--border);
+  }
+  .step > div { min-width: 0; }
+  .step:last-child { border-bottom: 0; }
+  .num {
+    width: 2.2rem; height: 2.2rem; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700; font-size: .95rem;
+    background: var(--accent-quiet); color: var(--accent);
+  }
+  .step h3 { margin: .15rem 0 .35rem; }
+  .yn { display: grid; gap: .6rem; margin-top: .7rem;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .yn > div { border-radius: 8px; padding: .6rem .75rem; font-size: .875rem; }
+  .do   { background: var(--pass-quiet); border-left: 3px solid var(--pass); }
+  .dont { background: var(--fail-quiet); border-left: 3px solid var(--fail); }
+  .yn strong { display: block; font-size: .74rem; text-transform: uppercase;
+               letter-spacing: .06em; margin-bottom: .2rem; }
+  .do strong { color: var(--pass); }
+  .dont strong { color: var(--fail); }
+  ul.tight { margin: .5rem 0; padding-left: 1.25rem; }
+  ul.tight li { margin: .25rem 0; }
+  .verdict-grid { display: grid; gap: .6rem;
+                  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+  .verdict-grid div { padding: .7rem .85rem; border-radius: 8px; font-size: .875rem;
+                      border: 1px solid var(--border); background: var(--surface); }
+  .verdict-grid b { display: block; font-family: var(--mono); font-size: .95rem; }
+  .toc { background: var(--surface); border: 1px solid var(--border);
+         border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 2rem; }
+  .toc ol { margin: .4rem 0 0; padding-left: 1.3rem; columns: 2; column-gap: 2rem; }
+  @media (max-width: 34rem) { .toc ol { columns: 1; } }
+  .toc a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); }
+  .toc a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+           color: var(--text-dim); font-size: .85rem; }
+  @media print {
+    body { background: #fff; color: #000; }
+    .toc, footer { display: none; }
+    h2 { break-before: page; }
+    h2:first-of-type { break-before: avoid; }
+    pre, .card, table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>AI QA Platform — demo guide</h1>
+  <p class="tagline">
+    Record a browser flow once, generate a test suite from it, replay it with Playwright,
+    and judge every scenario against evidence collected from the live page. This page is
+    the demo script: where to start, what each step gives you, and what goes wrong if you
+    skip it.
+  </p>
+</header>
+
+<nav class="toc">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#idea">The one idea</a></li>
+    <li><a href="#start">Starting point</a></li>
+    <li><a href="#path">The demo path</a></li>
+    <li><a href="#skip">If you skip a step</a></li>
+    <li><a href="#verdicts">How a verdict is decided</a></li>
+    <li><a href="#free">What costs an API call</a></li>
+    <li><a href="#guards">Guards that refuse to lie</a></li>
+    <li><a href="#defects">Defect log (separate)</a></li>
+    <li><a href="#traps">Traps worth demoing</a></li>
+    <li><a href="#flags">Flags &amp; reference</a></li>
+  </ol>
+</nav>
+
+<h2 id="idea">The one idea</h2>
+
+<div class="callout">
+  <p><strong>A scenario is not a pass just because no step threw an exception.</strong></p>
+  <p>
+    Most record-and-replay tools report success whenever the clicks completed. This one
+    collects <em>evidence</em> from the page — messages that appeared, native dialogs,
+    table rows, downloads, console errors, whether the submit button was even clickable —
+    and matches it against what the scenario said should happen. If nothing proved the
+    expectation, the answer is <code>UNVERIFIED</code>, not a pass.
+  </p>
+</div>
+
+<p>
+  The second idea follows from the first: <strong>never turn ignorance into a failure.</strong>
+  A false FAIL is the most damaging output a QA tool can produce, because it blames a
+  working application and costs you the trust of the developers. Several features on this
+  page exist only to prevent that.
+</p>
+
+<h2 id="start">Starting point</h2>
+
+<h4>Prerequisites</h4>
+<pre><code># from the repo root
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m playwright install chromium</code></pre>
+
+<h4>Run the server</h4>
+<pre><code>.\run_server.ps1            # frees port 8000 first, then starts uvicorn
+# options: -Port 8080  -Reload  -Address 0.0.0.0</code></pre>
+
+<p>
+  Then open <code>http://127.0.0.1:8000</code>. Use <code>run_server.ps1</code> rather than
+  calling uvicorn directly — a raw call fails with <code>WinError 10048</code> if a previous
+  server still holds the port.
+</p>
+
+<div class="callout warn">
+  <p>
+    <strong>An API key is optional and is only needed to <em>generate</em> a suite.</strong>
+    Recording, running, verdicts, self-healing, coverage enumeration, the defect importer
+    and every report work with no key at all. If you have no key, skip step 4 of the demo
+    path and use step 3 instead — you still get a full suite.
+  </p>
+</div>
+
+<h4>Data lives on disk, not in a database</h4>
+<pre><code>projects/&lt;project&gt;/flows/&lt;flow&gt;/
+    flow.json  actions.json  test_cases.json     the recording + the suite
+    report.json  run_history.json  reports/      results
+    screenshots/  videos/  traces/  downloads/   evidence</code></pre>
+
+<div class="callout bad">
+  <p>
+    <strong>Back up <code>projects/</code> before a demo.</strong> It is not tracked by git
+    and there is no export feature yet. The recordings are the expensive part — losing the
+    folder means re-recording every module by hand.
+  </p>
+</div>
+
+<h2 id="path">The demo path</h2>
+
+<p>
+  Follow these in order. Each step names what you get, and what happens if you leave it out.
+</p>
+
+<div class="step">
+  <div class="num">1</div>
+  <div>
+    <h3>Record the module <span class="tag t-free">no API key</span></h3>
+    <p>
+      Launch the browser at the module's URL, log in, then <strong>reach the form</strong>:
+      open the Add dialog, fill every field, save, and use the row action icons
+      (view / edit / history / delete).
+    </p>
+    <p>
+      While you click, the recorder captures more than the clicks. It stores multiple
+      candidate selectors per element, marks which fields the application says are
+      mandatory, and watches for ~1.2 s after each click to record the <em>effect</em> —
+      the URL change and the exact message text that appeared.
+    </p>
+    <div class="yn">
+      <div class="do"><strong>If you do</strong>
+        Generation has real selectors and real message wording to work from, and knows
+        which fields are mandatory.</div>
+      <div class="dont"><strong>If you don't reach the form</strong>
+        There is nothing to generate from. The platform now <em>refuses</em> rather than
+        inventing a suite — see <a href="#guards">Guards</a>.</div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">2</div>
+  <div>
+    <h3>Keep login as its own flow <span class="tag t-free">no API key</span></h3>
+    <p>
+      Record the login once, in a flow named <code>login</code>, launched at the login page.
+      Every other flow then reuses the stored session automatically.
+    </p>
+    <div class="yn">
+      <div class="do"><strong>If you do</strong>
+        Business flows start already authenticated, and one credential change is one edit.</div>
+      <div class="dont"><strong>If you don't</strong>
+        A flow named <code>login</code> but pointed at a business page is treated as an
+        auth flow while its URL says otherwise — the exact mix-up that produced a suite of
+        17 fabricated scenarios.</div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">3</div>
+  <div>
+    <h3>Coverage → Enumerate field cases <span class="tag t-free">no API key</span></h3>
+    <p>
+      This is the step most people don't expect, and the best part of the demo. It reads
+      the fields discovered on the real page and <strong>enumerates</strong> the test cases
+      each one deserves from its own type and constraints — no model decides, so nothing can
+      be quietly missed.
+    </p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Field</th><th>Cases produced</th><th>Includes</th></tr></thead>
+        <tbody>
+          <tr><td>Required text</td><td>11</td>
+              <td>empty, whitespace-only, 1 char, max length, max+1, leading/trailing spaces,
+                  special characters, unicode &amp; emoji, SQL / HTML / template injection</td></tr>
+          <tr><td>Number</td><td>7</td>
+              <td>zero, negative, decimal, non-numeric, maximum, above maximum, int32 overflow</td></tr>
+          <tr><td>Dropdown (2 options)</td><td>3</td>
+              <td>no selection, plus each option</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      A 13-field form yields roughly 80–100 test cases for zero API calls. Passwords, OTP
+      and captcha fields are never fuzzed — a locked account would fail every later
+      scenario for reasons that have nothing to do with it.
+    </p>
+    <div class="yn">
+      <div class="do"><strong>If you do</strong>
+        Field coverage is complete <em>by construction</em> and repeatable: the same form
+        always yields the same set.</div>
+      <div class="dont"><strong>If you don't</strong>
+        Coverage depends on the model remembering to write each permutation. It usually
+        forgets several.</div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">4</div>
+  <div>
+    <h3>Generate the rest <span class="tag t-key">needs an API key</span></h3>
+    <p>
+      Two buttons, and <strong>both overwrite <code>test_cases.json</code></strong>:
+    </p>
+    <ul class="tight">
+      <li><strong>Multi-agent generate</strong> — Builder and Breaker in parallel, an Auditor
+        reviewing, looping up to 3 rounds. Up to <strong>9 API calls</strong>. The stronger
+        suite generator.</li>
+      <li><strong>QA specification</strong> — one call. Produces the suite <em>plus</em> the
+        thinking: risks, requirement gaps, DB/API/security checklists, documentation, and a
+        release-readiness call.</li>
+    </ul>
+    <p>
+      Order matters: run <strong>QA specification first, multi-agent second</strong>. The
+      spec's extra artefacts survive, and multi-agent's better suite wins. Reverse it and
+      you throw the better suite away.
+    </p>
+    <div class="yn">
+      <div class="do"><strong>If you do</strong>
+        You get the scenarios that need genuinely different steps — create, edit, delete,
+        search, export, audit history.</div>
+      <div class="dont"><strong>If you don't</strong>
+        You still have step 3's enumerated cases. You lose the CRUD-lifecycle scenarios,
+        which the Coverage report will list as gaps.</div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">5</div>
+  <div>
+    <h3>Add what a recording can't know <span class="tag t-free">mostly free</span></h3>
+    <p>Three optional layers, all additive:</p>
+    <ul class="tight">
+      <li><strong>Rules</strong> — invariants in plain English ("Beam Length must reject 0 and
+        negatives"). Enforced on <em>every</em> scenario and able to override a pass into a
+        FAIL. 10 rule kinds. Translating English into a rule uses one API call; enforcing
+        rules uses none.</li>
+      <li><strong>Dependencies</strong> — declare what a flow <code>provides</code> and
+        <code>requires</code> so a master is seeded once and its generated code flows into
+        the next module as <code>{{variable}}</code>.</li>
+      <li><strong>unique_by</strong> — the fields that together make a duplicate. Generates a
+        two-phase duplicate test <em>and</em> its inverse: change only the last key field and
+        the save must succeed.</li>
+    </ul>
+    <div class="yn">
+      <div class="do"><strong>If you do</strong>
+        Duplicate tests actually create a duplicate, and cross-module data flows properly.</div>
+      <div class="dont"><strong>If you don't</strong>
+        Duplicate tests pass without testing anything, and dependent dropdowns have nothing
+        to select.</div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">6</div>
+  <div>
+    <h3>Pre-flight, then run <span class="tag t-free">no API key</span></h3>
+    <p>
+      <strong>Selector pre-flight</strong> loads the real page and checks every generated
+      selector exists — cheap, and it catches a bad suite before a long run. Then run.
+    </p>
+    <p>
+      For a demo use <strong>headed mode</strong> so the audience watches the browser drive
+      itself. For speed use <strong>headless with 5 workers</strong>; headed deliberately
+      forces one scenario at a time.
+    </p>
+    <div class="yn">
+      <div class="do"><strong>If you do pre-flight</strong>
+        Broken selectors surface in seconds instead of 20 minutes.</div>
+      <div class="dont"><strong>If you don't</strong>
+        Every broken selector costs the full retry ladder before failing.</div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">7</div>
+  <div>
+    <h3>Read the results <span class="tag t-free">no API key</span></h3>
+    <p>
+      Results group under their parent scenario, so nine data rows against one field read as
+      <em>"7 of 9 test cases passed"</em> — one finding, not nine defects. Failures also land
+      in <code>bugs.json</code>, and exports cover HTML, CSV, JUnit XML and a Test Case
+      Matrix with real <code>Scenario | Test Case | Data</code> columns.
+    </p>
+  </div>
+</div>
+
+<h2 id="skip">If you skip a step — the short version</h2>
+
+<div class="tablewrap">
+  <table>
+    <thead><tr><th>Skipped</th><th>What actually happens</th></tr></thead>
+    <tbody>
+      <tr><td>Recording the form itself</td>
+          <td>Generation is <strong>refused</strong>. Before the guard existed it produced 17
+              scenarios in which all 27 selectors were invented.</td></tr>
+      <tr><td>Enumerate field cases</td>
+          <td>Boundary, injection and empty-value coverage depends on the model's memory.</td></tr>
+      <tr><td>Generation</td>
+          <td>No CRUD-lifecycle scenarios; the Coverage report names each gap.</td></tr>
+      <tr><td>Rules</td>
+          <td>Business invariants are never checked — the app can be wrong and still pass.</td></tr>
+      <tr><td>unique_by</td>
+          <td>Duplicate tests pass without ever creating a duplicate.</td></tr>
+      <tr><td>Dependencies</td>
+          <td>Dependent dropdowns are empty; downstream modules fail for the wrong reason.</td></tr>
+      <tr><td>Pre-flight</td>
+          <td>A bad suite burns a full run before you find out.</td></tr>
+      <tr><td>Page coverage</td>
+          <td>Controls nobody tested stay invisible — "Forgot your password?" is the classic.</td></tr>
+      <tr><td>Backing up <code>projects/</code></td>
+          <td>One delete loses every recording, with no undo.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="verdicts">How a verdict is decided</h2>
+
+<p>Four outcomes, and the third is the one that makes this tool trustworthy:</p>
+
+<div class="verdict-grid">
+  <div><b>PASS</b> Evidence confirmed what the scenario expected.</div>
+  <div><b>FAIL</b> Evidence contradicted it.</div>
+  <div><b>UNVERIFIED</b> Everything ran, nothing proved it. Deliberately not a pass.</div>
+  <div><b>CRASH</b> The browser or page died.</div>
+</div>
+
+<h4>Evidence the engine collects</h4>
+<p>
+  On-screen messages, native dialogs, table rows, downloads, console and network errors,
+  explicit <code>VERIFY_*</code> assertion outcomes (22 assertion verbs), captured variables,
+  fields the engine auto-filled, whether the submit control was blocked, and whether a field
+  refused the keystrokes.
+</p>
+
+<h4>Finding messages — four layers</h4>
+<ol class="tight">
+  <li><strong>Seed selectors</strong> — the framework classes (PrimeNG, Material, Ant,
+    Bootstrap, oxd).</li>
+  <li><strong>DOM diff</strong> — text that <em>appeared</em> after an action is a message,
+    whatever its CSS. This finds a validation message in a class no framework list has ever
+    heard of. On by default.</li>
+  <li><strong>Learning</strong> — a diff-discovered message's classes are remembered per
+    project and read back on the next run, so the scanner sharpens as you use it.</li>
+  <li><strong>AI adjudication</strong> — optional, only for scenarios the rules can't settle.</li>
+</ol>
+
+<div class="callout">
+  <p>
+    <strong>Two things that look like a bug and are not.</strong> A form whose Save button
+    stays disabled until valid <em>is</em> validating — the refusal is stronger evidence than
+    a message, because the bad data never reached the server. And a numeric field that
+    silently drops letters is validating at the input layer. Both are read as the
+    application behaving correctly, where a naive engine reports "the invalid input appears
+    to have been accepted".
+  </p>
+</div>
+
+<h2 id="free">What costs an API call, and what doesn't</h2>
+
+<div class="cols">
+  <div class="card">
+    <h3><span class="tag t-free">Free</span> No model involved</h3>
+    <ul class="tight">
+      <li>Recording, and effect capture</li>
+      <li>Enumerating field test cases</li>
+      <li>Page coverage — untested controls</li>
+      <li>Coverage report and gap checklist</li>
+      <li>Rule <em>enforcement</em></li>
+      <li>Dependency seeding, <code>unique_by</code></li>
+      <li>Defect-sheet import</li>
+      <li>Running, verdicts, self-healing</li>
+      <li>Every report and export</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span class="tag t-key">Costs calls</span> Needs a key</h3>
+    <ul class="tight">
+      <li>Multi-agent generation — up to 9</li>
+      <li>QA specification — 1</li>
+      <li>Rule translation (English → rule) — 1</li>
+      <li>Selector repair — occasional</li>
+      <li>AI verdict adjudication — optional</li>
+      <li>Vision healing — off by default</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout warn">
+  <p>
+    <strong>Free-tier reality.</strong> Gemini's free tier is about 20 requests per day per
+    model, so one multi-agent run can use half of it. The platform now refuses to start a
+    run the day's allowance cannot finish, never retries a daily-quota error (retrying spent
+    four requests to fail once), and says plainly when the cause is the quota rather than
+    your key. <code>/llm-status</code> shows what is left.
+  </p>
+</div>
+
+<h2 id="guards">Guards that refuse to lie</h2>
+
+<p>Each of these exists because the platform once produced a confident wrong answer.</p>
+
+<div class="tablewrap">
+  <table>
+    <thead><tr><th>Guard</th><th>What it prevents</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Grounding check</strong></td>
+          <td>Generating from a recording that never reached the page. A login-only recording
+              aimed at a master-data URL is refused, with instructions — instead of 17
+              scenarios built entirely from words in a URL.</td></tr>
+      <tr><td><strong>Grounding report</strong></td>
+          <td>Silence about guesswork. After generation it reports what share of selectors
+              appear nowhere in the recording; above 70% the suite is flagged.</td></tr>
+      <tr><td><strong>Never FAIL on ignorance</strong></td>
+          <td>Blaming a working app. If the engine has never seen where this application
+              renders messages, "nothing appeared" is <code>UNVERIFIED</code>, not FAIL.
+              Opt-in, because it moves existing numbers.</td></tr>
+      <tr><td><strong>Ownership guardrail</strong></td>
+          <td>Auto-filling the very field a scenario is testing.</td></tr>
+      <tr><td><strong>Created-record identity</strong></td>
+          <td>Asserting on a record from the original recording that no longer exists. The
+              run verifies the record <em>this</em> scenario created and says so.</td></tr>
+      <tr><td><strong>Sensitive-field skip</strong></td>
+          <td>Fuzzing a password and locking the account, failing everything after it.</td></tr>
+      <tr><td><strong>Soft delete</strong></td>
+          <td>Permanent loss — deletes move to <code>.trash/</code>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="defects">Defect log — a separate, additional feature</h2>
+
+<p>
+  Upload an existing defect sheet and re-test the bugs it records. Needs a
+  <strong>Module</strong> column and an <strong>Expected Result</strong> column; also reads
+  Defect ID, Steps to Reproduce, Actual Result, Priority and Status. CSV and
+  <code>.xlsx</code> both work.
+</p>
+
+<div class="callout">
+  <p>
+    <strong>It is deliberately disconnected from the main flow.</strong> Defect scenarios
+    never enter a module's <code>test_cases.json</code>. They get their own
+    <code>&lt;Flow&gt; [defects]</code> flow with its own report, so running them — or not —
+    has no effect on your real suites. A test asserts the module's own suite is
+    byte-for-byte unchanged after an import.
+  </p>
+</div>
+
+<p>
+  Your <em>Expected Result</em> column does the heavy lifting: it is already the kind of
+  checkable sentence the verdict engine reads. <em>Steps to Reproduce</em> is prose — field
+  names are resolved against the labels already discovered for that module, and anything
+  that can't be resolved is <strong>reported, not guessed</strong>. A relative value ("an
+  Outer Diameter less than the Inner Diameter") comes back with a suggested value for you to
+  accept, because a fabricated number would make a defect look tested when it wasn't.
+</p>
+
+<h4>Why the results read correctly</h4>
+<div class="tablewrap">
+  <table>
+    <thead><tr><th>Result</th><th>Sheet says</th><th>Reads as</th></tr></thead>
+    <tbody>
+      <tr><td>FAIL</td><td>Open</td><td><strong>still open</strong> — not news</td></tr>
+      <tr><td>PASS</td><td>Open</td><td><strong>fixed</strong> — the repair landed</td></tr>
+      <tr><td>FAIL</td><td>Closed</td><td><strong>REGRESSED</strong></td></tr>
+      <tr><td>PASS</td><td>Closed</td><td>holding</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  Without that distinction, three open defects failing would look like three regressions.
+</p>
+
+<h2 id="traps">Traps worth demoing</h2>
+
+<p>
+  A recorded selector is one literal spelling of one control, and a real screen defeats it in
+  predictable ways. The engine handles each of these so the same test case keeps working
+  without anyone editing it — and <code>tests/selftest_app/chain.html</code> reproduces all
+  of them, which makes them safe to show live.
+</p>
+
+<div class="tablewrap">
+  <table>
+    <thead><tr><th>What the screen does</th><th>How the engine copes</th></tr></thead>
+    <tbody>
+      <tr><td>A closed dialog sits <em>before</em> the open one in the DOM</td>
+          <td>Matches are scanned for one actually on screen, instead of failing on the
+              hidden first match.</td></tr>
+      <tr><td>Identical fields behind the dialog</td>
+          <td>Every candidate is tried inside the open dialog before any is tried page-wide,
+              so the dialog always wins.</td></tr>
+      <tr><td>The button says "Update", not "Save"</td>
+          <td>Synonyms — Save↔Update↔Submit, No↔Cancel↔Close, Export↔Download, plus icon-only
+              buttons. Reject synonyms never include confirm words.</td></tr>
+      <tr><td>Mandatory field the recording missed</td>
+          <td>The form is completed automatically — except the field under test.</td></tr>
+      <tr><td>"No data available" vs "No records found"</td>
+          <td>Recognised as the same empty state; a framework difference is not a defect.</td></tr>
+      <tr><td>Audit history with blank Date/User</td>
+          <td>Caught as a real finding, even though every row is present and every step
+              "succeeds".</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout">
+  <p>
+    <strong>Best 60 seconds of any demo:</strong> open the Audit History of a master record.
+    Every row is there, every step passes, and a conventional suite calls it green — while
+    the DATE/TIME and USER columns are empty and some rows record a change from
+    <code>2344.0000</code> to <code>2344</code>, which is no change at all. This platform
+    reports both.
+  </p>
+</div>
+
+<h2 id="flags">Flags &amp; reference</h2>
+
+<h4>Environment flags</h4>
+<div class="tablewrap">
+  <table>
+    <thead><tr><th>Variable</th><th>Default</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><code>GEMINI_API_KEY</code></td><td>—</td>
+          <td>Only generation needs it.</td></tr>
+      <tr><td><code>GEMINI_MODEL</code></td><td><code>gemini-3.6-flash</code></td>
+          <td>Switching model is a valid fix for a small quota.</td></tr>
+      <tr><td><code>QA_VISION_HEALING</code></td><td><code>0</code></td>
+          <td>Screenshot-to-model healing. Off because it costs 15–20 s per failed step and
+              spends generation quota during test runs.</td></tr>
+      <tr><td><code>QA_DOM_DIFF_MESSAGES</code></td><td><code>1</code></td>
+          <td>Message layer 2. Only ever <em>adds</em> messages the static list can't see.</td></tr>
+      <tr><td><code>QA_STRICT_MESSAGE_CONFIDENCE</code></td><td><code>0</code></td>
+          <td>Never FAIL on ignorance. Off because it moves existing verdict numbers.</td></tr>
+      <tr><td><code>QA_LLM_DAILY_BUDGET</code></td><td><code>20</code></td>
+          <td>Assumed daily allowance, used to warn. Set <code>0</code> once billing is on.</td></tr>
+      <tr><td><code>QA_MAX_WORKERS</code></td><td><code>5</code></td>
+          <td>Parallel scenarios. Headed mode always uses 1.</td></tr>
+      <tr><td><code>QA_WORKSPACE</code></td><td>repo root</td>
+          <td>Where <code>projects/</code> and <code>logs/</code> live.</td></tr>
+      <tr><td><code>QA_API_KEY</code></td><td>empty</td>
+          <td>Protects the platform's own HTTP API. Empty disables auth.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout warn">
+  <p>
+    <strong>A trap worth knowing:</strong> <code>.env</code> beats a flag you unset in the
+    shell. The config loader fills in anything <em>absent</em> from the environment, so
+    deleting a variable lets <code>.env</code> put it straight back. Edit <code>.env</code>
+    itself.
+  </p>
+</div>
+
+<h4>Verifying the platform</h4>
+<pre><code>.venv\Scripts\python.exe -m pytest tests -q                  # 117 unit tests
+.venv\Scripts\python.exe tests\e2e_selftest.py               # real browser, 13 verdict cases
+.venv\Scripts\python.exe tests\e2e_chain.py                  # dependency chain, rules, traps
+.venv\Scripts\python.exe tests\smoke_ui.py                   # boots the server, drives the UI
+.venv\Scripts\python.exe tests\integration_api.py            # 51 API checks
+.venv\Scripts\python.exe tests\regression_existing_data.py   # backward compatibility</code></pre>
+
+<p>
+  All six run offline with no API key and are safe to run in front of an audience. The
+  browser suites drive a bundled sample app, so they touch no real system.
+</p>
+
+<footer>
+  <p>
+    Demo guide for the local AI QA automation platform. FastAPI backend, vanilla-JS
+    dashboard, 78 HTTP endpoints. Every claim here is backed by the six test suites above —
+    if something on this page turns out not to be true, that is a bug in the platform or in
+    this page, and both are worth reporting.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -14,7 +14,7 @@
         "label": "Username",
         "required": true,
         "value": "",
-        "screenshot": "/static/projects/Ambica/flows/login/screenshots/step_1.png"
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_1.png"
     },
     {
         "action": "TYPE",
@@ -30,8 +30,8 @@
         "text": "",
         "label": "Username",
         "required": false,
-        "value": "d",
-        "screenshot": "/static/projects/Ambica/flows/login/screenshots/step_2.png"
+        "value": "admin",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_2.png"
     },
     {
         "action": "CLICK",
@@ -48,7 +48,7 @@
         "label": "Password",
         "required": true,
         "value": "",
-        "screenshot": "/static/projects/Ambica/flows/login/screenshots/step_3.png"
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_3.png"
     },
     {
         "action": "TYPE",
@@ -64,49 +64,49 @@
         "text": "",
         "label": "Password",
         "required": false,
-        "value": "123456",
-        "screenshot": "/static/projects/Ambica/flows/login/screenshots/step_4.png"
+        "value": "1234",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_4.png"
     },
     {
         "action": "CLICK",
         "selector": "button:has-text(\"Login\")",
         "selectors": [
             "button:has-text(\"Login\")",
-            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
         ],
         "tag": "button",
         "text": "Login",
         "label": "",
         "required": false,
         "value": "",
-        "screenshot": "/static/projects/Ambica/flows/login/screenshots/step_5.png",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_5.png",
         "effect": {
-            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
-            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
             "messages": [
                 {
                     "text": "Please wait...",
-                    "selector": "button.btn-login"
+                    "selector": "span.ng-star-inserted"
                 },
                 {
-                    "text": "Good morning, d",
-                    "selector": "h1"
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted"
                 },
                 {
-                    "text": "d",
-                    "selector": "span.name-highlight"
+                    "text": "SUCCESS\nLogin Successful",
+                    "selector": "p-toastitem.ng-tns-c2572556178-3.ng-trigger.ng-trigger-toastAnimation"
                 },
                 {
-                    "text": "Admin",
-                    "selector": "div.role-chip"
+                    "text": "SUCCESS",
+                    "selector": "div.ng-tns-c2572556178-3.p-toast-summary"
                 },
                 {
-                    "text": "Home",
-                    "selector": "li.menu-item"
+                    "text": "Login Successful",
+                    "selector": "div.ng-tns-c2572556178-3.p-toast-detail"
                 },
                 {
-                    "text": "Master Data",
-                    "selector": "span.label"
+                    "text": "admin",
+                    "selector": "span.username"
                 }
             ],
             "appeared": [],
@@ -118,13 +118,13 @@
     },
     {
         "action": "NAVIGATE",
-        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
         "selectors": [
-            "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home"
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
         ],
         "tag": "window",
-        "text": "Ambica",
-        "value": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/pages/home",
-        "screenshot": "/static/projects/Ambica/flows/login/screenshots/step_6.png"
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_6.png"
     }
 ]

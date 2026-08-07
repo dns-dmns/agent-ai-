@@ -1,0 +1,18 @@
+[
+    {
+        "run_id": "574b642e8835",
+        "stamp": 1786089113,
+        "execution_date": "2026-08-07 13:21:53",
+        "duration_seconds": 98,
+        "total": 11,
+        "passed": 3,
+        "failed": 8,
+        "unverified": 0,
+        "crashed": 0,
+        "test_types": "positive,negative,boundary,security,ui,smoke,regression",
+        "mode": "headed",
+        "verdict_mode": "rules",
+        "triggered_by": "dashboard",
+        "report_file": "reports/report_1786089113.json"
+    }
+]

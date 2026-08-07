@@ -1,0 +1,9 @@
+{
+  "flows": {},
+  "message_selectors": [
+    ".p-toast-detail",
+    ".p-toast-summary",
+    ".p-toast-message-success",
+    ".p-toast-message-error"
+  ]
+}

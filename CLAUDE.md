@@ -144,6 +144,50 @@ Endpoints: `/coverage-report`, `/preview-coverage-cases`, `/add-coverage-cases`
 (appends, de-duplicated by name). UI in `web/ui-coverage.js` — the sidebar
 "Coverage" row, its badge, and the grouped results panel.
 
+### Project export — a separate, strictly read-only feature
+
+`app/export_project.py` turns a recorded project into a standalone Playwright
+Page Object Model suite, following the structure a real hand-built suite uses:
+
+```
+pages/       one class per module; locators in the constructor
+tests/       one spec per module; specs only call page-object methods
+testdata/    one JSON per module, plus credentials.json (always blank)
+playwright.config.js  package.json  README.md  .env.example  .gitignore
+```
+
+It **writes nothing** — it reads flow folders and returns `{path: contents}` for
+`main.py` to stream as a zip. `integration_api` proves it by hashing the whole
+workspace before and after (`exporting changed nothing on disk`). No model is
+called, so the same project always generates identical code.
+
+The generator encodes the rules a real suite learns the hard way, and the tests
+pin each one:
+
+- A control with more than one recorded selector becomes `a.or(b)` — the fix for
+  a duplicate label and for a conditionally rendered field.
+- **A plain click must fail loudly.** Only a click whose *next* step asserts the
+  resulting state gets the bounded `timeout` + `.catch()` treatment, because
+  there the assertion is the real check. Swallowing every click error would let
+  a broken step pass — the same "never turn ignorance into a pass" mistake the
+  verdict engine avoids.
+- Nothing is counted or row-matched before `waitFor({state:'visible'})`;
+  `.count()` does not retry the way `expect()` does.
+- Typed values come from the test-data file and fall back to the recorded
+  literal, so the suite runs unmodified but is data-driven.
+- A step the engine handled internally (`VERIFY_COLUMN_NOT_EMPTY`, `SWITCH_ROLE`,
+  `API_REQUEST`, `WAIT_FOR_STATE`…) becomes a visible `TODO` naming what the
+  platform did. An honest gap beats generated code that silently checks nothing.
+- The README's data table computes "changes every run?" from whether a value came
+  from a `{{variable}}` — the reference project called stale hand-copied data its
+  single biggest recurring failure.
+
+Credentials are never exported: `testdata/credentials.json` is blank and `.env`
+is gitignored. Endpoints `/preview-export` and `/download-project`; UI in
+`web/ui-export.js`. Verification worth repeating: `node --check` every generated
+file, then execute a page object against a stub `@playwright/test` to see the
+real call sequence — parsing is not the same as running.
+
 ### Defect log — an additional feature, deliberately disconnected
 
 `app/defects.py` imports a defect sheet and re-tests the bugs it records. It is
@@ -366,8 +410,8 @@ the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI p
 
 ## Current state
 
-All six suites pass: 117 unit tests, `e2e_selftest` 13/13, `e2e_chain` 25/25
-(verified over 3 consecutive runs), `smoke_ui` 51/51, `integration_api` 51/51,
+All six suites pass: 123 unit tests, `e2e_selftest` 13/13, `e2e_chain` 25/25
+(verified over 3 consecutive runs), `smoke_ui` 51/51, `integration_api` 55/55,
 `regression_existing_data` 4/4 (that last one only compares against real
 `projects/` data, and the workspace is currently empty — it skips the report
 checks rather than failing).

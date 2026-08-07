@@ -346,6 +346,19 @@ async def main() -> int:
             await page.click("#genericModalClose")
             await page.wait_for_timeout(300)
 
+            # ── Project export: read-only, generates a Playwright suite ──
+            await page.click(".sidebar-footer .row:has-text('Export project')")
+            await page.wait_for_timeout(1200)
+            export_body = await page.locator("#genericModalBody").text_content() or ""
+            record("export preview opens and lists files",
+                   "modules" in export_body.lower() and "files" in export_body.lower(),
+                   export_body[:150])
+            record("the generated page object is previewable",
+                   "class" in export_body and "BasePage" in export_body,
+                   export_body[:200])
+            await page.click("#genericModalClose")
+            await page.wait_for_timeout(300)
+
             # ── Coverage surface: scenarios, test cases, named gaps ───
             # The badge is the fastest signal that a suite is thin, so it has to
             # be populated by the time a module finishes loading.

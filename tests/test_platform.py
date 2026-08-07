@@ -4,6 +4,7 @@ These run against a temporary workspace so they never touch real project data.
 """
 
 import importlib
+import json
 import os
 import sys
 import tempfile
@@ -1000,3 +1001,127 @@ def test_openpyxl_is_importable_so_xlsx_paths_work():
         "Without it .xlsx defect sheets cannot be imported and VERIFY_DOWNLOAD "
         "cannot count rows in an .xlsx export."
     )
+
+
+# ── Project export: a separate, strictly read-only feature ─────────────
+EXPORT_MODULE = {
+    "flow": "Circular Machine",
+    "target_url": "https://erp.example.com/masters/circular",
+    "fields": [
+        {"selector": 'input[formcontrolname="machineName"]', "label": "Machine Name *",
+         "kind": "text", "required": True,
+         "selectors": ['input[formcontrolname="machineName"]', "#machineName"]},
+        {"selector": 'p-dropdown[formcontrolname="status"]', "label": "Status *",
+         "kind": "dropdown", "required": True},
+    ],
+    "actions": [
+        {"action": "CLICK", "selector": "#addBtn", "text": "Add New"},
+        {"action": "CLICK", "selector": 'button:has-text("Save")', "text": "Save"},
+    ],
+    "scenarios": [{
+        "scenario_name": "Create machine with all valid fields",
+        "expected_result": "The machine is created and appears in the table.",
+        "steps": [
+            {"action": "CLICK", "selector": "#addBtn"},
+            {"action": "TYPE", "selector": 'input[formcontrolname="machineName"]',
+             "value": "CM-01"},
+            {"action": "SELECT", "selector": 'p-dropdown[formcontrolname="status"]',
+             "value": "Active"},
+            {"action": "CLICK", "selector": 'button:has-text("Save")'},
+            {"action": "VERIFY_MESSAGE", "value": "added successfully"},
+            {"action": "VERIFY_ROW_CONTAINS", "selector": "table", "value": "CM-01"},
+        ],
+    }],
+}
+
+
+def test_export_produces_the_documented_folder_structure():
+    from app import export_project
+
+    files = export_project.build_project("Ambica", [EXPORT_MODULE])
+    for expected in ("pages/BasePage.js", "pages/CircularMachinePage.js",
+                     "tests/circular-machine.spec.js",
+                     "testdata/circular-machine.json", "testdata/credentials.json",
+                     "playwright.config.js", "package.json", "README.md",
+                     ".env.example", ".gitignore"):
+        assert expected in files, f"missing {expected} — got {sorted(files)}"
+
+
+def test_the_page_object_declares_locators_and_the_spec_never_touches_one():
+    """The rule from the reference project: locators live in the page object;
+    spec files only call its methods."""
+    from app import export_project
+
+    files = export_project.build_project("Ambica", [EXPORT_MODULE])
+    page = files["pages/CircularMachinePage.js"]
+    spec = files["tests/circular-machine.spec.js"]
+
+    assert "class CircularMachinePage extends BasePage" in page
+    assert "this.machineName = page.locator(" in page
+    # A control with more than one recorded selector becomes a.or(b).
+    assert ".or(page.locator(" in page
+    # The spec calls methods and never a raw selector.
+    assert "createMachineWithAllValidFields(" in spec
+    assert "page.locator(" not in spec
+    assert "formcontrolname" not in spec
+
+
+def test_generated_code_follows_the_house_rules():
+    from app import export_project
+
+    page = export_project.build_project("Ambica", [EXPORT_MODULE])[
+        "pages/CircularMachinePage.js"]
+
+    # A click followed by an assertion may be swallowed — the assertion is the
+    # real check. A plain click must NOT be, or a broken step passes silently.
+    assert "await this.btnSave.click({ timeout: 10_000 })" in page
+    assert "await this.btnAddNew.click();" in page
+
+    # Nothing is counted or matched before it is waited for.
+    row_check = page[page.index("filter({ hasText:") - 400:]
+    assert "waitFor({ state: 'visible' })" in row_check
+
+    # Typed values come from the test-data file, falling back to the recording.
+    assert 'fill(String(data.machineName ?? "CM-01"))' in page
+
+    # A step the engine handled internally is a visible TODO, never silent.
+    audit = dict(EXPORT_MODULE)
+    audit["scenarios"] = [{"scenario_name": "Audit history", "expected_result": "x",
+                           "steps": [{"action": "VERIFY_COLUMN_NOT_EMPTY",
+                                      "selector": "#auditTable", "value": "Date/Time"}]}]
+    generated = export_project.build_project("A", [audit])["pages/CircularMachinePage.js"]
+    assert "TODO (VERIFY_COLUMN_NOT_EMPTY)" in generated
+
+
+def test_the_spec_sets_a_timeout_and_reads_its_data_file():
+    from app import export_project
+
+    spec = export_project.build_project("Ambica", [EXPORT_MODULE])[
+        "tests/circular-machine.spec.js"]
+    assert "test.setTimeout(" in spec
+    assert "require('../testdata/circular-machine.json')" in spec
+    assert "require('../testdata/credentials.json')" in spec
+
+
+def test_the_readme_marks_which_data_changes_every_run():
+    """The reference project calls stale hand-copied data its biggest recurring
+    failure, so the export computes that column instead of leaving it to a human."""
+    from app import export_project
+
+    volatile = json.loads(json.dumps(EXPORT_MODULE))
+    volatile["scenarios"][0]["steps"][1]["value"] = "{{order_code}}"
+    readme = export_project.build_project("Ambica", [volatile])["README.md"]
+    assert "Changes every run?" in readme
+    assert "**Yes**" in readme
+
+    steady = export_project.build_project("Ambica", [EXPORT_MODULE])["README.md"]
+    assert "| No |" in steady
+
+
+def test_credentials_are_never_exported():
+    from app import export_project
+
+    files = export_project.build_project("Ambica", [EXPORT_MODULE])
+    assert json.loads(files["testdata/credentials.json"]) == {"username": "", "password": ""}
+    assert "QA_PASSWORD=\n" in files[".env.example"]
+    assert ".env" in files[".gitignore"]

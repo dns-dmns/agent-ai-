@@ -187,6 +187,7 @@ class Evidence:
     auto_filled: list[dict] = field(default_factory=list)   # fields the engine completed itself
     submission_blocked: dict = field(default_factory=dict)  # the app refused an invalid submit
     input_rejected: list[dict] = field(default_factory=list)  # widget refused the keystrokes
+    wording_mismatches: list[dict] = field(default_factory=list)  # step literal != real text
     rule_results: list[dict] = field(default_factory=list)  # {id, title, ok, detail}
 
     def add_message(self, text: str, selector: str = "") -> None:
@@ -238,6 +239,7 @@ class Evidence:
             "auto_filled": self.auto_filled,
             "submission_blocked": self.submission_blocked,
             "input_rejected": self.input_rejected,
+            "wording_mismatches": self.wording_mismatches,
         }
 
 
@@ -291,6 +293,25 @@ def evaluate(expected_result: str, evidence: Evidence, scenario_type: str = "",
             )
 
     quoted = extract_quoted_values(expected_result)
+
+    # 1b. The step demanded wording the application does not use.
+    #     The application responded — it just said something else. Failing here
+    #     blames a working app for a literal the generator guessed; passing would
+    #     claim the specific behaviour was confirmed when it was not. Neither is
+    #     true, so this is exactly what UNVERIFIED is for, and the real wording is
+    #     named so the step can be corrected.
+    mismatches = getattr(evidence, "wording_mismatches", None)
+    if mismatches:
+        first = mismatches[0]
+        actual = ", ".join(repr(a) for a in (first.get("actual") or [])[:2])
+        return Verdict(
+            UNVERIFIED,
+            f"The application responded, but not with the wording this step "
+            f"required: it expected {first.get('expected')!r} and the screen showed "
+            f"{actual or 'something else'}. The application may well be correct — "
+            f"update the step to the wording above, then re-run to confirm.",
+            "rules", 0.5, summary,
+        )
 
     # 2b. The application refused to submit at all.
     #     Many forms keep Save disabled until every mandatory field is valid. That

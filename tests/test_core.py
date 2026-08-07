@@ -778,3 +778,49 @@ def test_more_success_wordings_are_recognised():
     assert verdict.classify_message("Machine not accepted - invalid width",
                                     "div.zx-note-9") != "success"
     assert verdict.classify_message("Upload failed", "div.zx-note-9") == "error"
+
+
+# ── A guessed message literal must not fail a working application ──────
+def test_a_wording_mismatch_is_unverified_not_failed():
+    """The real case: the app said 'Invalid Password', the generated step
+    demanded 'Invalid credentials', and the scenario was reported FAIL — blaming
+    a working application for wording a model invented."""
+    from app import verdict
+
+    ev = verdict.Evidence(steps_total=5, steps_executed=5)
+    ev.add_message("Invalid Password", "div.p-toast-detail")
+    ev.wording_mismatches = [{
+        "expected": "Invalid credentials",
+        "actual": ["Invalid Password", "ERROR"],
+        "selector": "div.p-toast-detail", "step": 5,
+    }]
+    result = verdict.evaluate(
+        "Authentication fails, error message is displayed, and user remains on "
+        "login screen.", ev, "negative")
+
+    assert result.status == verdict.UNVERIFIED
+    assert "Invalid credentials" in result.reason      # what the step wanted
+    assert "Invalid Password" in result.reason         # what the app said
+    assert "update the step" in result.reason.lower()
+
+
+def test_a_real_missing_message_still_fails():
+    """The safety check: when nothing appeared at all there is no mismatch to
+    record, so a genuine miss is still a failure."""
+    from app import verdict
+
+    ev = verdict.Evidence(steps_total=5, steps_executed=5)
+    assert not ev.wording_mismatches
+    result = verdict.evaluate(
+        "Validation error triggers and submission is blocked.", ev, "negative")
+    assert result.status == verdict.FAIL
+
+
+def test_a_matching_message_still_passes_normally():
+    from app import verdict
+
+    ev = verdict.Evidence(steps_total=5, steps_executed=5)
+    ev.add_message("Invalid Password", "div.p-toast-detail")
+    result = verdict.evaluate(
+        "Authentication fails and an error message is displayed.", ev, "negative")
+    assert result.status == verdict.PASS

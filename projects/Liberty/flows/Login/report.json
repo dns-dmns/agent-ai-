@@ -1,0 +1,2509 @@
+{
+    "run_id": "574b642e8835",
+    "flow_name": "Login",
+    "project_name": "Liberty",
+    "execution_date": "2026-08-07 13:21:53",
+    "duration_seconds": 98,
+    "wall_clock_seconds": 98,
+    "test_types_run": "positive,negative,boundary,security,ui,smoke,regression",
+    "mode": "headed",
+    "workers": 1,
+    "verdict_mode": "rules",
+    "environment": "",
+    "triggered_by": "dashboard",
+    "total_test_cases": 11,
+    "passed_count": 3,
+    "failed_count": 8,
+    "unverified_count": 0,
+    "crash_count": 0,
+    "cancelled": false,
+    "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 401 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "network_errors": [],
+    "message_detection": [
+        "seed-selectors",
+        "dom-diff"
+    ],
+    "rules_enforced": [],
+    "rules_violated": 0,
+    "scenario_groups": [
+        {
+            "scenario": "Login - Successful Authentication with Valid Credentials",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Invalid Password for Existing User",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Invalid Password for Existing User"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Non-existent Username",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Non-existent Username"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Empty Form Submission",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Empty Form Submission"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Boundary Test Maximum Input Length",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Boundary Test Maximum Input Length"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Whitespace Only Input Validation",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Whitespace Only Input Validation"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - SQL Injection Attack Vector in Username Field",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - SQL Injection Attack Vector in Username Field"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Cross-Site Scripting (XSS) Script Payload Input",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Cross-Site Scripting (XSS) Script Payload Input"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - UI Element Presence and Initial Visual State",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Consecutive Failed Authentication Attempts Rate Limiting",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Login - Consecutive Failed Authentication Attempts Rate Limiting"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Login - Username Case Sensitivity Behaviour",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        }
+    ],
+    "total_scenarios": 11,
+    "checkpoints": [
+        {
+            "index": 1,
+            "name": "Login - Successful Authentication with Valid Credentials",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_MESSAGE, VERIFY_URL).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Login Successful",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "SUCCESS",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "SUCCESS\nLogin Successful",
+                            "selector": ".p-toast-message-success ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-success ng-animating",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Daily Planning",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Machine Production",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Packing Material Store",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Perfumary",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Issue Requests",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Perfume Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Formulation Master",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SFG Store",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SFG Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Packing",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Warehouse",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Stock-in",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "POS Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Vehicle Planner",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Dispatch",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "GDN",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Depot",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Arrival",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Depot Dispatch",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "HOD Approvals",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Approvals",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Coordinator Approval",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "ASM Approvals",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Partner Approvals",
+                            "selector": "span",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                            "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                            "ok": true,
+                            "detail": "URL contains 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'"
+                        },
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Login Successful",
+                            "ok": true,
+                            "detail": "message 'Login Successful' shown"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "steps_total": 6,
+                    "steps_executed": 6,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "1234",
+                "first_typed_value": "admin",
+                "created_record": "admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_1.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_1.webm",
+            "trace": "",
+            "duration": 10,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_URL on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 697,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 387,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 374,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 417,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "duration_ms": 60,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "duration_ms": 73,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "User is successfully logged in, success toast appears, and page redirects to /liberty/pages/home.",
+            "messages": [
+                {
+                    "text": "Login Successful",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "success"
+                },
+                {
+                    "text": "SUCCESS",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "success"
+                },
+                {
+                    "text": "SUCCESS\nLogin Successful",
+                    "selector": ".p-toast-message-success ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-success ng-animating",
+                    "kind": "success"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Daily Planning",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Machine Production",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Packing Material Store",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Perfumary",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Issue Requests",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Perfume Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Formulation Master",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SFG Store",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SFG Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Packing",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Warehouse",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Stock-in",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "POS Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Vehicle Planner",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Dispatch",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "GDN",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Depot",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Arrival",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Depot Dispatch",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "HOD Approvals",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Approvals",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Coordinator Approval",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "ASM Approvals",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Partner Approvals",
+                    "selector": "span",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "ok": true,
+                    "detail": "URL contains 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'"
+                },
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Login Successful",
+                    "ok": true,
+                    "detail": "message 'Login Successful' shown"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 2,
+            "name": "Login - Invalid Password for Existing User",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Invalid credentials'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Invalid Password",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nInvalid Password",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Invalid credentials",
+                            "ok": false,
+                            "detail": "messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Invalid credentials'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "WrongPassword99",
+                "first_typed_value": "admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_2.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_2.webm",
+            "trace": "",
+            "duration": 7,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#password' with value 'WrongPassword99'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 667,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 372,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 379,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 383,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Authentication fails, error message is displayed, and user remains on login screen.",
+            "messages": [
+                {
+                    "text": "Invalid Password",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nInvalid Password",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Invalid credentials",
+                    "ok": false,
+                    "detail": "messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Invalid credentials'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Invalid credentials'"
+        },
+        {
+            "index": 3,
+            "name": "Login - Non-existent Username",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: messages on screen were ['User not found with username: nonexistent_user', 'ERROR', 'ERROR\\nUser not found with username: nonexistent_user'], expected 'Invalid credentials'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "User not found with username: nonexistent_user",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nUser not found with username: nonexistent_user",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Invalid credentials",
+                            "ok": false,
+                            "detail": "messages on screen were ['User not found with username: nonexistent_user', 'ERROR', 'ERROR\\nUser not found with username: nonexistent_user'], expected 'Invalid credentials'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "1234",
+                "first_typed_value": "nonexistent_user"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_3.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_3.webm",
+            "trace": "",
+            "duration": 7,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value 'nonexistent_user'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 687,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 394,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 367,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 380,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Authentication fails with generic error message without giving away username existence.",
+            "messages": [
+                {
+                    "text": "User not found with username: nonexistent_user",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nUser not found with username: nonexistent_user",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Invalid credentials",
+                    "ok": false,
+                    "detail": "messages on screen were ['User not found with username: nonexistent_user', 'ERROR', 'ERROR\\nUser not found with username: nonexistent_user'], expected 'Invalid credentials'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 404 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "messages on screen were ['User not found with username: nonexistent_user', 'ERROR', 'ERROR\\nUser not found with username: nonexistent_user'], expected 'Invalid credentials'"
+        },
+        {
+            "index": 4,
+            "name": "Login - Empty Form Submission",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: no validation or toast message appeared on screen",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "span.ng-star-inserted",
+                            "value": "Username is required",
+                            "ok": false,
+                            "detail": "no validation or toast message appeared on screen"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {},
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_4.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_4.webm",
+            "trace": "",
+            "duration": 8,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "CLEAR on '#username'",
+                "CLEAR on '#password'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'span.ng-star-inserted'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 704,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLEAR",
+                    "selector": "#username",
+                    "duration_ms": 413,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLEAR",
+                    "selector": "#password",
+                    "duration_ms": 349,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 401,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Validation error triggers, submit action is blocked or fails gracefully.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "span.ng-star-inserted",
+                    "value": "Username is required",
+                    "ok": false,
+                    "detail": "no validation or toast message appeared on screen"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "no validation or toast message appeared on screen"
+        },
+        {
+            "index": 5,
+            "name": "Login - Boundary Test Maximum Input Length",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: messages on screen were ['User not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'ERROR', 'ERROR\\nUser not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], expected 'Invalid credentials'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "User not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nUser not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Invalid credentials",
+                            "ok": false,
+                            "detail": "messages on screen were ['User not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'ERROR', 'ERROR\\nUser not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], expected 'Invalid credentials'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "1234",
+                "first_typed_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_5.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_5.webm",
+            "trace": "",
+            "duration": 8,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 691,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 409,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 412,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 439,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System handles long string gracefully without buffer errors or unhandled visual overflow.",
+            "messages": [
+                {
+                    "text": "User not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nUser not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Invalid credentials",
+                    "ok": false,
+                    "detail": "messages on screen were ['User not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'ERROR', 'ERROR\\nUser not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], expected 'Invalid credentials'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 404 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "messages on screen were ['User not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'ERROR', 'ERROR\\nUser not found with username: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], expected 'Invalid credentials'"
+        },
+        {
+            "index": 6,
+            "name": "Login - Whitespace Only Input Validation",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "boundary",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: messages on screen were ['User not found with username:', 'ERROR', 'ERROR\\nUser not found with username:'], expected 'Username is required'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "User not found with username:",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nUser not found with username:",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "span.ng-star-inserted",
+                            "value": "Username is required",
+                            "ok": false,
+                            "detail": "messages on screen were ['User not found with username:', 'ERROR', 'ERROR\\nUser not found with username:'], expected 'Username is required'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {},
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_6.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_6.webm",
+            "trace": "",
+            "duration": 8,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value '   '",
+                "TYPE on '#password' with value '   '",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'span.ng-star-inserted'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 711,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 398,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 395,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 434,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Whitespace is trimmed and validation message prompts user for required input.",
+            "messages": [
+                {
+                    "text": "User not found with username:",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nUser not found with username:",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "span.ng-star-inserted",
+                    "value": "Username is required",
+                    "ok": false,
+                    "detail": "messages on screen were ['User not found with username:', 'ERROR', 'ERROR\\nUser not found with username:'], expected 'Username is required'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 404 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "messages on screen were ['User not found with username:', 'ERROR', 'ERROR\\nUser not found with username:'], expected 'Username is required'"
+        },
+        {
+            "index": 7,
+            "name": "Login - SQL Injection Attack Vector in Username Field",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: messages on screen were [\"User not found with username: ' OR '1'='1\", 'ERROR', \"ERROR\\nUser not found with username: ' OR '1'='1\"], expected 'Invalid credentials'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "User not found with username: ' OR '1'='1",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nUser not found with username: ' OR '1'='1",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Invalid credentials",
+                            "ok": false,
+                            "detail": "messages on screen were [\"User not found with username: ' OR '1'='1\", 'ERROR', \"ERROR\\nUser not found with username: ' OR '1'='1\"], expected 'Invalid credentials'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "' OR '1'='1",
+                "first_typed_value": "' OR '1'='1"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_7.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_7.webm",
+            "trace": "",
+            "duration": 8,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value '' OR '1'='1'",
+                "TYPE on '#password' with value '' OR '1'='1'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 693,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 388,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 420,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 387,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "SQL payload is safely parameterized, attempt is rejected, and no internal errors are exposed.",
+            "messages": [
+                {
+                    "text": "User not found with username: ' OR '1'='1",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nUser not found with username: ' OR '1'='1",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Invalid credentials",
+                    "ok": false,
+                    "detail": "messages on screen were [\"User not found with username: ' OR '1'='1\", 'ERROR', \"ERROR\\nUser not found with username: ' OR '1'='1\"], expected 'Invalid credentials'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 404 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "messages on screen were [\"User not found with username: ' OR '1'='1\", 'ERROR', \"ERROR\\nUser not found with username: ' OR '1'='1\"], expected 'Invalid credentials'"
+        },
+        {
+            "index": 8,
+            "name": "Login - Cross-Site Scripting (XSS) Script Payload Input",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 5 failed: messages on screen were [\"User not found with username: <script>alert('xss')</script>\", 'ERROR', \"ERROR\\nUser not found with username: <script>alert('xss')</script>\"], expected 'Invalid credentials'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "User not found with username: <script>alert('xss')</script>",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nUser not found with username: <script>alert('xss')</script>",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Invalid credentials",
+                            "ok": false,
+                            "detail": "messages on screen were [\"User not found with username: <script>alert('xss')</script>\", 'ERROR', \"ERROR\\nUser not found with username: <script>alert('xss')</script>\"], expected 'Invalid credentials'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 5,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "1234",
+                "first_typed_value": "<script>alert('xss')</script>"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_8.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_8.webm",
+            "trace": "",
+            "duration": 7,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value '<script>alert('xss')</script>'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 736,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 395,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 363,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 381,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Script tags are sanitized or escaped; script does not execute.",
+            "messages": [
+                {
+                    "text": "User not found with username: <script>alert('xss')</script>",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nUser not found with username: <script>alert('xss')</script>",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Invalid credentials",
+                    "ok": false,
+                    "detail": "messages on screen were [\"User not found with username: <script>alert('xss')</script>\", 'ERROR', \"ERROR\\nUser not found with username: <script>alert('xss')</script>\"], expected 'Invalid credentials'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 404 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 5,
+            "error": "messages on screen were [\"User not found with username: <script>alert('xss')</script>\", 'ERROR', \"ERROR\\nUser not found with username: <script>alert('xss')</script>\"], expected 'Invalid credentials'"
+        },
+        {
+            "index": 9,
+            "name": "Login - UI Element Presence and Initial Visual State",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "ui",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_VISIBLE).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "#username",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element '#username' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "#password",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element '#password' is visible"
+                        },
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "button:has-text(\"Login\")",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'button:has-text(\"Login\")' is visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "steps_total": 4,
+                    "steps_executed": 4,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {},
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_9.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_9.webm",
+            "trace": "",
+            "duration": 7,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "VERIFY_VISIBLE on '#username'",
+                "VERIFY_VISIBLE on '#password'",
+                "VERIFY_VISIBLE on 'button:has-text(\"Login\")'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 707,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#username",
+                    "duration_ms": 95,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#password",
+                    "duration_ms": 96,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 111,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Login form rendered correctly with username, password fields, and submit button.",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#username",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element '#username' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "#password",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element '#password' is visible"
+                },
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "button:has-text(\"Login\")",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'button:has-text(\"Login\")' is visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 10,
+            "name": "Login - Consecutive Failed Authentication Attempts Rate Limiting",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "security",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 9 failed: messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Too many attempts'",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Invalid Password",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "ERROR\nInvalid Password",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "div.p-toast-detail",
+                            "value": "Too many attempts",
+                            "ok": false,
+                            "detail": "messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Too many attempts'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 9,
+                    "steps_executed": 8,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "wrong3",
+                "first_typed_value": "admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_10.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_10.webm",
+            "trace": "",
+            "duration": 12,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#password' with value 'wrong1'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "TYPE on '#password' with value 'wrong2'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "TYPE on '#password' with value 'wrong3'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on 'div.p-toast-detail'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 702,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 394,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 386,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 418,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 378,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 6,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 422,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 7,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 441,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 8,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 419,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "System rate-limits requests or temporarily locks user account after multiple failed attempts.",
+            "messages": [
+                {
+                    "text": "Invalid Password",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "ERROR\nInvalid Password",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "div.p-toast-detail",
+                    "value": "Too many attempts",
+                    "ok": false,
+                    "detail": "messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Too many attempts'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 9,
+            "error": "messages on screen were ['Invalid Password', 'ERROR', 'ERROR\\nInvalid Password'], expected 'Too many attempts'"
+        },
+        {
+            "index": 11,
+            "name": "Login - Username Case Sensitivity Behaviour",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_URL).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Login Successful",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "SUCCESS",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "SUCCESS\nLogin Successful",
+                            "selector": ".p-toast-message-success ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-success ng-animating",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Machine Production",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Packing Material Store",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Perfumary",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Issue Requests",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Perfume Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Formulation Master",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SFG Store",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SFG Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Packing",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Warehouse",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Stock-in",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "POS Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Vehicle Planner",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Dispatch",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "GDN",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Depot",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Arrival",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Depot Dispatch",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "HOD Approvals",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Approvals",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Coordinator Approval",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "ASM Approvals",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Partner Approvals",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Karnataka Depot",
+                            "selector": "span.header-depot-badge.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                            "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                            "ok": true,
+                            "detail": "URL contains 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "steps_total": 5,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "last_typed_value": "1234",
+                "first_typed_value": "ADMIN",
+                "created_record": "ADMIN"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_11.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_11.webm",
+            "trace": "",
+            "duration": 9,
+            "steps_executed": [
+                "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
+                "TYPE on '#username' with value 'ADMIN'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_URL on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "NAVIGATE",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "duration_ms": 681,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 410,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 377,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 414,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "duration_ms": 98,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "Username normalization allows login regardless of letter casing.",
+            "messages": [
+                {
+                    "text": "Login Successful",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "success"
+                },
+                {
+                    "text": "SUCCESS",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "success"
+                },
+                {
+                    "text": "SUCCESS\nLogin Successful",
+                    "selector": ".p-toast-message-success ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-success ng-animating",
+                    "kind": "success"
+                },
+                {
+                    "text": "Machine Production",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Packing Material Store",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Perfumary",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Issue Requests",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Perfume Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Formulation Master",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SFG Store",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SFG Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Packing",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Warehouse",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Stock-in",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "POS Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Vehicle Planner",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Dispatch",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "GDN",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Depot",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Arrival",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Depot Dispatch",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "HOD Approvals",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Approvals",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Coordinator Approval",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "ASM Approvals",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Partner Approvals",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Karnataka Depot",
+                    "selector": "span.header-depot-badge.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "ok": true,
+                    "detail": "URL contains 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        }
+    ]
+}

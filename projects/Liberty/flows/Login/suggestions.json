@@ -1,0 +1,11 @@
+{
+    "broken_selectors": [
+        "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button should be replaced with button:has-text('Login') or data-testid"
+    ],
+    "missing_validations": [
+        "Password visibility toggle testing if eye icon button is present"
+    ],
+    "recommendations": [
+        "Add data-testid attributes to username and password inputs for robust E2E test execution."
+    ]
+}

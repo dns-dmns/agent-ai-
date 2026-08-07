@@ -431,6 +431,35 @@ def main() -> int:
                all(d["outcome"] == "not_run" for d in status["defects"]),
                str([d["outcome"] for d in status["defects"]]))
 
+        # ── Project export: read-only, and provably so ────────────────
+        import hashlib
+        def workspace_fingerprint():
+            entries = []
+            for item in sorted((WORKSPACE / "projects").rglob("*")):
+                if item.is_file():
+                    entries.append(f"{item.relative_to(WORKSPACE)}:{item.stat().st_size}")
+            return hashlib.sha256("|".join(entries).encode()).hexdigest()
+
+        before_fp = workspace_fingerprint()
+
+        preview = call(base, "/preview-export", project_name=PROJECT)
+        record("export preview lists the generated files",
+               preview["total_files"] >= 8, str(preview.get("total_files")))
+        paths = {f["path"] for f in preview["files"]}
+        record("export produces the documented folder structure",
+               "pages/BasePage.js" in paths and "playwright.config.js" in paths
+               and any(p.startswith("tests/") for p in paths)
+               and any(p.startswith("testdata/") for p in paths),
+               str(sorted(paths))[:200])
+
+        zip_bytes = call(base, "/download-project", project_name=PROJECT, raw=True)
+        record("the zip downloads and is a real archive",
+               zip_bytes[:2] == "PK", repr(zip_bytes[:16]))
+
+        record("exporting changed nothing on disk",
+               workspace_fingerprint() == before_fp,
+               "the export wrote to the workspace")
+
         failures = [c for c in checks if not c[1]]
         print("\n" + "=" * 92)
         print(f"{len(checks) - len(failures)}/{len(checks)} API integration checks passed")
