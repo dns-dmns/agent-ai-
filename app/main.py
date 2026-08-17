@@ -643,6 +643,20 @@ async def handle_exposed_event(event: dict) -> None:
             target["effect"] = event.get("effect") or {}
         return
 
+    # Required-ness is evaluated at event time, and the strongest signal on an
+    # Angular form (ng-invalid on an empty control) only holds while the field IS
+    # empty. So the same field arrived required=True on CLICK and required=False
+    # on the TYPE that filled it, and whichever a consumer read last won —
+    # generation was told a mandatory field was optional. Carry the True forward:
+    # a field does not stop being mandatory because it is now filled. Mirrors
+    # learned.remember_fields, which already ORs the same flag across runs.
+    selector = event.get("selector")
+    if selector and event.get("required") is not True:
+        for earlier in active_session["actions"]:
+            if earlier.get("selector") == selector and earlier.get("required") is True:
+                event["required"] = True
+                break
+
     active_session["actions"].append(event)
     step_num = len(active_session["actions"])
     temp_path = config.TEMP_DIR / f"rec_{int(active_session['start_time'])}_step_{step_num}.png"
@@ -1208,17 +1222,17 @@ async def generate_multi_agent_stream(flow_name: str,
             )
 
             agent_cases: list[list[dict]] = []
+            # Kept so the closing message can report the real cause instead of
+            # generic advice pointing at things the errors above already ruled out.
+            agent_errors: list[str] = []
             for agent_no, result in enumerate(results, start=1):
                 if isinstance(result, Exception):
+                    agent_errors.append(str(result))
                     yield sse({"event": "agent_error", "agent": agent_no,
                                "message": f"⚠️ Agent {agent_no} error: {result}"})
                     agent_cases.append([])
-                elif isinstance(result, list):
-                    agent_cases.append([c for c in result if isinstance(c, dict)])
-                elif isinstance(result, dict) and isinstance(result.get("test_cases"), list):
-                    agent_cases.append(result["test_cases"])
                 else:
-                    agent_cases.append([])
+                    agent_cases.append(ai_agents.normalise_generated_cases(result))
 
             for agent_no, cases in enumerate(agent_cases, start=1):
                 existing = {c.get("scenario_name", "").strip().lower() for c in all_cases}
@@ -1230,18 +1244,31 @@ async def generate_multi_agent_stream(flow_name: str,
                         existing.add(name)
                         added += 1
                 label = "functional" if agent_no == 1 else "edge case"
+                # A tick against "generated 0 test cases" reads as success and
+                # buries the error line directly above it.
+                mark = "✅" if cases else "❌"
                 yield sse({"event": "agent_done", "agent": agent_no, "count": len(cases),
-                           "unique_added": added,
-                           "message": f"✅ Agent {agent_no} generated {len(cases)} {label} "
+                           "unique_added": added, "ok": bool(cases),
+                           "message": f"{mark} Agent {agent_no} generated {len(cases)} {label} "
                                       f"test cases ({added} unique)."})
 
             yield sse({"event": "merge", "total": len(all_cases),
                        "message": f"📋 Merged suite: {len(all_cases)} total unique test cases."})
 
             if not all_cases:
-                yield sse({"event": "error",
-                           "message": "No test cases were produced. Check the API key, the "
-                                      "model name and the server log, then retry."})
+                if agent_errors:
+                    detail = " ".join(dict.fromkeys(agent_errors))
+                    message = f"No test cases were produced — every agent failed. {detail}"
+                else:
+                    # No exception and still nothing: the model answered with
+                    # something that held no test cases. "Check the API key"
+                    # here sent the reader at the one thing that provably
+                    # worked — the call had succeeded.
+                    message = (f"No test cases were produced. {config.GEMINI_MODEL} "
+                               f"replied, but the response held no usable test cases. "
+                               f"Retry once; if it repeats, the raw reply is in "
+                               f"logs/qa_platform.log.")
+                yield sse({"event": "error", "message": message})
                 return
 
             yield sse({"event": "agent_start", "agent": 3, "name": "QA Reviewer (The Auditor)",

@@ -1125,3 +1125,183 @@ def test_credentials_are_never_exported():
     assert json.loads(files["testdata/credentials.json"]) == {"username": "", "password": ""}
     assert "QA_PASSWORD=\n" in files[".env.example"]
     assert ".env" in files[".gitignore"]
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Mandatory-field capture — one implementation, and it actually runs
+# ══════════════════════════════════════════════════════════════════════
+# "It is not capturing the mandatory fields" survived four attempted fixes
+# because two independent things were wrong and fixing either alone changed
+# nothing visible:
+#   1. Two detectors. recorder.py demanded ng-invalid AND ng-pristine; the
+#      engine accepted a trailing asterisk. Same control, opposite answers.
+#   2. The engine's inventory only ran after a Save click had already failed on
+#      a disabled button, so a form that saves correctly never produced one.
+
+def test_there_is_only_one_required_field_detector():
+    root = Path(__file__).resolve().parent.parent / "app"
+    recorder_src = (root / "recorder.py").read_text(encoding="utf-8")
+    executor_src = (root / "executor.py").read_text(encoding="utf-8")
+
+    for name, src in (("recorder", recorder_src), ("executor", executor_src)):
+        assert "SHARED_PROBES_JS" in src, f"{name} does not use the shared probe"
+        assert "qaRequiredInfo" in src or "qaIsRequired" in src, name
+
+    # The recorder must delegate, not re-implement. Checked against the function
+    # body rather than the whole file, so the comment explaining the old bug is
+    # still allowed to name it.
+    body = recorder_src[recorder_src.index("function isRequired(el)"):]
+    body = body[:body.index("\n\n")]
+    assert "qaIsRequired(el)" in body, f"recorder.isRequired stopped delegating: {body}"
+    assert "ng-pristine" not in body, (
+        "recorder has re-grown its own required test; it will drift from the engine")
+
+    # An end-anchored asterisk cannot see "*Field" or a CSS-drawn marker. Both
+    # spellings, since the engine's JS used to sit in a non-raw literal.
+    for src, name in ((recorder_src, "recorder"), (executor_src, "executor")):
+        for spelling in (r"/\*\s*$/", r"/\\*\\s*$/"):
+            assert spelling not in src, f"{name} still uses an end-anchored asterisk test"
+
+
+def test_the_shared_probe_covers_the_signals_an_angular_form_actually_uses():
+    from app import dom_probes
+
+    js = dom_probes.SHARED_PROBES_JS
+    for signal in ("attr", "aria", "ng-reflect", "asterisk", "css-marker",
+                   "label-class", "wrapper-class", "ng-invalid-empty"):
+        assert f"'{signal}'" in js, f"missing the {signal} signal"
+    # ng-invalid means "bad value" once the field is filled, so it must be
+    # guarded by emptiness or every failed-validation field reads as mandatory.
+    guarded = [line for line in js.splitlines()
+               if "ng-invalid-empty'" in line and "return" in line]
+    assert guarded and all("empty &&" in line for line in guarded), guarded
+
+
+def test_the_probes_are_raw_strings():
+    """The engine's JS lived in a non-raw literal where every regex needed
+    doubled backslashes; one missed pair silently changed what a pattern
+    matched. Raw strings remove the whole failure mode."""
+    src = (Path(__file__).resolve().parent.parent / "app" / "dom_probes.py").read_text(
+        encoding="utf-8")
+    assert 'r"""' in src
+    # Single-escaped is what a raw string gives you; the doubled spelling is the
+    # non-raw form where one missed pair silently changed what a pattern matched.
+    assert r"/\bng-invalid\b/" in src
+    assert r"/\\bng-invalid\\b/" not in src, "not a raw string — escapes are doubled"
+
+
+def test_the_form_inventory_runs_on_a_flow_that_never_fails():
+    src = (Path(__file__).resolve().parent.parent / "app" / "executor.py").read_text(
+        encoding="utf-8")
+    assert "async def capture_form_inventory(" in src
+    assert 'if action in ("CLICK", "NAVIGATE", "SELECT")' in src, (
+        "the inventory must be captured on ordinary steps, not only on failure")
+
+
+def test_capturing_the_inventory_cannot_break_a_run_but_is_not_silent():
+    import asyncio
+
+    from app import executor
+
+    class ExplodingPage:
+        async def evaluate(self, *_a, **_kw):
+            raise RuntimeError("page closed")
+
+    ctx: dict = {}
+    assert asyncio.run(executor.capture_form_inventory(ExplodingPage(), ctx, "#x")) == []
+    assert ctx.get("observed_fields") is None
+
+
+def test_the_same_field_is_not_recorded_twice_per_scenario():
+    import asyncio
+
+    from app import executor
+
+    class Page:
+        async def evaluate(self, *_a, **_kw):
+            return [{"selector": "#a", "required": True, "label": "A"},
+                    {"selector": "#b", "required": False, "label": "B"}]
+
+    ctx: dict = {}
+    assert len(asyncio.run(executor.capture_form_inventory(Page(), ctx, ""))) == 2
+    assert asyncio.run(executor.capture_form_inventory(Page(), ctx, "")) == []
+    assert len(ctx["observed_fields"]) == 2
+
+
+def test_a_field_stays_required_after_it_is_filled():
+    """ng-invalid only holds while the control is empty, so the same field
+    arrived required=True on CLICK and required=False on the TYPE that filled
+    it — and whichever a consumer read last won."""
+    import asyncio
+
+    from app import main as main_mod
+
+    session = main_mod.active_session
+    saved = {k: session.get(k) for k in ("recording", "actions", "page", "start_time")}
+    session.update({"recording": True, "actions": [], "start_time": 0})
+
+    class Page:
+        async def screenshot(self, **_kw):
+            return b""
+
+    session["page"] = Page()
+    try:
+        for event in (
+            {"action": "CLICK", "selector": "#username", "required": True},
+            {"action": "TYPE", "selector": "#username", "required": False, "value": "D"},
+            {"action": "CLICK", "selector": "button.login", "required": False},
+        ):
+            asyncio.run(main_mod.handle_exposed_event(event))
+        assert [a["required"] for a in session["actions"]] == [True, True, False]
+    finally:
+        session.update(saved)
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Generation robustness — bad or unexpected model output is ordinary input
+# ══════════════════════════════════════════════════════════════════════
+
+def test_a_non_dict_scenario_does_not_crash_expansion():
+    """A model returned a list of plain strings and coverage.has_data_table
+    called .get() on one — AttributeError straight out of /analyze-flow."""
+    from app import coverage
+
+    assert coverage.has_data_table("just a string") is False
+    assert coverage.has_data_table(None) is False
+    mixed = ["a bare string", {"scenario_name": "Real one", "steps": ["CLICK #a"]}]
+    assert [c["scenario_name"] for c in coverage.expand_scenarios(mixed)] == ["Real one"]
+
+
+def test_a_lone_scenario_object_is_not_thrown_away():
+    """A model with one scenario to give returns it as a bare object. The
+    handler accepted only a list or {"test_cases": [...]}, so a valid test case
+    became "0 test cases generated" and the log blamed the model."""
+    from app.ai_agents import normalise_generated_cases as norm
+
+    one = {"scenario_name": "Login with valid credentials", "type": "positive",
+           "steps": [{"action": "CLICK", "selector": "#a"}],
+           "expected_result": "redirected to home"}
+    assert norm(one) == [one]
+    assert len(norm([one, one])) == 2
+    for key in ("test_cases", "testCases", "scenarios", "cases", "test_scenarios"):
+        assert norm({key: [one]}) == [one], key
+
+
+def test_normalising_never_adopts_something_that_is_not_a_scenario():
+    """A dict is not a test case just because it is a dict — adopting an error
+    payload would put a fabricated scenario into the suite."""
+    from app.ai_agents import normalise_generated_cases as norm
+
+    assert norm({"error": "quota exceeded"}) == []
+    assert norm({"scenario_name": "Has a name but nothing else"}) == []
+    assert norm(["a string", 7, None]) == []
+    assert norm(None) == []
+    assert norm("plain text") == []
+
+
+def test_a_failed_agent_is_not_ticked_and_the_error_survives():
+    source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
+        encoding="utf-8")
+    assert 'mark = "✅" if cases else "❌"' in source
+    assert "agent_errors" in source
+    assert "No test cases were produced. Check the API key" not in source

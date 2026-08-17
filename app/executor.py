@@ -34,6 +34,7 @@ from playwright.async_api import async_playwright
 
 from . import api_seed
 from . import config
+from .dom_probes import SHARED_PROBES_JS
 from . import contracts
 from . import coverage
 from . import heuristics
@@ -1614,6 +1615,7 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
 
 
 FORM_INVENTORY_JS = """(selector) => {
+__SHARED_PROBES__
     // Everything the form actually contains — not just what a recording touched.
     // This is how the platform learns about a required field nobody recorded.
     let target = null;
@@ -1688,13 +1690,14 @@ FORM_INVENTORY_JS = """(selector) => {
         if (!sel || seen.has(sel)) return;
         seen.add(sel);
         const label = labelFor(el);
+        const requiredSource = qaRequiredInfo(el, qaLabelElFor(el), label);
         const entry = {
             selector: sel,
             label: label,
             kind: el.tagName.toLowerCase() === 'select' ? 'select'
                   : (el.getAttribute('type') || 'text').toLowerCase(),
-            required: !!el.required || el.getAttribute('aria-required') === 'true' ||
-                      /\\*\\s*$/.test(label),
+            required: !!requiredSource,
+            required_source: requiredSource,
             value: (el.value == null ? '' : String(el.value)).trim(),
             disabled: !!el.disabled || el.hasAttribute('readonly'),
         };
@@ -1725,8 +1728,12 @@ FORM_INVENTORY_JS = """(selector) => {
             selector: sel,
             label: label,
             kind: el.tagName.toLowerCase().includes('inputnumber') ? 'number' : 'dropdown',
-            // ng-invalid on an untouched control is the framework saying "required".
-            required: /\\bng-invalid\\b/.test(cls) || /\\*\\s*$/.test(label),
+            // ng-invalid on an untouched wrapper is the framework saying
+            // "required"; the shared probe adds asterisk, CSS marker and classes.
+            required: !!(/\\bng-invalid\\b/.test(cls) ||
+                         qaRequiredInfo(inner || el, qaLabelElFor(el), label)),
+            required_source: /\\bng-invalid\\b/.test(cls) ? 'ng-invalid-empty'
+                : qaRequiredInfo(inner || el, qaLabelElFor(el), label),
             value: inner ? (inner.value || '').trim() : '',
             filled: /\\bp-inputwrapper-filled\\b/.test(cls),
             component: true,
@@ -1736,6 +1743,10 @@ FORM_INVENTORY_JS = """(selector) => {
     return out;
 }"""
 
+
+# Shared with the recorder so the two can never disagree about which
+# fields are mandatory — they did, and that cost four attempted fixes.
+FORM_INVENTORY_JS = FORM_INVENTORY_JS.replace("__SHARED_PROBES__", SHARED_PROBES_JS)
 
 READONLY_SCAN_JS = """() => {
     // Inside the open dialog if there is one, otherwise the page.
@@ -1765,6 +1776,7 @@ READONLY_SCAN_JS = """() => {
 
 
 EMPTY_REQUIRED_JS = """(selector) => {
+__EMPTY_REQUIRED_PROBES__
     // Find the form or dialog the control belongs to, then report which of its
     // mandatory fields are still empty. Covers plain inputs and the component
     // wrappers (PrimeNG / Material / Ant) whose own element holds the state.
@@ -1810,11 +1822,11 @@ EMPTY_REQUIRED_JS = """(selector) => {
                el.id || el.tagName.toLowerCase();
     };
 
-    const requiredLabel = (el) => {
-        const text = labelFor(el);
-        return /\\*\\s*$/.test(text) || el.required ||
-               el.getAttribute('aria-required') === 'true';
-    };
+    // This used to be a third private detector (end-anchored asterisk plus the
+    // two attributes), so "which mandatory fields are still empty" could
+    // contradict the inventory that had just listed them. One probe, everywhere.
+    const requiredLabel = (el) =>
+        !!qaRequiredInfo(el, qaLabelElFor(el), labelFor(el));
 
     const empty = [];
     // 1. Plain fields the browser knows about.
@@ -1830,11 +1842,23 @@ EMPTY_REQUIRED_JS = """(selector) => {
         const cls = String(el.className || '');
         if (!/\\bng-invalid\\b/.test(cls)) return;
         if (/\\bp-inputwrapper-filled\\b/.test(cls)) return;
+        // ng-invalid on a FILLED control means "bad value", not "still empty" —
+        // the filled-class check above only exists on PrimeNG wrappers, so plain
+        // inputs (e.g. a formcontrolname text field holding a rejected value)
+        // were reported as empty-mandatory when they were neither.
+        const inner = el.matches('input, textarea, select') ? el
+                    : el.querySelector('input, textarea, select');
+        if (inner && String(inner.value == null ? '' : inner.value).trim()) return;
         const name = labelFor(el);
         if (name && empty.indexOf(name) === -1) empty.push(name);
     });
     return [...new Set(empty)].slice(0, 8);
 }"""
+
+# Same shared detector as the inventory and the recorder — this probe used to
+# carry a third private copy, so "which mandatory fields are still empty" could
+# disagree with the inventory that had just listed them.
+EMPTY_REQUIRED_JS = EMPTY_REQUIRED_JS.replace("__EMPTY_REQUIRED_PROBES__", SHARED_PROBES_JS)
 
 
 # The overlay containers every major component library uses for modals.
@@ -1949,6 +1973,47 @@ def scenario_owns_field(scenario: dict, field: dict) -> bool:
         if words and all(w in expectation or w in name for w in words):
             return True
     return False
+
+
+async def capture_form_inventory(page, ctx: dict, selector: str = "") -> list[dict]:
+    """Record the fields on the visible form, whether or not anything went wrong.
+
+    The inventory used to run in exactly one place: after a Save click had
+    already failed *and* the button was found disabled. A form that saves
+    correctly therefore never produced one — which is why ``learned.json`` stayed
+    empty, why auto-complete had nothing to work from, and why fixing detection
+    alone never changed what anyone saw. Both halves had to move.
+
+    Pure observation: appends to ``ctx["observed_fields"]`` and touches no
+    verdict, evidence or step outcome. A failure is logged and swallowed, because
+    learning must never break a run — but it is *logged*, not silent.
+    """
+    try:
+        inventory = await page.evaluate(FORM_INVENTORY_JS, selector or "")
+    except Exception as err:      # noqa: BLE001 - observation must not fail a step
+        log.info("Form inventory unavailable for %r: %s", selector, err)
+        return []
+    if not isinstance(inventory, list) or not inventory:
+        return []
+
+    seen: set = ctx.setdefault("_field_seen", set())
+    fresh: list[dict] = []
+    for entry in inventory:
+        target = entry.get("selector")
+        if not target:
+            continue
+        # Keyed on required-ness too: a control is only provably ng-invalid while
+        # still empty, so the same field can legitimately report differently
+        # later. remember_fields ORs the flag, so an early True is never lost.
+        key = (target, bool(entry.get("required")))
+        if key in seen:
+            continue
+        seen.add(key)
+        fresh.append(entry)
+
+    if fresh:
+        ctx.setdefault("observed_fields", []).extend(fresh)
+    return fresh
 
 
 async def autocomplete_form(page, step: dict, scenario: dict, ctx: dict,
@@ -3142,6 +3207,22 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
                 "skipped": step_result.get("skipped", ""),
             })
             evidence.steps_executed = step_no
+
+            # A form is on screen most often right after a click or a navigation,
+            # so that is when its fields are worth reading — including on the
+            # positive flow, where nothing fails and the old trigger (a rejected
+            # click on a disabled Save) never fired at all.
+            if action in ("CLICK", "NAVIGATE", "SELECT") and not step_result.get("skipped"):
+                found = await capture_form_inventory(page, ctx, selector or "")
+                mandatory = [f for f in found if f.get("required")]
+                if mandatory and not ctx.get("_announced_required"):
+                    ctx["_announced_required"] = True
+                    await emit({"event": "log", "index": index, "message": (
+                        f"{prefix}📋 Form inventory: {len(found)} field(s), "
+                        f"{len(mandatory)} mandatory — " + ", ".join(
+                            f"{f.get('label') or f.get('selector')} "
+                            f"[{f.get('required_source')}]" for f in mandatory[:6])
+                        + ("…" if len(mandatory) > 6 else ""))})
 
             fresh = await scan_messages(page, evidence, known_message_selectors,
                                         cfg.project_name)

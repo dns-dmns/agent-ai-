@@ -14,10 +14,13 @@ Two upgrades over the original script:
   changes, which previously vanished from the recording entirely.
 """
 
+from .dom_probes import SHARED_PROBES_JS
+
 JS_RECORDER_SCRIPT = r"""
 (function() {
     if (window.hasPlaywrightRecorder) return;
     window.hasPlaywrightRecorder = true;
+__SHARED_PROBES__
 
     var UNSTABLE_ID = /^(pn_id_|p-|mat-|cdk-|ng-|ui-id|:r[0-9a-z]|react-|radix-|headlessui-|el-id-|__)/i;
     var RANDOMISH = /^[a-f0-9]{8,}$/i;
@@ -176,26 +179,12 @@ JS_RECORDER_SCRIPT = r"""
         } catch (e) {}
     }
 
-    // A field the application marks as mandatory. Knowing this is what stops the
-    // agents generating a "click Save" scenario that can never work, because the
-    // application keeps Save disabled until every required field is filled.
-    function isRequired(el) {
-        try {
-            if (el.required || el.getAttribute('aria-required') === 'true') return true;
-            var wrapper = el.closest('.field, .form-group, .p-field, .form-row, .mb-3') ||
-                          el.parentElement;
-            if (wrapper) {
-                var lab = wrapper.querySelector('label');
-                // A trailing asterisk is the near-universal convention for it.
-                if (lab && /\*\s*$/.test(lab.innerText || '')) return true;
-                if (wrapper.querySelector('.required, .p-error, [class*="required"]')) return true;
-            }
-            var host = el.closest('[formcontrolname]') || el;
-            if (host && /\bng-invalid\b/.test(host.className || '') &&
-                /\bng-pristine\b/.test(host.className || '')) return true;
-        } catch (e) {}
-        return false;
-    }
+    // Mandatory-field detection lives in app/dom_probes.py and is injected
+    // above, so the recorder and the execution engine cannot drift apart. They
+    // did: this file demanded ng-invalid AND ng-pristine while the engine
+    // accepted a trailing asterisk, so one screen was recorded mandatory and
+    // judged optional.
+    function isRequired(el) { return qaIsRequired(el); }
 
     function emit(action, el, extra) {
         var selectors = candidateSelectors(el);
@@ -458,3 +447,8 @@ JS_RECORDER_SCRIPT = r"""
     })();
 })();
 """
+
+
+# Injected rather than concatenated so the placeholder sits inside the IIFE,
+# where the helpers it defines are in scope for everything below it.
+JS_RECORDER_SCRIPT = JS_RECORDER_SCRIPT.replace("__SHARED_PROBES__", SHARED_PROBES_JS)

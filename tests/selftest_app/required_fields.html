@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Required-field detection fixture</title>
+<style>
+  label.req::after { content: "*"; color: #dc2626; }
+  .field { margin: 10px 0; } label { display: block; }
+</style></head>
+<body>
+<!-- How an Angular + PrimeNG form really marks mandatory fields. Only the first
+     carries the HTML `required` attribute — which is why a detector built on it
+     found nothing on a real ERP screen. -->
+<form>
+  <div class="field"><label for="nativeReq">Legacy Code</label>
+    <input id="nativeReq" required></div>
+  <div class="field"><label for="desc">Description <span class="text-danger">*</span></label>
+    <input id="desc" formcontrolname="description" class="ng-untouched ng-pristine ng-invalid"></div>
+  <div class="field"><label for="hsn">*HSN Code</label>
+    <input id="hsn" formcontrolname="hsnCode"></div>
+  <div class="field"><label for="uom" class="req">UOM</label>
+    <input id="uom" formcontrolname="uom"></div>
+  <div class="field required"><label for="rate">Rate</label>
+    <input id="rate" formcontrolname="rate"></div>
+  <div class="field"><label for="grp">Group</label>
+    <input id="grp" aria-required="true"></div>
+
+  <!-- Genuinely optional. A false positive here is worse than a miss: the engine
+       would fill a field the scenario deliberately owns. -->
+  <div class="field"><label for="remarks">Remarks</label>
+    <input id="remarks" formcontrolname="remarks"></div>
+  <div class="field"><label for="email">Email</label>
+    <!-- ng-invalid but NOT empty: that means "bad value", not "required". -->
+    <input id="email" formcontrolname="email" class="ng-invalid ng-touched" value="nope"></div>
+  <div class="field"><label for="notes">Notes (optional)</label>
+    <textarea id="notes" formcontrolname="notes"></textarea></div>
+</form>
+</body></html>

@@ -81,6 +81,41 @@ def _clean_json_response(raw_text: str) -> str:
     return raw_text
 
 
+#: Wrappers a model plausibly puts a scenario list under. The prompt asks for one
+#: shape; models answer in several, and which one you get varies by model.
+_CASE_LIST_KEYS = ("test_cases", "testCases", "scenarios", "cases", "test_scenarios")
+
+
+def normalise_generated_cases(result: object) -> list[dict]:
+    """Whatever the model returned → a list of scenario dicts.
+
+    The handler used to accept exactly two shapes — a bare list, or a dict with
+    a ``test_cases`` list — and everything else became ``[]``. A model that had
+    only one scenario to give returned it as a bare object, so a valid, fully
+    formed test case was silently discarded and the round reported "0 test
+    cases": the model had done its job and the parser threw the answer away.
+
+    Discarding good output is worse than the failure it resembles, because the
+    log then blames the model. Recognise the shapes instead; anything genuinely
+    unrecognisable still returns ``[]`` rather than a guess.
+    """
+    if isinstance(result, list):
+        return [item for item in result if isinstance(item, dict)]
+
+    if isinstance(result, dict):
+        for key in _CASE_LIST_KEYS:
+            value = result.get(key)
+            if isinstance(value, list):
+                return [item for item in value if isinstance(item, dict)]
+        # A lone scenario, unwrapped. Identified by what a scenario must carry
+        # rather than by "it is a dict", so a stray error payload is not adopted
+        # as a test case.
+        if result.get("scenario_name") or result.get("name"):
+            if result.get("steps") or result.get("expected_result"):
+                return [result]
+    return []
+
+
 def _build_agent1_prompt(flow_name: str, target_url: str, actions_json: str, fields_context: str, missing_scenarios: list = None, test_types: str = "", rules_block: str = "") -> str:
     """Build Agent 1 (Functional Generator) prompt."""
     missing_instruction = ""
