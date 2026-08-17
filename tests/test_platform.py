@@ -1305,3 +1305,122 @@ def test_a_failed_agent_is_not_ticked_and_the_error_survives():
     assert 'mark = "✅" if cases else "❌"' in source
     assert "agent_errors" in source
     assert "No test cases were produced. Check the API key" not in source
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Credentials never reach a tracked file
+# ══════════════════════════════════════════════════════════════════════
+# actions.json carried the real login as plain literals; generation copied them
+# into spec.json and test_cases.json, and the run echoed them into report.json —
+# a working credential in git four times over. The recorder now substitutes
+# {{username}}/{{password}} at save time and the literal lives only in the
+# project's gitignored login_data.json.
+
+def test_a_recording_is_scrubbed_and_the_literal_stored():
+    from app import credentials as cs
+
+    actions = [
+        {"action": "CLICK", "selector": "#username", "label": "Username", "value": ""},
+        {"action": "TYPE", "selector": "#username", "label": "Username",
+         "value": "admin", "text": "admin"},
+        {"action": "TYPE", "selector": "#password", "label": "Password",
+         "value": "s3cret", "text": ""},
+        {"action": "TYPE", "selector": "#remarks", "label": "Remarks",
+         "value": "hello"},
+    ]
+    found = cs.scrub_recorded_actions(actions, "ScrubUnit")
+
+    assert found == {"username": "admin", "password": "s3cret"}
+    assert actions[1]["value"] == "{{username}}"
+    assert actions[1]["text"] == "", "the typed echo held the literal too"
+    assert actions[2]["value"] == "{{password}}"
+    assert actions[3]["value"] == "hello", "an ordinary field must not be touched"
+    assert cs.load_stored("ScrubUnit") == {"username": "admin", "password": "s3cret"}
+    # The store must be gitignored by the repo's existing pattern.
+    assert cs.store_file("ScrubUnit").name == "login_data.json"
+
+
+def test_effect_messages_showing_the_username_are_masked():
+    """After login the app displays the username on screen and the recorder
+    captures it — the literal left through the effect block."""
+    from app import credentials as cs
+
+    actions = [
+        {"action": "TYPE", "selector": "#username", "value": "admin"},
+        {"action": "CLICK", "selector": "button", "value": "",
+         "effect": {"messages": [{"text": "Login Successful", "selector": "x"},
+                                 {"text": "admin", "selector": "span.username"}]}},
+    ]
+    cs.scrub_recorded_actions(actions, "ScrubEffect")
+    texts = [m["text"] for m in actions[1]["effect"]["messages"]]
+    assert "{{username}}" in texts
+    assert "Login Successful" in texts, "ordinary wording must not be touched"
+
+
+def test_generated_suites_keep_their_deliberately_wrong_values():
+    """Negative cases type wrong1 / ' OR '1'='1 / spaces on purpose. Substituting
+    every credential-field value would turn "invalid password is rejected" into
+    typing the VALID password — only the exact literal becomes a placeholder."""
+    from app import credentials as cs
+
+    cases = [{"steps": [
+        {"action": "TYPE", "selector": "#username", "value": "admin"},
+        {"action": "TYPE", "selector": "#password", "value": "1234"},
+        {"action": "TYPE", "selector": "#password", "value": "wrong1"},
+        {"action": "TYPE", "selector": "#password", "value": "' OR '1'='1"},
+    ]}]
+    replaced = cs.scrub_known_literals(cases, {"username": "admin", "password": "1234"})
+
+    values = [s["value"] for s in cases[0]["steps"]]
+    assert replaced == 2
+    assert values == ["{{username}}", "{{password}}", "wrong1", "' OR '1'='1"]
+
+
+def test_data_rows_are_scrubbed_by_exact_literal_only():
+    from app import credentials as cs
+
+    rows = {"data": [{"username": "admin", "password": "1234", "expected": "ok"},
+                     {"username": "admin", "password": "nope", "expected": "error"}]}
+    cs.scrub_data_rows(rows, {"username": "admin", "password": "1234"})
+    assert rows["data"][0]["password"] == "{{password}}"
+    assert rows["data"][1]["password"] == "nope"
+    assert rows["data"][1]["username"] == "{{username}}"
+
+
+def test_the_pool_resolves_placeholders_and_rows_do_not_self_reference():
+    """A scrubbed row says username: "{{username}}" — adopted verbatim it would
+    resolve to itself and be typed literally."""
+    from app import heuristics
+
+    pool = {"username": "admin", "password": "1234"}
+    row = {"username": "{{username}}", "password": "wrongX"}
+    for key, value in row.items():
+        if str(value) == "{{" + key + "}}" and key in pool:
+            continue
+        pool[key] = value
+    assert heuristics.resolve_dynamic_variables("{{username}}", pool) == "admin"
+    assert heuristics.resolve_dynamic_variables("{{password}}", pool) == "wrongX"
+
+
+def test_resolve_credentials_reads_the_per_project_store(monkeypatch):
+    from app import credentials as cs
+    from app import executor
+
+    cs.store("StoreUnit", username="u1", password="p1")
+    monkeypatch.setattr(executor, "load_project_config", lambda _p: {})
+    creds = executor.resolve_credentials("StoreUnit")
+    assert creds == {"username": "u1", "password": "p1"}
+
+
+def test_a_password_is_never_echoed_into_run_bookkeeping():
+    """last/first_typed_value are written into report.json, which is committed —
+    that echo is how a scrubbed recording still leaked the password."""
+    source = (Path(__file__).resolve().parent.parent / "app" / "executor.py").read_text(
+        encoding="utf-8")
+    assert 'credential_store.classify_field(step) != "password"' in source
+
+
+def test_new_recordings_stamp_a_schema_version():
+    source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
+        encoding="utf-8")
+    assert '"schema_version": 1' in source

@@ -1,24 +1,24 @@
 {
     "valid": [
         {
-            "username": "admin",
-            "password": "1234"
+            "username": "{{username}}",
+            "password": "{{password}}"
         }
     ],
     "invalid": [
         {
-            "username": "admin",
+            "username": "{{username}}",
             "password": "wrongpassword"
         },
         {
             "username": "unknown_user",
-            "password": "1234"
+            "password": "{{password}}"
         }
     ],
     "boundary": [
         {
             "username": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "password": "1234"
+            "password": "{{password}}"
         },
         {
             "username": "   ",

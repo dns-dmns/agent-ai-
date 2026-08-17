@@ -10,12 +10,12 @@
             {
                 "action": "TYPE",
                 "selector": "#username",
-                "value": "admin"
+                "value": "{{username}}"
             },
             {
                 "action": "TYPE",
                 "selector": "#password",
-                "value": "1234"
+                "value": "{{password}}"
             },
             {
                 "action": "CLICK",
@@ -45,7 +45,7 @@
             {
                 "action": "TYPE",
                 "selector": "#username",
-                "value": "admin"
+                "value": "{{username}}"
             },
             {
                 "action": "TYPE",
@@ -80,7 +80,7 @@
             {
                 "action": "TYPE",
                 "selector": "#password",
-                "value": "1234"
+                "value": "{{password}}"
             },
             {
                 "action": "CLICK",
@@ -138,7 +138,7 @@
             {
                 "action": "TYPE",
                 "selector": "#password",
-                "value": "1234"
+                "value": "{{password}}"
             },
             {
                 "action": "CLICK",
@@ -228,7 +228,7 @@
             {
                 "action": "TYPE",
                 "selector": "#password",
-                "value": "1234"
+                "value": "{{password}}"
             },
             {
                 "action": "CLICK",
@@ -279,7 +279,7 @@
             {
                 "action": "TYPE",
                 "selector": "#username",
-                "value": "admin"
+                "value": "{{username}}"
             },
             {
                 "action": "TYPE",
@@ -332,7 +332,7 @@
             {
                 "action": "TYPE",
                 "selector": "#password",
-                "value": "1234"
+                "value": "{{password}}"
             },
             {
                 "action": "CLICK",

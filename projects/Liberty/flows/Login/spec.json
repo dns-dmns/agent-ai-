@@ -12,11 +12,11 @@
         "Failed authentication must prevent page navigation and present user feedback without revealing specific account existence."
     ],
     "assumptions": [
-        "Default test user 'admin' with password '1234' exists in the lower environment.",
+        "Default test user '{{username}}' with password '{{password}}' exists in the lower environment.",
         "Application uses REST API endpoints behind PrimeNG/Angular UI for authentication state management."
     ],
     "risks": [
-        "Weak default credentials ('admin' / '1234') pose a severe security vulnerability if leaked to production environments.",
+        "Weak default credentials ('{{username}}' / '{{password}}') pose a severe security vulnerability if leaked to production environments.",
         "Insecure credential storage or transmission without proper HTTPS enforcement.",
         "Potential session fixation or privilege escalation if tokens are improperly managed."
     ],
@@ -57,12 +57,12 @@
                 {
                     "action": "TYPE",
                     "selector": "#username",
-                    "value": "admin"
+                    "value": "{{username}}"
                 },
                 {
                     "action": "TYPE",
                     "selector": "#password",
-                    "value": "1234"
+                    "value": "{{password}}"
                 },
                 {
                     "action": "CLICK",
@@ -92,7 +92,7 @@
                 {
                     "action": "TYPE",
                     "selector": "#username",
-                    "value": "admin"
+                    "value": "{{username}}"
                 },
                 {
                     "action": "TYPE",
@@ -127,7 +127,7 @@
                 {
                     "action": "TYPE",
                     "selector": "#password",
-                    "value": "1234"
+                    "value": "{{password}}"
                 },
                 {
                     "action": "CLICK",
@@ -185,7 +185,7 @@
                 {
                     "action": "TYPE",
                     "selector": "#password",
-                    "value": "1234"
+                    "value": "{{password}}"
                 },
                 {
                     "action": "CLICK",
@@ -275,7 +275,7 @@
                 {
                     "action": "TYPE",
                     "selector": "#password",
-                    "value": "1234"
+                    "value": "{{password}}"
                 },
                 {
                     "action": "CLICK",
@@ -326,7 +326,7 @@
                 {
                     "action": "TYPE",
                     "selector": "#username",
-                    "value": "admin"
+                    "value": "{{username}}"
                 },
                 {
                     "action": "TYPE",
@@ -379,7 +379,7 @@
                 {
                     "action": "TYPE",
                     "selector": "#password",
-                    "value": "1234"
+                    "value": "{{password}}"
                 },
                 {
                     "action": "CLICK",
@@ -397,24 +397,24 @@
     "test_data": {
         "valid": [
             {
-                "username": "admin",
-                "password": "1234"
+                "username": "{{username}}",
+                "password": "{{password}}"
             }
         ],
         "invalid": [
             {
-                "username": "admin",
+                "username": "{{username}}",
                 "password": "wrongpassword"
             },
             {
                 "username": "unknown_user",
-                "password": "1234"
+                "password": "{{password}}"
             }
         ],
         "boundary": [
             {
                 "username": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "password": "1234"
+                "password": "{{password}}"
             },
             {
                 "username": "   ",
@@ -478,9 +478,9 @@
         ]
     },
     "scripts": {
-        "playwright_python": "from playwright.sync_api import Page, expect\n\ndef test_login_successful(page: Page):\n    page.goto('https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login')\n    page.fill('#username', 'admin')\n    page.fill('#password', '1234')\n    page.click('button:has-text(\"Login\")')\n    expect(page).to_have_url('https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home')\n    expect(page.locator('div.p-toast-detail')).to_contain_text('Login Successful')",
-        "cypress_js": "describe('Login Flow', () => {\n  it('should log in successfully with valid credentials', () => {\n    cy.visit('https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login');\n    cy.get('#username').type('admin');\n    cy.get('#password').type('1234');\n    cy.contains('button', 'Login').click();\n    cy.url().should('include', '/liberty/pages/home');\n    cy.get('div.p-toast-detail').should('contain', 'Login Successful');\n  });\n});",
-        "selenium_java": "import org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.testng.Assert;\n\npublic class LoginTest {\n    public static void main(String[] args) {\n        WebDriver driver = new ChromeDriver();\n        driver.get(\"https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login\");\n        driver.findElement(By.id(\"username\")).sendKeys(\"admin\");\n        driver.findElement(By.id(\"password\")).sendKeys(\"1234\");\n        driver.findElement(By.xpath(\"//button[contains(text(),'Login')]\")).click();\n        Assert.assertTrue(driver.getCurrentUrl().contains(\"/liberty/pages/home\"));\n        driver.quit();\n    }\n}"
+        "playwright_python": "from playwright.sync_api import Page, expect\n\ndef test_login_successful(page: Page):\n    page.goto('https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login')\n    page.fill('#username', '{{username}}')\n    page.fill('#password', '{{password}}')\n    page.click('button:has-text(\"Login\")')\n    expect(page).to_have_url('https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home')\n    expect(page.locator('div.p-toast-detail')).to_contain_text('Login Successful')",
+        "cypress_js": "describe('Login Flow', () => {\n  it('should log in successfully with valid credentials', () => {\n    cy.visit('https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login');\n    cy.get('#username').type('{{username}}');\n    cy.get('#password').type('{{password}}');\n    cy.contains('button', 'Login').click();\n    cy.url().should('include', '/liberty/pages/home');\n    cy.get('div.p-toast-detail').should('contain', 'Login Successful');\n  });\n});",
+        "selenium_java": "import org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.testng.Assert;\n\npublic class LoginTest {\n    public static void main(String[] args) {\n        WebDriver driver = new ChromeDriver();\n        driver.get(\"https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login\");\n        driver.findElement(By.id(\"username\")).sendKeys(\"{{username}}\");\n        driver.findElement(By.id(\"password\")).sendKeys(\"{{password}}\");\n        driver.findElement(By.xpath(\"//button[contains(text(),'Login')]\")).click();\n        Assert.assertTrue(driver.getCurrentUrl().contains(\"/liberty/pages/home\"));\n        driver.quit();\n    }\n}"
     },
-    "documentation_markdown": "# Login Flow Documentation\n\n## Target URL\n`https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login`\n\n## Recorded Steps Summary\n1. **Click** Username field (`#username`).\n2. **Type** username `admin`.\n3. **Click** Password field (`#password`).\n4. **Type** password `1234`.\n5. **Click** `Login` button.\n6. **Verify** redirection to `/liberty/pages/home` and successful login toast feedback."
+    "documentation_markdown": "# Login Flow Documentation\n\n## Target URL\n`https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login`\n\n## Recorded Steps Summary\n1. **Click** Username field (`#username`).\n2. **Type** username `{{username}}`.\n3. **Click** Password field (`#password`).\n4. **Type** password `{{password}}`.\n5. **Click** `Login` button.\n6. **Verify** redirection to `/liberty/pages/home` and successful login toast feedback."
 }

@@ -42,6 +42,7 @@ from . import api_seed
 from . import config
 from . import contracts
 from . import coverage
+from . import credentials as credential_store
 from . import db
 from . import defects
 from . import executor
@@ -761,7 +762,17 @@ async def stop_recording_api(force: bool = False):
                     project_name, flow_name, "screenshots", target_img.name
                 )
 
+        # The recorded username/password become {{placeholders}} and the
+        # literals go to the project's gitignored login_data.json — actions.json
+        # is committed, and generation copies its values into spec.json and
+        # test_cases.json, so a literal here ends up in git three times over.
+        scrubbed = credential_store.scrub_recorded_actions(actions, project_name)
+
         write_json(flow_path / "flow.json", {
+            # Versioned so a future change to this layout can be migrated
+            # instead of guessed at. projects/ is the data model; a schema
+            # nobody stamped is a schema nobody can evolve.
+            "schema_version": 1,
             "flow_name": flow_name,
             "target_url": url,
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -770,7 +781,8 @@ async def stop_recording_api(force: bool = False):
         })
         write_json(flow_path / "actions.json", actions)
         db.audit("stop_recording", f"{project_name}/{flow_name}",
-                 details={"steps": len(actions)})
+                 details={"steps": len(actions),
+                          "credentials_scrubbed": sorted(scrubbed)})
 
         return {"status": "success",
                 "message": f"Recording saved ({len(actions)} steps) to "

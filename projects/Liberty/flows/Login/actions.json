@@ -1,130 +1,130 @@
 [
-    {
-        "action": "CLICK",
-        "selector": "#username",
-        "selectors": [
-            "#username",
-            "input[formcontrolname=\"login\"]",
-            "input[placeholder=\"Enter Username\"]",
-            "input[placeholder=\"Username\"]",
-            "input#username"
-        ],
-        "tag": "input",
-        "text": "",
-        "label": "Username",
-        "required": true,
-        "value": "",
-        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_1.png"
-    },
-    {
-        "action": "TYPE",
-        "selector": "#username",
-        "selectors": [
-            "#username",
-            "input[formcontrolname=\"login\"]",
-            "input[placeholder=\"Enter Username\"]",
-            "input[placeholder=\"Username\"]",
-            "input#username"
-        ],
-        "tag": "input",
-        "text": "",
-        "label": "Username",
-        "required": false,
-        "value": "admin",
-        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_2.png"
-    },
-    {
-        "action": "CLICK",
-        "selector": "#password",
-        "selectors": [
-            "#password",
-            "input[formcontrolname=\"password\"]",
-            "input[placeholder=\"Enter Password\"]",
-            "input[placeholder=\"Password\"]",
-            "input#password"
-        ],
-        "tag": "input",
-        "text": "",
-        "label": "Password",
-        "required": true,
-        "value": "",
-        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_3.png"
-    },
-    {
-        "action": "TYPE",
-        "selector": "#password",
-        "selectors": [
-            "#password",
-            "input[formcontrolname=\"password\"]",
-            "input[placeholder=\"Enter Password\"]",
-            "input[placeholder=\"Password\"]",
-            "input#password"
-        ],
-        "tag": "input",
-        "text": "",
-        "label": "Password",
-        "required": false,
-        "value": "1234",
-        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_4.png"
-    },
-    {
-        "action": "CLICK",
-        "selector": "button:has-text(\"Login\")",
-        "selectors": [
-            "button:has-text(\"Login\")",
-            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
-        ],
-        "tag": "button",
-        "text": "Login",
-        "label": "",
-        "required": false,
-        "value": "",
-        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_5.png",
-        "effect": {
-            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
-            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
-            "messages": [
-                {
-                    "text": "Please wait...",
-                    "selector": "span.ng-star-inserted"
-                },
-                {
-                    "text": "Login",
-                    "selector": "span.ng-star-inserted"
-                },
-                {
-                    "text": "SUCCESS\nLogin Successful",
-                    "selector": "p-toastitem.ng-tns-c2572556178-3.ng-trigger.ng-trigger-toastAnimation"
-                },
-                {
-                    "text": "SUCCESS",
-                    "selector": "div.ng-tns-c2572556178-3.p-toast-summary"
-                },
-                {
-                    "text": "Login Successful",
-                    "selector": "div.ng-tns-c2572556178-3.p-toast-detail"
-                },
-                {
-                    "text": "admin",
-                    "selector": "span.username"
-                }
-            ],
-            "appeared": [],
-            "disappeared": [
-                "username",
-                "password"
-            ]
+  {
+    "action": "CLICK",
+    "selector": "#username",
+    "selectors": [
+      "#username",
+      "input[formcontrolname=\"login\"]",
+      "input[placeholder=\"Enter Username\"]",
+      "input[placeholder=\"Username\"]",
+      "input#username"
+    ],
+    "tag": "input",
+    "text": "",
+    "label": "Username",
+    "required": true,
+    "value": "",
+    "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_1.png"
+  },
+  {
+    "action": "TYPE",
+    "selector": "#username",
+    "selectors": [
+      "#username",
+      "input[formcontrolname=\"login\"]",
+      "input[placeholder=\"Enter Username\"]",
+      "input[placeholder=\"Username\"]",
+      "input#username"
+    ],
+    "tag": "input",
+    "text": "",
+    "label": "Username",
+    "required": false,
+    "value": "{{username}}",
+    "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_2.png"
+  },
+  {
+    "action": "CLICK",
+    "selector": "#password",
+    "selectors": [
+      "#password",
+      "input[formcontrolname=\"password\"]",
+      "input[placeholder=\"Enter Password\"]",
+      "input[placeholder=\"Password\"]",
+      "input#password"
+    ],
+    "tag": "input",
+    "text": "",
+    "label": "Password",
+    "required": true,
+    "value": "",
+    "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_3.png"
+  },
+  {
+    "action": "TYPE",
+    "selector": "#password",
+    "selectors": [
+      "#password",
+      "input[formcontrolname=\"password\"]",
+      "input[placeholder=\"Enter Password\"]",
+      "input[placeholder=\"Password\"]",
+      "input#password"
+    ],
+    "tag": "input",
+    "text": "",
+    "label": "Password",
+    "required": false,
+    "value": "{{password}}",
+    "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_4.png"
+  },
+  {
+    "action": "CLICK",
+    "selector": "button:has-text(\"Login\")",
+    "selectors": [
+      "button:has-text(\"Login\")",
+      "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+    ],
+    "tag": "button",
+    "text": "Login",
+    "label": "",
+    "required": false,
+    "value": "",
+    "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_5.png",
+    "effect": {
+      "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+      "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+      "messages": [
+        {
+          "text": "Please wait...",
+          "selector": "span.ng-star-inserted"
+        },
+        {
+          "text": "Login",
+          "selector": "span.ng-star-inserted"
+        },
+        {
+          "text": "SUCCESS\nLogin Successful",
+          "selector": "p-toastitem.ng-tns-c2572556178-3.ng-trigger.ng-trigger-toastAnimation"
+        },
+        {
+          "text": "SUCCESS",
+          "selector": "div.ng-tns-c2572556178-3.p-toast-summary"
+        },
+        {
+          "text": "Login Successful",
+          "selector": "div.ng-tns-c2572556178-3.p-toast-detail"
+        },
+        {
+          "text": "{{username}}",
+          "selector": "span.username"
         }
-    },
-    {
-        "action": "NAVIGATE",
-        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
-        "selectors": [
-            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
-        ],
-        "tag": "window",
-        "text": "Liberty",
-        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
-        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_6.png"
+      ],
+      "appeared": [],
+      "disappeared": [
+        "username",
+        "password"
+      ]
     }
+  },
+  {
+    "action": "NAVIGATE",
+    "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+    "selectors": [
+      "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
+    ],
+    "tag": "window",
+    "text": "Liberty",
+    "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+    "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_6.png"
+  }
 ]

@@ -372,9 +372,9 @@
             },
             "rule_results": [],
             "captured": {
-                "last_typed_value": "1234",
-                "first_typed_value": "admin",
-                "created_record": "admin"
+                "last_typed_value": "{{password}}",
+                "first_typed_value": "{{username}}",
+                "created_record": "{{username}}"
             },
             "notes": [],
             "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_1.png",
@@ -383,8 +383,8 @@
             "duration": 10,
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
-                "TYPE on '#username' with value 'admin'",
-                "TYPE on '#password' with value '1234'",
+                "TYPE on '#username' with value '{{username}}'",
+                "TYPE on '#password' with value '{{password}}'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "VERIFY_URL on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'",
                 "VERIFY_MESSAGE on 'div.p-toast-detail'"
@@ -691,7 +691,7 @@
             "rule_results": [],
             "captured": {
                 "last_typed_value": "WrongPassword99",
-                "first_typed_value": "admin"
+                "first_typed_value": "{{username}}"
             },
             "notes": [],
             "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_2.png",
@@ -700,7 +700,7 @@
             "duration": 7,
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
-                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#username' with value '{{username}}'",
                 "TYPE on '#password' with value 'WrongPassword99'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "VERIFY_MESSAGE on 'div.p-toast-detail'"
@@ -860,7 +860,7 @@
             },
             "rule_results": [],
             "captured": {
-                "last_typed_value": "1234",
+                "last_typed_value": "{{password}}",
                 "first_typed_value": "nonexistent_user"
             },
             "notes": [],
@@ -871,7 +871,7 @@
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
                 "TYPE on '#username' with value 'nonexistent_user'",
-                "TYPE on '#password' with value '1234'",
+                "TYPE on '#password' with value '{{password}}'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "VERIFY_MESSAGE on 'div.p-toast-detail'"
             ],
@@ -1144,7 +1144,7 @@
             },
             "rule_results": [],
             "captured": {
-                "last_typed_value": "1234",
+                "last_typed_value": "{{password}}",
                 "first_typed_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
             },
             "notes": [],
@@ -1155,7 +1155,7 @@
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
                 "TYPE on '#username' with value 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
-                "TYPE on '#password' with value '1234'",
+                "TYPE on '#password' with value '{{password}}'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "VERIFY_MESSAGE on 'div.p-toast-detail'"
             ],
@@ -1651,7 +1651,7 @@
             },
             "rule_results": [],
             "captured": {
-                "last_typed_value": "1234",
+                "last_typed_value": "{{password}}",
                 "first_typed_value": "<script>alert('xss')</script>"
             },
             "notes": [],
@@ -1662,7 +1662,7 @@
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
                 "TYPE on '#username' with value '<script>alert('xss')</script>'",
-                "TYPE on '#password' with value '1234'",
+                "TYPE on '#password' with value '{{password}}'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "VERIFY_MESSAGE on 'div.p-toast-detail'"
             ],
@@ -1962,7 +1962,7 @@
             "rule_results": [],
             "captured": {
                 "last_typed_value": "wrong3",
-                "first_typed_value": "admin"
+                "first_typed_value": "{{username}}"
             },
             "notes": [],
             "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_10.png",
@@ -1971,7 +1971,7 @@
             "duration": 12,
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
-                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#username' with value '{{username}}'",
                 "TYPE on '#password' with value 'wrong1'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "TYPE on '#password' with value 'wrong2'",
@@ -2284,7 +2284,7 @@
             },
             "rule_results": [],
             "captured": {
-                "last_typed_value": "1234",
+                "last_typed_value": "{{password}}",
                 "first_typed_value": "ADMIN",
                 "created_record": "ADMIN"
             },
@@ -2296,7 +2296,7 @@
             "steps_executed": [
                 "NAVIGATE on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login'",
                 "TYPE on '#username' with value 'ADMIN'",
-                "TYPE on '#password' with value '1234'",
+                "TYPE on '#password' with value '{{password}}'",
                 "CLICK on 'button:has-text(\"Login\")'",
                 "VERIFY_URL on 'https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home'"
             ],

@@ -34,6 +34,7 @@ from playwright.async_api import async_playwright
 
 from . import api_seed
 from . import config
+from . import credentials as credential_store
 from .dom_probes import SHARED_PROBES_JS
 from . import contracts
 from . import coverage
@@ -1198,7 +1199,11 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
 
     # ── Interactions ──────────────────────────────────────────────────
     if action == "TYPE":
-        if value.strip():
+        # Never into a password field: these bookkeeping values are echoed into
+        # report.json, which is committed — that echo is how a scrubbed
+        # recording still leaked the password into git. A password is also
+        # never the created record's identity, so nothing is lost.
+        if value.strip() and credential_store.classify_field(step) != "password":
             ctx["runtime_pool"]["last_typed_value"] = value.strip()
             # The first value typed into a form is almost always the record's
             # name/code — the identity any later assertion should verify.
@@ -2799,6 +2804,11 @@ async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
 
     evidence = verdict_engine.Evidence()
     pool: dict = {"run_token": unique_token()}
+    # A dependency flow's recording is scrubbed the same way the target's is,
+    # so its {{username}}/{{password}} placeholders need the pool too.
+    pool.update({key: value
+                 for key, value in (shared.get("credentials") or {}).items()
+                 if key in ("username", "password") and value})
 
     async def emit_log(message: str) -> None:
         await emit({"event": "log", "message": message})
@@ -3014,9 +3024,24 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
     network_errors: list[str] = []
     steps_executed: list[str] = []
     step_durations: list[dict] = []
-    runtime_pool: dict = dict(shared.get("seed_pool") or {})
+    # Credentials first, so a recorded step scrubbed to {{username}} /
+    # {{password}} resolves back to the real login. First rather than last:
+    # a data-table row supplying its own username (an invalid-login case)
+    # must override the project credential, not the other way round.
+    runtime_pool: dict = {
+        key: value
+        for key, value in (shared.get("credentials") or {}).items()
+        if key in ("username", "password") and value
+    }
+    runtime_pool.update(shared.get("seed_pool") or {})
     runtime_pool.update(shared.get("seeded_vars") or {})
-    runtime_pool.update(scenario.get("_data_row") or {})
+    # A scrubbed data row says `username: "{{username}}"`. Adopting that would
+    # make the placeholder resolve to itself and get typed literally, so a
+    # self-referential value defers to the credential already in the pool.
+    for key, value in (scenario.get("_data_row") or {}).items():
+        if str(value) == "{{" + str(key) + "}}" and key in runtime_pool:
+            continue
+        runtime_pool[key] = value
     dialog_policy = {"mode": infer_dialog_policy(scenario)}
     downloads_dir = flow_path / "downloads"
     shots_dir = flow_path / "screenshots"
@@ -3519,6 +3544,15 @@ def resolve_credentials(project_name: str, role: str = "") -> dict:
     creds = dict(project_cfg.get("credentials") or {})
     if creds.get("username"):
         return creds
+    # The gitignored per-project store — where the recorder now puts the
+    # literals it scrubbed out of actions.json. Checked after the project
+    # config so an explicit setting still wins.
+    from . import credentials as credential_store
+
+    stored = credential_store.load_stored(project_name)
+    if stored.get("username"):
+        stored.update({k: v for k, v in creds.items() if v})
+        return stored
     if config.GLOBAL_LOGIN_DATA_FILE.exists():
         try:
             with open(config.GLOBAL_LOGIN_DATA_FILE, "r", encoding="utf-8") as fh:
