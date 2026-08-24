@@ -7,10 +7,13 @@ never using it changes nothing about how the platform runs.
 
 The output follows the structure a real Playwright suite uses::
 
+    tests/       one spec per module; specs never touch raw locators
     pages/       one class per module, locators in the constructor, methods are
                  the actions a user would take
-    tests/       one spec per module; specs never touch raw locators
-    testdata/    JSON the specs read, split into static and per-run values
+    fixtures/    the custom test (baseTest) every spec imports; owns credential
+                 injection so specs stay declarative
+    test-data/   JSON the specs read, split into static and per-run values
+    utils/       credential resolution and unique-value helpers
     playwright.config.js  package.json  README.md  .env.example
 
 Everything is derived deterministically from what the platform already holds —
@@ -263,6 +266,77 @@ def step_to_js(step: dict, index: dict[str, str], *,
 # ──────────────────────────────────────────────────────────────────────
 # File builders
 # ──────────────────────────────────────────────────────────────────────
+def fixtures_base_test_js() -> str:
+    """``fixtures/baseTest.js`` — the custom test every spec imports.
+
+    The fixture owns cross-cutting setup so specs stay declarative: it resolves
+    credentials once (environment first, then ``test-data/credentials.json``)
+    and injects them, which is the standard Playwright fixture pattern rather
+    than every spec repeating the plumbing.
+    """
+    return "\n".join([
+        "// Custom test fixture — import { test, expect } from here, never from",
+        "// @playwright/test directly, so cross-cutting setup lives in one place.",
+        "const base = require('@playwright/test');",
+        "const { resolveCredentials } = require('../utils/credentials');",
+        "",
+        "exports.test = base.test.extend({",
+        f"{INDENT}// Injected into any spec that declares it: test('x', async ({{ page, credentials }}) => …",
+        f"{INDENT}credentials: async ({{}}, use) => {{",
+        f"{INDENT*2}await use(resolveCredentials());",
+        f"{INDENT}}},",
+        "});",
+        "",
+        "exports.expect = base.expect;",
+        "",
+    ])
+
+
+def utils_credentials_js() -> str:
+    """``utils/credentials.js`` — one place that decides where the login comes from."""
+    return "\n".join([
+        "// The exported test-data/credentials.json is deliberately blank — secrets",
+        "// never ship inside the zip. Fill it in, or set TEST_USERNAME /",
+        "// TEST_PASSWORD in the environment; the environment always wins.",
+        "const stored = require('../test-data/credentials.json');",
+        "",
+        "function resolveCredentials() {",
+        f"{INDENT}const credentials = {{",
+        f"{INDENT*2}username: process.env.TEST_USERNAME || stored.username || '',",
+        f"{INDENT*2}password: process.env.TEST_PASSWORD || stored.password || '',",
+        f"{INDENT}}};",
+        f"{INDENT}if (!credentials.username) {{",
+        f"{INDENT*2}throw new Error('No credentials: fill test-data/credentials.json "
+        "or set TEST_USERNAME / TEST_PASSWORD.');",
+        f"{INDENT}}}",
+        f"{INDENT}return credentials;",
+        "}",
+        "",
+        "module.exports = { resolveCredentials };",
+        "",
+    ])
+
+
+def utils_unique_js() -> str:
+    """``utils/unique.js`` — unique values for runs against a real server.
+
+    Replaying fixed test data against a live application collides with the
+    records the previous run created — the single most common reason an
+    exported suite goes red a week later. Prefixing with this helper is the
+    exported equivalent of the platform's own run-token uniqueness.
+    """
+    return "\n".join([
+        "// unique('CUST') -> 'CUST-l2x3k9a4' — collision-safe data for repeat runs",
+        "// against a real server, where yesterday's records are still there.",
+        "function unique(prefix = 'QA') {",
+        f"{INDENT}return `${{prefix}}-${{Date.now().toString(36)}}`;",
+        "}",
+        "",
+        "module.exports = { unique };",
+        "",
+    ])
+
+
 def base_page_js(login_steps: list[dict], base_url: str) -> str:
     """``BasePage`` — login and the navigation every other page object extends."""
     lines = [
@@ -281,16 +355,12 @@ def base_page_js(login_steps: list[dict], base_url: str) -> str:
         f"{INDENT}}}",
         "",
         f"{INDENT}async login(credentials) {{",
-        f"{INDENT*2}// The exported credentials.json is deliberately blank — secrets",
-        f"{INDENT*2}// never ship in the zip. Fill it in, or set TEST_USERNAME /",
-        f"{INDENT*2}// TEST_PASSWORD in the environment (which always wins).",
-        f"{INDENT*2}credentials = {{",
-        f"{INDENT*3}username: process.env.TEST_USERNAME || (credentials || {{}}).username || '',",
-        f"{INDENT*3}password: process.env.TEST_PASSWORD || (credentials || {{}}).password || '',",
-        f"{INDENT*2}}};",
-        f"{INDENT*2}if (!credentials.username) {{",
-        f"{INDENT*3}throw new Error('No credentials: fill testdata/credentials.json "
-        f"or set TEST_USERNAME / TEST_PASSWORD.');",
+        f"{INDENT*2}// Credential resolution (env vars vs test-data/credentials.json)",
+        f"{INDENT*2}// lives in utils/credentials.js and reaches specs through the",
+        f"{INDENT*2}// fixture — this guard only catches a page object used without it.",
+        f"{INDENT*2}if (!credentials || !credentials.username) {{",
+        f"{INDENT*3}throw new Error('No credentials — import {{ test }} from "
+        f"fixtures/baseTest and declare the credentials fixture.');",
         f"{INDENT*2}}}",
         f"{INDENT*2}await this.gotoLogin();",
     ]
@@ -424,10 +494,10 @@ def spec_js(flow_name: str, scenarios: list[dict], data_file: str) -> str:
 
     lines = [
         f"// {flow_name} — generated from the recorded flow and its scenarios.",
-        "const { test, expect } = require('@playwright/test');",
+        "// test/expect come from the fixture, never from @playwright/test directly.",
+        "const { test, expect } = require('../fixtures/baseTest');",
         f"const {{ {cls} }} = require('../pages/{cls}');",
-        "const credentials = require('../testdata/credentials.json');",
-        f"const data = require('../testdata/{data_file}');",
+        f"const data = require('../test-data/{data_file}');",
         "",
         f"test.describe({js_string(flow_name)}, () => {{",
         f"{INDENT}// A real multi-screen flow against a real server legitimately",
@@ -436,7 +506,7 @@ def spec_js(flow_name: str, scenarios: list[dict], data_file: str) -> str:
         "",
         f"{INDENT}let {variable};",
         "",
-        f"{INDENT}test.beforeEach(async ({{ page }}) => {{",
+        f"{INDENT}test.beforeEach(async ({{ page, credentials }}) => {{",
         f"{INDENT*2}{variable} = new {cls}(page);",
         f"{INDENT*2}await {variable}.loginAndPrepare(credentials);",
         f"{INDENT}}});",
@@ -563,11 +633,21 @@ def readme_md(project_name: str, modules: list[dict], data_notes: list[dict],
         "## Structure",
         "",
         "```",
-        "pages/        one class per module; locators live here",
-        "tests/        one spec per module; specs call page-object methods only",
-        "testdata/     JSON the specs read",
-        "playwright.config.js",
+        "tests/                  test execution files (spec files)",
+        "pages/                  Page Object Model classes; locators live here",
+        "fixtures/               custom test setup and injections (baseTest)",
+        "test-data/              static payloads, user data and credentials",
+        "utils/                  helper functions shared by fixtures and specs",
+        "playwright-report/      generated HTML report (created by a run)",
+        "playwright.config.js    runner configuration, timeouts, environments",
+        "package.json            dependencies and the run scripts",
         "```",
+        "",
+        "Specs import `test`/`expect` from `fixtures/baseTest` — never from",
+        "`@playwright/test` directly — so cross-cutting setup stays in one place.",
+        "Playwright runs TypeScript natively; this export uses plain JavaScript",
+        "for zero-config portability. Renaming to `.ts` works as-is if your team",
+        "standardises on TypeScript.",
         "",
         "## Quick start — three commands",
         "",
@@ -577,7 +657,7 @@ def readme_md(project_name: str, modules: list[dict], data_notes: list[dict],
         "npm run setup        # installs dependencies AND the Chromium browser",
         "```",
         "",
-        "Put the login in `testdata/credentials.json` (it ships blank on purpose —",
+        "Put the login in `test-data/credentials.json` (it ships blank on purpose —",
         "secrets are never exported), or set `TEST_USERNAME` / `TEST_PASSWORD`",
         "in the environment. Then:",
         "",
@@ -775,7 +855,7 @@ def build_project(project_name: str, modules: list[dict],
         files[f"tests/{spec_name}"] = spec_js(flow, scenarios, data_name)
 
         data, notes = test_data_for(flow, scenarios, fields)
-        files[f"testdata/{data_name}"] = json.dumps(data, indent=2) + "\n"
+        files[f"test-data/{data_name}"] = json.dumps(data, indent=2) + "\n"
         for note in notes:
             note["module"] = flow
             data_notes.append(note)
@@ -783,8 +863,11 @@ def build_project(project_name: str, modules: list[dict],
         manifest.append({"flow": flow, "page": page_name, "spec": spec_name,
                          "scenarios": len(scenarios), "smoke_only": smoke_only})
 
-    files["testdata/credentials.json"] = json.dumps(
+    files["test-data/credentials.json"] = json.dumps(
         {"username": "", "password": ""}, indent=2) + "\n"
+    files["fixtures/baseTest.js"] = fixtures_base_test_js()
+    files["utils/credentials.js"] = utils_credentials_js()
+    files["utils/unique.js"] = utils_unique_js()
     files["playwright.config.js"] = playwright_config_js(resolved_base)
     files["package.json"] = package_json(project_name, manifest)
     files[".env.example"] = env_example(resolved_base)

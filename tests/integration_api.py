@@ -448,8 +448,10 @@ def main() -> int:
         paths = {f["path"] for f in preview["files"]}
         record("export produces the documented folder structure",
                "pages/BasePage.js" in paths and "playwright.config.js" in paths
+               and "fixtures/baseTest.js" in paths
+               and "utils/credentials.js" in paths
                and any(p.startswith("tests/") for p in paths)
-               and any(p.startswith("testdata/") for p in paths),
+               and any(p.startswith("test-data/") for p in paths),
                str(sorted(paths))[:200])
 
         zip_bytes = call(base, "/download-project", project_name=PROJECT, raw=True)

@@ -1041,7 +1041,9 @@ def test_export_produces_the_documented_folder_structure():
     files = export_project.build_project("Ambica", [EXPORT_MODULE])
     for expected in ("pages/BasePage.js", "pages/CircularMachinePage.js",
                      "tests/circular-machine.spec.js",
-                     "testdata/circular-machine.json", "testdata/credentials.json",
+                     "fixtures/baseTest.js",
+                     "test-data/circular-machine.json", "test-data/credentials.json",
+                     "utils/credentials.js", "utils/unique.js",
                      "playwright.config.js", "package.json", "README.md",
                      ".env.example", ".gitignore"):
         assert expected in files, f"missing {expected} — got {sorted(files)}"
@@ -1099,8 +1101,11 @@ def test_the_spec_sets_a_timeout_and_reads_its_data_file():
     spec = export_project.build_project("Ambica", [EXPORT_MODULE])[
         "tests/circular-machine.spec.js"]
     assert "test.setTimeout(" in spec
-    assert "require('../testdata/circular-machine.json')" in spec
-    assert "require('../testdata/credentials.json')" in spec
+    assert "require('../test-data/circular-machine.json')" in spec
+    # Credentials come through the fixture, not a direct require — one place
+    # (utils/credentials.js) decides env-var vs file.
+    assert "require('../fixtures/baseTest')" in spec
+    assert "async ({ page, credentials })" in spec
 
 
 def test_the_readme_marks_which_data_changes_every_run():
@@ -1122,7 +1127,7 @@ def test_credentials_are_never_exported():
     from app import export_project
 
     files = export_project.build_project("Ambica", [EXPORT_MODULE])
-    assert json.loads(files["testdata/credentials.json"]) == {"username": "", "password": ""}
+    assert json.loads(files["test-data/credentials.json"]) == {"username": "", "password": ""}
     assert "QA_PASSWORD=\n" in files[".env.example"]
     assert ".env" in files[".gitignore"]
 
@@ -1495,14 +1500,27 @@ def test_base_page_survives_an_ambiguous_recorded_selector():
     assert "\n        await page.locator" not in js
 
 
-def test_base_page_prefers_env_credentials_over_the_blank_file():
-    from app.export_project import base_page_js
+def test_env_credentials_win_and_a_blank_file_fails_loudly():
+    """Resolution lives in ONE place — utils/credentials.js, injected by the
+    fixture. Env vars beat the deliberately blank credentials.json, and running
+    with neither fails with instructions instead of typing nothing."""
+    from app.export_project import (base_page_js, fixtures_base_test_js,
+                                    utils_credentials_js)
 
+    utils = utils_credentials_js()
+    assert "process.env.TEST_USERNAME" in utils
+    assert "process.env.TEST_PASSWORD" in utils
+    assert "throw new Error('No credentials" in utils
+
+    fixture = fixtures_base_test_js()
+    assert "require('../utils/credentials')" in fixture
+    assert "credentials:" in fixture, "the fixture must inject credentials"
+
+    # BasePage keeps only a guard for page objects used without the fixture.
     js = base_page_js([{"action": "TYPE", "selector": "#u", "label": "user"}], "https://x")
-    assert "process.env.TEST_USERNAME" in js
-    assert "process.env.TEST_PASSWORD" in js
-    assert "throw new Error('No credentials" in js, (
-        "a blank credentials.json must fail with instructions, not type nothing")
+    assert "throw new Error('No credentials" in js
+    assert "process.env.TEST_USERNAME" not in js, (
+        "resolution must not be duplicated in BasePage — it will drift")
 
 
 def test_package_json_offers_one_command_setup_and_per_module_runs():
