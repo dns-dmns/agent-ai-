@@ -47,6 +47,7 @@ from . import db
 from . import defects
 from . import executor
 from . import export_project
+from . import framework_runner
 from . import learned
 from . import llm
 from . import recorder
@@ -1645,6 +1646,87 @@ def build_run_config(**kwargs) -> executor.RunConfig:
     if cfg.step_shots not in ("off", "fail", "all"):
         cfg.step_shots = "fail"
     return cfg
+
+
+@app.get("/run-framework-stream")
+async def run_framework_stream(project_name: str = config.DEFAULT_PROJECT,
+                               flow_name: str = ""):
+    """Run the suite through stock @playwright/test — the second engine.
+
+    Generates exactly the files the export produces, into the platform's
+    scratch directory (never the user's project), and executes them with the
+    standard runner. Assertion results only: no UNVERIFIED, no message
+    scanning, no rules — every event and the saved report say so.
+    """
+    require_name(project_name=project_name)
+    validate_safe_path(project_name, flow_name or "x")
+    modules = _export_modules(project_name, "")
+    if not modules:
+        raise HTTPException(status_code=400,
+                            detail="No recorded flows to run in this project.")
+    files = export_project.build_project(project_name, modules)
+
+    spec_file = ""
+    if flow_name:
+        spec_file = f"tests/{export_project.kebab(flow_name, 'module')}.spec.js"
+        if spec_file not in files:
+            raise HTTPException(
+                status_code=400,
+                detail=f"'{flow_name}' has no runnable spec — it needs a "
+                       f"recording (smoke) or a generated suite first.")
+
+    credentials = executor.resolve_credentials(project_name)
+    state = executor.register_run(project_name, flow_name or "(all flows)")
+
+    async def sse_generator():
+        queue: asyncio.Queue = asyncio.Queue()
+
+        async def emit_line(message: str) -> None:
+            await queue.put(message)
+
+        async def worker() -> dict | None:
+            try:
+                return await framework_runner.run_framework(
+                    project_name, flow_name, files, spec_file,
+                    credentials, emit_line, state)
+            finally:
+                await queue.put(None)                # end-of-stream marker
+
+        yield sse({"event": "start", "run_id": state.run_id,
+                   "message": "🎭 Playwright-framework engine: standard "
+                              "@playwright/test run — assertion results, "
+                              "not verdicts."})
+        if not credentials.get("username"):
+            yield sse({"event": "log", "message":
+                       "⚠️ No credentials configured for this project — the "
+                       "framework will refuse at login. Add them in project "
+                       "settings (or login_data.json)."})
+
+        task = asyncio.create_task(worker())
+        while True:
+            line = await queue.get()
+            if line is None:
+                break
+            yield sse({"event": "log", "run_id": state.run_id, "message": line})
+        report = await task
+
+        state.status = "cancelled" if state.cancelled else "finished"
+        if report is None:
+            yield sse({"event": "error",
+                       "message": "Run ended without results — the lines above "
+                                  "carry the actual cause."})
+            return
+        yield sse({"event": "framework_complete", "run_id": state.run_id,
+                   "report": report,
+                   "message": (f"🏁 {report['passed_count']} passed, "
+                               f"{report['failed_count']} failed, "
+                               f"{report['skipped_count']} skipped "
+                               f"in {report['duration_seconds']}s "
+                               f"(assertions only — no UNVERIFIED).")})
+
+    db.audit("run_framework", f"{project_name}/{flow_name or '*'}",
+             details={"run_id": state.run_id})
+    return StreamingResponse(sse_generator(), media_type="text/event-stream")
 
 
 @app.get("/run-matrix-stream")

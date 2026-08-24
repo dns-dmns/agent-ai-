@@ -1543,3 +1543,92 @@ def test_the_downloaded_zip_has_a_single_root_folder():
     source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
         encoding="utf-8")
     assert 'bundle.writestr(f"{safe_stem}/{path}", content)' in source
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Framework runner — the second engine in Run & Verify
+# ══════════════════════════════════════════════════════════════════════
+# Runs the same files the export produces through stock @playwright/test.
+# Assertion results only: the report must say so, live apart from the verdict
+# engine's report.json, and never let an unknown outcome count as a pass.
+
+def _pw_json(status="expected", error=""):
+    """Minimal @playwright/test JSON-reporter shape, nested like the real one."""
+    result = {"status": status, "duration": 1200}
+    if error:
+        result["error"] = {"message": error}
+    return {"suites": [{"title": "login.spec.js", "suites": [{
+        "title": "login",
+        "specs": [{"title": "Login lands on the recorded home page (smoke)",
+                   "file": "login.spec.js",
+                   "tests": [{"status": status, "results": [result]}]}],
+    }]}]}
+
+
+def test_framework_results_map_to_the_platform_vocabulary():
+    from app import framework_runner as fr
+
+    rows = fr.parse_results(_pw_json("expected"))
+    assert rows[0]["status"] == "PASS" and rows[0]["duration_ms"] == 1200
+
+    rows = fr.parse_results(_pw_json("unexpected", "Error: boom\n  at x.js:1"))
+    assert rows[0]["status"] == "FAIL"
+    assert rows[0]["error"] == "Error: boom", "first line only; the stack stays in the raw file"
+
+    assert fr.parse_results(_pw_json("skipped"))[0]["status"] == "SKIPPED"
+    flaky = fr.parse_results(_pw_json("flaky"))[0]
+    assert flaky["status"] == "PASS" and flaky["outcome"] == "flaky", (
+        "flaky passed on retry — reported as PASS with the flakiness preserved")
+
+
+def test_an_unknown_playwright_outcome_never_counts_as_a_pass():
+    from app import framework_runner as fr
+
+    rows = fr.parse_results(_pw_json("someFutureStatus"))
+    assert rows[0]["status"] == "FAIL", (
+        "a status this code has never seen must fail loudly, not pass silently")
+
+
+def test_the_framework_report_is_labelled_and_kept_apart():
+    from app import config as cfg
+    from app import framework_runner as fr
+
+    rows = fr.parse_results(_pw_json("expected"))
+    report = fr.build_report("FrameworkUnit", "login", rows, 12, "run123")
+    assert report["engine"] == "playwright"
+    assert "UNVERIFIED" in report["engine_note"], "the limitation must be stated"
+    assert report["passed_count"] == 1 and report["failed_count"] == 0
+
+    path = fr.persist_report(report)
+    assert path.name == "report.playwright.json", (
+        "must never overwrite the verdict engine's report.json")
+    assert path == cfg.flow_dir("FrameworkUnit", "login") / "report.playwright.json"
+
+
+def test_the_runner_workspace_is_scratch_not_the_user_project():
+    from app import config as cfg
+    from app import framework_runner as fr
+
+    root = fr.runner_dir("My Project!")
+    assert cfg.TEMP_DIR in root.parents, "the framework lives under .tmp/"
+    assert cfg.PROJECTS_DIR not in root.parents, "never inside projects/"
+    assert "!" not in root.name and " " not in root.name
+
+
+def test_run_framework_without_node_fails_with_instructions(monkeypatch):
+    import asyncio
+
+    from app import framework_runner as fr
+
+    monkeypatch.setattr(fr, "node_available", lambda: "")
+    lines: list[str] = []
+
+    async def emit(message):
+        lines.append(message)
+
+    out = asyncio.run(fr.run_framework(
+        "P", "", {"package.json": "{}"}, "", {}, emit, None))
+    assert out is None
+    blob = " ".join(lines)
+    assert "nodejs.org" in blob and "Platform engine" in blob, (
+        "the failure must say how to fix it AND that the other engine still works")
