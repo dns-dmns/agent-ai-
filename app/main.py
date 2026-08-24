@@ -2510,11 +2510,23 @@ async def preview_export(response: Response, project_name: str = config.DEFAULT_
 
     files = export_project.build_project(project_name, modules)
     runnable = [m for m in modules if m["scenarios"]]
+
+    def spec_path(flow: str) -> str:
+        return f"tests/{export_project.kebab(flow, 'module')}.spec.js"
+
+    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
     return {
         "project": project_name,
+        # Everything in the zip sits under this folder, so extracting it never
+        # scatters files into the download directory.
+        "root": re.sub(r"[^A-Za-z0-9_.-]+", "_", stem),
         "modules": [{"flow": m["flow"], "scenarios": len(m["scenarios"]),
                      "fields": len(m["fields"]),
-                     "exported": bool(m["scenarios"])} for m in modules],
+                     # A recording with no generated suite still exports — as a
+                     # smoke replay of the recording itself.
+                     "exported": spec_path(m["flow"]) in files,
+                     "smoke_only": bool(spec_path(m["flow"]) in files
+                                        and not m["scenarios"])} for m in modules],
         "files": [{"path": path, "bytes": len(content)}
                   for path, content in sorted(files.items())],
         "total_files": len(files),
@@ -2539,15 +2551,19 @@ async def download_project(project_name: str = config.DEFAULT_PROJECT,
                             detail="No recorded flows to export in this workspace.")
 
     files = export_project.build_project(project_name, modules)
+    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
+    safe_stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", stem)
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as bundle:
         for path, content in sorted(files.items()):
-            bundle.writestr(path, content)
+            # Everything under one root folder. A zip whose entries start at
+            # pages/ and package.json scatters loose files into whatever
+            # directory it is extracted in — which reads as a broken download.
+            bundle.writestr(f"{safe_stem}/{path}", content)
     buffer.seek(0)
     db.audit("export_project", project_name,
              details={"files": len(files), "modules": len(modules)})
-    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
-    filename = re.sub(r"[^A-Za-z0-9_.-]+", "_", stem) + ".zip"
+    filename = safe_stem + ".zip"
     return StreamingResponse(
         buffer, media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},

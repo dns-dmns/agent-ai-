@@ -281,22 +281,38 @@ def base_page_js(login_steps: list[dict], base_url: str) -> str:
         f"{INDENT}}}",
         "",
         f"{INDENT}async login(credentials) {{",
+        f"{INDENT*2}// The exported credentials.json is deliberately blank — secrets",
+        f"{INDENT*2}// never ship in the zip. Fill it in, or set TEST_USERNAME /",
+        f"{INDENT*2}// TEST_PASSWORD in the environment (which always wins).",
+        f"{INDENT*2}credentials = {{",
+        f"{INDENT*3}username: process.env.TEST_USERNAME || (credentials || {{}}).username || '',",
+        f"{INDENT*3}password: process.env.TEST_PASSWORD || (credentials || {{}}).password || '',",
+        f"{INDENT*2}}};",
+        f"{INDENT*2}if (!credentials.username) {{",
+        f"{INDENT*3}throw new Error('No credentials: fill testdata/credentials.json "
+        f"or set TEST_USERNAME / TEST_PASSWORD.');",
+        f"{INDENT*2}}}",
         f"{INDENT*2}await this.gotoLogin();",
     ]
     if login_steps:
-        index = build_locator_index([], login_steps)
         for step in login_steps:
             action = str(step.get("action") or "").upper()
             selector = str(step.get("selector") or "").strip()
+            # Same locator rules as the page objects: recorded alternates via
+            # .or(), and .first() because a recorded structural selector can
+            # legitimately match two elements — the login screen's password-eye
+            # toggle resolved to the "Forgot Password?" link too, and a raw
+            # .click() dies on Playwright's strict mode exactly there.
+            # Every page.locator needs the this. prefix — including the ones
+            # inside .or(...): constructors have a local `page`, methods do not.
+            expr = locator_expression(selector, step.get("selectors")).replace(
+                "page.locator", "this.page.locator")
             if action == "TYPE":
-                prop = _property_for_selector(selector, index)
                 key = "username" if any(w in f"{selector}{step.get('label','')}".lower()
                                         for w in ("user", "email", "login")) else "password"
-                lines.append(f"{INDENT*2}await this.page.locator({js_string(selector)})"
-                             f".fill(credentials.{key});")
+                lines.append(f"{INDENT*2}await {expr}.first().fill(credentials.{key});")
             elif action == "CLICK":
-                lines.append(f"{INDENT*2}await this.page.locator({js_string(selector)})"
-                             f".click();")
+                lines.append(f"{INDENT*2}await {expr}.first().click();")
     else:
         lines.append(f"{INDENT*2}// No login flow was recorded — fill this in.")
     lines += [
@@ -509,18 +525,29 @@ def playwright_config_js(base_url: str, workers: int = 1) -> str:
     ])
 
 
-def package_json(project_name: str) -> str:
+def package_json(project_name: str, manifest: list[dict] | None = None) -> str:
+    scripts = {
+        # `npm run setup` is the whole install: dependencies plus the browser.
+        # Split across two commands it was the #1 "the download doesn't work"
+        # report — npm install succeeds, then every test fails looking for a
+        # browser that was never fetched.
+        "setup": "npm install && npx playwright install chromium",
+        "test": "playwright test",
+        "test:headed": "playwright test --headed",
+        "report": "playwright show-report",
+    }
+    # One script per module, so a tester can run exactly the screen they are
+    # working on: `npm run test:login`, `npm run test:rm-item-master`, …
+    for entry in manifest or []:
+        stem = kebab(str(entry.get("flow") or ""), "module")
+        scripts[f"test:{stem}"] = f"playwright test tests/{entry.get('spec')}"
     return json.dumps({
         "name": kebab(project_name, "qa-suite"),
         "version": "1.0.0",
         "private": True,
         "description": f"Playwright POM suite exported from the QA platform "
                        f"({project_name}).",
-        "scripts": {
-            "test": "playwright test",
-            "test:headed": "playwright test --headed",
-            "report": "playwright show-report",
-        },
+        "scripts": scripts,
         "devDependencies": {"@playwright/test": "^1.47.0"},
     }, indent=2) + "\n"
 
@@ -542,23 +569,54 @@ def readme_md(project_name: str, modules: list[dict], data_notes: list[dict],
         "playwright.config.js",
         "```",
         "",
-        "## Running it",
+        "## Quick start — three commands",
+        "",
+        "Needs Node.js 18+ (https://nodejs.org). Then, in this folder:",
         "",
         "```bash",
-        "npm install",
-        "npx playwright install chromium",
-        "cp .env.example .env      # then fill in BASE_URL and credentials",
-        "npx playwright test",
+        "npm run setup        # installs dependencies AND the Chromium browser",
+        "```",
+        "",
+        "Put the login in `testdata/credentials.json` (it ships blank on purpose —",
+        "secrets are never exported), or set `TEST_USERNAME` / `TEST_PASSWORD`",
+        "in the environment. Then:",
+        "",
+        "```bash",
+        "npm test             # the entire suite, headless",
+        "```",
+        "",
+        "That is the whole setup. Other ways to run:",
+        "",
+        "```bash",
+        "npm run test:headed          # watch it in a real browser window",
+        "npm run test:<module>        # one module only — see the table below",
+        "npm run report               # open the HTML report of the last run",
         "```",
         "",
         "## Modules",
         "",
-        "| Module | Page object | Spec | Scenarios |",
-        "| --- | --- | --- | --- |",
+        "Run any single module with the command in its last column.",
+        "",
+        "| Module | Page object | Spec | Scenarios | Run just this |",
+        "| --- | --- | --- | --- | --- |",
     ]
+    smoke_only = [m for m in modules if m.get("smoke_only")]
     for module in modules:
-        lines.append(f"| {module['flow']} | `pages/{module['page']}` | "
-                     f"`tests/{module['spec']}` | {module['scenarios']} |")
+        stem = kebab(str(module.get("flow") or ""), "module")
+        note = " (smoke)" if module.get("smoke_only") else ""
+        lines.append(f"| {module['flow']}{note} | `pages/{module['page']}` | "
+                     f"`tests/{module['spec']}` | {module['scenarios']} | "
+                     f"`npm run test:{stem}` |")
+
+    if smoke_only:
+        lines += [
+            "", "### Modules marked (smoke)", "",
+            "These flows were recorded but no test suite has been generated for",
+            "them yet, so the export replays the recording itself as a single",
+            "smoke test — it proves the screen still works end to end, nothing",
+            "more. For real coverage, generate the suite in the QA platform",
+            "(Generator → multi-agent generation) and export again.",
+        ]
 
     lines += ["", "## Test data", "",
               "| Entry | Module | Changes every run? | Why |",
@@ -603,6 +661,69 @@ def env_example(base_url: str) -> str:
 # ──────────────────────────────────────────────────────────────────────
 # Assembly
 # ──────────────────────────────────────────────────────────────────────
+def smoke_scenario_from_recording(flow_name: str, actions: list[dict],
+                                  is_login: bool) -> dict | None:
+    """A runnable happy-path scenario synthesized from the recording alone.
+
+    A flow that was recorded but never had a suite generated used to be
+    silently skipped, so a project exported before generation produced a zip
+    with an empty ``tests/`` folder — boilerplate around nothing, which reads
+    as a broken download. The recording itself is already a verified happy
+    path, so replaying it *is* a legitimate smoke test.
+
+    For the login flow the replay would fight ``BasePage.login`` (every spec
+    logs in first), so its smoke test is the assertion the recording proved:
+    the URL the app landed on after signing in.
+    """
+    steps: list[dict] = []
+    landed = ""
+    for act in actions or []:
+        effect = act.get("effect") or {}
+        if effect.get("url_after") and effect.get("url_after") != effect.get("url_before"):
+            landed = str(effect["url_after"])
+
+    if is_login:
+        if not landed:
+            return None
+        tail = landed.split("/")[-1] or landed
+        return {
+            "scenario_name": "Login lands on the recorded home page (smoke)",
+            "type": "positive",
+            "steps": [{"action": "VERIFY_URL", "value": tail}],
+            "expected_result": f"After signing in the application shows {landed}.",
+            "_smoke": True,
+        }
+
+    for act in actions or []:
+        action = str(act.get("action") or "").upper()
+        value = str(act.get("value") or "")
+        # Credentials are BasePage's job — the spec has already logged in, and
+        # replaying a {{username}} placeholder would type it literally.
+        if action == "TYPE" and value in ("{{username}}", "{{password}}"):
+            continue
+        if action in ("CLICK", "TYPE", "SELECT", "CHECK", "UNCHECK", "NAVIGATE",
+                      "KEYPRESS", "UPLOAD", "HOVER", "SCROLL_TO", "CLEAR"):
+            step = {"action": action, "selector": act.get("selector") or "",
+                    "value": value}
+            if act.get("selectors"):
+                step["selectors"] = act["selectors"]
+            steps.append(step)
+    if not steps:
+        return None
+    if landed:
+        steps.append({"action": "VERIFY_URL", "value": landed.split("/")[-1] or landed})
+        outcome = f"the application ends on {landed}"
+    else:
+        outcome = "every recorded control is still reachable"
+    return {
+        "scenario_name": "Recorded flow replays end to end (smoke)",
+        "type": "positive",
+        "steps": steps,
+        "expected_result": f"Replaying the recording succeeds and {outcome}.",
+        "_smoke": True,
+    }
+
+
 def build_project(project_name: str, modules: list[dict],
                   base_url: str = "") -> dict[str, str]:
     """Every file of the exported project, as ``{path: contents}``.
@@ -629,8 +750,16 @@ def build_project(project_name: str, modules: list[dict],
         fields = module.get("fields") or []
         actions = module.get("actions") or []
         scenarios = module.get("scenarios") or []
+        smoke_only = False
         if not scenarios:
-            continue
+            # Recorded but no suite generated yet: export the recording itself
+            # as a smoke test instead of silently producing an empty tests/.
+            smoke = smoke_scenario_from_recording(
+                flow, actions, is_login=(module is login))
+            if not smoke:
+                continue
+            scenarios = [smoke]
+            smoke_only = True
 
         page_name = pascal(flow, "Module") + "Page.js"
         spec_name = kebab(flow, "module") + ".spec.js"
@@ -652,12 +781,12 @@ def build_project(project_name: str, modules: list[dict],
             data_notes.append(note)
 
         manifest.append({"flow": flow, "page": page_name, "spec": spec_name,
-                         "scenarios": len(scenarios)})
+                         "scenarios": len(scenarios), "smoke_only": smoke_only})
 
     files["testdata/credentials.json"] = json.dumps(
         {"username": "", "password": ""}, indent=2) + "\n"
     files["playwright.config.js"] = playwright_config_js(resolved_base)
-    files["package.json"] = package_json(project_name)
+    files["package.json"] = package_json(project_name, manifest)
     files[".env.example"] = env_example(resolved_base)
     files[".gitignore"] = "node_modules/\ntest-results/\nplaywright-report/\n.env\n"
     files["README.md"] = readme_md(project_name, manifest, data_notes, sorted(gaps))

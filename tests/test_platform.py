@@ -1424,3 +1424,104 @@ def test_new_recordings_stamp_a_schema_version():
     source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
         encoding="utf-8")
     assert '"schema_version": 1' in source
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Export — a downloaded zip must be runnable, not a husk
+# ══════════════════════════════════════════════════════════════════════
+# A project whose flows were recorded but had no generated suite exported a zip
+# with an EMPTY tests/ folder — boilerplate around nothing, reported as "the
+# folder structure is wrong". And the real run of the export died on a strict-
+# mode violation in BasePage before reaching any test.
+
+def test_a_recording_only_flow_still_exports_a_runnable_smoke_spec():
+    from app import export_project
+
+    module = {"flow": "login", "target_url": "https://x.example/auth/login",
+              "fields": [], "scenarios": [],
+              "actions": [
+                  {"action": "CLICK", "selector": "#username"},
+                  {"action": "TYPE", "selector": "#username", "label": "Username",
+                   "value": "{{username}}"},
+                  {"action": "TYPE", "selector": "#password", "label": "Password",
+                   "value": "{{password}}"},
+                  {"action": "CLICK", "selector": 'button:has-text("Login")',
+                   "effect": {"url_before": "https://x.example/auth/login",
+                              "url_after": "https://x.example/pages/home",
+                              "messages": []}},
+              ]}
+    files = export_project.build_project("P", [module])
+    assert "tests/login.spec.js" in files, "recording-only flow was silently skipped"
+    assert "pages/LoginPage.js" in files
+    # The login smoke must assert the landing, not replay the login (BasePage
+    # already signed in) — and never type a credential placeholder literally.
+    page = files["pages/LoginPage.js"]
+    assert "toHaveURL" in page
+    assert "{{username}}" not in page and "{{password}}" not in page
+
+
+def test_a_business_recording_smoke_keeps_steps_and_asserts_the_landing():
+    from app.export_project import smoke_scenario_from_recording
+
+    actions = [
+        {"action": "CLICK", "selector": 'button:has-text("Add Item")'},
+        {"action": "TYPE", "selector": "#desc", "value": "widget"},
+        {"action": "CLICK", "selector": 'button:has-text("Save")',
+         "effect": {"url_before": "https://x/items/new", "url_after": "https://x/items",
+                    "messages": []}},
+    ]
+    smoke = smoke_scenario_from_recording("Item Master", actions, is_login=False)
+    assert smoke and smoke["_smoke"] is True
+    kinds = [s["action"] for s in smoke["steps"]]
+    assert kinds[:3] == ["CLICK", "TYPE", "CLICK"]
+    assert kinds[-1] == "VERIFY_URL", "the recording proved a landing; assert it"
+
+
+def test_base_page_survives_an_ambiguous_recorded_selector():
+    """The recorded structural selector for the password-eye toggle ALSO matched
+    the 'Forgot Password?' link; a raw .click() dies on strict mode. Measured
+    against the live app — TESTING-FLOW lesson 1, applied to our own generator."""
+    from app.export_project import base_page_js
+
+    steps = [{"action": "CLICK", "selector": "form span",
+              "selectors": ["form span", "button.toggle"]},
+             {"action": "TYPE", "selector": "#password", "label": "Password"}]
+    js = base_page_js(steps, "https://x.example")
+    assert ".first().click()" in js
+    assert ".first().fill(credentials.password)" in js
+    # Constructors have a local `page`; BasePage methods do not — every
+    # locator, including the .or() argument, must go through this.page.
+    assert ".or(this.page.locator(" in js
+    assert "\n        await page.locator" not in js
+
+
+def test_base_page_prefers_env_credentials_over_the_blank_file():
+    from app.export_project import base_page_js
+
+    js = base_page_js([{"action": "TYPE", "selector": "#u", "label": "user"}], "https://x")
+    assert "process.env.TEST_USERNAME" in js
+    assert "process.env.TEST_PASSWORD" in js
+    assert "throw new Error('No credentials" in js, (
+        "a blank credentials.json must fail with instructions, not type nothing")
+
+
+def test_package_json_offers_one_command_setup_and_per_module_runs():
+    import json as _json
+
+    from app.export_project import package_json
+
+    manifest = [{"flow": "Item Master", "spec": "item-master.spec.js"},
+                {"flow": "login", "spec": "login.spec.js"}]
+    scripts = _json.loads(package_json("P", manifest))["scripts"]
+    assert scripts["setup"] == "npm install && npx playwright install chromium"
+    assert scripts["test"] == "playwright test"
+    assert scripts["test:item-master"] == "playwright test tests/item-master.spec.js"
+    assert scripts["test:login"] == "playwright test tests/login.spec.js"
+
+
+def test_the_downloaded_zip_has_a_single_root_folder():
+    """Entries starting at pages/ and package.json scatter loose files into
+    whatever directory the zip is extracted in."""
+    source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
+        encoding="utf-8")
+    assert 'bundle.writestr(f"{safe_stem}/{path}", content)' in source
