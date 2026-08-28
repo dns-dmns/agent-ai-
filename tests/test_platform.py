@@ -1760,3 +1760,107 @@ def test_template_never_offers_a_credential_literal():
     sensitive = [{"selector": "#password", "label": "Password", "kind": "text"}]
     template = user_cases.template_csv(sensitive)
     assert "{{password}}" in template, "sensitive fields get the placeholder"
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# Accurate Data Worksheet → generated cases (playbook Step 6, automated)
+#
+# The worksheet holds module DATA, not scenarios. What must hold: it produces
+# only the bounded, grounded families (happy / empty-per-required / duplicate);
+# a harvested message is quoted only for the field it names; a duplicate is
+# generated only when the existing value is supplied; and the runnable steps
+# come out of the same user_cases path, so nothing new touches the engine.
+# ═══════════════════════════════════════════════════════════════════════
+WS_FIELDS = [
+    {"selector": "#custName", "label": "Customer Name", "kind": "text", "required": True},
+    {"selector": "#custType", "label": "Customer Type", "kind": "select",
+     "options": ["Retail", "Wholesale"]},
+    {"selector": "#credit", "label": "Credit Limit", "kind": "number", "required": True},
+]
+
+
+def _ws(text: str, **kw):
+    from app import worksheet
+    kw.setdefault("add_selector", "#addBtn")
+    kw.setdefault("submit_selector", "#saveBtn")
+    return worksheet.build_from_worksheet(text.encode(), "ws.csv", WS_FIELDS, **kw)
+
+
+FULL_SHEET = """Section,Item,Value 1,Value 2,Value 3,Notes
+MODULE,Module Name,Customer Master,,,
+FIELD,Field Label (exact),Field Type,Required,Options,Rule
+FIELD,Customer Name,text,yes,,unique
+MESSAGE,When it appears (trigger),Exact message text,,,
+MESSAGE,Submit with required field empty,Customer Name is required,,,
+MESSAGE,Successful save / login,Customer saved successfully,,,
+MESSAGE,Duplicate record,Customer already exists,,,
+DATA,Purpose,Key,Other,Extra,
+DATA,Record for duplicate test,Acme Traders,,,
+RULES,Question for developer/BA,Answer,,,
+RULES,Is the key field case-sensitive?,No,,,
+"""
+
+
+def test_worksheet_generates_the_three_grounded_families():
+    out = _ws(FULL_SHEET)
+    assert not out["blocked"]
+    names = [c["scenario_name"] for c in out["cases"]]
+    assert names[0] == "Create with valid values"
+    assert "Empty Customer Name is rejected" in names
+    assert "Empty Credit Limit is rejected" in names
+    assert any(n.startswith("Duplicate") for n in names)
+
+
+def test_worksheet_happy_path_quotes_the_real_success_message():
+    out = _ws(FULL_SHEET)
+    happy = out["cases"][0]
+    assert happy["expected_result"] == "Customer saved successfully"
+    assert happy["type"] == "positive"
+    # steps synthesized, not written by the tester
+    verbs = [s["action"] for s in happy["steps"]]
+    assert verbs[0] == "CLICK" and verbs[-1] == "CLICK" and "TYPE" in verbs
+
+
+def test_a_required_message_is_quoted_only_for_the_field_it_names():
+    out = _ws(FULL_SHEET)
+    by_name = {c["scenario_name"]: c for c in out["cases"]}
+    assert by_name["Empty Customer Name is rejected"]["expected_result"] \
+        == "Customer Name is required"
+    # The Credit Limit case must NOT borrow the Customer Name wording.
+    other = by_name["Empty Credit Limit is rejected"]["expected_result"]
+    assert "Credit Limit" in other and "Customer Name is required" not in other
+
+
+def test_duplicate_case_only_when_the_existing_value_is_supplied():
+    no_dup = FULL_SHEET.replace("DATA,Record for duplicate test,Acme Traders,,,\n", "")
+    out = _ws(no_dup)
+    assert not any(c["scenario_name"].startswith("Duplicate") for c in out["cases"])
+    assert any("duplicate" in n.lower() for n in out["notes"])
+    # And when supplied, the existing value is typed into the key field.
+    out2 = _ws(FULL_SHEET)
+    dup = next(c for c in out2["cases"] if c["scenario_name"].startswith("Duplicate"))
+    typed = [s for s in dup["steps"] if s["action"] == "TYPE"
+             and s["selector"] == "#custName"]
+    assert typed and typed[0]["value"] == "Acme Traders"
+
+
+def test_worksheet_needs_a_known_module_and_says_so():
+    from app import worksheet
+    import pytest
+    with pytest.raises(worksheet.DefectImportError) as err:
+        worksheet.build_from_worksheet(FULL_SHEET.encode(), "ws.csv", [])
+    assert "No fields are known" in str(err.value)
+
+
+def test_a_generic_empty_message_is_reused_for_every_field():
+    generic = FULL_SHEET.replace("Customer Name is required", "This field is required")
+    out = _ws(generic)
+    empties = [c for c in out["cases"] if c["scenario_name"].startswith("Empty")]
+    assert empties and all(c["expected_result"] == "This field is required"
+                           for c in empties)
+
+
+def test_captured_but_unconverted_content_is_surfaced_not_dropped():
+    out = _ws(FULL_SHEET)
+    blob = " ".join(out["captured_unused"])
+    assert "rule" in blob.lower()          # the case-sensitivity rule was captured

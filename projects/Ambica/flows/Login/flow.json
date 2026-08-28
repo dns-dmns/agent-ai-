@@ -1,8 +1,8 @@
 {
     "schema_version": 1,
-    "flow_name": "login",
+    "flow_name": "Login",
     "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
-    "timestamp": "2026-08-28 21:49:28",
-    "duration_seconds": 78,
-    "step_count": 34
+    "timestamp": "2026-08-29 00:05:54",
+    "duration_seconds": 30,
+    "step_count": 12
 }

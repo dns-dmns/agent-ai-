@@ -356,6 +356,50 @@ Rules that carry the feature, all tested in `test_platform.py` and
 - The template's `SAMPLE —` rows are skipped on upload; `(blank)` means CLEAR,
   not the word "(blank)".
 
+### Accurate Data Worksheet — automating the playbook's manual step
+
+`app/worksheet.py` + `/worksheet-template`, `/preview-worksheet`,
+`/import-worksheet` + the "From a data worksheet" panel in `web/ui-usercases.js`.
+`testcases/Accurate_Data_Playbook.md` is a human method for collecting accurate
+module data (fields, real message wording, test data, rules) before writing
+cases; its Step 6 — hand the worksheet over, get an upload-ready sheet back — is
+what this automates, deterministically and with no AI.
+
+Design, and why each part is the way it is:
+
+- **The worksheet holds DATA, not scenarios.** `parse_worksheet` reads the
+  MODULE/FIELD/MESSAGE/DATA/RULES sections (tolerant of the descriptor row and
+  blank rows). `generate_rows` then emits the platform's own template shape
+  (`Scenario, Type, <labels>, Expected Result`) and hands it to
+  `user_cases.build_cases`, so the run-time path is byte-identical to a
+  hand-typed sheet — nothing new touches the executor or verdict engine.
+- **Grounded in the inventory, never the worksheet's own field text.** Columns
+  are the module's known fields (with selectors); a worksheet FIELD row that
+  matches no inventory field is reported in `unmatched_fields`, never turned into
+  a guessed selector. If the module has no inventory yet, generation refuses with
+  instructions — same rule as `/user-case-template`.
+- **A bounded, message-driven scenario set.** Only the three families the
+  worksheet's MESSAGE rows describe: happy (success message), one empty case per
+  required *text-like* field (required message), duplicate (duplicate message +
+  the "record for duplicate test" value). Boundary/injection stays Coverage's
+  job — inventing it here is the guessing the playbook forbids.
+- **A harvested required-message is quoted only for the field it names**
+  (`_required_expected`): pasting "Customer Name is required" onto the Credit
+  Limit case would read as testing the wrong thing, so that case gets a generic
+  sentence; a field-agnostic message ("This field is required") is quoted for
+  every field. Verdicts pass either way (intent-based), so this is about honest
+  wording, not pass/fail.
+- **Nothing collected is silently dropped**: `captured_unused` surfaces an
+  invalid-value message, a blocked-account record, and confirmed rules as
+  pointers to Coverage or a manual row.
+- Merge is `user_cases.merge_cases` (upsert by name), and
+  `credential_store.scrub_known_literals` runs on import, so a value typed into
+  the worksheet never lands in the committed suite as a literal.
+
+Proven end to end (`prove_worksheet_run` pattern, and `integration_api`): a
+filled worksheet → generated cases → the real engine → four correct PASS
+verdicts, with the tester having written no steps and no selectors.
+
 ### Message detection — four layers
 
 A false FAIL is the most damaging thing this tool can produce: it blames a

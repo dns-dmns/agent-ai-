@@ -190,6 +190,27 @@ A generic example lives at `samples/user_test_cases_sample.csv`; the real
 template for your module (with its actual field names) comes from the
 Download button.
 
+### Build cases from a data worksheet (accurate-data method)
+
+The same card has a **"From a data worksheet"** panel that writes the starter
+cases *for* you, deterministically — no AI. It automates the one manual step of
+the accurate-data method (`testcases/Accurate_Data_Playbook.md`):
+
+- **Download data worksheet** — the worksheet arrives with its field rows already
+  filled from the module inventory. You add only what the platform cannot know:
+  the exact messages you copy from the screen, your test data, and confirmed rules.
+- **Build cases from worksheet** — upload it and the platform previews a bounded,
+  grounded set of scenarios: a happy path (quoting your success message), one
+  empty-field check per required field (quoting your required-field message, only
+  for the field it names), and a duplicate (when you supply an existing value).
+  Review, then import — they merge by name like any user case and run through the
+  same engine.
+
+Whatever the worksheet captured but the platform did not convert (an
+invalid-value message, a blocked-account record, free-text rules) is listed in
+the preview so nothing is silently dropped — those point you to the Coverage
+feature or a manual row.
+
 ## Step vocabulary
 
 Actions: `NAVIGATE` · `CLICK` · `DOUBLE_CLICK` · `RIGHT_CLICK` · `TYPE` · `CLEAR` ·

@@ -54,6 +54,7 @@ from . import recorder
 from . import rules
 from . import scheduler
 from . import user_cases
+from . import worksheet
 
 mimetypes.add_type("video/webm", ".webm")
 mimetypes.add_type("video/mp4", ".mp4")
@@ -1698,6 +1699,109 @@ async def upload_user_cases(flow_name: str, file: UploadFile = File(...),
             "total_cases": len(merged), "blocked": built["blocked"],
             "unresolved_columns": built["unresolved_columns"],
             "message": summary}
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Accurate Data Worksheet — automates Step 6 of the playbook
+#
+# The worksheet collects module DATA (fields, real message wording, test data,
+# confirmed rules). These endpoints turn it into upload-ready scenarios
+# deterministically — no AI — reusing user_cases for the step synthesis and the
+# ordinary verdict engine at run time. app/worksheet.py holds the logic.
+# ──────────────────────────────────────────────────────────────────────
+@app.get("/worksheet-template")
+async def worksheet_template(flow_name: str,
+                             project_name: str = config.DEFAULT_PROJECT):
+    """The data worksheet with its FIELD rows pre-filled from this module."""
+    require_flow(project_name, flow_name)
+    context = _defect_context(project_name, flow_name)
+    if not context["fields"]:
+        raise HTTPException(
+            status_code=400,
+            detail=("No fields are known for this module yet — record it or run "
+                    "it once so the worksheet can be pre-filled."))
+    inv = user_cases.module_inventory(
+        context["fields"], context["actions"], target_url=context["target_url"])
+    body = worksheet.worksheet_template_csv(
+        flow_name, f"{project_name} / {flow_name}", context["fields"],
+        inv.get("observed_messages") or [])
+    stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", f"{project_name}_{flow_name}_worksheet")
+    return PlainTextResponse(
+        body, media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="{stem}.csv"'})
+
+
+def _worksheet_build(project_name: str, flow_name: str, data: bytes, filename: str) -> dict:
+    context = _defect_context(project_name, flow_name)
+    return worksheet.build_from_worksheet(
+        data, filename, context["fields"],
+        add_selector=context["add_selector"],
+        submit_selector=context["submit_selector"])
+
+
+@app.post("/preview-worksheet")
+async def preview_worksheet(flow_name: str, file: UploadFile = File(...),
+                            project_name: str = config.DEFAULT_PROJECT):
+    """Show the scenarios a filled worksheet would produce. Writes nothing."""
+    require_flow(project_name, flow_name)
+    try:
+        built = _worksheet_build(project_name, flow_name,
+                                 await file.read(), file.filename or "")
+    except worksheet.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    return {
+        "module": built["parsed"]["module"],
+        "field_rows": len(built["parsed"]["fields"]),
+        "messages_harvested": len(built["parsed"]["messages"]),
+        "cases": [{"scenario_name": c["scenario_name"], "type": c["type"],
+                   "expected_result": c["expected_result"],
+                   "step_count": len(c["steps"])} for c in built["cases"]],
+        "case_count": len(built["cases"]),
+        "blocked": built["blocked"],
+        "unresolved_columns": built["unresolved_columns"],
+        "unmatched_fields": built["unmatched_fields"],
+        "notes": built["notes"],
+        "captured_unused": built["captured_unused"],
+        "csv": built["csv"],
+    }
+
+
+@app.post("/import-worksheet")
+async def import_worksheet(flow_name: str, file: UploadFile = File(...),
+                           project_name: str = config.DEFAULT_PROJECT):
+    """Generate scenarios from a filled worksheet and merge them into the suite.
+
+    Upserts by scenario name (like /upload-user-cases), so generated and
+    hand-written cases are never disturbed, and a re-import updates in place.
+    """
+    flow_path = require_flow(project_name, flow_name)
+    try:
+        built = _worksheet_build(project_name, flow_name,
+                                 await file.read(), file.filename or "")
+    except worksheet.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    credential_store.scrub_known_literals(
+        built["cases"], credential_store.load_stored(project_name))
+
+    existing = read_json(flow_path / "test_cases.json", []) or []
+    merged, added, updated = user_cases.merge_cases(existing, built["cases"])
+    if built["cases"]:
+        write_json(flow_path / "test_cases.json", merged)
+
+    db.audit("import_worksheet", f"{project_name}/{flow_name}",
+             details={"added": added, "updated": updated})
+    summary = (f"{added} case(s) added, {updated} updated from the worksheet — "
+               f"the suite now has {len(merged)} test case(s).")
+    if not built["cases"]:
+        summary = ("Nothing was generated. Fill the worksheet's MESSAGE and DATA "
+                   "rows, then try again — see the notes.")
+    return {"status": "success", "added": added, "updated": updated,
+            "total_cases": len(merged), "case_count": len(built["cases"]),
+            "blocked": built["blocked"], "notes": built["notes"],
+            "captured_unused": built["captured_unused"],
+            "unmatched_fields": built["unmatched_fields"], "message": summary}
 
 
 @app.post("/update-test-case")

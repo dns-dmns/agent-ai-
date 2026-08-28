@@ -134,4 +134,107 @@
         window.toast(result.message, (result.blocked || []).length ? "info" : "success");
         await window.loadSelectedFlow?.();
     };
+
+    /* ══ Accurate-data worksheet → generated cases (playbook Step 6) ══ */
+    let pendingWorksheet = null;             // the File awaiting a confirmed import
+
+    function downloadCsv(res, fallbackName) {
+        return res.blob().then((blob) => {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            const disp = res.headers.get("Content-Disposition") || "";
+            const named = /filename="([^"]+)"/.exec(disp);
+            link.download = named ? named[1] : fallbackName;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(link.href);
+        });
+    }
+
+    window.downloadWorksheet = async function () {
+        if (!window.activeFlow()) return window.toast("Load a module first", "error");
+        try {
+            const res = await fetch(`/worksheet-template?${flowQ()}`);
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.detail || `HTTP ${res.status}`);
+            }
+            await downloadCsv(res, "data_worksheet.csv");
+        } catch (e) {
+            window.toast(e.message, "error");
+        }
+    };
+
+    window.pickWorksheetFile = () => $("worksheetUploadInput").click();
+
+    window.previewWorksheet = async function (input) {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        input.value = "";
+        if (!window.activeFlow()) return window.toast("Load a module first", "error");
+        pendingWorksheet = file;
+
+        const body = new FormData();
+        body.append("file", file, file.name);
+        let data;
+        try {
+            data = await api(`/preview-worksheet?${flowQ()}`, { method: "POST", body });
+        } catch (e) {
+            return window.toast(e.message, "error");
+        }
+
+        const caseRows = (data.cases || []).map((c) => `
+            <tr>
+                <td>${esc(c.scenario_name)}</td>
+                <td class="mono-sm dim">${esc(c.type)}</td>
+                <td class="dim">${esc(c.expected_result)}</td>
+            </tr>`).join("");
+        const notes = (data.notes || []).map((n) => `<li>${esc(n)}</li>`).join("");
+        const unused = (data.captured_unused || []).map((n) =>
+            `<li>${esc(n)}</li>`).join("");
+        const blocked = (data.blocked || []).map((b) =>
+            `<div class="nudge"><span>!</span><span><b>Row ${b.row}</b> —
+             ${esc(b.scenario)}: ${esc(b.reason)}</span></div>`).join("");
+        const unmatched = (data.unmatched_fields || []).length
+            ? `<p class="dim mono-sm">Worksheet field(s) the module does not
+                 recognise (ignored): ${esc(data.unmatched_fields.join(", "))}</p>` : "";
+
+        window.openModal(`Cases from the worksheet — ${esc(window.activeFlow())}`, `
+            <p class="dim">${data.case_count} scenario(s) generated from
+               ${data.messages_harvested} harvested message(s). Review, then import —
+               steps and the on-screen check are added automatically.</p>
+            ${caseRows ? `<table class="table"><thead><tr><th>Scenario</th><th>Type</th>
+                <th>Expected result</th></tr></thead><tbody>${caseRows}</tbody></table>`
+                : `<p class="muted">Nothing was generated — fill the MESSAGE and DATA
+                   rows and try again.</p>`}
+            ${notes ? `<p class="dim" style="margin-top:var(--space-3)">Notes:</p>
+                <ul class="dim">${notes}</ul>` : ""}
+            ${unused ? `<p class="dim">Captured but not turned into cases:</p>
+                <ul class="dim">${unused}</ul>` : ""}
+            ${unmatched}${blocked}
+        `, `
+            <button class="btn btn-primary" onclick="confirmWorksheetImport()"
+                ${data.case_count ? "" : "disabled"}>Import ${data.case_count} case(s)</button>
+            <button class="btn" style="background:#334155" onclick="closeModal()">Cancel</button>
+        `);
+    };
+
+    window.confirmWorksheetImport = async function () {
+        if (!pendingWorksheet) return;
+        const body = new FormData();
+        body.append("file", pendingWorksheet, pendingWorksheet.name);
+        let result;
+        try {
+            result = await api(`/import-worksheet?${flowQ()}`, { method: "POST", body });
+        } catch (e) {
+            return window.toast(e.message, "error");
+        }
+        pendingWorksheet = null;
+        window.closeModal?.();
+        window.toast(result.message, "success");
+        const host = $("userCasesResult");
+        if (host) host.innerHTML = `<div>${esc(result.message)}</div>`;
+        await window.loadSelectedFlow?.();
+    };
 })();

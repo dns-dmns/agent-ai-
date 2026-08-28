@@ -342,6 +342,27 @@
                                 </div>
                                 <div id="userCasesResult" class="stack-sm"
                                     style="margin-top:var(--space-3)"></div>
+
+                                <details class="disclose" id="worksheetPanel"
+                                    style="margin-top:var(--space-4)">
+                                    <summary>From a data worksheet (accurate-data method)</summary>
+                                    <div class="disclose-body">
+                                        <p class="dim">Collect the module's real messages, test data and
+                                            rules in the worksheet, and the platform writes the starter
+                                            scenarios for you — happy path, one empty-check per required
+                                            field, and a duplicate — with expected results quoting the
+                                            wording you copied from the screen. Review, then import.</p>
+                                        <div class="row-flex">
+                                            <button class="btn" id="worksheetDownloadBtn"
+                                                onclick="downloadWorksheet()">Download data worksheet</button>
+                                            <input type="file" id="worksheetUploadInput"
+                                                accept=".csv,.tsv,.xlsx" style="display:none"
+                                                onchange="previewWorksheet(this)">
+                                            <button class="btn btn-primary" id="worksheetBuildBtn"
+                                                onclick="pickWorksheetFile()">Build cases from worksheet</button>
+                                        </div>
+                                    </div>
+                                </details>
                             </div>
                         </div>
 
