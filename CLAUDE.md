@@ -326,6 +326,36 @@ browser**. It has to be: the script depends on `getBoundingClientRect` and
 the click, and that no password reaches a captured key — are invisible to the
 string checks in `test_platform.py`.
 
+### User-authored test cases — the generate tab without the agents
+
+`app/user_cases.py` + three endpoints (`/module-inventory`, `/user-case-template`,
+`/upload-user-cases`) + `web/ui-usercases.js` (the "Write your own test cases"
+card in Generate). A tester downloads a CSV whose columns are the module's real
+field labels (from `_defect_context`: learned profile first, recording as
+fallback), fills one row per case with plain values and an expected result, and
+uploads. `build_cases()` synthesizes the steps — CLICK the Add control if the
+module has one, CLEAR/TYPE/SELECT/CHECK per cell, CLICK submit — and the
+existing verdict engine judges the outcome, so the sheet never contains a
+selector or a UI step.
+
+Rules that carry the feature, all tested in `test_platform.py` and
+`integration_api.py`:
+
+- **Never guess.** A value under a header that matches no field blocks that row
+  with the reason (importing the row minus the value would change what the test
+  means); a sheet whose columns match nothing is refused with the module's real
+  labels listed. Same philosophy as the defect importer, same reason.
+- **Upsert by scenario name.** Re-uploading a sheet updates its own rows in
+  place; generated/coverage cases are byte-for-byte untouched (integration test
+  asserts it). Imported cases carry `_generated: "user"`.
+- **No expected result ⇒ blocked**, because an unverifiable scenario can never
+  honestly pass.
+- **Credentials**: sensitive fields get `{{username}}`/`{{password}}` in the
+  template sample values, and `credential_store.scrub_known_literals` runs on
+  upload so a typed literal never reaches the committed suite.
+- The template's `SAMPLE —` rows are skipped on upload; `(blank)` means CLEAR,
+  not the word "(blank)".
+
 ### Message detection — four layers
 
 A false FAIL is the most damaging thing this tool can produce: it blames a

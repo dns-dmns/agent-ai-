@@ -155,6 +155,41 @@ they would carry a second copy of the literal straight past the scrubber and int
 `tests/e2e_recorder.py` runs the recorder in a real browser and asserts all of
 the above, including that an assert-mode click does not reach the application.
 
+## Write your own test cases — no AI needed
+
+The Generate tab has a second path that never calls a model. The card **Write
+your own test cases** gives you three buttons:
+
+1. **What's in this module?** — the module inventory: every field the platform
+   knows (label, type, required, dropdown choices), the buttons seen while
+   recording, and the exact messages the application showed. This is what you
+   write your cases *against*.
+2. **Download template (CSV)** — a sheet whose columns are that module's real
+   field labels, with two `SAMPLE —` rows showing the format (they are skipped
+   on upload). One row = one test case:
+
+   | Scenario | Type | *field label…* | Expected Result |
+   | :--- | :--- | :--- | :--- |
+   | Empty name is rejected | negative | `(blank)` | A validation message states that the name is required |
+
+   Plain values only — **no selectors, no steps**. `(blank)` clears a field
+   deliberately; a checkbox takes yes/no; a dropdown takes the option text; an
+   empty cell means "don't touch this field".
+3. **Upload filled template** — each row becomes a runnable scenario: open the
+   Add form (when the module has one), fill the named fields, submit. The
+   verdict engine then judges the outcome from what actually appears on screen
+   — the UI check is automatic, the sheet never describes the UI.
+
+Uploading again **updates your cases by name** and never touches generated
+ones. A row the platform cannot import honestly — a value under a misspelled
+column, a missing expected result — is **reported with the reason, not
+guessed at**, the same rule the defect importer follows. A credential typed
+into the sheet is replaced by its `{{placeholder}}` before anything is written.
+
+A generic example lives at `samples/user_test_cases_sample.csv`; the real
+template for your module (with its actual field names) comes from the
+Download button.
+
 ## Step vocabulary
 
 Actions: `NAVIGATE` · `CLICK` · `DOUBLE_CLICK` · `RIGHT_CLICK` · `TYPE` · `CLEAR` ·

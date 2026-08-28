@@ -318,6 +318,33 @@
                             </div>
                         </div>
 
+                        <div class="card" id="userCasesCard">
+                            <div class="card-head">
+                                <span class="card-title">Write your own test cases</span>
+                                <span class="spacer"></span>
+                                <span class="tag">no AI needed</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="dim">See what this module contains, download the template, and fill
+                                    one row per test case — plain field names and values, an expected result,
+                                    no selectors and no steps. The platform builds the steps and verifies the
+                                    outcome on screen automatically. Uploading again updates your cases by
+                                    name; generated cases are never touched.</p>
+                                <div class="row-flex">
+                                    <button class="btn" id="moduleInventoryBtn"
+                                        onclick="openModuleInventory()">What's in this module?</button>
+                                    <button class="btn" id="userTemplateBtn"
+                                        onclick="downloadUserCaseTemplate()">Download template (CSV)</button>
+                                    <input type="file" id="userCasesUploadInput" accept=".csv,.tsv,.xlsx"
+                                        style="display:none" onchange="uploadUserCases(this)">
+                                    <button class="btn btn-primary" id="userCasesUploadBtn"
+                                        onclick="pickUserCasesFile()">Upload filled template</button>
+                                </div>
+                                <div id="userCasesResult" class="stack-sm"
+                                    style="margin-top:var(--space-3)"></div>
+                            </div>
+                        </div>
+
                         <div id="analysisLoader" class="card hidden">
                             <div class="loading-row"><span class="spinner"></span> Generating — the agents are
                                 working…</div>
@@ -803,6 +830,7 @@
     <script src="/assets/ui-defects.js"></script>
     <script src="/assets/ui-export.js"></script>
     <script src="/assets/ui-runner.js"></script>
+    <script src="/assets/ui-usercases.js"></script>
 </body>
 
 </html>

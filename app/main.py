@@ -53,6 +53,7 @@ from . import llm
 from . import recorder
 from . import rules
 from . import scheduler
+from . import user_cases
 
 mimetypes.add_type("video/webm", ".webm")
 mimetypes.add_type("video/mp4", ".mp4")
@@ -1602,6 +1603,101 @@ async def upload_test_cases(flow_name: str, project_name: str = config.DEFAULT_P
 
     write_json(flow_path / "test_cases.json", test_cases)
     return {"status": "success", "message": "Test cases uploaded and saved successfully."}
+
+
+# ──────────────────────────────────────────────────────────────────────
+# User-authored test cases — the generate tab without the agents
+#
+# The tester asks what the module contains, downloads a CSV whose columns are
+# the module's real field labels, fills one row per case in plain language, and
+# uploads it. Everything technical — selectors, steps, the UI check — is
+# derived here or judged by the verdict engine. app/user_cases.py holds the
+# logic; these endpoints only wire it to the flow's files.
+# ──────────────────────────────────────────────────────────────────────
+@app.get("/module-inventory")
+async def module_inventory(flow_name: str, response: Response,
+                           project_name: str = config.DEFAULT_PROJECT):
+    """What is there in the application — fields, buttons, observed messages."""
+    require_flow(project_name, flow_name)
+    no_cache(response)
+    context = _defect_context(project_name, flow_name)
+    payload = user_cases.module_inventory(
+        context["fields"], context["actions"],
+        add_selector=context["add_selector"],
+        submit_selector=context["submit_selector"],
+        target_url=context["target_url"])
+    payload["field_count"] = len(payload["fields"])
+    payload["has_learned_profile"] = bool(
+        learned.flow_profile(project_name, flow_name).get("fields"))
+    return payload
+
+
+@app.get("/user-case-template")
+async def user_case_template(flow_name: str,
+                             project_name: str = config.DEFAULT_PROJECT):
+    """The CSV template for this module: real field labels, two sample rows."""
+    require_flow(project_name, flow_name)
+    context = _defect_context(project_name, flow_name)
+    if not context["fields"]:
+        raise HTTPException(
+            status_code=400,
+            detail=("No fields are known for this module yet — the template "
+                    "would be empty. Record the module (open its form and fill "
+                    "the fields), or run it once so the engine can inventory "
+                    "the page."))
+    body = user_cases.template_csv(context["fields"])
+    stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", f"{project_name}_{flow_name}_test_cases")
+    return PlainTextResponse(
+        body, media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="{stem}.csv"'})
+
+
+@app.post("/upload-user-cases")
+async def upload_user_cases(flow_name: str, file: UploadFile = File(...),
+                            project_name: str = config.DEFAULT_PROJECT):
+    """Merge a filled template into the suite. Upserts by scenario name.
+
+    Rows that cannot be turned into an honest scenario — an unrecognised
+    column, no expected result — come back under ``blocked`` with the reason,
+    rather than being imported as something other than what the tester wrote.
+    """
+    flow_path = require_flow(project_name, flow_name)
+    try:
+        rows = user_cases.read_rows(await file.read(), file.filename or "")
+        context = _defect_context(project_name, flow_name)
+        built = user_cases.build_cases(
+            rows, context["fields"],
+            add_selector=context["add_selector"],
+            submit_selector=context["submit_selector"])
+    except defects.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    # The same protection a generated suite gets: a stored credential literal
+    # typed into the sheet is replaced by its placeholder before anything is
+    # written to a committed file.
+    credential_store.scrub_known_literals(
+        built["cases"], credential_store.load_stored(project_name))
+
+    existing = read_json(flow_path / "test_cases.json", []) or []
+    merged, added, updated = user_cases.merge_cases(existing, built["cases"])
+    if built["cases"]:
+        write_json(flow_path / "test_cases.json", merged)
+
+    db.audit("upload_user_cases", f"{project_name}/{flow_name}",
+             details={"added": added, "updated": updated,
+                      "blocked": len(built["blocked"])})
+    summary = (f"{added} case(s) added, {updated} updated — the suite now has "
+               f"{len(merged)} test case(s).")
+    if built["blocked"]:
+        summary += (f" {len(built['blocked'])} row(s) need attention before "
+                    f"they can be imported.")
+    if not built["cases"] and not built["blocked"]:
+        summary = ("No case rows found. Fill a row per test case under the "
+                   "template's headers (the SAMPLE rows are skipped).")
+    return {"status": "success", "added": added, "updated": updated,
+            "total_cases": len(merged), "blocked": built["blocked"],
+            "unresolved_columns": built["unresolved_columns"],
+            "message": summary}
 
 
 @app.post("/update-test-case")

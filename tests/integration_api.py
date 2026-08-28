@@ -431,6 +431,92 @@ def main() -> int:
                all(d["outcome"] == "not_run" for d in status["defects"]),
                str([d["outcome"] for d in status["defects"]]))
 
+        # ── User-authored test cases: the generate tab without the agents ──
+        # A tester downloads a template whose columns are the module's real
+        # fields, fills rows in plain language, uploads. What must hold: the
+        # steps are synthesized (no selectors in the sheet), the merge upserts
+        # by name, generated cases stay byte-identical, and a row the platform
+        # cannot honestly import is reported rather than reshaped.
+        inventory = call(base, "/module-inventory",
+                         project_name=PROJECT, flow_name=FLOW)
+        record("module inventory lists the module's fields",
+               inventory["field_count"] >= 1
+               and any(f["selector"] == "#name" for f in inventory["fields"]),
+               str(inventory)[:150])
+
+        template = call(base, "/user-case-template", raw=True,
+                        project_name=PROJECT, flow_name=FLOW)
+        record("the template's columns are the module's own fields",
+               template.splitlines()[0].startswith("Scenario,Type")
+               and "Expected Result" in template.splitlines()[0]
+               and "SAMPLE" in template, template.splitlines()[0][:120])
+
+        def upload_user_sheet(csv_text: str) -> dict:
+            boundary2 = "usercases-boundary"
+            crlf2 = b"\r\n"
+            body2 = (
+                b"--" + boundary2.encode() + crlf2
+                + (b"Content-Disposition: form-data; name=\"file\";"
+                   b" filename=\"my_cases.csv\"") + crlf2
+                + b"Content-Type: text/csv" + crlf2 + crlf2
+                + csv_text.encode("utf-8") + crlf2
+                + b"--" + boundary2.encode() + b"--" + crlf2
+            )
+            request2 = urllib.request.Request(
+                f"{base}/upload-user-cases?project_name="
+                f"{urllib.parse.quote(PROJECT)}&flow_name={urllib.parse.quote(FLOW)}",
+                data=body2, method="POST",
+                headers={"Content-Type":
+                         f"multipart/form-data; boundary={boundary2}",
+                         "X-API-Key": API_KEY})
+            with urllib.request.urlopen(request2, timeout=60) as response2:
+                return json.loads(response2.read())
+
+        suite_before_user = call(base, "/get-flow-details",
+                                 project_name=PROJECT, flow_name=FLOW)["test_cases"]
+        generated_before = json.dumps(
+            [c for c in suite_before_user if c.get("_generated") != "user"],
+            sort_keys=True)
+
+        sheet_rows = (
+            "Scenario,Type,#name,Typo Field,Expected Result\n"
+            "User writes a widget,positive,User Widget,,"
+            "The record is saved successfully\n"
+            "Name left empty,negative,(blank),,"
+            "A validation message states the name is required\n"
+            "Row with a stray value,positive,Acme,oops,"
+            "Saved successfully\n"
+        )
+        uploaded = upload_user_sheet(sheet_rows)
+        record("user cases import and the steps are synthesized",
+               uploaded["added"] == 2 and uploaded["updated"] == 0,
+               str(uploaded)[:200])
+        record("a value under an unknown column blocks that row, with the reason",
+               len(uploaded["blocked"]) == 1
+               and "unrecognised column" in uploaded["blocked"][0]["reason"],
+               str(uploaded["blocked"])[:200])
+
+        suite_after_user = call(base, "/get-flow-details",
+                                project_name=PROJECT, flow_name=FLOW)["test_cases"]
+        mine = [c for c in suite_after_user if c.get("_generated") == "user"]
+        record("the imported case carries runnable steps the tester never wrote",
+               any(c["scenario_name"] == "User writes a widget"
+                   and any(s.get("action") == "TYPE" and s.get("selector") == "#name"
+                           for s in c["steps"])
+                   and c["steps"][-1]["action"] == "CLICK"
+                   for c in mine), str(mine)[:250])
+        record("generated cases are byte-for-byte untouched by a user upload",
+               json.dumps([c for c in suite_after_user
+                           if c.get("_generated") != "user"],
+                          sort_keys=True) == generated_before,
+               "the user import modified a generated case")
+
+        again_user = upload_user_sheet(sheet_rows)
+        record("re-uploading the sheet updates by name instead of duplicating",
+               again_user["added"] == 0 and again_user["updated"] == 2
+               and again_user["total_cases"] == uploaded["total_cases"],
+               str(again_user)[:150])
+
         # ── Project export: read-only, and provably so ────────────────
         import hashlib
         def workspace_fingerprint():

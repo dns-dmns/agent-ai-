@@ -1632,3 +1632,131 @@ def test_run_framework_without_node_fails_with_instructions(monkeypatch):
     blob = " ".join(lines)
     assert "nodejs.org" in blob and "Platform engine" in blob, (
         "the failure must say how to fix it AND that the other engine still works")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# User-authored test cases — the generate tab without the agents
+#
+# The tester's sheet carries labels and values, never selectors or steps.
+# What must hold: labels resolve against the module's own inventory, anything
+# unresolvable is REPORTED rather than guessed (the defect-importer rule), a
+# re-upload updates by name instead of duplicating, and a credential typed
+# into the sheet never reaches the committed suite as a literal.
+# ═══════════════════════════════════════════════════════════════════════
+FIELDS = [
+    {"selector": "#custName", "label": "Customer Name", "kind": "text",
+     "required": True},
+    {"selector": "#custType", "label": "Customer Type", "kind": "select",
+     "options": ["Retail", "Wholesale"]},
+    {"selector": "#active", "label": "Active", "kind": "checkbox"},
+]
+
+
+def _build(rows, **kw):
+    from app import user_cases
+    kw.setdefault("add_selector", "#addBtn")
+    kw.setdefault("submit_selector", "#saveBtn")
+    return user_cases.build_cases(rows, FIELDS, **kw)
+
+
+def test_user_case_row_becomes_steps_without_the_user_writing_any():
+    out = _build([
+        ["Scenario", "Type", "Customer Name", "Customer Type", "Active", "Expected Result"],
+        ["Create a retail customer", "positive", "Acme Ltd", "Retail", "yes",
+         "The record is saved successfully"],
+    ])
+    assert not out["blocked"] and not out["unresolved_columns"]
+    case = out["cases"][0]
+    assert case["_generated"] == "user"
+    actions = [(s["action"], s.get("selector")) for s in case["steps"]]
+    # Add form first, fields in column order, submit last.
+    assert actions[0] == ("CLICK", "#addBtn")
+    assert actions[-1] == ("CLICK", "#saveBtn")
+    assert ("TYPE", "#custName") in actions
+    assert ("SELECT", "#custType") in actions      # options ⇒ SELECT, not TYPE
+    assert ("CHECK", "#active") in actions
+
+
+def test_blank_marker_clears_instead_of_typing_the_word_blank():
+    out = _build([
+        ["Scenario", "Customer Name", "Expected Result"],
+        ["Empty name is rejected", "(blank)", "A validation message appears"],
+    ])
+    step = out["cases"][0]["steps"][1]              # after the add click
+    assert step == {"action": "CLEAR", "selector": "#custName"}
+
+
+def test_a_value_under_an_unknown_column_blocks_the_row_not_silently_drops_it():
+    out = _build([
+        # One valid column, one misspelled. A row with a value under the typo
+        # must be blocked — importing it minus that value would change what the
+        # test means.
+        ["Scenario", "Customer Name", "Custmer Type", "Expected Result"],
+        ["Broken row", "Acme", "Retail", "Saved"],
+        ["Fine row", "Beta Ltd", "", "Saved successfully"],
+    ])
+    assert "Custmer Type" in out["unresolved_columns"]
+    assert len(out["blocked"]) == 1 and out["blocked"][0]["scenario"] == "Broken row"
+    assert "unrecognised column" in out["blocked"][0]["reason"]
+    assert [c["scenario_name"] for c in out["cases"]] == ["Fine row"]
+
+
+def test_a_sheet_whose_columns_match_nothing_is_refused_with_the_known_labels():
+    from app import user_cases
+    import pytest
+    with pytest.raises(user_cases.DefectImportError) as err:
+        _build([
+            ["Scenario", "Custmer Nmae", "Expected Result"],
+            ["Broken row", "Acme", "Saved"],
+        ])
+    assert "Customer Name" in str(err.value), "the refusal must list the real labels"
+
+
+def test_a_row_without_an_expected_result_is_blocked_not_imported():
+    out = _build([
+        ["Scenario", "Customer Name", "Expected Result"],
+        ["No expectation", "Acme", ""],
+    ])
+    assert not out["cases"]
+    assert "Expected Result" in out["blocked"][0]["reason"]
+
+
+def test_sample_rows_from_the_template_are_skipped_on_upload():
+    from app import user_cases
+    template = user_cases.template_csv(FIELDS)
+    import csv as _csv
+    import io as _io
+    rows = list(_csv.reader(_io.StringIO(template)))
+    out = _build(rows)
+    assert not out["cases"], "the template's own SAMPLE rows must not import"
+    # And the template's columns are the module's real labels.
+    assert rows[0][:2] == ["Scenario", "Type"]
+    assert "Customer Name" in rows[0] and rows[0][-1] == "Expected Result"
+
+
+def test_reupload_updates_by_name_and_never_touches_generated_cases():
+    from app import user_cases
+    existing = [
+        {"scenario_name": "Agent case", "type": "negative", "steps": [],
+         "expected_result": "kept verbatim"},
+        {"scenario_name": "My case", "type": "functional", "steps": [],
+         "expected_result": "old wording", "_generated": "user"},
+    ]
+    incoming = [
+        {"scenario_name": "My case", "type": "functional", "steps": [],
+         "expected_result": "new wording", "_generated": "user"},
+        {"scenario_name": "Another case", "type": "functional", "steps": [],
+         "expected_result": "added", "_generated": "user"},
+    ]
+    merged, added, updated = user_cases.merge_cases(existing, incoming)
+    assert (added, updated) == (1, 1)
+    assert merged[0]["expected_result"] == "kept verbatim"   # untouched, same slot
+    assert merged[1]["expected_result"] == "new wording"     # updated in place
+    assert merged[2]["scenario_name"] == "Another case"      # appended
+
+
+def test_template_never_offers_a_credential_literal():
+    from app import user_cases
+    sensitive = [{"selector": "#password", "label": "Password", "kind": "text"}]
+    template = user_cases.template_csv(sensitive)
+    assert "{{password}}" in template, "sensitive fields get the placeholder"

@@ -1,0 +1,5 @@
+Scenario,Type,Customer Name,Customer Type,Credit Limit,Expected Result
+Create a customer with valid values,positive,Acme Traders,Retail,50000,The record is saved successfully and appears in the list
+Empty name is rejected,negative,(blank),Retail,50000,A validation message states that Customer Name is required and the record is not saved
+Credit limit accepts a boundary value,boundary,Boundary Customer,Wholesale,999999,The record is saved successfully
+Duplicate customer is refused,negative,Acme Traders,Retail,50000,A duplicate message appears and no second record is created

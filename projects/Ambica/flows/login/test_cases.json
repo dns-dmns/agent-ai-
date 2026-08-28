@@ -1,0 +1,543 @@
+[
+    {
+        "scenario_name": "Login with valid username and password",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "User is logged in successfully and the dashboard page is displayed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Login with valid email and password",
+        "type": "positive",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#email",
+                "value": "ambica.user@gmail.com"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "User is logged in successfully and the dashboard page is displayed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Login with wrong password",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Wrong@999"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and the user remains on the login page",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Login with unregistered username",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "unknown_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and login is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Login with wrong username and wrong password",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "wrong_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Wrong@999"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and login is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Empty username is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLEAR",
+                "selector": "#username"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that Username is required and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Empty password is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "#password"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that Password is required and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Both username and password empty are rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "CLEAR",
+                "selector": "#username"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "#password"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "Validation messages state that Username and Password are required and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Spaces-only username is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that Username is required and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Username with leading and trailing spaces",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "User is logged in successfully and the dashboard page is displayed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Username in uppercase",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "AMBICA_USER"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "User is logged in successfully and the dashboard page is displayed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Password in wrong case is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and login is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Email without domain is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#email",
+                "value": "ambica.user@gmail"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that a valid email address must be entered and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Email without @ symbol is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#email",
+                "value": "ambica.usergmail.com"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that a valid email address must be entered and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Special characters in username are rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "user#$%!"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and login is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "SQL injection in username is refused",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "admin' OR '1'='1"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "anything"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and access is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "SQL injection in password is refused",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "' OR '1'='1"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and access is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Script tag in username is refused",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "<script>alert(1)</script>"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and access is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Blocked account cannot log in",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "blocked_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that the account is deactivated and login is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Password below minimum length is rejected",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "P@1"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that the password does not meet the minimum length and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Password at minimum length logs in",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "P@ss1234"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "User is logged in successfully and the dashboard page is displayed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Password at maximum length logs in",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "P@ssw0rd_MaxLen_1234567890abcdef"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "User is logged in successfully and the dashboard page is displayed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Password exceeding maximum length is rejected",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "P@ssw0rd_Over_MaxLength_1234567890abcdefgh"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states that the password exceeds the allowed length and login is not allowed",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Very long username is refused",
+        "type": "boundary",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "username_with_fifty_characters_long_value_test_01"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Valid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and login is refused",
+        "_generated": "user"
+    },
+    {
+        "scenario_name": "Old password after reset is rejected",
+        "type": "negative",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "ambica_user"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "OldValid@123"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Save\")"
+            }
+        ],
+        "expected_result": "A validation message states \"Invalid username or password\" and login is refused",
+        "_generated": "user"
+    }
+]
