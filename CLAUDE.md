@@ -292,6 +292,40 @@ the *previous* action rather than appending a step, and
 "assert THESE, do not invent wording". Old recordings have no `effect` key and
 behave exactly as before.
 
+### Recording fidelity — codegen-grade capture and assert mode
+
+Two additions that make a recording *reviewable*, not just replayable:
+
+- **Every event carries the element.** `describeElement()` in `recorder.py` adds
+  `role` (computed ARIA, explicit or implicit), `accessible_name`, `text_full`
+  (whole visible text, capped at 600 chars) and `attrs` (title/placeholder/
+  aria-label/href/alt/name/type, plus disabled/readonly on inputs). An exact
+  `text="…"` locator joins the candidate list for clickable controls — last
+  among the text candidates, because it is the most brittle to a wording change,
+  which is precisely what an *assertion* should catch and a *click* should not
+  depend on.
+- **Assert mode** (`window.__qaAssertMode`, toggled by `POST /set-record-mode`)
+  is codegen's "assert text" tool. A click is intercepted in the capture phase
+  with `stopImmediatePropagation`, so the application never sees it, and a
+  `VERIFY_TEXT` / `VERIFY_VALUE` / `VERIFY_VISIBLE` step is recorded carrying the
+  element's exact current text. No executor change was needed — `VERIFY_TEXT`
+  already does a substring match, so a corrected spelling fails the replay.
+
+**The security trap this had to avoid:** `credentials.scrub_recorded_actions`
+cleans the `value` and `text` keys of a TYPE action. `text_full` and
+`accessible_name` would have carried a second copy of the same literal past it
+and into `actions.json`, which is committed — the exact leak class the audit
+found. So the recorder blanks both on any sensitive field, an assertion on a
+password degrades to `VERIFY_VISIBLE` rather than storing the secret as an
+expected value, and the scrubber now also masks those keys plus `asserted`
+step values.
+
+`tests/e2e_recorder.py` is the first test that runs the recorder **in a real
+browser**. It has to be: the script depends on `getBoundingClientRect` and
+`getComputedStyle`, and its two riskiest behaviours — that assert mode suppresses
+the click, and that no password reaches a captured key — are invisible to the
+string checks in `test_platform.py`.
+
 ### Message detection — four layers
 
 A false FAIL is the most damaging thing this tool can produce: it blames a

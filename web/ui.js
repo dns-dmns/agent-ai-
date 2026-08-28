@@ -626,6 +626,54 @@
         }).observe(el, { attributes: true, attributeFilter: ["style"] });
     });
 
+    /* ── Codegen-style assert mode ──────────────────────────────────── */
+    // Playwright codegen's "assert text" tool. Switch it on, click through the
+    // screen, and every click records a check on that element's exact text
+    // instead of driving the application — so a spelling change fails the run.
+    //
+    // Lives here rather than in app.js because that file is frozen; the button
+    // is created against the existing markup and talks to /set-record-mode
+    // directly, so no app.js state is involved.
+    let assertModeOn = false;
+
+    function paintAssertButton() {
+        const btn = $("assertModeBtn");
+        if (!btn) return;
+        btn.classList.toggle("btn-primary", assertModeOn);
+        btn.textContent = assertModeOn ? "◉ Capturing checks" : "◎ Capture checks";
+        btn.title = assertModeOn
+            ? "ON — clicking an element records a check on its text. Click again to resume normal recording."
+            : "Record checks on what the screen says (spelling, labels, values) instead of clicking through it.";
+    }
+
+    window.toggleAssertMode = async () => {
+        const next = !assertModeOn;
+        try {
+            const res = await fetch(`/set-record-mode?assert_mode=${next}`, { method: "POST" });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.detail || "could not switch mode");
+            assertModeOn = data.assert_mode;
+            paintAssertButton();
+            const line = $("recorderConsole");
+            if (line) line.textContent = data.message;
+        } catch (e) {
+            const line = $("recorderConsole");
+            if (line) line.textContent = `Could not switch mode: ${e.message}`;
+        }
+    };
+
+    // Enable alongside Start recording, reset on Stop.
+    wrap("triggerStartRecording", () => {
+        const btn = $("assertModeBtn");
+        if (btn) btn.disabled = false;
+    });
+    wrap("triggerStopRecording", () => {
+        assertModeOn = false;
+        paintAssertButton();
+        const btn = $("assertModeBtn");
+        if (btn) btn.disabled = true;
+    });
+
     /* ── Misc small handlers used by the new markup ─────────────────── */
     window.toggleUploadPanel = () => $("uploadCustomSuitePanel").classList.toggle("hidden");
     window.showChosenFile = (input) => {

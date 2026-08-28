@@ -131,6 +131,17 @@ def scrub_recorded_actions(actions: list, project_name: str) -> dict:
             for message in ((action.get("effect") or {}).get("messages") or []):
                 if isinstance(message, dict) and message.get("text") in swap:
                     message["text"] = swap[message["text"]]
+            # Codegen-style capture keys. `text_full` holds the element's whole
+            # visible text, so "Welcome, admin" after a login puts the username
+            # in the recording under a key the loop above never looked at, and
+            # an assertion recorded on a username field puts the literal in
+            # `value` on a step that is not a TYPE. Both are committed files.
+            for key in ("text_full", "accessible_name"):
+                current = action.get(key)
+                if current in swap:
+                    action[key] = swap[current]
+            if action.get("asserted") and action.get("value") in swap:
+                action["value"] = swap[action["value"]]
 
     if found:
         store(project_name, **found)

@@ -12,6 +12,17 @@ Two upgrades over the original script:
 * **Coverage** — besides clicks and typing it now records dropdown selections,
   checkbox state, Enter/Tab/Escape key presses, file uploads and SPA route
   changes, which previously vanished from the recording entirely.
+* **Codegen-style capture** — every event carries the element's full visible
+  text (``text_full``), computed ARIA ``role``, ``accessible_name`` and the
+  text-bearing attributes, so a recording can be reviewed for UI wording and
+  spelling, not just replayed. An exact ``text="…"`` locator (Playwright's text
+  engine, what codegen's get_by_text produces) is appended to the candidate
+  list for clickable controls.
+* **Assert mode** — codegen's "assert text" tool. While ``window.__qaAssertMode``
+  is true a click does not act on the page; it records a ``VERIFY_TEXT`` /
+  ``VERIFY_VALUE`` / ``VERIFY_VISIBLE`` step carrying the element's exact
+  current text, so a later run fails if the wording ever changes. Toggled live
+  through ``POST /set-record-mode``.
 """
 
 from .dom_probes import SHARED_PROBES_JS
@@ -128,6 +139,18 @@ __SHARED_PROBES__
             } else if (tag === 'a') {
                 push('a:has-text("' + quote(text) + '")');
             }
+            // Playwright's own text engine, exact match — the locator
+            // `codegen` reaches for first (get_by_text / get_by_role name).
+            // Last among the text candidates because it is the most brittle
+            // to a wording change, which is exactly what an assertion should
+            // catch and a click should not depend on.
+            if (tag === 'button' || tag === 'a' || tag === 'label' ||
+                el.getAttribute('role') === 'button' ||
+                el.getAttribute('role') === 'tab' ||
+                el.getAttribute('role') === 'menuitem' ||
+                el.getAttribute('role') === 'option') {
+                push('text="' + quote(text) + '"');
+            }
         }
 
         // Icon-only controls. A grid's action column is usually four unlabelled
@@ -179,6 +202,110 @@ __SHARED_PROBES__
         } catch (e) {}
     }
 
+    // ── Codegen-style element description ─────────────────────────────
+    // The recording used to keep text truncated to 50 characters, which is
+    // enough to replay a click and useless for reviewing what the screen
+    // actually says. Capturing the full text, the computed role and the
+    // text-bearing attributes is what makes a recording auditable for wording
+    // and spelling — the thing Playwright's inspector shows you live.
+    //
+    // Deliberately NOT captured: the value of any password/sensitive input.
+    // app/credentials.py scrubs the `value` and `text` keys of a TYPE action;
+    // a second copy of the same literal under a new key would walk straight
+    // past it and back into actions.json, which is committed.
+    var SENSITIVE_NAME = /pass|pwd|otp|captcha|secret|token|cvv|pin\b/i;
+
+    function isSensitiveField(el) {
+        try {
+            var type = (el.getAttribute('type') || '').toLowerCase();
+            if (type === 'password') return true;
+            var hay = [el.id, el.name, el.getAttribute('formcontrolname'),
+                       el.getAttribute('aria-label'), el.placeholder,
+                       labelTextFor(el)].join(' ');
+            return SENSITIVE_NAME.test(hay);
+        } catch (e) { return true; }   // unreadable ⇒ treat as sensitive
+    }
+
+    // Implicit ARIA roles — the common subset, which is what a locator needs.
+    function implicitRole(el) {
+        var explicit = el.getAttribute && el.getAttribute('role');
+        if (explicit) return explicit.trim();
+        var tag = el.tagName.toLowerCase();
+        var type = (el.getAttribute('type') || '').toLowerCase();
+        if (tag === 'a') return el.hasAttribute('href') ? 'link' : '';
+        if (tag === 'button') return 'button';
+        if (tag === 'select') return el.multiple ? 'listbox' : 'combobox';
+        if (tag === 'textarea') return 'textbox';
+        if (tag === 'img') return 'img';
+        if (tag === 'table') return 'table';
+        if (tag === 'ul' || tag === 'ol') return 'list';
+        if (tag === 'li') return 'listitem';
+        if (/^h[1-6]$/.test(tag)) return 'heading';
+        if (tag === 'input') {
+            if (type === 'checkbox') return 'checkbox';
+            if (type === 'radio') return 'radio';
+            if (type === 'submit' || type === 'button' || type === 'reset') return 'button';
+            if (type === 'search') return 'searchbox';
+            if (type === 'number') return 'spinbutton';
+            if (type === 'range') return 'slider';
+            if (['text', 'email', 'tel', 'url', ''].indexOf(type) !== -1) return 'textbox';
+        }
+        return '';
+    }
+
+    // The name a screen reader would announce — also what get_by_role(name=…)
+    // matches against.
+    function accessibleName(el) {
+        try {
+            var aria = el.getAttribute('aria-label');
+            if (aria && aria.trim()) return aria.trim();
+            var labelledBy = el.getAttribute('aria-labelledby');
+            if (labelledBy) {
+                var parts = labelledBy.split(/\s+/).map(function (id) {
+                    var ref = document.getElementById(id);
+                    return ref ? (ref.innerText || '').trim() : '';
+                }).filter(Boolean);
+                if (parts.length) return parts.join(' ');
+            }
+            var lab = labelTextFor(el);
+            if (lab) return lab;
+            var title = el.getAttribute('title');
+            if (title && title.trim()) return title.trim();
+            if (el.tagName.toLowerCase() === 'img') {
+                var alt = el.getAttribute('alt');
+                if (alt && alt.trim()) return alt.trim();
+            }
+            return (el.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+        } catch (e) { return ''; }
+    }
+
+    var TEXT_ATTRS = ['title', 'placeholder', 'aria-label', 'alt', 'href',
+                      'name', 'type', 'role'];
+
+    function describeElement(el) {
+        var out = { role: '', accessible_name: '', text_full: '', attrs: {} };
+        try {
+            out.role = implicitRole(el);
+            out.accessible_name = accessibleName(el);
+            // Full visible text, whitespace-collapsed. Capped generously: a
+            // paragraph is worth keeping for a spelling review, a whole table
+            // body is not.
+            var full = (el.innerText || el.textContent || '').trim().replace(/\s+/g, ' ');
+            if (full && full.length <= 600) out.text_full = full;
+            else if (full) out.text_full = full.slice(0, 600) + '…';
+            TEXT_ATTRS.forEach(function (attr) {
+                var v = el.getAttribute && el.getAttribute(attr);
+                if (v && String(v).trim()) out.attrs[attr] = String(v).trim().slice(0, 200);
+            });
+            if (el.tagName.toLowerCase() === 'input' ||
+                el.tagName.toLowerCase() === 'textarea') {
+                out.attrs.disabled = el.disabled ? 'true' : 'false';
+                out.attrs.readonly = el.readOnly ? 'true' : 'false';
+            }
+        } catch (e) {}
+        return out;
+    }
+
     // Mandatory-field detection lives in app/dom_probes.py and is injected
     // above, so the recorder and the execution engine cannot drift apart. They
     // did: this file demanded ng-invalid AND ng-pristine while the engine
@@ -189,6 +316,7 @@ __SHARED_PROBES__
     function emit(action, el, extra) {
         var selectors = candidateSelectors(el);
         var tag = el.tagName ? el.tagName.toLowerCase() : '';
+        var described = describeElement(el);
         var payload = {
             action: action,
             selector: selectors[0] || structuralPath(el),
@@ -197,10 +325,24 @@ __SHARED_PROBES__
             text: (el.innerText ? el.innerText.trim().substring(0, 50) : ''),
             label: labelTextFor(el),
             required: isRequired(el),
-            value: ''
+            value: '',
+            // Codegen-style capture. Older recordings simply lack these keys and
+            // every consumer already uses .get(), so nothing downstream changes.
+            role: described.role,
+            accessible_name: described.accessible_name,
+            text_full: described.text_full,
+            attrs: described.attrs
         };
         if (extra) {
             for (var k in extra) { if (extra.hasOwnProperty(k)) payload[k] = extra[k]; }
+        }
+        // A sensitive field must not carry an echo of what was typed into it in
+        // ANY key. credentials.scrub_recorded_actions cleans `value` and `text`;
+        // these two would otherwise smuggle the same literal past it.
+        if (isSensitiveField(el)) {
+            payload.text_full = '';
+            payload.accessible_name = labelTextFor(el) || '';
+            if (payload.attrs) { delete payload.attrs.value; }
         }
         send(payload);
         // Watch what this action caused. CLICK and SELECT are what change state;
@@ -339,6 +481,7 @@ __SHARED_PROBES__
     }
 
     function flushValue(el) {
+        if (window.__qaAssertMode) return;   // annotating, not filling the form
         if (!isTextField(el)) return;
         var now = readValue(el);
         var before = valueAtFocus.has(el) ? valueAtFocus.get(el) : '';
@@ -357,8 +500,90 @@ __SHARED_PROBES__
         flushValue(e.target);
     }, true);
 
+    // ── Assert mode ───────────────────────────────────────────────────
+    // Playwright codegen's "assert text" tool. While the toggle is on, a click
+    // does not drive the application — it captures what the element says right
+    // now as a VERIFY_* step. Re-running the suite then fails if the wording,
+    // the value or the visibility ever changes, which is what makes a spelling
+    // mistake a test failure instead of something a human has to notice.
+    //
+    // The flag lives on window so the server can flip it mid-session via
+    // page.evaluate without re-injecting the whole recorder.
+    if (typeof window.__qaAssertMode === 'undefined') window.__qaAssertMode = false;
+
+    function assertOutline(el) {
+        try {
+            var previous = el.style.outline;
+            el.style.outline = '2px solid #22c55e';
+            setTimeout(function () { el.style.outline = previous; }, 450);
+        } catch (e) {}
+    }
+
+    function recordAssertion(el) {
+        var selectors = candidateSelectors(el);
+        var tag = el.tagName ? el.tagName.toLowerCase() : '';
+        var described = describeElement(el);
+        var action, value;
+
+        if (isTextField(el) || tag === 'select') {
+            // Never assert on a password: the expected value would be the
+            // credential, written into test_cases.json in clear.
+            if (isSensitiveField(el)) {
+                action = 'VERIFY_VISIBLE';
+                value = '';
+            } else {
+                action = 'VERIFY_VALUE';
+                value = readValue(el);
+                if (tag === 'select') {
+                    try {
+                        value = el.options[el.selectedIndex].text.trim();
+                    } catch (err) {}
+                }
+            }
+        } else {
+            var text = described.text_full ||
+                       (el.innerText || '').trim().replace(/\s+/g, ' ');
+            if (text) {
+                action = 'VERIFY_TEXT';
+                value = text;
+            } else {
+                action = 'VERIFY_VISIBLE';
+                value = '';
+            }
+        }
+
+        assertOutline(el);
+        send({
+            action: action,
+            selector: selectors[0] || structuralPath(el),
+            selectors: selectors,
+            tag: tag,
+            text: (el.innerText ? el.innerText.trim().substring(0, 50) : ''),
+            label: labelTextFor(el),
+            required: false,
+            value: value,
+            role: described.role,
+            accessible_name: described.accessible_name,
+            text_full: isSensitiveField(el) ? '' : described.text_full,
+            attrs: described.attrs,
+            asserted: true
+        });
+    }
+
+    // Capture phase, before anything else, so the application never sees the
+    // click while the tester is annotating the page.
+    document.addEventListener('click', function(e) {
+        if (!window.__qaAssertMode) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        var el = e.target;
+        if (el && el.nodeType === Node.ELEMENT_NODE) recordAssertion(el);
+    }, true);
+
     // ── Clicks ────────────────────────────────────────────────────────
     document.addEventListener('click', function(e) {
+        if (window.__qaAssertMode) return;      // the assert handler took it
         // A click on Save must not be recorded before the value typed into the
         // field that still has focus.
         var focused = document.activeElement;
@@ -381,6 +606,7 @@ __SHARED_PROBES__
 
     // ── Typing / selecting ────────────────────────────────────────────
     document.addEventListener('change', function(e) {
+        if (window.__qaAssertMode) return;
         var target = e.target;
         if (!target || !target.tagName) return;
         var tag = target.tagName.toLowerCase();
@@ -414,6 +640,7 @@ __SHARED_PROBES__
 
     // ── Key presses that carry meaning ────────────────────────────────
     document.addEventListener('keydown', function(e) {
+        if (window.__qaAssertMode) return;
         if (['Enter', 'Tab', 'Escape'].indexOf(e.key) === -1) return;
         var target = e.target;
         if (!target || !target.tagName) return;

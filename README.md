@@ -119,6 +119,42 @@ Kinds: `must_show` · `must_not_show` · `must_navigate` · `must_not_navigate` 
 **Module | Scenario | Pre-condition | Steps | Expected Result | Priority** for one
 flow or the whole workspace — ready for TestRail, Zephyr or Excel.
 
+## Recording — what gets captured
+
+Recording is not just "what was clicked". Every event carries the element's
+computed ARIA **role**, its **accessible name**, its **full visible text** and the
+text-bearing attributes (`title`, `placeholder`, `aria-label`, `href`, `alt`…),
+plus an exact `text="…"` locator among the candidate selectors. That is what
+makes a recording reviewable for wording and spelling rather than only replayable.
+
+### Capture checks — assert mode
+
+The **◎ Capture checks** button next to *Start recording* is Playwright codegen's
+"assert text" tool. Switch it on and clicking an element no longer drives the
+application — it records a check on what that element says right now:
+
+| You click | It records |
+| :--- | :--- |
+| A heading, label, message, cell | `VERIFY_TEXT` with the exact wording |
+| A filled input or dropdown | `VERIFY_VALUE` with its current value |
+| Anything with no text | `VERIFY_VISIBLE` |
+
+So a heading reading `Custmoer Master` is captured verbatim, and the day someone
+fixes the spelling the run **fails** — `'#t' does not contain 'Custmoer Master'`.
+A wording change becomes a test result instead of something a human has to notice.
+
+Switch it off and clicks drive the application again. The toggle survives
+navigation, which matters in a single-page application.
+
+**Credentials are never captured this way.** A password field degrades to
+`VERIFY_VISIBLE` rather than storing the secret as an expected value, and
+`text_full` / `accessible_name` are blanked on any sensitive field — otherwise
+they would carry a second copy of the literal straight past the scrubber and into
+`actions.json`, which is committed.
+
+`tests/e2e_recorder.py` runs the recorder in a real browser and asserts all of
+the above, including that an assert-mode click does not reach the application.
+
 ## Step vocabulary
 
 Actions: `NAVIGATE` · `CLICK` · `DOUBLE_CLICK` · `RIGHT_CLICK` · `TYPE` · `CLEAR` ·

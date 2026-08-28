@@ -226,6 +226,8 @@ active_session: dict[str, Any] = {
     "project_name": config.DEFAULT_PROJECT,
     "start_time": 0,
     "binding_ready": False,
+    # Codegen-style assert mode: clicks record a check instead of acting.
+    "assert_mode": False,
 }
 _recording_lock = asyncio.Lock()
 
@@ -241,7 +243,7 @@ async def close_active_browser() -> None:
             pass
     active_session.update({
         "playwright": None, "browser": None, "context": None, "page": None,
-        "recording": False, "binding_ready": False,
+        "recording": False, "binding_ready": False, "assert_mode": False,
     })
 
 
@@ -697,6 +699,47 @@ async def start_recording_api():
                 "message": "Recording started. Interact with the browser window."}
     except Exception as err:
         raise HTTPException(status_code=500, detail=str(err)) from err
+
+
+@app.post("/set-record-mode")
+async def set_record_mode(assert_mode: bool = False):
+    """Toggle codegen-style assert mode on the live recording session.
+
+    In assert mode a click no longer drives the application — it records a
+    ``VERIFY_TEXT`` / ``VERIFY_VALUE`` / ``VERIFY_VISIBLE`` step carrying the
+    element's exact current text, so a later run fails if the wording changes.
+    This is how a spelling mistake becomes a test failure rather than something
+    a human has to spot.
+
+    Applied to every frame and re-applied on navigation, because a single-page
+    application replaces the document without a page load.
+    """
+    page = active_session.get("page")
+    if not page:
+        raise HTTPException(status_code=400, detail="No active browser session found.")
+
+    active_session["assert_mode"] = bool(assert_mode)
+    flag = "true" if assert_mode else "false"
+    try:
+        await page.evaluate(f"window.__qaAssertMode = {flag};")
+        # Survives navigation. add_init_script accumulates, so the newest
+        # assignment is the one that wins on the next document.
+        await active_session["context"].add_init_script(
+            f"window.__qaAssertMode = {flag};"
+        )
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=str(err)) from err
+
+    return {
+        "status": "success",
+        "assert_mode": bool(assert_mode),
+        "message": (
+            "Assert mode ON — clicking an element now records a check on its "
+            "text instead of clicking it."
+            if assert_mode else
+            "Assert mode OFF — clicks drive the application again."
+        ),
+    }
 
 
 @app.post("/stop-recording")

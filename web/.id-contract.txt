@@ -3,6 +3,7 @@ advancedToggleIcon
 analysisLoader
 analyzeBtn
 apiSeedSelect
+assertModeBtn
 authFlowSelect
 authFlowsGroup
 authScenarioSelect

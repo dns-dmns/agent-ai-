@@ -36,6 +36,12 @@ jobs:
         # against the bundled chain app. Offline, no API key.
         run: python tests/e2e_chain.py
 
+      - name: Recorder self test
+        # Runs the injected recorder JS in a real browser. Every other recorder
+        # test is a string check, which cannot see that assert mode suppresses
+        # the click or that a password never reaches a captured key.
+        run: python tests/e2e_recorder.py
+
       - name: Dashboard smoke test
         run: python tests/smoke_ui.py
 
