@@ -599,6 +599,26 @@ field; a save that closes the dialog or shows success is flagged
 `unexpected_save`. Human recordings (no `source: explorer`) are never overwritten.
 Summary: `projects/P/explorer/summary.{json,csv}`.
 
+### Re-recording with review — `app/recording_diff.py`
+
+`/stop-recording?review=true` (the dashboard always sends it, via a `fetch` wrap
+in `web/ui-record-review.js`) writes a new recording of a module that already
+has one to `<flow>/.pending/` (`_write_recording` serves both destinations) and
+returns `recording_diff.compare(old, new)`: rows `same|changed|added|removed`
+aligned with difflib on (action, selector); KEYPRESS is ignored. Nothing is
+replaced until `/confirm-recording?decision=replace|discard`: replace moves the
+old actions/video/screenshots to `.trash` and drops `source: explorer` from
+flow.json (a person recorded it now); discard trashes `.pending`. `.pending` is
+hidden from `flow_names()` by its leading dot. `/recording-review` lets the UI
+show an unfinished review as a banner.
+
+**`/static/projects` must never serve secrets.** It used to return
+`login_data.json`, `config.json` (Settings credentials) and `session*.json`
+(logged-in cookies) by URL. `private_files_and_fresh_assets` 404s them
+(`PRIVATE_FILE`) and sends `Cache-Control: no-cache` for `/` and `/assets/` — a
+cached old stylesheet with a new `ui.js` left the Tools list visible while the
+toggle said folded (the toggle now also sets `display` inline).
+
 ### Typing into masked number widgets
 
 `loc.fill()` pastes a value in one event. PrimeNG `p-inputnumber` (and any

@@ -120,6 +120,16 @@ You can also enter or change the username and password in **Settings**.
    again to go back to normal recording.
 7. **Stop & save**. The module appears under **BUSINESS** on the left.
 
+**Re-recording a module.** At the top of the Record tab, pick the module under
+**Re-record an existing module** — the flow name and start URL fill in. Record
+it as usual. When you click **Stop & save**, nothing is replaced yet: you see the
+old and the new recording **side by side** — steps added (green), removed (red)
+and changed (amber), and which fields exist only in one of them. Click **Replace
+with new recording** to keep the new one (the module still has one recording;
+the old one goes to `.trash`), or **Keep old recording** to drop the new one. If
+you leave without choosing, the module shows a "waiting for your review" banner
+next time you open it. Test cases and results are not touched either way.
+
 **Organising existing flows into folders.** Either rename a flow to include the
 folder (`item` → `Master/Item Master`), or move its folder on disk into a
 sub-folder of `projects/<workspace>/flows/`. The sidebar always mirrors the

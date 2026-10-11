@@ -1090,3 +1090,23 @@ input[type="checkbox"]:checked::after {
 .flow-folder .row-icon { width: 1em; text-align: center; color: var(--text-tertiary); }
 .flow-folder .row-text { font-weight: 600; }
 .flow-folder-children[hidden] { display: none; }
+
+/* ── Re-recording review (ui-record-review.js) ───────────────────────── */
+.rr-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; margin: var(--space-3) 0; }
+.rr-chip { padding: 2px var(--space-3); border-radius: var(--radius-sm); background: var(--surface-active);
+           font-size: var(--text-xs); }
+.rr-chip.rr-added, .rr-added .rr-tag { color: var(--pass); background: var(--pass-quiet); }
+.rr-chip.rr-removed, .rr-removed .rr-tag { color: var(--fail); background: var(--fail-quiet); }
+.rr-chip.rr-changed, .rr-changed .rr-tag { color: var(--unverified); background: var(--unverified-quiet); }
+.rr-scroll { max-height: 55vh; overflow: auto; border: 1px solid var(--border);
+             border-radius: var(--radius-sm); margin-top: var(--space-3); }
+.rr-table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); }
+.rr-table th, .rr-table td { padding: 6px 10px; border-bottom: 1px solid var(--border);
+                             text-align: left; vertical-align: top; }
+.rr-table thead th { position: sticky; top: 0; background: var(--surface-raised); }
+.rr-tag { padding: 1px 6px; border-radius: var(--radius-sm); text-transform: capitalize; }
+.rr-action { font-family: var(--font-mono, monospace); color: var(--text-secondary); }
+.rr-value { color: var(--text-secondary); }
+.rr-empty { color: var(--text-tertiary); }
+tr.rr-added td:nth-child(3), tr.rr-changed td:nth-child(3) { background: var(--pass-quiet); }
+tr.rr-removed td:nth-child(2), tr.rr-changed td:nth-child(2) { background: var(--fail-quiet); }

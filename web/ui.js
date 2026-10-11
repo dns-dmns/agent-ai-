@@ -191,6 +191,9 @@
         if (!box) return;
         const fold = typeof force === "boolean" ? force : !box.classList.contains("is-folded");
         box.classList.toggle("is-folded", fold);
+        // Set directly as well: folding must work even if an old stylesheet is cached.
+        const list = $("sidebarToolsList");
+        if (list) list.style.display = fold ? "none" : "";
         const btn = $("sidebarToolsToggle"), chevron = $("sidebarToolsChevron");
         if (btn) btn.setAttribute("aria-expanded", String(!fold));
         if (chevron) chevron.textContent = fold ? "▸" : "▾";

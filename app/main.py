@@ -54,6 +54,7 @@ from . import llm
 from . import storage
 from . import sources
 from . import pacing
+from . import recording_diff
 from . import screens
 from . import recorder
 from . import rules
@@ -90,6 +91,28 @@ app.mount(
 _web_dir = config.web_dir()
 if _web_dir.exists():
     app.mount("/assets", StaticFiles(directory=str(_web_dir)), name="assets")
+
+#: Files under projects/ that hold secrets. /static/projects serves the folder
+#: for screenshots and videos, and used to serve these too: the stored password
+#: (login_data.json, and config.json's credentials) and the logged-in browser
+#: cookies (session*.json) were downloadable by URL.
+PRIVATE_FILE = re.compile(r"(^|/)(login_data\.json|config\.json|session(\.[\w-]+)?\.json|"
+                          r"[^/]*\.db|\.env)$", re.I)
+
+
+@app.middleware("http")
+async def private_files_and_fresh_assets(request: Request, call_next):
+    path = request.url.path
+    if path.startswith("/static/projects/") and PRIVATE_FILE.search(path):
+        return JSONResponse(status_code=404, content={"detail": "Not found."})
+    response = await call_next(request)
+    # The dashboard's own files must never come from a stale cache: an old
+    # stylesheet with a new script left the Tools list visible while the
+    # toggle said it was folded.
+    if path == "/" or path.startswith("/assets/"):
+        response.headers["Cache-Control"] = "no-cache, must-revalidate"
+    return response
+
 
 PUBLIC_PATHS = ("/", "/legacy", "/health", "/favicon.ico", "/docs", "/openapi.json", "/redoc")
 
@@ -802,8 +825,83 @@ async def set_record_mode(assert_mode: bool = False):
     }
 
 
+def _write_recording(flow_path: Path, dest: Path, project_name: str, flow_name: str,
+                     url: str, actions: list, duration: int) -> list[str]:
+    """Write a finished recording into ``dest`` (the flow, or its ``.pending``).
+
+    Screenshot links always point at the flow's own screenshots folder -- that is
+    where they live once a pending recording is confirmed.
+    """
+    dest.mkdir(parents=True, exist_ok=True)
+    # The recorder writes its video into the flow folder; take the newest.
+    webm_files = [
+        Path(p) for p in glob.glob(str(flow_path / "*.webm"))
+        if Path(p).name != "recording.webm"
+    ]
+    if webm_files:
+        webm_files.sort(key=lambda p: p.stat().st_mtime)
+        latest = webm_files[-1]
+        target = dest / "recording.webm"
+        try:
+            if target.exists():
+                target.unlink()
+            shutil.move(str(latest), str(target))
+        except Exception as err:
+            log.warning("Could not move the recording video: %s", err)
+        for leftover in webm_files[:-1]:
+            try:
+                leftover.unlink()
+            except Exception:
+                pass
+
+    shots = dest / "screenshots"
+    shutil.rmtree(shots, ignore_errors=True)
+    shots.mkdir(parents=True, exist_ok=True)
+    for idx, act in enumerate(actions, start=1):
+        temp_img = act.get("screenshot")
+        if temp_img and os.path.exists(temp_img):
+            target_img = shots / f"step_{idx}.png"
+            shutil.move(temp_img, target_img)
+            act["screenshot"] = config.static_url(
+                project_name, flow_name, "screenshots", target_img.name
+            )
+
+    # The recorded username/password become {{placeholders}} and the
+    # literals go to the project's gitignored login_data.json — actions.json
+    # is committed, and generation copies its values into spec.json and
+    # test_cases.json, so a literal here ends up in git three times over.
+    scrubbed = credential_store.scrub_recorded_actions(actions, project_name)
+
+    write_json(dest / "flow.json", {
+        # Versioned so a future change to this layout can be migrated
+        # instead of guessed at. projects/ is the data model; a schema
+        # nobody stamped is a schema nobody can evolve.
+        "schema_version": 1,
+        "flow_name": flow_name,
+        "target_url": url,
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "duration_seconds": duration,
+        "step_count": len(actions),
+    })
+    write_json(dest / "actions.json", actions)
+    return sorted(scrubbed)
+
+
+#: A new recording of a module that already has one waits here until the tester
+#: confirms it. The leading dot keeps it out of the flow listing.
+PENDING_DIR = ".pending"
+
+
 @app.post("/stop-recording")
-async def stop_recording_api(force: bool = False):
+async def stop_recording_api(force: bool = False, review: bool = False):
+    """Save the recording.
+
+    ``review=true`` (the dashboard): when the module already has a recording,
+    nothing is replaced yet -- the new one waits in ``<flow>/.pending/`` and the
+    response carries a side-by-side comparison. ``/confirm-recording`` then
+    replaces the old recording with it, or discards it. One recording per module
+    either way.
+    """
     if not active_session["page"]:
         raise HTTPException(status_code=400, detail="No active recording found.")
 
@@ -831,63 +929,22 @@ async def stop_recording_api(force: bool = False):
 
     try:
         await close_active_browser()
+        if review and existing_actions:
+            pending = flow_path / PENDING_DIR
+            scrubbed = _write_recording(flow_path, pending, project_name, flow_name,
+                                        url, actions, duration)
+            diff = recording_diff.compare(existing_actions, actions)
+            db.audit("record_pending", f"{project_name}/{flow_name}",
+                     details={"steps": len(actions), "credentials_scrubbed": scrubbed})
+            return {"status": "review", "flow_name": flow_name, "project_name": project_name,
+                    "diff": diff,
+                    "message": (f"New recording captured ({len(actions)} steps). "
+                                "Review the changes before it replaces the old one.")}
 
-        # Promote the newest webm to recording.webm.
-        webm_files = [
-            Path(p) for p in glob.glob(str(flow_path / "*.webm"))
-            if Path(p).name != "recording.webm"
-        ]
-        if webm_files:
-            webm_files.sort(key=lambda p: p.stat().st_mtime)
-            latest = webm_files[-1]
-            target = flow_path / "recording.webm"
-            try:
-                if target.exists():
-                    target.unlink()
-                shutil.move(str(latest), str(target))
-            except Exception as err:
-                log.warning("Could not move the recording video: %s", err)
-            for leftover in webm_files[:-1]:
-                try:
-                    leftover.unlink()
-                except Exception:
-                    pass
-
-        shots = flow_path / "screenshots"
-        shutil.rmtree(shots, ignore_errors=True)
-        shots.mkdir(parents=True, exist_ok=True)
-
-        for idx, act in enumerate(actions, start=1):
-            temp_img = act.get("screenshot")
-            if temp_img and os.path.exists(temp_img):
-                target_img = shots / f"step_{idx}.png"
-                shutil.move(temp_img, target_img)
-                act["screenshot"] = config.static_url(
-                    project_name, flow_name, "screenshots", target_img.name
-                )
-
-        # The recorded username/password become {{placeholders}} and the
-        # literals go to the project's gitignored login_data.json — actions.json
-        # is committed, and generation copies its values into spec.json and
-        # test_cases.json, so a literal here ends up in git three times over.
-        scrubbed = credential_store.scrub_recorded_actions(actions, project_name)
-
-        write_json(flow_path / "flow.json", {
-            # Versioned so a future change to this layout can be migrated
-            # instead of guessed at. projects/ is the data model; a schema
-            # nobody stamped is a schema nobody can evolve.
-            "schema_version": 1,
-            "flow_name": flow_name,
-            "target_url": url,
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "duration_seconds": duration,
-            "step_count": len(actions),
-        })
-        write_json(flow_path / "actions.json", actions)
+        scrubbed = _write_recording(flow_path, flow_path, project_name, flow_name,
+                                    url, actions, duration)
         db.audit("stop_recording", f"{project_name}/{flow_name}",
-                 details={"steps": len(actions),
-                          "credentials_scrubbed": sorted(scrubbed)})
-
+                 details={"steps": len(actions), "credentials_scrubbed": scrubbed})
         return {"status": "success",
                 "message": f"Recording saved ({len(actions)} steps) to "
                            f"projects/{project_name}/flows/{flow_name}/"}
@@ -895,6 +952,62 @@ async def stop_recording_api(force: bool = False):
         raise
     except Exception as err:
         raise HTTPException(status_code=500, detail=str(err)) from err
+
+
+@app.get("/recording-review")
+async def recording_review(flow_name: str, project_name: str = config.DEFAULT_PROJECT):
+    """The comparison for a recording still waiting for confirmation, if any."""
+    flow_path = require_flow(project_name, flow_name)
+    pending = flow_path / PENDING_DIR
+    if not (pending / "actions.json").exists():
+        return {"status": "none"}
+    return {"status": "review", "flow_name": flow_name, "project_name": project_name,
+            "diff": recording_diff.compare(read_json(flow_path / "actions.json", []) or [],
+                                           read_json(pending / "actions.json", []) or [])}
+
+
+@app.post("/confirm-recording")
+async def confirm_recording(flow_name: str, decision: str,
+                            project_name: str = config.DEFAULT_PROJECT):
+    """``decision=replace``: the new recording becomes the module's only one.
+    ``decision=discard``: the new one is dropped and the old one stays."""
+    flow_path = require_flow(project_name, flow_name)
+    pending = flow_path / PENDING_DIR
+    if not (pending / "actions.json").exists():
+        raise HTTPException(status_code=404, detail="No recording is waiting for review.")
+    assert_inside_projects(pending, "pending recording")
+
+    if decision == "discard":
+        moved = move_to_trash(pending, f"{project_name}_{flow_name}_discarded-recording")
+        db.audit("record_discarded", f"{project_name}/{flow_name}", details={"trash": str(moved)})
+        return {"status": "success", "message": "New recording discarded; the old one is kept."}
+    if decision != "replace":
+        raise HTTPException(status_code=400, detail="decision must be 'replace' or 'discard'.")
+
+    # The old recording goes to the trash (recoverable), the new one takes its
+    # place. Test cases, reports and history are not touched.
+    old_parts = [flow_path / name for name in ("actions.json", "recording.webm", "screenshots")
+                 if (flow_path / name).exists()]
+    if old_parts:
+        backup = config.TRASH_DIR / (f"{time.strftime('%Y%m%d-%H%M%S')}_"
+                                     f"{project_name}_{flow_name.replace('/', '__')}_old-recording")
+        backup.mkdir(parents=True, exist_ok=True)
+        for part in old_parts:
+            shutil.move(str(part), str(backup / part.name))
+    meta = read_json(flow_path / "flow.json", {}) or {}
+    new_meta = read_json(pending / "flow.json", {}) or {}
+    meta.pop("source", None)          # a person recorded it now, not the explorer
+    meta.update(new_meta)
+    for name in ("actions.json", "recording.webm", "screenshots"):
+        if (pending / name).exists():
+            shutil.move(str(pending / name), str(flow_path / name))
+    write_json(flow_path / "flow.json", meta)
+    move_to_trash(pending, f"{project_name}_{flow_name}_pending-leftover")
+    db.audit("record_replaced", f"{project_name}/{flow_name}",
+             details={"steps": meta.get("step_count")})
+    return {"status": "success",
+            "message": f"Recording replaced ({meta.get('step_count', 0)} steps). "
+                       "The previous one is in .trash if you need it."}
 
 
 # ──────────────────────────────────────────────────────────────────────
