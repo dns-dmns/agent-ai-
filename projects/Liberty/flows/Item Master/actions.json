@@ -1,0 +1,3790 @@
+[
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(2) > app-sidebar > section > div:nth-of-type(2) > div > ul > li:nth-of-type(3)",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(2) > app-sidebar > section > div:nth-of-type(2) > div > ul > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_1.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-sidebar > section > div:nth-of-type(2) > div > ul > div > ul > li > span",
+        "selectors": [
+            "app-sidebar > section > div:nth-of-type(2) > div > ul > div > ul > li > span"
+        ],
+        "tag": "span",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_2.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(2) > div > ul > div > ul > div > ul > li > span",
+        "selectors": [
+            "div:nth-of-type(2) > div > ul > div > ul > div > ul > li > span"
+        ],
+        "tag": "span",
+        "text": "Item Master",
+        "label": "",
+        "required": false,
+        "value": "Item Master",
+        "role": "",
+        "accessible_name": "Item Master",
+        "text_full": "Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_3.png"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_4.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-pages > div > div:nth-of-type(3) > div > app-title > div > span",
+        "selectors": [
+            "body > app-root > app-pages > div > div:nth-of-type(3) > div > app-title > div > span"
+        ],
+        "tag": "span",
+        "text": "Item Master",
+        "label": "",
+        "required": false,
+        "value": "Item Master",
+        "role": "",
+        "accessible_name": "Item Master",
+        "text_full": "Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_5.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav"
+        ],
+        "tag": "nav",
+        "text": "Master\nProduct Catalogue\nItem Master",
+        "label": "",
+        "required": false,
+        "value": "Master Product Catalogue Item Master",
+        "role": "",
+        "accessible_name": "Master Product Catalogue Item Master",
+        "text_full": "Master Product Catalogue Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_6.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "a:has-text(\"Master\")",
+        "selectors": [
+            "a:has-text(\"Master\")",
+            "text=\"Master\"",
+            "div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3) > a"
+        ],
+        "tag": "a",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "link",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {
+            "href": "/liberty/pages/master/product-catalogue/item-master/list"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_7.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "a:has-text(\"Product Catalogue\")",
+        "selectors": [
+            "a:has-text(\"Product Catalogue\")",
+            "text=\"Product Catalogue\"",
+            "div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5) > a"
+        ],
+        "tag": "a",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "link",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {
+            "href": "/liberty/pages/master/product-catalogue/item-master/list"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_8.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7) > span",
+        "selectors": [
+            "div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7) > span"
+        ],
+        "tag": "span",
+        "text": "Item Master",
+        "label": "",
+        "required": false,
+        "value": "Item Master",
+        "role": "",
+        "accessible_name": "Item Master",
+        "text_full": "Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_9.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"Search Item\"]",
+        "selectors": [
+            "input[placeholder=\"Search Item\"]",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Item",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_10.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"Search Item\"]",
+        "selectors": [
+            "input[placeholder=\"Search Item\"]",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Item",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_11.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"Search Item\"]",
+        "selectors": [
+            "input[placeholder=\"Search Item\"]",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Item",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_12.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Filter by Type\"]",
+        "selectors": [
+            "[aria-label=\"Filter by Type\"]",
+            "div > app-item-list > div > div > div:nth-of-type(2) > div > div > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Filter by Type",
+        "label": "",
+        "required": false,
+        "value": "Filter by Type",
+        "role": "combobox",
+        "accessible_name": "Filter by Type",
+        "text_full": "Filter by Type",
+        "attrs": {
+            "aria-label": "Filter by Type",
+            "role": "combobox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_13.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Filter by Type\"]",
+        "selectors": [
+            "[aria-label=\"Filter by Type\"]",
+            "div > app-item-list > div > div > div:nth-of-type(2) > div > div > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Filter by Type",
+        "label": "",
+        "required": false,
+        "value": "Filter by Type",
+        "role": "combobox",
+        "accessible_name": "Filter by Type",
+        "text_full": "Filter by Type",
+        "attrs": {
+            "aria-label": "Filter by Type",
+            "role": "combobox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_14.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Filter by Category\"]",
+        "selectors": [
+            "[aria-label=\"Filter by Category\"]",
+            "div > app-item-list > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Filter by Category",
+        "label": "",
+        "required": false,
+        "value": "Filter by Category",
+        "role": "combobox",
+        "accessible_name": "Filter by Category",
+        "text_full": "Filter by Category",
+        "attrs": {
+            "aria-label": "Filter by Category",
+            "role": "combobox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_15.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button > span:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "Add Item",
+        "role": "",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_16.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_17.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_18.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_19.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE",
+        "role": "",
+        "accessible_name": "SKU CODE",
+        "text_full": "SKU CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_20.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "IMAGES",
+        "label": "",
+        "required": false,
+        "value": "IMAGES",
+        "role": "",
+        "accessible_name": "IMAGES",
+        "text_full": "IMAGES",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_21.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "SKU DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SKU DESCRIPTION",
+        "role": "",
+        "accessible_name": "SKU DESCRIPTION",
+        "text_full": "SKU DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_22.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "UNIT PRICE",
+        "label": "",
+        "required": false,
+        "value": "UNIT PRICE",
+        "role": "",
+        "accessible_name": "UNIT PRICE",
+        "text_full": "UNIT PRICE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_23.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "HSN",
+        "label": "",
+        "required": false,
+        "value": "HSN",
+        "role": "",
+        "accessible_name": "HSN",
+        "text_full": "HSN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_24.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_25.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "DOZ/CARTON",
+        "label": "",
+        "required": false,
+        "value": "DOZ/CARTON",
+        "role": "",
+        "accessible_name": "DOZ/CARTON",
+        "text_full": "DOZ/CARTON",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_26.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "GRAMS/STICK",
+        "label": "",
+        "required": false,
+        "value": "GRAMS/STICK",
+        "role": "",
+        "accessible_name": "GRAMS/STICK",
+        "text_full": "GRAMS/STICK",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_27.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "GROSS WT",
+        "label": "",
+        "required": false,
+        "value": "GROSS WT",
+        "role": "",
+        "accessible_name": "GROSS WT",
+        "text_full": "GROSS WT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_28.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "TARE WT",
+        "label": "",
+        "required": false,
+        "value": "TARE WT",
+        "role": "",
+        "accessible_name": "TARE WT",
+        "text_full": "TARE WT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_29.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(14)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(14)"
+        ],
+        "tag": "th",
+        "text": "NET WT",
+        "label": "",
+        "required": false,
+        "value": "NET WT",
+        "role": "",
+        "accessible_name": "NET WT",
+        "text_full": "NET WT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_30.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(15)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(15)"
+        ],
+        "tag": "th",
+        "text": "L (CM)",
+        "label": "",
+        "required": false,
+        "value": "L (CM)",
+        "role": "",
+        "accessible_name": "L (CM)",
+        "text_full": "L (CM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_31.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(16)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(16)"
+        ],
+        "tag": "th",
+        "text": "W (CM)",
+        "label": "",
+        "required": false,
+        "value": "W (CM)",
+        "role": "",
+        "accessible_name": "W (CM)",
+        "text_full": "W (CM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_32.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(17)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(17)"
+        ],
+        "tag": "th",
+        "text": "H (CM)",
+        "label": "",
+        "required": false,
+        "value": "H (CM)",
+        "role": "",
+        "accessible_name": "H (CM)",
+        "text_full": "H (CM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_33.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(18)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(18)"
+        ],
+        "tag": "th",
+        "text": "CBM",
+        "label": "",
+        "required": false,
+        "value": "CBM",
+        "role": "",
+        "accessible_name": "CBM",
+        "text_full": "CBM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_34.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(19)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(19)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_35.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(20)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(20)"
+        ],
+        "tag": "th",
+        "text": "BOM STATUS",
+        "label": "",
+        "required": false,
+        "value": "BOM STATUS",
+        "role": "",
+        "accessible_name": "BOM STATUS",
+        "text_full": "BOM STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_36.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(21)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(21)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_37.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button > i",
+        "selectors": [
+            "app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button > i"
+        ],
+        "tag": "i",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_38.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_39.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td"
+        ],
+        "tag": "td",
+        "text": "1",
+        "label": "",
+        "required": false,
+        "value": "1",
+        "role": "",
+        "accessible_name": "1",
+        "text_full": "1",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_40.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td"
+        ],
+        "tag": "td",
+        "text": "1",
+        "label": "",
+        "required": false,
+        "value": "1",
+        "role": "",
+        "accessible_name": "1",
+        "text_full": "1",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_41.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(3) > div > div",
+        "selectors": [
+            "html > body > app-root > app-pages > div > div:nth-of-type(3) > div > div"
+        ],
+        "tag": "div",
+        "text": "Filter by Type\nFilter by Category\nAdd Item\nSL NO.\t",
+        "label": "",
+        "required": false,
+        "value": "Filter by Type Filter by Category Add Item SL NO. CATEGORY TYPE SKU CODE IMAGES SKU DESCRIPTION UNIT PRICE HSN UOM DOZ/CARTON GRAMS/STICK GROSS WT TARE WT NET WT L (CM) W (CM) H (CM) CBM ACTIVE BOM STATUS ACTIONS 1 ZIPPER POS POS 0227 - AKSHLOK ZIPPER POUCH MYST \u20b990 33074100 GRAMS 18 115 0 0 0 0 0 0 - 2 ZIPPER POS POS 0114 - JAVADHU ZIPPER POUCH \u20b970 33074100 GRAMS 0 100 0 0 0 0 0 0 - 3 ZIPPER POS POS 0113 - NAAZ ZIPPER POUCH \u20b970 33074100 GRAMS 0 100 0 0 0 0 0 0 - 4 ZIPPER POS POS 0112 - BLACK MUSK ZIPPER POUCH \u20b970 33074100 GRAMS 0 100 0 0 0 0 0 0 - 5 ZIPPER POS POS 0111 - WHITE MUSK ZIPPER POU\u2026",
+        "role": "",
+        "accessible_name": "Filter by Type Filter by Category Add Item SL NO. CATEGORY TYPE SKU CODE IMAGES SKU DESCRIPTION UNIT PRICE HSN UOM DOZ/C",
+        "text_full": "Filter by Type Filter by Category Add Item SL NO. CATEGORY TYPE SKU CODE IMAGES SKU DESCRIPTION UNIT PRICE HSN UOM DOZ/CARTON GRAMS/STICK GROSS WT TARE WT NET WT L (CM) W (CM) H (CM) CBM ACTIVE BOM STATUS ACTIONS 1 ZIPPER POS POS 0227 - AKSHLOK ZIPPER POUCH MYST \u20b990 33074100 GRAMS 18 115 0 0 0 0 0 0 - 2 ZIPPER POS POS 0114 - JAVADHU ZIPPER POUCH \u20b970 33074100 GRAMS 0 100 0 0 0 0 0 0 - 3 ZIPPER POS POS 0113 - NAAZ ZIPPER POUCH \u20b970 33074100 GRAMS 0 100 0 0 0 0 0 0 - 4 ZIPPER POS POS 0112 - BLACK MUSK ZIPPER POUCH \u20b970 33074100 GRAMS 0 100 0 0 0 0 0 0 - 5 ZIPPER POS POS 0111 - WHITE MUSK ZIPPER POU\u2026",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_42.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Item\")",
+        "selectors": [
+            "button:has-text(\"Add Item\")",
+            "text=\"Add Item\"",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_43.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Add Item",
+                    "selector": "div.ng-tns-c2196985156-6.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "SKU is auto-generated and unique",
+                    "selector": "small.hint.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_77_header",
+                "pn_id_91",
+                "pn_id_93",
+                "pn_id_95"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Code *\"",
+        "selectors": [
+            "text=\"SKU Code *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "SKU Code *",
+        "label": "SKU Code *",
+        "required": false,
+        "value": "SKU Code *",
+        "role": "",
+        "accessible_name": "SKU Code *",
+        "text_full": "SKU Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_44.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form",
+        "selectors": [
+            "div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form"
+        ],
+        "tag": "form",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) MRP (INR) SFG / Box HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton Grams / Stick Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) MRP (INR) SFG / Box HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton Grams / Stick Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_45.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Type *\"",
+        "selectors": [
+            "text=\"Type *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Type *",
+        "label": "Type *",
+        "required": false,
+        "value": "Type *",
+        "role": "",
+        "accessible_name": "Type *",
+        "text_full": "Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_46.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category *\"",
+        "selectors": [
+            "text=\"Category *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Category *",
+        "label": "Category *",
+        "required": false,
+        "value": "Category *",
+        "role": "",
+        "accessible_name": "Category *",
+        "text_full": "Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_47.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Select category\"]",
+        "selectors": [
+            "[aria-label=\"Select category\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Select category",
+        "label": "",
+        "required": false,
+        "value": "Select category",
+        "role": "combobox",
+        "accessible_name": "Select category",
+        "text_full": "Select category",
+        "attrs": {
+            "aria-label": "Select category",
+            "role": "combobox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_48.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-select[formcontrolname=\"type\"]",
+        "selectors": [
+            "p-select[formcontrolname=\"type\"]",
+            "div p-select[formcontrolname=\"type\"]",
+            "#pn_id_91",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > p-select"
+        ],
+        "tag": "p-select",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "Domestic",
+        "role": "",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "placeholder": "Select type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_49.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "Domestic",
+        "role": "combobox",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "combobox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_50.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div",
+        "selectors": [
+            "div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div"
+        ],
+        "tag": "div",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category Category is required SKU Description * Unit Price (INR) MRP (INR) SFG / Box HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton Grams / Stick Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category Category is required SKU Descript",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category Category is required SKU Description * Unit Price (INR) MRP (INR) SFG / Box HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton Grams / Stick Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_51.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > small",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "SKU is auto-generated and unique",
+        "label": "",
+        "required": false,
+        "value": "SKU is auto-generated and unique",
+        "role": "",
+        "accessible_name": "SKU is auto-generated and unique",
+        "text_full": "SKU is auto-generated and unique",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_52.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Description *\"",
+        "selectors": [
+            "text=\"SKU Description *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "SKU Description *",
+        "label": "SKU Description *",
+        "required": false,
+        "value": "SKU Description *",
+        "role": "",
+        "accessible_name": "SKU Description *",
+        "text_full": "SKU Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_53.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_54.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_55.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_56.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Unit Price (INR)\"",
+        "selectors": [
+            "text=\"Unit Price (INR)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Unit Price (INR)",
+        "label": "Unit Price (INR)",
+        "required": false,
+        "value": "Unit Price (INR)",
+        "role": "",
+        "accessible_name": "Unit Price (INR)",
+        "text_full": "Unit Price (INR)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_57.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Unit Price (INR)\"",
+        "selectors": [
+            "text=\"Unit Price (INR)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Unit Price (INR)",
+        "label": "Unit Price (INR)",
+        "required": false,
+        "value": "Unit Price (INR)",
+        "role": "",
+        "accessible_name": "Unit Price (INR)",
+        "text_full": "Unit Price (INR)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_58.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "Category is required",
+        "label": "",
+        "required": false,
+        "value": "Category is required",
+        "role": "",
+        "accessible_name": "Category is required",
+        "text_full": "Category is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_59.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > span"
+        ],
+        "tag": "span",
+        "text": "SKU Description is required",
+        "label": "",
+        "required": false,
+        "value": "SKU Description is required",
+        "role": "",
+        "accessible_name": "SKU Description is required",
+        "text_full": "SKU Description is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_60.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"MRP (INR)\"",
+        "selectors": [
+            "text=\"MRP (INR)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "MRP (INR)",
+        "label": "MRP (INR)",
+        "required": false,
+        "value": "MRP (INR)",
+        "role": "",
+        "accessible_name": "MRP (INR)",
+        "text_full": "MRP (INR)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_61.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SFG / Box\"",
+        "selectors": [
+            "text=\"SFG / Box\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "SFG / Box",
+        "label": "SFG / Box",
+        "required": false,
+        "value": "SFG / Box",
+        "role": "",
+        "accessible_name": "SFG / Box",
+        "text_full": "SFG / Box",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_62.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"HSN Code\"",
+        "selectors": [
+            "text=\"HSN Code\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "HSN Code",
+        "label": "HSN Code",
+        "required": false,
+        "value": "HSN Code",
+        "role": "",
+        "accessible_name": "HSN Code",
+        "text_full": "HSN Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_63.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Dozens per Carton\"",
+        "selectors": [
+            "text=\"Dozens per Carton\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > label"
+        ],
+        "tag": "label",
+        "text": "Dozens per Carton",
+        "label": "Dozens per Carton",
+        "required": false,
+        "value": "Dozens per Carton",
+        "role": "",
+        "accessible_name": "Dozens per Carton",
+        "text_full": "Dozens per Carton",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_64.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Minimum Stock *\"",
+        "selectors": [
+            "text=\"Minimum Stock *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > label"
+        ],
+        "tag": "label",
+        "text": "Minimum Stock *",
+        "label": "Minimum Stock *",
+        "required": false,
+        "value": "Minimum Stock *",
+        "role": "",
+        "accessible_name": "Minimum Stock *",
+        "text_full": "Minimum Stock *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_65.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"UOM *\"",
+        "selectors": [
+            "text=\"UOM *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > label"
+        ],
+        "tag": "label",
+        "text": "UOM *",
+        "label": "UOM *",
+        "required": false,
+        "value": "UOM *",
+        "role": "",
+        "accessible_name": "UOM *",
+        "text_full": "UOM *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_66.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_67.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_68.png"
+    },
+    {
+        "action": "VERIFY_VALUE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "0",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_69.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-select[formcontrolname=\"uom\"]",
+        "selectors": [
+            "p-select[formcontrolname=\"uom\"]",
+            "div p-select[formcontrolname=\"uom\"]",
+            "#pn_id_95",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > p-select"
+        ],
+        "tag": "p-select",
+        "text": "Select UOM",
+        "label": "",
+        "required": false,
+        "value": "Select UOM",
+        "role": "",
+        "accessible_name": "Select UOM",
+        "text_full": "Select UOM",
+        "attrs": {
+            "placeholder": "Select UOM"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_70.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-select[formcontrolname=\"uom\"]",
+        "selectors": [
+            "p-select[formcontrolname=\"uom\"]",
+            "div p-select[formcontrolname=\"uom\"]",
+            "#pn_id_95",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > p-select"
+        ],
+        "tag": "p-select",
+        "text": "Select UOM",
+        "label": "",
+        "required": false,
+        "value": "Select UOM",
+        "role": "",
+        "accessible_name": "Select UOM",
+        "text_full": "Select UOM",
+        "attrs": {
+            "placeholder": "Select UOM"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_71.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Grams / Stick\"",
+        "selectors": [
+            "text=\"Grams / Stick\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > label"
+        ],
+        "tag": "label",
+        "text": "Grams / Stick",
+        "label": "Grams / Stick",
+        "required": false,
+        "value": "Grams / Stick",
+        "role": "",
+        "accessible_name": "Grams / Stick",
+        "text_full": "Grams / Stick",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_72.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Length (cm) *\"",
+        "selectors": [
+            "text=\"Length (cm) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > label"
+        ],
+        "tag": "label",
+        "text": "Length (cm) *",
+        "label": "Length (cm) *",
+        "required": false,
+        "value": "Length (cm) *",
+        "role": "",
+        "accessible_name": "Length (cm) *",
+        "text_full": "Length (cm) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_73.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Width (cm) *\"",
+        "selectors": [
+            "text=\"Width (cm) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > label"
+        ],
+        "tag": "label",
+        "text": "Width (cm) *",
+        "label": "Width (cm) *",
+        "required": false,
+        "value": "Width (cm) *",
+        "role": "",
+        "accessible_name": "Width (cm) *",
+        "text_full": "Width (cm) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_74.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Height (cm) *\"",
+        "selectors": [
+            "text=\"Height (cm) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > label"
+        ],
+        "tag": "label",
+        "text": "Height (cm) *",
+        "label": "Height (cm) *",
+        "required": false,
+        "value": "Height (cm) *",
+        "role": "",
+        "accessible_name": "Height (cm) *",
+        "text_full": "Height (cm) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_75.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Gross Wt (kg)\"",
+        "selectors": [
+            "text=\"Gross Wt (kg)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > label"
+        ],
+        "tag": "label",
+        "text": "Gross Wt (kg)",
+        "label": "Gross Wt (kg)",
+        "required": false,
+        "value": "Gross Wt (kg)",
+        "role": "",
+        "accessible_name": "Gross Wt (kg)",
+        "text_full": "Gross Wt (kg)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_76.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Tare Wt (kg)\"",
+        "selectors": [
+            "text=\"Tare Wt (kg)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > label"
+        ],
+        "tag": "label",
+        "text": "Tare Wt (kg)",
+        "label": "Tare Wt (kg)",
+        "required": false,
+        "value": "Tare Wt (kg)",
+        "role": "",
+        "accessible_name": "Tare Wt (kg)",
+        "text_full": "Tare Wt (kg)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_77.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Net Wt (kg)\"",
+        "selectors": [
+            "text=\"Net Wt (kg)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > label"
+        ],
+        "tag": "label",
+        "text": "Net Wt (kg)",
+        "label": "Net Wt (kg)",
+        "required": false,
+        "value": "Net Wt (kg)",
+        "role": "",
+        "accessible_name": "Net Wt (kg)",
+        "text_full": "Net Wt (kg)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_78.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"CBM (m3)\"",
+        "selectors": [
+            "text=\"CBM (m3)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(19) > label"
+        ],
+        "tag": "label",
+        "text": "CBM (m3)",
+        "label": "CBM (m3)",
+        "required": false,
+        "value": "CBM (m3)",
+        "role": "",
+        "accessible_name": "CBM (m3)",
+        "text_full": "CBM (m3)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_79.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(19) > small",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(19) > small"
+        ],
+        "tag": "small",
+        "text": "Auto-calculated from Length \u00d7 Width \u00d7 Height",
+        "label": "",
+        "required": false,
+        "value": "Auto-calculated from Length \u00d7 Width \u00d7 Height",
+        "role": "",
+        "accessible_name": "Auto-calculated from Length \u00d7 Width \u00d7 Height",
+        "text_full": "Auto-calculated from Length \u00d7 Width \u00d7 Height",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_80.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Product Images\"",
+        "selectors": [
+            "text=\"Product Images\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label"
+        ],
+        "tag": "label",
+        "text": "Product Images",
+        "label": "Product Images",
+        "required": false,
+        "value": "Product Images",
+        "role": "",
+        "accessible_name": "Product Images",
+        "text_full": "Product Images",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_81.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Click to upload images",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "Click to upload images",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "Click to upload images",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_82.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > span:nth-of-type(2)",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "JPG, JPEG or PNG \u00b7 multiple allowed",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "JPG, JPEG or PNG \u00b7 multiple allowed",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "JPG, JPEG or PNG \u00b7 multiple allowed",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_83.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "Cancel",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_84.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "Save",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_85.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_86.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "text=\"Domestic\"",
+            "#pn_id_91_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_87.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Domestic\nExport\nPOS",
+                    "selector": "div.ng-tns-c1614365056-11.p-overlay.p-component"
+                },
+                {
+                    "text": "Domestic",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Export",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "POS",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Export\"]",
+        "selectors": [
+            "[aria-label=\"Export\"]",
+            "text=\"Export\"",
+            "#pn_id_91_1",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem:nth-of-type(2) > li"
+        ],
+        "tag": "li",
+        "text": "Export",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Export",
+        "text_full": "Export",
+        "attrs": {
+            "aria-label": "Export",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_88.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"POS\"]",
+        "selectors": [
+            "[aria-label=\"POS\"]",
+            "text=\"POS\"",
+            "#pn_id_91_2",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem:nth-of-type(3) > li"
+        ],
+        "tag": "li",
+        "text": "POS",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "POS",
+        "text_full": "POS",
+        "attrs": {
+            "aria-label": "POS",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_89.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "POS",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Generating SKU...",
+                    "selector": "small.hint.ng-star-inserted"
+                },
+                {
+                    "text": "SKU is auto-generated and unique",
+                    "selector": "small.hint.ng-star-inserted"
+                },
+                {
+                    "text": "1 KG PACKETS",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "250 GRAM ROLL (25 KG)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "250 GRAMS ROLL",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_93_list",
+                "pn_id_93_0",
+                "pn_id_93_1",
+                "pn_id_93_2",
+                "pn_id_93_3",
+                "pn_id_93_4",
+                "pn_id_93_5",
+                "pn_id_93_6",
+                "pn_id_93_7",
+                "pn_id_93_8",
+                "pn_id_93_9",
+                "pn_id_93_10"
+            ],
+            "disappeared": [
+                "pn_id_91_list",
+                "pn_id_91_0",
+                "pn_id_91_1",
+                "pn_id_91_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"1 KG PACKETS\"]",
+        "selectors": [
+            "[aria-label=\"1 KG PACKETS\"]",
+            "text=\"1 KG PACKETS\"",
+            "#pn_id_93_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "1 KG PACKETS",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "1 KG PACKETS",
+        "text_full": "1 KG PACKETS",
+        "attrs": {
+            "aria-label": "1 KG PACKETS",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_90.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "text=\"Domestic\"",
+            "#pn_id_91_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_91.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"250 GRAM ROLL (25 KG)\"]",
+        "selectors": [
+            "[aria-label=\"250 GRAM ROLL (25 KG)\"]",
+            "text=\"250 GRAM ROLL (25 KG)\"",
+            "#pn_id_93_1",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem:nth-of-type(2) > li"
+        ],
+        "tag": "li",
+        "text": "250 GRAM ROLL (25 KG)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "250 GRAM ROLL (25 KG)",
+        "text_full": "250 GRAM ROLL (25 KG)",
+        "attrs": {
+            "aria-label": "250 GRAM ROLL (25 KG)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_92.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input",
+        "selectors": [
+            "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "searchbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "text",
+            "role": "searchbox",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_93.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "No results found",
+                    "selector": "li.p-select-empty-message.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_93_0",
+                "pn_id_93_1",
+                "pn_id_93_2",
+                "pn_id_93_3",
+                "pn_id_93_4",
+                "pn_id_93_5",
+                "pn_id_93_6",
+                "pn_id_93_7",
+                "pn_id_93_8",
+                "pn_id_93_9",
+                "pn_id_93_10",
+                "pn_id_93_11"
+            ]
+        }
+    },
+    {
+        "action": "TYPE",
+        "selector": "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input",
+        "selectors": [
+            "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "232342",
+        "role": "searchbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "text",
+            "role": "searchbox",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_94.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input",
+        "selectors": [
+            "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "232342",
+        "role": "searchbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "text",
+            "role": "searchbox",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_95.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input",
+        "selectors": [
+            "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "searchbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "text",
+            "role": "searchbox",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_96.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "250 GRAM ROLL (25 KG)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "250 GRAMS ROLL",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "CTI002",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_93_0",
+                "pn_id_93_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "TYPE",
+        "selector": "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input",
+        "selectors": [
+            "div:nth-of-type(3) > p-select > p-overlay > div > div > div > div > p-iconfield > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "250",
+        "role": "searchbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "text",
+            "role": "searchbox",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_97.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"250 GRAMS ROLL\"]",
+        "selectors": [
+            "[aria-label=\"250 GRAMS ROLL\"]",
+            "text=\"250 GRAMS ROLL\"",
+            "#pn_id_93_1",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem:nth-of-type(2) > li"
+        ],
+        "tag": "li",
+        "text": "250 GRAMS ROLL",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "250 GRAMS ROLL",
+        "text_full": "250 GRAMS ROLL",
+        "attrs": {
+            "aria-label": "250 GRAMS ROLL",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_98.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_99.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "sfseffsdfsfs",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_100.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_101.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "INR 234",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_102.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_103.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "INR 234",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_104.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_105.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_106.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(8) > input",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(8) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "disabled": "false",
+            "readonly": "true"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_107.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Dozens\nCartons\nPieces\nGrams\nSticks",
+                    "selector": "div.ng-tns-c1614365056-13.p-overlay.p-component"
+                },
+                {
+                    "text": "Dozens",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Cartons",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Pieces",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Grams",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Sticks",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_95_list",
+                "pn_id_95_0",
+                "pn_id_95_1",
+                "pn_id_95_2",
+                "pn_id_95_3",
+                "pn_id_95_4"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Grams\"]",
+        "selectors": [
+            "[aria-label=\"Grams\"]",
+            "text=\"Grams\"",
+            "#pn_id_95_3",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem:nth-of-type(4) > li"
+        ],
+        "tag": "li",
+        "text": "Grams",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Grams",
+        "text_full": "Grams",
+        "attrs": {
+            "aria-label": "Grams",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_108.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Grams",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Dozens\nCartons\nPieces\nGrams\nSticks",
+                    "selector": "div.ng-tns-c1614365056-13.p-overlay.p-component"
+                },
+                {
+                    "text": "Dozens",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Cartons",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Pieces",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Sticks",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Sticks\"]",
+        "selectors": [
+            "[aria-label=\"Sticks\"]",
+            "text=\"Sticks\"",
+            "#pn_id_95_4",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem:nth-of-type(5) > li"
+        ],
+        "tag": "li",
+        "text": "Sticks",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Sticks",
+        "text_full": "Sticks",
+        "attrs": {
+            "aria-label": "Sticks",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_109.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Sticks",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Dozens\nCartons\nPieces\nGrams\nSticks",
+                    "selector": "div.ng-tns-c1614365056-13.p-overlay.p-component"
+                },
+                {
+                    "text": "Dozens",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Cartons",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Pieces",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Grams",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_110.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "234",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_111.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_112.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "2340",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_113.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_114.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_115.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_116.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_117.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_118.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_119.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_120.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "32",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_121.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_122.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_123.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_124.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_125.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_126.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_127.png"
+    },
+    {
+        "action": "UNCHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_128.png"
+    },
+    {
+        "action": "UNCHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_129.png"
+    },
+    {
+        "action": "CHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_130.png"
+    },
+    {
+        "action": "CHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_131.png"
+    },
+    {
+        "action": "UNCHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_132.png"
+    },
+    {
+        "action": "UNCHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_133.png"
+    },
+    {
+        "action": "CHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_134.png"
+    },
+    {
+        "action": "CHECK",
+        "selector": "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input",
+        "selectors": [
+            "div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > p-toggleswitch > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "switch",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "checkbox",
+            "role": "switch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_135.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+        "selectors": [
+            "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "",
+        "attrs": {
+            "type": "file",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_136.png"
+    },
+    {
+        "action": "UPLOAD",
+        "selector": "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+        "selectors": [
+            "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "1.jpg",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "",
+        "attrs": {
+            "type": "file",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_137.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_138.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "SUCCESS\nItem Added Successfully",
+                    "selector": "p-toastitem.ng-tns-c2572556178-14.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "SUCCESS",
+                    "selector": "div.ng-tns-c2572556178-14.p-toast-summary"
+                },
+                {
+                    "text": "Item Added Successfully",
+                    "selector": "div.ng-tns-c2572556178-14.p-toast-detail"
+                },
+                {
+                    "text": "Showing 1 to 10 of 3657 entries",
+                    "selector": "span.pagination-info"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_77_header",
+                "pn_id_91",
+                "pn_id_93",
+                "pn_id_95"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_139.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Edit Item",
+                    "selector": "div.ng-tns-c2196985156-6.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_77_header",
+                "pn_id_91",
+                "pn_id_93",
+                "pn_id_95"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_140.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "sfseffsdfsfserwer",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_141.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_142.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_143.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "2,332",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_144.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_145.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23434",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_146.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_147.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "SUCCESS\nItem Updated Successfully",
+                    "selector": "p-toastitem.ng-tns-c2572556178-15.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "SUCCESS",
+                    "selector": "div.ng-tns-c2572556178-15.p-toast-summary"
+                },
+                {
+                    "text": "Item Updated Successfully",
+                    "selector": "div.ng-tns-c2572556178-15.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_77_header",
+                "pn_id_91",
+                "pn_id_93",
+                "pn_id_95"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_148.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Confirm Delete\nAre you sure you want to delete this item?\nCancel\nConfirm",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-mask.p-overlay-mask"
+                },
+                {
+                    "text": "Are you sure you want to delete this item?",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Confirm Delete",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nConfirm",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "p-button.ng-tns-c1320853617-1.ng-star-inserted"
+                },
+                {
+                    "text": "Confirm",
+                    "selector": "p-button.ng-tns-c1320853617-1.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_4_header"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "html > body > div > div > div:nth-of-type(2) > div > p-button > button",
+        "selectors": [
+            "html > body > div > div > div:nth-of-type(2) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_149.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_150.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "html > body > div > div > div:nth-of-type(4) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_151.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_152.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Confirm Delete\nAre you sure you want to delete this item?\nCancel\nConfirm",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-mask.p-overlay-mask"
+                },
+                {
+                    "text": "Are you sure you want to delete this item?",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Confirm Delete",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nConfirm",
+                    "selector": "div.ng-tns-c2196985156-2.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "p-button.ng-tns-c1320853617-1.ng-star-inserted"
+                },
+                {
+                    "text": "Confirm",
+                    "selector": "p-button.ng-tns-c1320853617-1.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_4_header"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > div > div > div:nth-of-type(3)",
+        "selectors": [
+            "html > body > div > div > div:nth-of-type(3)"
+        ],
+        "tag": "div",
+        "text": "Are you sure you want to delete this item?",
+        "label": "",
+        "required": false,
+        "value": "Are you sure you want to delete this item?",
+        "role": "",
+        "accessible_name": "Are you sure you want to delete this item?",
+        "text_full": "Are you sure you want to delete this item?",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_153.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > div > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "html > body > div > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "Are you sure you want to delete this item?",
+        "label": "",
+        "required": false,
+        "value": "Are you sure you want to delete this item?",
+        "role": "",
+        "accessible_name": "Are you sure you want to delete this item?",
+        "text_full": "Are you sure you want to delete this item?",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_154.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "#pn_id_4_header",
+        "selectors": [
+            "#pn_id_4_header",
+            "html > body > div > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Confirm Delete",
+        "label": "",
+        "required": false,
+        "value": "Confirm Delete",
+        "role": "",
+        "accessible_name": "Confirm Delete",
+        "text_full": "Confirm Delete",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_155.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > div > div > div:nth-of-type(4) > p-button > button > span",
+        "selectors": [
+            "html > body > div > div > div:nth-of-type(4) > p-button > button > span"
+        ],
+        "tag": "span",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "Cancel",
+        "role": "",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_156.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > div > div > div:nth-of-type(4) > p-button:nth-of-type(2) > button > span",
+        "selectors": [
+            "html > body > div > div > div:nth-of-type(4) > p-button:nth-of-type(2) > button > span"
+        ],
+        "tag": "span",
+        "text": "Confirm",
+        "label": "",
+        "required": false,
+        "value": "Confirm",
+        "role": "",
+        "accessible_name": "Confirm",
+        "text_full": "Confirm",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_157.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Confirm\")",
+        "selectors": [
+            "button:has-text(\"Confirm\")",
+            "text=\"Confirm\"",
+            "html > body > div > div > div:nth-of-type(4) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Confirm",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Confirm",
+        "text_full": "Confirm",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_158.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "SUCCESS\nItem Deleted Successfully",
+                    "selector": "p-toastitem.ng-tns-c2572556178-16.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "SUCCESS",
+                    "selector": "div.ng-tns-c2572556178-16.p-toast-summary"
+                },
+                {
+                    "text": "Item Deleted Successfully",
+                    "selector": "div.ng-tns-c2572556178-16.p-toast-detail"
+                },
+                {
+                    "text": "Showing 1 to 10 of 3656 entries",
+                    "selector": "span.pagination-info"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_4_header"
+            ]
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > p-toast > div > p-toastitem > div > div > div > div:nth-of-type(2)",
+        "selectors": [
+            "body > app-root > p-toast > div > p-toastitem > div > div > div > div:nth-of-type(2)"
+        ],
+        "tag": "div",
+        "text": "Item Deleted Successfully",
+        "label": "",
+        "required": false,
+        "value": "Item Deleted Successfully",
+        "role": "",
+        "accessible_name": "Item Deleted Successfully",
+        "text_full": "Item Deleted Successfully",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_159.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > p-toast > div > p-toastitem > div > div > div > div",
+        "selectors": [
+            "body > app-root > p-toast > div > p-toastitem > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "SUCCESS",
+        "label": "",
+        "required": false,
+        "value": "SUCCESS",
+        "role": "",
+        "accessible_name": "SUCCESS",
+        "text_full": "SUCCESS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_160.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Close\"]",
+        "selectors": [
+            "[aria-label=\"Close\"]",
+            "button[title=\"Close\"]",
+            "body > app-root > p-toast > div > p-toastitem > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Close",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Close",
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Item Master/screenshots/step_161.png"
+    }
+]

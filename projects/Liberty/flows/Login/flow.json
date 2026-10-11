@@ -1,0 +1,8 @@
+{
+    "schema_version": 1,
+    "flow_name": "Login",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+    "timestamp": "2026-08-29 11:47:11",
+    "duration_seconds": 65,
+    "step_count": 30
+}

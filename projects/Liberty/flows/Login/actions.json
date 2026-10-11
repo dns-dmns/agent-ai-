@@ -1,0 +1,666 @@
+[
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div > h1",
+        "selectors": [
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div > h1"
+        ],
+        "tag": "h1",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "Login",
+        "role": "heading",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_1.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div > p",
+        "selectors": [
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div > p"
+        ],
+        "tag": "p",
+        "text": "Login to your account",
+        "label": "",
+        "required": false,
+        "value": "Login to your account",
+        "role": "",
+        "accessible_name": "Login to your account",
+        "text_full": "Login to your account",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_2.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Username\"",
+        "selectors": [
+            "text=\"Username\"",
+            "app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div > label"
+        ],
+        "tag": "label",
+        "text": "Username",
+        "label": "Username",
+        "required": false,
+        "value": "Username",
+        "role": "",
+        "accessible_name": "Username",
+        "text_full": "Username",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_3.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Password\"",
+        "selectors": [
+            "text=\"Password\"",
+            "app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Password",
+        "label": "Password",
+        "required": false,
+        "value": "Password",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_4.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Forgot Password?",
+        "label": "Password",
+        "required": false,
+        "value": "Forgot Password?",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_5.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "Login",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_6.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-auth > div > app-login > div > div:nth-of-type(3)",
+        "selectors": [
+            "html > body > app-root > app-auth > div > app-login > div > div:nth-of-type(3)"
+        ],
+        "tag": "div",
+        "text": "\u00a9 2026 Powered by Gemba Concepts",
+        "label": "",
+        "required": false,
+        "value": "\u00a9 2026 Powered by Gemba Concepts",
+        "role": "",
+        "accessible_name": "\u00a9 2026 Powered by Gemba Concepts",
+        "text_full": "\u00a9 2026 Powered by Gemba Concepts",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_7.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-auth > div > app-login > div > div:nth-of-type(4) > div > span",
+        "selectors": [
+            "body > app-root > app-auth > div > app-login > div > div:nth-of-type(4) > div > span"
+        ],
+        "tag": "span",
+        "text": "Need help?",
+        "label": "",
+        "required": false,
+        "value": "Need help?",
+        "role": "",
+        "accessible_name": "Need help?",
+        "text_full": "Need help?",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_8.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-auth > div > app-login > div > div:nth-of-type(4) > div > span:nth-of-type(2)",
+        "selectors": [
+            "body > app-root > app-auth > div > app-login > div > div:nth-of-type(4) > div > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "We're here for you",
+        "label": "",
+        "required": false,
+        "value": "We're here for you",
+        "role": "",
+        "accessible_name": "We're here for you",
+        "text_full": "We're here for you",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_9.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a > span:nth-of-type(2) > span",
+        "selectors": [
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a > span:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "CALL US AT",
+        "label": "",
+        "required": false,
+        "value": "CALL US AT",
+        "role": "",
+        "accessible_name": "CALL US AT",
+        "text_full": "CALL US AT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_10.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a > span:nth-of-type(2) > span:nth-of-type(2)",
+        "selectors": [
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a > span:nth-of-type(2) > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "+91 90369 02221",
+        "label": "",
+        "required": false,
+        "value": "+91 90369 02221",
+        "role": "",
+        "accessible_name": "+91 90369 02221",
+        "text_full": "+91 90369 02221",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_11.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a:nth-of-type(2) > span:nth-of-type(2) > span",
+        "selectors": [
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a:nth-of-type(2) > span:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "EMAIL US AT",
+        "label": "",
+        "required": false,
+        "value": "EMAIL US AT",
+        "role": "",
+        "accessible_name": "EMAIL US AT",
+        "text_full": "EMAIL US AT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_12.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a:nth-of-type(2) > span:nth-of-type(2) > span:nth-of-type(2)",
+        "selectors": [
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(4) > a:nth-of-type(2) > span:nth-of-type(2) > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "support@gembaconnect.in",
+        "label": "",
+        "required": false,
+        "value": "support@gembaconnect.in",
+        "role": "",
+        "accessible_name": "support@gembaconnect.in",
+        "text_full": "support@gembaconnect.in",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_13.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Username",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Username",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Username",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_14.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Username",
+        "required": true,
+        "value": "{{username}}",
+        "role": "textbox",
+        "accessible_name": "Username",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Username",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_15.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_16.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "{{password}}",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_17.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_18.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted"
+                },
+                {
+                    "text": "ERROR\nInvalid Password",
+                    "selector": "p-toastitem.ng-tns-c2572556178-3.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "ERROR",
+                    "selector": "div.ng-tns-c2572556178-3.p-toast-summary"
+                },
+                {
+                    "text": "Invalid Password",
+                    "selector": "div.ng-tns-c2572556178-3.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > p-toast > div > p-toastitem > div > div > div > div:nth-of-type(2)",
+        "selectors": [
+            "body > app-root > p-toast > div > p-toastitem > div > div > div > div:nth-of-type(2)"
+        ],
+        "tag": "div",
+        "text": "Invalid Password",
+        "label": "",
+        "required": false,
+        "value": "Invalid Password",
+        "role": "",
+        "accessible_name": "Invalid Password",
+        "text_full": "Invalid Password",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_19.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > p-toast > div > p-toastitem > div > div > div > div",
+        "selectors": [
+            "body > app-root > p-toast > div > p-toastitem > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "ERROR",
+        "label": "",
+        "required": false,
+        "value": "ERROR",
+        "role": "",
+        "accessible_name": "ERROR",
+        "text_full": "ERROR",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_20.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "app-root > p-toast > div > p-toastitem > div > div > span > timescircleicon > svg",
+        "selectors": [
+            "app-root > p-toast > div > p-toastitem > div > div > span > timescircleicon > svg"
+        ],
+        "tag": "svg",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_21.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "p-toast > div > p-toastitem > div > div > div:nth-of-type(2) > button > timesicon > svg",
+        "selectors": [
+            "p-toast > div > p-toastitem > div > div > div:nth-of-type(2) > button > timesicon > svg"
+        ],
+        "tag": "svg",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_22.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Close\"]",
+        "selectors": [
+            "[aria-label=\"Close\"]",
+            "button[title=\"Close\"]",
+            "body > app-root > p-toast > div > p-toastitem > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Close",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Close",
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_23.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_24.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "{{password}}",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_25.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "app-root > app-auth > div > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_26.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted"
+                },
+                {
+                    "text": "SUCCESS\nLogin Successful",
+                    "selector": "p-toastitem.ng-tns-c2572556178-4.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "SUCCESS",
+                    "selector": "div.ng-tns-c2572556178-4.p-toast-summary"
+                },
+                {
+                    "text": "Login Successful",
+                    "selector": "div.ng-tns-c2572556178-4.p-toast-detail"
+                },
+                {
+                    "text": "Welcome back, admin!\n\nHere's your quick access to all modules\n\nQuick Access",
+                    "selector": "app-home.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "username",
+                "password"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_27.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > p-toast > div > p-toastitem > div > div > div > div:nth-of-type(2)",
+        "selectors": [
+            "body > app-root > p-toast > div > p-toastitem > div > div > div > div:nth-of-type(2)"
+        ],
+        "tag": "div",
+        "text": "Login Successful",
+        "label": "",
+        "required": false,
+        "value": "Login Successful",
+        "role": "",
+        "accessible_name": "Login Successful",
+        "text_full": "Login Successful",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_28.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > p-toast > div > p-toastitem > div > div > div > div",
+        "selectors": [
+            "body > app-root > p-toast > div > p-toastitem > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "SUCCESS",
+        "label": "",
+        "required": false,
+        "value": "SUCCESS",
+        "role": "",
+        "accessible_name": "SUCCESS",
+        "text_full": "SUCCESS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_29.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Close\"]",
+        "selectors": [
+            "[aria-label=\"Close\"]",
+            "button[title=\"Close\"]",
+            "body > app-root > p-toast > div > p-toastitem > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Close",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Close",
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/step_30.png"
+    }
+]

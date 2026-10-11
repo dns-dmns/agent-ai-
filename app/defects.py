@@ -222,6 +222,23 @@ def match_flow(module: str, flow_names: list[str]) -> str:
         if scored:
             scored.sort(key=lambda pair: -pair[0])
             return scored[0][1]
+
+    # Typo-tolerant similarity matching (e.g. "Catgory" -> "Category")
+    import difflib
+    best_flow, best_ratio = "", 0.0
+    for flow in candidates:
+        flow_low = flow.lower()
+        ratio = max(
+            difflib.SequenceMatcher(None, tail, flow_low).ratio(),
+            difflib.SequenceMatcher(None, whole, flow_low).ratio(),
+        )
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best_flow = flow
+
+    if best_ratio >= 0.80:
+        return best_flow
+
     return ""
 
 

@@ -2791,6 +2791,15 @@ async def defect_status(response: Response, project_name: str = config.DEFAULT_P
     return {"defects": rows, "total": len(rows), "summary": tally}
 
 
+@app.get("/defect-flows")
+async def list_defect_flows(project_name: str = config.DEFAULT_PROJECT):
+    """List all [defects] flows built for the active workspace."""
+    require_name(project_name=project_name)
+    all_flows = list_flow_names(project_name)
+    defect_flows = [f for f in all_flows if f.endswith(defects.DEFECT_FLOW_SUFFIX)]
+    return {"defect_flows": defect_flows, "count": len(defect_flows)}
+
+
 # ──────────────────────────────────────────────────────────────────────
 # Project export — a separate, strictly read-only feature
 #

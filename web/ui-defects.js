@@ -91,6 +91,7 @@
             <div id="defectImportOut"></div>`,
             `<button class="btn btn-primary" onclick="previewDefectImport()">Preview import</button>
              <button class="btn" onclick="rebuildDefectFlows()">Rebuild defect flows</button>
+             ${status.total ? `<button class="btn btn-success" style="background:#059669;color:#fff" onclick="runAllDefectFlows()">▶ Test Defect Flows</button>` : ""}
              <button class="btn" style="background:#334155" onclick="closeModal()">Close</button>`);
     };
 
@@ -175,6 +176,37 @@
         try {
             const result = await api(`/rebuild-defect-flows?${projectQ()}`, { method: "POST" });
             window.toast(result.message, "success");
+        } catch (e) {
+            window.toast(e.message, "error");
+        }
+    };
+
+    window.runAllDefectFlows = async function () {
+        try {
+            const data = await api(`/defect-flows?${projectQ()}`);
+            const flows = data.defect_flows || [];
+            if (!flows.length) {
+                return window.toast("No defect flows available to run. Please import a defect sheet first.", "warn");
+            }
+            window.closeModal?.();
+            window.toast(`Loading defect flow "${flows[0]}"...`, "info");
+
+            const flowSelect = $("flowSelect");
+            if (flowSelect) {
+                flowSelect.value = flows[0];
+                if (typeof window.loadSelectedFlow === "function") {
+                    await window.loadSelectedFlow();
+                }
+            }
+            // Switch to runner tab (Tab 3)
+            const runnerTab = document.querySelectorAll(".rail-step")[2];
+            if (typeof window.switchMainTab === "function") {
+                window.switchMainTab("runner-view", runnerTab);
+            }
+            // Trigger suite execution
+            if (typeof window.triggerTestSuite === "function") {
+                window.triggerTestSuite();
+            }
         } catch (e) {
             window.toast(e.message, "error");
         }

@@ -1,0 +1,558 @@
+[
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div > h1",
+        "selectors": [
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div > h1"
+        ],
+        "tag": "h1",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "Login",
+        "role": "heading",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_1.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div",
+        "selectors": [
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > div"
+        ],
+        "tag": "div",
+        "text": "Login\n\nLogin to your account",
+        "label": "",
+        "required": false,
+        "value": "Login Login to your account",
+        "role": "",
+        "accessible_name": "Login Login to your account",
+        "text_full": "Login Login to your account",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_2.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Username\"",
+        "selectors": [
+            "text=\"Username\"",
+            "body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div > label"
+        ],
+        "tag": "label",
+        "text": "Username",
+        "label": "Username",
+        "required": false,
+        "value": "Username",
+        "role": "",
+        "accessible_name": "Username",
+        "text_full": "Username",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_3.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Password\"",
+        "selectors": [
+            "text=\"Password\"",
+            "body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Password",
+        "label": "Password",
+        "required": false,
+        "value": "Password",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_4.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Forgot Password?\")",
+        "selectors": [
+            "button:has-text(\"Forgot Password?\")",
+            "text=\"Forgot Password?\"",
+            "app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Forgot Password?",
+        "label": "Password",
+        "required": false,
+        "value": "Forgot Password?",
+        "role": "button",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_5.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "Login",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "submit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_6.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-login > div > div:nth-of-type(2) > div > span",
+        "selectors": [
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div > span"
+        ],
+        "tag": "span",
+        "text": "Ambica",
+        "label": "",
+        "required": false,
+        "value": "Ambica",
+        "role": "",
+        "accessible_name": "Ambica",
+        "text_full": "Ambica",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_7.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-login > div > div:nth-of-type(4) > ul > li > div > span",
+        "selectors": [
+            "body > app-root > app-login > div > div:nth-of-type(4) > ul > li > div > span"
+        ],
+        "tag": "span",
+        "text": "Call us at",
+        "label": "",
+        "required": false,
+        "value": "Call us at",
+        "role": "",
+        "accessible_name": "Call us at",
+        "text_full": "Call us at",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_8.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-login > div > div:nth-of-type(4) > ul > li > div > span:nth-of-type(2)",
+        "selectors": [
+            "body > app-root > app-login > div > div:nth-of-type(4) > ul > li > div > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "+91 90369 02221",
+        "label": "",
+        "required": false,
+        "value": "+91 90369 02221",
+        "role": "",
+        "accessible_name": "+91 90369 02221",
+        "text_full": "+91 90369 02221",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_9.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-login > div > div:nth-of-type(4) > ul > li:nth-of-type(2) > div > span",
+        "selectors": [
+            "body > app-root > app-login > div > div:nth-of-type(4) > ul > li:nth-of-type(2) > div > span"
+        ],
+        "tag": "span",
+        "text": "Email us at",
+        "label": "",
+        "required": false,
+        "value": "Email us at",
+        "role": "",
+        "accessible_name": "Email us at",
+        "text_full": "Email us at",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_10.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "body > app-root > app-login > div > div:nth-of-type(4) > ul > li:nth-of-type(2) > div > span:nth-of-type(2)",
+        "selectors": [
+            "body > app-root > app-login > div > div:nth-of-type(4) > ul > li:nth-of-type(2) > div > span:nth-of-type(2)"
+        ],
+        "tag": "span",
+        "text": "support@gembaconnect.in",
+        "label": "",
+        "required": false,
+        "value": "support@gembaconnect.in",
+        "role": "",
+        "accessible_name": "support@gembaconnect.in",
+        "text_full": "support@gembaconnect.in",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_11.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-login > div > div:nth-of-type(4) > span",
+        "selectors": [
+            "html > body > app-root > app-login > div > div:nth-of-type(4) > span"
+        ],
+        "tag": "span",
+        "text": "Help?",
+        "label": "",
+        "required": false,
+        "value": "Help?",
+        "role": "",
+        "accessible_name": "Help?",
+        "text_full": "Help?",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_12.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-login > div > div:nth-of-type(3)",
+        "selectors": [
+            "html > body > app-root > app-login > div > div:nth-of-type(3)"
+        ],
+        "tag": "div",
+        "text": "\u00a9 2026 Powered by Gemba Concepts",
+        "label": "",
+        "required": false,
+        "value": "\u00a9 2026 Powered by Gemba Concepts",
+        "role": "",
+        "accessible_name": "\u00a9 2026 Powered by Gemba Concepts",
+        "text_full": "\u00a9 2026 Powered by Gemba Concepts",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_13.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Username",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Username",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Username",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_14.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#username",
+        "selectors": [
+            "#username",
+            "input[formcontrolname=\"login\"]",
+            "input[placeholder=\"Enter Username\"]",
+            "input[placeholder=\"Username\"]",
+            "input#username"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Username",
+        "required": true,
+        "value": "{{username}}",
+        "role": "textbox",
+        "accessible_name": "Username",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Username",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_15.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_16.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "{{password}}",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_17.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_18.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "button.btn-login"
+                },
+                {
+                    "text": "Login",
+                    "selector": "button.btn-login"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_19.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "button.btn-login"
+                },
+                {
+                    "text": "Login",
+                    "selector": "button.btn-login"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_20.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "{{password}}",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_21.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Login\")",
+        "selectors": [
+            "button:has-text(\"Login\")",
+            "text=\"Login\"",
+            "html > body > app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > button"
+        ],
+        "tag": "button",
+        "text": "Login",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Login",
+        "text_full": "Login",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_22.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/ambica/auth/login",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "button.btn-login"
+                },
+                {
+                    "text": "Login",
+                    "selector": "button.btn-login"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "#password",
+        "selectors": [
+            "#password",
+            "input[formcontrolname=\"password\"]",
+            "input[placeholder=\"Enter Password\"]",
+            "input[placeholder=\"Password\"]",
+            "input#password"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Password",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter Password",
+            "type": "password",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_23.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span",
+        "selectors": [
+            "app-root > app-login > div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span"
+        ],
+        "tag": "span",
+        "text": "",
+        "label": "Password",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Password",
+        "text_full": "",
+        "attrs": {
+            "role": "button"
+        },
+        "screenshot": "/static/projects/Ambica/flows/Login/screenshots/step_24.png"
+    }
+]
