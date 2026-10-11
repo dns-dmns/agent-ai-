@@ -41,6 +41,7 @@ from . import coverage
 from . import heuristics
 from . import learned
 from . import pacing
+from . import screens
 from . import sources as case_sources
 from . import storage
 from . import rules as rules_engine
@@ -819,6 +820,13 @@ async def is_keystroke_widget(loc) -> bool:
         return False
 
 
+FLASH_OUTLINE_JS = """el => {
+    const before = el.style.outline, offset = el.style.outlineOffset;
+    el.style.outline = '2px solid #f59e0b'; el.style.outlineOffset = '2px';
+    setTimeout(() => { el.style.outline = before; el.style.outlineOffset = offset; }, 700);
+}"""
+
+
 async def note_input_rejection(page, loc, step: dict, typed: str, evidence) -> None:
     """Record when a widget refuses the value instead of storing it.
 
@@ -1105,9 +1113,11 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
     result = {"action": action, "selector": selector, "healed": False}
 
     async def highlight(loc) -> None:
+        # Not loc.highlight(): that pins the selector text over the page, which
+        # covered the very fields a tester is watching. A plain outline instead.
         if not headless:
             try:
-                await loc.highlight()
+                await loc.evaluate(FLASH_OUTLINE_JS)
             except Exception:
                 pass
 
@@ -3805,16 +3815,18 @@ async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
                     "message": f"📊 Data-driven mode: {len(data_rows)} data row(s) × "
                                f"{len(cases) // max(len(data_rows), 1)} scenario(s)."})
 
-    workers = max(1, min(cfg.workers, config.MAX_PARALLEL_WORKERS))
-    if not cfg.headless and workers > 1:
-        workers = 1
+    # "Screens": how many browsers run test cases at the same time. Headed runs
+    # get one window per screen, tiled across the desktop (app/screens.py).
+    workers = max(1, min(cfg.workers, config.MAX_PARALLEL_WORKERS, max(len(cases), 1)))
+    if cfg.workers > config.MAX_PARALLEL_WORKERS:
         await emit({"event": "info",
-                    "message": "ℹ️ Headed mode runs one scenario at a time so you can watch it."})
+                    "message": f"ℹ️ {cfg.workers} screens requested; the maximum is "
+                               f"{config.MAX_PARALLEL_WORKERS} (QA_MAX_WORKERS in .env)."})
 
     state.total = len(cases)
     await emit({"event": "info", "run_id": state.run_id,
                 "message": f"Prepared {len(cases)} scenarios to execute in {cfg.mode} mode"
-                           f"{f' across {workers} parallel workers' if workers > 1 else ''}."})
+                           f"{f' on {workers} screens at the same time' if workers > 1 else ''}."})
     if cfg.verdict_mode != "off":
         await emit({"event": "info",
                     "message": f"⚖️ Verdict engine: {cfg.verdict_mode} — expectations are "
@@ -3854,7 +3866,8 @@ async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
             slow_mo = pacing.pace_for(cfg.speed).slow_mo_headed
             if slow_mo:
                 launch_args["slow_mo"] = slow_mo
-            launch_args["args"] = ["--start-maximized"]
+            launch_args["args"] = screens.launch_args(0 if workers > 1 else None,
+                                                      workers, cfg.headless)
         browser = await playwright.chromium.launch(**launch_args)
 
         # ── Suite-level seeding ───────────────────────────────────────
@@ -3886,48 +3899,63 @@ async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
                             "message": f"⚠️ Seeding failed: {humanize_error(err)}. "
                                        f"Scenarios will run without the seeded values."})
 
-        semaphore = asyncio.Semaphore(workers)
+        # Headed: each extra screen is its own browser window in its own tile.
+        # Headless: one browser is enough; screens are just concurrent contexts.
+        screen_browsers = [browser]
+        if not cfg.headless and workers > 1:
+            for slot in range(1, workers):
+                extra = dict(launch_args)
+                extra["args"] = screens.launch_args(slot, workers, cfg.headless)
+                screen_browsers.append(await playwright.chromium.launch(**extra))
 
-        async def guarded(scenario: dict) -> dict | None:
-            async with semaphore:
-                if state.cancelled:
-                    return None
+        async def guarded(scenario: dict, on_browser) -> dict | None:
+            if state.cancelled:
+                return None
+            try:
+                return await run_scenario(on_browser, scenario, cfg, shared, emit, state)
+            except Exception as err:  # noqa: BLE001 - never lose the whole suite
+                log.exception("Scenario crashed outside the guarded block")
+                await emit({"event": "log",
+                            "message": f"💥 Scenario #{scenario.get('_original_id')} "
+                                       f"aborted: {humanize_error(err)}"})
+                return {
+                    "index": scenario.get("_original_id"),
+                    "name": scenario.get("scenario_name", "unknown"),
+                    "parent": scenario.get("_parent_name", ""),
+                    "case": scenario.get("_case_name", ""),
+                    "status": "CRASH",
+                    "duration": 0,
+                    "steps_executed": [],
+                    "step_durations": [],
+                    "expected": scenario.get("expected_result", ""),
+                    "error": humanize_error(err),
+                    "verdict": {"status": "CRASH", "reason": humanize_error(err)},
+                }
+
+        # Every screen takes the next waiting test case, so a screen that gets
+        # quick cases is not left idle while another works through slow ones.
+        pending: asyncio.Queue = asyncio.Queue()
+        for scenario in cases:
+            pending.put_nowait(scenario)
+
+        async def screen(slot: int) -> None:
+            on_browser = screen_browsers[slot] if len(screen_browsers) > 1 else browser
+            while not state.cancelled:
                 try:
-                    return await run_scenario(browser, scenario, cfg, shared, emit, state)
-                except Exception as err:  # noqa: BLE001 - never lose the whole suite
-                    log.exception("Scenario crashed outside the guarded block")
-                    await emit({"event": "log",
-                                "message": f"💥 Scenario #{scenario.get('_original_id')} "
-                                           f"aborted: {humanize_error(err)}"})
-                    return {
-                        "index": scenario.get("_original_id"),
-                        "name": scenario.get("scenario_name", "unknown"),
-                        "parent": scenario.get("_parent_name", ""),
-                        "case": scenario.get("_case_name", ""),
-                        "status": "CRASH",
-                        "duration": 0,
-                        "steps_executed": [],
-                        "step_durations": [],
-                        "expected": scenario.get("expected_result", ""),
-                        "error": humanize_error(err),
-                        "verdict": {"status": "CRASH", "reason": humanize_error(err)},
-                    }
-
-        if workers > 1:
-            gathered = await asyncio.gather(*(guarded(sc) for sc in cases))
-            run_results = [r for r in gathered if r]
-        else:
-            for scenario in cases:
-                if state.cancelled:
-                    break
-                result = await guarded(scenario)
+                    scenario = pending.get_nowait()
+                except asyncio.QueueEmpty:
+                    return
+                result = await guarded(scenario, on_browser)
                 if result:
                     run_results.append(result)
 
-        try:
-            await browser.close()
-        except Exception:
-            pass
+        await asyncio.gather(*(screen(slot) for slot in range(workers)))
+
+        for each in screen_browsers:
+            try:
+                await each.close()
+            except Exception:
+                pass
 
     run_results.sort(key=lambda r: (r.get("index") or 0, r.get("label") or ""))
     report = build_report(cfg, run_results, started, state)

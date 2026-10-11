@@ -1913,7 +1913,7 @@ def build_run_config(**kwargs) -> executor.RunConfig:
         cfg.verdict_mode = "rules"
     if cfg.step_shots not in ("off", "fail", "all"):
         cfg.step_shots = "fail"
-    if cfg.speed not in pacing.SPEEDS:
+    if not pacing.is_valid(cfg.speed):
         cfg.speed = pacing.DEFAULT_SPEED
     return cfg
 

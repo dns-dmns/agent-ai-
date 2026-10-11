@@ -209,8 +209,25 @@ Open **3 Run & verify** and set the **Execution profile**:
 | **Verdict engine** | *Rules — evidence based* |
 | **Auth flow** | **`Login`** — required for every module except Login itself |
 | **Auth scenario** | **`Valid login`** (or the name of your successful-login case) |
-| **Parallel workers** | 1 = one browser; 2–5 = that many at the same time |
-| **Test speed** | see below |
+| **Screens (run side by side)** | How many browsers run at the same time — see below |
+| **Test speed** | How long to wait per step — see below |
+
+### Screens — run test cases side by side
+
+Choose **1, 2, 3, 4, 6, 8** or **Custom…** (type any number; the maximum is set by
+`QA_MAX_WORKERS` in `.env`, 8 by default).
+
+- The test cases are **shared between the screens**: each screen takes the next
+  waiting test case, so all screens stay busy until the list is done.
+- **Headed** mode opens one browser window per screen, **tiled across your
+  desktop** so you can watch all of them. Each window shows the full desktop
+  layout of the application, scaled down to fit — the app never switches to a
+  cramped layout.
+- **Headless** mode runs the same number of browsers in the background.
+- Each extra screen uses roughly 300–500 MB of memory. On a typical laptop 3–4
+  screens is the sweet spot.
+
+Example on Liberty `item`: 12 test cases on 3 headed screens finished in 51 s.
 
 ### Test speed
 
@@ -219,6 +236,9 @@ Open **3 Run & verify** and set the **Execution profile**:
 | **Fast** | Moves on the moment the page is ready; shortest time limits | Your environment is quick and stable |
 | **Normal** (default) | Waits only while something is loading, with room for slower screens | Most of the time |
 | **Careful** | Fixed pauses after every step (the old behaviour) | The application is slow or tests fail randomly on Fast/Normal |
+| **Custom…** | Type the **maximum seconds to wait per step** (0.5–120). It still moves on as soon as the page is ready | A screen in your app is known to take, say, 10 s to load |
+
+Your Screens and Test speed choices are remembered in this browser.
 
 The platform waits while the page is genuinely busy — a request in progress, a
 visible spinner, the screen still changing — and **stops waiting as soon as it is
@@ -230,7 +250,9 @@ the same results.
 Above the list of scenarios:
 
 - **Filter scenarios…** — search by text.
-- **All types** — Positive, Negative, Security, …
+- **All types** — Positive, Negative, Security, … **This is the type filter the
+  run uses.** (The *Test-type focus* chips on the Generate tab only steer
+  generation; they no longer limit what runs.)
 - **All sources** — pick **Claude**, **Gemini (API)**, **Excel / CSV**, … The
   line under it confirms, e.g. *"Run suite will execute only Claude cases."*
 - Tick individual scenarios to run just those, or **▶** on one row to run one.
@@ -314,7 +336,9 @@ fill it locally.
 | `WinError 10048` | Port in use. Use `.\run_server.ps1` or `-Port 8080`. |
 | "No API key" in the top bar | Only Gemini generation is affected. Add `GEMINI_API_KEY` to `.env` and restart, or use Claude / Excel instead. |
 | Every test fails at step 1 | Auth flow is not set. In **Run & verify** set **Auth flow = Login** and **Auth scenario = Valid login**. |
-| Tests fail randomly | Switch **Test speed** to **Careful**. |
+| Tests fail randomly | Switch **Test speed** to **Careful**, or Custom with a larger number. |
+| Fewer tests ran than the list shows | Check **All types** and **All sources** above the list — only matching cases run. |
+| The watched browser looks zoomed in / forms need scrolling | Windows display scaling (e.g. 150%) shrinks the page. Test browsers render at 100% by default; set `QA_BROWSER_SCALE=1.25` in `.env` if you prefer larger text. |
 | "The element was not found" | The screen changed (field renamed, moved, new mandatory field). Re-record the module or ask Claude to update the cases. |
 | Template has strange column names like "0.00" | The form's number fields have no readable label. Rename the columns to the real labels shown on screen. |
 | 403 "Remote access is disabled" | You opened the platform from another computer. Set `QA_API_KEY` in `.env` on the server and enter it in the dashboard. |

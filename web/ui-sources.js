@@ -9,7 +9,6 @@
    - the chosen source on the run request (`&sources=`), so Run suite executes
      only those cases. The server filter is strict: choosing Claude never falls
      back to running everything.
-   - the Test speed choice (`&speed=`, see app/pacing.py), appended the same way.
 */
 (function () {
     "use strict";
@@ -107,11 +106,6 @@
             if (typeof url === "string" && url.startsWith("/run-matrix-stream")) {
                 if (src && !/[?&]sources=/.test(url)) {
                     url += `&sources=${encodeURIComponent(src)}`;
-                }
-                // Test speed (Run & verify -> Execution profile).
-                const speed = (document.getElementById("speedSelect") || {}).value;
-                if (speed && !/[?&]speed=/.test(url)) {
-                    url += `&speed=${encodeURIComponent(speed)}`;
                 }
             }
             return new NativeEventSource(url, init);

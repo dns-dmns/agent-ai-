@@ -11,9 +11,10 @@ no XHR/fetch in flight, no *visible* loading indicator, no DOM change for a
 short window -- and only waits the full limit when something is genuinely
 still loading. The chosen speed sets the limits:
 
-    fast     shortest limits, no extra pauses
-    normal   smart waits with room for slower screens (default)
-    careful  the old fixed pauses, for slow or unstable environments
+    fast        shortest limits, no extra pauses
+    normal      smart waits with room for slower screens (default)
+    careful     the old fixed pauses, for slow or unstable environments
+    custom:<s>  smart waits, at most <s> seconds per step (user's own value)
 """
 from __future__ import annotations
 
@@ -42,7 +43,34 @@ DEFAULT_SPEED = "normal"
 
 
 def pace_for(speed: str) -> Pace:
-    return SPEEDS.get((speed or "").strip().lower(), SPEEDS[DEFAULT_SPEED])
+    """A named speed, or ``custom:<seconds>`` -- the longest wait per step.
+
+    Custom keeps the smart waits (it still moves on the moment the page is
+    ready); the number only caps how long a slow screen may take.
+    """
+    key = (speed or "").strip().lower()
+    if key.startswith("custom:"):
+        try:
+            seconds = float(key.split(":", 1)[1])
+        except ValueError:
+            return SPEEDS[DEFAULT_SPEED]
+        max_ms = int(min(max(seconds, 0.5), 120) * 1000)
+        return Pace(f"custom:{seconds:g}", 0, max_ms, 250, False, 0,
+                    min(2000, max(300, max_ms // 4)))
+    return SPEEDS.get(key, SPEEDS[DEFAULT_SPEED])
+
+
+def is_valid(speed: str) -> bool:
+    key = (speed or "").strip().lower()
+    if key in SPEEDS:
+        return True
+    if key.startswith("custom:"):
+        try:
+            float(key.split(":", 1)[1])
+            return True
+        except ValueError:
+            return False
+    return False
 
 
 # Visible-only: an application that keeps a hidden spinner in the DOM must not

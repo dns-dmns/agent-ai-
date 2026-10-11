@@ -518,21 +518,29 @@
                                         <select id="authScenarioSelect"></select>
                                     </div>
                                     <div class="field">
-                                        <label class="field-label" for="workersSelect">Parallel workers</label>
-                                        <select id="workersSelect">
-                                            <option value="1" selected>1 — sequential</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
+                                        <label class="field-label" for="workersSelect">Screens (run side by side)</label>
+                                        <select id="workersSelect" title="How many browsers run test cases at the same time. The test cases are shared between them.">
+                                            <option value="1" selected>1 screen — one test at a time</option>
+                                            <option value="2">2 screens</option>
+                                            <option value="3">3 screens</option>
+                                            <option value="4">4 screens</option>
+                                            <option value="6">6 screens</option>
+                                            <option value="8">8 screens</option>
+                                            <option value="custom">Custom…</option>
                                         </select>
+                                        <input id="workersCustom" type="number" min="1" max="16" step="1"
+                                               placeholder="Number of screens" style="display:none; margin-top:6px">
                                     </div>
                                     <div class="field">
                                         <label class="field-label" for="speedSelect">Test speed</label>
-                                        <select id="speedSelect" title="How long the run waits between steps">
+                                        <select id="speedSelect" title="How long the run may wait for each step">
                                             <option value="fast">Fast — no extra waiting</option>
                                             <option value="normal" selected>Normal — waits only while loading</option>
                                             <option value="careful">Careful — fixed pauses (slow app)</option>
+                                            <option value="custom">Custom…</option>
                                         </select>
+                                        <input id="speedCustom" type="number" min="0.5" max="120" step="0.5"
+                                               placeholder="Max seconds to wait per step" style="display:none; margin-top:6px">
                                     </div>
                                 </div>
 
@@ -861,6 +869,7 @@
     <script src="/assets/ui-runner.js"></script>
     <script src="/assets/ui-usercases.js"></script>
     <script src="/assets/ui-sources.js"></script>
+    <script src="/assets/ui-run-options.js"></script>
 </body>
 
 </html>

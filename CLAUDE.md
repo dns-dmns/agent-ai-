@@ -533,6 +533,27 @@ cancellation check in `integration_api`) must pass `speed=careful`**. Measured o
 Liberty `item`: 13 cases 274 s careful vs 106 s fast, identical verdicts. UI:
 `#speedSelect` in the Execution profile; `ui-sources.js` appends `&speed=`.
 
+### Screens — `app/screens.py`
+
+`RunConfig.workers` is the "Screens" control. Scenarios are shared from one
+`asyncio.Queue`; each screen takes the next. Headed runs used to be forced to one
+worker; now each screen is its own browser window, tiled over the work area
+(`SPI_GETWORKAREA`, physical pixels). Two display facts drive the design: Windows
+scaling (150% on the dev laptop) gave a maximised window only 1280x672 CSS px, so
+browsers launch with `--force-device-scale-factor` (`QA_BROWSER_SCALE`, default
+1); and a tile is small, so its scale is lowered until the page is at least
+`MIN_PAGE` (1366x720) — a 960x516 tile made a PrimeNG overlay open off-screen and
+the click landed on the dialog mask, closing the form (4 of 12 failed; 12/12
+after). `--window-position/--window-size` are in units of the scale factor, hence
+the division. Locator highlighting uses a plain outline (`FLASH_OUTLINE_JS`):
+Playwright's `highlight()` pins selector text over the page.
+
+The Run screen sends the type filter from its own "All types" select
+(`ui-run-options.js` rewrites `test_types`); the Generate tab's "Test-type focus"
+chips used to leak into every run and silently skipped ui/functional/security
+cases. Custom Screens/speed become real `<option>`s so app.js never reads
+`"custom"`.
+
 ### Typing into masked number widgets
 
 `loc.fill()` pastes a value in one event. PrimeNG `p-inputnumber` (and any

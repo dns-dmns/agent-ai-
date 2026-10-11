@@ -111,13 +111,17 @@ For each test case the system:
    | Fast | Shortest limits, no extra pauses |
    | Normal | Waits while loading, with room for slower screens (default) |
    | Careful | Fixed pause after every step, for slow or unstable environments |
+   | Custom | Waits while loading, at most the number of seconds you type |
 
 5. Collects **evidence**: messages on screen, pop-ups, table rows, downloads,
    browser console errors, and the result of every check step.
 6. Saves a screenshot (and a video) for review.
 
-With **Parallel workers** set to 2–5, that many browsers run test cases at the
-same time.
+With **Screens** set to more than 1, that many browsers run test cases at the
+same time. The cases are shared from one queue — each screen takes the next
+waiting case — so no screen sits idle. In headed mode every screen gets its own
+window, tiled across the desktop and scaled so the application keeps its full
+desktop layout.
 
 ---
 

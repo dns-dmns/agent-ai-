@@ -166,7 +166,7 @@ LLM_DAILY_BUDGET = int(os.getenv("QA_LLM_DAILY_BUDGET", "20"))
 # allowance — so *running tests* silently competed with generating them.
 VISION_HEALING_ENABLED = os.getenv("QA_VISION_HEALING", "0") not in ("0", "false", "False")
 VISION_MIN_CONFIDENCE = float(os.getenv("QA_VISION_MIN_CONFIDENCE", "0.6"))
-MAX_PARALLEL_WORKERS = int(os.getenv("QA_MAX_WORKERS", "5"))
+MAX_PARALLEL_WORKERS = int(os.getenv("QA_MAX_WORKERS", "8"))
 SCHEDULER_ENABLED = os.getenv("QA_SCHEDULER", "1") not in ("0", "false", "False")
 
 # Words that mark an action as destructive — Vision AI coordinate clicking is
