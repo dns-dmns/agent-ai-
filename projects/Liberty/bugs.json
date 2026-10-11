@@ -1,0 +1,36 @@
+[
+    {
+        "flow_name": "Login",
+        "scenario_name": "Empty username and password",
+        "scenario_type": "negative",
+        "status": "FAIL",
+        "severity": "high",
+        "failed_step_num": 2,
+        "failed_step_desc": "VERIFY_MESSAGE on ''",
+        "error_message": "no validation or toast message appeared on screen",
+        "expected_result": "A validation message asks for the username and password; login is blocked",
+        "observed_messages": [],
+        "description": "Login - Empty username and password: FAIL \u2014 no validation or toast message appeared on screen",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_4.png",
+        "video": "/static/projects/Liberty/flows/Login/videos/scenario_4.webm",
+        "run_id": "5756f6c48817",
+        "timestamp": "2026-10-11 16:23:41"
+    },
+    {
+        "flow_name": "Login",
+        "scenario_name": "Empty password",
+        "scenario_type": "negative",
+        "status": "FAIL",
+        "severity": "high",
+        "failed_step_num": 3,
+        "failed_step_desc": "VERIFY_MESSAGE on ''",
+        "error_message": "no validation or toast message appeared on screen",
+        "expected_result": "A validation message asks for the password; login is blocked",
+        "observed_messages": [],
+        "description": "Login - Empty password: FAIL \u2014 no validation or toast message appeared on screen",
+        "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_5.png",
+        "video": "/static/projects/Liberty/flows/Login/videos/scenario_5.webm",
+        "run_id": "5756f6c48817",
+        "timestamp": "2026-10-11 16:23:41"
+    }
+]

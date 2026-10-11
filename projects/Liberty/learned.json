@@ -1,0 +1,1533 @@
+{
+  "flows": {
+    "Login": {
+      "fields": [
+        {
+          "selector": "#username",
+          "label": "Username",
+          "kind": "text",
+          "required": true,
+          "required_source": "",
+          "value": "admin",
+          "disabled": false,
+          "seen": 5
+        },
+        {
+          "selector": "#password",
+          "label": "Password",
+          "kind": "password",
+          "required": true,
+          "required_source": "",
+          "value": "Wrong#Pass-QA",
+          "disabled": false,
+          "seen": 5
+        }
+      ],
+      "submit_gating": "unknown",
+      "healed": {}
+    },
+    "Item Master": {
+      "fields": [
+        {
+          "selector": "input[formcontrolname=\"skuCode\"]",
+          "label": "Auto-generated",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "DFG 111123177",
+          "disabled": true,
+          "seen": 6
+        },
+        {
+          "selector": "input[formcontrolname=\"skuDescription\"]",
+          "label": "Enter SKU description",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "seen": 8
+        },
+        {
+          "selector": "input[placeholder=\"0.00\"]",
+          "label": "0.00",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 8
+        },
+        {
+          "selector": "input[placeholder=\"0\"]",
+          "label": "0",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 8
+        },
+        {
+          "selector": "input[placeholder=\"0.000\"]",
+          "label": "0.000",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 8
+        },
+        {
+          "selector": "input[placeholder=\"0.000000\"]",
+          "label": "0.000000",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 6
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"unitPrice\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"mrp\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"minimumStock\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"length\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"width\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"height\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 8
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"grossWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 6
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"tareWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 6
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"netWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 6
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"cbm\"]",
+          "label": "0.000000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 6
+        }
+      ],
+      "submit_gating": "unknown",
+      "healed": {}
+    },
+    "Screen Smoke": {
+      "fields": [
+        {
+          "selector": "input[placeholder=\"Search description or code\"]",
+          "label": "Search description or code",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Item\"]",
+          "label": "Search Item",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search code, description or CAS no.\"]",
+          "label": "Search code, description or CAS no.",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Category\"]",
+          "label": "Search Category",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by SKU, Description, Category...\"]",
+          "label": "Search by SKU, Description, Category...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search SFG code, description or department...\"]",
+          "label": "Search SFG code, description or department...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by PM Code or Description...\"]",
+          "label": "Search by PM Code or Description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Customer\"]",
+          "label": "Search Customer",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by NM Code or Description...\"]",
+          "label": "Search by NM Code or Description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search supplier\"]",
+          "label": "Search supplier",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Transporters...\"]",
+          "label": "Search Transporters...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Depot\"]",
+          "label": "Search Depot",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search distributors, state, region\u2026\"]",
+          "label": "Search distributors, state, region\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Schemes...\"]",
+          "label": "Search Schemes...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search leave code or name\u2026\"]",
+          "label": "Search leave code or name\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search code or name\u2026\"]",
+          "label": "Search code or name\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Holiday date range\"]",
+          "label": "Holiday date range",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search expense code or name\u2026\"]",
+          "label": "Search expense code or name\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search work code or name\u2026\"]",
+          "label": "Search work code or name\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search manager, representative, depot\u2026\"]",
+          "label": "Search manager, representative, depot\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search employee or department\u2026\"]",
+          "label": "Search employee or department\u2026",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search User\"]",
+          "label": "Search User",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Roles\"]",
+          "label": "Search Roles",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search name, beat or status\"]",
+          "label": "Search name, beat or status",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search name, state or distributor\"]",
+          "label": "Search name, state or distributor",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search a name or their ASM\"]",
+          "label": "Search a name or their ASM",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 2
+        },
+        {
+          "selector": "input[placeholder=\"Search by SO number, customer or depot\"]",
+          "label": "Search by SO number, customer or depot",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search a task, person, type or shop\"]",
+          "label": "Search a task, person, type or shop",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by name or ASM\"]",
+          "label": "Search by name or ASM",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "#aco-enabled",
+          "label": "Close forgotten days automatically\nWhen this is off, a day nobody clocks out of stays open until a manager closes it.",
+          "kind": "checkbox",
+          "required": false,
+          "required_source": "",
+          "value": "on",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "#aco-time",
+          "label": "Close them at\nIndia Standard Time, every day.",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "23:00",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by person, request or detail\"]",
+          "label": "Search by person, request or detail",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by SO#, Customer...\"]",
+          "label": "Search by SO#, Customer...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 2
+        },
+        {
+          "selector": "input[formcontrolname=\"customerRegistrationType\"]",
+          "label": "Auto from customer",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"customerCity\"]",
+          "label": "Auto from customer",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"customerPanNo\"]",
+          "label": "Auto from customer",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"customerAadhaarNo\"]",
+          "label": "Auto from customer",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"consigneeName\"]",
+          "label": "Consignee name (defaults to customer)",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "textarea[formcontrolname=\"consigneeAddress\"]",
+          "label": "Shipping address",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"consigneeState\"]",
+          "label": "State",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"consigneeStateCode\"]",
+          "label": "State Code",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "textarea[formcontrolname=\"buyerAddress\"]",
+          "label": "Billing address",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"buyerGstin\"]",
+          "label": "GSTIN",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"paymentTerms\"]",
+          "label": "e.g. As per agreement",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "textarea[formcontrolname=\"remarks\"]",
+          "label": "Any remarks...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"discountPercent\"]",
+          "label": "discountPercent",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "0%",
+          "filled": true,
+          "component": true,
+          "seen": 2
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"cashDiscountPercent\"]",
+          "label": "cashDiscountPercent",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "2%",
+          "filled": true,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"applicantName\"]",
+          "label": "Applicant name",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "100",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"businessOrgName\"]",
+          "label": "Name of business organization",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "150",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"panNo\"]",
+          "label": "e.g. ABCDE1234F",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "10",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"gstin\"]",
+          "label": "e.g. 29ABCDE1234F1Z5",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "15",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"aadhaarNo\"]",
+          "label": "12-digit Aadhaar number",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "12",
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"dd/mm/yyyy\"]",
+          "label": "dd/mm/yyyy",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "textarea[formcontrolname=\"businessAddress\"]",
+          "label": "No, street name and city",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "500",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"stateCode\"]",
+          "label": "stateCode",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"phone\"]",
+          "label": "10-digit mobile number",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "10",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"email\"]",
+          "label": "name@domain.com",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "100",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"name\"]",
+          "label": "Full name",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "100",
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"18-100\"]",
+          "label": "18-100",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "max": "120",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"residentialAddress\"]",
+          "label": "Residential address",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "300",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"telNumbers\"]",
+          "label": "e.g. 9876543210, 08012345678",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "60",
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"YYYY\"]",
+          "label": "YYYY",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "max": "9999",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"product\"]",
+          "label": "Product",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "100",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"areasTownCovered\"]",
+          "label": "Areas / towns",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "200",
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"0.00\"]",
+          "label": "0.00",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"0\"]",
+          "label": "0",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"areaTown\"]",
+          "label": "Area or town",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "150",
+          "seen": 1
+        },
+        {
+          "selector": "textarea[formcontrolname=\"competitorProducts\"]",
+          "label": "Competitor brands in the area and their schemes / activities",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "maxlength": "1000",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"declarantName\"]",
+          "label": "Full name",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "100",
+          "seen": 1
+        },
+        {
+          "selector": "input[formcontrolname=\"declarationPlace\"]",
+          "label": "City / town",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "maxlength": "100",
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"age\"]",
+          "label": "18-100",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"sinceYear\"]",
+          "label": "YYYY",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"annualTurnover\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"outletsAvailable\"]",
+          "label": "0",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"outletsCovered\"]",
+          "label": "0",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"noOfRoutes\"]",
+          "label": "0",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"population\"]",
+          "label": "0",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"approxOutlets\"]",
+          "label": "0",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"targetInDozens\"]",
+          "label": "0",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search PI no / SO no / consignee\"]",
+          "label": "Search PI no / SO no / consignee",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by PR number or supplier...\"]",
+          "label": "Search by PR number or supplier...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by PO#, supplier, item code, description...\"]",
+          "label": "Search by PO#, supplier, item code, description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by GRN#, PO#, supplier, invoice, item code, description...\"]",
+          "label": "Search by GRN#, PO#, supplier, invoice, item code, description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by FG code or description...\"]",
+          "label": "Search by FG code or description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by RM code or name...\"]",
+          "label": "Search by RM code or name...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by batch ID...\"]",
+          "label": "Search by batch ID...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Planned week\"]",
+          "label": "Planned week",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by SKU, description...\"]",
+          "label": "Search by SKU, description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by SO#, customer, country...\"]",
+          "label": "Search by SO#, customer, country...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by JO#, SKU, description...\"]",
+          "label": "Search by JO#, SKU, description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by Batch, SFG Code, JO...\"]",
+          "label": "Search by Batch, SFG Code, JO...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 2
+        },
+        {
+          "selector": "input[placeholder=\"Search by Request No, SFG Code, Description, JO...\"]",
+          "label": "Search by Request No, SFG Code, Description, JO...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 3
+        },
+        {
+          "selector": "p-dropdown[placeholder=\"All Status\"]",
+          "label": "All Status",
+          "kind": "dropdown",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": true,
+          "component": true,
+          "seen": 3
+        },
+        {
+          "selector": "input[placeholder=\"Search by RM Code, Description, Category, Issue Req No, SFG...\"]",
+          "label": "Search by RM Code, Description, Category, Issue Req No, SFG...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "p-dropdown[placeholder=\"All Teams\"]",
+          "label": "All Teams",
+          "kind": "dropdown",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by item code or description...\"]",
+          "label": "Search by item code or description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 4
+        },
+        {
+          "selector": "input[placeholder=\"Search JO, SFG code or description\"]",
+          "label": "Search JO, SFG code or description",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by JO, SFG code / description...\"]",
+          "label": "Search by JO, SFG code / description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Job Work No, Job Order, SFG, supplier\"]",
+          "label": "Search Job Work No, Job Order, SFG, supplier",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search receipt, Job Work, supplier, challan\"]",
+          "label": "Search receipt, Job Work, supplier, challan",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Job worker name\"]",
+          "label": "Job worker name",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search SKU / Job Card\"]",
+          "label": "Search SKU / Job Card",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"From date\"]",
+          "label": "From date",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"To date\"]",
+          "label": "To date",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search Job Card / SKU\"]",
+          "label": "Search Job Card / SKU",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search batch no...\"]",
+          "label": "Search batch no...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 2
+        },
+        {
+          "selector": "input[placeholder=\"Search Job Order, SKU, Issue Req No\"]",
+          "label": "Search Job Order, SKU, Issue Req No",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"From - To\"]",
+          "label": "From - To",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by return no, RM, request, department...\"]",
+          "label": "Search by return no, RM, request, department...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by RM code or description...\"]",
+          "label": "Search by RM code or description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "p-dropdown[placeholder=\"Category\"]",
+          "label": "Category",
+          "kind": "dropdown",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": true,
+          "component": true,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by Formulation Code, CPC Code, Description...\"]",
+          "label": "Search by Formulation Code, CPC Code, Description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by Production No, CPC Code, Description...\"]",
+          "label": "Search by Production No, CPC Code, Description...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by SFG code, description or batch...\"]",
+          "label": "Search by SFG code, description or batch...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by request no, SFG, SKU or job card...\"]",
+          "label": "Search by request no, SFG, SKU or job card...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search SKU...\"]",
+          "label": "Search SKU...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 3
+        },
+        {
+          "selector": "#includeInactiveChk",
+          "label": "Include inactive",
+          "kind": "checkbox",
+          "required": false,
+          "required_source": "",
+          "value": "on",
+          "disabled": false,
+          "seen": 2
+        },
+        {
+          "selector": "input[placeholder=\"Search SO / customer...\"]",
+          "label": "Search SO / customer...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Date range\"]",
+          "label": "Date range",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 3
+        },
+        {
+          "selector": "input[placeholder=\"Search dispatches...\"]",
+          "label": "Search dispatches...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search GDN#, SO#, Customer...\"]",
+          "label": "Search GDN#, SO#, Customer...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search by SO number...\"]",
+          "label": "Search by SO number...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Search SO / customer / destination...\"]",
+          "label": "Search SO / customer / destination...",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        },
+        {
+          "selector": "input[placeholder=\"Scan or enter carton ID, e.g. SVA-2609-001/3-40\"]",
+          "label": "Scan or enter carton ID, e.g. SVA-2609-001/3-40",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 1
+        }
+      ],
+      "submit_gating": "unknown",
+      "healed": {}
+    }
+  },
+  "message_selectors": [
+    ".p-toast-detail",
+    ".p-toast-summary",
+    ".p-toast-message-error",
+    ".p-toast-message-success",
+    ".error",
+    ".show-more-count"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "environments": {
+        "dev": {
+            "base_url": "https://gc-dev.centralindia.cloudapp.azure.com"
+        }
+    },
+    "active_env": "dev"
+}

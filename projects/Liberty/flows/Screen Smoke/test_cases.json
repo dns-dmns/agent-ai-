@@ -1,0 +1,2234 @@
+[
+    {
+        "scenario_name": "Open Home",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/home"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Home screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Dashboard",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/management-dashboard/overview"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/management-dashboard/overview"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Dashboard screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > Item Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > Item Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > RM Item Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/rm-item-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > RM Item Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > Perfume RM Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/perfume-rm-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > Perfume RM Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > Category Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/category-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > Category Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > BOM Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/bom-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > BOM Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > SFG Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/sfg-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > SFG Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > Patti Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/patti-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > Patti Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Product Catalogue > Nurva Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/product-catalogue/nurva-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Product Catalogue > Nurva Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Business Partners > Customer Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/business-partners/customer-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Business Partners > Customer Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Business Partners > Supplier Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/business-partners/supplier-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Business Partners > Supplier Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Business Partners > Transporter Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/business-partners/transporter-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Business Partners > Transporter Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Sales & Distribution > Scheme Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/sales-distribution/scheme-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Sales & Distribution > Scheme Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Sales & Distribution > Distributor Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/distributor-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/sales-distribution/distributor-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Sales & Distribution > Distributor Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Sales & Distribution > Depot Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/sales-distribution/depot-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Sales & Distribution > Depot Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Field Operation > Leave Types",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/field-operation/leave-type-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Field Operation > Leave Types screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Field Operation > Weekly Off & Holidays",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/field-operation/holiday-calendar-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Field Operation > Weekly Off & Holidays screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Field Operation > Expense Types",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/field-operation/expense-type-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Field Operation > Expense Types screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Field Operation > Official Work Types",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/field-operation/official-work-type-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Field Operation > Official Work Types screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Field Operation > ASM - SR Mapping",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/field-operation/asm-sr-mapping/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Field Operation > ASM - SR Mapping screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Production > Production Machines",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/production/dipping-machine/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Production > Production Machines screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > Production > Operator Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/production/operator-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > Production > Operator Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > User & Access > User Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/user-access/user-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > User & Access > User Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > User & Access > Roles Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/user-access/roles-master/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > User & Access > Roles Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Master > User & Access > Permissions",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/permissions/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/master/user-access/permissions/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Master > User & Access > Permissions screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Dashboard",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/dashboard"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/dashboard"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Dashboard screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Live Tracking",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/live-tracking"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/live-tracking"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Live Tracking screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Week Plan",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/week-plan"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/week-plan"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Week Plan screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Attendance",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/attendance"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/attendance"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Attendance screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Approvals",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/approvals"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/approvals"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Approvals screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Give a Task",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/give-task"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/give-task"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Give a Task screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Budgets",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/budgets"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/budgets"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Budgets screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Sales Report",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/sales-report"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/sales-report"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Sales Report screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Work Report",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/work-report"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/work-report"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Work Report screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Auto Clock-Out",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/auto-clock-out"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/auto-clock-out"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Auto Clock-Out screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Request Management",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/requests"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/requests"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Request Management screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Connect > Demo Video",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/demo-video"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/field-assist/demo-video"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Connect > Demo Video screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Order > All Orders",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/sales-order/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Order > All Orders screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Order > Domestic Orders",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/domestic"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/sales-order/domestic"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Order > Domestic Orders screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Order > Create Order",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/sales-order/create"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Order > Create Order screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Sales Order > Customer Onboarding",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/sales-order/customer-onboarding"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Sales Order > Customer Onboarding screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Shipment Planning > Shipment Plans",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/shipment-planning/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/shipment-planning/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Shipment Planning > Shipment Plans screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Procurement > Purchase Requisitions",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-requisitions"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/procurement/purchase-requisitions"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Procurement > Purchase Requisitions screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Procurement > Purchase Orders",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/procurement/purchase-orders"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Procurement > Purchase Orders screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Procurement > Goods Receipt Note",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/grn"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/procurement/grn"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Procurement > Goods Receipt Note screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Material Planning > Stock Radar (MRP)",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/stock-radar"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/mrp/stock-radar"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Material Planning > Stock Radar (MRP) screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Material Planning > Net Requirement",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/mrp/net-requirement"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Material Planning > Net Requirement screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Planning > Batch Planning",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/batch-planning"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/planning/batch-planning"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Planning > Batch Planning screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Planning > Domestic Orders",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/domestic-orders"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/planning/domestic-orders"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Planning > Domestic Orders screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Planning > Export Orders",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/export-orders"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/planning/export-orders"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Planning > Export Orders screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Planning > Job Orders",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/job-orders"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/planning/job-orders"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Planning > Job Orders screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Dipping Department > Dashboard",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/dashboard"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/dipping/dashboard"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Dipping Department > Dashboard screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Dipping Department > Production",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/production"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/dipping/production"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Dipping Department > Production screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Dipping Department > Material Acquisition",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/material-acquisition"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/dipping/material-acquisition"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Dipping Department > Material Acquisition screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Dipping Department > Issue Request",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/issue-request"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/dipping/issue-request"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Dipping Department > Issue Request screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Dipping Department > Dipping RM Store",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/rm-store"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/dipping/rm-store"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Dipping Department > Dipping RM Store screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Flora Department > Bathi Production",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/bathi-production"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/flora/bathi-production"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Flora Department > Bathi Production screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Flora Department > Patti Production",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/patti-production"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/flora/patti-production"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Flora Department > Patti Production screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Flora Department > Material Acquisition",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/issue-request"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/flora/issue-request"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Flora Department > Material Acquisition screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Flora Department > Drying",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/drying"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/flora/drying"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Flora Department > Drying screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Flora Department > Flora RM Store",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/flora/rm-store"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Flora Department > Flora RM Store screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Job Work > Job Work Issuance",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/issuance"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/job-work/issuance"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Job Work > Job Work Issuance screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Job Work > Job Work Receipt",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/receipt"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/job-work/receipt"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Job Work > Job Work Receipt screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Job Work > Job Work Ledger",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/ledger"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/job-work/ledger"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Job Work > Job Work Ledger screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Packing Production > Daily Planning",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/plan-production"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/plan-production"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Packing Production > Daily Planning screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Packing Production > Machine Production",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/machine-production"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/machine-production"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Packing Production > Machine Production screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Packing Production > Packing",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/packing/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/packing/list"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Packing Production > Packing screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Packing Material Store > Issue Request",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/packing-material-store/issue-request"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/packing-material-store/issue-request"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Packing Material Store > Issue Request screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Packing Material Store > Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/packing-material-store/inventory"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/packing-material-store/inventory"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Packing Material Store > Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Perfumary > Issue Requests",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/issue-requests"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/perfumary/issue-requests"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Perfumary > Issue Requests screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Perfumary > Perfumary RM Store",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/perfumary/rm-store"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Perfumary > Perfumary RM Store screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Perfumary > Perfume Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/perfumary/inventory"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Perfumary > Perfume Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Perfumary > Return Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/return-inventory"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/perfumary/return-inventory"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Perfumary > Return Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Perfumary > Formulation Master",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/perfumary/formulation-master"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Perfumary > Formulation Master screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Perfumary > Production",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/production/perfumary/production"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Perfumary > Production screen opens without errors"
+    },
+    {
+        "scenario_name": "Open SFG Store > SFG Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/procurement/inventory/sfg-store"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The SFG Store > SFG Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open SFG Store > Issue Request",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-issue-request"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/procurement/inventory/sfg-issue-request"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The SFG Store > Issue Request screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Warehouse > Stock-in",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/stock-in"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/warehouse/stock-in"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Warehouse > Stock-in screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Warehouse > Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/inventory"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/warehouse/inventory"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Warehouse > Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Warehouse > POS Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/pos-inventory"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/warehouse/pos-inventory"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Warehouse > POS Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Warehouse > Vehicle Planner",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/vehicle-planner"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/warehouse/vehicle-planner"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Warehouse > Vehicle Planner screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Warehouse > Dispatch",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/dispatch"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/warehouse/dispatch"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Warehouse > Dispatch screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Warehouse > GDN",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/gdn"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/gdn"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Warehouse > GDN screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Depot > Arrival",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/arrival"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/depot/arrival"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Depot > Arrival screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Depot > Inventory",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/inventory"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/depot/inventory"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Depot > Inventory screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Depot > Depot Dispatch",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/depot-dispatch"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/depot/depot-dispatch"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Depot > Depot Dispatch screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Stock Adjustment",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/stock-adjustment"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/stock-adjustment"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Stock Adjustment screen opens without errors"
+    },
+    {
+        "scenario_name": "Open SKU Tracker",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sku-tracker"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/sku-tracker"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The SKU Tracker screen opens without errors"
+    },
+    {
+        "scenario_name": "Open HOD Approvals",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/hod/approvals"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/hod/approvals"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The HOD Approvals screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Approvals > Coordinator Approval",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/approvals/coordinator"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/approvals/coordinator"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Approvals > Coordinator Approval screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Approvals > Partner Approvals",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/partner-approval"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/partner-approval"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Approvals > Partner Approvals screen opens without errors"
+    },
+    {
+        "scenario_name": "Open Approvals > Dispatch Coordinator",
+        "type": "smoke",
+        "expected_intent": "stability",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/approvals/export-dispatch"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/approvals/export-dispatch"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "app-pages"
+            }
+        ],
+        "expected_result": "The Approvals > Dispatch Coordinator screen opens without errors"
+    }
+]

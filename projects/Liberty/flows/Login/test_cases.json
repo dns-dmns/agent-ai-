@@ -1,0 +1,163 @@
+[
+    {
+        "scenario_name": "Valid login",
+        "type": "positive",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "{{username}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "{{password}}"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Login Successful"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/pages/home"
+            }
+        ],
+        "expected_result": "'Login Successful' is shown and the home page opens"
+    },
+    {
+        "scenario_name": "Wrong password is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "{{username}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Wrong#Pass-QA"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Invalid Password"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "'Invalid Password' error is shown and the user stays on the login page"
+    },
+    {
+        "scenario_name": "Unknown username is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "qa_no_such_user_{{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Any#Pass-QA"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "An error message is shown and the user stays on the login page"
+    },
+    {
+        "scenario_name": "Empty username and password",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "A validation message asks for the username and password; login is blocked"
+    },
+    {
+        "scenario_name": "Empty password",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "{{username}}"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "A validation message asks for the password; login is blocked"
+    },
+    {
+        "scenario_name": "Password is masked",
+        "type": "security",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "{{password}}"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "input#password[type=\"password\"]"
+            }
+        ],
+        "expected_result": "The password field masks what is typed"
+    },
+    {
+        "scenario_name": "Forgot Password link is shown",
+        "type": "ui",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "text=\"Forgot Password?\""
+            }
+        ],
+        "expected_result": "The Forgot Password? link is displayed"
+    }
+]

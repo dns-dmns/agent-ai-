@@ -1,0 +1,18 @@
+[
+    {
+        "run_id": "5756f6c48817",
+        "stamp": 1791716021,
+        "execution_date": "2026-10-11 16:23:41",
+        "duration_seconds": 17,
+        "total": 7,
+        "passed": 5,
+        "failed": 2,
+        "unverified": 0,
+        "crashed": 0,
+        "test_types": "",
+        "mode": "headless",
+        "verdict_mode": "rules",
+        "triggered_by": "claude-review",
+        "report_file": "reports/report_1791716021.json"
+    }
+]

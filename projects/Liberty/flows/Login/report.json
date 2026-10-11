@@ -1,0 +1,1344 @@
+{
+    "run_id": "5756f6c48817",
+    "flow_name": "Login",
+    "project_name": "Liberty",
+    "execution_date": "2026-10-11 16:23:41",
+    "duration_seconds": 17,
+    "wall_clock_seconds": 17,
+    "test_types_run": "",
+    "mode": "headless",
+    "workers": 2,
+    "verdict_mode": "rules",
+    "environment": "",
+    "triggered_by": "claude-review",
+    "total_test_cases": 7,
+    "passed_count": 5,
+    "failed_count": 2,
+    "unverified_count": 0,
+    "crash_count": 0,
+    "cancelled": false,
+    "console_errors": [
+        "[error] Failed to load resource: the server responded with a status of 401 ()",
+        "[error] Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "network_errors": [],
+    "message_detection": [
+        "seed-selectors",
+        "dom-diff"
+    ],
+    "rules_enforced": [],
+    "rules_violated": 0,
+    "scenario_groups": [
+        {
+            "scenario": "Valid login",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        },
+        {
+            "scenario": "Wrong password is rejected",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        },
+        {
+            "scenario": "Unknown username is rejected",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        },
+        {
+            "scenario": "Empty username and password",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Empty username and password"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Empty password",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [
+                "Empty password"
+            ],
+            "verdict": "FAIL",
+            "summary": "0 of 1 test cases passed"
+        },
+        {
+            "scenario": "Password is masked",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        },
+        {
+            "scenario": "Forgot Password link is shown",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "unverified": 0,
+            "crashed": 0,
+            "failures": [],
+            "verdict": "PASS",
+            "summary": "1 of 1 test cases passed"
+        }
+    ],
+    "total_scenarios": 7,
+    "checkpoints": [
+        {
+            "index": 1,
+            "name": "Valid login",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "positive",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_MESSAGE, VERIFY_URL).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login Successful",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Success",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Success\nLogin Successful",
+                            "selector": ".p-toast-message-success ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-success",
+                            "kind": "success"
+                        },
+                        {
+                            "text": "Return Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Formulation Master",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SFG Store",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SFG Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Warehouse",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Stock-in",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "POS Inventory",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Vehicle Planner",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Dispatch",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "GDN",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Depot",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Arrival",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Depot Dispatch",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Stock Adjustment",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "SKU Tracker",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "HOD Approvals",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Approvals",
+                            "selector": "span.parent-label.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Coordinator Approval",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Partner Approvals",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Dispatch Coordinator",
+                            "selector": "span",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "support@gembaconnect.in",
+                            "selector": "a.phone-number",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Admin",
+                            "selector": "div.name",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "AD",
+                            "selector": "span.av.av-initials.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "@2026 Copyright",
+                            "selector": "div",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "HQ",
+                            "selector": "span.header-depot-badge.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "Login Successful",
+                            "ok": true,
+                            "detail": "message 'Login Successful' shown"
+                        },
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "",
+                            "value": "/pages/home",
+                            "ok": true,
+                            "detail": "URL contains '/pages/home'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
+                    "steps_total": 5,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234",
+                "last_typed_value": "admin",
+                "first_typed_value": "admin",
+                "created_record": "admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_1.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_1.webm",
+            "trace": "",
+            "duration": 6,
+            "steps_executed": [
+                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#password' with value '1234'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on ''",
+                "VERIFY_URL on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 36,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 24,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 61,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "duration_ms": 103,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "duration_ms": 47,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "'Login Successful' is shown and the home page opens",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login Successful",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "success"
+                },
+                {
+                    "text": "Success",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "success"
+                },
+                {
+                    "text": "Success\nLogin Successful",
+                    "selector": ".p-toast-message-success ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-success",
+                    "kind": "success"
+                },
+                {
+                    "text": "Return Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Formulation Master",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SFG Store",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SFG Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Warehouse",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Stock-in",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "POS Inventory",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Vehicle Planner",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Dispatch",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "GDN",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Depot",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Arrival",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Depot Dispatch",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Stock Adjustment",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "SKU Tracker",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "HOD Approvals",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Approvals",
+                    "selector": "span.parent-label.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Coordinator Approval",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Partner Approvals",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Dispatch Coordinator",
+                    "selector": "span",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "support@gembaconnect.in",
+                    "selector": "a.phone-number",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Admin",
+                    "selector": "div.name",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "AD",
+                    "selector": "span.av.av-initials.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "@2026 Copyright",
+                    "selector": "div",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "HQ",
+                    "selector": "span.header-depot-badge.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "Login Successful",
+                    "ok": true,
+                    "detail": "message 'Login Successful' shown"
+                },
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "value": "/pages/home",
+                    "ok": true,
+                    "detail": "URL contains '/pages/home'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 2,
+            "name": "Wrong password is rejected",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expected validation surfaced: 'Invalid Password' (matched 'Invalid Password').",
+                "source": "rules",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Invalid Password",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Error",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Error\nInvalid Password",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "Invalid Password",
+                            "ok": true,
+                            "detail": "message 'Invalid Password' shown"
+                        },
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "",
+                            "value": "/auth/login",
+                            "ok": true,
+                            "detail": "URL contains '/auth/login'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "steps_total": 5,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234",
+                "last_typed_value": "admin",
+                "first_typed_value": "admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_2.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_2.webm",
+            "trace": "",
+            "duration": 5,
+            "steps_executed": [
+                "TYPE on '#username' with value 'admin'",
+                "TYPE on '#password' with value 'Wrong#Pass-QA'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on ''",
+                "VERIFY_URL on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 38,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 29,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 65,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "duration_ms": 54,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "duration_ms": 44,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "'Invalid Password' error is shown and the user stays on the login page",
+            "messages": [
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Invalid Password",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "Error",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "Error\nInvalid Password",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error",
+                    "kind": "error"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "Invalid Password",
+                    "ok": true,
+                    "detail": "message 'Invalid Password' shown"
+                },
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "value": "/auth/login",
+                    "ok": true,
+                    "detail": "URL contains '/auth/login'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 3,
+            "name": "Unknown username is rejected",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expected validation surfaced: 'User not found with username: qa_no_such_user_16232346f'.",
+                "source": "rules",
+                "confidence": 0.9,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "support@gembaconnect.in",
+                            "selector": "span.help-value",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "User not found with username: qa_no_such_user_16232346f",
+                            "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Error",
+                            "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Error\nUser not found with username: qa_no_such_user_16232346f",
+                            "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                            "kind": "error"
+                        },
+                        {
+                            "text": "Please wait...",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "",
+                            "ok": true,
+                            "detail": "message shown: 'support@gembaconnect.in'"
+                        },
+                        {
+                            "action": "VERIFY_URL",
+                            "selector": "",
+                            "value": "/auth/login",
+                            "ok": true,
+                            "detail": "URL contains '/auth/login'"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "steps_total": 5,
+                    "steps_executed": 5,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234",
+                "last_typed_value": "qa_no_such_user_16232346f",
+                "first_typed_value": "qa_no_such_user_16232346f"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_3.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_3.webm",
+            "trace": "",
+            "duration": 6,
+            "steps_executed": [
+                "TYPE on '#username' with value 'qa_no_such_user_16232346f'",
+                "TYPE on '#password' with value 'Any#Pass-QA'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on ''",
+                "VERIFY_URL on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 72,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 74,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 3,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 751,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 4,
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "duration_ms": 50,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 5,
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "duration_ms": 41,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "An error message is shown and the user stays on the login page",
+            "messages": [
+                {
+                    "text": "support@gembaconnect.in",
+                    "selector": "span.help-value",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "User not found with username: qa_no_such_user_16232346f",
+                    "selector": ".p-toast-detail ng-tns-c2572556178-3 p-toast-detail",
+                    "kind": "error"
+                },
+                {
+                    "text": "Error",
+                    "selector": ".p-toast-summary ng-tns-c2572556178-3 p-toast-summary",
+                    "kind": "error"
+                },
+                {
+                    "text": "Error\nUser not found with username: qa_no_such_user_16232346f",
+                    "selector": ".p-toast-message-error ng-tns-c2572556178-3 ng-trigger ng-trigger-messageState p-toast-message p-toast-message-error ng-animating",
+                    "kind": "error"
+                },
+                {
+                    "text": "Please wait...",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "",
+                    "ok": true,
+                    "detail": "message shown: 'support@gembaconnect.in'"
+                },
+                {
+                    "action": "VERIFY_URL",
+                    "selector": "",
+                    "value": "/auth/login",
+                    "ok": true,
+                    "detail": "URL contains '/auth/login'"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()",
+                "[error] Failed to load resource: the server responded with a status of 404 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 4,
+            "name": "Empty username and password",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 2 failed: no validation or toast message appeared on screen",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "",
+                            "ok": false,
+                            "detail": "no validation or toast message appeared on screen"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 3,
+                    "steps_executed": 1,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_4.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_4.webm",
+            "trace": "",
+            "duration": 3,
+            "steps_executed": [
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 102,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "A validation message asks for the username and password; login is blocked",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "",
+                    "ok": false,
+                    "detail": "no validation or toast message appeared on screen"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 2,
+            "error": "no validation or toast message appeared on screen"
+        },
+        {
+            "index": 5,
+            "name": "Empty password",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "negative",
+            "status": "FAIL",
+            "verdict": {
+                "status": "FAIL",
+                "reason": "Step 3 failed: no validation or toast message appeared on screen",
+                "source": "steps",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_MESSAGE",
+                            "selector": "",
+                            "value": "",
+                            "ok": false,
+                            "detail": "no validation or toast message appeared on screen"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "",
+                    "steps_total": 4,
+                    "steps_executed": 2,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234",
+                "last_typed_value": "admin",
+                "first_typed_value": "admin"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/failed_test_5.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_5.webm",
+            "trace": "",
+            "duration": 4,
+            "steps_executed": [
+                "TYPE on '#username' with value 'admin'",
+                "CLICK on 'button:has-text(\"Login\")'",
+                "VERIFY_MESSAGE on ''"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "#username",
+                    "duration_ms": 75,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "CLICK",
+                    "selector": "button:has-text(\"Login\")",
+                    "duration_ms": 96,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "A validation message asks for the password; login is blocked",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_MESSAGE",
+                    "selector": "",
+                    "value": "",
+                    "ok": false,
+                    "detail": "no validation or toast message appeared on screen"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 3,
+            "error": "no validation or toast message appeared on screen"
+        },
+        {
+            "index": 6,
+            "name": "Password is masked",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "security",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_VISIBLE).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [
+                        {
+                            "text": "support@gembaconnect.in",
+                            "selector": "span.help-value",
+                            "kind": "unknown"
+                        },
+                        {
+                            "text": "Login",
+                            "selector": "span.ng-star-inserted",
+                            "kind": "unknown"
+                        }
+                    ],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "input#password[type=\"password\"]",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'input#password[type=\"password\"]' is visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "steps_total": 2,
+                    "steps_executed": 2,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_6.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_6.webm",
+            "trace": "",
+            "duration": 4,
+            "steps_executed": [
+                "TYPE on '#password' with value '1234'",
+                "VERIFY_VISIBLE on 'input#password[type=\"password\"]'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "TYPE",
+                    "selector": "#password",
+                    "duration_ms": 62,
+                    "healed": false,
+                    "skipped": ""
+                },
+                {
+                    "step": 2,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input#password[type=\"password\"]",
+                    "duration_ms": 90,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "The password field masks what is typed",
+            "messages": [
+                {
+                    "text": "support@gembaconnect.in",
+                    "selector": "span.help-value",
+                    "kind": "unknown"
+                },
+                {
+                    "text": "Login",
+                    "selector": "span.ng-star-inserted",
+                    "kind": "unknown"
+                }
+            ],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "input#password[type=\"password\"]",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'input#password[type=\"password\"]' is visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        },
+        {
+            "index": 7,
+            "name": "Forgot Password link is shown",
+            "label": "",
+            "parent": "",
+            "case": "",
+            "case_no": 0,
+            "case_total": 0,
+            "data_row": {},
+            "type": "ui",
+            "status": "PASS",
+            "verdict": {
+                "status": "PASS",
+                "reason": "Expectation confirmed by explicit assertions (VERIFY_VISIBLE).",
+                "source": "assertions",
+                "confidence": 1.0,
+                "evidence": {
+                    "messages": [],
+                    "dialogs": [],
+                    "assertions": [
+                        {
+                            "action": "VERIFY_VISIBLE",
+                            "selector": "text=\"Forgot Password?\"",
+                            "value": "",
+                            "ok": true,
+                            "detail": "element 'text=\"Forgot Password?\"' is visible"
+                        }
+                    ],
+                    "downloads": [],
+                    "url_start": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "url_end": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+                    "steps_total": 1,
+                    "steps_executed": 1,
+                    "healed_steps": 0,
+                    "console_error_count": 0,
+                    "network_error_count": 0,
+                    "notes": [],
+                    "rule_results": [],
+                    "auto_filled": [],
+                    "submission_blocked": {},
+                    "input_rejected": [],
+                    "wording_mismatches": []
+                }
+            },
+            "rule_results": [],
+            "captured": {
+                "username": "admin",
+                "password": "1234"
+            },
+            "notes": [],
+            "screenshot": "/static/projects/Liberty/flows/Login/screenshots/result_test_7.png",
+            "video": "/static/projects/Liberty/flows/Login/videos/scenario_7.webm",
+            "trace": "",
+            "duration": 2,
+            "steps_executed": [
+                "VERIFY_VISIBLE on 'text=\"Forgot Password?\"'"
+            ],
+            "step_durations": [
+                {
+                    "step": 1,
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "text=\"Forgot Password?\"",
+                    "duration_ms": 85,
+                    "healed": false,
+                    "skipped": ""
+                }
+            ],
+            "expected": "The Forgot Password? link is displayed",
+            "messages": [],
+            "dialogs": [],
+            "downloads": [],
+            "assertions": [
+                {
+                    "action": "VERIFY_VISIBLE",
+                    "selector": "text=\"Forgot Password?\"",
+                    "value": "",
+                    "ok": true,
+                    "detail": "element 'text=\"Forgot Password?\"' is visible"
+                }
+            ],
+            "healed_steps": 0,
+            "console_errors": [
+                "[error] Failed to load resource: the server responded with a status of 401 ()"
+            ],
+            "network_errors": [],
+            "visual": {},
+            "failed_step": 0
+        }
+    ]
+}
