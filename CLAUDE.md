@@ -559,6 +559,19 @@ chips used to leak into every run and silently skipped ui/functional/security
 cases. Custom Screens/speed become real `<option>`s so app.js never reads
 `"custom"`.
 
+### Flow folders
+
+A flow name may contain `/` (`"Master/Item Master"` → `flows/Master/Item Master/`),
+so the sidebar mirrors the application's menu. `main.flow_names()` walks
+`flows/`: a folder holding `flow.json`, `actions.json` or `test_cases.json` is a
+flow, any other folder is a group and is searched (evidence folders inside a flow
+never are). Every listing goes through it — `/list-flows`, `list_flow_names`, the
+matrix export. `validate_safe_path` accepts `/` only between clean parts (no
+`..`, empty, hidden, padded, backslash or drive parts); `test_flow_folders.py`
+pins the escapes. Rename into a folder creates the parent; trash labels flatten
+`/` to `__`. Sidebar tree and the folding Tools list live in `ui.js`
+(`renderSidebarFlows`, `toggleSidebarTools`; fold state in localStorage).
+
 ### Typing into masked number widgets
 
 `loc.fill()` pastes a value in one event. PrimeNG `p-inputnumber` (and any

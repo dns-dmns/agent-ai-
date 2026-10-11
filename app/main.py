@@ -54,6 +54,7 @@ from . import llm
 from . import storage
 from . import sources
 from . import pacing
+from . import screens
 from . import recorder
 from . import rules
 from . import scheduler
@@ -152,7 +153,12 @@ def validate_safe_path(*names: str) -> None:
     for name in names:
         if not name:
             continue
-        if ".." in name or "/" in name or "\\" in name or name.startswith("."):
+        # "/" separates folders ("Master/Item Master"), so flows can mirror the
+        # application's menu. Each part must still be a plain folder name: no
+        # "..", no hidden or empty parts, no backslash or drive letter.
+        parts = name.split("/")
+        if ("\\" in name or ":" in name
+                or any(not p.strip() or p.startswith(".") or p != p.strip() for p in parts)):
             raise HTTPException(status_code=400, detail="Invalid path parameter detected.")
 
 
@@ -216,6 +222,35 @@ def require_project(project_name: str) -> Path:
     return path
 
 
+#: A folder holding any of these is a flow; any other folder groups flows.
+FLOW_MARKERS = ("flow.json", "actions.json", "test_cases.json")
+
+
+def flow_names(project_name: str) -> list[str]:
+    """Every flow in a project as a folder path, e.g. ``"Master/Item Master"``.
+
+    Flows may sit in folders that mirror the application's menu. A folder is a
+    flow when it holds a recording or a suite; otherwise it is a group and is
+    searched. Evidence folders inside a flow are never searched.
+    """
+    root = config.flows_dir(project_name)
+    found: list[str] = []
+
+    def walk(folder: Path, prefix: str) -> None:
+        for child in sorted(folder.iterdir(), key=lambda p: p.name.lower()):
+            if not child.is_dir() or child.name.startswith("."):
+                continue
+            name = f"{prefix}{child.name}"
+            if any((child / marker).exists() for marker in FLOW_MARKERS):
+                found.append(name)
+            else:
+                walk(child, name + "/")
+
+    if root.exists():
+        walk(root, "")
+    return found
+
+
 def move_to_trash(source: Path, label: str) -> Path:
     """Soft delete — nothing is ever hard-deleted from the workspace.
 
@@ -224,7 +259,7 @@ def move_to_trash(source: Path, label: str) -> Path:
     workspace to the trash.
     """
     assert_inside_projects(source, label)
-    target = config.TRASH_DIR / f"{time.strftime('%Y%m%d-%H%M%S')}_{label}"
+    target = config.TRASH_DIR / f"{time.strftime('%Y%m%d-%H%M%S')}_{label.replace('/', '__')}"
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.move(str(source), str(target))
     log.warning("Moved %s to trash at %s", source, target)
@@ -464,8 +499,8 @@ async def list_flows(response: Response, project_name: str = config.DEFAULT_PROJ
         return {"auth_flows": [], "business_flows": []}
 
     auth_flows, business_flows = [], []
-    for folder in sorted(p.name for p in flows_root.iterdir() if p.is_dir()):
-        (auth_flows if executor.is_auth_flow(folder) else business_flows).append(folder)
+    for name in flow_names(project_name):
+        (auth_flows if executor.is_auth_flow(name) else business_flows).append(name)
     return {"auth_flows": auth_flows, "business_flows": business_flows}
 
 
@@ -558,6 +593,8 @@ async def rename_flow_api(flow_name: str, new_name: str,
         raise HTTPException(status_code=400, detail="A flow with that name already exists.")
     assert_inside_projects(flow_path, "flow")
     assert_inside_projects(target, "flow")
+    # Renaming "Item Master" to "Master/Item Master" moves it into a folder.
+    target.parent.mkdir(parents=True, exist_ok=True)
     shutil.move(str(flow_path), str(target))
 
     meta = read_json(target / "flow.json", {}) or {}
@@ -603,8 +640,10 @@ async def create_flow_api(flow_name: str, url: str,
         await close_active_browser()
         try:
             active_session["playwright"] = await async_playwright().start()
+            # Same window as a test run: full resolution despite Windows display
+            # scaling, and a recording sized to the page (app/screens.py).
             active_session["browser"] = await active_session["playwright"].chromium.launch(
-                headless=False, args=["--start-maximized"]
+                headless=False, args=screens.launch_args(None, 1, headless=False)
             )
 
             flow_path = config.flow_dir(project_name, flow_name.strip())
@@ -614,7 +653,8 @@ async def create_flow_api(flow_name: str, url: str,
                 "no_viewport": True,
                 "accept_downloads": True,
                 "record_video_dir": str(flow_path),
-                "record_video_size": {"width": 1280, "height": 720},
+                "record_video_size": await executor.measure_video_size(
+                    active_session["browser"]),
             }
             session_file = config.project_session_file(project_name)
             if session_file.exists():
@@ -2583,11 +2623,8 @@ def _suite_selectors(flow_path: Path) -> set[str]:
 # get their own flow ("<Flow> [defects]") and therefore their own report.
 # ──────────────────────────────────────────────────────────────────────
 def list_flow_names(project_name: str) -> list[str]:
-    """Every flow folder in a project, in name order."""
-    flows_root = config.flows_dir(project_name)
-    if not flows_root.exists():
-        return []
-    return sorted(p.name for p in flows_root.iterdir() if p.is_dir())
+    """Every flow in a project, in name order (folders included: "Master/Item Master")."""
+    return flow_names(project_name)
 
 
 def _defect_context(project_name: str, flow_name: str) -> dict:
@@ -3525,9 +3562,7 @@ async def export_test_matrix(project_name: str = config.DEFAULT_PROJECT, flow_na
         require_flow(project_name, flow_name)
         flows = [flow_name]
     else:
-        flows_root = config.flows_dir(project_name)
-        flows = sorted(f.name for f in flows_root.iterdir() if f.is_dir()) \
-            if flows_root.exists() else []
+        flows = flow_names(project_name)
     rows = _matrix_rows(project_name, flows)
     if not rows:
         raise HTTPException(status_code=404, detail="No test cases found to export.")

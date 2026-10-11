@@ -264,6 +264,14 @@ async def main() -> int:
             await page.click("#genericModalFooter button:has-text('Cancel')")
             await page.wait_for_timeout(200)
 
+            # The tools list starts folded so the flow tree keeps its room;
+            # unfold it the way a user does, and check that it unfolds.
+            record("tools start folded",
+                   await page.get_attribute("#sidebarToolsToggle", "aria-expanded") == "false")
+            await page.click("#sidebarToolsToggle")
+            record("tools unfold",
+                   await page.is_visible(".sidebar-footer .row:has-text('Run history')"))
+
             # Run history + comparison
             await page.click(".sidebar-footer .row:has-text('Run history')")
             await page.wait_for_timeout(600)

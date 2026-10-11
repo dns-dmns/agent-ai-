@@ -90,6 +90,66 @@
         return cached || "none";
     }
 
+    /* Flows as a folder tree. A flow saved as "Master/Item Master" (a folder on
+       disk: projects/<ws>/flows/Master/Item Master) shows under a "Master"
+       folder, mirroring the application's own menu. Folders fold; the folder
+       holding the selected flow always opens. */
+    const FOLD_KEY = "qa.folders.closed";
+    const closedFolders = (() => {
+        try { return new Set(JSON.parse(localStorage.getItem(FOLD_KEY) || "[]")); }
+        catch (e) { return new Set(); }
+    })();
+    const saveFolders = () => {
+        try { localStorage.setItem(FOLD_KEY, JSON.stringify([...closedFolders])); } catch (e) {}
+    };
+
+    function flowTree(names) {
+        const root = { folders: new Map(), flows: [] };
+        names.forEach((full) => {
+            const parts = full.split("/");
+            let node = root;
+            parts.slice(0, -1).forEach((part) => {
+                if (!node.folders.has(part)) node.folders.set(part, { folders: new Map(), flows: [] });
+                node = node.folders.get(part);
+            });
+            node.flows.push({ full, label: parts[parts.length - 1] });
+        });
+        return root;
+    }
+
+    const countFlows = (node) =>
+        node.flows.length + [...node.folders.values()].reduce((n, f) => n + countFlows(f), 0);
+
+    function treeHtml(node, path, depth, current, scope) {
+        const pad = `style="padding-left:calc(var(--space-3) + ${depth} * 14px)"`;
+        let html = "";
+        [...node.folders.keys()].sort((a, b) => a.localeCompare(b)).forEach((name) => {
+            const child = node.folders.get(name);
+            const key = `${scope}:${path}${name}`;
+            const holdsCurrent = current && current.startsWith(`${path}${name}/`);
+            const open = holdsCurrent || !closedFolders.has(key);
+            html += `<button class="row flow-folder" ${pad} aria-expanded="${open}"
+                        onclick="toggleFlowFolder('${esc(key).replace(/'/g, "\'")}')">
+                        <span class="row-icon">${open ? "▾" : "▸"}</span>
+                        <span class="row-text">${esc(name)}</span>
+                        <span class="row-meta">${countFlows(child)}</span>
+                     </button>
+                     <div class="flow-folder-children" ${open ? "" : "hidden"}>
+                        ${treeHtml(child, `${path}${name}/`, depth + 1, current, scope)}
+                     </div>`;
+        });
+        node.flows.sort((a, b) => a.label.localeCompare(b.label)).forEach(({ full, label }) => {
+            const active = full === current;
+            html += `<button class="row ${active ? "is-active" : ""}" ${pad} title="${esc(full)}"
+                        aria-selected="${active}" data-flow="${esc(full)}"
+                        onclick="selectFlowFromSidebar('${esc(full).replace(/'/g, "\'")}')">
+                        <span class="dot is-${flowStatusFromCache(full)}"></span>
+                        <span class="row-text">${esc(label)}</span>
+                     </button>`;
+        });
+        return html;
+    }
+
     function renderSidebarFlows() {
         const host = $("sidebarFlowList");
         const select = $("flowSelect");
@@ -104,22 +164,13 @@
         let total = 0;
 
         groups.forEach(({ label, group }) => {
-            const options = group ? [...group.querySelectorAll("option")] : [];
-            if (!options.length) return;
-            total += options.length;
+            const names = group ? [...group.querySelectorAll("option")].map((o) => o.value) : [];
+            if (!names.length) return;
+            total += names.length;
             html += `<div class="sidebar-label" style="padding-top:var(--space-3)">
-                        <span>${label}</span><span class="row-meta">${options.length}</span>
+                        <span>${label}</span><span class="row-meta">${names.length}</span>
                      </div>`;
-            options.forEach((option) => {
-                const name = option.value;
-                const active = name === current;
-                html += `<button class="row ${active ? "is-active" : ""}"
-                            aria-selected="${active}" data-flow="${esc(name)}"
-                            onclick="selectFlowFromSidebar('${esc(name).replace(/'/g, "\\'")}')">
-                            <span class="dot is-${flowStatusFromCache(name)}"></span>
-                            <span class="row-text">${esc(name)}</span>
-                         </button>`;
-            });
+            html += treeHtml(flowTree(names), "", 0, current, label);
         });
 
         host.innerHTML = total ? html : `
@@ -127,6 +178,29 @@
                 <div class="empty-text dim">No flows yet. Record one to get started.</div>
             </div>`;
     }
+
+    window.toggleFlowFolder = function (key) {
+        if (closedFolders.has(key)) closedFolders.delete(key); else closedFolders.add(key);
+        saveFolders();
+        renderSidebarFlows();
+    };
+
+    /* The tools list at the bottom folds away so it never covers the flows. */
+    window.toggleSidebarTools = function (force) {
+        const box = $("sidebarTools");
+        if (!box) return;
+        const fold = typeof force === "boolean" ? force : !box.classList.contains("is-folded");
+        box.classList.toggle("is-folded", fold);
+        const btn = $("sidebarToolsToggle"), chevron = $("sidebarToolsChevron");
+        if (btn) btn.setAttribute("aria-expanded", String(!fold));
+        if (chevron) chevron.textContent = fold ? "▸" : "▾";
+        try { localStorage.setItem("qa.tools.folded", fold ? "1" : "0"); } catch (e) {}
+    };
+    (() => {
+        let folded = true;   // folded by default: the flow list gets the room
+        try { folded = localStorage.getItem("qa.tools.folded") !== "0"; } catch (e) {}
+        window.toggleSidebarTools(folded);
+    })();
 
     window.selectFlowFromSidebar = function (name) {
         const select = $("flowSelect");

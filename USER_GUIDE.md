@@ -77,8 +77,8 @@ The left side then shows:
 | Section | What it holds |
 |---|---|
 | **AUTHENTICATION** | Your login flow(s) |
-| **BUSINESS** | Your module flows (Item Master, Customer Master, …) |
-| Bottom menu | Rules, Dependencies, Export project, Defect log, Coverage, Run history, Flaky scenarios, Schedules, Settings |
+| **BUSINESS** | Your module flows, in folders like the application's menu (Master → Item Master, RM Item Master …). Click a folder to fold or unfold it. |
+| **Tools ▸** (bottom) | Rules, Dependencies, Export project, Defect log, Coverage, Run history, Flaky scenarios, Schedules, Settings. Folded by default so the flow list has room — click **Tools** to open or close it. |
 
 ---
 
@@ -104,7 +104,10 @@ You can also enter or change the username and password in **Settings**.
 ## 5. Record a module
 
 1. **1 Record** tab.
-2. **Flow name:** the module, e.g. `item` or `Customer Master`.
+2. **Flow name:** the module. Use `/` to put it in a folder that matches your
+   application's menu — `Master/Item Master`, `Master/RM Item Master`,
+   `Business Partners/Customer Master`. In the sidebar they appear as
+   **Master → Item Master, RM Item Master**.
 3. **Start URL:** the module's list page (recommended), e.g.
    `.../liberty/pages/master/product-catalogue/item-master/list`.
    The platform logs in automatically when it lands on the login page.
@@ -116,6 +119,11 @@ You can also enter or change the username and password in **Settings**.
    must appear. The button shows **Capturing checks** while it is on; click it
    again to go back to normal recording.
 7. **Stop & save**. The module appears under **BUSINESS** on the left.
+
+**Organising existing flows into folders.** Either rename a flow to include the
+folder (`item` → `Master/Item Master`), or move its folder on disk into a
+sub-folder of `projects/<workspace>/flows/`. The sidebar always mirrors the
+folders on disk.
 
 **Tips for a good recording**
 

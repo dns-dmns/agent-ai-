@@ -54,6 +54,9 @@ projects/<workspace>/flows/<module>/
     actions.json   every step you performed
 ```
 
+Modules can sit in folders that mirror the application's menu, e.g.
+`flows/Master/Item Master/`. The sidebar shows the same tree.
+
 ---
 
 ## Stage 2 — Where test cases come from

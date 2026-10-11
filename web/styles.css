@@ -1081,3 +1081,12 @@ input[type="checkbox"]:checked::after {
 .source-claude { color: var(--accent); background: var(--accent-quiet); }
 .source-gemini { color: var(--text-secondary); background: transparent; border-color: var(--accent); }
 .source-user   { color: var(--text); background: var(--idle-quiet); }
+
+/* ── Sidebar: foldable tools + flow folders ──────────────────────────── */
+.sidebar-tools-toggle .row-text { font-weight: 600; }
+.sidebar-tools-list { display: grid; gap: 2px; }
+.sidebar-footer.is-folded .sidebar-tools-list { display: none; }
+.sidebar-footer:not(.is-folded) .sidebar-tools-list { max-height: 45vh; overflow-y: auto; }
+.flow-folder .row-icon { width: 1em; text-align: center; color: var(--text-tertiary); }
+.flow-folder .row-text { font-weight: 600; }
+.flow-folder-children[hidden] { display: none; }

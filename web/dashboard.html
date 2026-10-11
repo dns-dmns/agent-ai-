@@ -89,7 +89,16 @@
                 </div>
             </div>
 
-            <div class="sidebar-footer">
+            <div class="sidebar-footer" id="sidebarTools">
+                <!-- Folds the tools away so the flow list keeps its room. -->
+                <button class="row sidebar-tools-toggle" id="sidebarToolsToggle"
+                        onclick="toggleSidebarTools()" aria-expanded="false"
+                        aria-controls="sidebarToolsList">
+                    <span class="row-icon" id="sidebarToolsChevron">▸</span>
+                    <span class="row-text">Tools</span>
+                    <span class="row-meta">9</span>
+                </button>
+                <div id="sidebarToolsList" class="sidebar-tools-list">
                 <button class="row" onclick="openRulesManager()">
                     <span class="row-icon">§</span><span class="row-text">Rules</span>
                     <span class="row-meta" id="rulesCountBadge"></span>
@@ -120,6 +129,7 @@
                 <button class="row" onclick="openProjectSettings()">
                     <span class="row-icon">⚙</span><span class="row-text">Settings</span>
                 </button>
+                </div>
             </div>
         </aside>
 
@@ -183,8 +193,8 @@
                                 <div class="grid-2">
                                     <div class="field">
                                         <label class="field-label" for="flowNameInput">Flow name</label>
-                                        <input type="text" id="flowNameInput" placeholder="customer master">
-                                        <span class="field-hint">Becomes the folder name under projects/.</span>
+                                        <input type="text" id="flowNameInput" placeholder="Master/Item Master">
+                                        <span class="field-hint">Use / for folders, like the app's menu: <code>Master/Item Master</code> appears under a Master folder.</span>
                                     </div>
                                     <div class="field">
                                         <label class="field-label" for="targetUrlInput">Start URL</label>
