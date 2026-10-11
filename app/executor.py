@@ -820,6 +820,21 @@ async def is_keystroke_widget(loc) -> bool:
         return False
 
 
+async def measure_video_size(browser) -> dict:
+    """The recording size for windows of this browser: its page in device pixels."""
+    try:
+        context = await browser.new_context(no_viewport=True)
+        try:
+            page = await context.new_page()
+            w, h = await page.evaluate(
+                "() => [innerWidth * devicePixelRatio, innerHeight * devicePixelRatio]")
+            return screens.video_size(w, h)
+        finally:
+            await context.close()
+    except Exception:
+        return dict(screens.DEFAULT_VIDEO)
+
+
 FLASH_OUTLINE_JS = """el => {
     const before = el.style.outline, offset = el.style.outlineOffset;
     el.style.outline = '2px solid #f59e0b'; el.style.outlineOffset = '2px';
@@ -3124,7 +3139,10 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
     video_dir = flow_path / "videos"
     video_dir.mkdir(parents=True, exist_ok=True)
     context_args["record_video_dir"] = str(video_dir)
-    context_args["record_video_size"] = {"width": 1280, "height": 720}
+    # Sized to this screen's page (measured at the start of the run), so the
+    # recording fills the frame instead of a corner of it (app/screens.py).
+    context_args["record_video_size"] = (shared.get("video_sizes") or {}).get(
+        id(browser), dict(screens.DEFAULT_VIDEO))
 
     context = await browser.new_context(**context_args)
     trace_path = ""
@@ -3907,6 +3925,9 @@ async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
                 extra = dict(launch_args)
                 extra["args"] = screens.launch_args(slot, workers, cfg.headless)
                 screen_browsers.append(await playwright.chromium.launch(**extra))
+        if not cfg.headless:
+            shared["video_sizes"] = {id(b): await measure_video_size(b)
+                                     for b in screen_browsers}
 
         async def guarded(scenario: dict, on_browser) -> dict | None:
             if state.cancelled:

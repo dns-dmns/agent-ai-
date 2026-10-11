@@ -545,7 +545,12 @@ browsers launch with `--force-device-scale-factor` (`QA_BROWSER_SCALE`, default
 `MIN_PAGE` (1366x720) — a 960x516 tile made a PrimeNG overlay open off-screen and
 the click landed on the dialog mask, closing the form (4 of 12 failed; 12/12
 after). `--window-position/--window-size` are in units of the scale factor, hence
-the division. Locator highlighting uses a plain outline (`FLASH_OUTLINE_JS`):
+the division. Videos: Chromium captures frames at the page's *device-pixel*
+size and only shrinks them to fit `record_video_size`, never enlarges — a fixed
+1280x720 showed a scaled-down window as a picture in the top-left corner with
+grey around it. `measure_video_size()` opens one page per screen browser at the
+start of a headed run and `screens.video_size()` records at that shape (capped
+at 1280 wide); headless keeps 1280x720. Locator highlighting uses a plain outline (`FLASH_OUTLINE_JS`):
 Playwright's `highlight()` pins selector text over the page.
 
 The Run screen sends the type filter from its own "All types" select

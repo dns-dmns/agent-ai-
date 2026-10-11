@@ -227,7 +227,12 @@ Choose **1, 2, 3, 4, 6, 8** or **Custom…** (type any number; the maximum is se
 - Each extra screen uses roughly 300–500 MB of memory. On a typical laptop 3–4
   screens is the sweet spot.
 
-Example on Liberty `item`: 12 test cases on 3 headed screens finished in 51 s.
+Example on Liberty `item`: 12 test cases on 3 headed screens finished in 51 s;
+6 test cases on 4 screens in 15 s.
+
+Each test's **video** shows the whole page, filling the frame. With several
+screens the videos are smaller (each window is a part of your screen) but still
+complete.
 
 ### Test speed
 

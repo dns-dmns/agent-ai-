@@ -31,3 +31,13 @@ def test_single_headed_window_is_maximised_at_full_resolution():
     args = screens.launch_args(None, 1, headless=False)
     assert "--start-maximized" in args
     assert any(a.startswith("--force-device-scale-factor=") for a in args)
+
+
+def test_video_keeps_the_page_shape_and_never_enlarges():
+    # A tile at scale 0.7: frames are ~960x430 device px -> recorded at that size.
+    assert screens.video_size(958, 432) == {"width": 958, "height": 432}
+    # A maximised 1920-wide page is reduced to 1280, same shape.
+    assert screens.video_size(1920, 930) == {"width": 1280, "height": 620}
+    # Odd sizes are made even (video encoders require it); junk falls back.
+    assert screens.video_size(1001, 601) == {"width": 1000, "height": 600}
+    assert screens.video_size(0, 0) == screens.DEFAULT_VIDEO

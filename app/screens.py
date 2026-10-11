@@ -82,6 +82,29 @@ def tile_scale(r: Rect) -> float:
     return math.floor(min(browser_scale(), r.width / MIN_PAGE[0], r.height / MIN_PAGE[1]) * 1000) / 1000
 
 
+#: Videos never get wider than this; larger pages are shrunk to fit.
+VIDEO_MAX_WIDTH = 1280
+DEFAULT_VIDEO = {"width": 1280, "height": 720}
+
+
+def video_size(page_width_px: float, page_height_px: float) -> dict:
+    """Recording size with the page's own shape, in its real (device) pixels.
+
+    The browser captures frames at the page's device-pixel size and only ever
+    shrinks them to fit the video, never enlarges them. A fixed 1280x720 video
+    therefore showed a scaled-down window as a small picture in the top-left
+    corner with grey around it. Matching the page's size and shape fills the
+    frame; wide pages are reduced to VIDEO_MAX_WIDTH, keeping the shape.
+    """
+    w, h = float(page_width_px or 0), float(page_height_px or 0)
+    if w < 100 or h < 100:
+        return dict(DEFAULT_VIDEO)
+    if w > VIDEO_MAX_WIDTH:
+        h, w = h * VIDEO_MAX_WIDTH / w, VIDEO_MAX_WIDTH
+    even = lambda v: max(2, int(v) // 2 * 2)   # encoders need even sizes
+    return {"width": even(w), "height": even(h)}
+
+
 def launch_args(slot: int | None, total: int, headless: bool) -> list[str]:
     """Chromium arguments for one window. ``slot`` None = a single maximised window."""
     if headless:
