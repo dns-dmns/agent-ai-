@@ -1,0 +1,924 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "RM Item Master",
+        "label": "",
+        "required": false,
+        "value": "RM Item Master",
+        "role": "listitem",
+        "accessible_name": "RM Item Master",
+        "text_full": "RM Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "DEPARTMENT",
+        "label": "",
+        "required": false,
+        "value": "DEPARTMENT",
+        "role": "",
+        "accessible_name": "DEPARTMENT",
+        "text_full": "DEPARTMENT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CODE",
+        "label": "",
+        "required": false,
+        "value": "CODE",
+        "role": "",
+        "accessible_name": "CODE",
+        "text_full": "CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "HSN",
+        "label": "",
+        "required": false,
+        "value": "HSN",
+        "role": "",
+        "accessible_name": "HSN",
+        "text_full": "HSN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-rm-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add RM Item\")",
+        "selectors": [
+            "button:has-text(\"Add RM Item\")",
+            "text=\"Add RM Item\"",
+            "div:nth-of-type(3) > div > div > app-rm-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add RM Item",
+        "label": "",
+        "required": false,
+        "value": "Add RM Item",
+        "role": "button",
+        "accessible_name": "Add RM Item",
+        "text_full": "Add RM Item",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-rm-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-rm-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add RM Item\")",
+        "selectors": [
+            "button:has-text(\"Add RM Item\")",
+            "text=\"Add RM Item\"",
+            "div:nth-of-type(3) > div > div > app-rm-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add RM Item",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add RM Item",
+        "text_full": "Add RM Item",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "messages": [
+                {
+                    "text": "Add RM Item",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header",
+                "pn_id_92",
+                "pn_id_94"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "#pn_id_8_header",
+        "selectors": [
+            "#pn_id_8_header",
+            "div > div > app-rm-item-list > app-rm-item-form > p-dialog > div > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Add RM Item",
+        "label": "",
+        "required": false,
+        "value": "Add RM Item",
+        "role": "",
+        "accessible_name": "Add RM Item",
+        "text_full": "Add RM Item",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Department *\"",
+        "selectors": [
+            "text=\"Department *\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Department *",
+        "label": "Department *",
+        "required": false,
+        "value": "Department *",
+        "role": "",
+        "accessible_name": "Department *",
+        "text_full": "Department *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category *\"",
+        "selectors": [
+            "text=\"Category *\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Category *",
+        "label": "Category *",
+        "required": false,
+        "value": "Category *",
+        "role": "",
+        "accessible_name": "Category *",
+        "text_full": "Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Description *\"",
+        "selectors": [
+            "text=\"Description *\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Description *",
+        "label": "Description *",
+        "required": false,
+        "value": "Description *",
+        "role": "",
+        "accessible_name": "Description *",
+        "text_full": "Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Code\"",
+        "selectors": [
+            "text=\"Code\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Code",
+        "label": "Code",
+        "required": false,
+        "value": "Code",
+        "role": "",
+        "accessible_name": "Code",
+        "text_full": "Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"HSN Code\"",
+        "selectors": [
+            "text=\"HSN Code\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "HSN Code",
+        "label": "HSN Code",
+        "required": false,
+        "value": "HSN Code",
+        "role": "",
+        "accessible_name": "HSN Code",
+        "text_full": "HSN Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"UOM\"",
+        "selectors": [
+            "text=\"UOM\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "UOM",
+        "label": "UOM",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "messages": [
+                {
+                    "text": "Department is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Category is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Description is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Department is required",
+        "label": "",
+        "required": false,
+        "value": "Department is required",
+        "role": "",
+        "accessible_name": "Department is required",
+        "text_full": "Department is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Category is required",
+        "label": "",
+        "required": false,
+        "value": "Category is required",
+        "role": "",
+        "accessible_name": "Category is required",
+        "text_full": "Category is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "Description is required",
+        "label": "",
+        "required": false,
+        "value": "Description is required",
+        "role": "",
+        "accessible_name": "Description is required",
+        "text_full": "Description is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"department\"]",
+        "selectors": [
+            "[formcontrolname=\"department\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Department *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"DIPPING\"]",
+        "selectors": [
+            "[aria-label=\"DIPPING\"]",
+            "text=\"DIPPING\"",
+            "#pn_id_92_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "DIPPING",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "DIPPING",
+        "text_full": "DIPPING",
+        "attrs": {
+            "aria-label": "DIPPING",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "messages": [
+                {
+                    "text": "DIPPING",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Generating code...",
+                    "selector": "small.hint.ng-star-inserted"
+                },
+                {
+                    "text": "Code is auto-generated",
+                    "selector": "small.hint.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"category\"]",
+        "selectors": [
+            "[formcontrolname=\"category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"10'' to 15\\\" RAWBATHI - RM\"]",
+        "selectors": [
+            "[aria-label=\"10'' to 15\\\" RAWBATHI - RM\"]",
+            "text=\"10'' to 15\\\" RAWBATHI - RM\"",
+            "#pn_id_94_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "10'' to 15\" RAWBATHI - RM",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "10'' to 15\" RAWBATHI - RM",
+        "text_full": "10'' to 15\" RAWBATHI - RM",
+        "attrs": {
+            "aria-label": "10'' to 15\" RAWBATHI - RM",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "messages": [
+                {
+                    "text": "Generating code...",
+                    "selector": "small.hint.ng-star-inserted"
+                },
+                {
+                    "text": "10'' to 15\" RAWBATHI - RM",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Code is auto-generated",
+                    "selector": "small.hint.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_94_list",
+                "pn_id_94_0",
+                "pn_id_94_1",
+                "pn_id_94_2",
+                "pn_id_94_3",
+                "pn_id_94_4",
+                "pn_id_94_5",
+                "pn_id_94_6",
+                "pn_id_94_7",
+                "pn_id_94_8",
+                "pn_id_94_9",
+                "pn_id_94_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "input[formcontrolname=\"description\"]",
+            "input[placeholder=\"Enter description\"]",
+            "div input[formcontrolname=\"description\"]",
+            "div input[placeholder=\"Enter description\"]",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "input[formcontrolname=\"description\"]",
+            "input[placeholder=\"Enter description\"]",
+            "div input[formcontrolname=\"description\"]",
+            "div input[placeholder=\"Enter description\"]",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Description",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"hsnCode\"]",
+        "selectors": [
+            "[formcontrolname=\"hsnCode\"]",
+            "input[formcontrolname=\"hsnCode\"]",
+            "input[placeholder=\"e.g. 33074100\"]",
+            "div input[formcontrolname=\"hsnCode\"]",
+            "div input[placeholder=\"e.g. 33074100\"]",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 33074100",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"hsnCode\"]",
+        "selectors": [
+            "[formcontrolname=\"hsnCode\"]",
+            "input[formcontrolname=\"hsnCode\"]",
+            "input[placeholder=\"e.g. 33074100\"]",
+            "div input[formcontrolname=\"hsnCode\"]",
+            "div input[placeholder=\"e.g. 33074100\"]",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 33074100",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"uom\"]",
+        "selectors": [
+            "[formcontrolname=\"uom\"]",
+            "input[formcontrolname=\"uom\"]",
+            "input[placeholder=\"e.g. KG, NOS, LTR\"]",
+            "div input[formcontrolname=\"uom\"]",
+            "div input[placeholder=\"e.g. KG, NOS, LTR\"]",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. KG, NOS, LTR",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"uom\"]",
+        "selectors": [
+            "[formcontrolname=\"uom\"]",
+            "input[formcontrolname=\"uom\"]",
+            "input[placeholder=\"e.g. KG, NOS, LTR\"]",
+            "div input[formcontrolname=\"uom\"]",
+            "div input[placeholder=\"e.g. KG, NOS, LTR\"]",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO UOM",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. KG, NOS, LTR",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-rm-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header",
+                "pn_id_92",
+                "pn_id_94"
+            ]
+        }
+    }
+]

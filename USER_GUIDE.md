@@ -134,6 +134,44 @@ folders on disk.
 
 ---
 
+## 5b. Map the whole application automatically (explorer)
+
+Instead of recording every module by hand, the **explorer** can visit every
+screen in the application's menu and write a recording for each one — the same
+`flow.json` + `actions.json` files the recorder makes.
+
+```powershell
+.venv\Scripts\python.exe -m app.explorer --project Liberty --url https://.../liberty/auth/login
+```
+
+| Option | Meaning |
+|---|---|
+| `--only "master"` | Only screens whose menu path starts with this (e.g. `"master / product catalogue"`) |
+| `--workers 3` | Screens explored at the same time |
+| `--headed` | Show the browser while it works |
+| `--no-empty-save` | Never click Save, not even on an empty form |
+
+It uses the login stored for the workspace (record the Login flow first).
+
+**What it records per screen:** the page title and breadcrumb, table columns,
+buttons, every form label (with its `*`), the real "is required" messages, every
+dropdown's options, and sample values typed into every field — then **Cancel**.
+Each screen lands in a folder matching the menu, e.g.
+`flows/Master/Product Catalogue/Item Master/`.
+
+**What it never does:** save a filled form, click Delete / Approve / Submit /
+Dispatch for real, type into password / OTP fields, upload files, or overwrite a
+recording you made yourself. On **Master** screens it clicks Save once on the
+*empty* form to capture the required-field messages; validation blocks that save.
+If a screen ever accepts it, the summary flags it as `unexpected_save`.
+
+**Summary of the whole application:** `projects/<workspace>/explorer/summary.csv`
+(open in Excel — one row per field: module, field, type, mandatory, options,
+validation messages) and `summary.json`.
+
+Then ask Claude in chat to generate test cases for any of these modules, exactly
+as for a module you recorded.
+
 ## 6. Get test cases (five ways)
 
 You can mix all of them in one module. Each test case gets a coloured **source

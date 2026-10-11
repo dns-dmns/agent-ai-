@@ -57,6 +57,12 @@ projects/<workspace>/flows/<module>/
 Modules can sit in folders that mirror the application's menu, e.g.
 `flows/Master/Item Master/`. The sidebar shows the same tree.
 
+**Or let the explorer record them.** Given the login page, it visits every menu
+screen and writes these same two files for each, using the real recorder: it
+checks every title, column, label and validation message, fills every field and
+opens every dropdown, then cancels. It never saves a filled form or presses a
+destructive button. See the User Guide, section 5b.
+
 ---
 
 ## Stage 2 — Where test cases come from

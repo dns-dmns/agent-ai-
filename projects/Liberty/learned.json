@@ -1520,6 +1520,450 @@
       ],
       "submit_gating": "unknown",
       "healed": {}
+    },
+    "item": {
+      "fields": [
+        {
+          "selector": "input[placeholder=\"Search Item\"]",
+          "label": "Search Item",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 163
+        },
+        {
+          "selector": "input[formcontrolname=\"skuCode\"]",
+          "label": "Auto-generated",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "DFG 111123179",
+          "disabled": true,
+          "seen": 140
+        },
+        {
+          "selector": "input[formcontrolname=\"skuDescription\"]",
+          "label": "Enter SKU description",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "seen": 205
+        },
+        {
+          "selector": "input[placeholder=\"0.00\"]",
+          "label": "0.00",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 201
+        },
+        {
+          "selector": "input[placeholder=\"0\"]",
+          "label": "0",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 210
+        },
+        {
+          "selector": "input[placeholder=\"0.000\"]",
+          "label": "0.000",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 208
+        },
+        {
+          "selector": "input[placeholder=\"0.000000\"]",
+          "label": "0.000000",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 140
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"unitPrice\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 201
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"mrp\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 210
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 210
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"minimumStock\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 199
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 208
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 208
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"length\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 208
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"width\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 208
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"height\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 204
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"grossWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 140
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"tareWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 140
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"netWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 140
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"cbm\"]",
+          "label": "0.000000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 140
+        }
+      ],
+      "submit_gating": "unknown",
+      "healed": {}
+    },
+    "masters/item": {
+      "fields": [
+        {
+          "selector": "input[placeholder=\"Search Item\"]",
+          "label": "Search Item",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": false,
+          "seen": 18
+        },
+        {
+          "selector": "input[formcontrolname=\"skuCode\"]",
+          "label": "Auto-generated",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "DFG 111123201",
+          "disabled": true,
+          "seen": 16
+        },
+        {
+          "selector": "input[formcontrolname=\"skuDescription\"]",
+          "label": "Enter SKU description",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "seen": 25
+        },
+        {
+          "selector": "input[placeholder=\"0.00\"]",
+          "label": "0.00",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 24
+        },
+        {
+          "selector": "input[placeholder=\"0\"]",
+          "label": "0",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 25
+        },
+        {
+          "selector": "input[placeholder=\"0.000\"]",
+          "label": "0.000",
+          "kind": "text",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "disabled": false,
+          "min": "0",
+          "seen": 25
+        },
+        {
+          "selector": "input[placeholder=\"0.000000\"]",
+          "label": "0.000000",
+          "kind": "text",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "disabled": true,
+          "seen": 16
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"unitPrice\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 24
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"mrp\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"minimumStock\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 24
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"]",
+          "label": "0",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"length\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"width\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"height\"]",
+          "label": "0.00",
+          "kind": "number",
+          "required": true,
+          "required_source": "ng-invalid-empty",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 25
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"grossWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 16
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"tareWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 16
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"netWeight\"]",
+          "label": "0.000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 16
+        },
+        {
+          "selector": "p-inputnumber[formcontrolname=\"cbm\"]",
+          "label": "0.000000",
+          "kind": "number",
+          "required": false,
+          "required_source": "",
+          "value": "",
+          "filled": false,
+          "component": true,
+          "seen": 16
+        }
+      ],
+      "submit_gating": "unknown",
+      "healed": {}
     }
   },
   "message_selectors": [
@@ -1528,6 +1972,10 @@
     ".p-toast-message-error",
     ".p-toast-message-success",
     ".error",
-    ".show-more-count"
+    ".show-more-count",
+    ".ng-tns-c2572556178-15",
+    ".p-toast-message-text",
+    ".ng-tns-c2572556178-16",
+    ".ng-tns-c2572556178-17"
   ]
 }

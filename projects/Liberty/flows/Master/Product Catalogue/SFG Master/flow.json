@@ -1,0 +1,14 @@
+{
+    "schema_version": 1,
+    "flow_name": "Master/Product Catalogue/SFG Master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+    "timestamp": "2026-10-11 18:54:22",
+    "duration_seconds": 8,
+    "step_count": 33,
+    "source": "explorer",
+    "menu_path": [
+        "Master",
+        "Product Catalogue",
+        "SFG Master"
+    ]
+}

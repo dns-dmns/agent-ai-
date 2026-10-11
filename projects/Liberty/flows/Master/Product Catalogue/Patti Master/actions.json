@@ -1,0 +1,588 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Patti Master",
+        "label": "",
+        "required": false,
+        "value": "Patti Master",
+        "role": "listitem",
+        "accessible_name": "Patti Master",
+        "text_full": "Patti Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "PM CODE",
+        "label": "",
+        "required": false,
+        "value": "PM CODE",
+        "role": "",
+        "accessible_name": "PM CODE",
+        "text_full": "PM CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "PM DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "PM DESCRIPTION",
+        "role": "",
+        "accessible_name": "PM DESCRIPTION",
+        "text_full": "PM DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "PM QTY (UNIT)",
+        "label": "",
+        "required": false,
+        "value": "PM QTY (UNIT)",
+        "role": "",
+        "accessible_name": "PM QTY (UNIT)",
+        "text_full": "PM QTY (UNIT)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "TOTAL COST",
+        "label": "",
+        "required": false,
+        "value": "TOTAL COST",
+        "role": "",
+        "accessible_name": "The recipe priced at the RM stores' current weighted average cost",
+        "text_full": "TOTAL COST",
+        "attrs": {
+            "title": "The recipe priced at the RM stores' current weighted average cost"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-patti-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Patti Master\")",
+        "selectors": [
+            "button:has-text(\"Add Patti Master\")",
+            "text=\"Add Patti Master\"",
+            "div > div:nth-of-type(3) > div > div > app-patti-master-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Patti Master",
+        "label": "",
+        "required": false,
+        "value": "Add Patti Master",
+        "role": "button",
+        "accessible_name": "Add Patti Master",
+        "text_full": "Add Patti Master",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "div > app-patti-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-patti-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Set Inactive\"]",
+        "selectors": [
+            "button[title=\"Set Inactive\"]",
+            "[aria-label=\"Set Inactive\"]",
+            "button:has(i.pi-ban)",
+            "div > app-patti-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Set Inactive",
+        "text_full": "",
+        "attrs": {
+            "title": "Set Inactive"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-patti-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Patti Master\")",
+        "selectors": [
+            "button:has-text(\"Add Patti Master\")",
+            "text=\"Add Patti Master\"",
+            "div > div:nth-of-type(3) > div > div > app-patti-master-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Patti Master",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Patti Master",
+        "text_full": "Add Patti Master",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
+            "messages": [
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Product Catalogue",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Patti Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Add Patti Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Save",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PM Code\"",
+        "selectors": [
+            "text=\"PM Code\"",
+            "div:nth-of-type(3) > div > div > app-patti-master-form > div > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "PM Code",
+        "label": "PM Code",
+        "required": false,
+        "value": "PM Code",
+        "role": "",
+        "accessible_name": "PM Code",
+        "text_full": "PM Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PM Description *\"",
+        "selectors": [
+            "text=\"PM Description *\"",
+            "div:nth-of-type(3) > div > div > app-patti-master-form > div > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "PM Description *",
+        "label": "PM Description *",
+        "required": false,
+        "value": "PM Description *",
+        "role": "",
+        "accessible_name": "PM Description *",
+        "text_full": "PM Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PM Qty (Unit) *\"",
+        "selectors": [
+            "text=\"PM Qty (Unit) *\"",
+            "div:nth-of-type(3) > div > div > app-patti-master-form > div > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "PM Qty (Unit) *",
+        "label": "PM Qty (Unit) *",
+        "required": false,
+        "value": "PM Qty (Unit) *",
+        "role": "",
+        "accessible_name": "PM Qty (Unit) *",
+        "text_full": "PM Qty (Unit) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"pmDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"pmDescription\"]",
+            "input[formcontrolname=\"pmDescription\"]",
+            "input[placeholder=\"e.g. BABA FLORA 8'' BATHI\"]",
+            "div:nth-of-type(3) > div > div > app-patti-master-form > div > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. BABA FLORA 8'' BATHI",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"pmDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"pmDescription\"]",
+            "input[formcontrolname=\"pmDescription\"]",
+            "input[placeholder=\"e.g. BABA FLORA 8'' BATHI\"]",
+            "div:nth-of-type(3) > div > div > app-patti-master-form > div > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO PM Description",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. BABA FLORA 8'' BATHI",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"pmQty\"] input",
+        "selectors": [
+            "[formcontrolname=\"pmQty\"] input",
+            "div > div > app-patti-master-form > div > form > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"pmQty\"] input",
+        "selectors": [
+            "[formcontrolname=\"pmQty\"] input",
+            "div > div > app-patti-master-form > div > form > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10.00",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+            "messages": [
+                {
+                    "text": "SL.NO\tPM CODE \tPM DESCRIPTION\tPM QTY (UNIT) \tTOTAL COST\tSTATUS\tACTIONS",
+                    "selector": "app-patti-master-list"
+                },
+                {
+                    "text": "Patti Master\nMaster\nProduct Catalogue\nPatti Master",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Patti Master",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Product Catalogue",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Add Patti Master",
+                    "selector": "p-button.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    }
+]

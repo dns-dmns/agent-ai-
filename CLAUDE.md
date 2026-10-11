@@ -572,6 +572,33 @@ pins the escapes. Rename into a folder creates the parent; trash labels flatten
 `/` to `__`. Sidebar tree and the folding Tools list live in `ui.js`
 (`renderSidebarFlows`, `toggleSidebarTools`; fold state in localStorage).
 
+### Application explorer — `app/explorer.py`
+
+`python -m app.explorer --project P --url LOGIN` maps every menu screen into
+`flows/<menu path>/flow.json + actions.json` (`source: "explorer"`). It does not
+fake the recorder's format: it injects `recorder.JS_RECORDER_SCRIPT` and exposes
+`recordPlaywrightEvent` to a per-context `Session` (same effect/required rules as
+`main.handle_exposed_event`), then drives the page. **Checks** are a JS-dispatched
+`click` with `__qaAssertMode` on — no pointerdown/mousedown, and the recorder's
+capture-phase listener swallows the click, so Edit/Delete/Approve are documented,
+never pressed. Things learned on Liberty, each now handled:
+- the app redraws its sidebar after each navigation (markers vanish) — menu
+  items are re-found by path before every click;
+- leaf detection must not read a sibling *item* whose class contains "submenu"
+  as a group (only 29 of 93 screens were found);
+- marker attributes must be cleared before each tagging pass, or a list-page
+  element wins over the dialog's;
+- the recorder misses the click that opens a PrimeNG `p-select` — a synthetic
+  "open dropdown" CLICK is inserted before the option click;
+- eight number fields share `placeholder="0.00"`; `pin_selector` makes
+  `[formcontrolname=…] input` primary, keeping the recorder's choice as fallback;
+- page-number buttons and generated ids (`#pn_id_10_header`) are dropped or
+  demoted — they change with data / per page load.
+Empty Save only on `EMPTY_SAVE_GROUPS` (Master) and only with an empty mandatory
+field; a save that closes the dialog or shows success is flagged
+`unexpected_save`. Human recordings (no `source: explorer`) are never overwritten.
+Summary: `projects/P/explorer/summary.{json,csv}`.
+
 ### Typing into masked number widgets
 
 `loc.fill()` pastes a value in one event. PrimeNG `p-inputnumber` (and any

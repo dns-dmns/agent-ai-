@@ -1,0 +1,2220 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Item Master",
+        "label": "",
+        "required": false,
+        "value": "Item Master",
+        "role": "listitem",
+        "accessible_name": "Item Master",
+        "text_full": "Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE",
+        "role": "",
+        "accessible_name": "SKU CODE",
+        "text_full": "SKU CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "IMAGES",
+        "label": "",
+        "required": false,
+        "value": "IMAGES",
+        "role": "",
+        "accessible_name": "IMAGES",
+        "text_full": "IMAGES",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "SKU DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SKU DESCRIPTION",
+        "role": "",
+        "accessible_name": "SKU DESCRIPTION",
+        "text_full": "SKU DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "UNIT PRICE",
+        "label": "",
+        "required": false,
+        "value": "UNIT PRICE",
+        "role": "",
+        "accessible_name": "UNIT PRICE",
+        "text_full": "UNIT PRICE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "HSN",
+        "label": "",
+        "required": false,
+        "value": "HSN",
+        "role": "",
+        "accessible_name": "HSN",
+        "text_full": "HSN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "DOZ/CARTON",
+        "label": "",
+        "required": false,
+        "value": "DOZ/CARTON",
+        "role": "",
+        "accessible_name": "DOZ/CARTON",
+        "text_full": "DOZ/CARTON",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "GRAMS/STICK",
+        "label": "",
+        "required": false,
+        "value": "GRAMS/STICK",
+        "role": "",
+        "accessible_name": "GRAMS/STICK",
+        "text_full": "GRAMS/STICK",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "GROSS WT",
+        "label": "",
+        "required": false,
+        "value": "GROSS WT",
+        "role": "",
+        "accessible_name": "GROSS WT",
+        "text_full": "GROSS WT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "TARE WT",
+        "label": "",
+        "required": false,
+        "value": "TARE WT",
+        "role": "",
+        "accessible_name": "TARE WT",
+        "text_full": "TARE WT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(14)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(14)"
+        ],
+        "tag": "th",
+        "text": "NET WT",
+        "label": "",
+        "required": false,
+        "value": "NET WT",
+        "role": "",
+        "accessible_name": "NET WT",
+        "text_full": "NET WT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(15)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(15)"
+        ],
+        "tag": "th",
+        "text": "L (CM)",
+        "label": "",
+        "required": false,
+        "value": "L (CM)",
+        "role": "",
+        "accessible_name": "L (CM)",
+        "text_full": "L (CM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(16)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(16)"
+        ],
+        "tag": "th",
+        "text": "W (CM)",
+        "label": "",
+        "required": false,
+        "value": "W (CM)",
+        "role": "",
+        "accessible_name": "W (CM)",
+        "text_full": "W (CM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(17)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(17)"
+        ],
+        "tag": "th",
+        "text": "H (CM)",
+        "label": "",
+        "required": false,
+        "value": "H (CM)",
+        "role": "",
+        "accessible_name": "H (CM)",
+        "text_full": "H (CM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(18)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(18)"
+        ],
+        "tag": "th",
+        "text": "CBM",
+        "label": "",
+        "required": false,
+        "value": "CBM",
+        "role": "",
+        "accessible_name": "CBM",
+        "text_full": "CBM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(19)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(19)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(20)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(20)"
+        ],
+        "tag": "th",
+        "text": "BOM STATUS",
+        "label": "",
+        "required": false,
+        "value": "BOM STATUS",
+        "role": "",
+        "accessible_name": "BOM STATUS",
+        "text_full": "BOM STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(21)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(21)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Item\")",
+        "selectors": [
+            "button:has-text(\"Add Item\")",
+            "text=\"Add Item\"",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "Add Item",
+        "role": "button",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View images\"]",
+        "selectors": [
+            "button[title=\"View images\"]",
+            "[aria-label=\"View images\"]",
+            "tr:has-text(\"1\tdiensh\tDomestic\tDFG 111123178\t\") [title=\"View images\"]",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(5) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View images",
+        "text_full": "",
+        "attrs": {
+            "title": "View images"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tdiensh\tDomestic\tDFG 111123178\t\") [title=\"Edit\"]",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tdiensh\tDomestic\tDFG 111123178\t\") [title=\"Delete\"]",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Item\")",
+        "selectors": [
+            "button:has-text(\"Add Item\")",
+            "text=\"Add Item\"",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Add Item",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "SKU is auto-generated and unique",
+                    "selector": "small.hint.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_10_header",
+                "pn_id_98",
+                "pn_id_100",
+                "pn_id_102"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "#pn_id_10_header",
+        "selectors": [
+            "#pn_id_10_header",
+            "div > div > app-item-list > app-item-form > p-dialog > div > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "Add Item",
+        "role": "",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Code *\"",
+        "selectors": [
+            "text=\"SKU Code *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "SKU Code *",
+        "label": "SKU Code *",
+        "required": false,
+        "value": "SKU Code *",
+        "role": "",
+        "accessible_name": "SKU Code *",
+        "text_full": "SKU Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Type *\"",
+        "selectors": [
+            "text=\"Type *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Type *",
+        "label": "Type *",
+        "required": false,
+        "value": "Type *",
+        "role": "",
+        "accessible_name": "Type *",
+        "text_full": "Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category *\"",
+        "selectors": [
+            "text=\"Category *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Category *",
+        "label": "Category *",
+        "required": false,
+        "value": "Category *",
+        "role": "",
+        "accessible_name": "Category *",
+        "text_full": "Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Description *\"",
+        "selectors": [
+            "text=\"SKU Description *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "SKU Description *",
+        "label": "SKU Description *",
+        "required": false,
+        "value": "SKU Description *",
+        "role": "",
+        "accessible_name": "SKU Description *",
+        "text_full": "SKU Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Unit Price (INR) *\"",
+        "selectors": [
+            "text=\"Unit Price (INR) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Unit Price (INR) *",
+        "label": "Unit Price (INR) *",
+        "required": false,
+        "value": "Unit Price (INR) *",
+        "role": "",
+        "accessible_name": "Unit Price (INR) *",
+        "text_full": "Unit Price (INR) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"MRP (INR) *\"",
+        "selectors": [
+            "text=\"MRP (INR) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "MRP (INR) *",
+        "label": "MRP (INR) *",
+        "required": false,
+        "value": "MRP (INR) *",
+        "role": "",
+        "accessible_name": "MRP (INR) *",
+        "text_full": "MRP (INR) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SFG / Box *\"",
+        "selectors": [
+            "text=\"SFG / Box *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "SFG / Box *",
+        "label": "SFG / Box *",
+        "required": false,
+        "value": "SFG / Box *",
+        "role": "",
+        "accessible_name": "SFG / Box *",
+        "text_full": "SFG / Box *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"HSN Code\"",
+        "selectors": [
+            "text=\"HSN Code\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "HSN Code",
+        "label": "HSN Code",
+        "required": false,
+        "value": "HSN Code",
+        "role": "",
+        "accessible_name": "HSN Code",
+        "text_full": "HSN Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"UOM *\"",
+        "selectors": [
+            "text=\"UOM *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > label"
+        ],
+        "tag": "label",
+        "text": "UOM *",
+        "label": "UOM *",
+        "required": false,
+        "value": "UOM *",
+        "role": "",
+        "accessible_name": "UOM *",
+        "text_full": "UOM *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Minimum Stock *\"",
+        "selectors": [
+            "text=\"Minimum Stock *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > label"
+        ],
+        "tag": "label",
+        "text": "Minimum Stock *",
+        "label": "Minimum Stock *",
+        "required": false,
+        "value": "Minimum Stock *",
+        "role": "",
+        "accessible_name": "Minimum Stock *",
+        "text_full": "Minimum Stock *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Dozens per Carton *\"",
+        "selectors": [
+            "text=\"Dozens per Carton *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > label"
+        ],
+        "tag": "label",
+        "text": "Dozens per Carton *",
+        "label": "Dozens per Carton *",
+        "required": false,
+        "value": "Dozens per Carton *",
+        "role": "",
+        "accessible_name": "Dozens per Carton *",
+        "text_full": "Dozens per Carton *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Grams / Stick *\"",
+        "selectors": [
+            "text=\"Grams / Stick *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > label"
+        ],
+        "tag": "label",
+        "text": "Grams / Stick *",
+        "label": "Grams / Stick *",
+        "required": false,
+        "value": "Grams / Stick *",
+        "role": "",
+        "accessible_name": "Grams / Stick *",
+        "text_full": "Grams / Stick *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Length (cm) *\"",
+        "selectors": [
+            "text=\"Length (cm) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > label"
+        ],
+        "tag": "label",
+        "text": "Length (cm) *",
+        "label": "Length (cm) *",
+        "required": false,
+        "value": "Length (cm) *",
+        "role": "",
+        "accessible_name": "Length (cm) *",
+        "text_full": "Length (cm) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Width (cm) *\"",
+        "selectors": [
+            "text=\"Width (cm) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > label"
+        ],
+        "tag": "label",
+        "text": "Width (cm) *",
+        "label": "Width (cm) *",
+        "required": false,
+        "value": "Width (cm) *",
+        "role": "",
+        "accessible_name": "Width (cm) *",
+        "text_full": "Width (cm) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Height (cm) *\"",
+        "selectors": [
+            "text=\"Height (cm) *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > label"
+        ],
+        "tag": "label",
+        "text": "Height (cm) *",
+        "label": "Height (cm) *",
+        "required": false,
+        "value": "Height (cm) *",
+        "role": "",
+        "accessible_name": "Height (cm) *",
+        "text_full": "Height (cm) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Gross Wt (kg)\"",
+        "selectors": [
+            "text=\"Gross Wt (kg)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > label"
+        ],
+        "tag": "label",
+        "text": "Gross Wt (kg)",
+        "label": "Gross Wt (kg)",
+        "required": false,
+        "value": "Gross Wt (kg)",
+        "role": "",
+        "accessible_name": "Gross Wt (kg)",
+        "text_full": "Gross Wt (kg)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Tare Wt (kg)\"",
+        "selectors": [
+            "text=\"Tare Wt (kg)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > label"
+        ],
+        "tag": "label",
+        "text": "Tare Wt (kg)",
+        "label": "Tare Wt (kg)",
+        "required": false,
+        "value": "Tare Wt (kg)",
+        "role": "",
+        "accessible_name": "Tare Wt (kg)",
+        "text_full": "Tare Wt (kg)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Net Wt (kg)\"",
+        "selectors": [
+            "text=\"Net Wt (kg)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > label"
+        ],
+        "tag": "label",
+        "text": "Net Wt (kg)",
+        "label": "Net Wt (kg)",
+        "required": false,
+        "value": "Net Wt (kg)",
+        "role": "",
+        "accessible_name": "Net Wt (kg)",
+        "text_full": "Net Wt (kg)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"CBM (m3)\"",
+        "selectors": [
+            "text=\"CBM (m3)\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(19) > label"
+        ],
+        "tag": "label",
+        "text": "CBM (m3)",
+        "label": "CBM (m3)",
+        "required": false,
+        "value": "CBM (m3)",
+        "role": "",
+        "accessible_name": "CBM (m3)",
+        "text_full": "CBM (m3)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(20) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Product Images\"",
+        "selectors": [
+            "text=\"Product Images\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label"
+        ],
+        "tag": "label",
+        "text": "Product Images",
+        "label": "Product Images",
+        "required": false,
+        "value": "Product Images",
+        "role": "",
+        "accessible_name": "Product Images",
+        "text_full": "Product Images",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Click to upload images\"",
+        "selectors": [
+            "text=\"Click to upload images\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2)"
+        ],
+        "tag": "label",
+        "text": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Category is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "SKU Description is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "UOM is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Unit Price is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "MRP is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "SFG / Box is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "Category is required",
+        "label": "",
+        "required": false,
+        "value": "Category is required",
+        "role": "",
+        "accessible_name": "Category is required",
+        "text_full": "Category is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > span"
+        ],
+        "tag": "span",
+        "text": "SKU Description is required",
+        "label": "",
+        "required": false,
+        "value": "SKU Description is required",
+        "role": "",
+        "accessible_name": "SKU Description is required",
+        "text_full": "SKU Description is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > span"
+        ],
+        "tag": "span",
+        "text": "Unit Price is required",
+        "label": "",
+        "required": false,
+        "value": "Unit Price is required",
+        "role": "",
+        "accessible_name": "Unit Price is required",
+        "text_full": "Unit Price is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > span"
+        ],
+        "tag": "span",
+        "text": "MRP is required",
+        "label": "",
+        "required": false,
+        "value": "MRP is required",
+        "role": "",
+        "accessible_name": "MRP is required",
+        "text_full": "MRP is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > span"
+        ],
+        "tag": "span",
+        "text": "SFG / Box is required",
+        "label": "",
+        "required": false,
+        "value": "SFG / Box is required",
+        "role": "",
+        "accessible_name": "SFG / Box is required",
+        "text_full": "SFG / Box is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(9) > span"
+        ],
+        "tag": "span",
+        "text": "UOM is required",
+        "label": "",
+        "required": false,
+        "value": "UOM is required",
+        "role": "",
+        "accessible_name": "UOM is required",
+        "text_full": "UOM is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > span"
+        ],
+        "tag": "span",
+        "text": "Minimum Stock is required",
+        "label": "",
+        "required": false,
+        "value": "Minimum Stock is required",
+        "role": "",
+        "accessible_name": "Minimum Stock is required",
+        "text_full": "Minimum Stock is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > span"
+        ],
+        "tag": "span",
+        "text": "Dozens per Carton is required",
+        "label": "",
+        "required": false,
+        "value": "Dozens per Carton is required",
+        "role": "",
+        "accessible_name": "Dozens per Carton is required",
+        "text_full": "Dozens per Carton is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > span"
+        ],
+        "tag": "span",
+        "text": "Grams / Stick is required",
+        "label": "",
+        "required": false,
+        "value": "Grams / Stick is required",
+        "role": "",
+        "accessible_name": "Grams / Stick is required",
+        "text_full": "Grams / Stick is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > span"
+        ],
+        "tag": "span",
+        "text": "Length is required",
+        "label": "",
+        "required": false,
+        "value": "Length is required",
+        "role": "",
+        "accessible_name": "Length is required",
+        "text_full": "Length is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > span"
+        ],
+        "tag": "span",
+        "text": "Width is required",
+        "label": "",
+        "required": false,
+        "value": "Width is required",
+        "role": "",
+        "accessible_name": "Width is required",
+        "text_full": "Width is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > span",
+        "selectors": [
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > span"
+        ],
+        "tag": "span",
+        "text": "Height is required",
+        "label": "",
+        "required": false,
+        "value": "Height is required",
+        "role": "",
+        "accessible_name": "Height is required",
+        "text_full": "Height is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"type\"]",
+        "selectors": [
+            "[formcontrolname=\"type\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Type *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "text=\"Domestic\"",
+            "#pn_id_98_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_98_list",
+                "pn_id_98_0",
+                "pn_id_98_1",
+                "pn_id_98_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"productCategory\"]",
+        "selectors": [
+            "[formcontrolname=\"productCategory\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"1 KG PACKETS\"]",
+        "selectors": [
+            "[aria-label=\"1 KG PACKETS\"]",
+            "text=\"1 KG PACKETS\"",
+            "#pn_id_100_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "1 KG PACKETS",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "1 KG PACKETS",
+        "text_full": "1 KG PACKETS",
+        "attrs": {
+            "aria-label": "1 KG PACKETS",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "1 KG PACKETS",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_100_list",
+                "pn_id_100_0",
+                "pn_id_100_1",
+                "pn_id_100_2",
+                "pn_id_100_3",
+                "pn_id_100_4",
+                "pn_id_100_5",
+                "pn_id_100_6",
+                "pn_id_100_7",
+                "pn_id_100_8",
+                "pn_id_100_9",
+                "pn_id_100_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"skuDescription\"]",
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"skuDescription\"]",
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO SKU Description",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"unitPrice\"] input",
+        "selectors": [
+            "[formcontrolname=\"unitPrice\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"unitPrice\"] input",
+        "selectors": [
+            "[formcontrolname=\"unitPrice\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "\u20b9 10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"mrp\"] input",
+        "selectors": [
+            "[formcontrolname=\"mrp\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"mrp\"] input",
+        "selectors": [
+            "[formcontrolname=\"mrp\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "\u20b9 10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"sfgPerBox\"] input",
+        "selectors": [
+            "[formcontrolname=\"sfgPerBox\"] input",
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"sfgPerBox\"] input",
+        "selectors": [
+            "[formcontrolname=\"sfgPerBox\"] input",
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Dozens\nCartons\nPieces\nGrams\nSticks",
+                    "selector": "div.ng-tns-c1614365056-14.p-overlay.p-component"
+                },
+                {
+                    "text": "Dozens",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Cartons",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Pieces",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Grams",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Sticks",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_102_list",
+                "pn_id_102_0",
+                "pn_id_102_1",
+                "pn_id_102_2",
+                "pn_id_102_3",
+                "pn_id_102_4"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"uom\"]",
+        "selectors": [
+            "[formcontrolname=\"uom\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "UOM *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Dozens\"]",
+        "selectors": [
+            "[aria-label=\"Dozens\"]",
+            "text=\"Dozens\"",
+            "#pn_id_102_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Dozens",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Dozens",
+        "text_full": "Dozens",
+        "attrs": {
+            "aria-label": "Dozens",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Dozens",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_102_list",
+                "pn_id_102_0",
+                "pn_id_102_1",
+                "pn_id_102_2",
+                "pn_id_102_3",
+                "pn_id_102_4"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"minimumStock\"] input",
+        "selectors": [
+            "[formcontrolname=\"minimumStock\"] input",
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"minimumStock\"] input",
+        "selectors": [
+            "[formcontrolname=\"minimumStock\"] input",
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"dozensPerCarton\"] input",
+        "selectors": [
+            "[formcontrolname=\"dozensPerCarton\"] input",
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"dozensPerCarton\"] input",
+        "selectors": [
+            "[formcontrolname=\"dozensPerCarton\"] input",
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"gramsPerStick\"] input",
+        "selectors": [
+            "[formcontrolname=\"gramsPerStick\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"gramsPerStick\"] input",
+        "selectors": [
+            "[formcontrolname=\"gramsPerStick\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"length\"] input",
+        "selectors": [
+            "[formcontrolname=\"length\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"length\"] input",
+        "selectors": [
+            "[formcontrolname=\"length\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"width\"] input",
+        "selectors": [
+            "[formcontrolname=\"width\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"width\"] input",
+        "selectors": [
+            "[formcontrolname=\"width\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"height\"] input",
+        "selectors": [
+            "[formcontrolname=\"height\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"height\"] input",
+        "selectors": [
+            "[formcontrolname=\"height\"] input",
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"grossWeight\"] input",
+        "selectors": [
+            "[formcontrolname=\"grossWeight\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"grossWeight\"] input",
+        "selectors": [
+            "[formcontrolname=\"grossWeight\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"tareWeight\"] input",
+        "selectors": [
+            "[formcontrolname=\"tareWeight\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"tareWeight\"] input",
+        "selectors": [
+            "[formcontrolname=\"tareWeight\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"netWeight\"] input",
+        "selectors": [
+            "[formcontrolname=\"netWeight\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"netWeight\"] input",
+        "selectors": [
+            "[formcontrolname=\"netWeight\"] input",
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_10_header",
+                "pn_id_98",
+                "pn_id_100",
+                "pn_id_102"
+            ]
+        }
+    }
+]

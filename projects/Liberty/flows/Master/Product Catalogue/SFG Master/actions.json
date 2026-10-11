@@ -1,0 +1,713 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "SFG Master",
+        "label": "",
+        "required": false,
+        "value": "SFG Master",
+        "role": "listitem",
+        "accessible_name": "SFG Master",
+        "text_full": "SFG Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SFG CODE",
+        "label": "",
+        "required": false,
+        "value": "SFG CODE",
+        "role": "",
+        "accessible_name": "SFG CODE",
+        "text_full": "SFG CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "DEPARTMENT",
+        "label": "",
+        "required": false,
+        "value": "DEPARTMENT",
+        "role": "",
+        "accessible_name": "DEPARTMENT",
+        "text_full": "DEPARTMENT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "ITEMS",
+        "label": "",
+        "required": false,
+        "value": "ITEMS",
+        "role": "",
+        "accessible_name": "ITEMS",
+        "text_full": "ITEMS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "TOTAL QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL QTY",
+        "role": "",
+        "accessible_name": "TOTAL QTY",
+        "text_full": "TOTAL QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-sfg-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add SFG\")",
+        "selectors": [
+            "button:has-text(\"Add SFG\")",
+            "text=\"Add SFG\"",
+            "div:nth-of-type(3) > div > div > app-sfg-master-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add SFG",
+        "label": "",
+        "required": false,
+        "value": "Add SFG",
+        "role": "button",
+        "accessible_name": "Add SFG",
+        "text_full": "Add SFG",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "div > app-sfg-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-sfg-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-sfg-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add SFG\")",
+        "selectors": [
+            "button:has-text(\"Add SFG\")",
+            "text=\"Add SFG\"",
+            "div:nth-of-type(3) > div > div > app-sfg-master-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add SFG",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add SFG",
+        "text_full": "Add SFG",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add",
+            "messages": [
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Product Catalogue",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "SFG Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Add SFG",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Back to List",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "DIPPING",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_86"
+            ],
+            "disappeared": [
+                "pn_id_6"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-master-form > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-master-form > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Add SFG",
+        "label": "",
+        "required": false,
+        "value": "Add SFG",
+        "role": "heading",
+        "accessible_name": "Add SFG",
+        "text_full": "Add SFG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-sfg-master-form > div > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-sfg-master-form > div > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "SFG Details",
+        "label": "",
+        "required": false,
+        "value": "SFG Details",
+        "role": "heading",
+        "accessible_name": "SFG Details",
+        "text_full": "SFG Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Department *\"",
+        "selectors": [
+            "text=\"Department *\"",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Department *",
+        "label": "Department *",
+        "required": false,
+        "value": "Department *",
+        "role": "",
+        "accessible_name": "Department *",
+        "text_full": "Department *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SFG Code\"",
+        "selectors": [
+            "text=\"SFG Code\"",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "SFG Code",
+        "label": "SFG Code",
+        "required": false,
+        "value": "SFG Code",
+        "role": "",
+        "accessible_name": "SFG Code",
+        "text_full": "SFG Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Total Qty\"",
+        "selectors": [
+            "text=\"Total Qty\"",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Total Qty",
+        "label": "Total Qty",
+        "required": false,
+        "value": "Total Qty",
+        "role": "",
+        "accessible_name": "Total Qty",
+        "text_full": "Total Qty",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Description *\"",
+        "selectors": [
+            "text=\"Description *\"",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Description *",
+        "label": "Description *",
+        "required": false,
+        "value": "Description *",
+        "role": "",
+        "accessible_name": "Description *",
+        "text_full": "Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"department\"]",
+        "selectors": [
+            "[formcontrolname=\"department\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Department *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"DIPPING\"]",
+        "selectors": [
+            "[aria-label=\"DIPPING\"]",
+            "text=\"DIPPING\"",
+            "#pn_id_86_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "DIPPING",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "DIPPING",
+        "text_full": "DIPPING",
+        "attrs": {
+            "aria-label": "DIPPING",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Department *\"]",
+        "selectors": [
+            "input[placeholder=\"Department *\"]",
+            "app-sfg-master-form > div > div:nth-of-type(2) > div > form > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Department *",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Department *",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Department *\"]",
+        "selectors": [
+            "input[placeholder=\"Department *\"]",
+            "app-sfg-master-form > div > div:nth-of-type(2) > div > form > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Department *",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "Department *",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "input[formcontrolname=\"description\"]",
+            "input[placeholder=\"Enter description\"]",
+            "input[placeholder=\"Description *\"]",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div:nth-of-type(2) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Description *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Description *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "input[formcontrolname=\"description\"]",
+            "input[placeholder=\"Enter description\"]",
+            "input[placeholder=\"Description *\"]",
+            "div > app-sfg-master-form > div > div:nth-of-type(2) > div > form > div:nth-of-type(2) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Description *",
+        "required": true,
+        "value": "QA-AUTO Description",
+        "role": "textbox",
+        "accessible_name": "Description *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+            "messages": [
+                {
+                    "text": "SL.NO\tSFG CODE \tDESCRIPTION\tDEPARTMENT \tITEMS\tTOTAL QTY\tACTIVE\tACTIONS",
+                    "selector": "app-sfg-master-list"
+                },
+                {
+                    "text": "SFG Master\nMaster\nProduct Catalogue\nSFG Master",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "SFG Master",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Product Catalogue",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "All Departments",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_92"
+            ],
+            "disappeared": [
+                "pn_id_86"
+            ]
+        }
+    }
+]

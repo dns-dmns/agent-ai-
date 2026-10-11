@@ -1,0 +1,560 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Perfume RM\")",
+        "selectors": [
+            "button:has-text(\"Add Perfume RM\")",
+            "text=\"Add Perfume RM\"",
+            "div:nth-of-type(3) > div > div > app-perfume-rm-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Perfume RM",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Perfume RM",
+        "text_full": "Add Perfume RM",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "messages": [
+                {
+                    "text": "Add Perfume RM",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header",
+                "pn_id_94",
+                "pn_id_96"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "#pn_id_8_header",
+        "selectors": [
+            "#pn_id_8_header",
+            "div > div > app-perfume-rm-list > app-perfume-rm-form > p-dialog > div > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Add Perfume RM",
+        "label": "",
+        "required": false,
+        "value": "Add Perfume RM",
+        "role": "",
+        "accessible_name": "Add Perfume RM",
+        "text_full": "Add Perfume RM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category *\"",
+        "selectors": [
+            "text=\"Category *\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Category *",
+        "label": "Category *",
+        "required": false,
+        "value": "Category *",
+        "role": "",
+        "accessible_name": "Category *",
+        "text_full": "Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"RM Code\"",
+        "selectors": [
+            "text=\"RM Code\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "RM Code",
+        "label": "RM Code",
+        "required": false,
+        "value": "RM Code",
+        "role": "",
+        "accessible_name": "RM Code",
+        "text_full": "RM Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"RM Description *\"",
+        "selectors": [
+            "text=\"RM Description *\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "RM Description *",
+        "label": "RM Description *",
+        "required": false,
+        "value": "RM Description *",
+        "role": "",
+        "accessible_name": "RM Description *",
+        "text_full": "RM Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"CAS No.\"",
+        "selectors": [
+            "text=\"CAS No.\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "CAS No.",
+        "label": "CAS No.",
+        "required": false,
+        "value": "CAS No.",
+        "role": "",
+        "accessible_name": "CAS No.",
+        "text_full": "CAS No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"UOM *\"",
+        "selectors": [
+            "text=\"UOM *\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "UOM *",
+        "label": "UOM *",
+        "required": false,
+        "value": "UOM *",
+        "role": "",
+        "accessible_name": "UOM *",
+        "text_full": "UOM *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "messages": [
+                {
+                    "text": "Category is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "RM Description is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "UOM is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Category is required",
+        "label": "",
+        "required": false,
+        "value": "Category is required",
+        "role": "",
+        "accessible_name": "Category is required",
+        "text_full": "Category is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "RM Description is required",
+        "label": "",
+        "required": false,
+        "value": "RM Description is required",
+        "role": "",
+        "accessible_name": "RM Description is required",
+        "text_full": "RM Description is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > span",
+        "selectors": [
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > span"
+        ],
+        "tag": "span",
+        "text": "UOM is required",
+        "label": "",
+        "required": false,
+        "value": "UOM is required",
+        "role": "",
+        "accessible_name": "UOM is required",
+        "text_full": "UOM is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"category\"]",
+        "selectors": [
+            "[formcontrolname=\"category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"SOLVENT-CP\"]",
+        "selectors": [
+            "[aria-label=\"SOLVENT-CP\"]",
+            "text=\"SOLVENT-CP\"",
+            "#pn_id_94_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "SOLVENT-CP",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "SOLVENT-CP",
+        "text_full": "SOLVENT-CP",
+        "attrs": {
+            "aria-label": "SOLVENT-CP",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "messages": [
+                {
+                    "text": "Generating code...",
+                    "selector": "small.hint.ng-star-inserted"
+                },
+                {
+                    "text": "SOLVENT-CP",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Code is auto-generated from the category",
+                    "selector": "small.hint.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_94_list",
+                "pn_id_94_0",
+                "pn_id_94_1",
+                "pn_id_94_2",
+                "pn_id_94_3",
+                "pn_id_94_4",
+                "pn_id_94_5"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "input[formcontrolname=\"description\"]",
+            "input[placeholder=\"Enter description\"]",
+            "div input[formcontrolname=\"description\"]",
+            "div input[placeholder=\"Enter description\"]",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "input[formcontrolname=\"description\"]",
+            "input[placeholder=\"Enter description\"]",
+            "div input[formcontrolname=\"description\"]",
+            "div input[placeholder=\"Enter description\"]",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO RM Description",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"casNo\"]",
+        "selectors": [
+            "[formcontrolname=\"casNo\"]",
+            "input[formcontrolname=\"casNo\"]",
+            "input[placeholder=\"e.g. 12345-67-8\"]",
+            "div input[formcontrolname=\"casNo\"]",
+            "div input[placeholder=\"e.g. 12345-67-8\"]",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 12345-67-8",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"casNo\"]",
+        "selectors": [
+            "[formcontrolname=\"casNo\"]",
+            "input[formcontrolname=\"casNo\"]",
+            "input[placeholder=\"e.g. 12345-67-8\"]",
+            "div input[formcontrolname=\"casNo\"]",
+            "div input[placeholder=\"e.g. 12345-67-8\"]",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO CAS No.",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 12345-67-8",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "messages": [
+                {
+                    "text": "Enter a CAS number in the format 12345-67-8",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "KG\nLTR",
+                    "selector": "div.ng-tns-c1614365056-11.p-overlay.p-component"
+                },
+                {
+                    "text": "KG",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "LTR",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_96_list",
+                "pn_id_96_0",
+                "pn_id_96_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"uom\"]",
+        "selectors": [
+            "[formcontrolname=\"uom\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "UOM *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"KG\"]",
+        "selectors": [
+            "[aria-label=\"KG\"]",
+            "text=\"KG\"",
+            "#pn_id_96_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "KG",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "KG",
+        "text_full": "KG",
+        "attrs": {
+            "aria-label": "KG",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "messages": [
+                {
+                    "text": "KG",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_96_list",
+                "pn_id_96_0",
+                "pn_id_96_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-perfume-rm-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header",
+                "pn_id_94",
+                "pn_id_96"
+            ]
+        }
+    }
+]

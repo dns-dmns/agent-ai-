@@ -1,0 +1,712 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Category Master",
+        "label": "",
+        "required": false,
+        "value": "Category Master",
+        "role": "listitem",
+        "accessible_name": "Category Master",
+        "text_full": "Category Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY NAME",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY NAME",
+        "role": "",
+        "accessible_name": "CATEGORY NAME",
+        "text_full": "CATEGORY NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "MASTER",
+        "label": "",
+        "required": false,
+        "value": "MASTER",
+        "role": "",
+        "accessible_name": "MASTER",
+        "text_full": "MASTER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-category-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Category\")",
+        "selectors": [
+            "button:has-text(\"Add Category\")",
+            "text=\"Add Category\"",
+            "div:nth-of-type(3) > div > div > app-category-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Category",
+        "label": "",
+        "required": false,
+        "value": "Add Category",
+        "role": "button",
+        "accessible_name": "Add Category",
+        "text_full": "Add Category",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tAUTO_CAT_RM_QUOTE 8\\\" TEST\t-\tRM Master\") [title=\"Edit\"]",
+            "div > app-category-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tAUTO_CAT_RM_QUOTE 8\\\" TEST\t-\tRM Master\") [title=\"Delete\"]",
+            "div > app-category-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Category\")",
+        "selectors": [
+            "button:has-text(\"Add Category\")",
+            "text=\"Add Category\"",
+            "div:nth-of-type(3) > div > div > app-category-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Category",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Category",
+        "text_full": "Add Category",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "messages": [
+                {
+                    "text": "Add Category\nCategory Name *\nDescription\nMaster *\nRM Master\nItem Master\nPerfume RM Master\nActive\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-mask.p-overlay-mask"
+                },
+                {
+                    "text": "Category Name *\nDescription\nMaster *\nRM Master\nItem Master\nPerfume RM Master\nActive\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Add Category",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "master-rm",
+                "master-item",
+                "master-perfume-rm"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "#pn_id_6_header",
+        "selectors": [
+            "#pn_id_6_header",
+            "div > div > app-category-list > app-category-form > p-dialog > div > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Add Category",
+        "label": "",
+        "required": false,
+        "value": "Add Category",
+        "role": "",
+        "accessible_name": "Add Category",
+        "text_full": "Add Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category Name *\"",
+        "selectors": [
+            "text=\"Category Name *\"",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Category Name *",
+        "label": "Category Name *",
+        "required": false,
+        "value": "Category Name *",
+        "role": "",
+        "accessible_name": "Category Name *",
+        "text_full": "Category Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Description\"",
+        "selectors": [
+            "text=\"Description\"",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Description",
+        "label": "Description",
+        "required": false,
+        "value": "Description",
+        "role": "",
+        "accessible_name": "Description",
+        "text_full": "Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Master *\"",
+        "selectors": [
+            "text=\"Master *\"",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > label"
+        ],
+        "tag": "label",
+        "text": "Master *",
+        "label": "Master *",
+        "required": false,
+        "value": "Master *",
+        "role": "",
+        "accessible_name": "Master *",
+        "text_full": "Master *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"RM Master\"",
+        "selectors": [
+            "text=\"RM Master\"",
+            "div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "RM Master",
+        "label": "RM Master",
+        "required": false,
+        "value": "RM Master",
+        "role": "",
+        "accessible_name": "RM Master",
+        "text_full": "RM Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Item Master\"",
+        "selectors": [
+            "text=\"Item Master\"",
+            "div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Item Master",
+        "label": "Item Master",
+        "required": false,
+        "value": "Item Master",
+        "role": "",
+        "accessible_name": "Item Master",
+        "text_full": "Item Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Perfume RM Master\"",
+        "selectors": [
+            "text=\"Perfume RM Master\"",
+            "div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Perfume RM Master",
+        "label": "Perfume RM Master",
+        "required": false,
+        "value": "Perfume RM Master",
+        "role": "",
+        "accessible_name": "Perfume RM Master",
+        "text_full": "Perfume RM Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "messages": [
+                {
+                    "text": "Category name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Please select a master",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-5.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-5.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-5.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Category name is required",
+        "label": "Category Name *",
+        "required": false,
+        "value": "Category name is required",
+        "role": "",
+        "accessible_name": "Category Name *",
+        "text_full": "Category name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > span",
+        "selectors": [
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > span"
+        ],
+        "tag": "span",
+        "text": "Please select a master",
+        "label": "Master *",
+        "required": false,
+        "value": "Please select a master",
+        "role": "",
+        "accessible_name": "Master *",
+        "text_full": "Please select a master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"categoryName\"]",
+        "selectors": [
+            "[formcontrolname=\"categoryName\"]",
+            "input[formcontrolname=\"categoryName\"]",
+            "input[placeholder=\"Enter category name\"]",
+            "input[placeholder=\"Category Name *\"]",
+            "div input[formcontrolname=\"categoryName\"]",
+            "div input[placeholder=\"Enter category name\"]",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Category Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Category Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter category name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"categoryName\"]",
+        "selectors": [
+            "[formcontrolname=\"categoryName\"]",
+            "input[formcontrolname=\"categoryName\"]",
+            "input[placeholder=\"Enter category name\"]",
+            "input[placeholder=\"Category Name *\"]",
+            "div input[formcontrolname=\"categoryName\"]",
+            "div input[placeholder=\"Enter category name\"]",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Category Name *",
+        "required": true,
+        "value": "QA-AUTO Category Name",
+        "role": "textbox",
+        "accessible_name": "Category Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter category name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "textarea[formcontrolname=\"description\"]",
+            "textarea[placeholder=\"Optional description\"]",
+            "textarea[placeholder=\"Description\"]",
+            "div textarea[formcontrolname=\"description\"]",
+            "div textarea[placeholder=\"Optional description\"]",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Description",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Description",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "textarea[formcontrolname=\"description\"]",
+            "textarea[placeholder=\"Optional description\"]",
+            "textarea[placeholder=\"Description\"]",
+            "div textarea[formcontrolname=\"description\"]",
+            "div textarea[placeholder=\"Optional description\"]",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Description",
+        "required": false,
+        "value": "QA-AUTO Description",
+        "role": "textbox",
+        "accessible_name": "Description",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-category-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "master-rm",
+                "master-item",
+                "master-perfume-rm"
+            ]
+        }
+    }
+]

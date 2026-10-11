@@ -1,0 +1,1035 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "BOM Master",
+        "label": "",
+        "required": false,
+        "value": "BOM Master",
+        "role": "listitem",
+        "accessible_name": "BOM Master",
+        "text_full": "BOM Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SKU",
+        "label": "",
+        "required": false,
+        "value": "SKU",
+        "role": "",
+        "accessible_name": "SKU",
+        "text_full": "SKU",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "NO. OF VERSIONS",
+        "label": "",
+        "required": false,
+        "value": "NO. OF VERSIONS",
+        "role": "",
+        "accessible_name": "NO. OF VERSIONS",
+        "text_full": "NO. OF VERSIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE VERSION",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE VERSION",
+        "role": "",
+        "accessible_name": "ACTIVE VERSION",
+        "text_full": "ACTIVE VERSION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-bom-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add BOM\")",
+        "selectors": [
+            "button:has-text(\"Add BOM\")",
+            "text=\"Add BOM\"",
+            "div > div:nth-of-type(3) > div > div > app-bom-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add BOM",
+        "label": "",
+        "required": false,
+        "value": "Add BOM",
+        "role": "button",
+        "accessible_name": "Add BOM",
+        "text_full": "Add BOM",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "tr:has-text(\"1\tDOMESTIC\tZIPPER\t\") [title=\"View\"]",
+            "div > app-bom-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tDOMESTIC\tZIPPER\t\") [title=\"Edit\"]",
+            "div > app-bom-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tDOMESTIC\tZIPPER\t\") [title=\"Delete\"]",
+            "div > app-bom-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add BOM\")",
+        "selectors": [
+            "button:has-text(\"Add BOM\")",
+            "text=\"Add BOM\"",
+            "div > div:nth-of-type(3) > div > div > app-bom-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add BOM",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add BOM",
+        "text_full": "Add BOM",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "Add New BOM",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nSave BOM",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Save BOM",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88",
+                "pn_id_90",
+                "pn_id_87"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > h3",
+        "selectors": [
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Sections",
+        "label": "",
+        "required": false,
+        "value": "Sections",
+        "role": "heading",
+        "accessible_name": "Sections",
+        "text_full": "Sections",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Type *\"",
+        "selectors": [
+            "text=\"Type *\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Type *",
+        "label": "Type *",
+        "required": false,
+        "value": "Type *",
+        "role": "",
+        "accessible_name": "Type *",
+        "text_full": "Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category *\"",
+        "selectors": [
+            "text=\"Category *\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Category *",
+        "label": "Category *",
+        "required": false,
+        "value": "Category *",
+        "role": "",
+        "accessible_name": "Category *",
+        "text_full": "Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Code *\"",
+        "selectors": [
+            "text=\"SKU Code *\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "SKU Code *",
+        "label": "SKU Code *",
+        "required": false,
+        "value": "SKU Code *",
+        "role": "",
+        "accessible_name": "SKU Code *",
+        "text_full": "SKU Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Description *\"",
+        "selectors": [
+            "text=\"SKU Description *\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "SKU Description *",
+        "label": "SKU Description *",
+        "required": false,
+        "value": "SKU Description *",
+        "role": "",
+        "accessible_name": "SKU Description *",
+        "text_full": "SKU Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"No. of Versions *\"",
+        "selectors": [
+            "text=\"No. of Versions *\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "No. of Versions *",
+        "label": "No. of Versions *",
+        "required": false,
+        "value": "No. of Versions *",
+        "role": "",
+        "accessible_name": "No. of Versions *",
+        "text_full": "No. of Versions *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active Version *\"",
+        "selectors": [
+            "text=\"Active Version *\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Active Version *",
+        "label": "Active Version *",
+        "required": false,
+        "value": "Active Version *",
+        "role": "",
+        "accessible_name": "Active Version *",
+        "text_full": "Active Version *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Sticks / Kg\"",
+        "selectors": [
+            "text=\"Sticks / Kg\"",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Sticks / Kg",
+        "label": "Sticks / Kg",
+        "required": false,
+        "value": "Sticks / Kg",
+        "role": "",
+        "accessible_name": "Sticks / Kg",
+        "text_full": "Sticks / Kg",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save BOM\")",
+        "selectors": [
+            "button:has-text(\"Save BOM\")",
+            "text=\"Save BOM\"",
+            "app-bom-list > app-bom-form > p-dialog > div > div > div:nth-of-type(3) > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save BOM",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save BOM",
+        "text_full": "Save BOM",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "Type is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Category is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "SKU Code is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "This BOM cannot be saved yet\nThe Packing section is mandatory \u2014 add it and list the packing material.",
+                    "selector": "div.structure-errors.ng-star-inserted"
+                },
+                {
+                    "text": "The Packing section is mandatory \u2014 add it and list the packing material.",
+                    "selector": "li.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nThe Packing section is mandatory \u2014 add it and list the packing material.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-9.ng-trigger.ng-trigger-toastAnimation"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Type is required",
+        "label": "",
+        "required": false,
+        "value": "Type is required",
+        "role": "",
+        "accessible_name": "Type is required",
+        "text_full": "Type is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Category is required",
+        "label": "",
+        "required": false,
+        "value": "Category is required",
+        "role": "",
+        "accessible_name": "Category is required",
+        "text_full": "Category is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "SKU Code is required",
+        "label": "",
+        "required": false,
+        "value": "SKU Code is required",
+        "role": "",
+        "accessible_name": "SKU Code is required",
+        "text_full": "SKU Code is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nThe Packing section is mandatory \u2014 add it ",
+        "label": "",
+        "required": false,
+        "value": "Warning The Packing section is mandatory \u2014 add it and list the packing material.",
+        "role": "alert",
+        "accessible_name": "Warning The Packing section is mandatory \u2014 add it and list the packing material.",
+        "text_full": "Warning The Packing section is mandatory \u2014 add it and list the packing material.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"type\"]",
+        "selectors": [
+            "[formcontrolname=\"type\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Type *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "p-dropdown[formcontrolname=\"type\"]",
+        "selectors": [
+            "p-dropdown[formcontrolname=\"type\"]",
+            "div p-dropdown[formcontrolname=\"type\"]",
+            "#pn_id_88",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > p-dropdown"
+        ],
+        "tag": "p-dropdown",
+        "text": "Select Type",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Select Type",
+        "text_full": "Select Type",
+        "attrs": {
+            "placeholder": "Select Type"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "Domestic\nExport",
+                    "selector": "div.ng-tns-c1614365056-7.p-overlay.p-component"
+                },
+                {
+                    "text": "Domestic",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "Export",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "text=\"Domestic\"",
+            "#pn_id_88_0",
+            "p-dropdown > p-overlay > div > div > div > div > ul > p-dropdownitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "Domestic",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"category\"]",
+        "selectors": [
+            "[formcontrolname=\"category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "p-dropdown[formcontrolname=\"category\"]",
+        "selectors": [
+            "p-dropdown[formcontrolname=\"category\"]",
+            "div p-dropdown[formcontrolname=\"category\"]",
+            "#pn_id_90",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > p-dropdown"
+        ],
+        "tag": "p-dropdown",
+        "text": "Select Category",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Select Category",
+        "text_full": "Select Category",
+        "attrs": {
+            "placeholder": "Select Category"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "1 KG PACKETS",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "250 GRAM ROLL (25 KG)",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "250 GRAMS ROLL",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "abcd",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "Agarbathi Domestic",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "AIR FRESHNER",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_90_list",
+                "pn_id_90_0",
+                "pn_id_90_1",
+                "pn_id_90_2",
+                "pn_id_90_3",
+                "pn_id_90_4",
+                "pn_id_90_5",
+                "pn_id_90_6",
+                "pn_id_90_7",
+                "pn_id_90_8",
+                "pn_id_90_9",
+                "pn_id_90_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"1 KG PACKETS\"]",
+        "selectors": [
+            "[aria-label=\"1 KG PACKETS\"]",
+            "text=\"1 KG PACKETS\"",
+            "#pn_id_90_0",
+            "p-dropdown > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-dropdownitem > li"
+        ],
+        "tag": "li",
+        "text": "1 KG PACKETS",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "1 KG PACKETS",
+        "text_full": "1 KG PACKETS",
+        "attrs": {
+            "aria-label": "1 KG PACKETS",
+            "role": "option"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "1 KG PACKETS",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_90_list",
+                "pn_id_90_0",
+                "pn_id_90_1",
+                "pn_id_90_2",
+                "pn_id_90_3",
+                "pn_id_90_4",
+                "pn_id_90_5",
+                "pn_id_90_6",
+                "pn_id_90_7",
+                "pn_id_90_8",
+                "pn_id_90_9",
+                "pn_id_90_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"skuCode\"]",
+        "selectors": [
+            "[formcontrolname=\"skuCode\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "SKU Code *",
+        "required": true,
+        "screenshot": null,
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "p-dropdown[formcontrolname=\"skuCode\"]",
+        "selectors": [
+            "p-dropdown[formcontrolname=\"skuCode\"]",
+            "div p-dropdown[formcontrolname=\"skuCode\"]",
+            "#pn_id_87",
+            "app-bom-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(3) > p-dropdown"
+        ],
+        "tag": "p-dropdown",
+        "text": "Search & Select SKU",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Search & Select SKU",
+        "text_full": "Search & Select SKU",
+        "attrs": {
+            "placeholder": "Search & Select SKU"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [
+                {
+                    "text": "No results found",
+                    "selector": "div.ng-tns-c1614365056-6.p-overlay.p-component"
+                }
+            ],
+            "appeared": [
+                "pn_id_87_list"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "text=\"No results found\"",
+        "selectors": [
+            "text=\"No results found\"",
+            "div:nth-of-type(3) > p-dropdown > p-overlay > div > div > div > div:nth-of-type(2) > ul > li"
+        ],
+        "tag": "li",
+        "text": "No results found",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "No results found",
+        "text_full": "No results found",
+        "attrs": {
+            "role": "option"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"sticksPerKg\"] input",
+        "selectors": [
+            "[formcontrolname=\"sticksPerKg\"] input",
+            "input[placeholder=\"e.g. 1000\"]",
+            "div input[placeholder=\"e.g. 1000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 1000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"sticksPerKg\"] input",
+        "selectors": [
+            "[formcontrolname=\"sticksPerKg\"] input",
+            "input[placeholder=\"e.g. 1000\"]",
+            "div input[placeholder=\"e.g. 1000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 1000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-bom-list > app-bom-form > p-dialog > div > div > div:nth-of-type(3) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_88",
+                "pn_id_90",
+                "pn_id_87"
+            ]
+        }
+    }
+]

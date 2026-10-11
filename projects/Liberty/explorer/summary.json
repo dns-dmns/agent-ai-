@@ -1,0 +1,928 @@
+{
+    "project": "Liberty",
+    "login_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login",
+    "explored_at": "2026-10-11 18:54:27",
+    "seconds": 43,
+    "explored": 8,
+    "kept": 0,
+    "errors": 0,
+    "unexpected_saves": [],
+    "screens": [
+        {
+            "flow": "Master/Product Catalogue/BOM Master",
+            "menu": "Master > Product Catalogue > BOM Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
+            "status": "explored",
+            "steps": 43,
+            "form": "",
+            "fields": [
+                {
+                    "label": "Type *",
+                    "name": "type",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "Domestic",
+                        "Export"
+                    ]
+                },
+                {
+                    "label": "Category *",
+                    "name": "category",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "1 KG PACKETS",
+                        "250 GRAM ROLL (25 KG)",
+                        "250 GRAMS ROLL",
+                        "abcd",
+                        "Agarbathi Domestic",
+                        "AIR FRESHNER",
+                        "AUTO_CAT_ITEM_ACTIVE",
+                        "BAKHOOR HEBE 100GRM 6DZ",
+                        "BOX",
+                        "Box With Bag FG",
+                        "Box With OTR FG",
+                        "Box-FG",
+                        "CONES",
+                        "CONES JAR",
+                        "CONES JAR FG",
+                        "Cones-Domestic FG",
+                        "CTI001",
+                        "CTI002",
+                        "d active",
+                        "DHOOP",
+                        "DHOOP JAR",
+                        "DHOOP ZIPPER FG",
+                        "Dhoop-Domestic FG",
+                        "Dhoop-Jar FG",
+                        "diensh",
+                        "dinesh",
+                        "Domestic",
+                        "ECONOMY",
+                        "Economy-FG",
+                        "Export",
+                        "fsdfs",
+                        "HEXA PKTS - FG",
+                        "HEXAGON",
+                        "HEXAGON JAR",
+                        "Hexagon Jar-FG",
+                        "HEXAGON T/B",
+                        "Hexagon- FG",
+                        "JUMBO DHOOP",
+                        "JUMBO DHOOP ECO",
+                        "JUMBO DHOOP ECO FG"
+                    ]
+                },
+                {
+                    "label": "SKU Code *",
+                    "name": "skuCode",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "No results found"
+                    ]
+                },
+                {
+                    "label": "SKU Description *",
+                    "name": "skuDescription",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": true,
+                    "disabled": false
+                },
+                {
+                    "label": "No. of Versions *",
+                    "name": "noOfVersions",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": true,
+                    "disabled": false
+                },
+                {
+                    "label": "Active Version *",
+                    "name": "activeVersion",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": true,
+                    "disabled": false
+                },
+                {
+                    "label": "Sticks / Kg",
+                    "name": "sticksPerKg",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "TYPE",
+                "CATEGORY",
+                "SKU",
+                "NO. OF VERSIONS",
+                "ACTIVE VERSION",
+                "STATUS",
+                "ACTION"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add BOM",
+                "View",
+                "Edit",
+                "Delete"
+            ],
+            "validation": [
+                "Type is required",
+                "Category is required",
+                "SKU Code is required",
+                "Warning The Packing section is mandatory \u2014 add it and list the packing material.",
+                "The Packing section is mandatory \u2014 add it and list the packing material.",
+                "Warning\nThe Packing section is mandatory \u2014 add it and list the packing material."
+            ],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/Category Master",
+            "menu": "Master > Product Catalogue > Category Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
+            "status": "explored",
+            "steps": 32,
+            "form": "Add Category",
+            "fields": [
+                {
+                    "label": "Category Name *",
+                    "name": "categoryName",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO Category Name"
+                },
+                {
+                    "label": "Description",
+                    "name": "description",
+                    "kind": "textarea",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO Description"
+                },
+                {
+                    "label": "RM Master",
+                    "name": "master",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                },
+                {
+                    "label": "Item Master",
+                    "name": "master",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                },
+                {
+                    "label": "Perfume RM Master",
+                    "name": "master",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                },
+                {
+                    "label": "Active",
+                    "name": "isActive",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "CATEGORY NAME",
+                "DESCRIPTION",
+                "MASTER",
+                "ACTIVE",
+                "ACTIONS"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add Category",
+                "Edit",
+                "Delete"
+            ],
+            "validation": [
+                "Category name is required",
+                "Please select a master",
+                "Warning Kindly fill out all the required fields.",
+                "Warning\nKindly fill out all the required fields.",
+                "Warning",
+                "Kindly fill out all the required fields."
+            ],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/Item Master",
+            "menu": "Master > Product Catalogue > Item Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "status": "explored",
+            "steps": 101,
+            "form": "Add Item",
+            "fields": [
+                {
+                    "label": "SKU Code *",
+                    "name": "skuCode",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "Type *",
+                    "name": "type",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "Domestic",
+                        "Export",
+                        "POS"
+                    ]
+                },
+                {
+                    "label": "Category *",
+                    "name": "productCategory",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "1 KG PACKETS",
+                        "250 GRAM ROLL (25 KG)",
+                        "250 GRAMS ROLL",
+                        "abcd",
+                        "Agarbathi Domestic",
+                        "AIR FRESHNER",
+                        "AUTO_CAT_ITEM_ACTIVE",
+                        "BAKHOOR HEBE 100GRM 6DZ",
+                        "BOX",
+                        "Box With Bag FG",
+                        "Box With OTR FG",
+                        "Box-FG",
+                        "CONES",
+                        "CONES JAR",
+                        "CONES JAR FG",
+                        "Cones-Domestic FG",
+                        "CTI001",
+                        "CTI002",
+                        "d active",
+                        "DHOOP",
+                        "DHOOP JAR",
+                        "DHOOP ZIPPER FG",
+                        "Dhoop-Domestic FG",
+                        "Dhoop-Jar FG",
+                        "diensh",
+                        "dinesh",
+                        "Domestic",
+                        "ECONOMY",
+                        "Economy-FG",
+                        "Export",
+                        "fsdfs",
+                        "HEXA PKTS - FG",
+                        "HEXAGON",
+                        "HEXAGON JAR",
+                        "Hexagon Jar-FG",
+                        "HEXAGON T/B",
+                        "Hexagon- FG",
+                        "JUMBO DHOOP",
+                        "JUMBO DHOOP ECO",
+                        "JUMBO DHOOP ECO FG"
+                    ]
+                },
+                {
+                    "label": "SKU Description *",
+                    "name": "skuDescription",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO SKU Description"
+                },
+                {
+                    "label": "Unit Price (INR) *",
+                    "name": "unitPrice",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "MRP (INR) *",
+                    "name": "mrp",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "SFG / Box *",
+                    "name": "sfgPerBox",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "HSN Code",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": false
+                },
+                {
+                    "label": "UOM *",
+                    "name": "uom",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "Dozens",
+                        "Cartons",
+                        "Pieces",
+                        "Grams",
+                        "Sticks"
+                    ]
+                },
+                {
+                    "label": "Minimum Stock *",
+                    "name": "minimumStock",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Dozens per Carton *",
+                    "name": "dozensPerCarton",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Grams / Stick *",
+                    "name": "gramsPerStick",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Length (cm) *",
+                    "name": "length",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Width (cm) *",
+                    "name": "width",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Height (cm) *",
+                    "name": "height",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Gross Wt (kg)",
+                    "name": "grossWeight",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Tare Wt (kg)",
+                    "name": "tareWeight",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Net Wt (kg)",
+                    "name": "netWeight",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "CBM (m3)",
+                    "name": "cbm",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "Active",
+                    "name": "isActive",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "CATEGORY",
+                "TYPE",
+                "SKU CODE",
+                "IMAGES",
+                "SKU DESCRIPTION",
+                "UNIT PRICE",
+                "HSN",
+                "UOM",
+                "DOZ/CARTON",
+                "GRAMS/STICK",
+                "GROSS WT",
+                "TARE WT",
+                "NET WT",
+                "L (CM)",
+                "W (CM)",
+                "H (CM)",
+                "CBM",
+                "ACTIVE",
+                "BOM STATUS",
+                "ACTIONS"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add Item",
+                "View images",
+                "Edit",
+                "Delete"
+            ],
+            "validation": [
+                "Category is required",
+                "SKU Description is required",
+                "Unit Price is required",
+                "MRP is required",
+                "SFG / Box is required",
+                "UOM is required",
+                "Minimum Stock is required",
+                "Dozens per Carton is required",
+                "Grams / Stick is required",
+                "Length is required",
+                "Width is required",
+                "Height is required",
+                "Warning Kindly fill out all the required fields."
+            ],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/Nurva Master",
+            "menu": "Master > Product Catalogue > Nurva Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+            "status": "explored",
+            "steps": 24,
+            "form": "",
+            "fields": [
+                {
+                    "label": "NM Code",
+                    "name": "nmCode",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "NM Description *",
+                    "name": "nmDescription",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO NM Description"
+                },
+                {
+                    "label": "NM Qty (Unit)",
+                    "name": "nmQty",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "NM CODE",
+                "NM DESCRIPTION",
+                "NM QTY (UNIT)",
+                "STATUS",
+                "ACTIONS"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add Nurva Master",
+                "View",
+                "Edit",
+                "Set Inactive",
+                "Delete"
+            ],
+            "validation": [],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/Patti Master",
+            "menu": "Master > Product Catalogue > Patti Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
+            "status": "explored",
+            "steps": 27,
+            "form": "",
+            "fields": [
+                {
+                    "label": "PM Code",
+                    "name": "pmCode",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "PM Description *",
+                    "name": "pmDescription",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO PM Description"
+                },
+                {
+                    "label": "PM Qty (Unit) *",
+                    "name": "pmQty",
+                    "kind": "number",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "PM CODE",
+                "PM DESCRIPTION",
+                "PM QTY (UNIT)",
+                "TOTAL COST",
+                "STATUS",
+                "ACTIONS"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add Patti Master",
+                "View",
+                "Edit",
+                "Set Inactive",
+                "Delete"
+            ],
+            "validation": [],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/Perfume RM Master",
+            "menu": "Master > Product Catalogue > Perfume RM Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
+            "status": "explored",
+            "steps": 22,
+            "form": "Add Perfume RM",
+            "fields": [
+                {
+                    "label": "Category *",
+                    "name": "category",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "SOLVENT-CP",
+                        "CHEMICALS -CP",
+                        "POWDER-CP",
+                        "PERFUME -CP",
+                        "PERFUME RTD -CP",
+                        "AUTO_CAT_PRM_ACTIVE"
+                    ]
+                },
+                {
+                    "label": "RM Code",
+                    "name": "code",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "RM Description *",
+                    "name": "description",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO RM Description"
+                },
+                {
+                    "label": "CAS No.",
+                    "name": "casNo",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO CAS No."
+                },
+                {
+                    "label": "UOM *",
+                    "name": "uom",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "KG",
+                        "LTR"
+                    ]
+                },
+                {
+                    "label": "Active",
+                    "name": "isActive",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                }
+            ],
+            "columns": [],
+            "buttons": [],
+            "validation": [
+                "Category is required",
+                "RM Description is required",
+                "UOM is required"
+            ],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/RM Item Master",
+            "menu": "Master > Product Catalogue > RM Item Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/rm-item-master/list",
+            "status": "explored",
+            "steps": 41,
+            "form": "Add RM Item",
+            "fields": [
+                {
+                    "label": "Department *",
+                    "name": "department",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "DIPPING",
+                        "FLORA",
+                        "PACKING"
+                    ]
+                },
+                {
+                    "label": "Category *",
+                    "name": "category",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "10'' to 15\" RAWBATHI - RM",
+                        "16\" RAWBATHI - RM",
+                        "19\" RAWBATHI - RM",
+                        "4 FEET & THICK BATHI - RM",
+                        "8\"  RAWBATHI - RM",
+                        "8\" RAWBATHI - RM",
+                        "9'' RAWBATHI - RM",
+                        "ABC",
+                        "ARTICLE",
+                        "ASSORTED NURVA",
+                        "AUTO PACKING - RM",
+                        "AUTO POWDER - RM",
+                        "AUTO STICKS - RM",
+                        "AUTO_CAT_RM_ACTIVE",
+                        "AUTO_CAT_RM_QUOTE 8\" TEST",
+                        "BAGS - RM",
+                        "BAMBOO STICKS - BS",
+                        "BAMBOO STICKS - RM",
+                        "BOPP - RM",
+                        "BOX - RM",
+                        "BOX INNER - RM",
+                        "BOX OUTTER - RM",
+                        "CHEMICALS - RM",
+                        "CHEMICALS -CP",
+                        "CONES BOX - RM",
+                        "CONES RAW - RM",
+                        "CTR001",
+                        "CTR002",
+                        "DHOOP BOX - RM",
+                        "DHOOP RAW - RM",
+                        "DHOOP STAND - RM",
+                        "ECONOMY - RM",
+                        "FLORA BATHI - RM",
+                        "HEXAGON - RM",
+                        "luci_test_rm",
+                        "MANTRA SERIES INNER - RM",
+                        "MANTRA SERIES OUTTER - RM",
+                        "MASTER CARTON - RM",
+                        "MATCH BOX - RM",
+                        "OTHER PACKING MATERIAL - RM"
+                    ]
+                },
+                {
+                    "label": "Description *",
+                    "name": "description",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO Description"
+                },
+                {
+                    "label": "Code",
+                    "name": "code",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "HSN Code",
+                    "name": "hsnCode",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QAAUTO01"
+                },
+                {
+                    "label": "UOM",
+                    "name": "uom",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO UOM"
+                },
+                {
+                    "label": "Active",
+                    "name": "isActive",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "DEPARTMENT",
+                "CATEGORY",
+                "CODE",
+                "DESCRIPTION",
+                "HSN",
+                "UOM",
+                "ACTIVE",
+                "ACTIONS"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add RM Item",
+                "Edit",
+                "Delete"
+            ],
+            "validation": [
+                "Department is required",
+                "Category is required",
+                "Description is required"
+            ],
+            "unexpected_save": false,
+            "notes": []
+        },
+        {
+            "flow": "Master/Product Catalogue/SFG Master",
+            "menu": "Master > Product Catalogue > SFG Master",
+            "url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/sfg-master/list",
+            "status": "explored",
+            "steps": 33,
+            "form": "",
+            "fields": [
+                {
+                    "label": "Department *",
+                    "name": "department",
+                    "kind": "dropdown",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "options": [
+                        "DIPPING",
+                        "FLORA"
+                    ]
+                },
+                {
+                    "label": "SFG Code",
+                    "name": "sfgCode",
+                    "kind": "text",
+                    "required": false,
+                    "readonly": true,
+                    "disabled": true
+                },
+                {
+                    "label": "Total Qty",
+                    "kind": "number",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "10"
+                },
+                {
+                    "label": "Description *",
+                    "name": "description",
+                    "kind": "text",
+                    "required": true,
+                    "readonly": false,
+                    "disabled": false,
+                    "sample": "QA-AUTO Description"
+                },
+                {
+                    "label": "Active",
+                    "name": "isActive",
+                    "kind": "toggle",
+                    "required": false,
+                    "readonly": false,
+                    "disabled": false
+                }
+            ],
+            "columns": [
+                "SL.NO",
+                "SFG CODE",
+                "DESCRIPTION",
+                "DEPARTMENT",
+                "ITEMS",
+                "TOTAL QTY",
+                "ACTIVE",
+                "ACTIONS"
+            ],
+            "buttons": [
+                "Pending Approvals",
+                "Add SFG",
+                "View",
+                "Edit",
+                "Delete"
+            ],
+            "validation": [],
+            "unexpected_save": false,
+            "notes": []
+        }
+    ]
+}

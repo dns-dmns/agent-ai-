@@ -1,0 +1,1978 @@
+[
+    {
+        "scenario_name": "Add Item form opens with mandatory fields marked",
+        "type": "ui",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "SKU Code *"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Type *"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Category *"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "SKU Description *"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "UOM *"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Minimum Stock *"
+            }
+        ],
+        "expected_result": "The Add Item dialog opens with SKU Code, Type, Category, SKU Description, UOM and Minimum Stock marked mandatory",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "SKU Code is auto-generated and read-only",
+        "type": "ui",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "SKU is auto-generated and unique"
+            },
+            {
+                "action": "VERIFY_READONLY",
+                "selector": "input[formcontrolname=\"skuCode\"]"
+            }
+        ],
+        "expected_result": "SKU Code is read-only and the form says it is auto-generated and unique",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Type offers Domestic, Export and POS",
+        "type": "ui",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "li[aria-label=\"Export\"]"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "li[aria-label=\"POS\"]"
+            }
+        ],
+        "expected_result": "The Type dropdown lists Domestic, Export and POS",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "CBM is calculated from length, width and height",
+        "type": "functional",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "30"
+            },
+            {
+                "action": "KEYPRESS",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "Tab"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "20"
+            },
+            {
+                "action": "KEYPRESS",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "Tab"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "10"
+            },
+            {
+                "action": "KEYPRESS",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "Tab"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "VERIFY_NON_ZERO",
+                "selector": "p-inputnumber[formcontrolname=\"cbm\"] input"
+            }
+        ],
+        "expected_result": "CBM is populated automatically (30 x 20 x 10 cm = 0.006 m3) once length, width and height are entered",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Save with every field empty is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1200"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Category is required"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "SKU Description is required"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            }
+        ],
+        "expected_result": "'Category is required' and 'SKU Description is required' are shown and nothing is saved",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Missing SKU Description is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1200"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "SKU Description is required"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            }
+        ],
+        "expected_result": "'SKU Description is required' is shown and the item is not saved; the form stays open",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Missing Category is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-NEG {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1200"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Category is required"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            }
+        ],
+        "expected_result": "'Category is required' is shown and the item is not saved; the form stays open",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Missing Unit Price is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-NEG {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1200"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            }
+        ],
+        "expected_result": "A required-field message is shown for Unit Price and the item is not saved; the form stays open",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Missing UOM is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-NEG {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1200"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            }
+        ],
+        "expected_result": "A required-field message is shown for UOM and the item is not saved; the form stays open",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Missing Minimum Stock is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-NEG {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1200"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": ".p-dialog"
+            }
+        ],
+        "expected_result": "A required-field message is shown for Minimum Stock and the item is not saved; the form stays open",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Letters are refused in a number field",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "abc"
+            },
+            {
+                "action": "KEYPRESS",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "Tab"
+            },
+            {
+                "action": "WAIT",
+                "value": "500"
+            },
+            {
+                "action": "VERIFY_VALUE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": ""
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Minimum Stock is required"
+            }
+        ],
+        "expected_result": "Minimum Stock refuses letters: the field stays empty and 'Minimum Stock is required' is shown",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Create an item with all mandatory fields",
+        "type": "positive",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-CREATE {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Added Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-CREATE {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "QA-AUTO-CREATE {{run_token}}"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-CREATE {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table tbody tr >> nth=0 >> button[title=\"Delete\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Confirm\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Deleted Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-CREATE {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "QA-AUTO-CREATE {{run_token}}"
+            }
+        ],
+        "expected_result": "'Item Added Successfully' is shown and the item is listed; it is then deleted",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Edit an item's description",
+        "type": "positive",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-EDIT {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Added Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-EDIT {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table tbody tr >> nth=0 >> button[title=\"Edit\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": ".p-dialog",
+                "value": "Edit Item"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[formcontrolname=\"skuDescription\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-EDIT {{run_token}} EDITED"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Updated Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-EDIT {{run_token}} EDITED"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "QA-AUTO-EDIT {{run_token}} EDITED"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-EDIT {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table tbody tr >> nth=0 >> button[title=\"Delete\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Confirm\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Deleted Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-EDIT {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "QA-AUTO-EDIT {{run_token}}"
+            }
+        ],
+        "expected_result": "'Item Updated Successfully' is shown and the new description is listed",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Cancelling a delete keeps the item",
+        "type": "positive",
+        "expected_intent": "persistence",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-KEEP {{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Added Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-KEEP {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table tbody tr >> nth=0 >> button[title=\"Delete\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "body",
+                "value": "Are you sure you want to delete this item?"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-confirmdialog button:has-text(\"Cancel\"), .p-dialog button:has-text(\"Cancel\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "QA-AUTO-KEEP {{run_token}}"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-KEEP {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table tbody tr >> nth=0 >> button[title=\"Delete\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Confirm\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Deleted Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-KEEP {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "QA-AUTO-KEEP {{run_token}}"
+            }
+        ],
+        "expected_result": "After Cancel on the delete confirmation the item remains listed",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Cancel closes the Add form without saving",
+        "type": "positive",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "QA-AUTO-CANCEL {{run_token}}"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Cancel\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "VERIFY_HIDDEN",
+                "selector": ".p-dialog"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-CANCEL {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "QA-AUTO-CANCEL {{run_token}}"
+            }
+        ],
+        "expected_result": "The dialog closes and no item is created",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Markup in SKU Description is stored as plain text",
+        "type": "security",
+        "expected_intent": "sanitised",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Add Item\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"type\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Domestic\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"productCategory\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-select-overlay li[role=\"option\"] >> nth=0"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[formcontrolname=\"skuDescription\"]",
+                "value": "<b>QA-AUTO-XSS {{run_token}}</b><img src=x onerror=alert(1)>"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"unitPrice\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"mrp\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"sfgPerBox\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": "p-select[formcontrolname=\"uom\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "CLICK",
+                "selector": "li[aria-label=\"Sticks\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "800"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"minimumStock\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"dozensPerCarton\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"gramsPerStick\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"length\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"width\"] input",
+                "value": "23"
+            },
+            {
+                "action": "TYPE",
+                "selector": "p-inputnumber[formcontrolname=\"height\"] input",
+                "value": "23"
+            },
+            {
+                "action": "CLICK",
+                "selector": ".p-dialog button:has-text(\"Save\")"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-XSS {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_CONTAINS",
+                "selector": "table",
+                "value": "QA-AUTO-XSS {{run_token}}"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-XSS {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "table tbody tr >> nth=0 >> button[title=\"Delete\"]"
+            },
+            {
+                "action": "WAIT",
+                "value": "1000"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Confirm\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Item Deleted Successfully"
+            },
+            {
+                "action": "WAIT",
+                "value": "1500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "QA-AUTO-XSS {{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "QA-AUTO-XSS {{run_token}}"
+            }
+        ],
+        "expected_result": "The markup is shown as literal text and no script runs",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Search narrows the list to matching items",
+        "type": "functional",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "CLEAR",
+                "selector": "input[placeholder=\"Search Item\"]"
+            },
+            {
+                "action": "TYPE",
+                "selector": "input[placeholder=\"Search Item\"]",
+                "value": "zz-no-such-item-{{run_token}}"
+            },
+            {
+                "action": "WAIT",
+                "value": "2000"
+            },
+            {
+                "action": "VERIFY_ROW_ABSENT",
+                "selector": "table",
+                "value": "zz-no-such-item-{{run_token}}"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "No items found"
+            }
+        ],
+        "expected_result": "Searching for a value no item has displays 'No items found'",
+        "_generated": "claude"
+    },
+    {
+        "scenario_name": "Item list shows its columns and paging",
+        "type": "ui",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "NAVIGATE",
+                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+            },
+            {
+                "action": "WAIT",
+                "value": "2500"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "CATEGORY"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "TYPE"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "SKU CODE"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "SKU DESCRIPTION"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "UOM"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "table",
+                "value": "ACTIVE"
+            },
+            {
+                "action": "VERIFY_TEXT",
+                "selector": "body",
+                "value": "Showing 1 to 10 of"
+            }
+        ],
+        "expected_result": "The list displays its main columns and a 'Showing 1 to 10 of N entries' pager",
+        "_generated": "claude"
+    }
+]

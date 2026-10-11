@@ -1,0 +1,528 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Product Catalogue",
+        "label": "",
+        "required": false,
+        "value": "Product Catalogue",
+        "role": "listitem",
+        "accessible_name": "Product Catalogue",
+        "text_full": "Product Catalogue",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Nurva Master",
+        "label": "",
+        "required": false,
+        "value": "Nurva Master",
+        "role": "listitem",
+        "accessible_name": "Nurva Master",
+        "text_full": "Nurva Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "NM CODE",
+        "label": "",
+        "required": false,
+        "value": "NM CODE",
+        "role": "",
+        "accessible_name": "NM CODE",
+        "text_full": "NM CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "NM DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "NM DESCRIPTION",
+        "role": "",
+        "accessible_name": "NM DESCRIPTION",
+        "text_full": "NM DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "NM QTY (UNIT)",
+        "label": "",
+        "required": false,
+        "value": "NM QTY (UNIT)",
+        "role": "",
+        "accessible_name": "NM QTY (UNIT)",
+        "text_full": "NM QTY (UNIT)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-nurva-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Nurva Master\")",
+        "selectors": [
+            "button:has-text(\"Add Nurva Master\")",
+            "text=\"Add Nurva Master\"",
+            "div > div:nth-of-type(3) > div > div > app-nurva-master-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Nurva Master",
+        "label": "",
+        "required": false,
+        "value": "Add Nurva Master",
+        "role": "button",
+        "accessible_name": "Add Nurva Master",
+        "text_full": "Add Nurva Master",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "tr:has-text(\"1\tNM 0001\tBrown Nurva\t30.000\t\") [title=\"View\"]",
+            "div > app-nurva-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tNM 0001\tBrown Nurva\t30.000\t\") [title=\"Edit\"]",
+            "div > app-nurva-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Set Inactive\"]",
+        "selectors": [
+            "button[title=\"Set Inactive\"]",
+            "[aria-label=\"Set Inactive\"]",
+            "button:has(i.pi-ban)",
+            "tr:has-text(\"1\tNM 0001\tBrown Nurva\t30.000\t\") [title=\"Set Inactive\"]",
+            "div > app-nurva-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Set Inactive",
+        "text_full": "",
+        "attrs": {
+            "title": "Set Inactive"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tNM 0001\tBrown Nurva\t30.000\t\") [title=\"Delete\"]",
+            "div > app-nurva-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Nurva Master\")",
+        "selectors": [
+            "button:has-text(\"Add Nurva Master\")",
+            "text=\"Add Nurva Master\"",
+            "div > div:nth-of-type(3) > div > div > app-nurva-master-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Nurva Master",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Nurva Master",
+        "text_full": "Add Nurva Master",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
+            "messages": [
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Product Catalogue",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Nurva Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Add Nurva Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Save",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"NM Code\"",
+        "selectors": [
+            "text=\"NM Code\"",
+            "div:nth-of-type(3) > div > div > app-nurva-master-form > div > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "NM Code",
+        "label": "NM Code",
+        "required": false,
+        "value": "NM Code",
+        "role": "",
+        "accessible_name": "NM Code",
+        "text_full": "NM Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"NM Description *\"",
+        "selectors": [
+            "text=\"NM Description *\"",
+            "div:nth-of-type(3) > div > div > app-nurva-master-form > div > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "NM Description *",
+        "label": "NM Description *",
+        "required": false,
+        "value": "NM Description *",
+        "role": "",
+        "accessible_name": "NM Description *",
+        "text_full": "NM Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"NM Qty (Unit)\"",
+        "selectors": [
+            "text=\"NM Qty (Unit)\"",
+            "div:nth-of-type(3) > div > div > app-nurva-master-form > div > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "NM Qty (Unit)",
+        "label": "NM Qty (Unit)",
+        "required": false,
+        "value": "NM Qty (Unit)",
+        "role": "",
+        "accessible_name": "NM Qty (Unit)",
+        "text_full": "NM Qty (Unit)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": null
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"nmDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"nmDescription\"]",
+            "input[formcontrolname=\"nmDescription\"]",
+            "input[placeholder=\"e.g. BABA FLORA 8'' BATHI\"]",
+            "div:nth-of-type(3) > div > div > app-nurva-master-form > div > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. BABA FLORA 8'' BATHI",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"nmDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"nmDescription\"]",
+            "input[formcontrolname=\"nmDescription\"]",
+            "input[placeholder=\"e.g. BABA FLORA 8'' BATHI\"]",
+            "div:nth-of-type(3) > div > div > app-nurva-master-form > div > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO NM Description",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. BABA FLORA 8'' BATHI",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": null
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+        "screenshot": null,
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
+            "messages": [
+                {
+                    "text": "Add Nurva Master\nSL.NO\tNM CODE \tNM DESCRIPTION\tNM QTY (UNIT) \tSTATUS\tACTIONS\nNo Nurva Master records found",
+                    "selector": "app-nurva-master-list.ng-star-inserted"
+                },
+                {
+                    "text": "Nurva Master\nMaster\nProduct Catalogue\nNurva Master",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Nurva Master",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Product Catalogue",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Add Nurva Master",
+                    "selector": "p-button.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    }
+]
