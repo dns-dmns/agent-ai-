@@ -1074,3 +1074,10 @@ input[type="checkbox"]:checked::after {
     body { overflow: visible; }
     .view-scroll { overflow: visible; }
 }
+
+/* ── Test source badges (ui-sources.js) ──────────────────────────────── */
+/* Distinct from the verdict colours on purpose: a source is not a result. */
+.source-badge { margin-left: var(--space-2); border: 1px solid transparent; }
+.source-claude { color: var(--accent); background: var(--accent-quiet); }
+.source-gemini { color: var(--text-secondary); background: transparent; border-color: var(--accent); }
+.source-user   { color: var(--text); background: var(--idle-quiet); }

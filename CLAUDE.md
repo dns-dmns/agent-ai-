@@ -503,6 +503,30 @@ are marked `interrupted`. `execute_suite` is the one place a raising run becomes
 the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI polling
 (`/trigger-run` → `/run-status/{id}`), and the scheduler.
 
+### Test-case sources — `app/sources.py`
+
+Every case carries `_generated`: `claude`, `gemini`, `user` (CSV/worksheet),
+`coverage`, `defect`, `rule`, `relationship`, `duplicate`; untagged older cases
+read as `manual`. Gemini generation (`/analyze-flow`, multi-agent) used to
+**overwrite** `test_cases.json`, silently deleting every uploaded, enumerated and
+hand-written case; both now call `sources.replace_source(existing, new, "gemini")`,
+which swaps only that source's cases. Untagged cases are never treated as
+Gemini's — a regeneration must not delete what it cannot prove it wrote.
+`RunConfig.sources` / `?sources=claude,gemini` filters strictly: an empty match
+runs nothing, unlike the type filter's fall-back to everything.
+`web/ui-sources.js` adds the badge, the "Test source" filter, and appends
+`&sources=` to the run stream by wrapping `EventSource` (app.js builds that URL
+inline). Claude-written cases are merged the same way with source `claude`.
+
+### Typing into masked number widgets
+
+`loc.fill()` pastes a value in one event. PrimeNG `p-inputnumber` (and any
+`role=spinbutton` text input) acts only on keystrokes, so a pasted value skipped
+its letter filter and the calculations bound to it — Liberty's CBM stayed empty
+and letters typed into Minimum Stock were not recorded as refused.
+`is_keystroke_widget()` detects these and TYPE re-enters the value with
+`press_sequentially`. Native `type=number` inputs are unaffected.
+
 ### Authentication
 
 `api_key_guard` in `main.py`. With no `QA_API_KEY`, only loopback clients are

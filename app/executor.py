@@ -40,6 +40,7 @@ from . import contracts
 from . import coverage
 from . import heuristics
 from . import learned
+from . import sources as case_sources
 from . import storage
 from . import rules as rules_engine
 from . import verdict as verdict_engine
@@ -332,6 +333,7 @@ class RunConfig:
     relationship_checks: bool = False      # append generated dependency scenarios
     apply_rules: bool = True               # enforce project/flow rules in verdicts
     triggered_by: str = "dashboard"
+    sources: str = ""                      # "claude,gemini" -- empty means every source
 
     @property
     def headless(self) -> bool:
@@ -799,6 +801,22 @@ def _same_input(typed: str, actual: str) -> bool:
     return False
 
 
+KEYSTROKE_WIDGET_JS = """el => {
+    if (!el || el.tagName !== 'INPUT' || el.type === 'number') return false;
+    if (el.closest('p-inputnumber, .p-inputnumber')) return true;
+    if (el.getAttribute('role') === 'spinbutton') return true;
+    return false;
+}"""
+
+
+async def is_keystroke_widget(loc) -> bool:
+    """A masked numeric input that only reacts to real key events."""
+    try:
+        return bool(await loc.evaluate(KEYSTROKE_WIDGET_JS))
+    except Exception:
+        return False
+
+
 async def note_input_rejection(page, loc, step: dict, typed: str, evidence) -> None:
     """Record when a widget refuses the value instead of storing it.
 
@@ -1231,6 +1249,14 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
                 try:
                     await highlight(loc)
                     await loc.fill(value, timeout=5000 if headless else 8000)
+                    if value and await is_keystroke_widget(loc):
+                        # fill() pastes the value in one event. Masked number
+                        # widgets (PrimeNG p-inputnumber and similar) act only on
+                        # keystrokes, so a pasted value skips their formatting,
+                        # their letter filter and any calculation bound to them
+                        # (Liberty's CBM stayed empty). Type it as a person would.
+                        await loc.fill("")
+                        await loc.press_sequentially(value, delay=15)
                     result["selector_used"] = used
                     await note_input_rejection(page, loc, step, value, evidence)
                     return result
@@ -3618,7 +3644,9 @@ def select_scenarios(raw_cases: list, cfg: RunConfig) -> list[dict]:
     for original_index, scenario in enumerate(raw_cases, start=1):
         scenario["_original_id"] = original_index
 
-    cases = list(raw_cases)
+    # Source first, and strictly: asking for Claude's cases must never quietly
+    # run Gemini's because none matched.
+    cases = case_sources.filter_by_sources(list(raw_cases), cfg.sources)
 
     if cfg.case_ids.strip():
         wanted = {c.strip() for c in cfg.case_ids.split(",") if c.strip()}

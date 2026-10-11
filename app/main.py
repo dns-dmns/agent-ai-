@@ -52,6 +52,7 @@ from . import framework_runner
 from . import learned
 from . import llm
 from . import storage
+from . import sources
 from . import recorder
 from . import rules
 from . import scheduler
@@ -1168,7 +1169,11 @@ async def analyze_flow_api(flow_name: str, project_name: str = config.DEFAULT_PR
         raise HTTPException(status_code=502,
                             detail="The model did not return a specification object.")
 
-    write_json(flow_path / "test_cases.json", analysis.get("test_cases", []))
+    # Replace only Gemini's own cases: an uploaded sheet, coverage cases or
+    # Claude's cases in the same suite must survive a regeneration.
+    write_json(flow_path / "test_cases.json", sources.replace_source(
+        read_json(flow_path / "test_cases.json", []) or [],
+        analysis.get("test_cases", []), "gemini"))
     write_json(flow_path / "scripts.json", analysis.get("scripts", {
         "playwright_python": "", "cypress_js": "", "selenium_java": ""}))
     write_json(flow_path / "test_data.json", analysis.get("test_data", {
@@ -1405,7 +1410,10 @@ async def generate_multi_agent_stream(flow_name: str,
                                   f"— the agents guessed them. Run the selector pre-flight "
                                   f"before trusting this suite."})
 
-        write_json(flow_path / "test_cases.json", all_cases)
+        # Replace only Gemini's own cases (see sources.replace_source). This used
+        # to overwrite the file, deleting every uploaded and enumerated case.
+        write_json(flow_path / "test_cases.json", sources.replace_source(
+            read_json(flow_path / "test_cases.json", []) or [], all_cases, "gemini"))
         write_json(flow_path / "generation_meta.json", {
             "grounding": grounding,
             "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -1998,7 +2006,7 @@ async def run_matrix_stream(flow_name: str, num_cases: int = -1, mode: str = "he
                             data_matrix: str = "", visual_check: bool = False,
                             env_name: str = "", api_seed_name: str = "",
                             seed_once: bool = True, relationship_checks: bool = False,
-                            apply_rules: bool = True):
+                            apply_rules: bool = True, sources: str = ""):
     """Execute the suite, streaming progress over SSE (dashboard entry point)."""
     validate_safe_path(project_name, flow_name, auth_flow)
     flow_path = config.flow_dir(project_name, flow_name)
@@ -2013,7 +2021,7 @@ async def run_matrix_stream(flow_name: str, num_cases: int = -1, mode: str = "he
         dep_unique_data=dep_unique_data, data_matrix=data_matrix,
         visual_check=visual_check, env_name=env_name, api_seed=api_seed_name,
         seed_once=seed_once, relationship_checks=relationship_checks,
-        apply_rules=apply_rules, triggered_by="dashboard",
+        apply_rules=apply_rules, triggered_by="dashboard", sources=sources,
     )
     state = executor.register_run(project_name, flow_name)
     queue: asyncio.Queue = asyncio.Queue()
@@ -2083,7 +2091,8 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
                       tracing: bool = False, dep_unique_data: bool = False,
                       data_matrix: str = "", visual_check: bool = False,
                       seed_once: bool = True, relationship_checks: bool = False,
-                      apply_rules: bool = True, triggered_by: str = "ci"):
+                      apply_rules: bool = True, triggered_by: str = "ci",
+                      sources: str = ""):
     """Fire-and-forget entry point for CI/CD. Returns a run_id to poll.
 
     Accepts the same knobs as the dashboard stream so a pipeline can run a
@@ -2102,7 +2111,7 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
         step_shots=step_shots, tracing=tracing, dep_unique_data=dep_unique_data,
         data_matrix=data_matrix, visual_check=visual_check, seed_once=seed_once,
         relationship_checks=relationship_checks, apply_rules=apply_rules,
-        triggered_by=triggered_by,
+        triggered_by=triggered_by, sources=sources,
     )
     state = executor.register_run(project_name, flow_name)
 
