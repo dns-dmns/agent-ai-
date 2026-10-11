@@ -38,6 +38,7 @@ import io
 import re
 import sys
 import time
+import traceback
 from dataclasses import dataclass, field
 from typing import Any, Awaitable, Callable
 
@@ -343,13 +344,14 @@ def sample_value(f: dict) -> str | None:
 class Explorer:
     def __init__(self, project: str, login_url: str, *, headless: bool = True,
                  only: str = "", workers: int = 3, empty_save: bool = True,
-                 emit: Emit | None = None) -> None:
+                 skip_existing: bool = False, emit: Emit | None = None) -> None:
         self.project = project
         self.login_url = login_url
         self.headless = headless
         self.only = only.lower().strip()
         self.workers = max(1, workers)
         self.empty_save = empty_save
+        self.skip_existing = skip_existing
         self._emit = emit
         self.results: list[ScreenResult] = []
 
@@ -359,6 +361,10 @@ class Explorer:
             out = self._emit(message)
             if asyncio.iscoroutine(out):
                 await out
+
+    def already_explored(self, path: list[str]) -> bool:
+        meta = storage.read_json(config.flow_dir(self.project, flow_name_for(path)) / "flow.json", {})
+        return bool(meta) and meta.get("source") == "explorer"
 
     # ── login ────────────────────────────────────────────────────────
     async def login(self, page: Page) -> None:
@@ -489,21 +495,30 @@ class Explorer:
             if DANGER.search(label):
                 result.notes.append(f"'{label}' looks unsafe; not opened.")
             else:
-                await add.click()
-                await page.wait_for_timeout(EFFECT_WAIT_MS)
-                await pacing.settle(page, 6000)
-                in_dialog = await page.evaluate(FORM_ROOT_JS) == "dialog"
-                scope = ".p-dialog, [role=dialog], .modal.show, mat-dialog-container" if in_dialog else ""
-                await self.form(page, session, scope, result, allow_empty_save, target)
-                if in_dialog:
-                    await self.close_form(page, scope)
-                elif page.url != url:
-                    await page.go_back()
+                try:
+                    await add.click()
+                    await page.wait_for_timeout(EFFECT_WAIT_MS)
                     await pacing.settle(page, 6000)
+                    in_dialog = await page.evaluate(FORM_ROOT_JS) == "dialog"
+                    scope = ".p-dialog, [role=dialog], .modal.show, mat-dialog-container" if in_dialog else ""
+                    await self.form(page, session, scope, result, allow_empty_save, target)
+                    if in_dialog:
+                        await self.close_form(page, scope)
+                    elif page.url != url:
+                        await page.go_back()
+                        await pacing.settle(page, 6000)
+                except Exception as err:
+                    # Keep what was recorded; say what could not be done.
+                    result.notes.append(f"Form not fully explored: {str(err).splitlines()[0][:160]}")
+                    await self.log(f"  {name}: form step failed — {str(err).splitlines()[0][:120]}")
+                    try:
+                        await page.keyboard.press("Escape")
+                    except Exception:
+                        pass
         else:
             fields = await page.evaluate(FIELDS_JS, "")
             if len(fields) >= 3:
-                result.notes.append("Page is itself a form; labels documented, nothing filled.")
+                result.notes.append("Screen has input fields (search/filter boxes or a form) and no Add button; their labels were documented, nothing was filled.")
                 await self.assert_mode(page, True)
                 for t in (await page.evaluate(CHECK_TARGETS_JS, "app-pages, main"))[:MAX_FIELDS]:
                     if t["kind"] == "label":
@@ -550,7 +565,18 @@ class Explorer:
                           and not f["disabled"] and not f["readonly"]]
         if scope and allow_empty_save and required_empty:
             save = page.locator(scope).locator("button").filter(has_text=SAVE_BUTTON).last
-            if await save.count() and await save.is_visible():
+            if await save.count() and await save.is_visible() and not await save.is_enabled():
+                # The form gates submission instead of showing messages: Save
+                # stays disabled until the mandatory fields are filled. That is
+                # the rule to test, so record it as a check.
+                text = (await save.inner_text()).strip() or "Save"
+                session.actions.append({
+                    "action": "VERIFY_DISABLED", "selector": f'button:has-text("{text}")',
+                    "selectors": [f'button:has-text("{text}")'], "tag": "button", "text": text,
+                    "value": "", "screenshot": None, "asserted": True,
+                    "synthetic": "save disabled while mandatory fields are empty"})
+                result.notes.append(f"'{text}' stays disabled until the mandatory fields are filled.")
+            elif await save.count() and await save.is_visible():
                 await save.click()
                 await page.wait_for_timeout(EFFECT_WAIT_MS)
                 still_open = await page.evaluate(FORM_ROOT_JS) == "dialog"
@@ -711,6 +737,7 @@ class Explorer:
         await context.expose_function("recordPlaywrightEvent", session.handle)
         await context.add_init_script(recorder.JS_RECORDER_SCRIPT)
         page = await context.new_page()
+        page.set_default_timeout(10000)
         await pacing.track(page)
         return page
 
@@ -733,19 +760,34 @@ class Explorer:
             for item in screens_found:
                 queue.put_nowait(item)
 
-            async def worker(slot: int) -> None:
+            async def fresh():
                 context = await self.new_context(browser, state_file)
                 session = Session()
-                page = await self.wire(context, session)
+                return context, session, await self.wire(context, session)
+
+            async def worker(slot: int) -> None:
+                context, session, page = await fresh()
                 try:
                     while True:
                         try:
                             path, url = queue.get_nowait()
                         except asyncio.QueueEmpty:
                             return
+                        if self.skip_existing and self.already_explored(path):
+                            continue
+                        # A screen can close its own tab or crash the renderer;
+                        # one bad screen must not take the rest of the run down.
+                        if page.is_closed():
+                            try:
+                                await context.close()
+                            except Exception:
+                                pass
+                            context, session, page = await fresh()
                         try:
                             res = await asyncio.wait_for(self.screen(page, session, path, url), 240)
                         except Exception as err:
+                            log.warning("Screen %s failed: %s", " > ".join(path),
+                                        traceback.format_exc(limit=6))
                             session.stop()
                             res = ScreenResult(flow_name_for(path), path, url, status="error",
                                                notes=[str(err).splitlines()[0][:200]])
@@ -757,10 +799,21 @@ class Explorer:
                         await self.log(f"  [{len(self.results)}/{len(screens_found)}] {res.status:<8} "
                                        f"{res.flow_name}  ({res.steps} steps, {len(res.fields)} fields)")
                 finally:
-                    await context.close()
+                    try:
+                        await context.close()
+                    except Exception:
+                        pass
 
-            await asyncio.gather(*(worker(i) for i in range(self.workers)))
-            await browser.close()
+            outcomes = await asyncio.gather(*(worker(i) for i in range(self.workers)),
+                                            return_exceptions=True)
+            for outcome in outcomes:
+                if isinstance(outcome, BaseException):
+                    tb = "".join(traceback.format_exception(outcome, limit=6))
+                    await self.log(f"A worker stopped: {outcome!r} {tb}")
+            try:
+                await browser.close()
+            except Exception:
+                pass
 
         summary = self.write_summary(time.time() - started)
         await self.log(f"Done: {summary['explored']} explored, {summary['kept']} kept, "
@@ -781,13 +834,19 @@ class Explorer:
                 "columns": r.columns, "buttons": r.buttons, "validation": r.validation,
                 "unexpected_save": r.unexpected_save, "notes": r.notes,
             })
+        # Screens not visited this time (--skip-existing, --only) keep their
+        # earlier rows, so the summary always describes the whole application.
+        previous = storage.read_json(out_dir / "summary.json", {}) or {}
+        this_run = {row["flow"] for row in rows}
+        rows += [row for row in previous.get("screens", []) if row.get("flow") not in this_run]
+        rows.sort(key=lambda r: r["flow"].lower())
         summary = {
             "project": self.project, "login_url": self.login_url,
             "explored_at": time.strftime("%Y-%m-%d %H:%M:%S"), "seconds": int(seconds),
-            "explored": sum(r.status == "explored" for r in self.results),
-            "kept": sum(r.status == "kept" for r in self.results),
-            "errors": sum(r.status == "error" for r in self.results),
-            "unexpected_saves": [r.flow_name for r in self.results if r.unexpected_save],
+            "explored": sum(r["status"] == "explored" for r in rows),
+            "kept": sum(r["status"] == "kept" for r in rows),
+            "errors": sum(r["status"] == "error" for r in rows),
+            "unexpected_saves": [r["flow"] for r in rows if r.get("unexpected_save")],
             "screens": rows,
         }
         storage.write_json(out_dir / "summary.json", summary)
@@ -818,11 +877,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--headed", action="store_true")
     parser.add_argument("--no-empty-save", action="store_true")
+    parser.add_argument("--skip-existing", action="store_true",
+                        help="leave screens explored earlier alone (re-run only the rest)")
     args = parser.parse_args(argv)
     if sys.platform == "win32":
         asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
     explorer = Explorer(args.project, args.url, headless=not args.headed, only=args.only,
                         workers=args.workers, empty_save=not args.no_empty_save,
+                        skip_existing=args.skip_existing,
                         emit=None)  # the logger already prints to the console
     summary = asyncio.run(explorer.run())
     return 0 if not summary["errors"] else 1
