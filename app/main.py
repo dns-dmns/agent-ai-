@@ -15,6 +15,7 @@ if sys.platform == "win32":
 
 import csv
 import glob
+import hmac
 import io
 import json
 import mimetypes
@@ -50,6 +51,7 @@ from . import export_project
 from . import framework_runner
 from . import learned
 from . import llm
+from . import storage
 from . import recorder
 from . import rules
 from . import scheduler
@@ -89,21 +91,43 @@ if _web_dir.exists():
 PUBLIC_PATHS = ("/", "/legacy", "/health", "/favicon.ico", "/docs", "/openapi.json", "/redoc")
 
 
+LOOPBACK_HOSTS = {"127.0.0.1", "::1", "localhost"}
+
+
+def is_loopback(request: Request) -> bool:
+    host = (request.client.host if request.client else "") or ""
+    return host in LOOPBACK_HOSTS or host.startswith("127.")
+
+
 @app.middleware("http")
 async def api_key_guard(request: Request, call_next):
-    """Optional shared-secret auth. Disabled entirely when QA_API_KEY is unset."""
+    """Shared-secret auth.
+
+    No key configured: this machine only, unless QA_ALLOW_REMOTE_WITHOUT_KEY=1.
+    Key configured: every non-public path needs it, as the X-API-Key header (CI)
+    or the qa_api_key cookie (the dashboard). Never as a query parameter -- a URL
+    is written to access logs, proxy logs and browser history.
+    """
     if not config.API_KEY:
-        return await call_next(request)
+        if config.ALLOW_REMOTE_WITHOUT_KEY or is_loopback(request):
+            return await call_next(request)
+        return JSONResponse(
+            status_code=403,
+            content={"detail": "Remote access is disabled because no API key is set. "
+                               "Set QA_API_KEY on the server (recommended), or "
+                               "QA_ALLOW_REMOTE_WITHOUT_KEY=1 on a trusted network."},
+        )
     path = request.url.path
     if path in PUBLIC_PATHS:
         return await call_next(request)
-    supplied = (
-        request.headers.get("X-API-Key")
-        or request.query_params.get("api_key")
-        or request.cookies.get("qa_api_key")
-        or ""
-    )
-    if supplied != config.API_KEY:
+    if "api_key" in request.query_params:
+        return JSONResponse(
+            status_code=401,
+            content={"detail": "Send the API key in the X-API-Key header, not the URL "
+                               "(URLs end up in logs)."},
+        )
+    supplied = request.headers.get("X-API-Key") or request.cookies.get("qa_api_key") or ""
+    if not hmac.compare_digest(supplied.encode(), config.API_KEY.encode()):
         return JSONResponse(
             status_code=401,
             content={"detail": "Invalid or missing API key. Set it in the dashboard header."},
@@ -160,20 +184,12 @@ def no_cache(response: Response) -> None:
 
 
 def read_json(path: Path, default: Any = None) -> Any:
-    try:
-        with open(path, "r", encoding="utf-8") as fh:
-            return json.load(fh)
-    except Exception:
-        return default
+    return storage.read_json(path, default)
 
 
 def write_json(path: Path, payload: Any) -> None:
     """Atomic write so a crash or a concurrent reader never sees half a file."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    with open(tmp, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh, indent=4)
-    os.replace(tmp, path)
+    storage.write_json(path, payload)
 
 
 def sse(payload: dict) -> str:
@@ -1157,9 +1173,8 @@ async def analyze_flow_api(flow_name: str, project_name: str = config.DEFAULT_PR
         "playwright_python": "", "cypress_js": "", "selenium_java": ""}))
     write_json(flow_path / "test_data.json", analysis.get("test_data", {
         "valid": [], "invalid": [], "boundary": []}))
-    (flow_path / "documentation.md").write_text(
-        analysis.get("documentation_markdown", ""), encoding="utf-8"
-    )
+    storage.write_text(flow_path / "documentation.md",
+                       analysis.get("documentation_markdown", ""))
     write_json(flow_path / "suggestions.json", analysis.get("suggestions", {
         "broken_selectors": [], "missing_validations": [], "recommendations": []}))
     write_json(flow_path / "spec.json", analysis)
@@ -1698,6 +1713,7 @@ async def upload_user_cases(flow_name: str, file: UploadFile = File(...),
     return {"status": "success", "added": added, "updated": updated,
             "total_cases": len(merged), "blocked": built["blocked"],
             "unresolved_columns": built["unresolved_columns"],
+            "warnings": built.get("warnings", []),
             "message": summary}
 
 
@@ -2116,14 +2132,35 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
 async def run_status(run_id: str, response: Response, include_report: bool = False):
     no_cache(response)
     state = executor.RUN_REGISTRY.get(run_id)
-    if not state:
+    if state:
+        payload = state.snapshot()
+        if include_report and state.report:
+            payload["report"] = state.report
+        return payload
+    # Not in memory: the server restarted since. The durable copy still answers.
+    payload = db.load_run_state(run_id)
+    if not payload:
         raise HTTPException(status_code=404, detail="Unknown run id.")
-    payload = state.snapshot()
-    payload["exit_code"] = 0 if (state.status == "complete" and not state.failed
-                                 and not state.crashed) else 1
-    if include_report and state.report:
-        payload["report"] = state.report
+    if include_report:
+        report = archived_report(payload.get("project_name", ""),
+                                 payload.get("flow_name", ""), run_id)
+        if report:
+            payload["report"] = report
     return payload
+
+
+def archived_report(project_name: str, flow_name: str, run_id: str) -> dict | None:
+    """The timestamped report a past run wrote, found through run_history.json."""
+    try:
+        flow_path = config.flow_dir(project_name, flow_name)
+    except Exception:  # noqa: BLE001
+        return None
+    for entry in read_json(flow_path / "run_history.json", []) or []:
+        if entry.get("run_id") == run_id and entry.get("report_file"):
+            target = (flow_path / entry["report_file"]).resolve()
+            if flow_path.resolve() in target.parents:
+                return read_json(target)
+    return None
 
 
 @app.get("/list-runs")
@@ -3720,6 +3757,10 @@ async def delete_schedule(project_name: str, schedule_id: str):
 async def on_startup() -> None:
     llm.configure()
     db.init()
+    orphaned = db.mark_interrupted_runs()
+    if orphaned:
+        log.warning("%d run(s) were in progress when the server last stopped; "
+                    "marked interrupted.", orphaned)
     log.info("Workspace: %s", config.BASE_DIR)
     log.info("AI configured: %s (model %s)", bool(config.GEMINI_API_KEY), config.GEMINI_MODEL)
     log.info("Authentication: %s", "enabled" if config.API_KEY else "disabled (local only)")

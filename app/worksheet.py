@@ -316,6 +316,7 @@ def build_from_worksheet(data: bytes, filename: str, fields: list[dict], *,
     rows, notes = generate_rows(parsed, fields)
     built = user_cases.build_cases(rows, fields, add_selector=add_selector,
                                    submit_selector=submit_selector)
+    notes += [f"{w['scenario']}: {w['reason']}" for w in built.get("warnings", [])]
 
     # Worksheet fields the module inventory does not recognise — reported, so a
     # mistyped label or an unrecorded field is visible rather than silent.

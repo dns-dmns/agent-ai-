@@ -375,3 +375,14 @@ Two of these carry the weight:
 * Vision healing needs an API key and is skipped for destructive controls.
 * Visual regression needs `pillow`; XLSX row counts need `openpyxl`.
 * Deletes are soft: flows and projects move to `.trash/` with a timestamp.
+* **Network access.** With no `QA_API_KEY` the server answers this machine only;
+  other addresses (including Docker's bridge) get 403. Set `QA_API_KEY` and send
+  it as the `X-API-Key` header — a `?api_key=` URL parameter is refused, because
+  URLs end up in logs. `QA_ALLOW_REMOTE_WITHOUT_KEY=1` opens it unauthenticated,
+  for a trusted network only.
+* **CI polling survives restarts.** `/run-status/{id}` reads a durable copy of the
+  run's state; a run cut off by a restart reports `interrupted` (exit code 1).
+* **Declare intent when you know it.** A test case may carry
+  `"expected_intent": "error" | "success" | "absence" | "persistence" | "sanitised" | "stability"`;
+  it overrides how the expected-result wording is read. Uploaded sheets set it
+  from the Type column (Positive/Negative).

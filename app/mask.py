@@ -7,7 +7,6 @@ prompts, and logs before they are saved to disk or sent to external LLMs.
 
 from __future__ import annotations
 
-import copy
 import re
 from typing import Any
 

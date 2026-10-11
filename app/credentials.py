@@ -22,6 +22,7 @@ from __future__ import annotations
 import json
 
 from . import config
+from . import storage
 
 log = config.get_logger("credentials")
 
@@ -75,11 +76,14 @@ def store(project_name: str, **values: str) -> None:
     fresh = {k: v for k, v in values.items() if v}
     if not fresh:
         return
-    current = load_stored(project_name)
-    current.update(fresh)
     path = store_file(project_name)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(current, indent=2), encoding="utf-8")
+    # Locked read-merge-write: recording a login while a run resolves the same
+    # store must not drop either side's values. A torn write here would lose the
+    # only copy of a password that the committed suite now refers to by placeholder.
+    with storage.locked(path):
+        current = load_stored(project_name)
+        current.update(fresh)
+        storage.write_json(path, current, indent=2)
 
 
 def scrub_recorded_actions(actions: list, project_name: str) -> dict:

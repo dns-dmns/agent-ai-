@@ -189,7 +189,7 @@ def step_to_js(step: dict, index: dict[str, str], *,
     if action == "STORE":
         return [f"const {camel(str(value), 'captured')} = "
                 f"(await {target}.inputValue().catch(() => {target}.innerText())).trim();",
-                f"// captured for a later step / test-data file"]
+                "// captured for a later step / test-data file"]
     if action == "DIALOG":
         accept = "accept" if str(value).lower() != "dismiss" else "dismiss"
         return [f"this.page.once('dialog', (d) => d.{accept}());"]

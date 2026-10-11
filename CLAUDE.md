@@ -20,20 +20,22 @@ run_server.bat                   # CMD equivalent
 python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000   # equivalent to app.main:app
 
 # Tests
-.venv\Scripts\python.exe -m pytest tests -q                    # unit (63)
+.venv\Scripts\python.exe -m ruff check .                       # lint (correctness rules)
+.venv\Scripts\python.exe -m pytest tests -q                    # unit
 .venv\Scripts\python.exe -m pytest tests/test_core.py -q       # one file
 .venv\Scripts\python.exe -m pytest tests -q -k verdict         # one pattern
 .venv\Scripts\python.exe tests\e2e_selftest.py                 # real browser, 13 verdict cases
 .venv\Scripts\python.exe tests\smoke_ui.py                     # boots server, drives dashboard
 .venv\Scripts\python.exe tests\integration_api.py              # CI endpoints, auth, cancellation
 .venv\Scripts\python.exe tests\regression_existing_data.py     # backward-compat vs real projects/
-.venv\Scripts\python.exe tests\e2e_chain.py                    # dependency chain (WIP, failing)
+.venv\Scripts\python.exe tests\e2e_chain.py                    # dependency chain + app quirks
+.venv\Scripts\python.exe tests\e2e_recorder.py                 # recorder JS in a real browser
 
 # Records a narrated walkthrough video of the dashboard (needs a running server)
 .venv\Scripts\python.exe tests\record_walkthrough.py --project ornage --flow Login
 ```
 
-Only `test_core.py` and `test_platform.py` are pytest files. The others are
+The `tests/test_*.py` files are pytest. The others are
 standalone scripts that spin up their own server/browser and exit non-zero on
 failure; CI runs all of them (`.github/workflows/tests.yml`).
 
@@ -477,11 +479,58 @@ usage, trims oversized prompts. `app/ai_agents.py` holds the Builder / Breaker /
 Auditor prompts and the shared step vocabulary. All AI is optional — execution,
 verdicts and reporting work with no API key.
 
+### Persistence — every write goes through `app/storage.py`
+
+`projects/` is the database and it has concurrent writers: a run persisting its
+report, the scheduler, parallel workers teaching `learned.json`, the dashboard.
+`storage.write_json` / `write_text` write a uniquely named temp file and
+`os.replace` it in (atomic; retried briefly on Windows, where a reader holding the
+file blocks the swap). `storage.update_json` holds a per-file lock across a
+read-modify-write — `run_history.json` and `bugs.json` used to lose a run when two
+finished together. `learned.py`'s `remember_*` functions and `credentials.store`
+take the same lock. **Never `open(path, "w")` or `Path.write_text` under
+`projects/`** — `test_storage.py` proves the lock with 8 threads × 25 writes.
+Locks are per process; the platform is one server process.
+
 ### Run registry
 
-`executor.register_run()` returns a `RunState` kept in a module-level dict. It powers
+`executor.register_run()` returns a `RunState` kept in a module-level dict, and
+mirrors it into SQLite (`run_state` table) on register and on finish, so
+`/run-status/{id}` still answers after a restart; runs still `running` at startup
+are marked `interrupted`. `execute_suite` is the one place a raising run becomes
+`error` — the scheduler never set it, so a scheduled run that threw read
+"running" forever. It powers
 the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI polling
 (`/trigger-run` → `/run-status/{id}`), and the scheduler.
+
+### Authentication
+
+`api_key_guard` in `main.py`. With no `QA_API_KEY`, only loopback clients are
+served; any other address gets 403 unless `QA_ALLOW_REMOTE_WITHOUT_KEY=1`. Docker
+requests arrive from the bridge, not loopback, so a container needs the key. With a
+key, it travels as the `X-API-Key` header (CI) or the `qa_api_key` cookie (the
+dashboard), compared in constant time. A `?api_key=` query parameter is refused
+outright — URLs end up in access logs. `tests/test_auth.py` pins each case.
+
+### Reading an expected result — `expected_intent` first, wording second
+
+`verdict.classify_expectation()` used to let any error word win, so "With all
+required fields filled, the record is saved successfully" was judged as a
+*negative* test and a correct save came back FAIL. It now strips negated error
+phrases ("no error is shown", "without any validation error", "should not fail")
+and preconditions ("all mandatory fields are filled") before matching the error
+patterns, and when both sides still match, an explicitly stated outcome beats a
+mere vocabulary word. On the 96 distinct expectations in the repo and
+`projects/`, exactly one reading changed ("The record saves": none → success).
+
+A scenario may also carry `expected_intent` (`error`, `success`, `absence`,
+`persistence`, `sanitised`, `stability`), which wins outright. The CSV and
+worksheet importers set it from the row's Type column (`user_cases.intent_from_type`)
+— a harvested message like "Data has been stored" has no success vocabulary, so
+judged by wording it was always UNVERIFIED. When Type and wording contradict, the
+intent is left undeclared and the row is reported in `warnings`, never silently
+resolved. `tests/test_expectation_corpus.py` is the phrase table: **add a row
+for every misreading found; never loosen one.**
 
 ## Gotchas
 
@@ -518,11 +567,10 @@ the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI p
 
 ## Current state
 
-All six suites pass: 123 unit tests, `e2e_selftest` 13/13, `e2e_chain` 25/25
-(verified over 3 consecutive runs), `smoke_ui` 51/51, `integration_api` 55/55,
-`regression_existing_data` 4/4 (that last one only compares against real
-`projects/` data, and the workspace is currently empty — it skips the report
-checks rather than failing).
+Verified 2026-10-11 on branch `hardening-w`: `ruff check .` clean, 234 unit
+tests, `e2e_selftest` (13 scenarios, each at its intended verdict), `e2e_chain`,
+`e2e_recorder` 23/23, `smoke_ui`, `integration_api` 69/69 and
+`regression_existing_data` 8/8 all pass.
 
 ### Handling application quirks without hand-fixing
 
@@ -576,5 +624,6 @@ Still open:
   6-scenario suite; `Admin` has no suite and its recording uses fragile structural
   selectors (`div > div > form > div:nth-of-type(2) …`) that predate multi-candidate
   selector capture.
-- Still on the legacy `google-generativeai` SDK; `pip install google-genai` makes
+- `requirements.txt` lists `google-genai`, but a venv installed before it was added
+  is still on the legacy `google-generativeai` SDK; `pip install -r requirements.txt` makes
   `llm.py` switch automatically.

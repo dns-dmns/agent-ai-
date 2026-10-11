@@ -68,6 +68,18 @@ CREATE INDEX IF NOT EXISTS idx_results_scenario
 CREATE INDEX IF NOT EXISTS idx_results_status ON results (status);
 CREATE INDEX IF NOT EXISTS idx_runs_flow ON runs (project_name, flow_name, epoch);
 
+-- The live state of a run (what /run-status reports). The in-memory registry
+-- is lost on restart; this row is not, so a CI job polling a run id still
+-- gets an answer -- "interrupted" rather than a 404 that looks like a typo.
+CREATE TABLE IF NOT EXISTS run_state (
+    run_id        TEXT PRIMARY KEY,
+    project_name  TEXT NOT NULL,
+    flow_name     TEXT NOT NULL,
+    status        TEXT NOT NULL,
+    snapshot      TEXT NOT NULL,
+    updated_epoch INTEGER NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS audit_log (
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
     epoch     INTEGER NOT NULL,
@@ -143,6 +155,52 @@ def record_run(report: dict) -> None:
                 )
     except Exception as err:
         log.warning("record_run failed: %s", err)
+
+
+def save_run_state(snapshot: dict) -> None:
+    try:
+        with connect() as conn:
+            conn.execute(
+                "INSERT OR REPLACE INTO run_state "
+                "(run_id, project_name, flow_name, status, snapshot, updated_epoch) "
+                "VALUES (?,?,?,?,?,?)",
+                (snapshot["run_id"], snapshot.get("project_name", ""),
+                 snapshot.get("flow_name", ""), snapshot.get("status", ""),
+                 json.dumps(snapshot, default=str), int(time.time())),
+            )
+    except Exception as err:
+        log.warning("save_run_state failed: %s", err)
+
+
+def load_run_state(run_id: str) -> dict | None:
+    try:
+        with connect() as conn:
+            row = conn.execute("SELECT run_state.snapshot FROM run_state "
+                               "WHERE run_state.run_id = ?", (run_id,)).fetchone()
+        return json.loads(row["snapshot"]) if row else None
+    except Exception as err:
+        log.warning("load_run_state failed: %s", err)
+        return None
+
+
+def mark_interrupted_runs() -> int:
+    """Runs still 'running' at startup died with the previous server process."""
+    try:
+        with connect() as conn:
+            rows = conn.execute("SELECT run_state.run_id, run_state.snapshot FROM run_state "
+                                "WHERE run_state.status = 'running'").fetchall()
+            for row in rows:
+                snap = json.loads(row["snapshot"])
+                snap["status"] = "interrupted"
+                snap["exit_code"] = 1
+                snap["error"] = snap.get("error") or "The server stopped while this run was in progress."
+                conn.execute("UPDATE run_state SET status = ?, snapshot = ?, updated_epoch = ? "
+                             "WHERE run_state.run_id = ?",
+                             ("interrupted", json.dumps(snap), int(time.time()), row["run_id"]))
+        return len(rows)
+    except Exception as err:
+        log.warning("mark_interrupted_runs failed: %s", err)
+        return 0
 
 
 def audit(action: str, target: str = "", actor: str = "local", details: Any = None) -> None:

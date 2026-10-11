@@ -36,6 +36,7 @@ import re
 from pathlib import Path
 
 from . import config
+from . import storage
 
 log = config.get_logger("contracts")
 
@@ -70,7 +71,7 @@ def save(project_name: str, flow_name: str, data: dict) -> dict:
     clean = validate(data)
     target = path_for(project_name, flow_name)
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps(clean, indent=2), encoding="utf-8")
+    storage.write_json(target, clean, indent=2)
     return clean
 
 

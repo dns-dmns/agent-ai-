@@ -40,6 +40,7 @@ from . import contracts
 from . import coverage
 from . import heuristics
 from . import learned
+from . import storage
 from . import rules as rules_engine
 from . import verdict as verdict_engine
 
@@ -231,7 +232,7 @@ class RunState:
     run_id: str
     project_name: str
     flow_name: str
-    status: str = "running"          # running | complete | cancelled | error
+    status: str = "running"          # running | complete | cancelled | error | interrupted
     started_at: float = field(default_factory=time.time)
     finished_at: float | None = None
     cancelled: bool = False
@@ -260,7 +261,20 @@ class RunState:
             "unverified": self.unverified,
             "crashed": self.crashed,
             "error": self.error,
+            # What a CI step should exit with. Anything but a clean, complete run
+            # is a failure -- an errored or cancelled run proved nothing.
+            "exit_code": 0 if (self.status == "complete" and not self.failed
+                               and not self.crashed) else 1,
         }
+
+
+def persist_run_state(state: "RunState") -> None:
+    """Best-effort durable copy of the run's state (see db.run_state)."""
+    try:
+        from . import db
+        db.save_run_state(state.snapshot())
+    except Exception as err:  # noqa: BLE001
+        log.warning("Could not persist run state %s: %s", state.run_id, err)
 
 
 RUN_REGISTRY: dict[str, RunState] = {}
@@ -274,6 +288,7 @@ def register_run(project_name: str, flow_name: str) -> RunState:
                 RUN_REGISTRY.pop(key, None)
     state = RunState(run_id=uuid.uuid4().hex[:12], project_name=project_name, flow_name=flow_name)
     RUN_REGISTRY[state.run_id] = state
+    persist_run_state(state)
     return state
 
 
@@ -1209,6 +1224,7 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
             # name/code — the identity any later assertion should verify.
             ctx["runtime_pool"].setdefault("first_typed_value", value.strip())
         cands = candidate_selectors(step, "TYPE")
+        last: Exception | None = None
         for attempt in range(3):
             loc, used = await first_usable(cands)
             if loc:
@@ -1234,7 +1250,14 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
             result["healed"] = True
             await emit_log(f"🛠️ [Auto-Heal] Repaired input on '{selector}'")
             return result
-        raise Exception(f"TYPE failed on '{selector}'")
+        # Say why: "not found" and "found but would not accept input" (disabled,
+        # read-only, covered) are different defects, and the report is where a
+        # tester decides which one this is.
+        if last is None:
+            raise Exception(f"TYPE failed: '{selector}' was not found on the page.")
+        reason = str(last).strip().splitlines()[0][:200]
+        raise Exception(f"TYPE failed on '{selector}': the field was found but did "
+                        f"not accept input ({reason})")
 
     if action == "CLEAR":
         loc, used = await first_usable(candidate_selectors(step, "TYPE"))
@@ -2048,7 +2071,7 @@ async def autocomplete_form(page, step: dict, scenario: dict, ctx: dict,
     token = str(ctx["runtime_pool"].get("run_token", ""))[:6]
     emit_log = ctx["log"]
 
-    for field in inventory:
+    for field in inventory:  # noqa: F402 - dataclasses.field is not used here
         if not field.get("required"):
             continue
         if field.get("value") or field.get("filled"):
@@ -3293,7 +3316,9 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
             surface_known = bool(known_message_selectors) or bool(evidence.messages)
             verdict_obj = verdict_engine.evaluate(expected, evidence,
                                                   scenario.get("type", ""),
-                                                  message_surface_known=surface_known)
+                                                  message_surface_known=surface_known,
+                                                  declared_intent=scenario.get(
+                                                      "expected_intent", ""))
             if cfg.verdict_mode == "ai" and verdict_obj.status == verdict_engine.UNVERIFIED:
                 try:
                     shot_bytes = result_shot.read_bytes()
@@ -3645,8 +3670,26 @@ def expand_data_matrix(cases: list[dict], rows: list[dict]) -> list[dict]:
 
 async def execute_suite(cfg: RunConfig, emit: Emit,
                         state: RunState | None = None) -> dict:
-    """Run a whole suite and persist the report. Returns the report dict."""
+    """Run a whole suite and persist the report. Returns the report dict.
+
+    Whatever happens, the run leaves "running": an exception marks it "error"
+    here, once, rather than relying on every caller to remember (the scheduler
+    did not, so a scheduled run that raised reported "running" forever).
+    """
     state = state or register_run(cfg.project_name, cfg.flow_name)
+    try:
+        return await _execute_suite(cfg, emit, state)
+    except BaseException as err:
+        if state.status == "running":
+            state.status = "cancelled" if isinstance(err, asyncio.CancelledError) else "error"
+            state.error = state.error or str(err) or type(err).__name__
+            state.finished_at = time.time()
+        raise
+    finally:
+        persist_run_state(state)
+
+
+async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
     flow_path = config.flow_dir(cfg.project_name, cfg.flow_name)
     cases_path = flow_path / "test_cases.json"
 
@@ -3939,23 +3982,18 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
     reports_dir = flow_path / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
 
-    with open(flow_path / "report.json", "w", encoding="utf-8") as fh:
-        json.dump(report, fh, indent=4)
+    storage.write_json(flow_path / "report.json", report)
 
     run_stamp = int(time.time())
     report_file = reports_dir / f"report_{run_stamp}.json"
-    with open(report_file, "w", encoding="utf-8") as fh:
-        json.dump(report, fh, indent=4)
+    if report_file.exists():
+        # Two runs of one flow finishing in the same second must not overwrite
+        # each other's archived report; the history row points at this name.
+        suffix = report.get("run_id") or uuid.uuid4().hex[:6]
+        report_file = reports_dir / f"report_{run_stamp}_{suffix}.json"
+    storage.write_json(report_file, report)
 
-    history_path = flow_path / "run_history.json"
-    history: list = []
-    if history_path.exists():
-        try:
-            with open(history_path, "r", encoding="utf-8") as fh:
-                history = json.load(fh)
-        except Exception:
-            history = []
-    history.append({
+    history_entry = {
         "run_id": report.get("run_id"),
         "stamp": run_stamp,
         "execution_date": report["execution_date"],
@@ -3970,20 +4008,17 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
         "verdict_mode": report.get("verdict_mode"),
         "triggered_by": report.get("triggered_by"),
         "report_file": f"reports/{report_file.name}",
-    })
-    with open(history_path, "w", encoding="utf-8") as fh:
-        json.dump(history[-200:], fh, indent=4)
+    }
+    # Read-modify-write under one lock: two runs finishing together must both
+    # land in the history rather than the second silently dropping the first.
+    with storage.update_json(flow_path / "run_history.json", list) as doc:
+        history = doc.data if isinstance(doc.data, list) else []
+        history.append(history_entry)
+        doc.data = history[-200:]
 
     # Bug list: refresh this flow's entries only.
     bugs_path = config.project_dir(cfg.project_name) / "bugs.json"
-    bugs: list = []
-    if bugs_path.exists():
-        try:
-            with open(bugs_path, "r", encoding="utf-8") as fh:
-                bugs = json.load(fh)
-        except Exception:
-            bugs = []
-    bugs = [b for b in bugs if b.get("flow_name") != cfg.flow_name]
+    new_bugs: list = []
 
     for result in run_results:
         if result.get("status") not in (verdict_engine.FAIL, "CRASH", verdict_engine.UNVERIFIED):
@@ -3998,7 +4033,7 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
             "CRASH": "high", verdict_engine.FAIL: "high", verdict_engine.UNVERIFIED: "low",
         }.get(result.get("status"), "medium")
 
-        bugs.append({
+        new_bugs.append({
             "flow_name": cfg.flow_name,
             "scenario_name": result.get("name"),
             "scenario_type": result.get("type", ""),
@@ -4018,14 +4053,15 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
             "timestamp": report["execution_date"],
         })
 
-    with open(bugs_path, "w", encoding="utf-8") as fh:
-        json.dump(bugs, fh, indent=4)
+    # bugs.json is project-wide, so runs of *different* flows race on it too.
+    with storage.update_json(bugs_path, list) as doc:
+        bugs = doc.data if isinstance(doc.data, list) else []
+        doc.data = [b for b in bugs if b.get("flow_name") != cfg.flow_name] + new_bugs
 
     try:
-        (reports_dir / f"junit_{run_stamp}.xml").write_text(
-            build_junit_xml(report), encoding="utf-8"
-        )
-        (flow_path / "junit.xml").write_text(build_junit_xml(report), encoding="utf-8")
+        junit = build_junit_xml(report)
+        storage.write_text(reports_dir / f"junit_{run_stamp}.xml", junit)
+        storage.write_text(flow_path / "junit.xml", junit)
     except Exception as err:
         log.warning("Could not write JUnit XML: %s", err)
 

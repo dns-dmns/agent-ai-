@@ -33,6 +33,7 @@ import time
 from pathlib import Path
 
 from . import config
+from . import storage
 
 log = config.get_logger("framework_runner")
 
@@ -154,8 +155,7 @@ def persist_report(report: dict) -> Path:
         base = config.project_dir(project)
     base.mkdir(parents=True, exist_ok=True)
     path = base / "report.playwright.json"
-    path.write_text(json.dumps(report, indent=2, ensure_ascii=False),
-                    encoding="utf-8")
+    storage.write_text(path, json.dumps(report, indent=2, ensure_ascii=False))
     return path
 
 

@@ -1,8 +1,8 @@
 name: tests
 
 on:
+  # Every branch: work happens on feature branches long before it reaches main.
   push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -22,6 +22,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           playwright install --with-deps chromium
+
+      - name: Lint (correctness rules, see ruff.toml)
+        run: ruff check .
 
       - name: Unit tests
         run: python -m pytest tests -q

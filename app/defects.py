@@ -34,9 +34,9 @@ import io
 import json
 import re
 from pathlib import Path
-from typing import Any
 
 from . import config
+from . import storage
 
 log = config.get_logger("defects")
 
@@ -451,7 +451,7 @@ def load(project_name: str) -> list[dict]:
 def save(project_name: str, defects: list[dict]) -> None:
     target = path_for(project_name)
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps(defects, indent=2), encoding="utf-8")
+    storage.write_json(target, defects, indent=2)
 
 
 def merge(existing: list[dict], incoming: list[dict]) -> tuple[list[dict], int, int]:

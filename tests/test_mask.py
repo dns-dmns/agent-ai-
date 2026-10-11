@@ -3,8 +3,6 @@
 from app.mask import (
     mask_text,
     mask_dict,
-    mask_list,
-    mask_payload,
     mask_headers,
 )
 

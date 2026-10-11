@@ -38,6 +38,7 @@ import re
 
 from . import config
 from . import learned
+from . import verdict
 from .defects import _rows_from_csv, _rows_from_xlsx, DefectImportError
 
 log = config.get_logger("user_cases")
@@ -53,6 +54,33 @@ CHECKED_VALUES = ("yes", "true", "1", "check", "checked", "on")
 UNCHECKED_VALUES = ("no", "false", "0", "uncheck", "unchecked", "off")
 
 ORIGIN_TAG = "user"
+
+# A row's Type says what the tester meant, which is more reliable than reading it
+# back out of the expected-result wording. A harvested success message such as
+# "Data has been stored" uses no success vocabulary at all, so judged by wording
+# alone every such case came back UNVERIFIED however the application behaved.
+POSITIVE_TYPES = {"positive", "happy", "happy path", "valid", "smoke", "sanity"}
+NEGATIVE_TYPES = {"negative", "invalid", "validation", "duplicate", "error"}
+
+
+def intent_from_type(case_type: str, expected: str) -> tuple[str, str]:
+    """``(expected_intent, warning)`` for a row.
+
+    The Type is declared only when the wording does not contradict it. When they
+    disagree neither is silently preferred: the intent is left undeclared (so the
+    wording decides, exactly as before) and the conflict is reported.
+    """
+    kind = (case_type or "").strip().lower()
+    reading = verdict.classify_expectation(expected)
+    if kind in POSITIVE_TYPES:
+        if reading["expects_error"]:
+            return "", "Type says positive but the expected result reads as an error"
+        return "success", ""
+    if kind in NEGATIVE_TYPES:
+        if reading["expects_success"] and not reading["expects_error"]:
+            return "", "Type says negative but the expected result reads as a success"
+        return "error", ""
+    return "", ""
 
 
 def _norm(text: str) -> str:
@@ -266,6 +294,7 @@ def build_cases(rows: list[list[str]], fields: list[dict], *,
     index_of = {meaning: idx for idx, meaning in special.items()}
     cases: list[dict] = []
     blocked: list[dict] = []
+    warnings: list[dict] = []
 
     for row_number, row in enumerate(rows[1:], start=2):
         def cell(idx: int) -> str:
@@ -314,15 +343,23 @@ def build_cases(rows: list[list[str]], fields: list[dict], *,
                       "selector": submit_selector or 'button:has-text("Save")'})
 
         case_type = (cell(index_of["type"]) if "type" in index_of else "") or "functional"
-        cases.append({
+        case = {
             "scenario_name": name[:150],
             "type": case_type.strip().lower()[:30],
             "steps": steps,
             "expected_result": expected,
             "_generated": ORIGIN_TAG,
-        })
+        }
+        intent, conflict = intent_from_type(case_type, expected)
+        if intent:
+            case["expected_intent"] = intent
+        if conflict:
+            warnings.append({"row": row_number, "scenario": name,
+                             "reason": conflict + " - judged by the wording."})
+        cases.append(case)
 
-    return {"cases": cases, "blocked": blocked, "unresolved_columns": unresolved}
+    return {"cases": cases, "blocked": blocked, "unresolved_columns": unresolved,
+            "warnings": warnings}
 
 
 # ──────────────────────────────────────────────────────────────────────

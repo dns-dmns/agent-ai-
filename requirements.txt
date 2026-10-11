@@ -1,22 +1,27 @@
+# Each dependency is capped below its next major version, so a fresh install
+# cannot pull an API-breaking release. The floor is the oldest version known to
+# work; the versions this was last verified with are noted alongside.
+
 # Core platform
-fastapi>=0.110.0
-uvicorn>=0.28.0
-playwright>=1.42.0
-python-dotenv>=1.0.0
-python-multipart>=0.0.9
-requests>=2.31.0
-jinja2>=3.1.3
+fastapi>=0.110.0,<1.0        # verified 0.141.1
+uvicorn>=0.28.0,<1.0         # verified 0.52.0
+playwright>=1.42.0,<2.0      # verified 1.61.0
+python-dotenv>=1.0.0,<2.0    # verified 1.2.2
+python-multipart>=0.0.9,<0.1 # verified 0.0.32
+requests>=2.31.0,<3.0        # verified 2.34.2
+jinja2>=3.1.3,<4.0           # verified 3.1.6
 
 # Gemini SDK — google-genai is the maintained package; google-generativeai is
 # end-of-life and is kept only so existing installs keep working. llm.py uses
 # whichever is present, preferring google-genai.
-google-genai>=1.0.0
-google-generativeai>=0.4.0
+google-genai>=1.0.0,<2.0
+google-generativeai>=0.4.0,<1.0  # verified 0.8.6
 
 # Optional, feature-gated (the platform degrades gracefully without them)
-pillow>=10.0.0        # visual-regression screenshot diffing
-openpyxl>=3.1.0       # row counting inside downloaded .xlsx exports
+pillow>=10.0.0,<12.0  # visual-regression screenshot diffing
+openpyxl>=3.1.0,<4.0  # row counting inside downloaded .xlsx exports; verified 3.1.5
 
-# Tests
-pytest>=8.0.0
-pytest-playwright>=0.4.0
+# Tests and lint
+pytest>=8.0.0,<10.0          # verified 9.1.1
+pytest-playwright>=0.4.0,<1.0  # verified 0.8.0
+ruff>=0.6.0,<1.0

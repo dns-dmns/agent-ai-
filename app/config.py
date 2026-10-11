@@ -126,7 +126,12 @@ PROMPT_ACTIONS_CHAR_LIMIT = int(os.getenv("QA_PROMPT_ACTIONS_LIMIT", "24000"))
 # ──────────────────────────────────────────────────────────────────────
 # Runtime behaviour toggles
 # ──────────────────────────────────────────────────────────────────────
-API_KEY = os.getenv("QA_API_KEY", "")  # empty ⇒ authentication disabled
+API_KEY = os.getenv("QA_API_KEY", "")  # empty ⇒ only this machine may connect
+# With no API key, a request from another machine is refused: the server drives a
+# browser with stored credentials and can write into projects/, so an open port on
+# a LAN would hand both to anyone who finds it. Set QA_API_KEY to serve remote
+# clients, or set this to 1 to accept them unauthenticated (a trusted network only).
+ALLOW_REMOTE_WITHOUT_KEY = os.getenv("QA_ALLOW_REMOTE_WITHOUT_KEY", "0") == "1"
 ALLOWED_ORIGINS = [
     o.strip()
     for o in os.getenv(
