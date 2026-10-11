@@ -199,6 +199,10 @@
                                     Launch browser</button>
                                 <button class="btn" id="startRecBtn" onclick="triggerStartRecording()" disabled>
                                     ● Start recording</button>
+                                <button class="btn" id="assertModeBtn" onclick="toggleAssertMode()"
+                                    disabled
+                                    title="Record checks on what the screen says (spelling, labels, values) instead of clicking through it.">◎
+                                    Capture checks</button>
                                 <button class="btn btn-danger" id="stopRecBtn" onclick="triggerStopRecording()"
                                     disabled>■ Stop &amp; save</button>
                                 <span class="spacer"></span>
@@ -311,6 +315,54 @@
                                     onchange="showChosenFile(this)">
                                 <span class="dim mono-sm" id="uploadFileNameLabel">No file chosen</span>
                                 <button class="btn btn-sm" onclick="uploadCustomSuite()">Import JSON</button>
+                            </div>
+                        </div>
+
+                        <div class="card" id="userCasesCard">
+                            <div class="card-head">
+                                <span class="card-title">Write your own test cases</span>
+                                <span class="spacer"></span>
+                                <span class="tag">no AI needed</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="dim">See what this module contains, download the template, and fill
+                                    one row per test case — plain field names and values, an expected result,
+                                    no selectors and no steps. The platform builds the steps and verifies the
+                                    outcome on screen automatically. Uploading again updates your cases by
+                                    name; generated cases are never touched.</p>
+                                <div class="row-flex">
+                                    <button class="btn" id="moduleInventoryBtn"
+                                        onclick="openModuleInventory()">What's in this module?</button>
+                                    <button class="btn" id="userTemplateBtn"
+                                        onclick="downloadUserCaseTemplate()">Download template (CSV)</button>
+                                    <input type="file" id="userCasesUploadInput" accept=".csv,.tsv,.xlsx"
+                                        style="display:none" onchange="uploadUserCases(this)">
+                                    <button class="btn btn-primary" id="userCasesUploadBtn"
+                                        onclick="pickUserCasesFile()">Upload filled template</button>
+                                </div>
+                                <div id="userCasesResult" class="stack-sm"
+                                    style="margin-top:var(--space-3)"></div>
+
+                                <details class="disclose" id="worksheetPanel"
+                                    style="margin-top:var(--space-4)">
+                                    <summary>From a data worksheet (accurate-data method)</summary>
+                                    <div class="disclose-body">
+                                        <p class="dim">Collect the module's real messages, test data and
+                                            rules in the worksheet, and the platform writes the starter
+                                            scenarios for you — happy path, one empty-check per required
+                                            field, and a duplicate — with expected results quoting the
+                                            wording you copied from the screen. Review, then import.</p>
+                                        <div class="row-flex">
+                                            <button class="btn" id="worksheetDownloadBtn"
+                                                onclick="downloadWorksheet()">Download data worksheet</button>
+                                            <input type="file" id="worksheetUploadInput"
+                                                accept=".csv,.tsv,.xlsx" style="display:none"
+                                                onchange="previewWorksheet(this)">
+                                            <button class="btn btn-primary" id="worksheetBuildBtn"
+                                                onclick="pickWorksheetFile()">Build cases from worksheet</button>
+                                        </div>
+                                    </div>
+                                </details>
                             </div>
                         </div>
 
@@ -798,6 +850,8 @@
     <script src="/assets/ui-coverage.js"></script>
     <script src="/assets/ui-defects.js"></script>
     <script src="/assets/ui-export.js"></script>
+    <script src="/assets/ui-runner.js"></script>
+    <script src="/assets/ui-usercases.js"></script>
 </body>
 
 </html>

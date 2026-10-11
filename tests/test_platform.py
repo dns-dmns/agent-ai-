@@ -1041,7 +1041,9 @@ def test_export_produces_the_documented_folder_structure():
     files = export_project.build_project("Ambica", [EXPORT_MODULE])
     for expected in ("pages/BasePage.js", "pages/CircularMachinePage.js",
                      "tests/circular-machine.spec.js",
-                     "testdata/circular-machine.json", "testdata/credentials.json",
+                     "fixtures/baseTest.js",
+                     "test-data/circular-machine.json", "test-data/credentials.json",
+                     "utils/credentials.js", "utils/unique.js",
                      "playwright.config.js", "package.json", "README.md",
                      ".env.example", ".gitignore"):
         assert expected in files, f"missing {expected} — got {sorted(files)}"
@@ -1099,8 +1101,11 @@ def test_the_spec_sets_a_timeout_and_reads_its_data_file():
     spec = export_project.build_project("Ambica", [EXPORT_MODULE])[
         "tests/circular-machine.spec.js"]
     assert "test.setTimeout(" in spec
-    assert "require('../testdata/circular-machine.json')" in spec
-    assert "require('../testdata/credentials.json')" in spec
+    assert "require('../test-data/circular-machine.json')" in spec
+    # Credentials come through the fixture, not a direct require — one place
+    # (utils/credentials.js) decides env-var vs file.
+    assert "require('../fixtures/baseTest')" in spec
+    assert "async ({ page, credentials })" in spec
 
 
 def test_the_readme_marks_which_data_changes_every_run():
@@ -1122,6 +1127,740 @@ def test_credentials_are_never_exported():
     from app import export_project
 
     files = export_project.build_project("Ambica", [EXPORT_MODULE])
-    assert json.loads(files["testdata/credentials.json"]) == {"username": "", "password": ""}
+    assert json.loads(files["test-data/credentials.json"]) == {"username": "", "password": ""}
     assert "QA_PASSWORD=\n" in files[".env.example"]
     assert ".env" in files[".gitignore"]
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Mandatory-field capture — one implementation, and it actually runs
+# ══════════════════════════════════════════════════════════════════════
+# "It is not capturing the mandatory fields" survived four attempted fixes
+# because two independent things were wrong and fixing either alone changed
+# nothing visible:
+#   1. Two detectors. recorder.py demanded ng-invalid AND ng-pristine; the
+#      engine accepted a trailing asterisk. Same control, opposite answers.
+#   2. The engine's inventory only ran after a Save click had already failed on
+#      a disabled button, so a form that saves correctly never produced one.
+
+def test_there_is_only_one_required_field_detector():
+    root = Path(__file__).resolve().parent.parent / "app"
+    recorder_src = (root / "recorder.py").read_text(encoding="utf-8")
+    executor_src = (root / "executor.py").read_text(encoding="utf-8")
+
+    for name, src in (("recorder", recorder_src), ("executor", executor_src)):
+        assert "SHARED_PROBES_JS" in src, f"{name} does not use the shared probe"
+        assert "qaRequiredInfo" in src or "qaIsRequired" in src, name
+
+    # The recorder must delegate, not re-implement. Checked against the function
+    # body rather than the whole file, so the comment explaining the old bug is
+    # still allowed to name it.
+    body = recorder_src[recorder_src.index("function isRequired(el)"):]
+    body = body[:body.index("\n\n")]
+    assert "qaIsRequired(el)" in body, f"recorder.isRequired stopped delegating: {body}"
+    assert "ng-pristine" not in body, (
+        "recorder has re-grown its own required test; it will drift from the engine")
+
+    # An end-anchored asterisk cannot see "*Field" or a CSS-drawn marker. Both
+    # spellings, since the engine's JS used to sit in a non-raw literal.
+    for src, name in ((recorder_src, "recorder"), (executor_src, "executor")):
+        for spelling in (r"/\*\s*$/", r"/\\*\\s*$/"):
+            assert spelling not in src, f"{name} still uses an end-anchored asterisk test"
+
+
+def test_the_shared_probe_covers_the_signals_an_angular_form_actually_uses():
+    from app import dom_probes
+
+    js = dom_probes.SHARED_PROBES_JS
+    for signal in ("attr", "aria", "ng-reflect", "asterisk", "css-marker",
+                   "label-class", "wrapper-class", "ng-invalid-empty"):
+        assert f"'{signal}'" in js, f"missing the {signal} signal"
+    # ng-invalid means "bad value" once the field is filled, so it must be
+    # guarded by emptiness or every failed-validation field reads as mandatory.
+    guarded = [line for line in js.splitlines()
+               if "ng-invalid-empty'" in line and "return" in line]
+    assert guarded and all("empty &&" in line for line in guarded), guarded
+
+
+def test_the_probes_are_raw_strings():
+    """The engine's JS lived in a non-raw literal where every regex needed
+    doubled backslashes; one missed pair silently changed what a pattern
+    matched. Raw strings remove the whole failure mode."""
+    src = (Path(__file__).resolve().parent.parent / "app" / "dom_probes.py").read_text(
+        encoding="utf-8")
+    assert 'r"""' in src
+    # Single-escaped is what a raw string gives you; the doubled spelling is the
+    # non-raw form where one missed pair silently changed what a pattern matched.
+    assert r"/\bng-invalid\b/" in src
+    assert r"/\\bng-invalid\\b/" not in src, "not a raw string — escapes are doubled"
+
+
+def test_the_form_inventory_runs_on_a_flow_that_never_fails():
+    src = (Path(__file__).resolve().parent.parent / "app" / "executor.py").read_text(
+        encoding="utf-8")
+    assert "async def capture_form_inventory(" in src
+    assert 'if action in ("CLICK", "NAVIGATE", "SELECT")' in src, (
+        "the inventory must be captured on ordinary steps, not only on failure")
+
+
+def test_capturing_the_inventory_cannot_break_a_run_but_is_not_silent():
+    import asyncio
+
+    from app import executor
+
+    class ExplodingPage:
+        async def evaluate(self, *_a, **_kw):
+            raise RuntimeError("page closed")
+
+    ctx: dict = {}
+    assert asyncio.run(executor.capture_form_inventory(ExplodingPage(), ctx, "#x")) == []
+    assert ctx.get("observed_fields") is None
+
+
+def test_the_same_field_is_not_recorded_twice_per_scenario():
+    import asyncio
+
+    from app import executor
+
+    class Page:
+        async def evaluate(self, *_a, **_kw):
+            return [{"selector": "#a", "required": True, "label": "A"},
+                    {"selector": "#b", "required": False, "label": "B"}]
+
+    ctx: dict = {}
+    assert len(asyncio.run(executor.capture_form_inventory(Page(), ctx, ""))) == 2
+    assert asyncio.run(executor.capture_form_inventory(Page(), ctx, "")) == []
+    assert len(ctx["observed_fields"]) == 2
+
+
+def test_a_field_stays_required_after_it_is_filled():
+    """ng-invalid only holds while the control is empty, so the same field
+    arrived required=True on CLICK and required=False on the TYPE that filled
+    it — and whichever a consumer read last won."""
+    import asyncio
+
+    from app import main as main_mod
+
+    session = main_mod.active_session
+    saved = {k: session.get(k) for k in ("recording", "actions", "page", "start_time")}
+    session.update({"recording": True, "actions": [], "start_time": 0})
+
+    class Page:
+        async def screenshot(self, **_kw):
+            return b""
+
+    session["page"] = Page()
+    try:
+        for event in (
+            {"action": "CLICK", "selector": "#username", "required": True},
+            {"action": "TYPE", "selector": "#username", "required": False, "value": "D"},
+            {"action": "CLICK", "selector": "button.login", "required": False},
+        ):
+            asyncio.run(main_mod.handle_exposed_event(event))
+        assert [a["required"] for a in session["actions"]] == [True, True, False]
+    finally:
+        session.update(saved)
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Generation robustness — bad or unexpected model output is ordinary input
+# ══════════════════════════════════════════════════════════════════════
+
+def test_a_non_dict_scenario_does_not_crash_expansion():
+    """A model returned a list of plain strings and coverage.has_data_table
+    called .get() on one — AttributeError straight out of /analyze-flow."""
+    from app import coverage
+
+    assert coverage.has_data_table("just a string") is False
+    assert coverage.has_data_table(None) is False
+    mixed = ["a bare string", {"scenario_name": "Real one", "steps": ["CLICK #a"]}]
+    assert [c["scenario_name"] for c in coverage.expand_scenarios(mixed)] == ["Real one"]
+
+
+def test_a_lone_scenario_object_is_not_thrown_away():
+    """A model with one scenario to give returns it as a bare object. The
+    handler accepted only a list or {"test_cases": [...]}, so a valid test case
+    became "0 test cases generated" and the log blamed the model."""
+    from app.ai_agents import normalise_generated_cases as norm
+
+    one = {"scenario_name": "Login with valid credentials", "type": "positive",
+           "steps": [{"action": "CLICK", "selector": "#a"}],
+           "expected_result": "redirected to home"}
+    assert norm(one) == [one]
+    assert len(norm([one, one])) == 2
+    for key in ("test_cases", "testCases", "scenarios", "cases", "test_scenarios"):
+        assert norm({key: [one]}) == [one], key
+
+
+def test_normalising_never_adopts_something_that_is_not_a_scenario():
+    """A dict is not a test case just because it is a dict — adopting an error
+    payload would put a fabricated scenario into the suite."""
+    from app.ai_agents import normalise_generated_cases as norm
+
+    assert norm({"error": "quota exceeded"}) == []
+    assert norm({"scenario_name": "Has a name but nothing else"}) == []
+    assert norm(["a string", 7, None]) == []
+    assert norm(None) == []
+    assert norm("plain text") == []
+
+
+def test_a_failed_agent_is_not_ticked_and_the_error_survives():
+    source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
+        encoding="utf-8")
+    assert 'mark = "✅" if cases else "❌"' in source
+    assert "agent_errors" in source
+    assert "No test cases were produced. Check the API key" not in source
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Credentials never reach a tracked file
+# ══════════════════════════════════════════════════════════════════════
+# actions.json carried the real login as plain literals; generation copied them
+# into spec.json and test_cases.json, and the run echoed them into report.json —
+# a working credential in git four times over. The recorder now substitutes
+# {{username}}/{{password}} at save time and the literal lives only in the
+# project's gitignored login_data.json.
+
+def test_a_recording_is_scrubbed_and_the_literal_stored():
+    from app import credentials as cs
+
+    actions = [
+        {"action": "CLICK", "selector": "#username", "label": "Username", "value": ""},
+        {"action": "TYPE", "selector": "#username", "label": "Username",
+         "value": "admin", "text": "admin"},
+        {"action": "TYPE", "selector": "#password", "label": "Password",
+         "value": "s3cret", "text": ""},
+        {"action": "TYPE", "selector": "#remarks", "label": "Remarks",
+         "value": "hello"},
+    ]
+    found = cs.scrub_recorded_actions(actions, "ScrubUnit")
+
+    assert found == {"username": "admin", "password": "s3cret"}
+    assert actions[1]["value"] == "{{username}}"
+    assert actions[1]["text"] == "", "the typed echo held the literal too"
+    assert actions[2]["value"] == "{{password}}"
+    assert actions[3]["value"] == "hello", "an ordinary field must not be touched"
+    assert cs.load_stored("ScrubUnit") == {"username": "admin", "password": "s3cret"}
+    # The store must be gitignored by the repo's existing pattern.
+    assert cs.store_file("ScrubUnit").name == "login_data.json"
+
+
+def test_effect_messages_showing_the_username_are_masked():
+    """After login the app displays the username on screen and the recorder
+    captures it — the literal left through the effect block."""
+    from app import credentials as cs
+
+    actions = [
+        {"action": "TYPE", "selector": "#username", "value": "admin"},
+        {"action": "CLICK", "selector": "button", "value": "",
+         "effect": {"messages": [{"text": "Login Successful", "selector": "x"},
+                                 {"text": "admin", "selector": "span.username"}]}},
+    ]
+    cs.scrub_recorded_actions(actions, "ScrubEffect")
+    texts = [m["text"] for m in actions[1]["effect"]["messages"]]
+    assert "{{username}}" in texts
+    assert "Login Successful" in texts, "ordinary wording must not be touched"
+
+
+def test_generated_suites_keep_their_deliberately_wrong_values():
+    """Negative cases type wrong1 / ' OR '1'='1 / spaces on purpose. Substituting
+    every credential-field value would turn "invalid password is rejected" into
+    typing the VALID password — only the exact literal becomes a placeholder."""
+    from app import credentials as cs
+
+    cases = [{"steps": [
+        {"action": "TYPE", "selector": "#username", "value": "admin"},
+        {"action": "TYPE", "selector": "#password", "value": "1234"},
+        {"action": "TYPE", "selector": "#password", "value": "wrong1"},
+        {"action": "TYPE", "selector": "#password", "value": "' OR '1'='1"},
+    ]}]
+    replaced = cs.scrub_known_literals(cases, {"username": "admin", "password": "1234"})
+
+    values = [s["value"] for s in cases[0]["steps"]]
+    assert replaced == 2
+    assert values == ["{{username}}", "{{password}}", "wrong1", "' OR '1'='1"]
+
+
+def test_data_rows_are_scrubbed_by_exact_literal_only():
+    from app import credentials as cs
+
+    rows = {"data": [{"username": "admin", "password": "1234", "expected": "ok"},
+                     {"username": "admin", "password": "nope", "expected": "error"}]}
+    cs.scrub_data_rows(rows, {"username": "admin", "password": "1234"})
+    assert rows["data"][0]["password"] == "{{password}}"
+    assert rows["data"][1]["password"] == "nope"
+    assert rows["data"][1]["username"] == "{{username}}"
+
+
+def test_the_pool_resolves_placeholders_and_rows_do_not_self_reference():
+    """A scrubbed row says username: "{{username}}" — adopted verbatim it would
+    resolve to itself and be typed literally."""
+    from app import heuristics
+
+    pool = {"username": "admin", "password": "1234"}
+    row = {"username": "{{username}}", "password": "wrongX"}
+    for key, value in row.items():
+        if str(value) == "{{" + key + "}}" and key in pool:
+            continue
+        pool[key] = value
+    assert heuristics.resolve_dynamic_variables("{{username}}", pool) == "admin"
+    assert heuristics.resolve_dynamic_variables("{{password}}", pool) == "wrongX"
+
+
+def test_resolve_credentials_reads_the_per_project_store(monkeypatch):
+    from app import credentials as cs
+    from app import executor
+
+    cs.store("StoreUnit", username="u1", password="p1")
+    monkeypatch.setattr(executor, "load_project_config", lambda _p: {})
+    creds = executor.resolve_credentials("StoreUnit")
+    assert creds == {"username": "u1", "password": "p1"}
+
+
+def test_a_password_is_never_echoed_into_run_bookkeeping():
+    """last/first_typed_value are written into report.json, which is committed —
+    that echo is how a scrubbed recording still leaked the password."""
+    source = (Path(__file__).resolve().parent.parent / "app" / "executor.py").read_text(
+        encoding="utf-8")
+    assert 'credential_store.classify_field(step) != "password"' in source
+
+
+def test_new_recordings_stamp_a_schema_version():
+    source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
+        encoding="utf-8")
+    assert '"schema_version": 1' in source
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Export — a downloaded zip must be runnable, not a husk
+# ══════════════════════════════════════════════════════════════════════
+# A project whose flows were recorded but had no generated suite exported a zip
+# with an EMPTY tests/ folder — boilerplate around nothing, reported as "the
+# folder structure is wrong". And the real run of the export died on a strict-
+# mode violation in BasePage before reaching any test.
+
+def test_a_recording_only_flow_still_exports_a_runnable_smoke_spec():
+    from app import export_project
+
+    module = {"flow": "login", "target_url": "https://x.example/auth/login",
+              "fields": [], "scenarios": [],
+              "actions": [
+                  {"action": "CLICK", "selector": "#username"},
+                  {"action": "TYPE", "selector": "#username", "label": "Username",
+                   "value": "{{username}}"},
+                  {"action": "TYPE", "selector": "#password", "label": "Password",
+                   "value": "{{password}}"},
+                  {"action": "CLICK", "selector": 'button:has-text("Login")',
+                   "effect": {"url_before": "https://x.example/auth/login",
+                              "url_after": "https://x.example/pages/home",
+                              "messages": []}},
+              ]}
+    files = export_project.build_project("P", [module])
+    assert "tests/login.spec.js" in files, "recording-only flow was silently skipped"
+    assert "pages/LoginPage.js" in files
+    # The login smoke must assert the landing, not replay the login (BasePage
+    # already signed in) — and never type a credential placeholder literally.
+    page = files["pages/LoginPage.js"]
+    assert "toHaveURL" in page
+    assert "{{username}}" not in page and "{{password}}" not in page
+
+
+def test_a_business_recording_smoke_keeps_steps_and_asserts_the_landing():
+    from app.export_project import smoke_scenario_from_recording
+
+    actions = [
+        {"action": "CLICK", "selector": 'button:has-text("Add Item")'},
+        {"action": "TYPE", "selector": "#desc", "value": "widget"},
+        {"action": "CLICK", "selector": 'button:has-text("Save")',
+         "effect": {"url_before": "https://x/items/new", "url_after": "https://x/items",
+                    "messages": []}},
+    ]
+    smoke = smoke_scenario_from_recording("Item Master", actions, is_login=False)
+    assert smoke and smoke["_smoke"] is True
+    kinds = [s["action"] for s in smoke["steps"]]
+    assert kinds[:3] == ["CLICK", "TYPE", "CLICK"]
+    assert kinds[-1] == "VERIFY_URL", "the recording proved a landing; assert it"
+
+
+def test_base_page_survives_an_ambiguous_recorded_selector():
+    """The recorded structural selector for the password-eye toggle ALSO matched
+    the 'Forgot Password?' link; a raw .click() dies on strict mode. Measured
+    against the live app — TESTING-FLOW lesson 1, applied to our own generator."""
+    from app.export_project import base_page_js
+
+    steps = [{"action": "CLICK", "selector": "form span",
+              "selectors": ["form span", "button.toggle"]},
+             {"action": "TYPE", "selector": "#password", "label": "Password"}]
+    js = base_page_js(steps, "https://x.example")
+    assert ".first().click()" in js
+    assert ".first().fill(credentials.password)" in js
+    # Constructors have a local `page`; BasePage methods do not — every
+    # locator, including the .or() argument, must go through this.page.
+    assert ".or(this.page.locator(" in js
+    assert "\n        await page.locator" not in js
+
+
+def test_env_credentials_win_and_a_blank_file_fails_loudly():
+    """Resolution lives in ONE place — utils/credentials.js, injected by the
+    fixture. Env vars beat the deliberately blank credentials.json, and running
+    with neither fails with instructions instead of typing nothing."""
+    from app.export_project import (base_page_js, fixtures_base_test_js,
+                                    utils_credentials_js)
+
+    utils = utils_credentials_js()
+    assert "process.env.TEST_USERNAME" in utils
+    assert "process.env.TEST_PASSWORD" in utils
+    assert "throw new Error('No credentials" in utils
+
+    fixture = fixtures_base_test_js()
+    assert "require('../utils/credentials')" in fixture
+    assert "credentials:" in fixture, "the fixture must inject credentials"
+
+    # BasePage keeps only a guard for page objects used without the fixture.
+    js = base_page_js([{"action": "TYPE", "selector": "#u", "label": "user"}], "https://x")
+    assert "throw new Error('No credentials" in js
+    assert "process.env.TEST_USERNAME" not in js, (
+        "resolution must not be duplicated in BasePage — it will drift")
+
+
+def test_package_json_offers_one_command_setup_and_per_module_runs():
+    import json as _json
+
+    from app.export_project import package_json
+
+    manifest = [{"flow": "Item Master", "spec": "item-master.spec.js"},
+                {"flow": "login", "spec": "login.spec.js"}]
+    scripts = _json.loads(package_json("P", manifest))["scripts"]
+    assert scripts["setup"] == "npm install && npx playwright install chromium"
+    assert scripts["test"] == "playwright test"
+    assert scripts["test:item-master"] == "playwright test tests/item-master.spec.js"
+    assert scripts["test:login"] == "playwright test tests/login.spec.js"
+
+
+def test_the_downloaded_zip_has_a_single_root_folder():
+    """Entries starting at pages/ and package.json scatter loose files into
+    whatever directory the zip is extracted in."""
+    source = (Path(__file__).resolve().parent.parent / "app" / "main.py").read_text(
+        encoding="utf-8")
+    assert 'bundle.writestr(f"{safe_stem}/{path}", content)' in source
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Framework runner — the second engine in Run & Verify
+# ══════════════════════════════════════════════════════════════════════
+# Runs the same files the export produces through stock @playwright/test.
+# Assertion results only: the report must say so, live apart from the verdict
+# engine's report.json, and never let an unknown outcome count as a pass.
+
+def _pw_json(status="expected", error=""):
+    """Minimal @playwright/test JSON-reporter shape, nested like the real one."""
+    result = {"status": status, "duration": 1200}
+    if error:
+        result["error"] = {"message": error}
+    return {"suites": [{"title": "login.spec.js", "suites": [{
+        "title": "login",
+        "specs": [{"title": "Login lands on the recorded home page (smoke)",
+                   "file": "login.spec.js",
+                   "tests": [{"status": status, "results": [result]}]}],
+    }]}]}
+
+
+def test_framework_results_map_to_the_platform_vocabulary():
+    from app import framework_runner as fr
+
+    rows = fr.parse_results(_pw_json("expected"))
+    assert rows[0]["status"] == "PASS" and rows[0]["duration_ms"] == 1200
+
+    rows = fr.parse_results(_pw_json("unexpected", "Error: boom\n  at x.js:1"))
+    assert rows[0]["status"] == "FAIL"
+    assert rows[0]["error"] == "Error: boom", "first line only; the stack stays in the raw file"
+
+    assert fr.parse_results(_pw_json("skipped"))[0]["status"] == "SKIPPED"
+    flaky = fr.parse_results(_pw_json("flaky"))[0]
+    assert flaky["status"] == "PASS" and flaky["outcome"] == "flaky", (
+        "flaky passed on retry — reported as PASS with the flakiness preserved")
+
+
+def test_an_unknown_playwright_outcome_never_counts_as_a_pass():
+    from app import framework_runner as fr
+
+    rows = fr.parse_results(_pw_json("someFutureStatus"))
+    assert rows[0]["status"] == "FAIL", (
+        "a status this code has never seen must fail loudly, not pass silently")
+
+
+def test_the_framework_report_is_labelled_and_kept_apart():
+    from app import config as cfg
+    from app import framework_runner as fr
+
+    rows = fr.parse_results(_pw_json("expected"))
+    report = fr.build_report("FrameworkUnit", "login", rows, 12, "run123")
+    assert report["engine"] == "playwright"
+    assert "UNVERIFIED" in report["engine_note"], "the limitation must be stated"
+    assert report["passed_count"] == 1 and report["failed_count"] == 0
+
+    path = fr.persist_report(report)
+    assert path.name == "report.playwright.json", (
+        "must never overwrite the verdict engine's report.json")
+    assert path == cfg.flow_dir("FrameworkUnit", "login") / "report.playwright.json"
+
+
+def test_the_runner_workspace_is_scratch_not_the_user_project():
+    from app import config as cfg
+    from app import framework_runner as fr
+
+    root = fr.runner_dir("My Project!")
+    assert cfg.TEMP_DIR in root.parents, "the framework lives under .tmp/"
+    assert cfg.PROJECTS_DIR not in root.parents, "never inside projects/"
+    assert "!" not in root.name and " " not in root.name
+
+
+def test_run_framework_without_node_fails_with_instructions(monkeypatch):
+    import asyncio
+
+    from app import framework_runner as fr
+
+    monkeypatch.setattr(fr, "node_available", lambda: "")
+    lines: list[str] = []
+
+    async def emit(message):
+        lines.append(message)
+
+    out = asyncio.run(fr.run_framework(
+        "P", "", {"package.json": "{}"}, "", {}, emit, None))
+    assert out is None
+    blob = " ".join(lines)
+    assert "nodejs.org" in blob and "Platform engine" in blob, (
+        "the failure must say how to fix it AND that the other engine still works")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# User-authored test cases — the generate tab without the agents
+#
+# The tester's sheet carries labels and values, never selectors or steps.
+# What must hold: labels resolve against the module's own inventory, anything
+# unresolvable is REPORTED rather than guessed (the defect-importer rule), a
+# re-upload updates by name instead of duplicating, and a credential typed
+# into the sheet never reaches the committed suite as a literal.
+# ═══════════════════════════════════════════════════════════════════════
+FIELDS = [
+    {"selector": "#custName", "label": "Customer Name", "kind": "text",
+     "required": True},
+    {"selector": "#custType", "label": "Customer Type", "kind": "select",
+     "options": ["Retail", "Wholesale"]},
+    {"selector": "#active", "label": "Active", "kind": "checkbox"},
+]
+
+
+def _build(rows, **kw):
+    from app import user_cases
+    kw.setdefault("add_selector", "#addBtn")
+    kw.setdefault("submit_selector", "#saveBtn")
+    return user_cases.build_cases(rows, FIELDS, **kw)
+
+
+def test_user_case_row_becomes_steps_without_the_user_writing_any():
+    out = _build([
+        ["Scenario", "Type", "Customer Name", "Customer Type", "Active", "Expected Result"],
+        ["Create a retail customer", "positive", "Acme Ltd", "Retail", "yes",
+         "The record is saved successfully"],
+    ])
+    assert not out["blocked"] and not out["unresolved_columns"]
+    case = out["cases"][0]
+    assert case["_generated"] == "user"
+    actions = [(s["action"], s.get("selector")) for s in case["steps"]]
+    # Add form first, fields in column order, submit last.
+    assert actions[0] == ("CLICK", "#addBtn")
+    assert actions[-1] == ("CLICK", "#saveBtn")
+    assert ("TYPE", "#custName") in actions
+    assert ("SELECT", "#custType") in actions      # options ⇒ SELECT, not TYPE
+    assert ("CHECK", "#active") in actions
+
+
+def test_blank_marker_clears_instead_of_typing_the_word_blank():
+    out = _build([
+        ["Scenario", "Customer Name", "Expected Result"],
+        ["Empty name is rejected", "(blank)", "A validation message appears"],
+    ])
+    step = out["cases"][0]["steps"][1]              # after the add click
+    assert step == {"action": "CLEAR", "selector": "#custName"}
+
+
+def test_a_value_under_an_unknown_column_blocks_the_row_not_silently_drops_it():
+    out = _build([
+        # One valid column, one misspelled. A row with a value under the typo
+        # must be blocked — importing it minus that value would change what the
+        # test means.
+        ["Scenario", "Customer Name", "Custmer Type", "Expected Result"],
+        ["Broken row", "Acme", "Retail", "Saved"],
+        ["Fine row", "Beta Ltd", "", "Saved successfully"],
+    ])
+    assert "Custmer Type" in out["unresolved_columns"]
+    assert len(out["blocked"]) == 1 and out["blocked"][0]["scenario"] == "Broken row"
+    assert "unrecognised column" in out["blocked"][0]["reason"]
+    assert [c["scenario_name"] for c in out["cases"]] == ["Fine row"]
+
+
+def test_a_sheet_whose_columns_match_nothing_is_refused_with_the_known_labels():
+    from app import user_cases
+    import pytest
+    with pytest.raises(user_cases.DefectImportError) as err:
+        _build([
+            ["Scenario", "Custmer Nmae", "Expected Result"],
+            ["Broken row", "Acme", "Saved"],
+        ])
+    assert "Customer Name" in str(err.value), "the refusal must list the real labels"
+
+
+def test_a_row_without_an_expected_result_is_blocked_not_imported():
+    out = _build([
+        ["Scenario", "Customer Name", "Expected Result"],
+        ["No expectation", "Acme", ""],
+    ])
+    assert not out["cases"]
+    assert "Expected Result" in out["blocked"][0]["reason"]
+
+
+def test_sample_rows_from_the_template_are_skipped_on_upload():
+    from app import user_cases
+    template = user_cases.template_csv(FIELDS)
+    import csv as _csv
+    import io as _io
+    rows = list(_csv.reader(_io.StringIO(template)))
+    out = _build(rows)
+    assert not out["cases"], "the template's own SAMPLE rows must not import"
+    # And the template's columns are the module's real labels.
+    assert rows[0][:2] == ["Scenario", "Type"]
+    assert "Customer Name" in rows[0] and rows[0][-1] == "Expected Result"
+
+
+def test_reupload_updates_by_name_and_never_touches_generated_cases():
+    from app import user_cases
+    existing = [
+        {"scenario_name": "Agent case", "type": "negative", "steps": [],
+         "expected_result": "kept verbatim"},
+        {"scenario_name": "My case", "type": "functional", "steps": [],
+         "expected_result": "old wording", "_generated": "user"},
+    ]
+    incoming = [
+        {"scenario_name": "My case", "type": "functional", "steps": [],
+         "expected_result": "new wording", "_generated": "user"},
+        {"scenario_name": "Another case", "type": "functional", "steps": [],
+         "expected_result": "added", "_generated": "user"},
+    ]
+    merged, added, updated = user_cases.merge_cases(existing, incoming)
+    assert (added, updated) == (1, 1)
+    assert merged[0]["expected_result"] == "kept verbatim"   # untouched, same slot
+    assert merged[1]["expected_result"] == "new wording"     # updated in place
+    assert merged[2]["scenario_name"] == "Another case"      # appended
+
+
+def test_template_never_offers_a_credential_literal():
+    from app import user_cases
+    sensitive = [{"selector": "#password", "label": "Password", "kind": "text"}]
+    template = user_cases.template_csv(sensitive)
+    assert "{{password}}" in template, "sensitive fields get the placeholder"
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# Accurate Data Worksheet → generated cases (playbook Step 6, automated)
+#
+# The worksheet holds module DATA, not scenarios. What must hold: it produces
+# only the bounded, grounded families (happy / empty-per-required / duplicate);
+# a harvested message is quoted only for the field it names; a duplicate is
+# generated only when the existing value is supplied; and the runnable steps
+# come out of the same user_cases path, so nothing new touches the engine.
+# ═══════════════════════════════════════════════════════════════════════
+WS_FIELDS = [
+    {"selector": "#custName", "label": "Customer Name", "kind": "text", "required": True},
+    {"selector": "#custType", "label": "Customer Type", "kind": "select",
+     "options": ["Retail", "Wholesale"]},
+    {"selector": "#credit", "label": "Credit Limit", "kind": "number", "required": True},
+]
+
+
+def _ws(text: str, **kw):
+    from app import worksheet
+    kw.setdefault("add_selector", "#addBtn")
+    kw.setdefault("submit_selector", "#saveBtn")
+    return worksheet.build_from_worksheet(text.encode(), "ws.csv", WS_FIELDS, **kw)
+
+
+FULL_SHEET = """Section,Item,Value 1,Value 2,Value 3,Notes
+MODULE,Module Name,Customer Master,,,
+FIELD,Field Label (exact),Field Type,Required,Options,Rule
+FIELD,Customer Name,text,yes,,unique
+MESSAGE,When it appears (trigger),Exact message text,,,
+MESSAGE,Submit with required field empty,Customer Name is required,,,
+MESSAGE,Successful save / login,Customer saved successfully,,,
+MESSAGE,Duplicate record,Customer already exists,,,
+DATA,Purpose,Key,Other,Extra,
+DATA,Record for duplicate test,Acme Traders,,,
+RULES,Question for developer/BA,Answer,,,
+RULES,Is the key field case-sensitive?,No,,,
+"""
+
+
+def test_worksheet_generates_the_three_grounded_families():
+    out = _ws(FULL_SHEET)
+    assert not out["blocked"]
+    names = [c["scenario_name"] for c in out["cases"]]
+    assert names[0] == "Create with valid values"
+    assert "Empty Customer Name is rejected" in names
+    assert "Empty Credit Limit is rejected" in names
+    assert any(n.startswith("Duplicate") for n in names)
+
+
+def test_worksheet_happy_path_quotes_the_real_success_message():
+    out = _ws(FULL_SHEET)
+    happy = out["cases"][0]
+    assert happy["expected_result"] == "Customer saved successfully"
+    assert happy["type"] == "positive"
+    # steps synthesized, not written by the tester
+    verbs = [s["action"] for s in happy["steps"]]
+    assert verbs[0] == "CLICK" and verbs[-1] == "CLICK" and "TYPE" in verbs
+
+
+def test_a_required_message_is_quoted_only_for_the_field_it_names():
+    out = _ws(FULL_SHEET)
+    by_name = {c["scenario_name"]: c for c in out["cases"]}
+    assert by_name["Empty Customer Name is rejected"]["expected_result"] \
+        == "Customer Name is required"
+    # The Credit Limit case must NOT borrow the Customer Name wording.
+    other = by_name["Empty Credit Limit is rejected"]["expected_result"]
+    assert "Credit Limit" in other and "Customer Name is required" not in other
+
+
+def test_duplicate_case_only_when_the_existing_value_is_supplied():
+    no_dup = FULL_SHEET.replace("DATA,Record for duplicate test,Acme Traders,,,\n", "")
+    out = _ws(no_dup)
+    assert not any(c["scenario_name"].startswith("Duplicate") for c in out["cases"])
+    assert any("duplicate" in n.lower() for n in out["notes"])
+    # And when supplied, the existing value is typed into the key field.
+    out2 = _ws(FULL_SHEET)
+    dup = next(c for c in out2["cases"] if c["scenario_name"].startswith("Duplicate"))
+    typed = [s for s in dup["steps"] if s["action"] == "TYPE"
+             and s["selector"] == "#custName"]
+    assert typed and typed[0]["value"] == "Acme Traders"
+
+
+def test_worksheet_needs_a_known_module_and_says_so():
+    from app import worksheet
+    import pytest
+    with pytest.raises(worksheet.DefectImportError) as err:
+        worksheet.build_from_worksheet(FULL_SHEET.encode(), "ws.csv", [])
+    assert "No fields are known" in str(err.value)
+
+
+def test_a_generic_empty_message_is_reused_for_every_field():
+    generic = FULL_SHEET.replace("Customer Name is required", "This field is required")
+    out = _ws(generic)
+    empties = [c for c in out["cases"] if c["scenario_name"].startswith("Empty")]
+    assert empties and all(c["expected_result"] == "This field is required"
+                           for c in empties)
+
+
+def test_captured_but_unconverted_content_is_surfaced_not_dropped():
+    out = _ws(FULL_SHEET)
+    blob = " ".join(out["captured_unused"])
+    assert "rule" in blob.lower()          # the case-sensitivity rule was captured

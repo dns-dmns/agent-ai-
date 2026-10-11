@@ -39,6 +39,7 @@ import requests
 
 from . import config
 from . import heuristics
+from . import storage
 
 log = config.get_logger("api_seed")
 
@@ -68,8 +69,7 @@ def save_seed(project_name: str, name: str, definition: dict) -> dict:
     path.parent.mkdir(parents=True, exist_ok=True)
     data = load_seeds(project_name)
     data["seeds"][name] = definition
-    with open(path, "w", encoding="utf-8") as fh:
-        json.dump(data, fh, indent=4)
+    storage.write_json(path, data)
     return data
 
 
@@ -78,8 +78,7 @@ def delete_seed(project_name: str, name: str) -> bool:
     if name not in data.get("seeds", {}):
         return False
     data["seeds"].pop(name, None)
-    with open(seed_file(project_name), "w", encoding="utf-8") as fh:
-        json.dump(data, fh, indent=4)
+    storage.write_json(seed_file(project_name), data)
     return True
 
 

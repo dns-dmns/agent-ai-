@@ -20,20 +20,22 @@ run_server.bat                   # CMD equivalent
 python -m uvicorn qa_agent:app --host 127.0.0.1 --port 8000   # equivalent to app.main:app
 
 # Tests
-.venv\Scripts\python.exe -m pytest tests -q                    # unit (63)
+.venv\Scripts\python.exe -m ruff check .                       # lint (correctness rules)
+.venv\Scripts\python.exe -m pytest tests -q                    # unit
 .venv\Scripts\python.exe -m pytest tests/test_core.py -q       # one file
 .venv\Scripts\python.exe -m pytest tests -q -k verdict         # one pattern
 .venv\Scripts\python.exe tests\e2e_selftest.py                 # real browser, 13 verdict cases
 .venv\Scripts\python.exe tests\smoke_ui.py                     # boots server, drives dashboard
 .venv\Scripts\python.exe tests\integration_api.py              # CI endpoints, auth, cancellation
 .venv\Scripts\python.exe tests\regression_existing_data.py     # backward-compat vs real projects/
-.venv\Scripts\python.exe tests\e2e_chain.py                    # dependency chain (WIP, failing)
+.venv\Scripts\python.exe tests\e2e_chain.py                    # dependency chain + app quirks
+.venv\Scripts\python.exe tests\e2e_recorder.py                 # recorder JS in a real browser
 
 # Records a narrated walkthrough video of the dashboard (needs a running server)
 .venv\Scripts\python.exe tests\record_walkthrough.py --project ornage --flow Login
 ```
 
-Only `test_core.py` and `test_platform.py` are pytest files. The others are
+The `tests/test_*.py` files are pytest. The others are
 standalone scripts that spin up their own server/browser and exit non-zero on
 failure; CI runs all of them (`.github/workflows/tests.yml`).
 
@@ -292,6 +294,114 @@ the *previous* action rather than appending a step, and
 "assert THESE, do not invent wording". Old recordings have no `effect` key and
 behave exactly as before.
 
+### Recording fidelity — codegen-grade capture and assert mode
+
+Two additions that make a recording *reviewable*, not just replayable:
+
+- **Every event carries the element.** `describeElement()` in `recorder.py` adds
+  `role` (computed ARIA, explicit or implicit), `accessible_name`, `text_full`
+  (whole visible text, capped at 600 chars) and `attrs` (title/placeholder/
+  aria-label/href/alt/name/type, plus disabled/readonly on inputs). An exact
+  `text="…"` locator joins the candidate list for clickable controls — last
+  among the text candidates, because it is the most brittle to a wording change,
+  which is precisely what an *assertion* should catch and a *click* should not
+  depend on.
+- **Assert mode** (`window.__qaAssertMode`, toggled by `POST /set-record-mode`)
+  is codegen's "assert text" tool. A click is intercepted in the capture phase
+  with `stopImmediatePropagation`, so the application never sees it, and a
+  `VERIFY_TEXT` / `VERIFY_VALUE` / `VERIFY_VISIBLE` step is recorded carrying the
+  element's exact current text. No executor change was needed — `VERIFY_TEXT`
+  already does a substring match, so a corrected spelling fails the replay.
+
+**The security trap this had to avoid:** `credentials.scrub_recorded_actions`
+cleans the `value` and `text` keys of a TYPE action. `text_full` and
+`accessible_name` would have carried a second copy of the same literal past it
+and into `actions.json`, which is committed — the exact leak class the audit
+found. So the recorder blanks both on any sensitive field, an assertion on a
+password degrades to `VERIFY_VISIBLE` rather than storing the secret as an
+expected value, and the scrubber now also masks those keys plus `asserted`
+step values.
+
+`tests/e2e_recorder.py` is the first test that runs the recorder **in a real
+browser**. It has to be: the script depends on `getBoundingClientRect` and
+`getComputedStyle`, and its two riskiest behaviours — that assert mode suppresses
+the click, and that no password reaches a captured key — are invisible to the
+string checks in `test_platform.py`.
+
+### User-authored test cases — the generate tab without the agents
+
+`app/user_cases.py` + three endpoints (`/module-inventory`, `/user-case-template`,
+`/upload-user-cases`) + `web/ui-usercases.js` (the "Write your own test cases"
+card in Generate). A tester downloads a CSV whose columns are the module's real
+field labels (from `_defect_context`: learned profile first, recording as
+fallback), fills one row per case with plain values and an expected result, and
+uploads. `build_cases()` synthesizes the steps — CLICK the Add control if the
+module has one, CLEAR/TYPE/SELECT/CHECK per cell, CLICK submit — and the
+existing verdict engine judges the outcome, so the sheet never contains a
+selector or a UI step.
+
+Rules that carry the feature, all tested in `test_platform.py` and
+`integration_api.py`:
+
+- **Never guess.** A value under a header that matches no field blocks that row
+  with the reason (importing the row minus the value would change what the test
+  means); a sheet whose columns match nothing is refused with the module's real
+  labels listed. Same philosophy as the defect importer, same reason.
+- **Upsert by scenario name.** Re-uploading a sheet updates its own rows in
+  place; generated/coverage cases are byte-for-byte untouched (integration test
+  asserts it). Imported cases carry `_generated: "user"`.
+- **No expected result ⇒ blocked**, because an unverifiable scenario can never
+  honestly pass.
+- **Credentials**: sensitive fields get `{{username}}`/`{{password}}` in the
+  template sample values, and `credential_store.scrub_known_literals` runs on
+  upload so a typed literal never reaches the committed suite.
+- The template's `SAMPLE —` rows are skipped on upload; `(blank)` means CLEAR,
+  not the word "(blank)".
+
+### Accurate Data Worksheet — automating the playbook's manual step
+
+`app/worksheet.py` + `/worksheet-template`, `/preview-worksheet`,
+`/import-worksheet` + the "From a data worksheet" panel in `web/ui-usercases.js`.
+`testcases/Accurate_Data_Playbook.md` is a human method for collecting accurate
+module data (fields, real message wording, test data, rules) before writing
+cases; its Step 6 — hand the worksheet over, get an upload-ready sheet back — is
+what this automates, deterministically and with no AI.
+
+Design, and why each part is the way it is:
+
+- **The worksheet holds DATA, not scenarios.** `parse_worksheet` reads the
+  MODULE/FIELD/MESSAGE/DATA/RULES sections (tolerant of the descriptor row and
+  blank rows). `generate_rows` then emits the platform's own template shape
+  (`Scenario, Type, <labels>, Expected Result`) and hands it to
+  `user_cases.build_cases`, so the run-time path is byte-identical to a
+  hand-typed sheet — nothing new touches the executor or verdict engine.
+- **Grounded in the inventory, never the worksheet's own field text.** Columns
+  are the module's known fields (with selectors); a worksheet FIELD row that
+  matches no inventory field is reported in `unmatched_fields`, never turned into
+  a guessed selector. If the module has no inventory yet, generation refuses with
+  instructions — same rule as `/user-case-template`.
+- **A bounded, message-driven scenario set.** Only the three families the
+  worksheet's MESSAGE rows describe: happy (success message), one empty case per
+  required *text-like* field (required message), duplicate (duplicate message +
+  the "record for duplicate test" value). Boundary/injection stays Coverage's
+  job — inventing it here is the guessing the playbook forbids.
+- **A harvested required-message is quoted only for the field it names**
+  (`_required_expected`): pasting "Customer Name is required" onto the Credit
+  Limit case would read as testing the wrong thing, so that case gets a generic
+  sentence; a field-agnostic message ("This field is required") is quoted for
+  every field. Verdicts pass either way (intent-based), so this is about honest
+  wording, not pass/fail.
+- **Nothing collected is silently dropped**: `captured_unused` surfaces an
+  invalid-value message, a blocked-account record, and confirmed rules as
+  pointers to Coverage or a manual row.
+- Merge is `user_cases.merge_cases` (upsert by name), and
+  `credential_store.scrub_known_literals` runs on import, so a value typed into
+  the worksheet never lands in the committed suite as a literal.
+
+Proven end to end (`prove_worksheet_run` pattern, and `integration_api`): a
+filled worksheet → generated cases → the real engine → four correct PASS
+verdicts, with the tester having written no steps and no selectors.
+
 ### Message detection — four layers
 
 A false FAIL is the most damaging thing this tool can produce: it blames a
@@ -369,11 +479,58 @@ usage, trims oversized prompts. `app/ai_agents.py` holds the Builder / Breaker /
 Auditor prompts and the shared step vocabulary. All AI is optional — execution,
 verdicts and reporting work with no API key.
 
+### Persistence — every write goes through `app/storage.py`
+
+`projects/` is the database and it has concurrent writers: a run persisting its
+report, the scheduler, parallel workers teaching `learned.json`, the dashboard.
+`storage.write_json` / `write_text` write a uniquely named temp file and
+`os.replace` it in (atomic; retried briefly on Windows, where a reader holding the
+file blocks the swap). `storage.update_json` holds a per-file lock across a
+read-modify-write — `run_history.json` and `bugs.json` used to lose a run when two
+finished together. `learned.py`'s `remember_*` functions and `credentials.store`
+take the same lock. **Never `open(path, "w")` or `Path.write_text` under
+`projects/`** — `test_storage.py` proves the lock with 8 threads × 25 writes.
+Locks are per process; the platform is one server process.
+
 ### Run registry
 
-`executor.register_run()` returns a `RunState` kept in a module-level dict. It powers
+`executor.register_run()` returns a `RunState` kept in a module-level dict, and
+mirrors it into SQLite (`run_state` table) on register and on finish, so
+`/run-status/{id}` still answers after a restart; runs still `running` at startup
+are marked `interrupted`. `execute_suite` is the one place a raising run becomes
+`error` — the scheduler never set it, so a scheduled run that threw read
+"running" forever. It powers
 the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI polling
 (`/trigger-run` → `/run-status/{id}`), and the scheduler.
+
+### Authentication
+
+`api_key_guard` in `main.py`. With no `QA_API_KEY`, only loopback clients are
+served; any other address gets 403 unless `QA_ALLOW_REMOTE_WITHOUT_KEY=1`. Docker
+requests arrive from the bridge, not loopback, so a container needs the key. With a
+key, it travels as the `X-API-Key` header (CI) or the `qa_api_key` cookie (the
+dashboard), compared in constant time. A `?api_key=` query parameter is refused
+outright — URLs end up in access logs. `tests/test_auth.py` pins each case.
+
+### Reading an expected result — `expected_intent` first, wording second
+
+`verdict.classify_expectation()` used to let any error word win, so "With all
+required fields filled, the record is saved successfully" was judged as a
+*negative* test and a correct save came back FAIL. It now strips negated error
+phrases ("no error is shown", "without any validation error", "should not fail")
+and preconditions ("all mandatory fields are filled") before matching the error
+patterns, and when both sides still match, an explicitly stated outcome beats a
+mere vocabulary word. On the 96 distinct expectations in the repo and
+`projects/`, exactly one reading changed ("The record saves": none → success).
+
+A scenario may also carry `expected_intent` (`error`, `success`, `absence`,
+`persistence`, `sanitised`, `stability`), which wins outright. The CSV and
+worksheet importers set it from the row's Type column (`user_cases.intent_from_type`)
+— a harvested message like "Data has been stored" has no success vocabulary, so
+judged by wording it was always UNVERIFIED. When Type and wording contradict, the
+intent is left undeclared and the row is reported in `warnings`, never silently
+resolved. `tests/test_expectation_corpus.py` is the phrase table: **add a row
+for every misreading found; never loosen one.**
 
 ## Gotchas
 
@@ -410,11 +567,10 @@ the Stop button (`/stop-run` sets `cancelled`, which each scenario checks), CI p
 
 ## Current state
 
-All six suites pass: 123 unit tests, `e2e_selftest` 13/13, `e2e_chain` 25/25
-(verified over 3 consecutive runs), `smoke_ui` 51/51, `integration_api` 55/55,
-`regression_existing_data` 4/4 (that last one only compares against real
-`projects/` data, and the workspace is currently empty — it skips the report
-checks rather than failing).
+Verified 2026-10-11 on branch `hardening-w`: `ruff check .` clean, 234 unit
+tests, `e2e_selftest` (13 scenarios, each at its intended verdict), `e2e_chain`,
+`e2e_recorder` 23/23, `smoke_ui`, `integration_api` 69/69 and
+`regression_existing_data` 8/8 all pass.
 
 ### Handling application quirks without hand-fixing
 
@@ -468,5 +624,6 @@ Still open:
   6-scenario suite; `Admin` has no suite and its recording uses fragile structural
   selectors (`div > div > form > div:nth-of-type(2) …`) that predate multi-candidate
   selector capture.
-- Still on the legacy `google-generativeai` SDK; `pip install google-genai` makes
+- `requirements.txt` lists `google-genai`, but a venv installed before it was added
+  is still on the legacy `google-generativeai` SDK; `pip install -r requirements.txt` makes
   `llm.py` switch automatically.

@@ -34,9 +34,9 @@ import io
 import json
 import re
 from pathlib import Path
-from typing import Any
 
 from . import config
+from . import storage
 
 log = config.get_logger("defects")
 
@@ -222,6 +222,23 @@ def match_flow(module: str, flow_names: list[str]) -> str:
         if scored:
             scored.sort(key=lambda pair: -pair[0])
             return scored[0][1]
+
+    # Typo-tolerant similarity matching (e.g. "Catgory" -> "Category")
+    import difflib
+    best_flow, best_ratio = "", 0.0
+    for flow in candidates:
+        flow_low = flow.lower()
+        ratio = max(
+            difflib.SequenceMatcher(None, tail, flow_low).ratio(),
+            difflib.SequenceMatcher(None, whole, flow_low).ratio(),
+        )
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best_flow = flow
+
+    if best_ratio >= 0.80:
+        return best_flow
+
     return ""
 
 
@@ -434,7 +451,7 @@ def load(project_name: str) -> list[dict]:
 def save(project_name: str, defects: list[dict]) -> None:
     target = path_for(project_name)
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps(defects, indent=2), encoding="utf-8")
+    storage.write_json(target, defects, indent=2)
 
 
 def merge(existing: list[dict], incoming: list[dict]) -> tuple[list[dict], int, int]:

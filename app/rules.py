@@ -24,11 +24,11 @@ Rules live at ``projects/<project>/rules.json`` (whole workspace) and
 from __future__ import annotations
 
 import json
-import re
 import uuid
 from pathlib import Path
 
 from . import config
+from . import storage
 
 log = config.get_logger("rules")
 
@@ -76,7 +76,7 @@ def _read(path: Path) -> list[dict]:
 
 def _write(path: Path, rules: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(rules, indent=2), encoding="utf-8")
+    storage.write_json(path, rules, indent=2)
 
 
 def load(project_name: str, flow_name: str = "") -> list[dict]:

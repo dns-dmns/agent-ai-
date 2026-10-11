@@ -31,6 +31,7 @@ from typing import Any
 import requests
 
 from . import config
+from . import storage
 
 log = config.get_logger("scheduler")
 
@@ -59,11 +60,7 @@ def load_schedules(project_name: str) -> list[dict]:
 
 def _write_schedules(project_name: str, schedules: list[dict]) -> None:
     path = schedules_file(project_name)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(".tmp")
-    with open(tmp, "w", encoding="utf-8") as fh:
-        json.dump({"schedules": schedules}, fh, indent=4)
-    tmp.replace(path)
+    storage.write_json(path, {"schedules": schedules})
 
 
 def save_schedule(project_name: str, payload: dict) -> dict:

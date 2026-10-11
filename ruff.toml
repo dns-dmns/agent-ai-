@@ -1,0 +1,8 @@
+# Correctness only: undefined names, unused imports and variables, syntax errors.
+# Style rules are deliberately off -- a style sweep over 20k lines would bury
+# real changes in diff noise. Tighten one rule family at a time.
+target-version = "py312"
+extend-exclude = ["projects", ".trash", ".tmp", "walkthrough", "web/legacy"]
+
+[lint]
+select = ["F", "E9"]

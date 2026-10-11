@@ -15,6 +15,7 @@ if sys.platform == "win32":
 
 import csv
 import glob
+import hmac
 import io
 import json
 import mimetypes
@@ -42,15 +43,20 @@ from . import api_seed
 from . import config
 from . import contracts
 from . import coverage
+from . import credentials as credential_store
 from . import db
 from . import defects
 from . import executor
 from . import export_project
+from . import framework_runner
 from . import learned
 from . import llm
+from . import storage
 from . import recorder
 from . import rules
 from . import scheduler
+from . import user_cases
+from . import worksheet
 
 mimetypes.add_type("video/webm", ".webm")
 mimetypes.add_type("video/mp4", ".mp4")
@@ -85,21 +91,43 @@ if _web_dir.exists():
 PUBLIC_PATHS = ("/", "/legacy", "/health", "/favicon.ico", "/docs", "/openapi.json", "/redoc")
 
 
+LOOPBACK_HOSTS = {"127.0.0.1", "::1", "localhost"}
+
+
+def is_loopback(request: Request) -> bool:
+    host = (request.client.host if request.client else "") or ""
+    return host in LOOPBACK_HOSTS or host.startswith("127.")
+
+
 @app.middleware("http")
 async def api_key_guard(request: Request, call_next):
-    """Optional shared-secret auth. Disabled entirely when QA_API_KEY is unset."""
+    """Shared-secret auth.
+
+    No key configured: this machine only, unless QA_ALLOW_REMOTE_WITHOUT_KEY=1.
+    Key configured: every non-public path needs it, as the X-API-Key header (CI)
+    or the qa_api_key cookie (the dashboard). Never as a query parameter -- a URL
+    is written to access logs, proxy logs and browser history.
+    """
     if not config.API_KEY:
-        return await call_next(request)
+        if config.ALLOW_REMOTE_WITHOUT_KEY or is_loopback(request):
+            return await call_next(request)
+        return JSONResponse(
+            status_code=403,
+            content={"detail": "Remote access is disabled because no API key is set. "
+                               "Set QA_API_KEY on the server (recommended), or "
+                               "QA_ALLOW_REMOTE_WITHOUT_KEY=1 on a trusted network."},
+        )
     path = request.url.path
     if path in PUBLIC_PATHS:
         return await call_next(request)
-    supplied = (
-        request.headers.get("X-API-Key")
-        or request.query_params.get("api_key")
-        or request.cookies.get("qa_api_key")
-        or ""
-    )
-    if supplied != config.API_KEY:
+    if "api_key" in request.query_params:
+        return JSONResponse(
+            status_code=401,
+            content={"detail": "Send the API key in the X-API-Key header, not the URL "
+                               "(URLs end up in logs)."},
+        )
+    supplied = request.headers.get("X-API-Key") or request.cookies.get("qa_api_key") or ""
+    if not hmac.compare_digest(supplied.encode(), config.API_KEY.encode()):
         return JSONResponse(
             status_code=401,
             content={"detail": "Invalid or missing API key. Set it in the dashboard header."},
@@ -156,20 +184,12 @@ def no_cache(response: Response) -> None:
 
 
 def read_json(path: Path, default: Any = None) -> Any:
-    try:
-        with open(path, "r", encoding="utf-8") as fh:
-            return json.load(fh)
-    except Exception:
-        return default
+    return storage.read_json(path, default)
 
 
 def write_json(path: Path, payload: Any) -> None:
     """Atomic write so a crash or a concurrent reader never sees half a file."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    with open(tmp, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh, indent=4)
-    os.replace(tmp, path)
+    storage.write_json(path, payload)
 
 
 def sse(payload: dict) -> str:
@@ -224,6 +244,8 @@ active_session: dict[str, Any] = {
     "project_name": config.DEFAULT_PROJECT,
     "start_time": 0,
     "binding_ready": False,
+    # Codegen-style assert mode: clicks record a check instead of acting.
+    "assert_mode": False,
 }
 _recording_lock = asyncio.Lock()
 
@@ -239,7 +261,7 @@ async def close_active_browser() -> None:
             pass
     active_session.update({
         "playwright": None, "browser": None, "context": None, "page": None,
-        "recording": False, "binding_ready": False,
+        "recording": False, "binding_ready": False, "assert_mode": False,
     })
 
 
@@ -643,6 +665,20 @@ async def handle_exposed_event(event: dict) -> None:
             target["effect"] = event.get("effect") or {}
         return
 
+    # Required-ness is evaluated at event time, and the strongest signal on an
+    # Angular form (ng-invalid on an empty control) only holds while the field IS
+    # empty. So the same field arrived required=True on CLICK and required=False
+    # on the TYPE that filled it, and whichever a consumer read last won —
+    # generation was told a mandatory field was optional. Carry the True forward:
+    # a field does not stop being mandatory because it is now filled. Mirrors
+    # learned.remember_fields, which already ORs the same flag across runs.
+    selector = event.get("selector")
+    if selector and event.get("required") is not True:
+        for earlier in active_session["actions"]:
+            if earlier.get("selector") == selector and earlier.get("required") is True:
+                event["required"] = True
+                break
+
     active_session["actions"].append(event)
     step_num = len(active_session["actions"])
     temp_path = config.TEMP_DIR / f"rec_{int(active_session['start_time'])}_step_{step_num}.png"
@@ -681,6 +717,47 @@ async def start_recording_api():
                 "message": "Recording started. Interact with the browser window."}
     except Exception as err:
         raise HTTPException(status_code=500, detail=str(err)) from err
+
+
+@app.post("/set-record-mode")
+async def set_record_mode(assert_mode: bool = False):
+    """Toggle codegen-style assert mode on the live recording session.
+
+    In assert mode a click no longer drives the application — it records a
+    ``VERIFY_TEXT`` / ``VERIFY_VALUE`` / ``VERIFY_VISIBLE`` step carrying the
+    element's exact current text, so a later run fails if the wording changes.
+    This is how a spelling mistake becomes a test failure rather than something
+    a human has to spot.
+
+    Applied to every frame and re-applied on navigation, because a single-page
+    application replaces the document without a page load.
+    """
+    page = active_session.get("page")
+    if not page:
+        raise HTTPException(status_code=400, detail="No active browser session found.")
+
+    active_session["assert_mode"] = bool(assert_mode)
+    flag = "true" if assert_mode else "false"
+    try:
+        await page.evaluate(f"window.__qaAssertMode = {flag};")
+        # Survives navigation. add_init_script accumulates, so the newest
+        # assignment is the one that wins on the next document.
+        await active_session["context"].add_init_script(
+            f"window.__qaAssertMode = {flag};"
+        )
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=str(err)) from err
+
+    return {
+        "status": "success",
+        "assert_mode": bool(assert_mode),
+        "message": (
+            "Assert mode ON — clicking an element now records a check on its "
+            "text instead of clicking it."
+            if assert_mode else
+            "Assert mode OFF — clicks drive the application again."
+        ),
+    }
 
 
 @app.post("/stop-recording")
@@ -747,7 +824,17 @@ async def stop_recording_api(force: bool = False):
                     project_name, flow_name, "screenshots", target_img.name
                 )
 
+        # The recorded username/password become {{placeholders}} and the
+        # literals go to the project's gitignored login_data.json — actions.json
+        # is committed, and generation copies its values into spec.json and
+        # test_cases.json, so a literal here ends up in git three times over.
+        scrubbed = credential_store.scrub_recorded_actions(actions, project_name)
+
         write_json(flow_path / "flow.json", {
+            # Versioned so a future change to this layout can be migrated
+            # instead of guessed at. projects/ is the data model; a schema
+            # nobody stamped is a schema nobody can evolve.
+            "schema_version": 1,
             "flow_name": flow_name,
             "target_url": url,
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -756,7 +843,8 @@ async def stop_recording_api(force: bool = False):
         })
         write_json(flow_path / "actions.json", actions)
         db.audit("stop_recording", f"{project_name}/{flow_name}",
-                 details={"steps": len(actions)})
+                 details={"steps": len(actions),
+                          "credentials_scrubbed": sorted(scrubbed)})
 
         return {"status": "success",
                 "message": f"Recording saved ({len(actions)} steps) to "
@@ -1085,9 +1173,8 @@ async def analyze_flow_api(flow_name: str, project_name: str = config.DEFAULT_PR
         "playwright_python": "", "cypress_js": "", "selenium_java": ""}))
     write_json(flow_path / "test_data.json", analysis.get("test_data", {
         "valid": [], "invalid": [], "boundary": []}))
-    (flow_path / "documentation.md").write_text(
-        analysis.get("documentation_markdown", ""), encoding="utf-8"
-    )
+    storage.write_text(flow_path / "documentation.md",
+                       analysis.get("documentation_markdown", ""))
     write_json(flow_path / "suggestions.json", analysis.get("suggestions", {
         "broken_selectors": [], "missing_validations": [], "recommendations": []}))
     write_json(flow_path / "spec.json", analysis)
@@ -1208,17 +1295,17 @@ async def generate_multi_agent_stream(flow_name: str,
             )
 
             agent_cases: list[list[dict]] = []
+            # Kept so the closing message can report the real cause instead of
+            # generic advice pointing at things the errors above already ruled out.
+            agent_errors: list[str] = []
             for agent_no, result in enumerate(results, start=1):
                 if isinstance(result, Exception):
+                    agent_errors.append(str(result))
                     yield sse({"event": "agent_error", "agent": agent_no,
                                "message": f"⚠️ Agent {agent_no} error: {result}"})
                     agent_cases.append([])
-                elif isinstance(result, list):
-                    agent_cases.append([c for c in result if isinstance(c, dict)])
-                elif isinstance(result, dict) and isinstance(result.get("test_cases"), list):
-                    agent_cases.append(result["test_cases"])
                 else:
-                    agent_cases.append([])
+                    agent_cases.append(ai_agents.normalise_generated_cases(result))
 
             for agent_no, cases in enumerate(agent_cases, start=1):
                 existing = {c.get("scenario_name", "").strip().lower() for c in all_cases}
@@ -1230,18 +1317,31 @@ async def generate_multi_agent_stream(flow_name: str,
                         existing.add(name)
                         added += 1
                 label = "functional" if agent_no == 1 else "edge case"
+                # A tick against "generated 0 test cases" reads as success and
+                # buries the error line directly above it.
+                mark = "✅" if cases else "❌"
                 yield sse({"event": "agent_done", "agent": agent_no, "count": len(cases),
-                           "unique_added": added,
-                           "message": f"✅ Agent {agent_no} generated {len(cases)} {label} "
+                           "unique_added": added, "ok": bool(cases),
+                           "message": f"{mark} Agent {agent_no} generated {len(cases)} {label} "
                                       f"test cases ({added} unique)."})
 
             yield sse({"event": "merge", "total": len(all_cases),
                        "message": f"📋 Merged suite: {len(all_cases)} total unique test cases."})
 
             if not all_cases:
-                yield sse({"event": "error",
-                           "message": "No test cases were produced. Check the API key, the "
-                                      "model name and the server log, then retry."})
+                if agent_errors:
+                    detail = " ".join(dict.fromkeys(agent_errors))
+                    message = f"No test cases were produced — every agent failed. {detail}"
+                else:
+                    # No exception and still nothing: the model answered with
+                    # something that held no test cases. "Check the API key"
+                    # here sent the reader at the one thing that provably
+                    # worked — the call had succeeded.
+                    message = (f"No test cases were produced. {config.GEMINI_MODEL} "
+                               f"replied, but the response held no usable test cases. "
+                               f"Retry once; if it repeats, the raw reply is in "
+                               f"logs/qa_platform.log.")
+                yield sse({"event": "error", "message": message})
                 return
 
             yield sse({"event": "agent_start", "agent": 3, "name": "QA Reviewer (The Auditor)",
@@ -1521,6 +1621,205 @@ async def upload_test_cases(flow_name: str, project_name: str = config.DEFAULT_P
     return {"status": "success", "message": "Test cases uploaded and saved successfully."}
 
 
+# ──────────────────────────────────────────────────────────────────────
+# User-authored test cases — the generate tab without the agents
+#
+# The tester asks what the module contains, downloads a CSV whose columns are
+# the module's real field labels, fills one row per case in plain language, and
+# uploads it. Everything technical — selectors, steps, the UI check — is
+# derived here or judged by the verdict engine. app/user_cases.py holds the
+# logic; these endpoints only wire it to the flow's files.
+# ──────────────────────────────────────────────────────────────────────
+@app.get("/module-inventory")
+async def module_inventory(flow_name: str, response: Response,
+                           project_name: str = config.DEFAULT_PROJECT):
+    """What is there in the application — fields, buttons, observed messages."""
+    require_flow(project_name, flow_name)
+    no_cache(response)
+    context = _defect_context(project_name, flow_name)
+    payload = user_cases.module_inventory(
+        context["fields"], context["actions"],
+        add_selector=context["add_selector"],
+        submit_selector=context["submit_selector"],
+        target_url=context["target_url"])
+    payload["field_count"] = len(payload["fields"])
+    payload["has_learned_profile"] = bool(
+        learned.flow_profile(project_name, flow_name).get("fields"))
+    return payload
+
+
+@app.get("/user-case-template")
+async def user_case_template(flow_name: str,
+                             project_name: str = config.DEFAULT_PROJECT):
+    """The CSV template for this module: real field labels, two sample rows."""
+    require_flow(project_name, flow_name)
+    context = _defect_context(project_name, flow_name)
+    if not context["fields"]:
+        raise HTTPException(
+            status_code=400,
+            detail=("No fields are known for this module yet — the template "
+                    "would be empty. Record the module (open its form and fill "
+                    "the fields), or run it once so the engine can inventory "
+                    "the page."))
+    body = user_cases.template_csv(context["fields"])
+    stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", f"{project_name}_{flow_name}_test_cases")
+    return PlainTextResponse(
+        body, media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="{stem}.csv"'})
+
+
+@app.post("/upload-user-cases")
+async def upload_user_cases(flow_name: str, file: UploadFile = File(...),
+                            project_name: str = config.DEFAULT_PROJECT):
+    """Merge a filled template into the suite. Upserts by scenario name.
+
+    Rows that cannot be turned into an honest scenario — an unrecognised
+    column, no expected result — come back under ``blocked`` with the reason,
+    rather than being imported as something other than what the tester wrote.
+    """
+    flow_path = require_flow(project_name, flow_name)
+    try:
+        rows = user_cases.read_rows(await file.read(), file.filename or "")
+        context = _defect_context(project_name, flow_name)
+        built = user_cases.build_cases(
+            rows, context["fields"],
+            add_selector=context["add_selector"],
+            submit_selector=context["submit_selector"])
+    except defects.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    # The same protection a generated suite gets: a stored credential literal
+    # typed into the sheet is replaced by its placeholder before anything is
+    # written to a committed file.
+    credential_store.scrub_known_literals(
+        built["cases"], credential_store.load_stored(project_name))
+
+    existing = read_json(flow_path / "test_cases.json", []) or []
+    merged, added, updated = user_cases.merge_cases(existing, built["cases"])
+    if built["cases"]:
+        write_json(flow_path / "test_cases.json", merged)
+
+    db.audit("upload_user_cases", f"{project_name}/{flow_name}",
+             details={"added": added, "updated": updated,
+                      "blocked": len(built["blocked"])})
+    summary = (f"{added} case(s) added, {updated} updated — the suite now has "
+               f"{len(merged)} test case(s).")
+    if built["blocked"]:
+        summary += (f" {len(built['blocked'])} row(s) need attention before "
+                    f"they can be imported.")
+    if not built["cases"] and not built["blocked"]:
+        summary = ("No case rows found. Fill a row per test case under the "
+                   "template's headers (the SAMPLE rows are skipped).")
+    return {"status": "success", "added": added, "updated": updated,
+            "total_cases": len(merged), "blocked": built["blocked"],
+            "unresolved_columns": built["unresolved_columns"],
+            "warnings": built.get("warnings", []),
+            "message": summary}
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Accurate Data Worksheet — automates Step 6 of the playbook
+#
+# The worksheet collects module DATA (fields, real message wording, test data,
+# confirmed rules). These endpoints turn it into upload-ready scenarios
+# deterministically — no AI — reusing user_cases for the step synthesis and the
+# ordinary verdict engine at run time. app/worksheet.py holds the logic.
+# ──────────────────────────────────────────────────────────────────────
+@app.get("/worksheet-template")
+async def worksheet_template(flow_name: str,
+                             project_name: str = config.DEFAULT_PROJECT):
+    """The data worksheet with its FIELD rows pre-filled from this module."""
+    require_flow(project_name, flow_name)
+    context = _defect_context(project_name, flow_name)
+    if not context["fields"]:
+        raise HTTPException(
+            status_code=400,
+            detail=("No fields are known for this module yet — record it or run "
+                    "it once so the worksheet can be pre-filled."))
+    inv = user_cases.module_inventory(
+        context["fields"], context["actions"], target_url=context["target_url"])
+    body = worksheet.worksheet_template_csv(
+        flow_name, f"{project_name} / {flow_name}", context["fields"],
+        inv.get("observed_messages") or [])
+    stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", f"{project_name}_{flow_name}_worksheet")
+    return PlainTextResponse(
+        body, media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="{stem}.csv"'})
+
+
+def _worksheet_build(project_name: str, flow_name: str, data: bytes, filename: str) -> dict:
+    context = _defect_context(project_name, flow_name)
+    return worksheet.build_from_worksheet(
+        data, filename, context["fields"],
+        add_selector=context["add_selector"],
+        submit_selector=context["submit_selector"])
+
+
+@app.post("/preview-worksheet")
+async def preview_worksheet(flow_name: str, file: UploadFile = File(...),
+                            project_name: str = config.DEFAULT_PROJECT):
+    """Show the scenarios a filled worksheet would produce. Writes nothing."""
+    require_flow(project_name, flow_name)
+    try:
+        built = _worksheet_build(project_name, flow_name,
+                                 await file.read(), file.filename or "")
+    except worksheet.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    return {
+        "module": built["parsed"]["module"],
+        "field_rows": len(built["parsed"]["fields"]),
+        "messages_harvested": len(built["parsed"]["messages"]),
+        "cases": [{"scenario_name": c["scenario_name"], "type": c["type"],
+                   "expected_result": c["expected_result"],
+                   "step_count": len(c["steps"])} for c in built["cases"]],
+        "case_count": len(built["cases"]),
+        "blocked": built["blocked"],
+        "unresolved_columns": built["unresolved_columns"],
+        "unmatched_fields": built["unmatched_fields"],
+        "notes": built["notes"],
+        "captured_unused": built["captured_unused"],
+        "csv": built["csv"],
+    }
+
+
+@app.post("/import-worksheet")
+async def import_worksheet(flow_name: str, file: UploadFile = File(...),
+                           project_name: str = config.DEFAULT_PROJECT):
+    """Generate scenarios from a filled worksheet and merge them into the suite.
+
+    Upserts by scenario name (like /upload-user-cases), so generated and
+    hand-written cases are never disturbed, and a re-import updates in place.
+    """
+    flow_path = require_flow(project_name, flow_name)
+    try:
+        built = _worksheet_build(project_name, flow_name,
+                                 await file.read(), file.filename or "")
+    except worksheet.DefectImportError as err:
+        raise HTTPException(status_code=400, detail=str(err)) from err
+
+    credential_store.scrub_known_literals(
+        built["cases"], credential_store.load_stored(project_name))
+
+    existing = read_json(flow_path / "test_cases.json", []) or []
+    merged, added, updated = user_cases.merge_cases(existing, built["cases"])
+    if built["cases"]:
+        write_json(flow_path / "test_cases.json", merged)
+
+    db.audit("import_worksheet", f"{project_name}/{flow_name}",
+             details={"added": added, "updated": updated})
+    summary = (f"{added} case(s) added, {updated} updated from the worksheet — "
+               f"the suite now has {len(merged)} test case(s).")
+    if not built["cases"]:
+        summary = ("Nothing was generated. Fill the worksheet's MESSAGE and DATA "
+                   "rows, then try again — see the notes.")
+    return {"status": "success", "added": added, "updated": updated,
+            "total_cases": len(merged), "case_count": len(built["cases"]),
+            "blocked": built["blocked"], "notes": built["notes"],
+            "captured_unused": built["captured_unused"],
+            "unmatched_fields": built["unmatched_fields"], "message": summary}
+
+
 @app.post("/update-test-case")
 async def update_test_case(flow_name: str, case_index: int,
                            project_name: str = config.DEFAULT_PROJECT,
@@ -1606,6 +1905,87 @@ def build_run_config(**kwargs) -> executor.RunConfig:
     if cfg.step_shots not in ("off", "fail", "all"):
         cfg.step_shots = "fail"
     return cfg
+
+
+@app.get("/run-framework-stream")
+async def run_framework_stream(project_name: str = config.DEFAULT_PROJECT,
+                               flow_name: str = ""):
+    """Run the suite through stock @playwright/test — the second engine.
+
+    Generates exactly the files the export produces, into the platform's
+    scratch directory (never the user's project), and executes them with the
+    standard runner. Assertion results only: no UNVERIFIED, no message
+    scanning, no rules — every event and the saved report say so.
+    """
+    require_name(project_name=project_name)
+    validate_safe_path(project_name, flow_name or "x")
+    modules = _export_modules(project_name, "")
+    if not modules:
+        raise HTTPException(status_code=400,
+                            detail="No recorded flows to run in this project.")
+    files = export_project.build_project(project_name, modules)
+
+    spec_file = ""
+    if flow_name:
+        spec_file = f"tests/{export_project.kebab(flow_name, 'module')}.spec.js"
+        if spec_file not in files:
+            raise HTTPException(
+                status_code=400,
+                detail=f"'{flow_name}' has no runnable spec — it needs a "
+                       f"recording (smoke) or a generated suite first.")
+
+    credentials = executor.resolve_credentials(project_name)
+    state = executor.register_run(project_name, flow_name or "(all flows)")
+
+    async def sse_generator():
+        queue: asyncio.Queue = asyncio.Queue()
+
+        async def emit_line(message: str) -> None:
+            await queue.put(message)
+
+        async def worker() -> dict | None:
+            try:
+                return await framework_runner.run_framework(
+                    project_name, flow_name, files, spec_file,
+                    credentials, emit_line, state)
+            finally:
+                await queue.put(None)                # end-of-stream marker
+
+        yield sse({"event": "start", "run_id": state.run_id,
+                   "message": "🎭 Playwright-framework engine: standard "
+                              "@playwright/test run — assertion results, "
+                              "not verdicts."})
+        if not credentials.get("username"):
+            yield sse({"event": "log", "message":
+                       "⚠️ No credentials configured for this project — the "
+                       "framework will refuse at login. Add them in project "
+                       "settings (or login_data.json)."})
+
+        task = asyncio.create_task(worker())
+        while True:
+            line = await queue.get()
+            if line is None:
+                break
+            yield sse({"event": "log", "run_id": state.run_id, "message": line})
+        report = await task
+
+        state.status = "cancelled" if state.cancelled else "finished"
+        if report is None:
+            yield sse({"event": "error",
+                       "message": "Run ended without results — the lines above "
+                                  "carry the actual cause."})
+            return
+        yield sse({"event": "framework_complete", "run_id": state.run_id,
+                   "report": report,
+                   "message": (f"🏁 {report['passed_count']} passed, "
+                               f"{report['failed_count']} failed, "
+                               f"{report['skipped_count']} skipped "
+                               f"in {report['duration_seconds']}s "
+                               f"(assertions only — no UNVERIFIED).")})
+
+    db.audit("run_framework", f"{project_name}/{flow_name or '*'}",
+             details={"run_id": state.run_id})
+    return StreamingResponse(sse_generator(), media_type="text/event-stream")
 
 
 @app.get("/run-matrix-stream")
@@ -1752,14 +2132,35 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
 async def run_status(run_id: str, response: Response, include_report: bool = False):
     no_cache(response)
     state = executor.RUN_REGISTRY.get(run_id)
-    if not state:
+    if state:
+        payload = state.snapshot()
+        if include_report and state.report:
+            payload["report"] = state.report
+        return payload
+    # Not in memory: the server restarted since. The durable copy still answers.
+    payload = db.load_run_state(run_id)
+    if not payload:
         raise HTTPException(status_code=404, detail="Unknown run id.")
-    payload = state.snapshot()
-    payload["exit_code"] = 0 if (state.status == "complete" and not state.failed
-                                 and not state.crashed) else 1
-    if include_report and state.report:
-        payload["report"] = state.report
+    if include_report:
+        report = archived_report(payload.get("project_name", ""),
+                                 payload.get("flow_name", ""), run_id)
+        if report:
+            payload["report"] = report
     return payload
+
+
+def archived_report(project_name: str, flow_name: str, run_id: str) -> dict | None:
+    """The timestamped report a past run wrote, found through run_history.json."""
+    try:
+        flow_path = config.flow_dir(project_name, flow_name)
+    except Exception:  # noqa: BLE001
+        return None
+    for entry in read_json(flow_path / "run_history.json", []) or []:
+        if entry.get("run_id") == run_id and entry.get("report_file"):
+            target = (flow_path / entry["report_file"]).resolve()
+            if flow_path.resolve() in target.parents:
+                return read_json(target)
+    return None
 
 
 @app.get("/list-runs")
@@ -2427,6 +2828,15 @@ async def defect_status(response: Response, project_name: str = config.DEFAULT_P
     return {"defects": rows, "total": len(rows), "summary": tally}
 
 
+@app.get("/defect-flows")
+async def list_defect_flows(project_name: str = config.DEFAULT_PROJECT):
+    """List all [defects] flows built for the active workspace."""
+    require_name(project_name=project_name)
+    all_flows = list_flow_names(project_name)
+    defect_flows = [f for f in all_flows if f.endswith(defects.DEFECT_FLOW_SUFFIX)]
+    return {"defect_flows": defect_flows, "count": len(defect_flows)}
+
+
 # ──────────────────────────────────────────────────────────────────────
 # Project export — a separate, strictly read-only feature
 #
@@ -2471,11 +2881,23 @@ async def preview_export(response: Response, project_name: str = config.DEFAULT_
 
     files = export_project.build_project(project_name, modules)
     runnable = [m for m in modules if m["scenarios"]]
+
+    def spec_path(flow: str) -> str:
+        return f"tests/{export_project.kebab(flow, 'module')}.spec.js"
+
+    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
     return {
         "project": project_name,
+        # Everything in the zip sits under this folder, so extracting it never
+        # scatters files into the download directory.
+        "root": re.sub(r"[^A-Za-z0-9_.-]+", "_", stem),
         "modules": [{"flow": m["flow"], "scenarios": len(m["scenarios"]),
                      "fields": len(m["fields"]),
-                     "exported": bool(m["scenarios"])} for m in modules],
+                     # A recording with no generated suite still exports — as a
+                     # smoke replay of the recording itself.
+                     "exported": spec_path(m["flow"]) in files,
+                     "smoke_only": bool(spec_path(m["flow"]) in files
+                                        and not m["scenarios"])} for m in modules],
         "files": [{"path": path, "bytes": len(content)}
                   for path, content in sorted(files.items())],
         "total_files": len(files),
@@ -2500,15 +2922,19 @@ async def download_project(project_name: str = config.DEFAULT_PROJECT,
                             detail="No recorded flows to export in this workspace.")
 
     files = export_project.build_project(project_name, modules)
+    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
+    safe_stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", stem)
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as bundle:
         for path, content in sorted(files.items()):
-            bundle.writestr(path, content)
+            # Everything under one root folder. A zip whose entries start at
+            # pages/ and package.json scatters loose files into whatever
+            # directory it is extracted in — which reads as a broken download.
+            bundle.writestr(f"{safe_stem}/{path}", content)
     buffer.seek(0)
     db.audit("export_project", project_name,
              details={"files": len(files), "modules": len(modules)})
-    stem = f"{project_name}{'_' + flow_name if flow_name else ''}_playwright"
-    filename = re.sub(r"[^A-Za-z0-9_.-]+", "_", stem) + ".zip"
+    filename = safe_stem + ".zip"
     return StreamingResponse(
         buffer, media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
@@ -3331,6 +3757,10 @@ async def delete_schedule(project_name: str, schedule_id: str):
 async def on_startup() -> None:
     llm.configure()
     db.init()
+    orphaned = db.mark_interrupted_runs()
+    if orphaned:
+        log.warning("%d run(s) were in progress when the server last stopped; "
+                    "marked interrupted.", orphaned)
     log.info("Workspace: %s", config.BASE_DIR)
     log.info("AI configured: %s (model %s)", bool(config.GEMINI_API_KEY), config.GEMINI_MODEL)
     log.info("Authentication: %s", "enabled" if config.API_KEY else "disabled (local only)")

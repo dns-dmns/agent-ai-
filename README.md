@@ -119,6 +119,98 @@ Kinds: `must_show` · `must_not_show` · `must_navigate` · `must_not_navigate` 
 **Module | Scenario | Pre-condition | Steps | Expected Result | Priority** for one
 flow or the whole workspace — ready for TestRail, Zephyr or Excel.
 
+## Recording — what gets captured
+
+Recording is not just "what was clicked". Every event carries the element's
+computed ARIA **role**, its **accessible name**, its **full visible text** and the
+text-bearing attributes (`title`, `placeholder`, `aria-label`, `href`, `alt`…),
+plus an exact `text="…"` locator among the candidate selectors. That is what
+makes a recording reviewable for wording and spelling rather than only replayable.
+
+### Capture checks — assert mode
+
+The **◎ Capture checks** button next to *Start recording* is Playwright codegen's
+"assert text" tool. Switch it on and clicking an element no longer drives the
+application — it records a check on what that element says right now:
+
+| You click | It records |
+| :--- | :--- |
+| A heading, label, message, cell | `VERIFY_TEXT` with the exact wording |
+| A filled input or dropdown | `VERIFY_VALUE` with its current value |
+| Anything with no text | `VERIFY_VISIBLE` |
+
+So a heading reading `Custmoer Master` is captured verbatim, and the day someone
+fixes the spelling the run **fails** — `'#t' does not contain 'Custmoer Master'`.
+A wording change becomes a test result instead of something a human has to notice.
+
+Switch it off and clicks drive the application again. The toggle survives
+navigation, which matters in a single-page application.
+
+**Credentials are never captured this way.** A password field degrades to
+`VERIFY_VISIBLE` rather than storing the secret as an expected value, and
+`text_full` / `accessible_name` are blanked on any sensitive field — otherwise
+they would carry a second copy of the literal straight past the scrubber and into
+`actions.json`, which is committed.
+
+`tests/e2e_recorder.py` runs the recorder in a real browser and asserts all of
+the above, including that an assert-mode click does not reach the application.
+
+## Write your own test cases — no AI needed
+
+The Generate tab has a second path that never calls a model. The card **Write
+your own test cases** gives you three buttons:
+
+1. **What's in this module?** — the module inventory: every field the platform
+   knows (label, type, required, dropdown choices), the buttons seen while
+   recording, and the exact messages the application showed. This is what you
+   write your cases *against*.
+2. **Download template (CSV)** — a sheet whose columns are that module's real
+   field labels, with two `SAMPLE —` rows showing the format (they are skipped
+   on upload). One row = one test case:
+
+   | Scenario | Type | *field label…* | Expected Result |
+   | :--- | :--- | :--- | :--- |
+   | Empty name is rejected | negative | `(blank)` | A validation message states that the name is required |
+
+   Plain values only — **no selectors, no steps**. `(blank)` clears a field
+   deliberately; a checkbox takes yes/no; a dropdown takes the option text; an
+   empty cell means "don't touch this field".
+3. **Upload filled template** — each row becomes a runnable scenario: open the
+   Add form (when the module has one), fill the named fields, submit. The
+   verdict engine then judges the outcome from what actually appears on screen
+   — the UI check is automatic, the sheet never describes the UI.
+
+Uploading again **updates your cases by name** and never touches generated
+ones. A row the platform cannot import honestly — a value under a misspelled
+column, a missing expected result — is **reported with the reason, not
+guessed at**, the same rule the defect importer follows. A credential typed
+into the sheet is replaced by its `{{placeholder}}` before anything is written.
+
+A generic example lives at `samples/user_test_cases_sample.csv`; the real
+template for your module (with its actual field names) comes from the
+Download button.
+
+### Build cases from a data worksheet (accurate-data method)
+
+The same card has a **"From a data worksheet"** panel that writes the starter
+cases *for* you, deterministically — no AI. It automates the one manual step of
+the accurate-data method (`testcases/Accurate_Data_Playbook.md`):
+
+- **Download data worksheet** — the worksheet arrives with its field rows already
+  filled from the module inventory. You add only what the platform cannot know:
+  the exact messages you copy from the screen, your test data, and confirmed rules.
+- **Build cases from worksheet** — upload it and the platform previews a bounded,
+  grounded set of scenarios: a happy path (quoting your success message), one
+  empty-field check per required field (quoting your required-field message, only
+  for the field it names), and a duplicate (when you supply an existing value).
+  Review, then import — they merge by name like any user case and run through the
+  same engine.
+
+Whatever the worksheet captured but the platform did not convert (an
+invalid-value message, a blocked-account record, free-text rules) is listed in
+the preview so nothing is silently dropped — those point you to the Coverage
+feature or a manual row.
+
 ## Step vocabulary
 
 Actions: `NAVIGATE` · `CLICK` · `DOUBLE_CLICK` · `RIGHT_CLICK` · `TYPE` · `CLEAR` ·
@@ -283,3 +375,14 @@ Two of these carry the weight:
 * Vision healing needs an API key and is skipped for destructive controls.
 * Visual regression needs `pillow`; XLSX row counts need `openpyxl`.
 * Deletes are soft: flows and projects move to `.trash/` with a timestamp.
+* **Network access.** With no `QA_API_KEY` the server answers this machine only;
+  other addresses (including Docker's bridge) get 403. Set `QA_API_KEY` and send
+  it as the `X-API-Key` header — a `?api_key=` URL parameter is refused, because
+  URLs end up in logs. `QA_ALLOW_REMOTE_WITHOUT_KEY=1` opens it unauthenticated,
+  for a trusted network only.
+* **CI polling survives restarts.** `/run-status/{id}` reads a durable copy of the
+  run's state; a run cut off by a restart reports `interrupted` (exit code 1).
+* **Declare intent when you know it.** A test case may carry
+  `"expected_intent": "error" | "success" | "absence" | "persistence" | "sanitised" | "stability"`;
+  it overrides how the expected-result wording is read. Uploaded sheets set it
+  from the Type column (Positive/Negative).

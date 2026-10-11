@@ -261,6 +261,12 @@ async def generate_text(
     started = time.time()
     last_error: Exception | None = None
 
+    # Security: Redact PII, passwords, and tokens before sending to external LLM
+    from . import mask
+    prompt = mask.mask_text(prompt)
+    if system_instruction:
+        system_instruction = mask.mask_text(system_instruction)
+
     for attempt in range(1, retries + 2):
         try:
             text = await asyncio.to_thread(

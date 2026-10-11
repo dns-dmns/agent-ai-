@@ -1,0 +1,1619 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_1.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Item\")",
+        "selectors": [
+            "button:has-text(\"Add Item\")",
+            "text=\"Add Item\"",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_2.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Add Item",
+                    "selector": "div.ng-tns-c2196985156-17.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "SKU is auto-generated and unique",
+                    "selector": "small.hint.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_116_header",
+                "pn_id_134",
+                "pn_id_136",
+                "pn_id_138"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2)",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2)"
+        ],
+        "tag": "div",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_3.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div",
+        "selectors": [
+            "div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div"
+        ],
+        "tag": "div",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_4.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "Domestic",
+        "role": "combobox",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "combobox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_5.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SKU Code *\"",
+        "selectors": [
+            "text=\"SKU Code *\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "SKU Code *",
+        "label": "SKU Code *",
+        "required": false,
+        "value": "SKU Code *",
+        "role": "",
+        "accessible_name": "SKU Code *",
+        "text_full": "SKU Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_6.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form",
+        "selectors": [
+            "div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form"
+        ],
+        "tag": "form",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_7.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div > div > div",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div > div > div"
+        ],
+        "tag": "div",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "Add Item",
+        "role": "",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_8.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div"
+        ],
+        "tag": "div",
+        "text": "Add Item\nSKU Code *\nSKU is auto-generated and uniq",
+        "label": "",
+        "required": false,
+        "value": "Add Item SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "role": "",
+        "accessible_name": "Add Item SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit P",
+        "text_full": "Add Item SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_9.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div"
+        ],
+        "tag": "div",
+        "text": "Add Item\nSKU Code *\nSKU is auto-generated and uniq",
+        "label": "",
+        "required": false,
+        "value": "Add Item SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "role": "",
+        "accessible_name": "Add Item SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit P",
+        "text_full": "Add Item SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed Cancel Save",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_10.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Option List\"]",
+        "selectors": [
+            "[aria-label=\"Option List\"]",
+            "#pn_id_134_list",
+            "div > div:nth-of-type(2) > p-select > p-overlay > div > div > div > div > ul"
+        ],
+        "tag": "ul",
+        "text": "Domestic\nExport\nPOS",
+        "label": "",
+        "required": false,
+        "value": "Domestic Export POS",
+        "role": "listbox",
+        "accessible_name": "Option List",
+        "text_full": "Domestic Export POS",
+        "attrs": {
+            "aria-label": "Option List",
+            "role": "listbox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_11.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Option List\"]",
+        "selectors": [
+            "[aria-label=\"Option List\"]",
+            "#pn_id_134_list",
+            "div > div:nth-of-type(2) > p-select > p-overlay > div > div > div > div > ul"
+        ],
+        "tag": "ul",
+        "text": "Domestic\nExport\nPOS",
+        "label": "",
+        "required": false,
+        "value": "Domestic Export POS",
+        "role": "listbox",
+        "accessible_name": "Option List",
+        "text_full": "Domestic Export POS",
+        "attrs": {
+            "aria-label": "Option List",
+            "role": "listbox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_12.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Option List\"]",
+        "selectors": [
+            "[aria-label=\"Option List\"]",
+            "#pn_id_134_list",
+            "div > div:nth-of-type(2) > p-select > p-overlay > div > div > div > div > ul"
+        ],
+        "tag": "ul",
+        "text": "Domestic\nExport\nPOS",
+        "label": "",
+        "required": false,
+        "value": "Domestic Export POS",
+        "role": "listbox",
+        "accessible_name": "Option List",
+        "text_full": "Domestic Export POS",
+        "attrs": {
+            "aria-label": "Option List",
+            "role": "listbox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_13.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div",
+        "selectors": [
+            "div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div"
+        ],
+        "tag": "div",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Domestic Export POS Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Domestic Export POS Category * Select category SKU Descripti",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Domestic Export POS Category * Select category SKU Description * Unit Price (INR) * MRP (INR) * SFG / Box * HSN Code UOM * Select UOM Minimum Stock * Dozens per Carton * Grams / Stick * Length (cm) * Width (cm) * Height (cm) * Gross Wt (kg) Tare Wt (kg) Net Wt (kg) CBM (m3) Auto-calculated from Length \u00d7 Width \u00d7 Height Active Product Images Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_14.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form",
+        "selectors": [
+            "div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2) > form"
+        ],
+        "tag": "form",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category 1 KG PACKETS 250 GRAM ROLL (25 KG) 250 GRAMS ROLL abcd Agarbathi Domestic AIR FRESHNER AUTO_CAT_ITEM_ACTIVE BAKHOOR HEBE 100GRM 6DZ BOX Box With Bag FG Box With OTR FG Box-FG CONES CONES JAR CONES JAR FG Cones-Domestic FG CTI001 CTI002 d active DHOOP DHOOP JAR DHOOP ZIPPER FG Dhoop-Domestic FG Dhoop-Jar FG diensh dinesh Domestic ECONOMY Economy-FG Export fsdfs HEXA PKTS - FG HEXAGON HEXAGON JAR Hexagon Jar-FG HEXAGON T/B Hexagon- FG JUMBO DHOOP JUMBO DHOOP ECO JUMBO DHOOP ECO FG JUMBO DHOOP NEW PREMIUM JUMBO\u2026",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category 1 KG PACKETS 250 GRAM ROLL (25 KG",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category 1 KG PACKETS 250 GRAM ROLL (25 KG) 250 GRAMS ROLL abcd Agarbathi Domestic AIR FRESHNER AUTO_CAT_ITEM_ACTIVE BAKHOOR HEBE 100GRM 6DZ BOX Box With Bag FG Box With OTR FG Box-FG CONES CONES JAR CONES JAR FG Cones-Domestic FG CTI001 CTI002 d active DHOOP DHOOP JAR DHOOP ZIPPER FG Dhoop-Domestic FG Dhoop-Jar FG diensh dinesh Domestic ECONOMY Economy-FG Export fsdfs HEXA PKTS - FG HEXAGON HEXAGON JAR Hexagon Jar-FG HEXAGON T/B Hexagon- FG JUMBO DHOOP JUMBO DHOOP ECO JUMBO DHOOP ECO FG JUMBO DHOOP NEW PREMIUM JUMBO\u2026",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_15.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Option List\"]",
+        "selectors": [
+            "[aria-label=\"Option List\"]",
+            "#pn_id_136_list",
+            "div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul"
+        ],
+        "tag": "ul",
+        "text": "1 KG PACKETS\n250 GRAM ROLL (25 KG)\n250 GRAMS ROLL\n",
+        "label": "",
+        "required": false,
+        "value": "1 KG PACKETS 250 GRAM ROLL (25 KG) 250 GRAMS ROLL abcd Agarbathi Domestic AIR FRESHNER AUTO_CAT_ITEM_ACTIVE BAKHOOR HEBE 100GRM 6DZ BOX Box With Bag FG Box With OTR FG Box-FG CONES CONES JAR CONES JAR FG Cones-Domestic FG CTI001 CTI002 d active DHOOP DHOOP JAR DHOOP ZIPPER FG Dhoop-Domestic FG Dhoop-Jar FG diensh dinesh Domestic ECONOMY Economy-FG Export fsdfs HEXA PKTS - FG HEXAGON HEXAGON JAR Hexagon Jar-FG HEXAGON T/B Hexagon- FG JUMBO DHOOP JUMBO DHOOP ECO JUMBO DHOOP ECO FG JUMBO DHOOP NEW PREMIUM JUMBO THICH DHOOP PREMIUM JUMBO THICK DHOOP FG JUMBO THICK DHOOP PREMIUM KALYANI POUCH Keral\u2026",
+        "role": "listbox",
+        "accessible_name": "Option List",
+        "text_full": "1 KG PACKETS 250 GRAM ROLL (25 KG) 250 GRAMS ROLL abcd Agarbathi Domestic AIR FRESHNER AUTO_CAT_ITEM_ACTIVE BAKHOOR HEBE 100GRM 6DZ BOX Box With Bag FG Box With OTR FG Box-FG CONES CONES JAR CONES JAR FG Cones-Domestic FG CTI001 CTI002 d active DHOOP DHOOP JAR DHOOP ZIPPER FG Dhoop-Domestic FG Dhoop-Jar FG diensh dinesh Domestic ECONOMY Economy-FG Export fsdfs HEXA PKTS - FG HEXAGON HEXAGON JAR Hexagon Jar-FG HEXAGON T/B Hexagon- FG JUMBO DHOOP JUMBO DHOOP ECO JUMBO DHOOP ECO FG JUMBO DHOOP NEW PREMIUM JUMBO THICH DHOOP PREMIUM JUMBO THICK DHOOP FG JUMBO THICK DHOOP PREMIUM KALYANI POUCH Keral\u2026",
+        "attrs": {
+            "aria-label": "Option List",
+            "role": "listbox"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_16.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2)",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-item-list > app-item-form > p-dialog > div > div > div:nth-of-type(2)"
+        ],
+        "tag": "div",
+        "text": "SKU Code *\nSKU is auto-generated and unique\nType *",
+        "label": "",
+        "required": false,
+        "value": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category 1 KG PACKETS 250 GRAM ROLL (25 KG) 250 GRAMS ROLL abcd Agarbathi Domestic AIR FRESHNER AUTO_CAT_ITEM_ACTIVE BAKHOOR HEBE 100GRM 6DZ BOX Box With Bag FG Box With OTR FG Box-FG CONES CONES JAR CONES JAR FG Cones-Domestic FG CTI001 CTI002 d active DHOOP DHOOP JAR DHOOP ZIPPER FG Dhoop-Domestic FG Dhoop-Jar FG diensh dinesh Domestic ECONOMY Economy-FG Export fsdfs HEXA PKTS - FG HEXAGON HEXAGON JAR Hexagon Jar-FG HEXAGON T/B Hexagon- FG JUMBO DHOOP JUMBO DHOOP ECO JUMBO DHOOP ECO FG JUMBO DHOOP NEW PREMIUM JUMBO\u2026",
+        "role": "",
+        "accessible_name": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category 1 KG PACKETS 250 GRAM ROLL (25 KG",
+        "text_full": "SKU Code * SKU is auto-generated and unique Type * Domestic Category * Select category 1 KG PACKETS 250 GRAM ROLL (25 KG) 250 GRAMS ROLL abcd Agarbathi Domestic AIR FRESHNER AUTO_CAT_ITEM_ACTIVE BAKHOOR HEBE 100GRM 6DZ BOX Box With Bag FG Box With OTR FG Box-FG CONES CONES JAR CONES JAR FG Cones-Domestic FG CTI001 CTI002 d active DHOOP DHOOP JAR DHOOP ZIPPER FG Dhoop-Domestic FG Dhoop-Jar FG diensh dinesh Domestic ECONOMY Economy-FG Export fsdfs HEXA PKTS - FG HEXAGON HEXAGON JAR Hexagon Jar-FG HEXAGON T/B Hexagon- FG JUMBO DHOOP JUMBO DHOOP ECO JUMBO DHOOP ECO FG JUMBO DHOOP NEW PREMIUM JUMBO\u2026",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_17.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div",
+        "selectors": [
+            "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_18.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"1 KG PACKETS\"]",
+        "selectors": [
+            "[aria-label=\"1 KG PACKETS\"]",
+            "text=\"1 KG PACKETS\"",
+            "#pn_id_136_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "1 KG PACKETS",
+        "label": "",
+        "required": false,
+        "value": "1 KG PACKETS",
+        "role": "option",
+        "accessible_name": "1 KG PACKETS",
+        "text_full": "1 KG PACKETS",
+        "attrs": {
+            "aria-label": "1 KG PACKETS",
+            "role": "option"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_19.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"1 KG PACKETS\"]",
+        "selectors": [
+            "[aria-label=\"1 KG PACKETS\"]",
+            "text=\"1 KG PACKETS\"",
+            "#pn_id_136_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "1 KG PACKETS",
+        "label": "",
+        "required": false,
+        "value": "1 KG PACKETS",
+        "role": "option",
+        "accessible_name": "1 KG PACKETS",
+        "text_full": "1 KG PACKETS",
+        "attrs": {
+            "aria-label": "1 KG PACKETS",
+            "role": "option"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_20.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"dinesh\"]",
+        "selectors": [
+            "[aria-label=\"dinesh\"]",
+            "text=\"dinesh\"",
+            "#pn_id_136_25",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem:nth-of-type(26) > li"
+        ],
+        "tag": "li",
+        "text": "dinesh",
+        "label": "",
+        "required": false,
+        "value": "dinesh",
+        "role": "option",
+        "accessible_name": "dinesh",
+        "text_full": "dinesh",
+        "attrs": {
+            "aria-label": "dinesh",
+            "role": "option"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_21.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div",
+        "selectors": [
+            "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_22.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div",
+        "selectors": [
+            "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_23.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div",
+        "selectors": [
+            "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_24.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div",
+        "selectors": [
+            "form > div > div:nth-of-type(3) > p-select > p-overlay > div > div > div > div"
+        ],
+        "tag": "div",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_25.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Dhoop-Jar FG\"]",
+        "selectors": [
+            "[aria-label=\"Dhoop-Jar FG\"]",
+            "text=\"Dhoop-Jar FG\"",
+            "#pn_id_136_23",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem:nth-of-type(24) > li"
+        ],
+        "tag": "li",
+        "text": "Dhoop-Jar FG",
+        "label": "",
+        "required": false,
+        "value": "Dhoop-Jar FG",
+        "role": "option",
+        "accessible_name": "Dhoop-Jar FG",
+        "text_full": "Dhoop-Jar FG",
+        "attrs": {
+            "aria-label": "Dhoop-Jar FG",
+            "role": "option"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_26.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"diensh\"]",
+        "selectors": [
+            "[aria-label=\"diensh\"]",
+            "text=\"diensh\"",
+            "#pn_id_136_24",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem:nth-of-type(25) > li"
+        ],
+        "tag": "li",
+        "text": "diensh",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "diensh",
+        "text_full": "diensh",
+        "attrs": {
+            "aria-label": "diensh",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_27.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_28.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "dadsfa",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_29.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_30.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "\u20b9 23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_31.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_32.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(6) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "\u20b9 23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_33.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_34.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_35.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Sticks\"]",
+        "selectors": [
+            "[aria-label=\"Sticks\"]",
+            "text=\"Sticks\"",
+            "#pn_id_138_4",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem:nth-of-type(5) > li"
+        ],
+        "tag": "li",
+        "text": "Sticks",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Sticks",
+        "text_full": "Sticks",
+        "attrs": {
+            "aria-label": "Sticks",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_36.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_37.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_38.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_39.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(11) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_40.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_41.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(12) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_42.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_43.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(13) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_44.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_45.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(14) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_46.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_47.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.00\"]",
+        "selectors": [
+            "input[placeholder=\"0.00\"]",
+            "div input[placeholder=\"0.00\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(15) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "2,323",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.00",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_48.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_49.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(16) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "3",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_50.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_51.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_52.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_53.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_54.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(18) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "23",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_55.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+        "selectors": [
+            "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "",
+        "attrs": {
+            "type": "file",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_56.png"
+    },
+    {
+        "action": "UPLOAD",
+        "selector": "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+        "selectors": [
+            "input[placeholder=\"Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(21) > label:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "required": false,
+        "value": "Gemba Concepts Logo PNG .png",
+        "role": "",
+        "accessible_name": "Click to upload images\nJPG, JPEG or PNG \u00b7 multiple allowed",
+        "text_full": "",
+        "attrs": {
+            "type": "file",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_57.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_58.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Success\nItem Added Successfully",
+                    "selector": "p-toastitem.ng-tns-c2572556178-27.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Success",
+                    "selector": "div.ng-tns-c2572556178-27.p-toast-summary"
+                },
+                {
+                    "text": "Item Added Successfully",
+                    "selector": "div.ng-tns-c2572556178-27.p-toast-detail"
+                },
+                {
+                    "text": "Showing 1 to 10 of 3522 entries",
+                    "selector": "span.pagination-info"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_116_header",
+                "pn_id_134",
+                "pn_id_136",
+                "pn_id_138"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Search Item\"]",
+        "selectors": [
+            "input[placeholder=\"Search Item\"]",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Item",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_59.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Showing 1 to 10 of 1760 entries",
+                    "selector": "span.pagination-info"
+                },
+                {
+                    "text": "Showing 1 to 10 of 314 entries",
+                    "selector": "span.pagination-info"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Search Item\"]",
+        "selectors": [
+            "input[placeholder=\"Search Item\"]",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "dadsfa",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Item",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_60.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tdiensh\tDomestic\tDFG 111123178\t\") [title=\"Edit\"]",
+            "div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_61.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Edit Item",
+                    "selector": "div.ng-tns-c2196985156-17.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_116_header",
+                "pn_id_134",
+                "pn_id_136",
+                "pn_id_138"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_62.png"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[formcontrolname=\"skuDescription\"]",
+        "selectors": [
+            "input[formcontrolname=\"skuDescription\"]",
+            "input[placeholder=\"Enter SKU description\"]",
+            "div input[formcontrolname=\"skuDescription\"]",
+            "div input[placeholder=\"Enter SKU description\"]",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "asdfg",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter SKU description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_63.png"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-item-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_64.png",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
+            "messages": [
+                {
+                    "text": "Success\nItem Updated Successfully",
+                    "selector": "p-toastitem.ng-tns-c2572556178-28.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Success",
+                    "selector": "div.ng-tns-c2572556178-28.p-toast-summary"
+                },
+                {
+                    "text": "Item Updated Successfully",
+                    "selector": "div.ng-tns-c2572556178-28.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_116_header",
+                "pn_id_134",
+                "pn_id_136",
+                "pn_id_138"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Search Item\"]",
+        "selectors": [
+            "input[placeholder=\"Search Item\"]",
+            "div:nth-of-type(3) > div > div > app-item-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Item",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_65.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > app-pages > div > div:nth-of-type(3) > div",
+        "selectors": [
+            "html > body > app-root > app-pages > div > div:nth-of-type(3) > div"
+        ],
+        "tag": "div",
+        "text": "Item Master\nMaster\nProduct Catalogue\nItem Master\nF",
+        "label": "",
+        "required": false,
+        "value": "Item Master Master Product Catalogue Item Master Filter by Type Filter by Category All Statuses Add Item SL.NO CATEGORY TYPE SKU CODE IMAGES SKU DESCRIPTION UNIT PRICE HSN UOM DOZ/CARTON GRAMS/STICK GROSS WT TARE WT NET WT L (CM) W (CM) H (CM) CBM ACTIVE BOM STATUS ACTIONS 1 diensh Domestic DFG 111123178 asdfg \u20b923 33074100 sticks 23 23 3 23 23 23 23 2323 1.228867 Showing 1 to 1 of 1 entries 1",
+        "role": "",
+        "accessible_name": "Item Master Master Product Catalogue Item Master Filter by Type Filter by Category All Statuses Add Item SL.NO CATEGORY ",
+        "text_full": "Item Master Master Product Catalogue Item Master Filter by Type Filter by Category All Statuses Add Item SL.NO CATEGORY TYPE SKU CODE IMAGES SKU DESCRIPTION UNIT PRICE HSN UOM DOZ/CARTON GRAMS/STICK GROSS WT TARE WT NET WT L (CM) W (CM) H (CM) CBM ACTIVE BOM STATUS ACTIONS 1 diensh Domestic DFG 111123178 asdfg \u20b923 33074100 sticks 23 23 3 23 23 23 23 2323 1.228867 Showing 1 to 1 of 1 entries 1",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_66.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-pages > div > div:nth-of-type(3) > div > div > app-item-list > div > div",
+        "selectors": [
+            "app-root > app-pages > div > div:nth-of-type(3) > div > div > app-item-list > div > div"
+        ],
+        "tag": "div",
+        "text": "Filter by Type\nFilter by Category\nAll Statuses\nAdd",
+        "label": "",
+        "required": false,
+        "value": "Filter by Type Filter by Category All Statuses Add Item",
+        "role": "",
+        "accessible_name": "Filter by Type Filter by Category All Statuses Add Item",
+        "text_full": "Filter by Type Filter by Category All Statuses Add Item",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_67.png"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(19)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(19)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_68.png"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "div > div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21)",
+        "selectors": [
+            "div > div > app-item-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(21)"
+        ],
+        "tag": "td",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/item/screenshots/step_69.png"
+    }
+]

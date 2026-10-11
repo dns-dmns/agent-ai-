@@ -1,349 +1,163 @@
 [
     {
-        "scenario_name": "Login - Successful Authentication with Valid Credentials",
+        "scenario_name": "Valid login",
         "type": "positive",
+        "expected_intent": "success",
         "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
             {
                 "action": "TYPE",
                 "selector": "#username",
-                "value": "admin"
+                "value": "{{username}}"
             },
             {
                 "action": "TYPE",
                 "selector": "#password",
-                "value": "1234"
+                "value": "{{password}}"
             },
             {
                 "action": "CLICK",
                 "selector": "button:has-text(\"Login\")"
             },
             {
-                "action": "VERIFY_URL",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
-                "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
-            },
-            {
                 "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
                 "value": "Login Successful"
-            }
-        ],
-        "expected_result": "User is successfully logged in, success toast appears, and page redirects to /liberty/pages/home."
-    },
-    {
-        "scenario_name": "Login - Invalid Password for Existing User",
-        "type": "negative",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "admin"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "WrongPassword99"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
-                "value": "Invalid credentials"
-            }
-        ],
-        "expected_result": "Authentication fails, error message is displayed, and user remains on login screen."
-    },
-    {
-        "scenario_name": "Login - Non-existent Username",
-        "type": "negative",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "nonexistent_user"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "1234"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
-                "value": "Invalid credentials"
-            }
-        ],
-        "expected_result": "Authentication fails with generic error message without giving away username existence."
-    },
-    {
-        "scenario_name": "Login - Empty Form Submission",
-        "type": "negative",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "CLEAR",
-                "selector": "#username"
-            },
-            {
-                "action": "CLEAR",
-                "selector": "#password"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "span.ng-star-inserted",
-                "value": "Username is required"
-            }
-        ],
-        "expected_result": "Validation error triggers, submit action is blocked or fails gracefully."
-    },
-    {
-        "scenario_name": "Login - Boundary Test Maximum Input Length",
-        "type": "boundary",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "1234"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
-                "value": "Invalid credentials"
-            }
-        ],
-        "expected_result": "System handles long string gracefully without buffer errors or unhandled visual overflow."
-    },
-    {
-        "scenario_name": "Login - Whitespace Only Input Validation",
-        "type": "boundary",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "   "
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "   "
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "span.ng-star-inserted",
-                "value": "Username is required"
-            }
-        ],
-        "expected_result": "Whitespace is trimmed and validation message prompts user for required input."
-    },
-    {
-        "scenario_name": "Login - SQL Injection Attack Vector in Username Field",
-        "type": "security",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "' OR '1'='1"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "' OR '1'='1"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
-                "value": "Invalid credentials"
-            }
-        ],
-        "expected_result": "SQL payload is safely parameterized, attempt is rejected, and no internal errors are exposed."
-    },
-    {
-        "scenario_name": "Login - Cross-Site Scripting (XSS) Script Payload Input",
-        "type": "security",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "<script>alert('xss')</script>"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "1234"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
-                "value": "Invalid credentials"
-            }
-        ],
-        "expected_result": "Script tags are sanitized or escaped; script does not execute."
-    },
-    {
-        "scenario_name": "Login - UI Element Presence and Initial Visual State",
-        "type": "ui",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "VERIFY_VISIBLE",
-                "selector": "#username",
-                "value": ""
-            },
-            {
-                "action": "VERIFY_VISIBLE",
-                "selector": "#password",
-                "value": ""
-            },
-            {
-                "action": "VERIFY_VISIBLE",
-                "selector": "button:has-text(\"Login\")",
-                "value": ""
-            }
-        ],
-        "expected_result": "Login form rendered correctly with username, password fields, and submit button."
-    },
-    {
-        "scenario_name": "Login - Consecutive Failed Authentication Attempts Rate Limiting",
-        "type": "security",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "admin"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "wrong1"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "wrong2"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "wrong3"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
-            },
-            {
-                "action": "VERIFY_MESSAGE",
-                "selector": "div.p-toast-detail",
-                "value": "Too many attempts"
-            }
-        ],
-        "expected_result": "System rate-limits requests or temporarily locks user account after multiple failed attempts."
-    },
-    {
-        "scenario_name": "Login - Username Case Sensitivity Behaviour",
-        "type": "positive",
-        "steps": [
-            {
-                "action": "NAVIGATE",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/auth/login"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#username",
-                "value": "ADMIN"
-            },
-            {
-                "action": "TYPE",
-                "selector": "#password",
-                "value": "1234"
-            },
-            {
-                "action": "CLICK",
-                "selector": "button:has-text(\"Login\")"
             },
             {
                 "action": "VERIFY_URL",
-                "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home",
-                "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/home"
+                "value": "/pages/home"
             }
         ],
-        "expected_result": "Username normalization allows login regardless of letter casing."
+        "expected_result": "'Login Successful' is shown and the home page opens"
+    },
+    {
+        "scenario_name": "Wrong password is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "{{username}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Wrong#Pass-QA"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE",
+                "value": "Invalid Password"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "'Invalid Password' error is shown and the user stays on the login page"
+    },
+    {
+        "scenario_name": "Unknown username is rejected",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "qa_no_such_user_{{run_token}}"
+            },
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "Any#Pass-QA"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "An error message is shown and the user stays on the login page"
+    },
+    {
+        "scenario_name": "Empty username and password",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "A validation message asks for the username and password; login is blocked"
+    },
+    {
+        "scenario_name": "Empty password",
+        "type": "negative",
+        "expected_intent": "error",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#username",
+                "value": "{{username}}"
+            },
+            {
+                "action": "CLICK",
+                "selector": "button:has-text(\"Login\")"
+            },
+            {
+                "action": "VERIFY_MESSAGE"
+            },
+            {
+                "action": "VERIFY_URL",
+                "value": "/auth/login"
+            }
+        ],
+        "expected_result": "A validation message asks for the password; login is blocked"
+    },
+    {
+        "scenario_name": "Password is masked",
+        "type": "security",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "TYPE",
+                "selector": "#password",
+                "value": "{{password}}"
+            },
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "input#password[type=\"password\"]"
+            }
+        ],
+        "expected_result": "The password field masks what is typed"
+    },
+    {
+        "scenario_name": "Forgot Password link is shown",
+        "type": "ui",
+        "expected_intent": "success",
+        "steps": [
+            {
+                "action": "VERIFY_VISIBLE",
+                "selector": "text=\"Forgot Password?\""
+            }
+        ],
+        "expected_result": "The Forgot Password? link is displayed"
     }
 ]

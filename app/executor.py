@@ -34,10 +34,13 @@ from playwright.async_api import async_playwright
 
 from . import api_seed
 from . import config
+from . import credentials as credential_store
+from .dom_probes import SHARED_PROBES_JS
 from . import contracts
 from . import coverage
 from . import heuristics
 from . import learned
+from . import storage
 from . import rules as rules_engine
 from . import verdict as verdict_engine
 
@@ -229,7 +232,7 @@ class RunState:
     run_id: str
     project_name: str
     flow_name: str
-    status: str = "running"          # running | complete | cancelled | error
+    status: str = "running"          # running | complete | cancelled | error | interrupted
     started_at: float = field(default_factory=time.time)
     finished_at: float | None = None
     cancelled: bool = False
@@ -258,7 +261,20 @@ class RunState:
             "unverified": self.unverified,
             "crashed": self.crashed,
             "error": self.error,
+            # What a CI step should exit with. Anything but a clean, complete run
+            # is a failure -- an errored or cancelled run proved nothing.
+            "exit_code": 0 if (self.status == "complete" and not self.failed
+                               and not self.crashed) else 1,
         }
+
+
+def persist_run_state(state: "RunState") -> None:
+    """Best-effort durable copy of the run's state (see db.run_state)."""
+    try:
+        from . import db
+        db.save_run_state(state.snapshot())
+    except Exception as err:  # noqa: BLE001
+        log.warning("Could not persist run state %s: %s", state.run_id, err)
 
 
 RUN_REGISTRY: dict[str, RunState] = {}
@@ -272,6 +288,7 @@ def register_run(project_name: str, flow_name: str) -> RunState:
                 RUN_REGISTRY.pop(key, None)
     state = RunState(run_id=uuid.uuid4().hex[:12], project_name=project_name, flow_name=flow_name)
     RUN_REGISTRY[state.run_id] = state
+    persist_run_state(state)
     return state
 
 
@@ -1197,12 +1214,17 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
 
     # ── Interactions ──────────────────────────────────────────────────
     if action == "TYPE":
-        if value.strip():
+        # Never into a password field: these bookkeeping values are echoed into
+        # report.json, which is committed — that echo is how a scrubbed
+        # recording still leaked the password into git. A password is also
+        # never the created record's identity, so nothing is lost.
+        if value.strip() and credential_store.classify_field(step) != "password":
             ctx["runtime_pool"]["last_typed_value"] = value.strip()
             # The first value typed into a form is almost always the record's
             # name/code — the identity any later assertion should verify.
             ctx["runtime_pool"].setdefault("first_typed_value", value.strip())
         cands = candidate_selectors(step, "TYPE")
+        last: Exception | None = None
         for attempt in range(3):
             loc, used = await first_usable(cands)
             if loc:
@@ -1228,7 +1250,14 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
             result["healed"] = True
             await emit_log(f"🛠️ [Auto-Heal] Repaired input on '{selector}'")
             return result
-        raise Exception(f"TYPE failed on '{selector}'")
+        # Say why: "not found" and "found but would not accept input" (disabled,
+        # read-only, covered) are different defects, and the report is where a
+        # tester decides which one this is.
+        if last is None:
+            raise Exception(f"TYPE failed: '{selector}' was not found on the page.")
+        reason = str(last).strip().splitlines()[0][:200]
+        raise Exception(f"TYPE failed on '{selector}': the field was found but did "
+                        f"not accept input ({reason})")
 
     if action == "CLEAR":
         loc, used = await first_usable(candidate_selectors(step, "TYPE"))
@@ -1614,6 +1643,7 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
 
 
 FORM_INVENTORY_JS = """(selector) => {
+__SHARED_PROBES__
     // Everything the form actually contains — not just what a recording touched.
     // This is how the platform learns about a required field nobody recorded.
     let target = null;
@@ -1688,13 +1718,14 @@ FORM_INVENTORY_JS = """(selector) => {
         if (!sel || seen.has(sel)) return;
         seen.add(sel);
         const label = labelFor(el);
+        const requiredSource = qaRequiredInfo(el, qaLabelElFor(el), label);
         const entry = {
             selector: sel,
             label: label,
             kind: el.tagName.toLowerCase() === 'select' ? 'select'
                   : (el.getAttribute('type') || 'text').toLowerCase(),
-            required: !!el.required || el.getAttribute('aria-required') === 'true' ||
-                      /\\*\\s*$/.test(label),
+            required: !!requiredSource,
+            required_source: requiredSource,
             value: (el.value == null ? '' : String(el.value)).trim(),
             disabled: !!el.disabled || el.hasAttribute('readonly'),
         };
@@ -1725,8 +1756,12 @@ FORM_INVENTORY_JS = """(selector) => {
             selector: sel,
             label: label,
             kind: el.tagName.toLowerCase().includes('inputnumber') ? 'number' : 'dropdown',
-            // ng-invalid on an untouched control is the framework saying "required".
-            required: /\\bng-invalid\\b/.test(cls) || /\\*\\s*$/.test(label),
+            // ng-invalid on an untouched wrapper is the framework saying
+            // "required"; the shared probe adds asterisk, CSS marker and classes.
+            required: !!(/\\bng-invalid\\b/.test(cls) ||
+                         qaRequiredInfo(inner || el, qaLabelElFor(el), label)),
+            required_source: /\\bng-invalid\\b/.test(cls) ? 'ng-invalid-empty'
+                : qaRequiredInfo(inner || el, qaLabelElFor(el), label),
             value: inner ? (inner.value || '').trim() : '',
             filled: /\\bp-inputwrapper-filled\\b/.test(cls),
             component: true,
@@ -1736,6 +1771,10 @@ FORM_INVENTORY_JS = """(selector) => {
     return out;
 }"""
 
+
+# Shared with the recorder so the two can never disagree about which
+# fields are mandatory — they did, and that cost four attempted fixes.
+FORM_INVENTORY_JS = FORM_INVENTORY_JS.replace("__SHARED_PROBES__", SHARED_PROBES_JS)
 
 READONLY_SCAN_JS = """() => {
     // Inside the open dialog if there is one, otherwise the page.
@@ -1765,6 +1804,7 @@ READONLY_SCAN_JS = """() => {
 
 
 EMPTY_REQUIRED_JS = """(selector) => {
+__EMPTY_REQUIRED_PROBES__
     // Find the form or dialog the control belongs to, then report which of its
     // mandatory fields are still empty. Covers plain inputs and the component
     // wrappers (PrimeNG / Material / Ant) whose own element holds the state.
@@ -1810,11 +1850,11 @@ EMPTY_REQUIRED_JS = """(selector) => {
                el.id || el.tagName.toLowerCase();
     };
 
-    const requiredLabel = (el) => {
-        const text = labelFor(el);
-        return /\\*\\s*$/.test(text) || el.required ||
-               el.getAttribute('aria-required') === 'true';
-    };
+    // This used to be a third private detector (end-anchored asterisk plus the
+    // two attributes), so "which mandatory fields are still empty" could
+    // contradict the inventory that had just listed them. One probe, everywhere.
+    const requiredLabel = (el) =>
+        !!qaRequiredInfo(el, qaLabelElFor(el), labelFor(el));
 
     const empty = [];
     // 1. Plain fields the browser knows about.
@@ -1830,11 +1870,23 @@ EMPTY_REQUIRED_JS = """(selector) => {
         const cls = String(el.className || '');
         if (!/\\bng-invalid\\b/.test(cls)) return;
         if (/\\bp-inputwrapper-filled\\b/.test(cls)) return;
+        // ng-invalid on a FILLED control means "bad value", not "still empty" —
+        // the filled-class check above only exists on PrimeNG wrappers, so plain
+        // inputs (e.g. a formcontrolname text field holding a rejected value)
+        // were reported as empty-mandatory when they were neither.
+        const inner = el.matches('input, textarea, select') ? el
+                    : el.querySelector('input, textarea, select');
+        if (inner && String(inner.value == null ? '' : inner.value).trim()) return;
         const name = labelFor(el);
         if (name && empty.indexOf(name) === -1) empty.push(name);
     });
     return [...new Set(empty)].slice(0, 8);
 }"""
+
+# Same shared detector as the inventory and the recorder — this probe used to
+# carry a third private copy, so "which mandatory fields are still empty" could
+# disagree with the inventory that had just listed them.
+EMPTY_REQUIRED_JS = EMPTY_REQUIRED_JS.replace("__EMPTY_REQUIRED_PROBES__", SHARED_PROBES_JS)
 
 
 # The overlay containers every major component library uses for modals.
@@ -1951,6 +2003,47 @@ def scenario_owns_field(scenario: dict, field: dict) -> bool:
     return False
 
 
+async def capture_form_inventory(page, ctx: dict, selector: str = "") -> list[dict]:
+    """Record the fields on the visible form, whether or not anything went wrong.
+
+    The inventory used to run in exactly one place: after a Save click had
+    already failed *and* the button was found disabled. A form that saves
+    correctly therefore never produced one — which is why ``learned.json`` stayed
+    empty, why auto-complete had nothing to work from, and why fixing detection
+    alone never changed what anyone saw. Both halves had to move.
+
+    Pure observation: appends to ``ctx["observed_fields"]`` and touches no
+    verdict, evidence or step outcome. A failure is logged and swallowed, because
+    learning must never break a run — but it is *logged*, not silent.
+    """
+    try:
+        inventory = await page.evaluate(FORM_INVENTORY_JS, selector or "")
+    except Exception as err:      # noqa: BLE001 - observation must not fail a step
+        log.info("Form inventory unavailable for %r: %s", selector, err)
+        return []
+    if not isinstance(inventory, list) or not inventory:
+        return []
+
+    seen: set = ctx.setdefault("_field_seen", set())
+    fresh: list[dict] = []
+    for entry in inventory:
+        target = entry.get("selector")
+        if not target:
+            continue
+        # Keyed on required-ness too: a control is only provably ng-invalid while
+        # still empty, so the same field can legitimately report differently
+        # later. remember_fields ORs the flag, so an early True is never lost.
+        key = (target, bool(entry.get("required")))
+        if key in seen:
+            continue
+        seen.add(key)
+        fresh.append(entry)
+
+    if fresh:
+        ctx.setdefault("observed_fields", []).extend(fresh)
+    return fresh
+
+
 async def autocomplete_form(page, step: dict, scenario: dict, ctx: dict,
                             selector: str) -> dict:
     """Fill required fields the scenario never mentions, so a submit can proceed.
@@ -1978,7 +2071,7 @@ async def autocomplete_form(page, step: dict, scenario: dict, ctx: dict,
     token = str(ctx["runtime_pool"].get("run_token", ""))[:6]
     emit_log = ctx["log"]
 
-    for field in inventory:
+    for field in inventory:  # noqa: F402 - dataclasses.field is not used here
         if not field.get("required"):
             continue
         if field.get("value") or field.get("filled"):
@@ -2734,6 +2827,11 @@ async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
 
     evidence = verdict_engine.Evidence()
     pool: dict = {"run_token": unique_token()}
+    # A dependency flow's recording is scrubbed the same way the target's is,
+    # so its {{username}}/{{password}} placeholders need the pool too.
+    pool.update({key: value
+                 for key, value in (shared.get("credentials") or {}).items()
+                 if key in ("username", "password") and value})
 
     async def emit_log(message: str) -> None:
         await emit({"event": "log", "message": message})
@@ -2949,9 +3047,24 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
     network_errors: list[str] = []
     steps_executed: list[str] = []
     step_durations: list[dict] = []
-    runtime_pool: dict = dict(shared.get("seed_pool") or {})
+    # Credentials first, so a recorded step scrubbed to {{username}} /
+    # {{password}} resolves back to the real login. First rather than last:
+    # a data-table row supplying its own username (an invalid-login case)
+    # must override the project credential, not the other way round.
+    runtime_pool: dict = {
+        key: value
+        for key, value in (shared.get("credentials") or {}).items()
+        if key in ("username", "password") and value
+    }
+    runtime_pool.update(shared.get("seed_pool") or {})
     runtime_pool.update(shared.get("seeded_vars") or {})
-    runtime_pool.update(scenario.get("_data_row") or {})
+    # A scrubbed data row says `username: "{{username}}"`. Adopting that would
+    # make the placeholder resolve to itself and get typed literally, so a
+    # self-referential value defers to the credential already in the pool.
+    for key, value in (scenario.get("_data_row") or {}).items():
+        if str(value) == "{{" + str(key) + "}}" and key in runtime_pool:
+            continue
+        runtime_pool[key] = value
     dialog_policy = {"mode": infer_dialog_policy(scenario)}
     downloads_dir = flow_path / "downloads"
     shots_dir = flow_path / "screenshots"
@@ -3143,6 +3256,22 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
             })
             evidence.steps_executed = step_no
 
+            # A form is on screen most often right after a click or a navigation,
+            # so that is when its fields are worth reading — including on the
+            # positive flow, where nothing fails and the old trigger (a rejected
+            # click on a disabled Save) never fired at all.
+            if action in ("CLICK", "NAVIGATE", "SELECT") and not step_result.get("skipped"):
+                found = await capture_form_inventory(page, ctx, selector or "")
+                mandatory = [f for f in found if f.get("required")]
+                if mandatory and not ctx.get("_announced_required"):
+                    ctx["_announced_required"] = True
+                    await emit({"event": "log", "index": index, "message": (
+                        f"{prefix}📋 Form inventory: {len(found)} field(s), "
+                        f"{len(mandatory)} mandatory — " + ", ".join(
+                            f"{f.get('label') or f.get('selector')} "
+                            f"[{f.get('required_source')}]" for f in mandatory[:6])
+                        + ("…" if len(mandatory) > 6 else ""))})
+
             fresh = await scan_messages(page, evidence, known_message_selectors,
                                         cfg.project_name)
             if fresh:
@@ -3187,7 +3316,9 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
             surface_known = bool(known_message_selectors) or bool(evidence.messages)
             verdict_obj = verdict_engine.evaluate(expected, evidence,
                                                   scenario.get("type", ""),
-                                                  message_surface_known=surface_known)
+                                                  message_surface_known=surface_known,
+                                                  declared_intent=scenario.get(
+                                                      "expected_intent", ""))
             if cfg.verdict_mode == "ai" and verdict_obj.status == verdict_engine.UNVERIFIED:
                 try:
                     shot_bytes = result_shot.read_bytes()
@@ -3438,6 +3569,15 @@ def resolve_credentials(project_name: str, role: str = "") -> dict:
     creds = dict(project_cfg.get("credentials") or {})
     if creds.get("username"):
         return creds
+    # The gitignored per-project store — where the recorder now puts the
+    # literals it scrubbed out of actions.json. Checked after the project
+    # config so an explicit setting still wins.
+    from . import credentials as credential_store
+
+    stored = credential_store.load_stored(project_name)
+    if stored.get("username"):
+        stored.update({k: v for k, v in creds.items() if v})
+        return stored
     if config.GLOBAL_LOGIN_DATA_FILE.exists():
         try:
             with open(config.GLOBAL_LOGIN_DATA_FILE, "r", encoding="utf-8") as fh:
@@ -3530,8 +3670,26 @@ def expand_data_matrix(cases: list[dict], rows: list[dict]) -> list[dict]:
 
 async def execute_suite(cfg: RunConfig, emit: Emit,
                         state: RunState | None = None) -> dict:
-    """Run a whole suite and persist the report. Returns the report dict."""
+    """Run a whole suite and persist the report. Returns the report dict.
+
+    Whatever happens, the run leaves "running": an exception marks it "error"
+    here, once, rather than relying on every caller to remember (the scheduler
+    did not, so a scheduled run that raised reported "running" forever).
+    """
     state = state or register_run(cfg.project_name, cfg.flow_name)
+    try:
+        return await _execute_suite(cfg, emit, state)
+    except BaseException as err:
+        if state.status == "running":
+            state.status = "cancelled" if isinstance(err, asyncio.CancelledError) else "error"
+            state.error = state.error or str(err) or type(err).__name__
+            state.finished_at = time.time()
+        raise
+    finally:
+        persist_run_state(state)
+
+
+async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
     flow_path = config.flow_dir(cfg.project_name, cfg.flow_name)
     cases_path = flow_path / "test_cases.json"
 
@@ -3824,23 +3982,18 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
     reports_dir = flow_path / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
 
-    with open(flow_path / "report.json", "w", encoding="utf-8") as fh:
-        json.dump(report, fh, indent=4)
+    storage.write_json(flow_path / "report.json", report)
 
     run_stamp = int(time.time())
     report_file = reports_dir / f"report_{run_stamp}.json"
-    with open(report_file, "w", encoding="utf-8") as fh:
-        json.dump(report, fh, indent=4)
+    if report_file.exists():
+        # Two runs of one flow finishing in the same second must not overwrite
+        # each other's archived report; the history row points at this name.
+        suffix = report.get("run_id") or uuid.uuid4().hex[:6]
+        report_file = reports_dir / f"report_{run_stamp}_{suffix}.json"
+    storage.write_json(report_file, report)
 
-    history_path = flow_path / "run_history.json"
-    history: list = []
-    if history_path.exists():
-        try:
-            with open(history_path, "r", encoding="utf-8") as fh:
-                history = json.load(fh)
-        except Exception:
-            history = []
-    history.append({
+    history_entry = {
         "run_id": report.get("run_id"),
         "stamp": run_stamp,
         "execution_date": report["execution_date"],
@@ -3855,20 +4008,17 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
         "verdict_mode": report.get("verdict_mode"),
         "triggered_by": report.get("triggered_by"),
         "report_file": f"reports/{report_file.name}",
-    })
-    with open(history_path, "w", encoding="utf-8") as fh:
-        json.dump(history[-200:], fh, indent=4)
+    }
+    # Read-modify-write under one lock: two runs finishing together must both
+    # land in the history rather than the second silently dropping the first.
+    with storage.update_json(flow_path / "run_history.json", list) as doc:
+        history = doc.data if isinstance(doc.data, list) else []
+        history.append(history_entry)
+        doc.data = history[-200:]
 
     # Bug list: refresh this flow's entries only.
     bugs_path = config.project_dir(cfg.project_name) / "bugs.json"
-    bugs: list = []
-    if bugs_path.exists():
-        try:
-            with open(bugs_path, "r", encoding="utf-8") as fh:
-                bugs = json.load(fh)
-        except Exception:
-            bugs = []
-    bugs = [b for b in bugs if b.get("flow_name") != cfg.flow_name]
+    new_bugs: list = []
 
     for result in run_results:
         if result.get("status") not in (verdict_engine.FAIL, "CRASH", verdict_engine.UNVERIFIED):
@@ -3883,7 +4033,7 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
             "CRASH": "high", verdict_engine.FAIL: "high", verdict_engine.UNVERIFIED: "low",
         }.get(result.get("status"), "medium")
 
-        bugs.append({
+        new_bugs.append({
             "flow_name": cfg.flow_name,
             "scenario_name": result.get("name"),
             "scenario_type": result.get("type", ""),
@@ -3903,14 +4053,15 @@ def persist_report(cfg: RunConfig, report: dict, run_results: list[dict]) -> Non
             "timestamp": report["execution_date"],
         })
 
-    with open(bugs_path, "w", encoding="utf-8") as fh:
-        json.dump(bugs, fh, indent=4)
+    # bugs.json is project-wide, so runs of *different* flows race on it too.
+    with storage.update_json(bugs_path, list) as doc:
+        bugs = doc.data if isinstance(doc.data, list) else []
+        doc.data = [b for b in bugs if b.get("flow_name") != cfg.flow_name] + new_bugs
 
     try:
-        (reports_dir / f"junit_{run_stamp}.xml").write_text(
-            build_junit_xml(report), encoding="utf-8"
-        )
-        (flow_path / "junit.xml").write_text(build_junit_xml(report), encoding="utf-8")
+        junit = build_junit_xml(report)
+        storage.write_text(reports_dir / f"junit_{run_stamp}.xml", junit)
+        storage.write_text(flow_path / "junit.xml", junit)
     except Exception as err:
         log.warning("Could not write JUnit XML: %s", err)
 

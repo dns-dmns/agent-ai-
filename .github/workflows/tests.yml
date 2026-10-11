@@ -1,8 +1,8 @@
 name: tests
 
 on:
+  # Every branch: work happens on feature branches long before it reaches main.
   push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -23,6 +23,9 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps chromium
 
+      - name: Lint (correctness rules, see ruff.toml)
+        run: ruff check .
+
       - name: Unit tests
         run: python -m pytest tests -q
 
@@ -35,6 +38,12 @@ jobs:
         # Proves STORE / WAIT_FOR_STATE / VERIFY_OPTION_* and rule enforcement
         # against the bundled chain app. Offline, no API key.
         run: python tests/e2e_chain.py
+
+      - name: Recorder self test
+        # Runs the injected recorder JS in a real browser. Every other recorder
+        # test is a string check, which cannot see that assert mode suppresses
+        # the click or that a password never reaches a captured key.
+        run: python tests/e2e_recorder.py
 
       - name: Dashboard smoke test
         run: python tests/smoke_ui.py

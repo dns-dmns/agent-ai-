@@ -242,6 +242,11 @@ def enumerate_field_cases(field: dict) -> list[dict]:
 # Expansion: scenario + data table → runnable test cases
 # ──────────────────────────────────────────────────────────────────────
 def has_data_table(scenario: dict) -> bool:
+    # A model is free to return a shape nobody asked for — one returned a list
+    # of plain strings, and `scenario.get` raised AttributeError straight out of
+    # /analyze-flow as a 500. Bad model output is ordinary input here.
+    if not isinstance(scenario, dict):
+        return False
     table = scenario.get("data_table")
     return isinstance(table, list) and bool(table)
 
@@ -262,6 +267,12 @@ def expand_scenarios(cases: list[dict]) -> list[dict]:
     """
     expanded: list[dict] = []
     for scenario in cases:
+        if not isinstance(scenario, dict):
+            # Dropped rather than passed through: everything downstream calls
+            # .get() on these, so letting a string travel just moves the same
+            # crash somewhere harder to read.
+            log.info("Ignoring a non-dict scenario from the model: %r", scenario)
+            continue
         if not has_data_table(scenario):
             expanded.append(scenario)
             continue

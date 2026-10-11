@@ -133,26 +133,102 @@ EXPECT_SANITISED_PATTERNS = (
 )
 
 
-def classify_expectation(expected_result: str) -> dict:
-    """Extract the verifiable intent from a natural-language expectation."""
+# Error words that appear in an expectation *without* expecting an error. Matching
+# them as-is is what classified "With all required fields filled, the record is
+# saved successfully" as a negative test, so a correct save was judged a FAIL --
+# a false failure that blames a working application. Each phrase is removed
+# before the error patterns are tried; the success patterns see the full text.
+NEGATED_ERROR_PHRASES = (
+    r"\bno (validation |error )?(errors?|warnings?)( messages?)?( (is|are) (shown|displayed|thrown|raised|visible))?"
+    r"( (appears?|occurs?|is shown))?",
+    r"\bwithout (any |an |a )?(validation |error )?(errors?|warnings?|issues?)( messages?)?",
+    r"\b(should|must|does|did|will) not (fail|error|be rejected|be blocked)\b",
+    r"\bnot (fail|error)\b", r"\berror[- ]free\b",
+    r"\bno (validation|error) (messages?|toasts?)\b",
+)
+PRECONDITION_PHRASES = (
+    r"\b(all |the |every )?(required|mandatory) (fields?|inputs?|values?|details?|data)"
+    r"( (are|is|being))? (filled|entered|provided|completed|populated|supplied|given)( in)?\b",
+    r"\b(fill(ing|s|ed)?|enter(ing|s|ed)?|provid(e|ing|es|ed)|complet(e|ing|es|ed))"
+    r" (in )?(all |the |every )?(required|mandatory)( fields?| inputs?| values?| details?)?\b",
+    r"\b(valid|unique|non-duplicate) (data|values?|inputs?|details?)\b",
+    r"\bduplicate (check|validation) (passes|succeeds|is passed)\b",
+)
+# Outcomes stated outright. When an expectation matches both sides, the side with
+# an explicit outcome wins over the side that only mentions a vocabulary word.
+STRONG_SUCCESS_PATTERNS = (
+    r"\bsuccessfully\b", r"\bsuccess (message|toast|notification|banner|alert)\b",
+    r"\b(is|are|gets?|was|were) (created|saved|updated|added|submitted|stored|approved)\b",
+    r"\bsav(e|ing) succeed", r"\bsucceed(s|ed)?\b", r"\bsaves\b",
+)
+STRONG_ERROR_PATTERNS = (
+    r"\b(error|validation|warning)( message| toast| text| alert)? (is |are )?"
+    r"(shown|displayed|appears?|visible|raised|thrown|triggered)\b",
+    r"\b(shows?|displays?|raises?) (an? )?(validation |inline )?(error|warning)",
+    r"\b(is|are|was|were) not (saved|created|accepted|allowed|submitted|updated|added)\b",
+    r"\bnot (be )?(saved|created|accepted|allowed|submitted)\b",
+    r"\breject(s|ed|ing)?\b", r"\bprevent(s|ed|ing)?\b", r"\bblock(s|ed|ing)?\b",
+    r"\bnot allowed\b", r"\balready exists\b", r"\bdenied\b", r"\brefus(e|ed|es)\b",
+    r"\b(cannot|can ?not|can't|unable to) (save|submit|create|proceed|continue|add|update|be)\b",
+    r"\bfails?\b", r"\bis required\b", r"\bis invalid\b",
+)
+
+#: The intents a scenario may declare outright with ``expected_intent``.
+DECLARED_INTENTS = {
+    "error": "expects_error", "success": "expects_success", "absence": "expects_absence",
+    "persistence": "expects_persistence", "sanitised": "expects_sanitised",
+    "stability": "expects_stability",
+}
+
+
+def _strip(text: str, patterns) -> str:
+    for pattern in patterns:
+        text = re.sub(pattern, " ", text)
+    return text
+
+
+def classify_expectation(expected_result: str, declared: str = "") -> dict:
+    """Extract the verifiable intent from a natural-language expectation.
+
+    ``declared`` -- a scenario's ``expected_intent`` -- wins outright. Sources that
+    *know* the intent (a CSV row typed Negative, a worksheet's empty-field case,
+    coverage enumeration) set it, so their verdicts never depend on wording.
+    """
     text = (expected_result or "").lower()
+    declared = (declared or "").strip().lower()
+    if declared in DECLARED_INTENTS:
+        intent = {key: False for key in DECLARED_INTENTS.values()}
+        intent[DECLARED_INTENTS[declared]] = True
+        intent["has_text"] = bool(text.strip())
+        intent["declared"] = declared
+        return intent
 
-    def any_match(patterns) -> bool:
-        return any(re.search(p, text) for p in patterns)
+    def any_match(patterns, body=text) -> bool:
+        return any(re.search(p, body) for p in patterns)
 
+    error_text = _strip(_strip(text, NEGATED_ERROR_PHRASES), PRECONDITION_PHRASES)
     intent = {
-        "expects_error": any_match(EXPECT_ERROR_PATTERNS),
-        "expects_success": any_match(EXPECT_SUCCESS_PATTERNS),
+        "expects_error": any_match(EXPECT_ERROR_PATTERNS, error_text)
+                         or any_match(STRONG_ERROR_PATTERNS, error_text),
+        "expects_success": any_match(EXPECT_SUCCESS_PATTERNS)
+                           or any_match(STRONG_SUCCESS_PATTERNS),
         "expects_absence": any_match(EXPECT_ABSENCE_PATTERNS),
         "expects_persistence": any_match(EXPECT_PERSIST_PATTERNS),
         "expects_sanitised": any_match(EXPECT_SANITISED_PATTERNS),
         "expects_stability": any_match(EXPECT_STABILITY_PATTERNS),
         "has_text": bool(text.strip()),
     }
-    # An expectation phrased as "error appears ... record is not created" is
-    # fundamentally a negative check; the error signal wins.
-    if intent["expects_error"]:
-        intent["expects_success"] = False
+    if intent["expects_error"] and intent["expects_success"]:
+        # Both vocabularies present. An expectation phrased as "error appears ...
+        # record is not created" is fundamentally a negative check, so the error
+        # signal wins -- unless only the success side states an outcome, as in
+        # "Duplicate check passes and the item is created".
+        strong_error = any_match(STRONG_ERROR_PATTERNS, error_text)
+        strong_success = any_match(STRONG_SUCCESS_PATTERNS)
+        if strong_success and not strong_error:
+            intent["expects_error"] = False
+        else:
+            intent["expects_success"] = False
     return intent
 
 
@@ -265,9 +341,9 @@ class Verdict:
 # Rule-based evaluation
 # ──────────────────────────────────────────────────────────────────────
 def evaluate(expected_result: str, evidence: Evidence, scenario_type: str = "",
-             message_surface_known: bool = True) -> Verdict:
+             message_surface_known: bool = True, declared_intent: str = "") -> Verdict:
     """Judge a scenario that completed all of its steps without throwing."""
-    intent = classify_expectation(expected_result)
+    intent = classify_expectation(expected_result, declared_intent)
     summary = evidence.to_dict()
     stype = (scenario_type or "").lower()
 

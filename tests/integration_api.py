@@ -431,6 +431,166 @@ def main() -> int:
                all(d["outcome"] == "not_run" for d in status["defects"]),
                str([d["outcome"] for d in status["defects"]]))
 
+        # ── User-authored test cases: the generate tab without the agents ──
+        # A tester downloads a template whose columns are the module's real
+        # fields, fills rows in plain language, uploads. What must hold: the
+        # steps are synthesized (no selectors in the sheet), the merge upserts
+        # by name, generated cases stay byte-identical, and a row the platform
+        # cannot honestly import is reported rather than reshaped.
+        inventory = call(base, "/module-inventory",
+                         project_name=PROJECT, flow_name=FLOW)
+        record("module inventory lists the module's fields",
+               inventory["field_count"] >= 1
+               and any(f["selector"] == "#name" for f in inventory["fields"]),
+               str(inventory)[:150])
+
+        template = call(base, "/user-case-template", raw=True,
+                        project_name=PROJECT, flow_name=FLOW)
+        record("the template's columns are the module's own fields",
+               template.splitlines()[0].startswith("Scenario,Type")
+               and "Expected Result" in template.splitlines()[0]
+               and "SAMPLE" in template, template.splitlines()[0][:120])
+
+        def upload_user_sheet(csv_text: str) -> dict:
+            boundary2 = "usercases-boundary"
+            crlf2 = b"\r\n"
+            body2 = (
+                b"--" + boundary2.encode() + crlf2
+                + (b"Content-Disposition: form-data; name=\"file\";"
+                   b" filename=\"my_cases.csv\"") + crlf2
+                + b"Content-Type: text/csv" + crlf2 + crlf2
+                + csv_text.encode("utf-8") + crlf2
+                + b"--" + boundary2.encode() + b"--" + crlf2
+            )
+            request2 = urllib.request.Request(
+                f"{base}/upload-user-cases?project_name="
+                f"{urllib.parse.quote(PROJECT)}&flow_name={urllib.parse.quote(FLOW)}",
+                data=body2, method="POST",
+                headers={"Content-Type":
+                         f"multipart/form-data; boundary={boundary2}",
+                         "X-API-Key": API_KEY})
+            with urllib.request.urlopen(request2, timeout=60) as response2:
+                return json.loads(response2.read())
+
+        suite_before_user = call(base, "/get-flow-details",
+                                 project_name=PROJECT, flow_name=FLOW)["test_cases"]
+        generated_before = json.dumps(
+            [c for c in suite_before_user if c.get("_generated") != "user"],
+            sort_keys=True)
+
+        sheet_rows = (
+            "Scenario,Type,#name,Typo Field,Expected Result\n"
+            "User writes a widget,positive,User Widget,,"
+            "The record is saved successfully\n"
+            "Name left empty,negative,(blank),,"
+            "A validation message states the name is required\n"
+            "Row with a stray value,positive,Acme,oops,"
+            "Saved successfully\n"
+        )
+        uploaded = upload_user_sheet(sheet_rows)
+        record("user cases import and the steps are synthesized",
+               uploaded["added"] == 2 and uploaded["updated"] == 0,
+               str(uploaded)[:200])
+        record("a value under an unknown column blocks that row, with the reason",
+               len(uploaded["blocked"]) == 1
+               and "unrecognised column" in uploaded["blocked"][0]["reason"],
+               str(uploaded["blocked"])[:200])
+
+        suite_after_user = call(base, "/get-flow-details",
+                                project_name=PROJECT, flow_name=FLOW)["test_cases"]
+        mine = [c for c in suite_after_user if c.get("_generated") == "user"]
+        record("the imported case carries runnable steps the tester never wrote",
+               any(c["scenario_name"] == "User writes a widget"
+                   and any(s.get("action") == "TYPE" and s.get("selector") == "#name"
+                           for s in c["steps"])
+                   and c["steps"][-1]["action"] == "CLICK"
+                   for c in mine), str(mine)[:250])
+        record("generated cases are byte-for-byte untouched by a user upload",
+               json.dumps([c for c in suite_after_user
+                           if c.get("_generated") != "user"],
+                          sort_keys=True) == generated_before,
+               "the user import modified a generated case")
+
+        again_user = upload_user_sheet(sheet_rows)
+        record("re-uploading the sheet updates by name instead of duplicating",
+               again_user["added"] == 0 and again_user["updated"] == 2
+               and again_user["total_cases"] == uploaded["total_cases"],
+               str(again_user)[:150])
+
+        # ── Accurate Data Worksheet → generated cases (playbook Step 6) ──
+        # The worksheet holds module DATA; the platform turns it into scenarios
+        # deterministically. What must hold: the pre-filled worksheet carries the
+        # module's fields, a filled worksheet previews grounded scenarios without
+        # writing, and importing merges them by name like any user case.
+        blank_ws = call(base, "/worksheet-template", raw=True,
+                        project_name=PROJECT, flow_name=FLOW)
+        # The descriptor row plus at least one field row from the inventory.
+        record("the worksheet download is pre-filled with the module's fields",
+               blank_ws.count("\nFIELD,") >= 2 and "Template header row" in blank_ws,
+               blank_ws.splitlines()[0][:80])
+        record("the pre-filled worksheet lists a MESSAGE section to harvest",
+               "MESSAGE," in blank_ws and "Successful save" in blank_ws,
+               "worksheet missing its harvest prompts")
+
+        filled_ws = (
+            "Section,Item,Value 1,Value 2,Value 3,Notes\n"
+            "MESSAGE,When it appears (trigger),Exact message text,,,\n"
+            "MESSAGE,Submit with required field empty,Name is required,,,\n"
+            "MESSAGE,Successful save / login,saved successfully,,,\n"
+            "MESSAGE,Duplicate record,already exists,,,\n"
+            "DATA,Purpose,Key,Other,Extra,\n"
+            "DATA,Record for duplicate test,W001,,,\n"
+        )
+
+        def post_worksheet(path: str, csv_text: str) -> dict:
+            bnd = "worksheet-bnd"
+            payload = (
+                b"--" + bnd.encode() + b"\r\n"
+                + (b"Content-Disposition: form-data; name=\"file\";"
+                   b" filename=\"ws.csv\"") + b"\r\n"
+                + b"Content-Type: text/csv\r\n\r\n"
+                + csv_text.encode("utf-8") + b"\r\n"
+                + b"--" + bnd.encode() + b"--\r\n"
+            )
+            req = urllib.request.Request(
+                f"{base}{path}?project_name={urllib.parse.quote(PROJECT)}"
+                f"&flow_name={urllib.parse.quote(FLOW)}",
+                data=payload, method="POST",
+                headers={"Content-Type": f"multipart/form-data; boundary={bnd}",
+                         "X-API-Key": API_KEY})
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                return json.loads(resp.read())
+
+        before_ws = call(base, "/get-flow-details",
+                         project_name=PROJECT, flow_name=FLOW)["test_cases"]
+        before_fp = json.dumps(before_ws, sort_keys=True)
+
+        preview = post_worksheet("/preview-worksheet", filled_ws)
+        record("a filled worksheet previews grounded scenarios",
+               preview["case_count"] >= 2
+               and any(c["expected_result"] == "saved successfully"
+                       for c in preview["cases"]),
+               str(preview.get("case_count")))
+        record("preview writes nothing to the suite",
+               json.dumps(call(base, "/get-flow-details", project_name=PROJECT,
+                               flow_name=FLOW)["test_cases"], sort_keys=True)
+               == before_fp, "preview modified the suite")
+
+        imported_ws = post_worksheet("/import-worksheet", filled_ws)
+        record("importing the worksheet adds the generated cases",
+               imported_ws["added"] >= 2 and imported_ws["status"] == "success",
+               str(imported_ws)[:160])
+        after_ws = call(base, "/get-flow-details",
+                        project_name=PROJECT, flow_name=FLOW)["test_cases"]
+        record("the generated case has synthesized steps and quotes the real message",
+               any(c.get("expected_result") == "saved successfully"
+                   and any(s.get("action") == "CLICK" for s in c.get("steps", []))
+                   for c in after_ws), "no runnable generated case found")
+        re_imported = post_worksheet("/import-worksheet", filled_ws)
+        record("re-importing the worksheet updates by name, no duplicates",
+               re_imported["added"] == 0 and re_imported["updated"] >= 2,
+               str(re_imported)[:120])
+
         # ── Project export: read-only, and provably so ────────────────
         import hashlib
         def workspace_fingerprint():
@@ -448,8 +608,10 @@ def main() -> int:
         paths = {f["path"] for f in preview["files"]}
         record("export produces the documented folder structure",
                "pages/BasePage.js" in paths and "playwright.config.js" in paths
+               and "fixtures/baseTest.js" in paths
+               and "utils/credentials.js" in paths
                and any(p.startswith("tests/") for p in paths)
-               and any(p.startswith("testdata/") for p in paths),
+               and any(p.startswith("test-data/") for p in paths),
                str(sorted(paths))[:200])
 
         zip_bytes = call(base, "/download-project", project_name=PROJECT, raw=True)

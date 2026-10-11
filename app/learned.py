@@ -28,12 +28,14 @@ runner on later runs.
 
 from __future__ import annotations
 
+import functools
 import json
 import re
 from pathlib import Path
 from typing import Any
 
 from . import config
+from . import storage
 
 log = config.get_logger("learned")
 
@@ -62,10 +64,8 @@ def load(project_name: str) -> dict:
 
 
 def save(project_name: str, profile: dict) -> None:
-    target = path_for(project_name)
-    target.parent.mkdir(parents=True, exist_ok=True)
     try:
-        target.write_text(json.dumps(profile, indent=2), encoding="utf-8")
+        storage.write_json(path_for(project_name), profile, indent=2)
     except Exception as err:
         log.warning("Could not persist the profile for %s: %s", project_name, err)
 
@@ -82,6 +82,20 @@ def flow_profile(project_name: str, flow_name: str) -> dict:
 # ──────────────────────────────────────────────────────────────────────
 # Recording what the browser showed us
 # ──────────────────────────────────────────────────────────────────────
+def _serialised(fn):
+    """Hold the profile's lock across load -> change -> save.
+
+    Parallel workers each learn from their own scenario; without the lock two of
+    them load the same profile and the second save erases what the first learned.
+    """
+    @functools.wraps(fn)
+    def wrapper(project_name: str, *args, **kwargs):
+        with storage.locked(path_for(project_name)):
+            return fn(project_name, *args, **kwargs)
+    return wrapper
+
+
+@_serialised
 def remember_fields(project_name: str, flow_name: str, fields: list[dict]) -> dict:
     """Merge a page inventory into the profile, keeping a 'seen' count.
 
@@ -119,6 +133,7 @@ def remember_fields(project_name: str, flow_name: str, fields: list[dict]) -> di
     return flow
 
 
+@_serialised
 def remember_submit_gating(project_name: str, flow_name: str, gating: str) -> None:
     """Record that this application gates submission behind form validity.
 
@@ -166,6 +181,7 @@ def _message_classes(selector: str) -> list[str]:
     return found
 
 
+@_serialised
 def remember_message_selector(project_name: str, selector: str) -> None:
     """Learn where this application renders messages, so the next run sees them.
 
@@ -190,6 +206,7 @@ def remember_message_selector(project_name: str, selector: str) -> None:
     log.info("Learned message selector(s) for %s: %s", project_name, ", ".join(added))
 
 
+@_serialised
 def remember_healed(project_name: str, flow_name: str, original: str, working: str) -> None:
     """A selector that failed and a replacement that worked — remember the swap."""
     if not original or not working or original == working:

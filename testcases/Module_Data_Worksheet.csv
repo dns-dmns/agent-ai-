@@ -1,0 +1,25 @@
+Section,Item,Value 1,Value 2,Value 3,Notes
+MODULE,Module Name,,,,e.g. Login / Customer Master
+MODULE,Project / Flow,,,,as selected in the Generate tab
+MODULE,Template header row (paste from downloaded CSV),,,,ground truth for column names
+FIELD,Field Label (exact),Field Type,Required (yes/no),Dropdown Options / Range,Validation rule (min-max-chars-unique)
+FIELD,,,,,
+FIELD,,,,,
+FIELD,,,,,
+FIELD,,,,,
+FIELD,,,,,
+MESSAGE,When it appears (trigger),Exact message text (copy from screen),,,triggered deliberately in the app
+MESSAGE,Submit with required field empty,,,,
+MESSAGE,Wrong credentials / invalid value,,,,
+MESSAGE,Successful save / login,,,,
+MESSAGE,Duplicate record,,,,
+MESSAGE,Other message seen,,,,
+DATA,Purpose,Username / Key value,Password / Other values,Email / Extra,keep these accounts stable
+DATA,Valid working record,,,,must save/log in successfully today
+DATA,Blocked / inactive record,,,,only if such a state exists
+DATA,Record for duplicate test,,,,already exists in the system
+RULES,Question for developer/BA,Answer,,,ask; do not assume
+RULES,Are values trimmed (leading/trailing spaces)?,,,,
+RULES,Is the key field case-sensitive?,,,,
+RULES,Min and max length of each restricted field?,,,,
+RULES,What happens after N failed attempts?,,,,

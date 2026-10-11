@@ -9,8 +9,9 @@ services:
       # Read from your shell or a sibling .env file; never bake keys into the image.
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.6-flash}
-      # Set this to require X-API-Key on every request once the port is exposed
-      # beyond localhost.
+      # Required: requests reach the container from the Docker bridge, not
+      # loopback, so with no key every request is refused (403). Clients send it
+      # as the X-API-Key header; the dashboard asks for it once.
       QA_API_KEY: ${QA_API_KEY:-}
       QA_ALLOWED_ORIGINS: ${QA_ALLOWED_ORIGINS:-http://localhost:8000}
       QA_MAX_WORKERS: ${QA_MAX_WORKERS:-5}
