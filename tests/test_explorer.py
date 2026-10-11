@@ -68,3 +68,11 @@ def test_session_attaches_effects_and_carries_required_forward():
     assert len(acts) == 2
     assert acts[0]["effect"]["messages"][0]["text"] == "Saved"
     assert acts[1]["required"] is True
+
+
+def test_inserted_steps_borrow_the_nearest_screenshot():
+    actions = [{"action": "CLICK", "screenshot": None},          # inserted: open dropdown
+               {"action": "CLICK", "screenshot": "/s/step_1.jpg"},
+               {"action": "VERIFY_DISABLED", "screenshot": None}]  # inserted at the end
+    out = explorer.fill_screenshots(actions)
+    assert [a["screenshot"] for a in out] == ["/s/step_1.jpg"] * 3

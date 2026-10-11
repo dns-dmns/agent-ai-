@@ -234,6 +234,32 @@ class Session:
     def __init__(self) -> None:
         self.actions: list[dict] = []
         self.active = False
+        self.page = None
+        self.shot_dir = None
+        self.shot_url = None
+        self._shots = 0
+
+    async def on_event(self, event: dict) -> None:
+        """The recorder's callback: record the step, then photograph the page.
+
+        Every step of a dashboard recording carries a screenshot; without one
+        here the explorer's flows showed "no screenshot" on every card.
+        """
+        before = len(self.actions)
+        self.handle(event)
+        if len(self.actions) > before:
+            await self.snap(self.actions[-1])
+
+    async def snap(self, action: dict) -> None:
+        if not (self.page and self.shot_dir and self.shot_url):
+            return
+        self._shots += 1
+        name = f"step_{self._shots}.jpg"
+        try:
+            await self.page.screenshot(path=str(self.shot_dir / name), type="jpeg", quality=60)
+            action["screenshot"] = self.shot_url(name)
+        except Exception:
+            pass
 
     def handle(self, event: dict) -> None:
         if not self.active or not isinstance(event, dict):
@@ -253,8 +279,16 @@ class Session:
         event.setdefault("screenshot", None)
         self.actions.append(event)
 
-    def start(self) -> None:
+    def start(self, page=None, shot_dir=None, shot_url=None) -> None:
         self.actions, self.active = [], True
+        self.page, self.shot_dir, self.shot_url, self._shots = page, shot_dir, shot_url, 0
+        if shot_dir is not None:
+            shot_dir.mkdir(parents=True, exist_ok=True)
+            for old in shot_dir.glob("step_*.*"):     # last exploration's step images
+                try:
+                    old.unlink()
+                except OSError:
+                    pass
 
     def stop(self) -> list[dict]:
         self.active = False
@@ -301,6 +335,18 @@ def tidy(actions: list[dict]) -> list[dict]:
             continue
         out.append(action)
     return out
+
+
+def fill_screenshots(actions: list[dict]) -> list[dict]:
+    """Steps the explorer inserted itself take the next (else previous) picture."""
+    shots = [a.get("screenshot") for a in actions]
+    for i, action in enumerate(actions):
+        if action.get("screenshot"):
+            continue
+        later = next((x for x in shots[i + 1:] if x), None)
+        earlier = next((x for x in reversed(shots[:i]) if x), None)
+        action["screenshot"] = later or earlier
+    return actions
 
 
 def flow_name_for(path: list[str]) -> str:
@@ -472,9 +518,11 @@ class Explorer:
             result.status, result.notes = "error", ["Redirected to login."]
             return result
 
-        session.start()
+        session.start(page=page, shot_dir=target / "screenshots",
+                      shot_url=lambda file: config.static_url(self.project, name, "screenshots", file))
         session.actions.append({"action": "NAVIGATE", "selector": url, "selectors": [url],
                                 "tag": "", "text": "", "value": url, "screenshot": None})
+        await session.snap(session.actions[-1])
         allow_empty_save = self.empty_save and path[0].lower().startswith(EMPTY_SAVE_GROUPS)
 
         # List page: checks only.
@@ -527,7 +575,7 @@ class Explorer:
                 result.fields = fields[:MAX_FIELDS]
 
         await page.wait_for_timeout(EFFECT_WAIT_MS)
-        actions = tidy(session.stop())
+        actions = fill_screenshots(tidy(session.stop()))
         result.steps = len(actions)
         storage.write_json(target / "actions.json", actions)
         storage.write_json(target / "flow.json", {
@@ -734,7 +782,7 @@ class Explorer:
         return context
 
     async def wire(self, context, session: Session) -> Page:
-        await context.expose_function("recordPlaywrightEvent", session.handle)
+        await context.expose_function("recordPlaywrightEvent", session.on_event)
         await context.add_init_script(recorder.JS_RECORDER_SCRIPT)
         page = await context.new_page()
         page.set_default_timeout(10000)

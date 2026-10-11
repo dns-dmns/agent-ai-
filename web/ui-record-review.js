@@ -55,7 +55,11 @@
 
     async function onPick() {
         const name = $("rerecordSelect").value;
-        if (!name) return;
+        if (!name) {                       // "New module": start from empty fields
+            $("flowNameInput").value = "";
+            $("targetUrlInput").value = "";
+            return;
+        }
         $("flowNameInput").value = name;
         try {
             const res = await fetch(`/get-flow-details?project_name=${encodeURIComponent(project())}` +
@@ -172,8 +176,25 @@
             return result;
         };
     }
+    /* The Record tab follows the module open in the sidebar -- it showed the
+       last module picked in the Record tab instead (Inventory while Arrival was
+       open). Never while a recording browser is open: that session's name and
+       URL must not change under the tester. */
+    function followSelection(flowName) {
+        const select = $("rerecordSelect"), launch = $("launchBtn");
+        if (!select || !flowName || (launch && launch.disabled)) return;
+        if (![...select.options].some((o) => o.value === flowName)) fillPicker();
+        if (select.value === flowName) return;
+        select.value = flowName;
+        onPick();
+    }
+
     after("fetchSavedFlows", () => fillPicker());
-    after("loadSelectedFlow", () => checkPending(($("flowSelect") || {}).value));
+    after("loadSelectedFlow", () => {
+        const flowName = ($("flowSelect") || {}).value;
+        followSelection(flowName);
+        checkPending(flowName);
+    });
 
     buildPicker();
 })();
