@@ -40,6 +40,7 @@ from . import contracts
 from . import coverage
 from . import heuristics
 from . import learned
+from . import pacing
 from . import sources as case_sources
 from . import storage
 from . import rules as rules_engine
@@ -334,6 +335,7 @@ class RunConfig:
     apply_rules: bool = True               # enforce project/flow rules in verdicts
     triggered_by: str = "dashboard"
     sources: str = ""                      # "claude,gemini" -- empty means every source
+    speed: str = "normal"                  # fast | normal | careful (app/pacing.py)
 
     @property
     def headless(self) -> bool:
@@ -936,15 +938,13 @@ async def scan_messages(page, evidence: verdict_engine.Evidence,
     return fresh
 
 
-async def wait_for_settle(page, timeout: int = 4000) -> None:
+async def wait_for_settle(page, timeout: int = 4000, quiet_ms: int = 300) -> None:
+    """Wait while the page is busy, at most ``timeout`` ms (see app/pacing.py)."""
     try:
-        await page.wait_for_load_state("networkidle", timeout=timeout)
+        await page.wait_for_load_state("domcontentloaded", timeout=timeout)
     except Exception:
-        try:
-            await page.wait_for_timeout(400)
-        except Exception:
-            pass
-    await heuristics.wait_for_ui_idle(page, max_wait_ms=timeout)
+        pass
+    await pacing.settle(page, timeout, quiet_ms)
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -1207,7 +1207,13 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
             millis = max(0, min(int(float(value or 1000)), 30000))
         except Exception:
             millis = 1000
-        await page.wait_for_timeout(millis)
+        pace = ctx.get("pace") or pacing.pace_for("")
+        if pace.wait_steps_fixed:
+            await page.wait_for_timeout(millis)
+        else:
+            # "Up to": stop as soon as the page is quiet. A WAIT written for a
+            # slow screen no longer costs its full time on a fast one.
+            await pacing.settle(page, millis, pace.quiet_ms)
         return result
 
     if action in ("WAIT_FOR", "WAIT_FOR_ELEMENT"):
@@ -1264,10 +1270,10 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
                     last = err
             if attempt < 2:
                 await emit_log(
-                    f"🔄 [Retry {attempt + 1}/2] TYPE on '{selector}' failed — retrying in "
-                    f"{2 * (attempt + 1)}s..."
+                    f"🔄 [Retry {attempt + 1}/2] TYPE on '{selector}' failed — retrying..."
                 )
-                await page.wait_for_timeout(2000 * (attempt + 1))
+                backoff = (ctx.get("pace") or pacing.pace_for("")).retry_backoff_ms
+                await page.wait_for_timeout(backoff * (attempt + 1))
         healed = await heuristics.attempt_auto_healing(
             page, "TYPE", selector, value, allow_vision=not is_destructive(step)
         )
@@ -1312,10 +1318,10 @@ async def execute_step(page, step: dict, ctx: dict) -> dict:
                     pass
             if attempt < 2:
                 await emit_log(
-                    f"🔄 [Retry {attempt + 1}/2] CLICK on '{selector}' failed — retrying in "
-                    f"{2 * (attempt + 1)}s..."
+                    f"🔄 [Retry {attempt + 1}/2] CLICK on '{selector}' failed — retrying..."
                 )
-                await page.wait_for_timeout(2000 * (attempt + 1))
+                backoff = (ctx.get("pace") or pacing.pace_for("")).retry_backoff_ms
+                await page.wait_for_timeout(backoff * (attempt + 1))
         healed = await heuristics.attempt_auto_healing(
             page, "CLICK", selector, "", allow_vision=not is_destructive(step)
         )
@@ -2848,6 +2854,7 @@ async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
 
     context = await browser.new_context(**context_args)
     page = await context.new_page()
+    await pacing.track(page)
     page.set_default_timeout(15000)
     await install_message_observer(page)
 
@@ -2866,6 +2873,7 @@ async def seed_prerequisites(browser, cfg: RunConfig, shared: dict, emit: Emit,
         "evidence": evidence,
         "runtime_pool": pool,
         "headless": cfg.headless,
+        "pace": pacing.pace_for(cfg.speed),
         "log": emit_log,
         "dialog_policy": {"mode": "accept"},
         "flow_path": shared["flow_path"],
@@ -3008,7 +3016,8 @@ async def replay_authentication(page, context, cfg: RunConfig, ctx: dict, emit_l
             await execute_step(page, dict(step, value=value), ctx)
         except Exception as err:
             await emit_log(f"⚠️ Auth step warning: {humanize_error(err, action, selector)}")
-        await page.wait_for_timeout(600)
+        pace = ctx.get("pace") or pacing.pace_for("")
+        await wait_for_settle(page, pace.settle_max_ms, pace.quiet_ms)
 
     await wait_for_settle(page, 6000)
 
@@ -3116,6 +3125,7 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
             pass
 
     page = await context.new_page()
+    await pacing.track(page)
     page.set_default_timeout(15000 if not cfg.headless else 10000)
     await install_message_observer(page)
 
@@ -3166,6 +3176,7 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
         "evidence": evidence,
         "runtime_pool": runtime_pool,
         "headless": cfg.headless,
+        "pace": pacing.pace_for(cfg.speed),
         "log": emit_log,
         "dialog_policy": dialog_policy,
         "flow_path": flow_path,
@@ -3312,7 +3323,12 @@ async def run_scenario(browser, scenario: dict, cfg: RunConfig, shared: dict,
                 except Exception:
                     pass
 
-            await page.wait_for_timeout(500 if cfg.headless else 800)
+            pace = ctx["pace"]
+            if pace.step_pause_ms:
+                await page.wait_for_timeout(pace.step_pause_ms if cfg.headless
+                                            else pace.step_pause_ms + 300)
+            else:
+                await wait_for_settle(page, pace.settle_max_ms, pace.quiet_ms)
 
         await wait_for_settle(page, 5000)
         await scan_messages(page, evidence, known_message_selectors, cfg.project_name)
@@ -3835,7 +3851,9 @@ async def _execute_suite(cfg: RunConfig, emit: Emit, state: RunState) -> dict:
     async with async_playwright() as playwright:
         launch_args: dict[str, Any] = {"headless": cfg.headless}
         if not cfg.headless:
-            launch_args["slow_mo"] = 300
+            slow_mo = pacing.pace_for(cfg.speed).slow_mo_headed
+            if slow_mo:
+                launch_args["slow_mo"] = slow_mo
             launch_args["args"] = ["--start-maximized"]
         browser = await playwright.chromium.launch(**launch_args)
 

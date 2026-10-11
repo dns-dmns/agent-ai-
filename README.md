@@ -10,6 +10,10 @@ Record (Tab 1)  →  Generate (Tab 2: Builder + Breaker + Auditor)  →  Execute
 
 ---
 
+> **New here?** Read [USER_GUIDE.md](USER_GUIDE.md) for step-by-step use of the
+> dashboard and [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for what the system does and
+> what you do.
+
 ## Quick start
 
 ```bash

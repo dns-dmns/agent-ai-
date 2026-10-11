@@ -518,6 +518,21 @@ runs nothing, unlike the type filter's fall-back to everything.
 `&sources=` to the run stream by wrapping `EventSource` (app.js builds that URL
 inline). Claude-written cases are merged the same way with source `claude`.
 
+### Test speed — `app/pacing.py`
+
+Runs were slow because every wait was a fixed sleep: 0.5/0.8 s after every
+step, `slow_mo=300` on every headed action, `WAIT` steps sleeping their full
+time, and `wait_for_ui_idle` counting *hidden* spinners (so it waited out its
+whole timeout on apps that keep one in the DOM). `pacing.settle()` replaces them:
+it returns once no XHR/fetch is in flight (requests older than 6 s count as
+long-polling), no *visible* loading indicator is shown, and the DOM has been
+still for `quiet_ms`. `RunConfig.speed` (`fast` | `normal` default | `careful`)
+sets the limits; `careful` keeps the old fixed pauses. `WAIT` steps are an upper
+bound except on `careful`, so **a test that needs a run to last (e.g. the
+cancellation check in `integration_api`) must pass `speed=careful`**. Measured on
+Liberty `item`: 13 cases 274 s careful vs 106 s fast, identical verdicts. UI:
+`#speedSelect` in the Execution profile; `ui-sources.js` appends `&speed=`.
+
 ### Typing into masked number widgets
 
 `loc.fill()` pastes a value in one event. PrimeNG `p-inputnumber` (and any

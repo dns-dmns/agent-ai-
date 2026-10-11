@@ -53,6 +53,7 @@ from . import learned
 from . import llm
 from . import storage
 from . import sources
+from . import pacing
 from . import recorder
 from . import rules
 from . import scheduler
@@ -1912,6 +1913,8 @@ def build_run_config(**kwargs) -> executor.RunConfig:
         cfg.verdict_mode = "rules"
     if cfg.step_shots not in ("off", "fail", "all"):
         cfg.step_shots = "fail"
+    if cfg.speed not in pacing.SPEEDS:
+        cfg.speed = pacing.DEFAULT_SPEED
     return cfg
 
 
@@ -2006,7 +2009,8 @@ async def run_matrix_stream(flow_name: str, num_cases: int = -1, mode: str = "he
                             data_matrix: str = "", visual_check: bool = False,
                             env_name: str = "", api_seed_name: str = "",
                             seed_once: bool = True, relationship_checks: bool = False,
-                            apply_rules: bool = True, sources: str = ""):
+                            apply_rules: bool = True, sources: str = "",
+                            speed: str = "normal"):
     """Execute the suite, streaming progress over SSE (dashboard entry point)."""
     validate_safe_path(project_name, flow_name, auth_flow)
     flow_path = config.flow_dir(project_name, flow_name)
@@ -2022,6 +2026,7 @@ async def run_matrix_stream(flow_name: str, num_cases: int = -1, mode: str = "he
         visual_check=visual_check, env_name=env_name, api_seed=api_seed_name,
         seed_once=seed_once, relationship_checks=relationship_checks,
         apply_rules=apply_rules, triggered_by="dashboard", sources=sources,
+        speed=speed,
     )
     state = executor.register_run(project_name, flow_name)
     queue: asyncio.Queue = asyncio.Queue()
@@ -2092,7 +2097,7 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
                       data_matrix: str = "", visual_check: bool = False,
                       seed_once: bool = True, relationship_checks: bool = False,
                       apply_rules: bool = True, triggered_by: str = "ci",
-                      sources: str = ""):
+                      sources: str = "", speed: str = "normal"):
     """Fire-and-forget entry point for CI/CD. Returns a run_id to poll.
 
     Accepts the same knobs as the dashboard stream so a pipeline can run a
@@ -2111,7 +2116,7 @@ async def trigger_run(flow_name: str, project_name: str = config.DEFAULT_PROJECT
         step_shots=step_shots, tracing=tracing, dep_unique_data=dep_unique_data,
         data_matrix=data_matrix, visual_check=visual_check, seed_once=seed_once,
         relationship_checks=relationship_checks, apply_rules=apply_rules,
-        triggered_by=triggered_by, sources=sources,
+        triggered_by=triggered_by, sources=sources, speed=speed,
     )
     state = executor.register_run(project_name, flow_name)
 

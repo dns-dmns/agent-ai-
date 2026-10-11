@@ -220,9 +220,12 @@ def main() -> int:
         record("list-runs includes the DB history", isinstance(runs.get("history"), list))
 
         # ── Cancellation ──────────────────────────────────────────────
+        # speed=careful: WAIT steps sleep their full time. On fast/normal they end
+        # as soon as the page is quiet, so this run would finish before the stop.
         slow = call(base, "/trigger-run", method="POST", project_name=PROJECT,
                     flow_name=FLOW, mode="headless", workers=1, case_ids="3",
-                    verdict_mode="rules", triggered_by="integration-cancel")
+                    verdict_mode="rules", triggered_by="integration-cancel",
+                    speed="careful")
         slow_id = slow["run_id"]
         time.sleep(4)
         stopped = call(base, "/stop-run", method="POST", run_id=slow_id)

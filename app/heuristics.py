@@ -65,7 +65,9 @@ async def wait_for_ui_idle(page, max_wait_ms: int = 3000) -> None:
         pass
 
     try:
-        spinners = page.locator(SPINNER_SELECTORS)
+        # Visible only: an app that keeps a hidden spinner in the DOM made this
+        # wait out its whole timeout after every navigation.
+        spinners = page.locator(SPINNER_SELECTORS).filter(visible=True)
         if await spinners.count() > 0:
             try:
                 await spinners.first.wait_for(state="detached", timeout=max_wait_ms)
