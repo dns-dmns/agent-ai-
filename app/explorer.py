@@ -258,8 +258,10 @@ class Session:
         try:
             await self.page.screenshot(path=str(self.shot_dir / name), type="jpeg", quality=60)
             action["screenshot"] = self.shot_url(name)
-        except Exception:
-            pass
+        except Exception as err:
+            if not getattr(self, "_warned", False):
+                self._warned = True
+                log.warning("Step screenshot failed: %s", str(err).splitlines()[0][:200])
 
     def handle(self, event: dict) -> None:
         if not self.active or not isinstance(event, dict):
