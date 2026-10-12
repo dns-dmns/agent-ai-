@@ -1,0 +1,350 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/week-plan",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/week-plan"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/week-plan",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Week Plan",
+        "label": "",
+        "required": false,
+        "value": "Week Plan",
+        "role": "listitem",
+        "accessible_name": "Week Plan",
+        "text_full": "Week Plan",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "REPRESENTATIVE",
+        "label": "",
+        "required": false,
+        "value": "REPRESENTATIVE",
+        "role": "",
+        "accessible_name": "REPRESENTATIVE",
+        "text_full": "REPRESENTATIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "MON 5",
+        "label": "",
+        "required": false,
+        "value": "MON 5",
+        "role": "",
+        "accessible_name": "MON 5",
+        "text_full": "MON 5",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "TUE 6",
+        "label": "",
+        "required": false,
+        "value": "TUE 6",
+        "role": "",
+        "accessible_name": "TUE 6",
+        "text_full": "TUE 6",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "WED 7",
+        "label": "",
+        "required": false,
+        "value": "WED 7",
+        "role": "",
+        "accessible_name": "WED 7",
+        "text_full": "WED 7",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "THU 8",
+        "label": "",
+        "required": false,
+        "value": "THU 8",
+        "role": "",
+        "accessible_name": "THU 8",
+        "text_full": "THU 8",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "FRI 9",
+        "label": "",
+        "required": false,
+        "value": "FRI 9",
+        "role": "",
+        "accessible_name": "FRI 9",
+        "text_full": "FRI 9",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "SAT 10",
+        "label": "",
+        "required": false,
+        "value": "SAT 10",
+        "role": "",
+        "accessible_name": "SAT 10",
+        "text_full": "SAT 10",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-week-plan > div > section > div > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "SUN 11 TODAY",
+        "label": "",
+        "required": false,
+        "value": "SUN 11 TODAY",
+        "role": "",
+        "accessible_name": "SUN 11 TODAY",
+        "text_full": "SUN 11 TODAY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"This week\")",
+        "selectors": [
+            "button:has-text(\"This week\")",
+            "text=\"This week\"",
+            "div:nth-of-type(3) > div > div > app-week-plan > div > header > div:nth-of-type(2) > p-button:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "This week",
+        "label": "",
+        "required": false,
+        "value": "This week",
+        "role": "button",
+        "accessible_name": "This week",
+        "text_full": "This week",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"107\")",
+        "selectors": [
+            "button:has-text(\"107\")",
+            "text=\"107\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-week-plan > div > div > button"
+        ],
+        "tag": "button",
+        "text": "107\nEveryone",
+        "label": "",
+        "required": false,
+        "value": "107 Everyone",
+        "role": "button",
+        "accessible_name": "107 Everyone",
+        "text_full": "107 Everyone",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"2\")",
+        "selectors": [
+            "button:has-text(\"2\")",
+            "text=\"2\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-week-plan > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "2\nWith a plan",
+        "label": "",
+        "required": false,
+        "value": "2 With a plan",
+        "role": "button",
+        "accessible_name": "2 With a plan",
+        "text_full": "2 With a plan",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"105\")",
+        "selectors": [
+            "button:has-text(\"105\")",
+            "text=\"105\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-week-plan > div > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "105\nNothing planned",
+        "label": "",
+        "required": false,
+        "value": "105 Nothing planned",
+        "role": "button",
+        "accessible_name": "105 Nothing planned",
+        "text_full": "105 Nothing planned",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Show 25 more\")",
+        "selectors": [
+            "button:has-text(\"Show 25 more\")",
+            "text=\"Show 25 more\"",
+            "div:nth-of-type(3) > div > div > app-week-plan > div > section > app-show-more > div > button"
+        ],
+        "tag": "button",
+        "text": "Show 25 more",
+        "label": "",
+        "required": false,
+        "value": "Show 25 more",
+        "role": "button",
+        "accessible_name": "Show 25 more",
+        "text_full": "Show 25 more",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Add a distributor for ACIF K M M on 2026-10-11\"]",
+        "selectors": [
+            "[aria-label=\"Add a distributor for ACIF K M M on 2026-10-11\"]",
+            "button:has-text(\"Not set \u2014 add a distributor\")",
+            "text=\"Not set \u2014 add a distributor\"",
+            "div > section > div > table > tbody > tr > td:nth-of-type(8) > div > button"
+        ],
+        "tag": "button",
+        "text": "Not set \u2014 add a distributor",
+        "label": "",
+        "required": false,
+        "value": "Not set \u2014 add a distributor",
+        "role": "button",
+        "accessible_name": "Add a distributor for ACIF K M M on 2026-10-11",
+        "text_full": "Not set \u2014 add a distributor",
+        "attrs": {
+            "aria-label": "Add a distributor for ACIF K M M on 2026-10-11",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Week Plan/screenshots/step_18.jpg"
+    }
+]

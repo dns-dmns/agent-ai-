@@ -1,0 +1,887 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Perfumary",
+        "label": "",
+        "required": false,
+        "value": "Perfumary",
+        "role": "listitem",
+        "accessible_name": "Perfumary",
+        "text_full": "Perfumary",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "PRODUCTION NO",
+        "label": "",
+        "required": false,
+        "value": "PRODUCTION NO",
+        "role": "",
+        "accessible_name": "PRODUCTION NO",
+        "text_full": "PRODUCTION NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CPC CODE",
+        "label": "",
+        "required": false,
+        "value": "CPC CODE",
+        "role": "",
+        "accessible_name": "CPC CODE",
+        "text_full": "CPC CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "CPC DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "CPC DESCRIPTION",
+        "role": "",
+        "accessible_name": "CPC DESCRIPTION",
+        "text_full": "CPC DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "PRODUCED QTY (KG)",
+        "label": "",
+        "required": false,
+        "value": "PRODUCED QTY (KG)",
+        "role": "",
+        "accessible_name": "PRODUCED QTY (KG)",
+        "text_full": "PRODUCED QTY (KG)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "COST / KG",
+        "label": "",
+        "required": false,
+        "value": "COST / KG",
+        "role": "",
+        "accessible_name": "COST / KG",
+        "text_full": "COST / KG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "FORMULATION",
+        "label": "",
+        "required": false,
+        "value": "FORMULATION",
+        "role": "",
+        "accessible_name": "FORMULATION",
+        "text_full": "FORMULATION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "VERSION",
+        "label": "",
+        "required": false,
+        "value": "VERSION",
+        "role": "",
+        "accessible_name": "VERSION",
+        "text_full": "VERSION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-perfume-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"New Production\")",
+        "selectors": [
+            "button:has-text(\"New Production\")",
+            "text=\"New Production\"",
+            "div > div:nth-of-type(3) > div > div > app-perfume-production-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "New Production",
+        "label": "",
+        "required": false,
+        "value": "New Production",
+        "role": "button",
+        "accessible_name": "New Production",
+        "text_full": "New Production",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_16.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"New Production\")",
+        "selectors": [
+            "button:has-text(\"New Production\")",
+            "text=\"New Production\"",
+            "div > div:nth-of-type(3) > div > div > app-perfume-production-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "New Production",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "New Production",
+        "text_full": "New Production",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_17.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "messages": [
+                {
+                    "text": "New Production\nPerfumary\nNew Production",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "New Production",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Perfumary",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Back to Productions",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Select CPC or CPR",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                },
+                {
+                    "text": "Version *",
+                    "selector": "label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88",
+                "pn_id_90"
+            ],
+            "disappeared": [
+                "pn_id_6"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-perfume-production-form > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-perfume-production-form > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "New Production",
+        "label": "",
+        "required": false,
+        "value": "New Production",
+        "role": "heading",
+        "accessible_name": "New Production",
+        "text_full": "New Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-perfume-production-form > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-perfume-production-form > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Production Details",
+        "label": "",
+        "required": false,
+        "value": "Production Details",
+        "role": "heading",
+        "accessible_name": "Production Details",
+        "text_full": "Production Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Date *\"",
+        "selectors": [
+            "text=\"Date *\"",
+            "div > div > app-perfume-production-form > div > form > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Date *",
+        "label": "Date *",
+        "required": false,
+        "value": "Date *",
+        "role": "",
+        "accessible_name": "Date *",
+        "text_full": "Date *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"CPC / CPR (Perfume) *\"",
+        "selectors": [
+            "text=\"CPC / CPR (Perfume) *\"",
+            "div > div > app-perfume-production-form > div > form > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "CPC / CPR (Perfume) *",
+        "label": "CPC / CPR (Perfume) *",
+        "required": false,
+        "value": "CPC / CPR (Perfume) *",
+        "role": "",
+        "accessible_name": "CPC / CPR (Perfume) *",
+        "text_full": "CPC / CPR (Perfume) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Version *\"",
+        "selectors": [
+            "text=\"Version *\"",
+            "div > div > app-perfume-production-form > div > form > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Version *",
+        "label": "Version *",
+        "required": false,
+        "value": "Version *",
+        "role": "",
+        "accessible_name": "Version *",
+        "text_full": "Version *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Planned Qty (KG) *\"",
+        "selectors": [
+            "text=\"Planned Qty (KG) *\"",
+            "div > div > app-perfume-production-form > div > form > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Planned Qty (KG) *",
+        "label": "Planned Qty (KG) *",
+        "required": false,
+        "value": "Planned Qty (KG) *",
+        "role": "",
+        "accessible_name": "Planned Qty (KG) *",
+        "text_full": "Planned Qty (KG) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Cost / KG\"",
+        "selectors": [
+            "text=\"Cost / KG\"",
+            "div > div > app-perfume-production-form > div > form > div > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Cost / KG",
+        "label": "Cost / KG",
+        "required": false,
+        "value": "Cost / KG",
+        "role": "",
+        "accessible_name": "Cost / KG",
+        "text_full": "Cost / KG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remarks\"",
+        "selectors": [
+            "text=\"Remarks\"",
+            "div:nth-of-type(3) > div > div > app-perfume-production-form > div > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Remarks",
+        "label": "Remarks",
+        "required": false,
+        "value": "Remarks",
+        "role": "",
+        "accessible_name": "Remarks",
+        "text_full": "Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_26.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"cpcCode\"]",
+        "selectors": [
+            "[formcontrolname=\"cpcCode\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "CPC / CPR (Perfume) *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_27.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"CPC 6182 - ATOZ\"]",
+        "selectors": [
+            "[aria-label=\"CPC 6182 - ATOZ\"]",
+            "text=\"CPC 6182 - ATOZ\"",
+            "#pn_id_88_0",
+            "div > div > div > div:nth-of-type(2) > p-scroller > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "CPC 6182 - ATOZ",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "CPC 6182 - ATOZ",
+        "text_full": "CPC 6182 - ATOZ",
+        "attrs": {
+            "aria-label": "CPC 6182 - ATOZ",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_27.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "messages": [
+                {
+                    "text": "Version",
+                    "selector": "label.ng-star-inserted"
+                },
+                {
+                    "text": "Not saved to the Formulation Master.",
+                    "selector": "small.field-hint.ng-star-inserted"
+                },
+                {
+                    "text": "Materials below at current store rates \u00f7 planned qty.",
+                    "selector": "small.field-hint.ng-star-inserted"
+                },
+                {
+                    "text": "Materials Consumed\nCPC \u00b7 temporary entry \u00b7 quantities are for this run",
+                    "selector": "h3.section-title"
+                },
+                {
+                    "text": "CPC \u00b7 temporary entry \u00b7 quantities are for this run",
+                    "selector": "span.frm-chip.ng-star-inserted"
+                },
+                {
+                    "text": "All Categories",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_97",
+                "pn_id_99"
+            ],
+            "disappeared": [
+                "pn_id_90",
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2",
+                "pn_id_88_3",
+                "pn_id_88_4",
+                "pn_id_88_5",
+                "pn_id_88_6",
+                "pn_id_88_7",
+                "pn_id_88_8",
+                "pn_id_88_9"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"plannedQtyKg\"] input",
+        "selectors": [
+            "[formcontrolname=\"plannedQtyKg\"] input",
+            "input[placeholder=\"e.g. 250\"]",
+            "div > app-perfume-production-form > div > form > div > div > div:nth-of-type(4) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 250",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_28.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"plannedQtyKg\"] input",
+        "selectors": [
+            "[formcontrolname=\"plannedQtyKg\"] input",
+            "input[placeholder=\"e.g. 250\"]",
+            "div > app-perfume-production-form > div > form > div > div > div:nth-of-type(4) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 250",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_30.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Optional notes about this run\"]",
+            "div:nth-of-type(3) > div > div > app-perfume-production-form > div > form > div > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional notes about this run",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_31.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Optional notes about this run\"]",
+            "div:nth-of-type(3) > div > div > app-perfume-production-form > div > form > div > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Remarks",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional notes about this run",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_32.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "messages": [
+                {
+                    "text": "POWDER-CP\nCHEMICALS -CP\nPERFUME -CP",
+                    "selector": "div.ng-tns-c1614365056-8.p-overlay.p-component"
+                },
+                {
+                    "text": "POWDER-CP",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "CHEMICALS -CP",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "PERFUME -CP",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_97_list",
+                "pn_id_97_0",
+                "pn_id_97_1",
+                "pn_id_97_2"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Category\"]",
+        "selectors": [
+            "[aria-label=\"Category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_33.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"POWDER-CP\"]",
+        "selectors": [
+            "[aria-label=\"POWDER-CP\"]",
+            "text=\"POWDER-CP\"",
+            "#pn_id_97_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "POWDER-CP",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "POWDER-CP",
+        "text_full": "POWDER-CP",
+        "attrs": {
+            "aria-label": "POWDER-CP",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_33.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "messages": [
+                {
+                    "text": "POWDER-CP",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_97_list",
+                "pn_id_97_0",
+                "pn_id_97_1",
+                "pn_id_97_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Add RM\"]",
+        "selectors": [
+            "[aria-label=\"Add RM\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "Add RM",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_34.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"CP 5001 - JASMINE POWDER (PAA)\"]",
+        "selectors": [
+            "[aria-label=\"CP 5001 - JASMINE POWDER (PAA)\"]",
+            "text=\"CP 5001 - JASMINE POWDER (PAA)\"",
+            "#pn_id_99_0",
+            "div > div > div > div:nth-of-type(2) > p-scroller > div > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "CP 5001 - JASMINE POWDER (PAA)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "CP 5001 - JASMINE POWDER (PAA)",
+        "text_full": "CP 5001 - JASMINE POWDER (PAA)",
+        "attrs": {
+            "aria-label": "CP 5001 - JASMINE POWDER (PAA)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_34.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production",
+            "messages": [
+                {
+                    "text": "CP 5001 - JASMINE POWDER (PAA)",
+                    "selector": "div.p-multiselect-label"
+                },
+                {
+                    "text": "SL NO.\tPRODUCTION NO \tDATE \tCPC CODE \tCPC DESCRIPTION\tPRODUCED QTY (KG)\tCOST / KG\tFORMULATION\tVERSION\tSTATUS\tACTIONS",
+                    "selector": "app-perfume-production-list"
+                },
+                {
+                    "text": "Perfume Production\nPerfumary\nProduction",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Perfume Production",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Perfumary",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Production",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_103"
+            ],
+            "disappeared": [
+                "pn_id_88",
+                "pn_id_97",
+                "pn_id_99",
+                "pn_id_99_list",
+                "pn_id_99_0",
+                "pn_id_99_1",
+                "pn_id_99_2",
+                "pn_id_99_3",
+                "pn_id_99_4",
+                "pn_id_99_5",
+                "pn_id_99_6",
+                "pn_id_99_7"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body > div > div > div > div:nth-of-type(2) > p-scroller > div",
+        "selectors": [
+            "html > body > div > div > div > div:nth-of-type(2) > p-scroller > div"
+        ],
+        "tag": "div",
+        "text": "CP 5001 - JASMINE POWDER (PAA)\nCP 5002 - MUSK AMBR",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "CP 5001 - JASMINE POWDER (PAA) CP 5002 - MUSK AMBRETTE CP 5003 - TONALID CP 5004 - INDOLE CP 5005 - YARA YARA CP 5006 - ",
+        "text_full": "CP 5001 - JASMINE POWDER (PAA) CP 5002 - MUSK AMBRETTE CP 5003 - TONALID CP 5004 - INDOLE CP 5005 - YARA YARA CP 5006 - MUSK KETONE CP 5007 - MUSK XYLOL CP 5008 - ROSE CRYSTALS CP 5009 - CAMPHOR /ISO BORNEOL FLAKES CP 5010 - MALTOL CP 5011 - RASPBERRY KETONE CP 5012 - BENZOPHENONE",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_35.jpg"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/production",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Production/screenshots/step_36.jpg"
+    }
+]

@@ -1,0 +1,2447 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Business Partners",
+        "label": "",
+        "required": false,
+        "value": "Business Partners",
+        "role": "listitem",
+        "accessible_name": "Business Partners",
+        "text_full": "Business Partners",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Customer Master",
+        "label": "",
+        "required": false,
+        "value": "Customer Master",
+        "role": "listitem",
+        "accessible_name": "Customer Master",
+        "text_full": "Customer Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CUSTOMER NAME",
+        "label": "",
+        "required": false,
+        "value": "CUSTOMER NAME",
+        "role": "",
+        "accessible_name": "CUSTOMER NAME",
+        "text_full": "CUSTOMER NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "GSTIN",
+        "label": "",
+        "required": false,
+        "value": "GSTIN",
+        "role": "",
+        "accessible_name": "GSTIN",
+        "text_full": "GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "STATE",
+        "label": "",
+        "required": false,
+        "value": "STATE",
+        "role": "",
+        "accessible_name": "STATE",
+        "text_full": "STATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "PHONE",
+        "label": "",
+        "required": false,
+        "value": "PHONE",
+        "role": "",
+        "accessible_name": "PHONE",
+        "text_full": "PHONE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-customer-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Customer\")",
+        "selectors": [
+            "button:has-text(\"Add Customer\")",
+            "text=\"Add Customer\"",
+            "div > div:nth-of-type(3) > div > div > app-customer-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Customer",
+        "label": "",
+        "required": false,
+        "value": "Add Customer",
+        "role": "button",
+        "accessible_name": "Add Customer",
+        "text_full": "Add Customer",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "div > app-customer-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-customer-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Onboarding Form & Documents\"]",
+        "selectors": [
+            "button[title=\"Onboarding Form & Documents\"]",
+            "[aria-label=\"Onboarding Form & Documents\"]",
+            "button:has(i.pi-file-edit)",
+            "div > app-customer-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Onboarding Form & Documents",
+        "text_full": "",
+        "attrs": {
+            "title": "Onboarding Form & Documents"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-customer-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Customer\")",
+        "selectors": [
+            "button:has-text(\"Add Customer\")",
+            "text=\"Add Customer\"",
+            "div > div:nth-of-type(3) > div > div > app-customer-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Customer",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Customer",
+        "text_full": "Add Customer",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_19.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Add Customer",
+                    "selector": "div.ng-tns-c2196985156-6.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header",
+                "pn_id_88",
+                "pn_id_96",
+                "credit-customer",
+                "pn_id_90",
+                "pn_id_92",
+                "pn_id_94"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-list > app-customer-form > p-dialog > div > div > div > span",
+        "selectors": [
+            "div > div > app-customer-list > app-customer-form > p-dialog > div > div > div > span",
+            "#pn_id_8_header"
+        ],
+        "tag": "span",
+        "text": "Add Customer",
+        "label": "",
+        "required": false,
+        "value": "Add Customer",
+        "role": "",
+        "accessible_name": "Add Customer",
+        "text_full": "Add Customer",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Customer Name *\"",
+        "selectors": [
+            "text=\"Customer Name *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Customer Name *",
+        "label": "Customer Name *",
+        "required": false,
+        "value": "Customer Name *",
+        "role": "",
+        "accessible_name": "Customer Name *",
+        "text_full": "Customer Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Customer Type *\"",
+        "selectors": [
+            "text=\"Customer Type *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Customer Type *",
+        "label": "Customer Type *",
+        "required": false,
+        "value": "Customer Type *",
+        "role": "",
+        "accessible_name": "Customer Type *",
+        "text_full": "Customer Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State *\"",
+        "selectors": [
+            "text=\"State *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "State *",
+        "label": "State *",
+        "required": false,
+        "value": "State *",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State Code\"",
+        "selectors": [
+            "text=\"State Code\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "State Code",
+        "label": "State Code",
+        "required": false,
+        "value": "State Code",
+        "role": "",
+        "accessible_name": "State Code",
+        "text_full": "State Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"GSTIN\"",
+        "selectors": [
+            "text=\"GSTIN\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > label"
+        ],
+        "tag": "label",
+        "text": "GSTIN",
+        "label": "GSTIN",
+        "required": false,
+        "value": "GSTIN",
+        "role": "",
+        "accessible_name": "GSTIN",
+        "text_full": "GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Discount %\"",
+        "selectors": [
+            "text=\"Discount %\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Discount %",
+        "label": "Discount %",
+        "required": false,
+        "value": "Discount %",
+        "role": "",
+        "accessible_name": "Discount %",
+        "text_full": "Discount %",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Credit Customer\"",
+        "selectors": [
+            "text=\"Credit Customer\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > label"
+        ],
+        "tag": "label",
+        "text": "Credit Customer",
+        "label": "Credit Customer",
+        "required": false,
+        "value": "Credit Customer",
+        "role": "",
+        "accessible_name": "Credit Customer",
+        "text_full": "Credit Customer",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PAN No.\"",
+        "selectors": [
+            "text=\"PAN No.\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > label"
+        ],
+        "tag": "label",
+        "text": "PAN No.",
+        "label": "PAN No.",
+        "required": false,
+        "value": "PAN No.",
+        "role": "",
+        "accessible_name": "PAN No.",
+        "text_full": "PAN No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Aadhaar No.\"",
+        "selectors": [
+            "text=\"Aadhaar No.\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Aadhaar No.",
+        "label": "Aadhaar No.",
+        "required": false,
+        "value": "Aadhaar No.",
+        "role": "",
+        "accessible_name": "Aadhaar No.",
+        "text_full": "Aadhaar No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Registration\"",
+        "selectors": [
+            "text=\"Registration\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div > label"
+        ],
+        "tag": "label",
+        "text": "Registration",
+        "label": "Registration",
+        "required": false,
+        "value": "Registration",
+        "role": "",
+        "accessible_name": "Registration",
+        "text_full": "Registration",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"City\"",
+        "selectors": [
+            "text=\"City\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "City",
+        "label": "City",
+        "required": false,
+        "value": "City",
+        "role": "",
+        "accessible_name": "City",
+        "text_full": "City",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Assigned Depot *\"",
+        "selectors": [
+            "text=\"Assigned Depot *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > label"
+        ],
+        "tag": "label",
+        "text": "Assigned Depot *",
+        "label": "Assigned Depot *",
+        "required": false,
+        "value": "Assigned Depot *",
+        "role": "",
+        "accessible_name": "Assigned Depot *",
+        "text_full": "Assigned Depot *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Billing Address *\"",
+        "selectors": [
+            "text=\"Billing Address *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > label"
+        ],
+        "tag": "label",
+        "text": "Billing Address *",
+        "label": "Billing Address *",
+        "required": false,
+        "value": "Billing Address *",
+        "role": "",
+        "accessible_name": "Billing Address *",
+        "text_full": "Billing Address *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Shipping Address *\"",
+        "selectors": [
+            "text=\"Shipping Address *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Shipping Address *\nSame as Billing",
+        "label": "Shipping Address *\nSame as Billing",
+        "required": false,
+        "value": "Shipping Address * Same as Billing",
+        "role": "",
+        "accessible_name": "Shipping Address *\nSame as Billing",
+        "text_full": "Shipping Address * Same as Billing",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Contact Person *\"",
+        "selectors": [
+            "text=\"Contact Person *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > label"
+        ],
+        "tag": "label",
+        "text": "Contact Person *",
+        "label": "Contact Person *",
+        "required": false,
+        "value": "Contact Person *",
+        "role": "",
+        "accessible_name": "Contact Person *",
+        "text_full": "Contact Person *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Phone *\"",
+        "selectors": [
+            "text=\"Phone *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Phone *",
+        "label": "Phone *",
+        "required": false,
+        "value": "Phone *",
+        "role": "",
+        "accessible_name": "Phone *",
+        "text_full": "Phone *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Email *\"",
+        "selectors": [
+            "text=\"Email *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > label"
+        ],
+        "tag": "label",
+        "text": "Email *",
+        "label": "Email *",
+        "required": false,
+        "value": "Email *",
+        "role": "",
+        "accessible_name": "Email *",
+        "text_full": "Email *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bank Name *\"",
+        "selectors": [
+            "text=\"Bank Name *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div > label"
+        ],
+        "tag": "label",
+        "text": "Bank Name *",
+        "label": "Bank Name *",
+        "required": false,
+        "value": "Bank Name *",
+        "role": "",
+        "accessible_name": "Bank Name *",
+        "text_full": "Bank Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_39.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Account Holder Name *\"",
+        "selectors": [
+            "text=\"Account Holder Name *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Account Holder Name *",
+        "label": "Account Holder Name *",
+        "required": false,
+        "value": "Account Holder Name *",
+        "role": "",
+        "accessible_name": "Account Holder Name *",
+        "text_full": "Account Holder Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_40.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bank Account Number *\"",
+        "selectors": [
+            "text=\"Bank Account Number *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(13) > div > label"
+        ],
+        "tag": "label",
+        "text": "Bank Account Number *",
+        "label": "Bank Account Number *",
+        "required": false,
+        "value": "Bank Account Number *",
+        "role": "",
+        "accessible_name": "Bank Account Number *",
+        "text_full": "Bank Account Number *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_41.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Nature of Account *\"",
+        "selectors": [
+            "text=\"Nature of Account *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(13) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Nature of Account *",
+        "label": "Nature of Account *",
+        "required": false,
+        "value": "Nature of Account *",
+        "role": "",
+        "accessible_name": "Nature of Account *",
+        "text_full": "Nature of Account *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_42.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Branch Name *\"",
+        "selectors": [
+            "text=\"Branch Name *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(14) > div > label"
+        ],
+        "tag": "label",
+        "text": "Branch Name *",
+        "label": "Branch Name *",
+        "required": false,
+        "value": "Branch Name *",
+        "role": "",
+        "accessible_name": "Branch Name *",
+        "text_full": "Branch Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_43.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"IFSC / RTGS *\"",
+        "selectors": [
+            "text=\"IFSC / RTGS *\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(14) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "IFSC / RTGS *",
+        "label": "IFSC / RTGS *",
+        "required": false,
+        "value": "IFSC / RTGS *",
+        "role": "",
+        "accessible_name": "IFSC / RTGS *",
+        "text_full": "IFSC / RTGS *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_44.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(18) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_45.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Customer name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "State is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Assigned depot is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Billing Address is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Shipping Address is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Contact Person is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Customer name is required",
+        "label": "Customer Name *",
+        "required": false,
+        "value": "Customer name is required",
+        "role": "",
+        "accessible_name": "Customer Name *",
+        "text_full": "Customer name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_46.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span"
+        ],
+        "tag": "span",
+        "text": "State is required",
+        "label": "State *",
+        "required": false,
+        "value": "State is required",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_47.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > span"
+        ],
+        "tag": "span",
+        "text": "Assigned depot is required",
+        "label": "Assigned Depot *",
+        "required": false,
+        "value": "Assigned depot is required",
+        "role": "",
+        "accessible_name": "Assigned Depot *",
+        "text_full": "Assigned depot is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_48.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > span"
+        ],
+        "tag": "span",
+        "text": "Billing Address is required",
+        "label": "Billing Address *",
+        "required": false,
+        "value": "Billing Address is required",
+        "role": "",
+        "accessible_name": "Billing Address *",
+        "text_full": "Billing Address is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_49.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Shipping Address is required",
+        "label": "Billing Address *",
+        "required": false,
+        "value": "Shipping Address is required",
+        "role": "",
+        "accessible_name": "Billing Address *",
+        "text_full": "Shipping Address is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_50.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > span"
+        ],
+        "tag": "span",
+        "text": "Contact Person is required",
+        "label": "Contact Person *",
+        "required": false,
+        "value": "Contact Person is required",
+        "role": "",
+        "accessible_name": "Contact Person *",
+        "text_full": "Contact Person is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_51.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Phone is required",
+        "label": "Contact Person *",
+        "required": false,
+        "value": "Phone is required",
+        "role": "",
+        "accessible_name": "Contact Person *",
+        "text_full": "Phone is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_52.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > span",
+        "selectors": [
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > span"
+        ],
+        "tag": "span",
+        "text": "Email is required",
+        "label": "Email *",
+        "required": false,
+        "value": "Email is required",
+        "role": "",
+        "accessible_name": "Email *",
+        "text_full": "Email is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_53.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_54.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"customerName\"]",
+        "selectors": [
+            "[formcontrolname=\"customerName\"]",
+            "input[formcontrolname=\"customerName\"]",
+            "input[placeholder=\"Enter customer name\"]",
+            "input[placeholder=\"Customer Name *\"]",
+            "div input[formcontrolname=\"customerName\"]",
+            "div input[placeholder=\"Enter customer name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Customer Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Customer Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter customer name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_55.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"customerName\"]",
+        "selectors": [
+            "[formcontrolname=\"customerName\"]",
+            "input[formcontrolname=\"customerName\"]",
+            "input[placeholder=\"Enter customer name\"]",
+            "input[placeholder=\"Customer Name *\"]",
+            "div input[formcontrolname=\"customerName\"]",
+            "div input[placeholder=\"Enter customer name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Customer Name *",
+        "required": true,
+        "value": "QA-AUTO Customer Name",
+        "role": "textbox",
+        "accessible_name": "Customer Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter customer name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_57.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Domestic\nExport\nStores",
+                    "selector": "div.ng-tns-c1614365056-7.p-overlay.p-component"
+                },
+                {
+                    "text": "Domestic",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Export",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Stores",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"customerType\"]",
+        "selectors": [
+            "[formcontrolname=\"customerType\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Customer Type *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_58.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "text=\"Domestic\"",
+            "#pn_id_88_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic",
+        "label": "Customer Name *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_58.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"state\"]",
+        "selectors": [
+            "[formcontrolname=\"state\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "State *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_59.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_96_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "State *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_59.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_96_list",
+                "pn_id_96_0",
+                "pn_id_96_1",
+                "pn_id_96_2",
+                "pn_id_96_3",
+                "pn_id_96_4",
+                "pn_id_96_5",
+                "pn_id_96_6",
+                "pn_id_96_7",
+                "pn_id_96_8",
+                "pn_id_96_9",
+                "pn_id_96_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"stateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"stateCode\"]",
+            "input[formcontrolname=\"stateCode\"]",
+            "input[placeholder=\"e.g. 29\"]",
+            "input[placeholder=\"State *\"]",
+            "div input[formcontrolname=\"stateCode\"]",
+            "div input[placeholder=\"e.g. 29\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "State *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_60.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"stateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"stateCode\"]",
+            "input[formcontrolname=\"stateCode\"]",
+            "input[placeholder=\"e.g. 29\"]",
+            "input[placeholder=\"State *\"]",
+            "div input[formcontrolname=\"stateCode\"]",
+            "div input[placeholder=\"e.g. 29\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State *",
+        "required": true,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "State *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_62.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "input[placeholder=\"GSTIN\"]",
+            "div input[formcontrolname=\"gstin\"]",
+            "div input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "GSTIN",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "GSTIN",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29AGWPR0512J1ZW",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_63.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "input[placeholder=\"GSTIN\"]",
+            "div input[formcontrolname=\"gstin\"]",
+            "div input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "GSTIN",
+        "required": false,
+        "value": "29ABCDE1234F1Z5",
+        "role": "textbox",
+        "accessible_name": "GSTIN",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29AGWPR0512J1ZW",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_65.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"discountPercent\"]",
+        "selectors": [
+            "[formcontrolname=\"discountPercent\"]",
+            "input[formcontrolname=\"discountPercent\"]",
+            "input[placeholder=\"e.g. 5\"]",
+            "input[placeholder=\"GSTIN\"]",
+            "div input[formcontrolname=\"discountPercent\"]",
+            "div input[placeholder=\"e.g. 5\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "GSTIN",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "GSTIN",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 5",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_66.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"discountPercent\"]",
+        "selectors": [
+            "[formcontrolname=\"discountPercent\"]",
+            "input[formcontrolname=\"discountPercent\"]",
+            "input[placeholder=\"e.g. 5\"]",
+            "input[placeholder=\"GSTIN\"]",
+            "div input[formcontrolname=\"discountPercent\"]",
+            "div input[placeholder=\"e.g. 5\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "GSTIN",
+        "required": false,
+        "value": "QA-AUTO Discount %",
+        "role": "textbox",
+        "accessible_name": "GSTIN",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 5",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_68.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"panNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panNo\"]",
+            "input[formcontrolname=\"panNo\"]",
+            "input[placeholder=\"e.g. ABCDE1234F\"]",
+            "input[placeholder=\"PAN No.\"]",
+            "div input[formcontrolname=\"panNo\"]",
+            "div input[placeholder=\"e.g. ABCDE1234F\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN No.",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "PAN No.",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. ABCDE1234F",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_69.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"panNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panNo\"]",
+            "input[formcontrolname=\"panNo\"]",
+            "input[placeholder=\"e.g. ABCDE1234F\"]",
+            "input[placeholder=\"PAN No.\"]",
+            "div input[formcontrolname=\"panNo\"]",
+            "div input[placeholder=\"e.g. ABCDE1234F\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN No.",
+        "required": false,
+        "value": "ABCDE1234F",
+        "role": "textbox",
+        "accessible_name": "PAN No.",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. ABCDE1234F",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_71.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"aadhaarNo\"]",
+        "selectors": [
+            "[formcontrolname=\"aadhaarNo\"]",
+            "input[formcontrolname=\"aadhaarNo\"]",
+            "input[placeholder=\"12-digit Aadhaar\"]",
+            "input[placeholder=\"PAN No.\"]",
+            "div input[formcontrolname=\"aadhaarNo\"]",
+            "div input[placeholder=\"12-digit Aadhaar\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN No.",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "PAN No.",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "12-digit Aadhaar",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_72.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"aadhaarNo\"]",
+        "selectors": [
+            "[formcontrolname=\"aadhaarNo\"]",
+            "input[formcontrolname=\"aadhaarNo\"]",
+            "input[placeholder=\"12-digit Aadhaar\"]",
+            "input[placeholder=\"PAN No.\"]",
+            "div input[formcontrolname=\"aadhaarNo\"]",
+            "div input[placeholder=\"12-digit Aadhaar\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN No.",
+        "required": false,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "PAN No.",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "12-digit Aadhaar",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_73.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Non Registered\nRegistered",
+                    "selector": "div.ng-tns-c1614365056-8.p-overlay.p-component"
+                },
+                {
+                    "text": "Non Registered",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Registered",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_90_list",
+                "pn_id_90_0",
+                "pn_id_90_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"registrationType\"]",
+        "selectors": [
+            "[formcontrolname=\"registrationType\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Registration",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_74.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Non Registered\"]",
+        "selectors": [
+            "[aria-label=\"Non Registered\"]",
+            "text=\"Non Registered\"",
+            "#pn_id_90_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Non Registered",
+        "label": "Registration",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Non Registered",
+        "text_full": "Non Registered",
+        "attrs": {
+            "aria-label": "Non Registered",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_74.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_90_list",
+                "pn_id_90_0",
+                "pn_id_90_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"city\"]",
+        "selectors": [
+            "[formcontrolname=\"city\"]",
+            "input[formcontrolname=\"city\"]",
+            "input[placeholder=\"City\"]",
+            "input[placeholder=\"Registration\"]",
+            "div input[formcontrolname=\"city\"]",
+            "div input[placeholder=\"City\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Registration",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Registration",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "City",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_75.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"city\"]",
+        "selectors": [
+            "[formcontrolname=\"city\"]",
+            "input[formcontrolname=\"city\"]",
+            "input[placeholder=\"City\"]",
+            "input[placeholder=\"Registration\"]",
+            "div input[formcontrolname=\"city\"]",
+            "div input[placeholder=\"City\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Registration",
+        "required": false,
+        "value": "QA-AUTO City",
+        "role": "textbox",
+        "accessible_name": "Registration",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "City",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_77.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Ambala Depot (DP-005)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "AP & TELANGANA DEPOT (DP - 04)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "ap deport (ap - depot)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bhubaneshwar (DP-008)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar Depot (DP-006)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "HQ (DP - 01)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2",
+                "pn_id_92_3",
+                "pn_id_92_4",
+                "pn_id_92_5",
+                "pn_id_92_6",
+                "pn_id_92_7",
+                "pn_id_92_8",
+                "pn_id_92_9",
+                "pn_id_92_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"assignedDepotId\"]",
+        "selectors": [
+            "[formcontrolname=\"assignedDepotId\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Assigned Depot *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_78.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Ambala Depot (DP-005)\"]",
+        "selectors": [
+            "[aria-label=\"Ambala Depot (DP-005)\"]",
+            "text=\"Ambala Depot (DP-005)\"",
+            "#pn_id_92_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Ambala Depot (DP-005)",
+        "label": "Assigned Depot *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Ambala Depot (DP-005)",
+        "text_full": "Ambala Depot (DP-005)",
+        "attrs": {
+            "aria-label": "Ambala Depot (DP-005)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_78.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Ambala Depot (DP-005)",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2",
+                "pn_id_92_3",
+                "pn_id_92_4",
+                "pn_id_92_5",
+                "pn_id_92_6",
+                "pn_id_92_7",
+                "pn_id_92_8",
+                "pn_id_92_9",
+                "pn_id_92_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"billingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"billingAddress\"]",
+            "textarea[formcontrolname=\"billingAddress\"]",
+            "textarea[placeholder=\"Billing address\"]",
+            "textarea[placeholder=\"Billing Address *\"]",
+            "div textarea[formcontrolname=\"billingAddress\"]",
+            "div textarea[placeholder=\"Billing address\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Billing Address *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Billing address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_79.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"billingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"billingAddress\"]",
+            "textarea[formcontrolname=\"billingAddress\"]",
+            "textarea[placeholder=\"Billing address\"]",
+            "textarea[placeholder=\"Billing Address *\"]",
+            "div textarea[formcontrolname=\"billingAddress\"]",
+            "div textarea[placeholder=\"Billing address\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Billing Address *",
+        "required": true,
+        "value": "QA-AUTO Billing Address",
+        "role": "textbox",
+        "accessible_name": "Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Billing address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_80.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"shippingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"shippingAddress\"]",
+            "textarea[formcontrolname=\"shippingAddress\"]",
+            "textarea[placeholder=\"Shipping address\"]",
+            "textarea[placeholder=\"Billing Address *\"]",
+            "div textarea[formcontrolname=\"shippingAddress\"]",
+            "div textarea[placeholder=\"Shipping address\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Billing Address *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Shipping address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_81.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"shippingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"shippingAddress\"]",
+            "textarea[formcontrolname=\"shippingAddress\"]",
+            "textarea[placeholder=\"Shipping address\"]",
+            "textarea[placeholder=\"Billing Address *\"]",
+            "div textarea[formcontrolname=\"shippingAddress\"]",
+            "div textarea[placeholder=\"Shipping address\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Billing Address *",
+        "required": true,
+        "value": "QA-AUTO Shipping Address  Same as Billin",
+        "role": "textbox",
+        "accessible_name": "Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Shipping address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_82.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"contactPerson\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPerson\"]",
+            "input[formcontrolname=\"contactPerson\"]",
+            "input[placeholder=\"Contact name\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"contactPerson\"]",
+            "div input[placeholder=\"Contact name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Contact name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_83.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"contactPerson\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPerson\"]",
+            "input[formcontrolname=\"contactPerson\"]",
+            "input[placeholder=\"Contact name\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"contactPerson\"]",
+            "div input[placeholder=\"Contact name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "QA-AUTO Contact Person",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Contact name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_85.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"phone\"]",
+        "selectors": [
+            "[formcontrolname=\"phone\"]",
+            "input[formcontrolname=\"phone\"]",
+            "input[placeholder=\"Phone number\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"phone\"]",
+            "div input[placeholder=\"Phone number\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Phone number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_86.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"phone\"]",
+        "selectors": [
+            "[formcontrolname=\"phone\"]",
+            "input[formcontrolname=\"phone\"]",
+            "input[placeholder=\"Phone number\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"phone\"]",
+            "div input[placeholder=\"Phone number\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "9876543210",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Phone number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_88.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"Email address\"]",
+            "input[placeholder=\"Email *\"]",
+            "div input[formcontrolname=\"email\"]",
+            "div input[placeholder=\"Email address\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Email *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Email *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Email address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_89.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"Email address\"]",
+            "input[placeholder=\"Email *\"]",
+            "div input[formcontrolname=\"email\"]",
+            "div input[placeholder=\"Email address\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Email *",
+        "required": true,
+        "value": "qa.auto@example.com",
+        "role": "textbox",
+        "accessible_name": "Email *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Email address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_91.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"bankName\"]",
+        "selectors": [
+            "[formcontrolname=\"bankName\"]",
+            "input[formcontrolname=\"bankName\"]",
+            "input[placeholder=\"Bank name\"]",
+            "input[placeholder=\"Bank Name *\"]",
+            "div input[formcontrolname=\"bankName\"]",
+            "div input[placeholder=\"Bank name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Bank Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Bank Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Bank name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_92.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"bankName\"]",
+        "selectors": [
+            "[formcontrolname=\"bankName\"]",
+            "input[formcontrolname=\"bankName\"]",
+            "input[placeholder=\"Bank name\"]",
+            "input[placeholder=\"Bank Name *\"]",
+            "div input[formcontrolname=\"bankName\"]",
+            "div input[placeholder=\"Bank name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Bank Name *",
+        "required": true,
+        "value": "QA-AUTO Bank Name",
+        "role": "textbox",
+        "accessible_name": "Bank Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Bank name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_94.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"accountHolderName\"]",
+        "selectors": [
+            "[formcontrolname=\"accountHolderName\"]",
+            "input[formcontrolname=\"accountHolderName\"]",
+            "input[placeholder=\"Account holder name\"]",
+            "input[placeholder=\"Bank Name *\"]",
+            "div input[formcontrolname=\"accountHolderName\"]",
+            "div input[placeholder=\"Account holder name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Bank Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Bank Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Account holder name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_95.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"accountHolderName\"]",
+        "selectors": [
+            "[formcontrolname=\"accountHolderName\"]",
+            "input[formcontrolname=\"accountHolderName\"]",
+            "input[placeholder=\"Account holder name\"]",
+            "input[placeholder=\"Bank Name *\"]",
+            "div input[formcontrolname=\"accountHolderName\"]",
+            "div input[placeholder=\"Account holder name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Bank Name *",
+        "required": true,
+        "value": "QA-AUTO Account Holder Name",
+        "role": "textbox",
+        "accessible_name": "Bank Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Account holder name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_97.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"bankAccountNumber\"]",
+        "selectors": [
+            "[formcontrolname=\"bankAccountNumber\"]",
+            "input[formcontrolname=\"bankAccountNumber\"]",
+            "input[placeholder=\"Account number\"]",
+            "input[placeholder=\"Bank Account Number *\"]",
+            "div input[formcontrolname=\"bankAccountNumber\"]",
+            "div input[placeholder=\"Account number\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(13) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Bank Account Number *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Bank Account Number *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Account number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_98.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"bankAccountNumber\"]",
+        "selectors": [
+            "[formcontrolname=\"bankAccountNumber\"]",
+            "input[formcontrolname=\"bankAccountNumber\"]",
+            "input[placeholder=\"Account number\"]",
+            "input[placeholder=\"Bank Account Number *\"]",
+            "div input[formcontrolname=\"bankAccountNumber\"]",
+            "div input[placeholder=\"Account number\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(13) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Bank Account Number *",
+        "required": true,
+        "value": "123456789012",
+        "role": "textbox",
+        "accessible_name": "Bank Account Number *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Account number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_100.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Bank Account Number is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Account number must be 9\u201318 digits only",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Cash Credit Account\nCurrent Account\nOverdraft Account\nSavings Account",
+                    "selector": "div.ng-tns-c1614365056-10.p-overlay.p-component"
+                },
+                {
+                    "text": "Cash Credit Account",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Current Account",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Overdraft Account",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_94_list",
+                "pn_id_94_0",
+                "pn_id_94_1",
+                "pn_id_94_2",
+                "pn_id_94_3"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"natureOfAccount\"]",
+        "selectors": [
+            "[formcontrolname=\"natureOfAccount\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Nature of Account *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_101.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Cash Credit Account\"]",
+        "selectors": [
+            "[aria-label=\"Cash Credit Account\"]",
+            "text=\"Cash Credit Account\"",
+            "#pn_id_94_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Cash Credit Account",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Cash Credit Account",
+        "text_full": "Cash Credit Account",
+        "attrs": {
+            "aria-label": "Cash Credit Account",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_101.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [
+                {
+                    "text": "Cash Credit Account",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_94_list",
+                "pn_id_94_0",
+                "pn_id_94_1",
+                "pn_id_94_2",
+                "pn_id_94_3"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"branchName\"]",
+        "selectors": [
+            "[formcontrolname=\"branchName\"]",
+            "input[formcontrolname=\"branchName\"]",
+            "input[placeholder=\"Branch name\"]",
+            "input[placeholder=\"Branch Name *\"]",
+            "div input[formcontrolname=\"branchName\"]",
+            "div input[placeholder=\"Branch name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(14) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Branch Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Branch Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Branch name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_102.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"branchName\"]",
+        "selectors": [
+            "[formcontrolname=\"branchName\"]",
+            "input[formcontrolname=\"branchName\"]",
+            "input[placeholder=\"Branch name\"]",
+            "input[placeholder=\"Branch Name *\"]",
+            "div input[formcontrolname=\"branchName\"]",
+            "div input[placeholder=\"Branch name\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(14) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Branch Name *",
+        "required": true,
+        "value": "QA-AUTO Branch Name",
+        "role": "textbox",
+        "accessible_name": "Branch Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Branch name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_104.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"ifscRtgs\"]",
+        "selectors": [
+            "[formcontrolname=\"ifscRtgs\"]",
+            "input[formcontrolname=\"ifscRtgs\"]",
+            "input[placeholder=\"e.g. HDFC0001753\"]",
+            "input[placeholder=\"Branch Name *\"]",
+            "div input[formcontrolname=\"ifscRtgs\"]",
+            "div input[placeholder=\"e.g. HDFC0001753\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(14) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Branch Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Branch Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. HDFC0001753",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_105.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"ifscRtgs\"]",
+        "selectors": [
+            "[formcontrolname=\"ifscRtgs\"]",
+            "input[formcontrolname=\"ifscRtgs\"]",
+            "input[placeholder=\"e.g. HDFC0001753\"]",
+            "input[placeholder=\"Branch Name *\"]",
+            "div input[formcontrolname=\"ifscRtgs\"]",
+            "div input[placeholder=\"e.g. HDFC0001753\"]",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(14) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Branch Name *",
+        "required": true,
+        "value": "SBIN0001234",
+        "role": "textbox",
+        "accessible_name": "Branch Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. HDFC0001753",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_107.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-customer-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(18) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Customer Master/screenshots/step_108.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header",
+                "pn_id_88",
+                "pn_id_96",
+                "credit-customer",
+                "pn_id_90",
+                "pn_id_92",
+                "pn_id_94"
+            ]
+        }
+    }
+]

@@ -1,0 +1,256 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/rm-store",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/rm-store"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/rm-store",
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Dipping Department",
+        "label": "",
+        "required": false,
+        "value": "Dipping Department",
+        "role": "listitem",
+        "accessible_name": "Dipping Department",
+        "text_full": "Dipping Department",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Dipping RM Store",
+        "label": "",
+        "required": false,
+        "value": "Dipping RM Store",
+        "role": "listitem",
+        "accessible_name": "Dipping RM Store",
+        "text_full": "Dipping RM Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "ITEM CODE",
+        "label": "",
+        "required": false,
+        "value": "ITEM CODE",
+        "role": "",
+        "accessible_name": "ITEM CODE",
+        "text_full": "ITEM CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "AVAILABLE QTY",
+        "label": "",
+        "required": false,
+        "value": "AVAILABLE QTY",
+        "role": "",
+        "accessible_name": "AVAILABLE QTY",
+        "text_full": "AVAILABLE QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "WAC (\u20b9)",
+        "label": "",
+        "required": false,
+        "value": "WAC (\u20b9)",
+        "role": "",
+        "accessible_name": "WAC (\u20b9)",
+        "text_full": "WAC (\u20b9)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "app-dipping-department > app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View stock history\"]",
+        "selectors": [
+            "button[title=\"View stock history\"]",
+            "[aria-label=\"View stock history\"]",
+            "app-dipping-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View stock history",
+        "text_full": "",
+        "attrs": {
+            "title": "View stock history"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dipping RM Store/screenshots/step_14.jpg"
+    }
+]

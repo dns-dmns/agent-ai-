@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Warehouse/Inventory",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/inventory",
+    "timestamp": "2026-10-11 19:41:38",
+    "duration_seconds": 3,
+    "step_count": 20,
+    "source": "explorer",
+    "menu_path": [
+        "Warehouse",
+        "Inventory"
+    ]
+}

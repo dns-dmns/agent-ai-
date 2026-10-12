@@ -1,0 +1,338 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/grn",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/grn"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/grn",
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-grn-list > div > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-grn-list > div > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Purchase Orders & GRN",
+        "label": "",
+        "required": false,
+        "value": "Purchase Orders & GRN",
+        "role": "heading",
+        "accessible_name": "Purchase Orders & GRN",
+        "text_full": "Purchase Orders & GRN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Procurement",
+        "label": "",
+        "required": false,
+        "value": "Procurement",
+        "role": "listitem",
+        "accessible_name": "Procurement",
+        "text_full": "Procurement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Goods Receipt Notes",
+        "label": "",
+        "required": false,
+        "value": "Goods Receipt Notes",
+        "role": "listitem",
+        "accessible_name": "Goods Receipt Notes",
+        "text_full": "Goods Receipt Notes",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "PO NUMBER",
+        "label": "",
+        "required": false,
+        "value": "PO NUMBER",
+        "role": "",
+        "accessible_name": "PO NUMBER",
+        "text_full": "PO NUMBER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "GRN NUMBER",
+        "label": "",
+        "required": false,
+        "value": "GRN NUMBER",
+        "role": "",
+        "accessible_name": "GRN NUMBER",
+        "text_full": "GRN NUMBER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SUPPLIER",
+        "label": "",
+        "required": false,
+        "value": "SUPPLIER",
+        "role": "",
+        "accessible_name": "SUPPLIER",
+        "text_full": "SUPPLIER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "SUPPLIER INVOICE",
+        "label": "",
+        "required": false,
+        "value": "SUPPLIER INVOICE",
+        "role": "",
+        "accessible_name": "SUPPLIER INVOICE",
+        "text_full": "SUPPLIER INVOICE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "RECEIVED BY",
+        "label": "",
+        "required": false,
+        "value": "RECEIVED BY",
+        "role": "",
+        "accessible_name": "RECEIVED BY",
+        "text_full": "RECEIVED BY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Clear\")",
+        "selectors": [
+            "button:has-text(\"Clear\")",
+            "text=\"Clear\"",
+            "div > div:nth-of-type(3) > div > div > app-grn-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Clear",
+        "label": "",
+        "required": false,
+        "value": "Clear",
+        "role": "button",
+        "accessible_name": "Clear",
+        "text_full": "Clear",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View PO\"]",
+        "selectors": [
+            "button[title=\"View PO\"]",
+            "[aria-label=\"View PO\"]",
+            "button:has(i.pi-eye)",
+            "app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View PO",
+        "text_full": "",
+        "attrs": {
+            "title": "View PO"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Create GRN\"]",
+        "selectors": [
+            "button[title=\"Create GRN\"]",
+            "[aria-label=\"Create GRN\"]",
+            "button:has(i.pi-file-import)",
+            "app-grn-list > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Create GRN",
+        "text_full": "",
+        "attrs": {
+            "title": "Create GRN"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Goods Receipt Note/screenshots/step_18.jpg"
+    }
+]

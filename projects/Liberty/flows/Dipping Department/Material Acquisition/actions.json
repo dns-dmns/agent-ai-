@@ -1,0 +1,13 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/material-acquisition",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/material-acquisition"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/material-acquisition",
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Material Acquisition/screenshots/step_1.jpg"
+    }
+]

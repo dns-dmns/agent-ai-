@@ -1,0 +1,234 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/export-orders",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/export-orders"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/export-orders",
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Planning",
+        "label": "",
+        "required": false,
+        "value": "Planning",
+        "role": "listitem",
+        "accessible_name": "Planning",
+        "text_full": "Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Export Orders",
+        "label": "",
+        "required": false,
+        "value": "Export Orders",
+        "role": "listitem",
+        "accessible_name": "Export Orders",
+        "text_full": "Export Orders",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SALES ORDER NO.",
+        "label": "",
+        "required": false,
+        "value": "SALES ORDER NO.",
+        "role": "",
+        "accessible_name": "SALES ORDER NO.",
+        "text_full": "SALES ORDER NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "ORDER DATE",
+        "label": "",
+        "required": false,
+        "value": "ORDER DATE",
+        "role": "",
+        "accessible_name": "ORDER DATE",
+        "text_full": "ORDER DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CUSTOMER NAME",
+        "label": "",
+        "required": false,
+        "value": "CUSTOMER NAME",
+        "role": "",
+        "accessible_name": "CUSTOMER NAME",
+        "text_full": "CUSTOMER NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "COUNTRY",
+        "label": "",
+        "required": false,
+        "value": "COUNTRY",
+        "role": "",
+        "accessible_name": "COUNTRY",
+        "text_full": "COUNTRY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "TOTAL SKU",
+        "label": "",
+        "required": false,
+        "value": "TOTAL SKU",
+        "role": "",
+        "accessible_name": "TOTAL SKU",
+        "text_full": "TOTAL SKU",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "TOTAL ORDER QTY (CARTONS)",
+        "label": "",
+        "required": false,
+        "value": "TOTAL ORDER QTY (CARTONS)",
+        "role": "",
+        "accessible_name": "TOTAL ORDER QTY (CARTONS)",
+        "text_full": "TOTAL ORDER QTY (CARTONS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-export-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Export Orders/screenshots/step_13.jpg"
+    }
+]

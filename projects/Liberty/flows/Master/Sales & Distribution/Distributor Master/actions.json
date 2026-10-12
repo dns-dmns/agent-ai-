@@ -1,0 +1,266 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/distributor-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/distributor-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/distributor-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Sales & Distribution",
+        "label": "",
+        "required": false,
+        "value": "Sales & Distribution",
+        "role": "listitem",
+        "accessible_name": "Sales & Distribution",
+        "text_full": "Sales & Distribution",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Distributor Master",
+        "label": "",
+        "required": false,
+        "value": "Distributor Master",
+        "role": "listitem",
+        "accessible_name": "Distributor Master",
+        "text_full": "Distributor Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "DISTRIBUTOR NAME",
+        "label": "",
+        "required": false,
+        "value": "DISTRIBUTOR NAME",
+        "role": "",
+        "accessible_name": "DISTRIBUTOR NAME",
+        "text_full": "DISTRIBUTOR NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "STATE",
+        "label": "",
+        "required": false,
+        "value": "STATE",
+        "role": "",
+        "accessible_name": "STATE",
+        "text_full": "STATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "PRIMARY TERRITORY",
+        "label": "",
+        "required": false,
+        "value": "PRIMARY TERRITORY",
+        "role": "",
+        "accessible_name": "PRIMARY TERRITORY",
+        "text_full": "PRIMARY TERRITORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "OUTLETS",
+        "label": "",
+        "required": false,
+        "value": "OUTLETS",
+        "role": "",
+        "accessible_name": "OUTLETS",
+        "text_full": "OUTLETS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-distributor-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "[aria-label=\"Manage the 80 outlets of 1-ADHITHYA ASSOCIATES(MANIKANDESWARAM)\"]",
+        "selectors": [
+            "[aria-label=\"Manage the 80 outlets of 1-ADHITHYA ASSOCIATES(MANIKANDESWARAM)\"]",
+            "button:has-text(\"80\")",
+            "text=\"80\"",
+            "div > app-distributor-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(5) > button"
+        ],
+        "tag": "button",
+        "text": "80\nManage",
+        "label": "",
+        "required": false,
+        "value": "80 Manage",
+        "role": "button",
+        "accessible_name": "Manage the 80 outlets of 1-ADHITHYA ASSOCIATES(MANIKANDESWARAM)",
+        "text_full": "80 Manage",
+        "attrs": {
+            "aria-label": "Manage the 80 outlets of 1-ADHITHYA ASSOCIATES(MANIKANDESWARAM)",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Edit distributor\"]",
+        "selectors": [
+            "[aria-label=\"Edit distributor\"]",
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\t\") [title=\"Edit\"]",
+            "div > app-distributor-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit distributor",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit",
+            "aria-label": "Edit distributor"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Distributor Master/screenshots/step_14.jpg"
+    }
+]

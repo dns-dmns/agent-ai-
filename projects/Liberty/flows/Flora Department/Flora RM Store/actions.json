@@ -1,0 +1,727 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Flora Department",
+        "label": "",
+        "required": false,
+        "value": "Flora Department",
+        "role": "listitem",
+        "accessible_name": "Flora Department",
+        "text_full": "Flora Department",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Flora RM Store",
+        "label": "",
+        "required": false,
+        "value": "Flora RM Store",
+        "role": "listitem",
+        "accessible_name": "Flora RM Store",
+        "text_full": "Flora RM Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "ITEM CODE",
+        "label": "",
+        "required": false,
+        "value": "ITEM CODE",
+        "role": "",
+        "accessible_name": "ITEM CODE",
+        "text_full": "ITEM CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "AVAILABLE QTY",
+        "label": "",
+        "required": false,
+        "value": "AVAILABLE QTY",
+        "role": "",
+        "accessible_name": "AVAILABLE QTY",
+        "text_full": "AVAILABLE QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "WAC (\u20b9)",
+        "label": "",
+        "required": false,
+        "value": "WAC (\u20b9)",
+        "role": "",
+        "accessible_name": "WAC (\u20b9)",
+        "text_full": "WAC (\u20b9)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Assorted Nurva\")",
+        "selectors": [
+            "button:has-text(\"Add Assorted Nurva\")",
+            "text=\"Add Assorted Nurva\"",
+            "div > div > app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Assorted Nurva",
+        "label": "",
+        "required": false,
+        "value": "Add Assorted Nurva",
+        "role": "button",
+        "accessible_name": "Add Assorted Nurva",
+        "text_full": "Add Assorted Nurva",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View stock history\"]",
+        "selectors": [
+            "button[title=\"View stock history\"]",
+            "[aria-label=\"View stock history\"]",
+            "app-flora-rm-store > app-procurement-inventory > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View stock history",
+        "text_full": "",
+        "attrs": {
+            "title": "View stock history"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_15.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Assorted Nurva\")",
+        "selectors": [
+            "button:has-text(\"Add Assorted Nurva\")",
+            "text=\"Add Assorted Nurva\"",
+            "div > div > app-flora-department > app-flora-rm-store > app-procurement-inventory > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Assorted Nurva",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Assorted Nurva",
+        "text_full": "Add Assorted Nurva",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_16.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "messages": [
+                {
+                    "text": "Add Assorted Nurva \u2014 Flora RM Store",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nAdd Assorted Nurva",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "button.p-button.p-component.p-button-text"
+                },
+                {
+                    "text": "Add Assorted Nurva",
+                    "selector": "button.p-button.p-component.ng-star-inserted"
+                },
+                {
+                    "text": "Loading Flora raw materials\u2026",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                },
+                {
+                    "text": "Select the raw material",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_10_header",
+                "pn_id_14",
+                "pn_id_16"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(2) > span",
+            "#pn_id_10_header"
+        ],
+        "tag": "span",
+        "text": "Add Assorted Nurva \u2014 Flora RM Store",
+        "label": "",
+        "required": false,
+        "value": "Add Assorted Nurva \u2014 Flora RM Store",
+        "role": "",
+        "accessible_name": "Add Assorted Nurva \u2014 Flora RM Store",
+        "text_full": "Add Assorted Nurva \u2014 Flora RM Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category\"",
+        "selectors": [
+            "text=\"Category\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Category",
+        "label": "Category",
+        "required": false,
+        "value": "Category",
+        "role": "",
+        "accessible_name": "Category",
+        "text_full": "Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Raw Material *\"",
+        "selectors": [
+            "text=\"Raw Material *\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Raw Material *",
+        "label": "Raw Material *",
+        "required": false,
+        "value": "Raw Material *",
+        "role": "",
+        "accessible_name": "Raw Material *",
+        "text_full": "Raw Material *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Quantity *\"",
+        "selectors": [
+            "text=\"Quantity *\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Quantity *",
+        "label": "Quantity *",
+        "required": false,
+        "value": "Quantity *",
+        "role": "",
+        "accessible_name": "Quantity *",
+        "text_full": "Quantity *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remarks\"",
+        "selectors": [
+            "text=\"Remarks\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Remarks",
+        "label": "Remarks",
+        "required": false,
+        "value": "Remarks",
+        "role": "",
+        "accessible_name": "Remarks",
+        "text_full": "Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_21.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Category\"]",
+        "selectors": [
+            "[aria-label=\"Category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_22.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"10'' to 15\\\" RAWBATHI - RM\"]",
+        "selectors": [
+            "[aria-label=\"10'' to 15\\\" RAWBATHI - RM\"]",
+            "text=\"10'' to 15\\\" RAWBATHI - RM\"",
+            "#pn_id_14_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "10'' to 15\" RAWBATHI - RM",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "10'' to 15\" RAWBATHI - RM",
+        "text_full": "10'' to 15\" RAWBATHI - RM",
+        "attrs": {
+            "aria-label": "10'' to 15\" RAWBATHI - RM",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_22.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "messages": [
+                {
+                    "text": "10'' to 15\" RAWBATHI - RM",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_14_list",
+                "pn_id_14_0",
+                "pn_id_14_1",
+                "pn_id_14_2",
+                "pn_id_14_3",
+                "pn_id_14_4",
+                "pn_id_14_5",
+                "pn_id_14_6",
+                "pn_id_14_7",
+                "pn_id_14_8",
+                "pn_id_14_9",
+                "pn_id_14_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Raw Material\"]",
+        "selectors": [
+            "[aria-label=\"Raw Material\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Raw Material *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_23.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"RM 19432077 \u2014 TEST RM 002 - 10'' to 15\\\" RAWBATHI - RM\"]",
+        "selectors": [
+            "[aria-label=\"RM 19432077 \u2014 TEST RM 002 - 10'' to 15\\\" RAWBATHI - RM\"]",
+            "#pn_id_16_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "RM 19432077 \u2014 TEST RM 002 - 10'' to 15\" RAWBATHI -",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "RM 19432077 \u2014 TEST RM 002 - 10'' to 15\" RAWBATHI - RM",
+        "text_full": "RM 19432077 \u2014 TEST RM 002 - 10'' to 15\" RAWBATHI - RM",
+        "attrs": {
+            "aria-label": "RM 19432077 \u2014 TEST RM 002 - 10'' to 15\" RAWBATHI - RM",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_23.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "messages": [
+                {
+                    "text": "in NOS",
+                    "selector": "span.uom-hint.ng-star-inserted"
+                },
+                {
+                    "text": "RM 19432077 \u2014 TEST RM 002 - 10'' to 15\" RAWBATHI - RM",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_16_list",
+                "pn_id_16_0"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Quantity *in NOS\"]",
+            "div input[placeholder=\"0.000\"]",
+            "div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Quantity *in NOS",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Quantity *in NOS",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_24.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Quantity *in NOS\"]",
+            "div input[placeholder=\"0.000\"]",
+            "div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Quantity *in NOS",
+        "required": true,
+        "value": "10.00",
+        "role": "spinbutton",
+        "accessible_name": "Quantity *in NOS",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_26.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Optional\"]",
+        "selectors": [
+            "input[placeholder=\"Optional\"]",
+            "input[placeholder=\"Remarks\"]",
+            "div input[placeholder=\"Optional\"]",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Remarks",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Remarks",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_27.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Optional\"]",
+        "selectors": [
+            "input[placeholder=\"Optional\"]",
+            "input[placeholder=\"Remarks\"]",
+            "div input[placeholder=\"Optional\"]",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Remarks",
+        "required": false,
+        "value": "QA-AUTO Remarks",
+        "role": "textbox",
+        "accessible_name": "Remarks",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_29.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Quantity *in NOS\"]",
+            "div input[placeholder=\"0.000\"]",
+            "div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Quantity *in NOS",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Quantity *in NOS",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_30.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Quantity *in NOS\"]",
+            "div input[placeholder=\"0.000\"]",
+            "div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Quantity *in NOS",
+        "required": true,
+        "value": "Tab",
+        "role": "spinbutton",
+        "accessible_name": "Quantity *in NOS",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_31.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-flora-department > app-flora-rm-store > app-procurement-inventory > div > p-dialog:nth-of-type(3) > div > div > div:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Flora RM Store/screenshots/step_32.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_10_header",
+                "pn_id_14",
+                "pn_id_16"
+            ]
+        }
+    }
+]

@@ -1,0 +1,1266 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders",
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Procurement",
+        "label": "",
+        "required": false,
+        "value": "Procurement",
+        "role": "listitem",
+        "accessible_name": "Procurement",
+        "text_full": "Procurement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Purchase Orders",
+        "label": "",
+        "required": false,
+        "value": "Purchase Orders",
+        "role": "listitem",
+        "accessible_name": "Purchase Orders",
+        "text_full": "Purchase Orders",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "PO NUMBER",
+        "label": "",
+        "required": false,
+        "value": "PO NUMBER",
+        "role": "",
+        "accessible_name": "PO NUMBER",
+        "text_full": "PO NUMBER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SUPPLIER",
+        "label": "",
+        "required": false,
+        "value": "SUPPLIER",
+        "role": "",
+        "accessible_name": "SUPPLIER",
+        "text_full": "SUPPLIER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "STATE",
+        "label": "",
+        "required": false,
+        "value": "STATE",
+        "role": "",
+        "accessible_name": "STATE",
+        "text_full": "STATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ETA",
+        "label": "",
+        "required": false,
+        "value": "ETA",
+        "role": "",
+        "accessible_name": "ETA",
+        "text_full": "ETA",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "TOTAL",
+        "label": "",
+        "required": false,
+        "value": "TOTAL",
+        "role": "",
+        "accessible_name": "TOTAL",
+        "text_full": "TOTAL",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-purchase-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Clear\")",
+        "selectors": [
+            "button:has-text(\"Clear\")",
+            "text=\"Clear\"",
+            "div > div:nth-of-type(3) > div > div > app-purchase-order-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Clear",
+        "label": "",
+        "required": false,
+        "value": "Clear",
+        "role": "button",
+        "accessible_name": "Clear",
+        "text_full": "Clear",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"New PO\")",
+        "selectors": [
+            "button:has-text(\"New PO\")",
+            "text=\"New PO\"",
+            "div > div:nth-of-type(3) > div > div > app-purchase-order-list > div > div > p-button:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "New PO",
+        "label": "",
+        "required": false,
+        "value": "New PO",
+        "role": "button",
+        "accessible_name": "New PO",
+        "text_full": "New PO",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View PO\"]",
+        "selectors": [
+            "button[title=\"View PO\"]",
+            "[aria-label=\"View PO\"]",
+            "button:has(i.pi-eye)",
+            "div > app-purchase-order-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View PO",
+        "text_full": "",
+        "attrs": {
+            "title": "View PO"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-purchase-order-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_18.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"New PO\")",
+        "selectors": [
+            "button:has-text(\"New PO\")",
+            "text=\"New PO\"",
+            "div > div:nth-of-type(3) > div > div > app-purchase-order-list > div > div > p-button:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "New PO",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "New PO",
+        "text_full": "New PO",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_19.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "messages": [
+                {
+                    "text": "Create Purchase Order\nProcurement\nCreate Purchase Order",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Create Purchase Order",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Procurement",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Select supplier",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                },
+                {
+                    "text": "Perfume",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "IGST %",
+                    "selector": "label"
+                }
+            ],
+            "appeared": [
+                "pn_id_93",
+                "pn_id_95",
+                "pn_id_97",
+                "pn_id_99"
+            ],
+            "disappeared": [
+                "pn_id_8",
+                "pn_id_10"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-purchase-order-form > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-purchase-order-form > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Create Purchase Order",
+        "label": "",
+        "required": false,
+        "value": "Create Purchase Order",
+        "role": "heading",
+        "accessible_name": "Create Purchase Order",
+        "text_full": "Create Purchase Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-purchase-order-form > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-purchase-order-form > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Supplier & Order Details",
+        "label": "",
+        "required": false,
+        "value": "Supplier & Order Details",
+        "role": "heading",
+        "accessible_name": "Supplier & Order Details",
+        "text_full": "Supplier & Order Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-purchase-order-form > div > form > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-purchase-order-form > div > form > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Item Lines",
+        "label": "",
+        "required": false,
+        "value": "Item Lines",
+        "role": "heading",
+        "accessible_name": "Item Lines",
+        "text_full": "Item Lines",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Pick Existing Supplier (Optional)\"",
+        "selectors": [
+            "text=\"Pick Existing Supplier (Optional)\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Pick Existing Supplier (Optional)",
+        "label": "Pick Existing Supplier (Optional)",
+        "required": false,
+        "value": "Pick Existing Supplier (Optional)",
+        "role": "",
+        "accessible_name": "Pick Existing Supplier (Optional)",
+        "text_full": "Pick Existing Supplier (Optional)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Name *\"",
+        "selectors": [
+            "text=\"Supplier Name *\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Name *",
+        "label": "Supplier Name *",
+        "required": false,
+        "value": "Supplier Name *",
+        "role": "",
+        "accessible_name": "Supplier Name *",
+        "text_full": "Supplier Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier State *\"",
+        "selectors": [
+            "text=\"Supplier State *\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier State *",
+        "label": "Supplier State *",
+        "required": false,
+        "value": "Supplier State *",
+        "role": "",
+        "accessible_name": "Supplier State *",
+        "text_full": "Supplier State *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Email\"",
+        "selectors": [
+            "text=\"Supplier Email\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Email",
+        "label": "Supplier Email",
+        "required": false,
+        "value": "Supplier Email",
+        "role": "",
+        "accessible_name": "Supplier Email",
+        "text_full": "Supplier Email",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Address\"",
+        "selectors": [
+            "text=\"Supplier Address\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Address",
+        "label": "Supplier Address",
+        "required": false,
+        "value": "Supplier Address",
+        "role": "",
+        "accessible_name": "Supplier Address",
+        "text_full": "Supplier Address",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Default Category *\"",
+        "selectors": [
+            "text=\"Default Category *\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Default Category *",
+        "label": "Default Category *",
+        "required": false,
+        "value": "Default Category *",
+        "role": "",
+        "accessible_name": "Default Category *",
+        "text_full": "Default Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"ETA *\"",
+        "selectors": [
+            "text=\"ETA *\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "ETA *",
+        "label": "ETA *",
+        "required": false,
+        "value": "ETA *",
+        "role": "",
+        "accessible_name": "ETA *",
+        "text_full": "ETA *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Terms Of Payment\"",
+        "selectors": [
+            "text=\"Terms Of Payment\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Terms Of Payment",
+        "label": "Terms Of Payment",
+        "required": false,
+        "value": "Terms Of Payment",
+        "role": "",
+        "accessible_name": "Terms Of Payment",
+        "text_full": "Terms Of Payment",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Terms Of Delivery\"",
+        "selectors": [
+            "text=\"Terms Of Delivery\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(9) > label"
+        ],
+        "tag": "label",
+        "text": "Terms Of Delivery",
+        "label": "Terms Of Delivery",
+        "required": false,
+        "value": "Terms Of Delivery",
+        "role": "",
+        "accessible_name": "Terms Of Delivery",
+        "text_full": "Terms Of Delivery",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"IGST %\"",
+        "selectors": [
+            "text=\"IGST %\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(10) > label"
+        ],
+        "tag": "label",
+        "text": "IGST %",
+        "label": "IGST %",
+        "required": false,
+        "value": "IGST %",
+        "role": "",
+        "accessible_name": "IGST %",
+        "text_full": "IGST %",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remarks\"",
+        "selectors": [
+            "text=\"Remarks\"",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(11) > label"
+        ],
+        "tag": "label",
+        "text": "Remarks",
+        "label": "Remarks",
+        "required": false,
+        "value": "Remarks",
+        "role": "",
+        "accessible_name": "Remarks",
+        "text_full": "Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_34.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Pick Existing Supplier (Optional)\"]",
+        "selectors": [
+            "[aria-label=\"Pick Existing Supplier (Optional)\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Pick Existing Supplier (Optional)",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_35.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"000001 - Andhra Pradesh\"]",
+        "selectors": [
+            "[aria-label=\"000001 - Andhra Pradesh\"]",
+            "text=\"000001 - Andhra Pradesh\"",
+            "#pn_id_93_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "000001 - Andhra Pradesh",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "000001 - Andhra Pradesh",
+        "text_full": "000001 - Andhra Pradesh",
+        "attrs": {
+            "aria-label": "000001 - Andhra Pradesh",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_35.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "messages": [
+                {
+                    "text": "000001 - Andhra Pradesh",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_93_list",
+                "pn_id_93_0",
+                "pn_id_93_1",
+                "pn_id_93_2",
+                "pn_id_93_3",
+                "pn_id_93_4",
+                "pn_id_93_5",
+                "pn_id_93_6",
+                "pn_id_93_7",
+                "pn_id_93_8",
+                "pn_id_93_9",
+                "pn_id_93_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"supplierName\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierName\"]",
+            "input[formcontrolname=\"supplierName\"]",
+            "input[placeholder=\"Enter supplier name\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter supplier name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_36.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"supplierName\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierName\"]",
+            "input[formcontrolname=\"supplierName\"]",
+            "input[placeholder=\"Enter supplier name\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Supplier Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter supplier name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_38.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"supplierState\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierState\"]",
+            "input[formcontrolname=\"supplierState\"]",
+            "input[placeholder=\"Enter supplier state\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter supplier state",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_39.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"supplierState\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierState\"]",
+            "input[formcontrolname=\"supplierState\"]",
+            "input[placeholder=\"Enter supplier state\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Supplier State",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter supplier state",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_41.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"supplierEmail\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierEmail\"]",
+            "input[formcontrolname=\"supplierEmail\"]",
+            "input[placeholder=\"Supplier email\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier email",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_42.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"supplierEmail\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierEmail\"]",
+            "input[formcontrolname=\"supplierEmail\"]",
+            "input[placeholder=\"Supplier email\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "qa.auto@example.com",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier email",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_44.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"supplierAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierAddress\"]",
+            "input[formcontrolname=\"supplierAddress\"]",
+            "input[placeholder=\"Supplier address\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_45.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"supplierAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierAddress\"]",
+            "input[formcontrolname=\"supplierAddress\"]",
+            "input[placeholder=\"Supplier address\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Supplier Address",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_47.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "messages": [
+                {
+                    "text": "Perfume\nRaw Bathi\nFlora\nPacking Material\nConsumables\nOthers",
+                    "selector": "div.ng-tns-c1614365056-10.p-overlay.p-component"
+                },
+                {
+                    "text": "Perfume",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Raw Bathi",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Flora",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Packing Material",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Consumables",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_95_list",
+                "pn_id_95_0",
+                "pn_id_95_1",
+                "pn_id_95_2",
+                "pn_id_95_3",
+                "pn_id_95_4",
+                "pn_id_95_5"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"orderType\"]",
+        "selectors": [
+            "[formcontrolname=\"orderType\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Default Category *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_48.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Perfume\"]",
+        "selectors": [
+            "[aria-label=\"Perfume\"]",
+            "text=\"Perfume\"",
+            "#pn_id_95_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Perfume",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Perfume",
+        "text_full": "Perfume",
+        "attrs": {
+            "aria-label": "Perfume",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_48.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_95_list",
+                "pn_id_95_0",
+                "pn_id_95_1",
+                "pn_id_95_2",
+                "pn_id_95_3",
+                "pn_id_95_4",
+                "pn_id_95_5"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"termsOfPayment\"]",
+        "selectors": [
+            "[formcontrolname=\"termsOfPayment\"]",
+            "input[formcontrolname=\"termsOfPayment\"]",
+            "input[placeholder=\"e.g. 30 days credit\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(8) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 30 days credit",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_49.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"termsOfPayment\"]",
+        "selectors": [
+            "[formcontrolname=\"termsOfPayment\"]",
+            "input[formcontrolname=\"termsOfPayment\"]",
+            "input[placeholder=\"e.g. 30 days credit\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(8) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Terms Of Payment",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 30 days credit",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_51.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"termsOfDelivery\"]",
+        "selectors": [
+            "[formcontrolname=\"termsOfDelivery\"]",
+            "input[formcontrolname=\"termsOfDelivery\"]",
+            "input[placeholder=\"e.g. Ex-works / FOR\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(9) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Ex-works / FOR",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_52.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"termsOfDelivery\"]",
+        "selectors": [
+            "[formcontrolname=\"termsOfDelivery\"]",
+            "input[formcontrolname=\"termsOfDelivery\"]",
+            "input[placeholder=\"e.g. Ex-works / FOR\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(9) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Terms Of Delivery",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Ex-works / FOR",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_54.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"gstRate\"] input",
+        "selectors": [
+            "[formcontrolname=\"gstRate\"] input",
+            "input[placeholder=\"0%\"]",
+            "div > app-purchase-order-form > div > form > div > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0%",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_55.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"gstRate\"] input",
+        "selectors": [
+            "[formcontrolname=\"gstRate\"] input",
+            "input[placeholder=\"0%\"]",
+            "div > app-purchase-order-form > div > form > div > div > div:nth-of-type(10) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10%",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0%",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_57.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Add remarks...\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(11) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Add remarks...",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_58.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Add remarks...\"]",
+            "div > div > app-purchase-order-form > div > form > div > div > div:nth-of-type(11) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Remarks",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Add remarks...",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_59.jpg"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders",
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Orders/screenshots/step_60.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-orders",
+            "messages": [
+                {
+                    "text": "SL NO.\tPO NUMBER \tDATE \tSUPPLIER \tSTATE\tCATEGORY\tETA\tTOTAL \tSTATUS\tACTIONS",
+                    "selector": "app-purchase-order-list"
+                },
+                {
+                    "text": "Purchase Orders\nProcurement\nPurchase Orders",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Purchase Orders",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Procurement",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "New PO",
+                    "selector": "p-button.ng-star-inserted"
+                },
+                {
+                    "text": "All Statuses",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_106",
+                "pn_id_108"
+            ],
+            "disappeared": [
+                "pn_id_93",
+                "pn_id_95",
+                "pn_id_97",
+                "pn_id_99"
+            ]
+        }
+    }
+]

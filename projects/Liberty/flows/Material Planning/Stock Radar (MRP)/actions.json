@@ -1,0 +1,376 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/stock-radar",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/stock-radar"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/stock-radar",
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(4) > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(4) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "FG Shortage Risk",
+        "label": "",
+        "required": false,
+        "value": "FG Shortage Risk",
+        "role": "heading",
+        "accessible_name": "FG Shortage Risk",
+        "text_full": "FG Shortage Risk",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Material Planning",
+        "label": "",
+        "required": false,
+        "value": "Material Planning",
+        "role": "listitem",
+        "accessible_name": "Material Planning",
+        "text_full": "Material Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Stock Radar (MRP)",
+        "label": "",
+        "required": false,
+        "value": "Stock Radar (MRP)",
+        "role": "listitem",
+        "accessible_name": "Stock Radar (MRP)",
+        "text_full": "Stock Radar (MRP)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "FG",
+        "label": "",
+        "required": false,
+        "value": "FG",
+        "role": "",
+        "accessible_name": "FG",
+        "text_full": "FG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SO QTY",
+        "label": "",
+        "required": false,
+        "value": "SO QTY",
+        "role": "",
+        "accessible_name": "SO QTY",
+        "text_full": "SO QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "FG SOH",
+        "label": "",
+        "required": false,
+        "value": "FG SOH",
+        "role": "",
+        "accessible_name": "FG SOH",
+        "text_full": "FG SOH",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SHORTAGE (SOH \u2212 SO)",
+        "label": "",
+        "required": false,
+        "value": "SHORTAGE (SOH \u2212 SO)",
+        "role": "",
+        "accessible_name": "SHORTAGE (SOH \u2212 SO)",
+        "text_full": "SHORTAGE (SOH \u2212 SO)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-stock-radar > div > div:nth-of-type(4) > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Demand History\")",
+        "selectors": [
+            "button:has-text(\"Demand History\")",
+            "text=\"Demand History\"",
+            "div > div:nth-of-type(3) > div > div > app-stock-radar > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Demand History",
+        "label": "",
+        "required": false,
+        "value": "Demand History",
+        "role": "button",
+        "accessible_name": "Demand History",
+        "text_full": "Demand History",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Run MRP\")",
+        "selectors": [
+            "button:has-text(\"Run MRP\")",
+            "text=\"Run MRP\"",
+            "div > div:nth-of-type(3) > div > div > app-stock-radar > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Run MRP",
+        "label": "",
+        "required": false,
+        "value": "Run MRP",
+        "role": "button",
+        "accessible_name": "Run MRP",
+        "text_full": "Run MRP",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"ACTION NEEDED\")",
+        "selectors": [
+            "button:has-text(\"ACTION NEEDED\")",
+            "text=\"ACTION NEEDED\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "ACTION NEEDED\n0\nHigh Risk",
+        "label": "",
+        "required": false,
+        "value": "ACTION NEEDED 0 High Risk",
+        "role": "button",
+        "accessible_name": "ACTION NEEDED 0 High Risk",
+        "text_full": "ACTION NEEDED 0 High Risk",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"ORDER NOW\")",
+        "selectors": [
+            "button:has-text(\"ORDER NOW\")",
+            "text=\"ORDER NOW\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "ORDER NOW\n0\nRisk",
+        "label": "",
+        "required": false,
+        "value": "ORDER NOW 0 Risk",
+        "role": "button",
+        "accessible_name": "ORDER NOW 0 Risk",
+        "text_full": "ORDER NOW 0 Risk",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"ON TRACK\")",
+        "selectors": [
+            "button:has-text(\"ON TRACK\")",
+            "text=\"ON TRACK\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(2) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "ON TRACK\n0\nSafe \u2014 Order Now",
+        "label": "",
+        "required": false,
+        "value": "ON TRACK 0 Safe \u2014 Order Now",
+        "role": "button",
+        "accessible_name": "ON TRACK 0 Safe \u2014 Order Now",
+        "text_full": "ON TRACK 0 Safe \u2014 Order Now",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"MONITOR\")",
+        "selectors": [
+            "button:has-text(\"MONITOR\")",
+            "text=\"MONITOR\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(2) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "MONITOR\n0\nSafe \u2014 Order Soon",
+        "label": "",
+        "required": false,
+        "value": "MONITOR 0 Safe \u2014 Order Soon",
+        "role": "button",
+        "accessible_name": "MONITOR 0 Safe \u2014 Order Soon",
+        "text_full": "MONITOR 0 Safe \u2014 Order Soon",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"FG Shortage Risk\")",
+        "selectors": [
+            "button:has-text(\"FG Shortage Risk\")",
+            "text=\"FG Shortage Risk\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "FG Shortage Risk\n6",
+        "label": "",
+        "required": false,
+        "value": "FG Shortage Risk 6",
+        "role": "tab",
+        "accessible_name": "FG Shortage Risk 6",
+        "text_full": "FG Shortage Risk 6",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Raw Material Overview\")",
+        "selectors": [
+            "button:has-text(\"Raw Material Overview\")",
+            "text=\"Raw Material Overview\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-stock-radar > div > div:nth-of-type(3) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Raw Material Overview\n0",
+        "label": "",
+        "required": false,
+        "value": "Raw Material Overview 0",
+        "role": "tab",
+        "accessible_name": "Raw Material Overview 0",
+        "text_full": "Raw Material Overview 0",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Stock Radar (MRP)/screenshots/step_19.jpg"
+    }
+]

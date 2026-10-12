@@ -1,0 +1,2534 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Business Partners",
+        "label": "",
+        "required": false,
+        "value": "Business Partners",
+        "role": "listitem",
+        "accessible_name": "Business Partners",
+        "text_full": "Business Partners",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Supplier Master",
+        "label": "",
+        "required": false,
+        "value": "Supplier Master",
+        "role": "listitem",
+        "accessible_name": "Supplier Master",
+        "text_full": "Supplier Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SUPPLIER NAME",
+        "label": "",
+        "required": false,
+        "value": "SUPPLIER NAME",
+        "role": "",
+        "accessible_name": "SUPPLIER NAME",
+        "text_full": "SUPPLIER NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "CODE",
+        "label": "",
+        "required": false,
+        "value": "CODE",
+        "role": "",
+        "accessible_name": "CODE",
+        "text_full": "CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "GSTIN",
+        "label": "",
+        "required": false,
+        "value": "GSTIN",
+        "role": "",
+        "accessible_name": "GSTIN",
+        "text_full": "GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "STATE / COUNTRY",
+        "label": "",
+        "required": false,
+        "value": "STATE / COUNTRY",
+        "role": "",
+        "accessible_name": "STATE / COUNTRY",
+        "text_full": "STATE / COUNTRY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "MOBILE",
+        "label": "",
+        "required": false,
+        "value": "MOBILE",
+        "role": "",
+        "accessible_name": "MOBILE",
+        "text_full": "MOBILE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-supplier-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Supplier\")",
+        "selectors": [
+            "button:has-text(\"Add Supplier\")",
+            "text=\"Add Supplier\"",
+            "div > div:nth-of-type(3) > div > div > app-supplier-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Supplier",
+        "label": "",
+        "required": false,
+        "value": "Add Supplier",
+        "role": "button",
+        "accessible_name": "Add Supplier",
+        "text_full": "Add Supplier",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-supplier-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-supplier-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Supplier\")",
+        "selectors": [
+            "button:has-text(\"Add Supplier\")",
+            "text=\"Add Supplier\"",
+            "div > div:nth-of-type(3) > div > div > app-supplier-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Supplier",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Supplier",
+        "text_full": "Add Supplier",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_19.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Add Supplier",
+                    "selector": "div.ng-tns-c2196985156-6.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "pn_id_88",
+                "pn_id_90",
+                "pn_id_94",
+                "pn_id_92"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-supplier-list > app-supplier-form > p-dialog > div > div > div > span",
+        "selectors": [
+            "div > div > app-supplier-list > app-supplier-form > p-dialog > div > div > div > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Supplier",
+        "label": "",
+        "required": false,
+        "value": "Add Supplier",
+        "role": "",
+        "accessible_name": "Add Supplier",
+        "text_full": "Add Supplier",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Name *\"",
+        "selectors": [
+            "text=\"Supplier Name *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Name *",
+        "label": "Supplier Name *",
+        "required": false,
+        "value": "Supplier Name *",
+        "role": "",
+        "accessible_name": "Supplier Name *",
+        "text_full": "Supplier Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Code\"",
+        "selectors": [
+            "text=\"Supplier Code\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Code",
+        "label": "Supplier Code",
+        "required": false,
+        "value": "Supplier Code",
+        "role": "",
+        "accessible_name": "Supplier Code",
+        "text_full": "Supplier Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Type *\"",
+        "selectors": [
+            "text=\"Type *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Type *",
+        "label": "Type *",
+        "required": false,
+        "value": "Type *",
+        "role": "",
+        "accessible_name": "Type *",
+        "text_full": "Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category\"",
+        "selectors": [
+            "text=\"Category\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Category",
+        "label": "Category",
+        "required": false,
+        "value": "Category",
+        "role": "",
+        "accessible_name": "Category",
+        "text_full": "Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Address *\"",
+        "selectors": [
+            "text=\"Address *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > label"
+        ],
+        "tag": "label",
+        "text": "Address *",
+        "label": "Address *",
+        "required": false,
+        "value": "Address *",
+        "role": "",
+        "accessible_name": "Address *",
+        "text_full": "Address *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State *\"",
+        "selectors": [
+            "text=\"State *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > label"
+        ],
+        "tag": "label",
+        "text": "State *",
+        "label": "State *",
+        "required": false,
+        "value": "State *",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Country *\"",
+        "selectors": [
+            "text=\"Country *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Country *",
+        "label": "Country *",
+        "required": false,
+        "value": "Country *",
+        "role": "",
+        "accessible_name": "Country *",
+        "text_full": "Country *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State Code\"",
+        "selectors": [
+            "text=\"State Code\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > label"
+        ],
+        "tag": "label",
+        "text": "State Code",
+        "label": "State Code",
+        "required": false,
+        "value": "State Code",
+        "role": "",
+        "accessible_name": "State Code",
+        "text_full": "State Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"GSTIN\"",
+        "selectors": [
+            "text=\"GSTIN\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "GSTIN",
+        "label": "GSTIN",
+        "required": false,
+        "value": "GSTIN",
+        "role": "",
+        "accessible_name": "GSTIN",
+        "text_full": "GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PAN / IT No\"",
+        "selectors": [
+            "text=\"PAN / IT No\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div > label"
+        ],
+        "tag": "label",
+        "text": "PAN / IT No",
+        "label": "PAN / IT No",
+        "required": false,
+        "value": "PAN / IT No",
+        "role": "",
+        "accessible_name": "PAN / IT No",
+        "text_full": "PAN / IT No",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"MSME Status\"",
+        "selectors": [
+            "text=\"MSME Status\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "MSME Status",
+        "label": "MSME Status",
+        "required": false,
+        "value": "MSME Status",
+        "role": "",
+        "accessible_name": "MSME Status",
+        "text_full": "MSME Status",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"UDAYAM No.\"",
+        "selectors": [
+            "text=\"UDAYAM No.\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > label"
+        ],
+        "tag": "label",
+        "text": "UDAYAM No.",
+        "label": "UDAYAM No.",
+        "required": false,
+        "value": "UDAYAM No.",
+        "role": "",
+        "accessible_name": "UDAYAM No.",
+        "text_full": "UDAYAM No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Terms of Payment (Days) *\"",
+        "selectors": [
+            "text=\"Terms of Payment (Days) *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Terms of Payment (Days) *",
+        "label": "Terms of Payment (Days) *",
+        "required": false,
+        "value": "Terms of Payment (Days) *",
+        "role": "",
+        "accessible_name": "Terms of Payment (Days) *",
+        "text_full": "Terms of Payment (Days) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bank Details *\"",
+        "selectors": [
+            "text=\"Bank Details *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > label"
+        ],
+        "tag": "label",
+        "text": "Bank Details *",
+        "label": "Bank Details *",
+        "required": false,
+        "value": "Bank Details *",
+        "role": "",
+        "accessible_name": "Bank Details *",
+        "text_full": "Bank Details *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Contact Person *\"",
+        "selectors": [
+            "text=\"Contact Person *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > label"
+        ],
+        "tag": "label",
+        "text": "Contact Person *",
+        "label": "Contact Person *",
+        "required": false,
+        "value": "Contact Person *",
+        "role": "",
+        "accessible_name": "Contact Person *",
+        "text_full": "Contact Person *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Email *\"",
+        "selectors": [
+            "text=\"Email *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Email *",
+        "label": "Email *",
+        "required": false,
+        "value": "Email *",
+        "role": "",
+        "accessible_name": "Email *",
+        "text_full": "Email *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Phone *\"",
+        "selectors": [
+            "text=\"Phone *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > label"
+        ],
+        "tag": "label",
+        "text": "Phone *",
+        "label": "Phone *",
+        "required": false,
+        "value": "Phone *",
+        "role": "",
+        "accessible_name": "Phone *",
+        "text_full": "Phone *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Mobile\"",
+        "selectors": [
+            "text=\"Mobile\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Mobile",
+        "label": "Mobile",
+        "required": false,
+        "value": "Mobile",
+        "role": "",
+        "accessible_name": "Mobile",
+        "text_full": "Mobile",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Billing Address *\"",
+        "selectors": [
+            "text=\"Supplier Billing Address *\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Billing Address *",
+        "label": "Supplier Billing Address *",
+        "required": false,
+        "value": "Supplier Billing Address *",
+        "role": "",
+        "accessible_name": "Supplier Billing Address *",
+        "text_full": "Supplier Billing Address *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_39.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Shipping Address\"",
+        "selectors": [
+            "text=\"Supplier Shipping Address\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Shipping Address\nSame as Supplier Billing",
+        "label": "Supplier Shipping Address\nSame as Supplier Billing",
+        "required": false,
+        "value": "Supplier Shipping Address Same as Supplier Billing",
+        "role": "",
+        "accessible_name": "Supplier Shipping Address\nSame as Supplier Billing",
+        "text_full": "Supplier Shipping Address Same as Supplier Billing",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_40.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(12) > div > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_41.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(13) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_42.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Supplier name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Type is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Address is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "State is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Country is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Terms of Payment is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Supplier name is required",
+        "label": "Supplier Name *",
+        "required": false,
+        "value": "Supplier name is required",
+        "role": "",
+        "accessible_name": "Supplier Name *",
+        "text_full": "Supplier name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_43.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span"
+        ],
+        "tag": "span",
+        "text": "Type is required",
+        "label": "Type *",
+        "required": false,
+        "value": "Type is required",
+        "role": "",
+        "accessible_name": "Type *",
+        "text_full": "Type is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_44.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > small",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > small"
+        ],
+        "tag": "small",
+        "text": "The required fields below follow the type.",
+        "label": "Type *",
+        "required": false,
+        "value": "The required fields below follow the type.",
+        "role": "",
+        "accessible_name": "Type *",
+        "text_full": "The required fields below follow the type.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_45.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > span"
+        ],
+        "tag": "span",
+        "text": "Address is required",
+        "label": "Address *",
+        "required": false,
+        "value": "Address is required",
+        "role": "",
+        "accessible_name": "Address *",
+        "text_full": "Address is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_46.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > span"
+        ],
+        "tag": "span",
+        "text": "State is required",
+        "label": "State *",
+        "required": false,
+        "value": "State is required",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_47.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Country is required",
+        "label": "State *",
+        "required": false,
+        "value": "Country is required",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "Country is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_48.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Terms of Payment is required",
+        "label": "UDAYAM No.",
+        "required": false,
+        "value": "Terms of Payment is required",
+        "role": "",
+        "accessible_name": "UDAYAM No.",
+        "text_full": "Terms of Payment is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_49.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > span"
+        ],
+        "tag": "span",
+        "text": "Bank Details are required",
+        "label": "Bank Details *",
+        "required": false,
+        "value": "Bank Details are required",
+        "role": "",
+        "accessible_name": "Bank Details *",
+        "text_full": "Bank Details are required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_50.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > span"
+        ],
+        "tag": "span",
+        "text": "Contact Person is required",
+        "label": "Contact Person *",
+        "required": false,
+        "value": "Contact Person is required",
+        "role": "",
+        "accessible_name": "Contact Person *",
+        "text_full": "Contact Person is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_51.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Email is required",
+        "label": "Contact Person *",
+        "required": false,
+        "value": "Email is required",
+        "role": "",
+        "accessible_name": "Contact Person *",
+        "text_full": "Email is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_52.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > span"
+        ],
+        "tag": "span",
+        "text": "Phone is required",
+        "label": "Phone *",
+        "required": false,
+        "value": "Phone is required",
+        "role": "",
+        "accessible_name": "Phone *",
+        "text_full": "Phone is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_53.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div > span",
+        "selectors": [
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div > span"
+        ],
+        "tag": "span",
+        "text": "Supplier Billing Address is required",
+        "label": "Supplier Billing Address *",
+        "required": false,
+        "value": "Supplier Billing Address is required",
+        "role": "",
+        "accessible_name": "Supplier Billing Address *",
+        "text_full": "Supplier Billing Address is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_54.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_55.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"supplierName\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierName\"]",
+            "input[formcontrolname=\"supplierName\"]",
+            "input[placeholder=\"Enter supplier name\"]",
+            "input[placeholder=\"Supplier Name *\"]",
+            "div input[formcontrolname=\"supplierName\"]",
+            "div input[placeholder=\"Enter supplier name\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Supplier Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Supplier Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter supplier name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_56.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"supplierName\"]",
+        "selectors": [
+            "[formcontrolname=\"supplierName\"]",
+            "input[formcontrolname=\"supplierName\"]",
+            "input[placeholder=\"Enter supplier name\"]",
+            "input[placeholder=\"Supplier Name *\"]",
+            "div input[formcontrolname=\"supplierName\"]",
+            "div input[placeholder=\"Enter supplier name\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Supplier Name *",
+        "required": true,
+        "value": "QA-AUTO Supplier Name",
+        "role": "textbox",
+        "accessible_name": "Supplier Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter supplier name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_58.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Domestic\nExport",
+                    "selector": "div.ng-tns-c1614365056-7.p-overlay.p-component"
+                },
+                {
+                    "text": "Domestic",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Export",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"type\"]",
+        "selectors": [
+            "[formcontrolname=\"type\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Type *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_59.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic\"]",
+        "selectors": [
+            "[aria-label=\"Domestic\"]",
+            "text=\"Domestic\"",
+            "#pn_id_88_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic",
+        "label": "Type *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {
+            "aria-label": "Domestic",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_59.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Domestic",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "*",
+                    "selector": "span.req.ng-star-inserted"
+                },
+                {
+                    "text": "State Code is required for a Domestic supplier",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "PAN is required for a Domestic supplier",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "MSME Status is required for a Domestic supplier",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"category\"]",
+        "selectors": [
+            "[formcontrolname=\"category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_60.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"CHEMICALS & POWDERS\"]",
+        "selectors": [
+            "[aria-label=\"CHEMICALS & POWDERS\"]",
+            "text=\"CHEMICALS & POWDERS\"",
+            "#pn_id_90_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "CHEMICALS & POWDERS",
+        "label": "Type *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "CHEMICALS & POWDERS",
+        "text_full": "CHEMICALS & POWDERS",
+        "attrs": {
+            "aria-label": "CHEMICALS & POWDERS",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_60.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "CHEMICALS & POWDERS",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_90_list",
+                "pn_id_90_0",
+                "pn_id_90_1",
+                "pn_id_90_2",
+                "pn_id_90_3"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"address\"]",
+        "selectors": [
+            "[formcontrolname=\"address\"]",
+            "textarea[formcontrolname=\"address\"]",
+            "textarea[placeholder=\"Full address\"]",
+            "textarea[placeholder=\"Address *\"]",
+            "div textarea[formcontrolname=\"address\"]",
+            "div textarea[placeholder=\"Full address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Address *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Full address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_61.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"address\"]",
+        "selectors": [
+            "[formcontrolname=\"address\"]",
+            "textarea[formcontrolname=\"address\"]",
+            "textarea[placeholder=\"Full address\"]",
+            "textarea[placeholder=\"Address *\"]",
+            "div textarea[formcontrolname=\"address\"]",
+            "div textarea[placeholder=\"Full address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Address *",
+        "required": true,
+        "value": "QA-AUTO Address",
+        "role": "textbox",
+        "accessible_name": "Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Full address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_62.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Arunachal Pradesh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Assam",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Chandigarh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_94_list",
+                "pn_id_94_0",
+                "pn_id_94_1",
+                "pn_id_94_2",
+                "pn_id_94_3",
+                "pn_id_94_4",
+                "pn_id_94_5",
+                "pn_id_94_6",
+                "pn_id_94_7",
+                "pn_id_94_8",
+                "pn_id_94_9",
+                "pn_id_94_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"state\"]",
+        "selectors": [
+            "[formcontrolname=\"state\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "State *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_63.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_94_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_63.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_94_list",
+                "pn_id_94_0",
+                "pn_id_94_1",
+                "pn_id_94_2",
+                "pn_id_94_3",
+                "pn_id_94_4",
+                "pn_id_94_5",
+                "pn_id_94_6",
+                "pn_id_94_7",
+                "pn_id_94_8",
+                "pn_id_94_9",
+                "pn_id_94_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"country\"]",
+        "selectors": [
+            "[formcontrolname=\"country\"]",
+            "input[formcontrolname=\"country\"]",
+            "input[placeholder=\"e.g. India\"]",
+            "input[placeholder=\"State *\"]",
+            "div input[formcontrolname=\"country\"]",
+            "div input[placeholder=\"e.g. India\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "State *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. India",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_64.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"country\"]",
+        "selectors": [
+            "[formcontrolname=\"country\"]",
+            "input[formcontrolname=\"country\"]",
+            "input[placeholder=\"e.g. India\"]",
+            "input[placeholder=\"State *\"]",
+            "div input[formcontrolname=\"country\"]",
+            "div input[placeholder=\"e.g. India\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State *",
+        "required": true,
+        "value": "QA-AUTO Country",
+        "role": "textbox",
+        "accessible_name": "State *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. India",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_66.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"stateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"stateCode\"]",
+            "input[formcontrolname=\"stateCode\"]",
+            "input[placeholder=\"e.g. 29\"]",
+            "input[placeholder=\"State Code *\"]",
+            "div input[formcontrolname=\"stateCode\"]",
+            "div input[placeholder=\"e.g. 29\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "State Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_67.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"stateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"stateCode\"]",
+            "input[formcontrolname=\"stateCode\"]",
+            "input[placeholder=\"e.g. 29\"]",
+            "input[placeholder=\"State Code *\"]",
+            "div input[formcontrolname=\"stateCode\"]",
+            "div input[placeholder=\"e.g. 29\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State Code *",
+        "required": true,
+        "value": "QA",
+        "role": "textbox",
+        "accessible_name": "State Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_69.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "input[placeholder=\"State Code *\"]",
+            "div input[formcontrolname=\"gstin\"]",
+            "div input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "State Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29AGWPR0512J1ZW",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_70.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "input[placeholder=\"State Code *\"]",
+            "div input[formcontrolname=\"gstin\"]",
+            "div input[placeholder=\"e.g. 29AGWPR0512J1ZW\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State Code *",
+        "required": true,
+        "value": "29ABCDE1234F1Z5",
+        "role": "textbox",
+        "accessible_name": "State Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29AGWPR0512J1ZW",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_72.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"panItNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panItNo\"]",
+            "input[formcontrolname=\"panItNo\"]",
+            "input[placeholder=\"e.g. AGWPR0512J\"]",
+            "input[placeholder=\"PAN / IT No *\"]",
+            "div input[formcontrolname=\"panItNo\"]",
+            "div input[placeholder=\"e.g. AGWPR0512J\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN / IT No *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "PAN / IT No *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. AGWPR0512J",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_73.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"panItNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panItNo\"]",
+            "input[formcontrolname=\"panItNo\"]",
+            "input[placeholder=\"e.g. AGWPR0512J\"]",
+            "input[placeholder=\"PAN / IT No *\"]",
+            "div input[formcontrolname=\"panItNo\"]",
+            "div input[placeholder=\"e.g. AGWPR0512J\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN / IT No *",
+        "required": true,
+        "value": "ABCDE1234F",
+        "role": "textbox",
+        "accessible_name": "PAN / IT No *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. AGWPR0512J",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_75.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "PAN must be 5 letters, 4 digits, 1 letter (e.g. AGWPR0512J)",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Micro\nSmall\nMedium\nNot MSME",
+                    "selector": "div.ng-tns-c1614365056-9.p-overlay.p-component"
+                },
+                {
+                    "text": "Micro",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Small",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Medium",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Not MSME",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2",
+                "pn_id_92_3"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"msmeStatus\"]",
+        "selectors": [
+            "[formcontrolname=\"msmeStatus\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "MSME Status",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_76.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Micro\"]",
+        "selectors": [
+            "[aria-label=\"Micro\"]",
+            "text=\"Micro\"",
+            "#pn_id_92_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Micro",
+        "label": "PAN / IT No *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Micro",
+        "text_full": "Micro",
+        "attrs": {
+            "aria-label": "Micro",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_76.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "Micro",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "*",
+                    "selector": "span.req.ng-star-inserted"
+                },
+                {
+                    "text": "UDAYAM No. is required for an MSME supplier",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2",
+                "pn_id_92_3"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"udayam\"]",
+        "selectors": [
+            "[formcontrolname=\"udayam\"]",
+            "input[formcontrolname=\"udayam\"]",
+            "input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "input[placeholder=\"UDAYAM No. *\"]",
+            "div input[formcontrolname=\"udayam\"]",
+            "div input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "UDAYAM No. *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "UDAYAM No. *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. UDYAM-KR-03-0012345",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_77.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"udayam\"]",
+        "selectors": [
+            "[formcontrolname=\"udayam\"]",
+            "input[formcontrolname=\"udayam\"]",
+            "input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "input[placeholder=\"UDAYAM No. *\"]",
+            "div input[formcontrolname=\"udayam\"]",
+            "div input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "UDAYAM No. *",
+        "required": true,
+        "value": "QA-AUTO UDAYAM No.",
+        "role": "textbox",
+        "accessible_name": "UDAYAM No. *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. UDYAM-KR-03-0012345",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_79.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"termsOfPaymentDays\"]",
+        "selectors": [
+            "[formcontrolname=\"termsOfPaymentDays\"]",
+            "input[formcontrolname=\"termsOfPaymentDays\"]",
+            "input[placeholder=\"e.g. 30\"]",
+            "input[placeholder=\"UDAYAM No. *\"]",
+            "div input[formcontrolname=\"termsOfPaymentDays\"]",
+            "div input[placeholder=\"e.g. 30\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "UDAYAM No. *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "UDAYAM No. *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 30",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_80.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"termsOfPaymentDays\"]",
+        "selectors": [
+            "[formcontrolname=\"termsOfPaymentDays\"]",
+            "input[formcontrolname=\"termsOfPaymentDays\"]",
+            "input[placeholder=\"e.g. 30\"]",
+            "input[placeholder=\"UDAYAM No. *\"]",
+            "div input[formcontrolname=\"termsOfPaymentDays\"]",
+            "div input[placeholder=\"e.g. 30\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "UDAYAM No. *",
+        "required": true,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "UDAYAM No. *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 30",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_81.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"bankDetails\"]",
+        "selectors": [
+            "[formcontrolname=\"bankDetails\"]",
+            "textarea[formcontrolname=\"bankDetails\"]",
+            "textarea[placeholder=\"Bank name, account no., IFSC code, branch\"]",
+            "textarea[placeholder=\"Bank Details *\"]",
+            "div textarea[formcontrolname=\"bankDetails\"]",
+            "div textarea[placeholder=\"Bank name, account no., IFSC code, branch\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Bank Details *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Bank Details *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Bank name, account no., IFSC code, branch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_82.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"bankDetails\"]",
+        "selectors": [
+            "[formcontrolname=\"bankDetails\"]",
+            "textarea[formcontrolname=\"bankDetails\"]",
+            "textarea[placeholder=\"Bank name, account no., IFSC code, branch\"]",
+            "textarea[placeholder=\"Bank Details *\"]",
+            "div textarea[formcontrolname=\"bankDetails\"]",
+            "div textarea[placeholder=\"Bank name, account no., IFSC code, branch\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(8) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Bank Details *",
+        "required": true,
+        "value": "SBIN0001234",
+        "role": "textbox",
+        "accessible_name": "Bank Details *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Bank name, account no., IFSC code, branch",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_83.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"contactPerson\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPerson\"]",
+            "input[formcontrolname=\"contactPerson\"]",
+            "input[placeholder=\"Contact person\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"contactPerson\"]",
+            "div input[placeholder=\"Contact person\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Contact person",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_84.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"contactPerson\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPerson\"]",
+            "input[formcontrolname=\"contactPerson\"]",
+            "input[placeholder=\"Contact person\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"contactPerson\"]",
+            "div input[placeholder=\"Contact person\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "QA-AUTO Contact Person",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Contact person",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_86.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"Email address\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"email\"]",
+            "div input[placeholder=\"Email address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Email address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_87.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"Email address\"]",
+            "input[placeholder=\"Contact Person *\"]",
+            "div input[formcontrolname=\"email\"]",
+            "div input[placeholder=\"Email address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(9) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Contact Person *",
+        "required": true,
+        "value": "qa.auto@example.com",
+        "role": "textbox",
+        "accessible_name": "Contact Person *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Email address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_89.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"phone\"]",
+        "selectors": [
+            "[formcontrolname=\"phone\"]",
+            "input[formcontrolname=\"phone\"]",
+            "input[placeholder=\"Phone number\"]",
+            "input[placeholder=\"Phone *\"]",
+            "div input[formcontrolname=\"phone\"]",
+            "div input[placeholder=\"Phone number\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Phone *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Phone *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Phone number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_90.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"phone\"]",
+        "selectors": [
+            "[formcontrolname=\"phone\"]",
+            "input[formcontrolname=\"phone\"]",
+            "input[placeholder=\"Phone number\"]",
+            "input[placeholder=\"Phone *\"]",
+            "div input[formcontrolname=\"phone\"]",
+            "div input[placeholder=\"Phone number\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Phone *",
+        "required": true,
+        "value": "9876543210",
+        "role": "textbox",
+        "accessible_name": "Phone *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Phone number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_92.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"mobile\"]",
+        "selectors": [
+            "[formcontrolname=\"mobile\"]",
+            "input[formcontrolname=\"mobile\"]",
+            "input[placeholder=\"Mobile number\"]",
+            "input[placeholder=\"Phone *\"]",
+            "div input[formcontrolname=\"mobile\"]",
+            "div input[placeholder=\"Mobile number\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Phone *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Phone *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Mobile number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_93.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"mobile\"]",
+        "selectors": [
+            "[formcontrolname=\"mobile\"]",
+            "input[formcontrolname=\"mobile\"]",
+            "input[placeholder=\"Mobile number\"]",
+            "input[placeholder=\"Phone *\"]",
+            "div input[formcontrolname=\"mobile\"]",
+            "div input[placeholder=\"Mobile number\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(10) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Phone *",
+        "required": true,
+        "value": "9876543210",
+        "role": "textbox",
+        "accessible_name": "Phone *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Mobile number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_95.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"billingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"billingAddress\"]",
+            "textarea[formcontrolname=\"billingAddress\"]",
+            "textarea[placeholder=\"Supplier Billing address\"]",
+            "textarea[placeholder=\"Supplier Billing Address *\"]",
+            "div textarea[formcontrolname=\"billingAddress\"]",
+            "div textarea[placeholder=\"Supplier Billing address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Supplier Billing Address *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Supplier Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier Billing address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_96.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"billingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"billingAddress\"]",
+            "textarea[formcontrolname=\"billingAddress\"]",
+            "textarea[placeholder=\"Supplier Billing address\"]",
+            "textarea[placeholder=\"Supplier Billing Address *\"]",
+            "div textarea[formcontrolname=\"billingAddress\"]",
+            "div textarea[placeholder=\"Supplier Billing address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Supplier Billing Address *",
+        "required": true,
+        "value": "QA-AUTO Supplier Billing Address",
+        "role": "textbox",
+        "accessible_name": "Supplier Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier Billing address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_97.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"shippingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"shippingAddress\"]",
+            "textarea[formcontrolname=\"shippingAddress\"]",
+            "textarea[placeholder=\"Supplier Shipping address\"]",
+            "textarea[placeholder=\"Supplier Billing Address *\"]",
+            "div textarea[formcontrolname=\"shippingAddress\"]",
+            "div textarea[placeholder=\"Supplier Shipping address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Supplier Billing Address *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Supplier Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier Shipping address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_98.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"shippingAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"shippingAddress\"]",
+            "textarea[formcontrolname=\"shippingAddress\"]",
+            "textarea[placeholder=\"Supplier Shipping address\"]",
+            "textarea[placeholder=\"Supplier Billing Address *\"]",
+            "div textarea[formcontrolname=\"shippingAddress\"]",
+            "div textarea[placeholder=\"Supplier Shipping address\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(11) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "Supplier Billing Address *",
+        "required": true,
+        "value": "QA-AUTO Supplier Shipping Address Same a",
+        "role": "textbox",
+        "accessible_name": "Supplier Billing Address *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Supplier Shipping address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_99.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"stateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"stateCode\"]",
+            "input[formcontrolname=\"stateCode\"]",
+            "input[placeholder=\"e.g. 29\"]",
+            "input[placeholder=\"State Code *\"]",
+            "div input[formcontrolname=\"stateCode\"]",
+            "div input[placeholder=\"e.g. 29\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "State Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_100.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"stateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"stateCode\"]",
+            "input[formcontrolname=\"stateCode\"]",
+            "input[placeholder=\"e.g. 29\"]",
+            "input[placeholder=\"State Code *\"]",
+            "div input[formcontrolname=\"stateCode\"]",
+            "div input[placeholder=\"e.g. 29\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "State Code *",
+        "required": true,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "State Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_101.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"panItNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panItNo\"]",
+            "input[formcontrolname=\"panItNo\"]",
+            "input[placeholder=\"e.g. AGWPR0512J\"]",
+            "input[placeholder=\"PAN / IT No *\"]",
+            "div input[formcontrolname=\"panItNo\"]",
+            "div input[placeholder=\"e.g. AGWPR0512J\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN / IT No *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "PAN / IT No *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. AGWPR0512J",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_102.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"panItNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panItNo\"]",
+            "input[formcontrolname=\"panItNo\"]",
+            "input[placeholder=\"e.g. AGWPR0512J\"]",
+            "input[placeholder=\"PAN / IT No *\"]",
+            "div input[formcontrolname=\"panItNo\"]",
+            "div input[placeholder=\"e.g. AGWPR0512J\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "PAN / IT No *",
+        "required": true,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "PAN / IT No *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. AGWPR0512J",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_103.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [
+                {
+                    "text": "PAN must be 5 letters, 4 digits, 1 letter (e.g. AGWPR0512J)",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Micro\nSmall\nMedium\nNot MSME",
+                    "selector": "div.ng-tns-c1614365056-9.p-overlay.p-component"
+                },
+                {
+                    "text": "Micro",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Small",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Medium",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Not MSME",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2",
+                "pn_id_92_3"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"msmeStatus\"]",
+        "selectors": [
+            "[formcontrolname=\"msmeStatus\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "MSME Status *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_104.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Micro\"]",
+        "selectors": [
+            "[aria-label=\"Micro\"]",
+            "text=\"Micro\"",
+            "#pn_id_92_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Micro",
+        "label": "PAN / IT No *",
+        "required": true,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Micro",
+        "text_full": "Micro",
+        "attrs": {
+            "aria-label": "Micro",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_104.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_92_list",
+                "pn_id_92_0",
+                "pn_id_92_1",
+                "pn_id_92_2",
+                "pn_id_92_3"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"udayam\"]",
+        "selectors": [
+            "[formcontrolname=\"udayam\"]",
+            "input[formcontrolname=\"udayam\"]",
+            "input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "input[placeholder=\"UDAYAM No. *\"]",
+            "div input[formcontrolname=\"udayam\"]",
+            "div input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "UDAYAM No. *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "UDAYAM No. *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. UDYAM-KR-03-0012345",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_105.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"udayam\"]",
+        "selectors": [
+            "[formcontrolname=\"udayam\"]",
+            "input[formcontrolname=\"udayam\"]",
+            "input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "input[placeholder=\"UDAYAM No. *\"]",
+            "div input[formcontrolname=\"udayam\"]",
+            "div input[placeholder=\"e.g. UDYAM-KR-03-0012345\"]",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(7) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "UDAYAM No. *",
+        "required": true,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "UDAYAM No. *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. UDYAM-KR-03-0012345",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_106.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-supplier-form > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(13) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Supplier Master/screenshots/step_107.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/supplier-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "pn_id_88",
+                "pn_id_90",
+                "pn_id_94",
+                "pn_id_92"
+            ]
+        }
+    }
+]

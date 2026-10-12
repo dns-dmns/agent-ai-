@@ -1,0 +1,488 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-issue-request",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-issue-request"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-issue-request",
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Procurement",
+        "label": "",
+        "required": false,
+        "value": "Procurement",
+        "role": "listitem",
+        "accessible_name": "Procurement",
+        "text_full": "Procurement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "SFG Issue Request",
+        "label": "",
+        "required": false,
+        "value": "SFG Issue Request",
+        "role": "listitem",
+        "accessible_name": "SFG Issue Request",
+        "text_full": "SFG Issue Request",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "REQUEST NO.",
+        "label": "",
+        "required": false,
+        "value": "REQUEST NO.",
+        "role": "",
+        "accessible_name": "REQUEST NO.",
+        "text_full": "REQUEST NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DEPARTMENT",
+        "label": "",
+        "required": false,
+        "value": "DEPARTMENT",
+        "role": "",
+        "accessible_name": "DEPARTMENT",
+        "text_full": "DEPARTMENT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SFG CODE",
+        "label": "",
+        "required": false,
+        "value": "SFG CODE",
+        "role": "",
+        "accessible_name": "SFG CODE",
+        "text_full": "SFG CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SFG DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SFG DESCRIPTION",
+        "role": "",
+        "accessible_name": "SFG DESCRIPTION",
+        "text_full": "SFG DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "JOB CARD",
+        "label": "",
+        "required": false,
+        "value": "JOB CARD",
+        "role": "",
+        "accessible_name": "JOB CARD",
+        "text_full": "JOB CARD",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "SKU",
+        "label": "",
+        "required": false,
+        "value": "SKU",
+        "role": "",
+        "accessible_name": "SKU",
+        "text_full": "SKU",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "TEAM",
+        "label": "",
+        "required": false,
+        "value": "TEAM",
+        "role": "",
+        "accessible_name": "TEAM",
+        "text_full": "TEAM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "REQUESTED ON",
+        "label": "",
+        "required": false,
+        "value": "REQUESTED ON",
+        "role": "",
+        "accessible_name": "REQUESTED ON",
+        "text_full": "REQUESTED ON",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "REQUESTED QTY",
+        "label": "",
+        "required": false,
+        "value": "REQUESTED QTY",
+        "role": "",
+        "accessible_name": "REQUESTED QTY",
+        "text_full": "REQUESTED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "ISSUED QTY",
+        "label": "",
+        "required": false,
+        "value": "ISSUED QTY",
+        "role": "",
+        "accessible_name": "ISSUED QTY",
+        "text_full": "ISSUED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "BALANCE QTY",
+        "label": "",
+        "required": false,
+        "value": "BALANCE QTY",
+        "role": "",
+        "accessible_name": "BALANCE QTY",
+        "text_full": "BALANCE QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "IN STORE",
+        "label": "",
+        "required": false,
+        "value": "IN STORE",
+        "role": "",
+        "accessible_name": "IN STORE",
+        "text_full": "IN STORE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(14)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(14)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(15)",
+        "selectors": [
+            "div > div > app-sfg-issue-request > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(15)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"All\")",
+        "selectors": [
+            "button:has-text(\"All\")",
+            "text=\"All\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div > button"
+        ],
+        "tag": "button",
+        "text": "All",
+        "label": "",
+        "required": false,
+        "value": "All",
+        "role": "tab",
+        "accessible_name": "All",
+        "text_full": "All",
+        "attrs": {
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Dipping\")",
+        "selectors": [
+            "button:has-text(\"Dipping\")",
+            "text=\"Dipping\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Dipping",
+        "label": "",
+        "required": false,
+        "value": "Dipping",
+        "role": "tab",
+        "accessible_name": "Dipping",
+        "text_full": "Dipping",
+        "attrs": {
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Flora\")",
+        "selectors": [
+            "button:has-text(\"Flora\")",
+            "text=\"Flora\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "Flora",
+        "label": "",
+        "required": false,
+        "value": "Flora",
+        "role": "tab",
+        "accessible_name": "Flora",
+        "text_full": "Flora",
+        "attrs": {
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"All Status\")",
+        "selectors": [
+            "button:has-text(\"All Status\")",
+            "text=\"All Status\"",
+            "div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div:nth-of-type(2) > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "All Status",
+        "label": "",
+        "required": false,
+        "value": "All Status",
+        "role": "button",
+        "accessible_name": "All Status",
+        "text_full": "All Status",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Pending\")",
+        "selectors": [
+            "button:has-text(\"Pending\")",
+            "text=\"Pending\"",
+            "div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Pending",
+        "label": "",
+        "required": false,
+        "value": "Pending",
+        "role": "button",
+        "accessible_name": "Pending",
+        "text_full": "Pending",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Partially Issued\")",
+        "selectors": [
+            "button:has-text(\"Partially Issued\")",
+            "text=\"Partially Issued\"",
+            "div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "Partially Issued",
+        "label": "",
+        "required": false,
+        "value": "Partially Issued",
+        "role": "button",
+        "accessible_name": "Partially Issued",
+        "text_full": "Partially Issued",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Issued\")",
+        "selectors": [
+            "button:has-text(\"Issued\")",
+            "text=\"Issued\"",
+            "div > div:nth-of-type(3) > div > div > app-sfg-issue-request > div > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "Issued",
+        "label": "",
+        "required": false,
+        "value": "Issued",
+        "role": "button",
+        "accessible_name": "Issued",
+        "text_full": "Issued",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/Issue Request/screenshots/step_26.jpg"
+    }
+]

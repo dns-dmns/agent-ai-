@@ -1,0 +1,461 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/approvals",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/approvals"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/approvals",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Approvals",
+        "label": "",
+        "required": false,
+        "value": "Approvals",
+        "role": "listitem",
+        "accessible_name": "Approvals",
+        "text_full": "Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "#",
+        "label": "",
+        "required": false,
+        "value": "#",
+        "role": "",
+        "accessible_name": "#",
+        "text_full": "#",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SO NUMBER",
+        "label": "",
+        "required": false,
+        "value": "SO NUMBER",
+        "role": "",
+        "accessible_name": "SO NUMBER",
+        "text_full": "SO NUMBER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "ORDER TYPE",
+        "label": "",
+        "required": false,
+        "value": "ORDER TYPE",
+        "role": "",
+        "accessible_name": "ORDER TYPE",
+        "text_full": "ORDER TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "CUSTOMER",
+        "label": "",
+        "required": false,
+        "value": "CUSTOMER",
+        "role": "",
+        "accessible_name": "CUSTOMER",
+        "text_full": "CUSTOMER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "DEPOT",
+        "label": "",
+        "required": false,
+        "value": "DEPOT",
+        "role": "",
+        "accessible_name": "DEPOT",
+        "text_full": "DEPOT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "GRAND TOTAL",
+        "label": "",
+        "required": false,
+        "value": "GRAND TOTAL",
+        "role": "",
+        "accessible_name": "GRAND TOTAL",
+        "text_full": "GRAND TOTAL",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ORDER DATE",
+        "label": "",
+        "required": false,
+        "value": "ORDER DATE",
+        "role": "",
+        "accessible_name": "ORDER DATE",
+        "text_full": "ORDER DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > section > app-asm-approval > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"10\")",
+        "selectors": [
+            "button:has-text(\"10\")",
+            "text=\"10\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-field-approvals > div > div > button"
+        ],
+        "tag": "button",
+        "text": "10\nSales orders",
+        "label": "",
+        "required": false,
+        "value": "10 Sales orders",
+        "role": "tab",
+        "accessible_name": "10 Sales orders",
+        "text_full": "10 Sales orders",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"1\")",
+        "selectors": [
+            "button:has-text(\"1\")",
+            "text=\"1\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-field-approvals > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "1\nExpenses",
+        "label": "",
+        "required": false,
+        "value": "1 Expenses",
+        "role": "tab",
+        "accessible_name": "1 Expenses",
+        "text_full": "1 Expenses",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"4\")",
+        "selectors": [
+            "button:has-text(\"4\")",
+            "text=\"4\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-field-approvals > div > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "4\nLeave",
+        "label": "",
+        "required": false,
+        "value": "4 Leave",
+        "role": "tab",
+        "accessible_name": "4 Leave",
+        "text_full": "4 Leave",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"1\")",
+        "selectors": [
+            "button:has-text(\"1\")",
+            "text=\"1\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-field-approvals > div > div > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "1\nFinished work",
+        "label": "",
+        "required": false,
+        "value": "1 Finished work",
+        "role": "tab",
+        "accessible_name": "1 Finished work",
+        "text_full": "1 Finished work",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"0\")",
+        "selectors": [
+            "button:has-text(\"0\")",
+            "text=\"0\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-field-approvals > div > div > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "0\nDistributors",
+        "label": "",
+        "required": false,
+        "value": "0 Distributors",
+        "role": "tab",
+        "accessible_name": "0 Distributors",
+        "text_full": "0 Distributors",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"12\")",
+        "selectors": [
+            "button:has-text(\"12\")",
+            "text=\"12\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-field-approvals > div > div > button:nth-of-type(6)"
+        ],
+        "tag": "button",
+        "text": "12\nNew outlets",
+        "label": "",
+        "required": false,
+        "value": "12 New outlets",
+        "role": "tab",
+        "accessible_name": "12 New outlets",
+        "text_full": "12 New outlets",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Pending\")",
+        "selectors": [
+            "button:has-text(\"Pending\")",
+            "text=\"Pending\"",
+            "app-field-approvals > div > section > app-asm-approval > div > div > app-fa-queue-filter > div > button"
+        ],
+        "tag": "button",
+        "text": "Pending",
+        "label": "",
+        "required": false,
+        "value": "Pending",
+        "role": "tab",
+        "accessible_name": "Pending",
+        "text_full": "Pending",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Approved\")",
+        "selectors": [
+            "button:has-text(\"Approved\")",
+            "text=\"Approved\"",
+            "app-field-approvals > div > section > app-asm-approval > div > div > app-fa-queue-filter > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Approved",
+        "label": "",
+        "required": false,
+        "value": "Approved",
+        "role": "tab",
+        "accessible_name": "Approved",
+        "text_full": "Approved",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Rejected\")",
+        "selectors": [
+            "button:has-text(\"Rejected\")",
+            "text=\"Rejected\"",
+            "app-field-approvals > div > section > app-asm-approval > div > div > app-fa-queue-filter > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "Rejected",
+        "label": "",
+        "required": false,
+        "value": "Rejected",
+        "role": "tab",
+        "accessible_name": "Rejected",
+        "text_full": "Rejected",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Approve All (10)\")",
+        "selectors": [
+            "button:has-text(\"Approve All (10)\")",
+            "text=\"Approve All (10)\"",
+            "div > div > app-field-approvals > div > section > app-asm-approval > div > div > button"
+        ],
+        "tag": "button",
+        "text": "Approve All (10)",
+        "label": "",
+        "required": false,
+        "value": "Approve All (10)",
+        "role": "button",
+        "accessible_name": "Approve All (10)",
+        "text_full": "Approve All (10)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Approvals/screenshots/step_23.jpg"
+    }
+]

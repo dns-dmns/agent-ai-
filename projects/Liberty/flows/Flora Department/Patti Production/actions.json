@@ -1,0 +1,297 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/patti-production",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/patti-production"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/patti-production",
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Flora Department",
+        "label": "",
+        "required": false,
+        "value": "Flora Department",
+        "role": "listitem",
+        "accessible_name": "Flora Department",
+        "text_full": "Flora Department",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Patti Production",
+        "label": "",
+        "required": false,
+        "value": "Patti Production",
+        "role": "listitem",
+        "accessible_name": "Patti Production",
+        "text_full": "Patti Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "REQ ID",
+        "label": "",
+        "required": false,
+        "value": "REQ ID",
+        "role": "",
+        "accessible_name": "REQ ID",
+        "text_full": "REQ ID",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SFG CODE",
+        "label": "",
+        "required": false,
+        "value": "SFG CODE",
+        "role": "",
+        "accessible_name": "SFG CODE",
+        "text_full": "SFG CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SFG DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SFG DESCRIPTION",
+        "role": "",
+        "accessible_name": "SFG DESCRIPTION",
+        "text_full": "SFG DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDERS",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDERS",
+        "role": "",
+        "accessible_name": "JOB ORDERS",
+        "text_full": "JOB ORDERS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "PLANNED QTY (KG)",
+        "label": "",
+        "required": false,
+        "value": "PLANNED QTY (KG)",
+        "role": "",
+        "accessible_name": "PLANNED QTY (KG)",
+        "text_full": "PLANNED QTY (KG)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-flora-department > app-patti-production-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div > div > app-flora-department > app-patti-production-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View patti production entry\"]",
+        "selectors": [
+            "button[title=\"View patti production entry\"]",
+            "[aria-label=\"View patti production entry\"]",
+            "button:has(i.pi-eye)",
+            "app-patti-production-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View patti production entry",
+        "text_full": "",
+        "attrs": {
+            "title": "View patti production entry"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Patti Production/screenshots/step_16.jpg"
+    }
+]

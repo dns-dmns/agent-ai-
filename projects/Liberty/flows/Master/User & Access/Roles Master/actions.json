@@ -1,0 +1,503 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "User & Access",
+        "label": "",
+        "required": false,
+        "value": "User & Access",
+        "role": "listitem",
+        "accessible_name": "User & Access",
+        "text_full": "User & Access",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Roles Master",
+        "label": "",
+        "required": false,
+        "value": "Roles Master",
+        "role": "listitem",
+        "accessible_name": "Roles Master",
+        "text_full": "Roles Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "ROLE NAME",
+        "label": "",
+        "required": false,
+        "value": "ROLE NAME",
+        "role": "",
+        "accessible_name": "ROLE NAME",
+        "text_full": "ROLE NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-roles-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Role\")",
+        "selectors": [
+            "button:has-text(\"Add Role\")",
+            "text=\"Add Role\"",
+            "div > div:nth-of-type(3) > div > div > app-roles-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Role",
+        "label": "",
+        "required": false,
+        "value": "Add Role",
+        "role": "button",
+        "accessible_name": "Add Role",
+        "text_full": "Add Role",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tluci\t-\") [title=\"Edit\"]",
+            "div > app-roles-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Permissions\"]",
+        "selectors": [
+            "button[title=\"Permissions\"]",
+            "[aria-label=\"Permissions\"]",
+            "button:has(i.pi-lock)",
+            "tr:has-text(\"1\tluci\t-\") [title=\"Permissions\"]",
+            "div > app-roles-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Permissions",
+        "text_full": "",
+        "attrs": {
+            "title": "Permissions"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tluci\t-\") [title=\"Delete\"]",
+            "div > app-roles-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(4) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Role\")",
+        "selectors": [
+            "button:has-text(\"Add Role\")",
+            "text=\"Add Role\"",
+            "div > div:nth-of-type(3) > div > div > app-roles-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Role",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Role",
+        "text_full": "Add Role",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_14.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+            "messages": [
+                {
+                    "text": "Add Role\nRole Name *\nDescription\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-mask.p-overlay-mask"
+                },
+                {
+                    "text": "Role Name *\nDescription\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Add Role",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Role",
+        "label": "",
+        "required": false,
+        "value": "Add Role",
+        "role": "",
+        "accessible_name": "Add Role",
+        "text_full": "Add Role",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Role Name *\"",
+        "selectors": [
+            "text=\"Role Name *\"",
+            "app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div > label"
+        ],
+        "tag": "label",
+        "text": "Role Name *",
+        "label": "Role Name *",
+        "required": false,
+        "value": "Role Name *",
+        "role": "",
+        "accessible_name": "Role Name *",
+        "text_full": "Role Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Description\"",
+        "selectors": [
+            "text=\"Description\"",
+            "app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Description",
+        "label": "Description",
+        "required": false,
+        "value": "Description",
+        "role": "",
+        "accessible_name": "Description",
+        "text_full": "Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_DISABLED",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "value": "",
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_18.jpg",
+        "asserted": true,
+        "synthetic": "save disabled while mandatory fields are empty"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"name\"]",
+        "selectors": [
+            "[formcontrolname=\"name\"]",
+            "input[formcontrolname=\"name\"]",
+            "input[placeholder=\"e.g. Area Sales Manager\"]",
+            "div input[formcontrolname=\"name\"]",
+            "div input[placeholder=\"e.g. Area Sales Manager\"]",
+            "app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Area Sales Manager",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"name\"]",
+        "selectors": [
+            "[formcontrolname=\"name\"]",
+            "input[formcontrolname=\"name\"]",
+            "input[placeholder=\"e.g. Area Sales Manager\"]",
+            "div input[formcontrolname=\"name\"]",
+            "div input[placeholder=\"e.g. Area Sales Manager\"]",
+            "app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Role Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Area Sales Manager",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "textarea[formcontrolname=\"description\"]",
+            "textarea[placeholder=\"Role description\"]",
+            "div textarea[formcontrolname=\"description\"]",
+            "div textarea[placeholder=\"Role description\"]",
+            "app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Role description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"description\"]",
+        "selectors": [
+            "[formcontrolname=\"description\"]",
+            "textarea[formcontrolname=\"description\"]",
+            "textarea[placeholder=\"Role description\"]",
+            "div textarea[formcontrolname=\"description\"]",
+            "div textarea[placeholder=\"Role description\"]",
+            "app-roles-list > app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Description",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Role description",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-roles-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(3) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Roles Master/screenshots/step_23.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header"
+            ]
+        }
+    }
+]

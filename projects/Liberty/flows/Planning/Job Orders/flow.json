@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Planning/Job Orders",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/job-orders",
+    "timestamp": "2026-10-11 19:40:38",
+    "duration_seconds": 2,
+    "step_count": 16,
+    "source": "explorer",
+    "menu_path": [
+        "Planning",
+        "Job Orders"
+    ]
+}

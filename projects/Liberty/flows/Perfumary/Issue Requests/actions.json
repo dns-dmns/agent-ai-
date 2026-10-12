@@ -1,0 +1,274 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/issue-requests",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/issue-requests"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/issue-requests",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-perfumary-issue-requests > div > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-perfumary-issue-requests > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Perfumary \u2014 Issue Requests",
+        "label": "",
+        "required": false,
+        "value": "Perfumary \u2014 Issue Requests",
+        "role": "heading",
+        "accessible_name": "Perfumary \u2014 Issue Requests",
+        "text_full": "Perfumary \u2014 Issue Requests",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "#",
+        "label": "",
+        "required": false,
+        "value": "#",
+        "role": "",
+        "accessible_name": "#",
+        "text_full": "#",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "REQUEST NO",
+        "label": "",
+        "required": false,
+        "value": "REQUEST NO",
+        "role": "",
+        "accessible_name": "REQUEST NO",
+        "text_full": "REQUEST NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SFG CODE",
+        "label": "",
+        "required": false,
+        "value": "SFG CODE",
+        "role": "",
+        "accessible_name": "SFG CODE",
+        "text_full": "SFG CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SFG DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SFG DESCRIPTION",
+        "role": "",
+        "accessible_name": "SFG DESCRIPTION",
+        "text_full": "SFG DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDERS",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDERS",
+        "role": "",
+        "accessible_name": "JOB ORDERS",
+        "text_full": "JOB ORDERS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "TOTAL PERFUME QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL PERFUME QTY",
+        "role": "",
+        "accessible_name": "TOTAL PERFUME QTY",
+        "text_full": "TOTAL PERFUME QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "RECEIVED",
+        "label": "",
+        "required": false,
+        "value": "RECEIVED",
+        "role": "",
+        "accessible_name": "RECEIVED",
+        "text_full": "RECEIVED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "BALANCE",
+        "label": "",
+        "required": false,
+        "value": "BALANCE",
+        "role": "",
+        "accessible_name": "BALANCE",
+        "text_full": "BALANCE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "PERFUME STATUS",
+        "label": "",
+        "required": false,
+        "value": "PERFUME STATUS",
+        "role": "",
+        "accessible_name": "PERFUME STATUS",
+        "text_full": "PERFUME STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-perfumary-issue-requests > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Export CSV\")",
+        "selectors": [
+            "button:has-text(\"Export CSV\")",
+            "text=\"Export CSV\"",
+            "div > div:nth-of-type(3) > div > div > app-perfumary-issue-requests > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Export CSV",
+        "label": "",
+        "required": false,
+        "value": "Export CSV",
+        "role": "button",
+        "accessible_name": "Export CSV",
+        "text_full": "Export CSV",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div > div:nth-of-type(3) > div > div > app-perfumary-issue-requests > div > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Issue Requests/screenshots/step_15.jpg"
+    }
+]

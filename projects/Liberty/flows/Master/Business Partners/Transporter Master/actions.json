@@ -1,0 +1,718 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Business Partners",
+        "label": "",
+        "required": false,
+        "value": "Business Partners",
+        "role": "listitem",
+        "accessible_name": "Business Partners",
+        "text_full": "Business Partners",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Transporter Master",
+        "label": "",
+        "required": false,
+        "value": "Transporter Master",
+        "role": "listitem",
+        "accessible_name": "Transporter Master",
+        "text_full": "Transporter Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "TRANSPORTER NAME",
+        "label": "",
+        "required": false,
+        "value": "TRANSPORTER NAME",
+        "role": "",
+        "accessible_name": "TRANSPORTER NAME",
+        "text_full": "TRANSPORTER NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "VEHICLE TYPE",
+        "label": "",
+        "required": false,
+        "value": "VEHICLE TYPE",
+        "role": "",
+        "accessible_name": "VEHICLE TYPE",
+        "text_full": "VEHICLE TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "CAPACITY",
+        "label": "",
+        "required": false,
+        "value": "CAPACITY",
+        "role": "",
+        "accessible_name": "CAPACITY",
+        "text_full": "CAPACITY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "OWNED",
+        "label": "",
+        "required": false,
+        "value": "OWNED",
+        "role": "",
+        "accessible_name": "OWNED",
+        "text_full": "OWNED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-transporter-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Transporter\")",
+        "selectors": [
+            "button:has-text(\"Add Transporter\")",
+            "text=\"Add Transporter\"",
+            "div > div:nth-of-type(3) > div > div > app-transporter-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Transporter",
+        "label": "",
+        "required": false,
+        "value": "Add Transporter",
+        "role": "button",
+        "accessible_name": "Add Transporter",
+        "text_full": "Add Transporter",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\t2\t\") [title=\"Edit\"]",
+            "div > app-transporter-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\t2\t\") [title=\"Delete\"]",
+            "div > app-transporter-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Transporter\")",
+        "selectors": [
+            "button:has-text(\"Add Transporter\")",
+            "text=\"Add Transporter\"",
+            "div > div:nth-of-type(3) > div > div > app-transporter-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Transporter",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Transporter",
+        "text_full": "Add Transporter",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_16.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "messages": [
+                {
+                    "text": "Add Transporter\nTransporter Name *\nCategory *\nALL FTL\nVehicle Type *\nCapacity *\nCompany Owned Vehicle\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-mask.p-overlay-mask"
+                },
+                {
+                    "text": "Transporter Name *\nCategory *\nALL FTL\nVehicle Type *\nCapacity *\nCompany Owned Vehicle\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Add Transporter",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "pn_id_86",
+                "cb-co"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Transporter",
+        "label": "",
+        "required": false,
+        "value": "Add Transporter",
+        "role": "",
+        "accessible_name": "Add Transporter",
+        "text_full": "Add Transporter",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Transporter Name *\"",
+        "selectors": [
+            "text=\"Transporter Name *\"",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div > label"
+        ],
+        "tag": "label",
+        "text": "Transporter Name *",
+        "label": "Transporter Name *",
+        "required": false,
+        "value": "Transporter Name *",
+        "role": "",
+        "accessible_name": "Transporter Name *",
+        "text_full": "Transporter Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category *\"",
+        "selectors": [
+            "text=\"Category *\"",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Category *",
+        "label": "Category *",
+        "required": false,
+        "value": "Category *",
+        "role": "",
+        "accessible_name": "Category *",
+        "text_full": "Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Vehicle Type *\"",
+        "selectors": [
+            "text=\"Vehicle Type *\"",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Vehicle Type *",
+        "label": "Vehicle Type *",
+        "required": false,
+        "value": "Vehicle Type *",
+        "role": "",
+        "accessible_name": "Vehicle Type *",
+        "text_full": "Vehicle Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Capacity *\"",
+        "selectors": [
+            "text=\"Capacity *\"",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Capacity *",
+        "label": "Capacity *",
+        "required": false,
+        "value": "Capacity *",
+        "role": "",
+        "accessible_name": "Capacity *",
+        "text_full": "Capacity *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Company Owned Vehicle\"",
+        "selectors": [
+            "text=\"Company Owned Vehicle\"",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Company Owned Vehicle",
+        "label": "Company Owned Vehicle",
+        "required": false,
+        "value": "Company Owned Vehicle",
+        "role": "",
+        "accessible_name": "Company Owned Vehicle",
+        "text_full": "Company Owned Vehicle",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_DISABLED",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "value": "",
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_23.jpg",
+        "asserted": true,
+        "synthetic": "save disabled while mandatory fields are empty"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"transporterName\"]",
+        "selectors": [
+            "[formcontrolname=\"transporterName\"]",
+            "input[formcontrolname=\"transporterName\"]",
+            "input[placeholder=\"e.g. AVINASH ROADLINKS\"]",
+            "div input[formcontrolname=\"transporterName\"]",
+            "div input[placeholder=\"e.g. AVINASH ROADLINKS\"]",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. AVINASH ROADLINKS",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"transporterName\"]",
+        "selectors": [
+            "[formcontrolname=\"transporterName\"]",
+            "input[formcontrolname=\"transporterName\"]",
+            "input[placeholder=\"e.g. AVINASH ROADLINKS\"]",
+            "div input[formcontrolname=\"transporterName\"]",
+            "div input[placeholder=\"e.g. AVINASH ROADLINKS\"]",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Transporter Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. AVINASH ROADLINKS",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_25.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "messages": [
+                {
+                    "text": "ALL FTL\nPART LOAD",
+                    "selector": "div.ng-tns-c1614365056-6.p-overlay.p-component"
+                },
+                {
+                    "text": "ALL FTL",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "PART LOAD",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"category\"]",
+        "selectors": [
+            "[formcontrolname=\"category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_26.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"ALL FTL\"]",
+        "selectors": [
+            "[aria-label=\"ALL FTL\"]",
+            "text=\"ALL FTL\"",
+            "#pn_id_86_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "ALL FTL",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "ALL FTL",
+        "text_full": "ALL FTL",
+        "attrs": {
+            "aria-label": "ALL FTL",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_26.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"vehicleType\"]",
+        "selectors": [
+            "[formcontrolname=\"vehicleType\"]",
+            "input[formcontrolname=\"vehicleType\"]",
+            "input[placeholder=\"e.g. 14 FEET\"]",
+            "div input[formcontrolname=\"vehicleType\"]",
+            "div input[placeholder=\"e.g. 14 FEET\"]",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 14 FEET",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"vehicleType\"]",
+        "selectors": [
+            "[formcontrolname=\"vehicleType\"]",
+            "input[formcontrolname=\"vehicleType\"]",
+            "input[placeholder=\"e.g. 14 FEET\"]",
+            "div input[formcontrolname=\"vehicleType\"]",
+            "div input[placeholder=\"e.g. 14 FEET\"]",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Vehicle Type",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 14 FEET",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"capacity\"]",
+        "selectors": [
+            "[formcontrolname=\"capacity\"]",
+            "input[formcontrolname=\"capacity\"]",
+            "input[placeholder=\"e.g. 2500, 6 TONS\"]",
+            "div input[formcontrolname=\"capacity\"]",
+            "div input[placeholder=\"e.g. 2500, 6 TONS\"]",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 2500, 6 TONS",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"capacity\"]",
+        "selectors": [
+            "[formcontrolname=\"capacity\"]",
+            "input[formcontrolname=\"capacity\"]",
+            "input[placeholder=\"e.g. 2500, 6 TONS\"]",
+            "div input[formcontrolname=\"capacity\"]",
+            "div input[placeholder=\"e.g. 2500, 6 TONS\"]",
+            "app-transporter-list > app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Capacity",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 2500, 6 TONS",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-transporter-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(6) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Business Partners/Transporter Master/screenshots/step_33.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/transporter-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "pn_id_86",
+                "cb-co"
+            ]
+        }
+    }
+]

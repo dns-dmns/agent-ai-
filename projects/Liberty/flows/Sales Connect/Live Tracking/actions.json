@@ -1,0 +1,970 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/live-tracking",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/live-tracking"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/live-tracking",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > h3"
+        ],
+        "tag": "h3",
+        "text": "Team (136)",
+        "label": "",
+        "required": false,
+        "value": "Team (136)",
+        "role": "heading",
+        "accessible_name": "Team (136)",
+        "text_full": "Team (136)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-live-tracking > div > div:nth-of-type(2) > section:nth-of-type(2) > header > div > h3",
+        "selectors": [
+            "div > div > app-live-tracking > div > div:nth-of-type(2) > section:nth-of-type(2) > header > div > h3"
+        ],
+        "tag": "h3",
+        "text": "ACIF K M M",
+        "label": "",
+        "required": false,
+        "value": "ACIF K M M",
+        "role": "heading",
+        "accessible_name": "ACIF K M M",
+        "text_full": "ACIF K M M",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Live Tracking",
+        "label": "",
+        "required": false,
+        "value": "Live Tracking",
+        "role": "listitem",
+        "accessible_name": "Live Tracking",
+        "text_full": "Live Tracking",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "div > div > app-live-tracking > div > header > div:nth-of-type(2) > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"136\")",
+        "selectors": [
+            "button:has-text(\"136\")",
+            "text=\"136\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-live-tracking > div > div > button"
+        ],
+        "tag": "button",
+        "text": "136\nEveryone",
+        "label": "",
+        "required": false,
+        "value": "136 Everyone",
+        "role": "tab",
+        "accessible_name": "136 Everyone",
+        "text_full": "136 Everyone",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"29\")",
+        "selectors": [
+            "button:has-text(\"29\")",
+            "text=\"29\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-live-tracking > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "29\nASM",
+        "label": "",
+        "required": false,
+        "value": "29 ASM",
+        "role": "tab",
+        "accessible_name": "29 ASM",
+        "text_full": "29 ASM",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"107\")",
+        "selectors": [
+            "button:has-text(\"107\")",
+            "text=\"107\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-live-tracking > div > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "107\nSR",
+        "label": "",
+        "required": false,
+        "value": "107 SR",
+        "role": "tab",
+        "accessible_name": "107 SR",
+        "text_full": "107 SR",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"0 of 136\")",
+        "selectors": [
+            "button:has-text(\"0 of 136\")",
+            "text=\"0 of 136\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-live-tracking > div > div > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "0 of 136\nOut in field",
+        "label": "",
+        "required": false,
+        "value": "0 of 136 Out in field",
+        "role": "button",
+        "accessible_name": "0 of 136 Out in field",
+        "text_full": "0 of 136 Out in field",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"136\")",
+        "selectors": [
+            "button:has-text(\"136\")",
+            "text=\"136\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-live-tracking > div > div > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "136\nNot clocked in",
+        "label": "",
+        "required": false,
+        "value": "136 Not clocked in",
+        "role": "button",
+        "accessible_name": "136 Not clocked in",
+        "text_full": "136 Not clocked in",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"0\")",
+        "selectors": [
+            "button:has-text(\"0\")",
+            "text=\"0\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-live-tracking > div > div > button:nth-of-type(6)"
+        ],
+        "tag": "button",
+        "text": "0\nDay closed",
+        "label": "",
+        "required": false,
+        "value": "0 Day closed",
+        "role": "button",
+        "accessible_name": "0 Day closed",
+        "text_full": "0 Day closed",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"AK\")",
+        "selectors": [
+            "button:has-text(\"AK\")",
+            "text=\"AK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li"
+        ],
+        "tag": "li",
+        "text": "AK\nACIF K M M\nASM \u00b7 Brijesh\n Not clocked in \u00b7 Week",
+        "label": "",
+        "required": false,
+        "value": "AK ACIF K M M ASM \u00b7 Brijesh Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "AK ACIF K M M ASM \u00b7 Brijesh Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "AK ACIF K M M ASM \u00b7 Brijesh Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SL\")",
+        "selectors": [
+            "button:has-text(\"SL\")",
+            "text=\"SL\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(2)"
+        ],
+        "tag": "li",
+        "text": "SL\nSANKAR L\nASM \u00b7 ARUMUGAM A\n Not clocked in \u00b7 Wee",
+        "label": "",
+        "required": false,
+        "value": "SL SANKAR L ASM \u00b7 ARUMUGAM A Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SL SANKAR L ASM \u00b7 ARUMUGAM A Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SL SANKAR L ASM \u00b7 ARUMUGAM A Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"JS\")",
+        "selectors": [
+            "button:has-text(\"JS\")",
+            "text=\"JS\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(4)"
+        ],
+        "tag": "li",
+        "text": "JS\nJAWAHAR S\nASM \u00b7 FAIROZ KHAN H\n Not clocked in \u00b7",
+        "label": "",
+        "required": false,
+        "value": "JS JAWAHAR S ASM \u00b7 FAIROZ KHAN H Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "JS JAWAHAR S ASM \u00b7 FAIROZ KHAN H Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "JS JAWAHAR S ASM \u00b7 FAIROZ KHAN H Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"M\")",
+        "selectors": [
+            "button:has-text(\"M\")",
+            "text=\"M\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "M\nMOHAN\nASM \u00b7 FAIROZ KHAN H\n Not clocked in \u00b7 Week",
+        "label": "",
+        "required": false,
+        "value": "M MOHAN ASM \u00b7 FAIROZ KHAN H Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "M MOHAN ASM \u00b7 FAIROZ KHAN H Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "M MOHAN ASM \u00b7 FAIROZ KHAN H Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SK\")",
+        "selectors": [
+            "button:has-text(\"SK\")",
+            "text=\"SK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(16)"
+        ],
+        "tag": "li",
+        "text": "SK\nSUNIL KUMAR\nASM \u00b7 RAJESH KUMAR\n Not clocked in ",
+        "label": "",
+        "required": false,
+        "value": "SK SUNIL KUMAR ASM \u00b7 RAJESH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SK SUNIL KUMAR ASM \u00b7 RAJESH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SK SUNIL KUMAR ASM \u00b7 RAJESH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"HK\")",
+        "selectors": [
+            "button:has-text(\"HK\")",
+            "text=\"HK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(19)"
+        ],
+        "tag": "li",
+        "text": "HK\nHARSH KUMAR\nASM \u00b7 RAJESH KUMAR\n Not clocked in ",
+        "label": "",
+        "required": false,
+        "value": "HK HARSH KUMAR ASM \u00b7 RAJESH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "HK HARSH KUMAR ASM \u00b7 RAJESH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "HK HARSH KUMAR ASM \u00b7 RAJESH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"M\")",
+        "selectors": [
+            "button:has-text(\"M\")",
+            "text=\"M\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(21)"
+        ],
+        "tag": "li",
+        "text": "M\nMANESH\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 Weekly",
+        "label": "",
+        "required": false,
+        "value": "M MANESH ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "M MANESH ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "M MANESH ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"PT\")",
+        "selectors": [
+            "button:has-text(\"PT\")",
+            "text=\"PT\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(22)"
+        ],
+        "tag": "li",
+        "text": "PT\nPRASOBH T T\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "PT PRASOBH T T ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "PT PRASOBH T T ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "PT PRASOBH T T ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"ST\")",
+        "selectors": [
+            "button:has-text(\"ST\")",
+            "text=\"ST\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(23)"
+        ],
+        "tag": "li",
+        "text": "ST\nSURESH T R\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 W",
+        "label": "",
+        "required": false,
+        "value": "ST SURESH T R ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "ST SURESH T R ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "ST SURESH T R ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SK\")",
+        "selectors": [
+            "button:has-text(\"SK\")",
+            "text=\"SK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(24)"
+        ],
+        "tag": "li",
+        "text": "SK\nSUNIL KUMAR\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "SK SUNIL KUMAR ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SK SUNIL KUMAR ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SK SUNIL KUMAR ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SK\")",
+        "selectors": [
+            "button:has-text(\"SK\")",
+            "text=\"SK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(25)"
+        ],
+        "tag": "li",
+        "text": "SK\nSUDEEP K\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 Wee",
+        "label": "",
+        "required": false,
+        "value": "SK SUDEEP K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SK SUDEEP K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SK SUDEEP K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"VA\")",
+        "selectors": [
+            "button:has-text(\"VA\")",
+            "text=\"VA\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(26)"
+        ],
+        "tag": "li",
+        "text": "VA\nVIJAYAN A\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 We",
+        "label": "",
+        "required": false,
+        "value": "VA VIJAYAN A ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "VA VIJAYAN A ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "VA VIJAYAN A ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SK\")",
+        "selectors": [
+            "button:has-text(\"SK\")",
+            "text=\"SK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(27)"
+        ],
+        "tag": "li",
+        "text": "SK\nSREEJESH K\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 W",
+        "label": "",
+        "required": false,
+        "value": "SK SREEJESH K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SK SREEJESH K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SK SREEJESH K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SM\")",
+        "selectors": [
+            "button:has-text(\"SM\")",
+            "text=\"SM\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(28)"
+        ],
+        "tag": "li",
+        "text": "SM\nSAJITH M S\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 W",
+        "label": "",
+        "required": false,
+        "value": "SM SAJITH M S ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SM SAJITH M S ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SM SAJITH M S ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SM\")",
+        "selectors": [
+            "button:has-text(\"SM\")",
+            "text=\"SM\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(29)"
+        ],
+        "tag": "li",
+        "text": "SM\nSHARATH M K\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "SM SHARATH M K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SM SHARATH M K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SM SHARATH M K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SA\")",
+        "selectors": [
+            "button:has-text(\"SA\")",
+            "text=\"SA\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(30)"
+        ],
+        "tag": "li",
+        "text": "SA\nSANOOP A\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 Wee",
+        "label": "",
+        "required": false,
+        "value": "SA SANOOP A ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SA SANOOP A ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SA SANOOP A ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SK\")",
+        "selectors": [
+            "button:has-text(\"SK\")",
+            "text=\"SK\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(31)"
+        ],
+        "tag": "li",
+        "text": "SK\nSANOOP K\nASM \u00b7 SAJEEVAN K\n Not clocked in \u00b7 Wee",
+        "label": "",
+        "required": false,
+        "value": "SK SANOOP K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SK SANOOP K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SK SANOOP K ASM \u00b7 SAJEEVAN K Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SS\")",
+        "selectors": [
+            "button:has-text(\"SS\")",
+            "text=\"SS\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(32)"
+        ],
+        "tag": "li",
+        "text": "SS\nSARATH S\nASM \u00b7 SAJITH KUMAR\n Not clocked in \u00b7 W",
+        "label": "",
+        "required": false,
+        "value": "SS SARATH S ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SS SARATH S ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SS SARATH S ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SM\")",
+        "selectors": [
+            "button:has-text(\"SM\")",
+            "text=\"SM\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(33)"
+        ],
+        "tag": "li",
+        "text": "SM\nSREEJU M\nASM \u00b7 SAJITH KUMAR\n Not clocked in \u00b7 W",
+        "label": "",
+        "required": false,
+        "value": "SM SREEJU M ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SM SREEJU M ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SM SREEJU M ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SM\")",
+        "selectors": [
+            "button:has-text(\"SM\")",
+            "text=\"SM\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(34)"
+        ],
+        "tag": "li",
+        "text": "SM\nSHIBU M B\nASM \u00b7 SAJITH KUMAR\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "SM SHIBU M B ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SM SHIBU M B ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SM SHIBU M B ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"FN\")",
+        "selectors": [
+            "button:has-text(\"FN\")",
+            "text=\"FN\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(35)"
+        ],
+        "tag": "li",
+        "text": "FN\nFAZAL N M\nASM \u00b7 SAJITH KUMAR\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "FN FAZAL N M ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "FN FAZAL N M ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "FN FAZAL N M ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"JB\")",
+        "selectors": [
+            "button:has-text(\"JB\")",
+            "text=\"JB\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(37)"
+        ],
+        "tag": "li",
+        "text": "JB\nJOHNSON BABU\nASM \u00b7 SAJITH KUMAR\n Not clocked in",
+        "label": "",
+        "required": false,
+        "value": "JB JOHNSON BABU ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "JB JOHNSON BABU ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "JB JOHNSON BABU ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"JS\")",
+        "selectors": [
+            "button:has-text(\"JS\")",
+            "text=\"JS\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(38)"
+        ],
+        "tag": "li",
+        "text": "JS\nJUNAID S\nASM \u00b7 SAJITH KUMAR\n Not clocked in \u00b7 W",
+        "label": "",
+        "required": false,
+        "value": "JS JUNAID S ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "JS JUNAID S ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "JS JUNAID S ASM \u00b7 SAJITH KUMAR Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"HS\")",
+        "selectors": [
+            "button:has-text(\"HS\")",
+            "text=\"HS\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(39)"
+        ],
+        "tag": "li",
+        "text": "HS\nHARIKUMAR S\nASM \u00b7 SATHEESH K G\n Not clocked in ",
+        "label": "",
+        "required": false,
+        "value": "HS HARIKUMAR S ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "HS HARIKUMAR S ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "HS HARIKUMAR S ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"RR\")",
+        "selectors": [
+            "button:has-text(\"RR\")",
+            "text=\"RR\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(41)"
+        ],
+        "tag": "li",
+        "text": "RR\nRAKESH R K\nASM \u00b7 SATHEESH K G\n Not clocked in \u00b7",
+        "label": "",
+        "required": false,
+        "value": "RR RAKESH R K ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "RR RAKESH R K ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "RR RAKESH R K ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SG\")",
+        "selectors": [
+            "button:has-text(\"SG\")",
+            "text=\"SG\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(43)"
+        ],
+        "tag": "li",
+        "text": "SG\nSUNIL G M\nASM \u00b7 SATHEESH K G\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "SG SUNIL G M ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SG SUNIL G M ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SG SUNIL G M ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_39.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"RR\")",
+        "selectors": [
+            "button:has-text(\"RR\")",
+            "text=\"RR\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(44)"
+        ],
+        "tag": "li",
+        "text": "RR\nRENJITH R\nASM \u00b7 SATHEESH K G\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "RR RENJITH R ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "RR RENJITH R ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "RR RENJITH R ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_40.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SP\")",
+        "selectors": [
+            "button:has-text(\"SP\")",
+            "text=\"SP\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(45)"
+        ],
+        "tag": "li",
+        "text": "SP\nSREELAL P\nASM \u00b7 SATHEESH K G\n Not clocked in \u00b7 ",
+        "label": "",
+        "required": false,
+        "value": "SP SREELAL P ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SP SREELAL P ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SP SREELAL P ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_41.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SB\")",
+        "selectors": [
+            "button:has-text(\"SB\")",
+            "text=\"SB\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(46)"
+        ],
+        "tag": "li",
+        "text": "SB\nSHERIN B S\nASM \u00b7 SATHEESH K G\n Not clocked in \u00b7",
+        "label": "",
+        "required": false,
+        "value": "SB SHERIN B S ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SB SHERIN B S ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SB SHERIN B S ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_42.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SS\")",
+        "selectors": [
+            "button:has-text(\"SS\")",
+            "text=\"SS\"",
+            "div:nth-of-type(3) > div > div > app-live-tracking > div > div:nth-of-type(2) > section > ul > li:nth-of-type(47)"
+        ],
+        "tag": "li",
+        "text": "SS\nSARATH S M\nASM \u00b7 SATHEESH K G\n Not clocked in \u00b7",
+        "label": "",
+        "required": false,
+        "value": "SS SARATH S M ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "role": "button",
+        "accessible_name": "SS SARATH S M ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "text_full": "SS SARATH S M ASM \u00b7 SATHEESH K G Not clocked in \u00b7 Weekly off \u00b7 Sunday Week OFF",
+        "attrs": {
+            "role": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_43.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Show 50 more\")",
+        "selectors": [
+            "button:has-text(\"Show 50 more\")",
+            "text=\"Show 50 more\"",
+            "div > div > app-live-tracking > div > div:nth-of-type(2) > section > app-show-more > div > button"
+        ],
+        "tag": "button",
+        "text": "Show 50 more",
+        "label": "",
+        "required": false,
+        "value": "Show 50 more",
+        "role": "button",
+        "accessible_name": "Show 50 more",
+        "text_full": "Show 50 more",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_44.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Day report\")",
+        "selectors": [
+            "button:has-text(\"Day report\")",
+            "text=\"Day report\"",
+            "div > div > app-live-tracking > div > div:nth-of-type(2) > section:nth-of-type(2) > header > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Day report",
+        "label": "",
+        "required": false,
+        "value": "Day report",
+        "role": "button",
+        "accessible_name": "Day report",
+        "text_full": "Day report",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Live Tracking/screenshots/step_45.jpg"
+    }
+]

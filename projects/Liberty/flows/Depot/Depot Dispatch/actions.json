@@ -1,0 +1,279 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/depot-dispatch",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/depot-dispatch"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/depot-dispatch",
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Depot",
+        "label": "",
+        "required": false,
+        "value": "Depot",
+        "role": "listitem",
+        "accessible_name": "Depot",
+        "text_full": "Depot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Depot Dispatch",
+        "label": "",
+        "required": false,
+        "value": "Depot Dispatch",
+        "role": "listitem",
+        "accessible_name": "Depot Dispatch",
+        "text_full": "Depot Dispatch",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SO Number",
+        "label": "",
+        "required": false,
+        "value": "SO Number",
+        "role": "",
+        "accessible_name": "SO Number",
+        "text_full": "SO Number",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "Customer",
+        "label": "",
+        "required": false,
+        "value": "Customer",
+        "role": "",
+        "accessible_name": "Customer",
+        "text_full": "Customer",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "Depot",
+        "label": "",
+        "required": false,
+        "value": "Depot",
+        "role": "",
+        "accessible_name": "Depot",
+        "text_full": "Depot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Destination",
+        "label": "",
+        "required": false,
+        "value": "Destination",
+        "role": "",
+        "accessible_name": "Destination",
+        "text_full": "Destination",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "Ordered Qty",
+        "label": "",
+        "required": false,
+        "value": "Ordered Qty",
+        "role": "",
+        "accessible_name": "Ordered Qty",
+        "text_full": "Ordered Qty",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "Status",
+        "label": "",
+        "required": false,
+        "value": "Status",
+        "role": "",
+        "accessible_name": "Status",
+        "text_full": "Status",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "Stock Check",
+        "label": "",
+        "required": false,
+        "value": "Stock Check",
+        "role": "",
+        "accessible_name": "Stock Check",
+        "text_full": "Stock Check",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-depot-dispatch > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "Actions",
+        "label": "",
+        "required": false,
+        "value": "Actions",
+        "role": "",
+        "accessible_name": "Actions",
+        "text_full": "Actions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Pending Dispatch\")",
+        "selectors": [
+            "button:has-text(\"Pending Dispatch\")",
+            "text=\"Pending Dispatch\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-depot-dispatch > div > div > button"
+        ],
+        "tag": "button",
+        "text": "Pending Dispatch",
+        "label": "",
+        "required": false,
+        "value": "Pending Dispatch",
+        "role": "button",
+        "accessible_name": "Pending Dispatch",
+        "text_full": "Pending Dispatch",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Dispatch Completed\")",
+        "selectors": [
+            "button:has-text(\"Dispatch Completed\")",
+            "text=\"Dispatch Completed\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-depot-dispatch > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Dispatch Completed",
+        "label": "",
+        "required": false,
+        "value": "Dispatch Completed",
+        "role": "button",
+        "accessible_name": "Dispatch Completed",
+        "text_full": "Dispatch Completed",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Refresh\"]",
+        "selectors": [
+            "button[title=\"Refresh\"]",
+            "[aria-label=\"Refresh\"]",
+            "button:has(i.pi-refresh)",
+            "div > div:nth-of-type(3) > div > div > app-depot-dispatch > div > div:nth-of-type(2) > div:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "",
+        "attrs": {
+            "title": "Refresh"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Depot Dispatch/screenshots/step_15.jpg"
+    }
+]

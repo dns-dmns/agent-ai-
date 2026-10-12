@@ -1,0 +1,437 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/issue-request",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/issue-request"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/issue-request",
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-dipping-department > app-issue-request > div > div > div > h2",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-dipping-department > app-issue-request > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Issue Request",
+        "label": "",
+        "required": false,
+        "value": "Issue Request",
+        "role": "heading",
+        "accessible_name": "Issue Request",
+        "text_full": "Issue Request",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Dipping Department",
+        "label": "",
+        "required": false,
+        "value": "Dipping Department",
+        "role": "listitem",
+        "accessible_name": "Dipping Department",
+        "text_full": "Dipping Department",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Issue Request",
+        "label": "",
+        "required": false,
+        "value": "Issue Request",
+        "role": "listitem",
+        "accessible_name": "Issue Request",
+        "text_full": "Issue Request",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "#",
+        "label": "",
+        "required": false,
+        "value": "#",
+        "role": "",
+        "accessible_name": "#",
+        "text_full": "#",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "RM CODE",
+        "label": "",
+        "required": false,
+        "value": "RM CODE",
+        "role": "",
+        "accessible_name": "RM CODE",
+        "text_full": "RM CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "RM DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "RM DESCRIPTION",
+        "role": "",
+        "accessible_name": "RM DESCRIPTION",
+        "text_full": "RM DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "ISSUE REQ NO",
+        "label": "",
+        "required": false,
+        "value": "ISSUE REQ NO",
+        "role": "",
+        "accessible_name": "ISSUE REQ NO",
+        "text_full": "ISSUE REQ NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "SFG",
+        "label": "",
+        "required": false,
+        "value": "SFG",
+        "role": "",
+        "accessible_name": "SFG",
+        "text_full": "SFG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDERS",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDERS",
+        "role": "",
+        "accessible_name": "JOB ORDERS",
+        "text_full": "JOB ORDERS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "TOTAL REQUESTED QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL REQUESTED QTY",
+        "role": "",
+        "accessible_name": "TOTAL REQUESTED QTY",
+        "text_full": "TOTAL REQUESTED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "TOTAL ISSUED QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL ISSUED QTY",
+        "role": "",
+        "accessible_name": "TOTAL ISSUED QTY",
+        "text_full": "TOTAL ISSUED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "PENDING QTY",
+        "label": "",
+        "required": false,
+        "value": "PENDING QTY",
+        "role": "",
+        "accessible_name": "PENDING QTY",
+        "text_full": "PENDING QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "IN STORE",
+        "label": "",
+        "required": false,
+        "value": "IN STORE",
+        "role": "",
+        "accessible_name": "IN STORE",
+        "text_full": "IN STORE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "ISSUES",
+        "label": "",
+        "required": false,
+        "value": "ISSUES",
+        "role": "",
+        "accessible_name": "ISSUES",
+        "text_full": "ISSUES",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(14)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(14)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(15)",
+        "selectors": [
+            "div > app-dipping-department > app-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(15)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Export CSV\")",
+        "selectors": [
+            "button:has-text(\"Export CSV\")",
+            "text=\"Export CSV\"",
+            "div:nth-of-type(3) > div > div > app-dipping-department > app-issue-request > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Export CSV",
+        "label": "",
+        "required": false,
+        "value": "Export CSV",
+        "role": "button",
+        "accessible_name": "Export CSV",
+        "text_full": "Export CSV",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div:nth-of-type(3) > div > div > app-dipping-department > app-issue-request > div > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Pending only\"",
+        "selectors": [
+            "text=\"Pending only\"",
+            "div:nth-of-type(3) > div > div > app-dipping-department > app-issue-request > div > div:nth-of-type(3) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Pending only",
+        "label": "Pending only",
+        "required": false,
+        "value": "Pending only",
+        "role": "",
+        "accessible_name": "Pending only",
+        "text_full": "Pending only",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Issue Request/screenshots/step_24.jpg"
+    }
+]

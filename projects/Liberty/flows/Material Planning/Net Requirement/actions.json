@@ -1,0 +1,740 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-net-requirement > div > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-net-requirement > div > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Net Requirement",
+        "label": "",
+        "required": false,
+        "value": "Net Requirement",
+        "role": "heading",
+        "accessible_name": "Net Requirement",
+        "text_full": "Net Requirement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Material Planning",
+        "label": "",
+        "required": false,
+        "value": "Material Planning",
+        "role": "listitem",
+        "accessible_name": "Material Planning",
+        "text_full": "Material Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Net Requirement",
+        "label": "",
+        "required": false,
+        "value": "Net Requirement",
+        "role": "listitem",
+        "accessible_name": "Net Requirement",
+        "text_full": "Net Requirement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "RM CODE & DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "RM CODE & DESCRIPTION",
+        "role": "",
+        "accessible_name": "RM CODE & DESCRIPTION",
+        "text_full": "RM CODE & DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "CURRENT SOH",
+        "label": "",
+        "required": false,
+        "value": "CURRENT SOH",
+        "role": "",
+        "accessible_name": "CURRENT SOH",
+        "text_full": "CURRENT SOH",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "LEAD TIME",
+        "label": "",
+        "required": false,
+        "value": "LEAD TIME",
+        "role": "",
+        "accessible_name": "LEAD TIME",
+        "text_full": "LEAD TIME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "STOCK RUN-OUT",
+        "label": "",
+        "required": false,
+        "value": "STOCK RUN-OUT",
+        "role": "",
+        "accessible_name": "STOCK RUN-OUT",
+        "text_full": "STOCK RUN-OUT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "DEADLINE (ORDER BY)",
+        "label": "",
+        "required": false,
+        "value": "DEADLINE (ORDER BY)",
+        "role": "",
+        "accessible_name": "DEADLINE (ORDER BY)",
+        "text_full": "DEADLINE (ORDER BY)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "NEED TO ORDER",
+        "label": "",
+        "required": false,
+        "value": "NEED TO ORDER",
+        "role": "",
+        "accessible_name": "NEED TO ORDER",
+        "text_full": "NEED TO ORDER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "PO STATUS",
+        "label": "",
+        "required": false,
+        "value": "PO STATUS",
+        "role": "",
+        "accessible_name": "PO STATUS",
+        "text_full": "PO STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-net-requirement > div > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Clear\")",
+        "selectors": [
+            "button:has-text(\"Clear\")",
+            "text=\"Clear\"",
+            "div > div:nth-of-type(3) > div > div > app-net-requirement > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Clear",
+        "label": "",
+        "required": false,
+        "value": "Clear",
+        "role": "button",
+        "accessible_name": "Clear",
+        "text_full": "Clear",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Create Purchase Request\")",
+        "selectors": [
+            "button:has-text(\"Create Purchase Request\")",
+            "text=\"Create Purchase Request\"",
+            "div > div:nth-of-type(3) > div > div > app-net-requirement > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Create Purchase Request",
+        "label": "",
+        "required": false,
+        "value": "Create Purchase Request",
+        "role": "button",
+        "accessible_name": "Create Purchase Request",
+        "text_full": "Create Purchase Request",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_16.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Create Purchase Request\")",
+        "selectors": [
+            "button:has-text(\"Create Purchase Request\")",
+            "text=\"Create Purchase Request\"",
+            "div > div:nth-of-type(3) > div > div > app-net-requirement > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Create Purchase Request",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Create Purchase Request",
+        "text_full": "Create Purchase Request",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_17.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "messages": [
+                {
+                    "text": "Create Purchase Requisition",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Pick a material\nCancel\nCreate PR",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Pick a material",
+                    "selector": "span.pr-footer__hint"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Create PR",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "pn_id_8",
+                "pn_id_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-net-requirement > app-create-pr > p-dialog > div > div > div > span",
+        "selectors": [
+            "div > div > app-net-requirement > app-create-pr > p-dialog > div > div > div > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Create Purchase Requisition",
+        "label": "",
+        "required": false,
+        "value": "Create Purchase Requisition",
+        "role": "",
+        "accessible_name": "Create Purchase Requisition",
+        "text_full": "Create Purchase Requisition",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Pick Material (RM) *\"",
+        "selectors": [
+            "text=\"Pick Material (RM) *\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Pick Material (RM) *",
+        "label": "Pick Material (RM) *",
+        "required": false,
+        "value": "Pick Material (RM) *",
+        "role": "",
+        "accessible_name": "Pick Material (RM) *",
+        "text_full": "Pick Material (RM) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Order Category *\"",
+        "selectors": [
+            "text=\"Order Category *\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Order Category *",
+        "label": "Order Category *",
+        "required": false,
+        "value": "Order Category *",
+        "role": "",
+        "accessible_name": "Order Category *",
+        "text_full": "Order Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier Name *\"",
+        "selectors": [
+            "text=\"Supplier Name *\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier Name *",
+        "label": "Supplier Name *",
+        "required": false,
+        "value": "Supplier Name *",
+        "role": "",
+        "accessible_name": "Supplier Name *",
+        "text_full": "Supplier Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Supplier State\"",
+        "selectors": [
+            "text=\"Supplier State\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Supplier State",
+        "label": "Supplier State",
+        "required": false,
+        "value": "Supplier State",
+        "role": "",
+        "accessible_name": "Supplier State",
+        "text_full": "Supplier State",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Requisition Quantity *\"",
+        "selectors": [
+            "text=\"Requisition Quantity *\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Requisition Quantity *",
+        "label": "Requisition Quantity *",
+        "required": false,
+        "value": "Requisition Quantity *",
+        "role": "",
+        "accessible_name": "Requisition Quantity *",
+        "text_full": "Requisition Quantity *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Order By Date *\"",
+        "selectors": [
+            "text=\"Order By Date *\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Order By Date *",
+        "label": "Order By Date *",
+        "required": false,
+        "value": "Order By Date *",
+        "role": "",
+        "accessible_name": "Order By Date *",
+        "text_full": "Order By Date *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remarks\"",
+        "selectors": [
+            "text=\"Remarks\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Remarks",
+        "label": "Remarks",
+        "required": false,
+        "value": "Remarks",
+        "role": "",
+        "accessible_name": "Remarks",
+        "text_full": "Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_25.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Order Category\"]",
+        "selectors": [
+            "[aria-label=\"Order Category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Order Category *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_26.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Raw Material\"]",
+        "selectors": [
+            "[aria-label=\"Raw Material\"]",
+            "text=\"Raw Material\"",
+            "#pn_id_8_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Raw Material",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Raw Material",
+        "text_full": "Raw Material",
+        "attrs": {
+            "aria-label": "Raw Material",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_26.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1",
+                "pn_id_8_2",
+                "pn_id_8_3",
+                "pn_id_8_4"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Supplier Name\"]",
+        "selectors": [
+            "[aria-label=\"Supplier Name\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Supplier Name *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_27.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"000001\"]",
+        "selectors": [
+            "[aria-label=\"000001\"]",
+            "text=\"000001\"",
+            "#pn_id_10_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "000001",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "000001",
+        "text_full": "000001",
+        "attrs": {
+            "aria-label": "000001",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_27.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_10_list",
+                "pn_id_10_0",
+                "pn_id_10_1",
+                "pn_id_10_2",
+                "pn_id_10_3",
+                "pn_id_10_4",
+                "pn_id_10_5",
+                "pn_id_10_6",
+                "pn_id_10_7",
+                "pn_id_10_8",
+                "pn_id_10_9",
+                "pn_id_10_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_28.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0\"]",
+        "selectors": [
+            "input[placeholder=\"0\"]",
+            "div input[placeholder=\"0\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_30.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "textarea[placeholder=\"Add remarks...\"]",
+        "selectors": [
+            "textarea[placeholder=\"Add remarks...\"]",
+            "div textarea[placeholder=\"Add remarks...\"]",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Add remarks...",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_31.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "textarea[placeholder=\"Add remarks...\"]",
+        "selectors": [
+            "textarea[placeholder=\"Add remarks...\"]",
+            "div textarea[placeholder=\"Add remarks...\"]",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Remarks",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Add remarks...",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_32.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-create-pr > p-dialog > div > div > div:nth-of-type(3) > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Material Planning/Net Requirement/screenshots/step_33.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+            "messages": [
+                {
+                    "text": "Select supplier",
+                    "selector": "span.p-select-label.ng-star-inserted.p-placeholder"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "pn_id_8",
+                "pn_id_10"
+            ]
+        }
+    }
+]

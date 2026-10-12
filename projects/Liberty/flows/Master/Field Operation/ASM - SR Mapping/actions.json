@@ -1,0 +1,1029 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div:nth-of-type(2) > h3",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div:nth-of-type(2) > h3"
+        ],
+        "tag": "h3",
+        "text": "ASM teams\nASM\nSR",
+        "label": "",
+        "required": false,
+        "value": "ASM teams ASM SR",
+        "role": "heading",
+        "accessible_name": "ASM teams ASM SR",
+        "text_full": "ASM teams ASM SR",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Field Operation",
+        "label": "",
+        "required": false,
+        "value": "Field Operation",
+        "role": "listitem",
+        "accessible_name": "Field Operation",
+        "text_full": "Field Operation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "ASM - SR Mapping",
+        "label": "",
+        "required": false,
+        "value": "ASM - SR Mapping",
+        "role": "listitem",
+        "accessible_name": "ASM - SR Mapping",
+        "text_full": "ASM - SR Mapping",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SALES REPRESENTATIVE",
+        "label": "",
+        "required": false,
+        "value": "SALES REPRESENTATIVE",
+        "role": "",
+        "accessible_name": "SALES REPRESENTATIVE",
+        "text_full": "SALES REPRESENTATIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "STATE",
+        "label": "",
+        "required": false,
+        "value": "STATE",
+        "role": "",
+        "accessible_name": "STATE",
+        "text_full": "STATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "REGION",
+        "label": "",
+        "required": false,
+        "value": "REGION",
+        "role": "",
+        "accessible_name": "REGION",
+        "text_full": "REGION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "DEPOT",
+        "label": "",
+        "required": false,
+        "value": "DEPOT",
+        "role": "",
+        "accessible_name": "DEPOT",
+        "text_full": "DEPOT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Mapping\")",
+        "selectors": [
+            "button:has-text(\"Add Mapping\")",
+            "text=\"Add Mapping\"",
+            "div > div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Mapping",
+        "label": "",
+        "required": false,
+        "value": "Add Mapping",
+        "role": "button",
+        "accessible_name": "Add Mapping",
+        "text_full": "Add Mapping",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Expand all\")",
+        "selectors": [
+            "button:has-text(\"Expand all\")",
+            "text=\"Expand all\"",
+            "div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div:nth-of-type(2) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Expand all",
+        "label": "",
+        "required": false,
+        "value": "Expand all",
+        "role": "button",
+        "accessible_name": "Expand all",
+        "text_full": "Expand all",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_14.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Mapping\")",
+        "selectors": [
+            "button:has-text(\"Add Mapping\")",
+            "text=\"Add Mapping\"",
+            "div > div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Mapping",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Mapping",
+        "text_full": "Add Mapping",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_15.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "Add Mapping",
+                    "selector": "div.ng-tns-c2196985156-7.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "pn_id_90",
+                "m-asm",
+                "pn_id_92",
+                "m-state",
+                "pn_id_96",
+                "m-active"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-asm-sr-mapping-list > app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-asm-sr-mapping-list > app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Mapping",
+        "label": "",
+        "required": false,
+        "value": "Add Mapping",
+        "role": "",
+        "accessible_name": "Add Mapping",
+        "text_full": "Add Mapping",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Area Sales Manager *\"",
+        "selectors": [
+            "text=\"Area Sales Manager *\"",
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Area Sales Manager *",
+        "label": "Area Sales Manager *",
+        "required": false,
+        "value": "Area Sales Manager *",
+        "role": "",
+        "accessible_name": "Area Sales Manager *",
+        "text_full": "Area Sales Manager *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State *\"",
+        "selectors": [
+            "text=\"State *\"",
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "State *",
+        "label": "State *",
+        "required": false,
+        "value": "State *",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Sales Representatives *\"",
+        "selectors": [
+            "text=\"Sales Representatives *\"",
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Sales Representatives *",
+        "label": "Sales Representatives *",
+        "required": false,
+        "value": "Sales Representatives *",
+        "role": "",
+        "accessible_name": "Sales Representatives *",
+        "text_full": "Sales Representatives *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_20.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_21.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Select the state these representatives work.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Select at least one representative.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-11.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-11.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-11.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small",
+        "selectors": [
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "This field is required.",
+        "label": "",
+        "required": false,
+        "value": "This field is required.",
+        "role": "",
+        "accessible_name": "This field is required.",
+        "text_full": "This field is required.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > small",
+        "selectors": [
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > small"
+        ],
+        "tag": "small",
+        "text": "Select the state these representatives work.",
+        "label": "",
+        "required": false,
+        "value": "Select the state these representatives work.",
+        "role": "",
+        "accessible_name": "Select the state these representatives work.",
+        "text_full": "Select the state these representatives work.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > small",
+        "selectors": [
+            "app-asm-sr-mapping-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > small"
+        ],
+        "tag": "small",
+        "text": "Select at least one representative.",
+        "label": "",
+        "required": false,
+        "value": "Select at least one representative.",
+        "role": "",
+        "accessible_name": "Select at least one representative.",
+        "text_full": "Select at least one representative.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_25.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"asmUserId\"]",
+        "selectors": [
+            "[formcontrolname=\"asmUserId\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Area Sales Manager *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_26.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"12312312312\"]",
+        "selectors": [
+            "[aria-label=\"12312312312\"]",
+            "text=\"12312312312\"",
+            "#pn_id_90_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "12312312312",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "12312312312",
+        "text_full": "12312312312",
+        "attrs": {
+            "aria-label": "12312312312",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_26.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "Andhra Pradesh \u00b7 ap deport",
+                    "selector": "small.hint.ng-star-inserted"
+                },
+                {
+                    "text": "Select representatives in the same territory",
+                    "selector": "div.p-multiselect-label.p-placeholder"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_90_list",
+                "pn_id_90_0",
+                "pn_id_90_1",
+                "pn_id_90_2",
+                "pn_id_90_3",
+                "pn_id_90_4",
+                "pn_id_90_5",
+                "pn_id_90_6",
+                "pn_id_90_7",
+                "pn_id_90_8",
+                "pn_id_90_9",
+                "pn_id_90_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"state\"]",
+        "selectors": [
+            "[formcontrolname=\"state\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "State *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_27.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andhra Pradesh\"]",
+        "selectors": [
+            "[aria-label=\"Andhra Pradesh\"]",
+            "text=\"Andhra Pradesh\"",
+            "#pn_id_92_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andhra Pradesh",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andhra Pradesh",
+        "text_full": "Andhra Pradesh",
+        "attrs": {
+            "aria-label": "Andhra Pradesh",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_27.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_92_list",
+                "pn_id_92_0"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"srUserIds\"]",
+        "selectors": [
+            "[formcontrolname=\"srUserIds\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "Sales Representatives *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_28.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"ap_se (SVAW-12)\"]",
+        "selectors": [
+            "[aria-label=\"ap_se (SVAW-12)\"]",
+            "text=\"ap_se (SVAW-12)\"",
+            "#pn_id_96_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "ap_se (SVAW-12)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "ap_se (SVAW-12)",
+        "text_full": "ap_se (SVAW-12)",
+        "attrs": {
+            "aria-label": "ap_se (SVAW-12)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_28.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body",
+        "selectors": [
+            "html > body"
+        ],
+        "tag": "body",
+        "text": "Home\nDashboard\nMaster\nProduct Catalogue\nItem Maste",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Mast",
+        "text_full": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Master Patti Master Nurva Master Business Partners Customer Master Supplier Master Transporter Master Sales & Distribution Scheme Master Distributor Master Depot Master Field Operation Leave Types Weekly Off & Holidays Expense Types Official Work Types ASM - SR Mapping Production Production Machines Operator Master User & Access User Master Roles Master Permissions Sales Connect Dashboard Live Tracking Week Plan Attendance Approvals Give a Task Budgets Sales Report Work Report Au\u2026",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_29.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Search mappings\"]",
+        "selectors": [
+            "[aria-label=\"Search mappings\"]",
+            "input[placeholder=\"Search manager, representative, depot\u2026\"]",
+            "div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Search mappings",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search manager, representative, depot\u2026",
+            "aria-label": "Search mappings",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_30.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[aria-label=\"Search mappings\"]",
+        "selectors": [
+            "[aria-label=\"Search mappings\"]",
+            "input[placeholder=\"Search manager, representative, depot\u2026\"]",
+            "div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Search mappings",
+        "role": "textbox",
+        "accessible_name": "Search mappings",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search manager, representative, depot\u2026",
+            "aria-label": "Search mappings",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_32.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "Andhra Pradesh\nKarnataka\nKerala\nPunjab\nTamil Nadu\nTelangana\nUttar Pradesh\nWest Bengal",
+                    "selector": "div.ng-tns-c1614365056-3.p-overlay.p-component"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Karnataka",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Kerala",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Punjab",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Tamil Nadu",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1",
+                "pn_id_8_2",
+                "pn_id_8_3",
+                "pn_id_8_4",
+                "pn_id_8_5",
+                "pn_id_8_6",
+                "pn_id_8_7"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All states\"]",
+        "selectors": [
+            "[aria-label=\"All states\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "All states",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_33.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andhra Pradesh\"]",
+        "selectors": [
+            "[aria-label=\"Andhra Pradesh\"]",
+            "text=\"Andhra Pradesh\"",
+            "#pn_id_8_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andhra Pradesh",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andhra Pradesh",
+        "text_full": "Andhra Pradesh",
+        "attrs": {
+            "aria-label": "Andhra Pradesh",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_33.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1",
+                "pn_id_8_2",
+                "pn_id_8_3",
+                "pn_id_8_4",
+                "pn_id_8_5",
+                "pn_id_8_6",
+                "pn_id_8_7"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All regions\"]",
+        "selectors": [
+            "[aria-label=\"All regions\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "All regions",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_34.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andhra Pradesh\"]",
+        "selectors": [
+            "[aria-label=\"Andhra Pradesh\"]",
+            "text=\"Andhra Pradesh\"",
+            "#pn_id_10_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andhra Pradesh",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andhra Pradesh",
+        "text_full": "Andhra Pradesh",
+        "attrs": {
+            "aria-label": "Andhra Pradesh",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_34.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_10_list",
+                "pn_id_10_0"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All depots\"]",
+        "selectors": [
+            "[aria-label=\"All depots\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "All depots",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_35.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Ambala Depot\"]",
+        "selectors": [
+            "[aria-label=\"Ambala Depot\"]",
+            "text=\"Ambala Depot\"",
+            "#pn_id_12_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Ambala Depot",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Ambala Depot",
+        "text_full": "Ambala Depot",
+        "attrs": {
+            "aria-label": "Ambala Depot",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_35.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [
+                {
+                    "text": "Ambala Depot",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_12_list",
+                "pn_id_12_0",
+                "pn_id_12_1",
+                "pn_id_12_2",
+                "pn_id_12_3",
+                "pn_id_12_4",
+                "pn_id_12_5",
+                "pn_id_12_6",
+                "pn_id_12_7",
+                "pn_id_12_8",
+                "pn_id_12_9",
+                "pn_id_12_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Status\"]",
+        "selectors": [
+            "[aria-label=\"Status\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Status",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_36.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All statuses\"]",
+        "selectors": [
+            "[aria-label=\"All statuses\"]",
+            "text=\"All statuses\"",
+            "#pn_id_14_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "All statuses",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "All statuses",
+        "text_full": "All statuses",
+        "attrs": {
+            "aria-label": "All statuses",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_36.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/asm-sr-mapping/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_14_list",
+                "pn_id_14_0",
+                "pn_id_14_1",
+                "pn_id_14_2"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[aria-label=\"All statuses\"]",
+        "selectors": [
+            "[aria-label=\"All statuses\"]",
+            "div:nth-of-type(3) > div > div > app-asm-sr-mapping-list > div > div > div:nth-of-type(2) > p-select:nth-of-type(4) > span"
+        ],
+        "tag": "span",
+        "text": "All statuses",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "combobox",
+        "accessible_name": "All statuses",
+        "text_full": "All statuses",
+        "attrs": {
+            "aria-label": "All statuses",
+            "role": "combobox"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/ASM - SR Mapping/screenshots/step_37.jpg"
+    }
+]

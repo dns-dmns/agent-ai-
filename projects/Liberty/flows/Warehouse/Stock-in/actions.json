@@ -1,0 +1,112 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/stock-in",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/stock-in"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/stock-in",
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Stock-in/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-stock-in > app-warehouse-scan > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-stock-in > app-warehouse-scan > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Warehouse Batches",
+        "label": "",
+        "required": false,
+        "value": "Warehouse Batches",
+        "role": "heading",
+        "accessible_name": "Warehouse Batches",
+        "text_full": "Warehouse Batches",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Stock-in/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Warehouse",
+        "label": "",
+        "required": false,
+        "value": "Warehouse",
+        "role": "listitem",
+        "accessible_name": "Warehouse",
+        "text_full": "Warehouse",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Stock-in/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Stock In",
+        "label": "",
+        "required": false,
+        "value": "Stock In",
+        "role": "listitem",
+        "accessible_name": "Stock In",
+        "text_full": "Stock In",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Stock-in/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Stock-in/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Stock In History\")",
+        "selectors": [
+            "button:has-text(\"Stock In History\")",
+            "text=\"Stock In History\"",
+            "div > div:nth-of-type(3) > div > div > app-stock-in > app-warehouse-scan > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Stock In History",
+        "label": "",
+        "required": false,
+        "value": "Stock In History",
+        "role": "button",
+        "accessible_name": "Stock In History",
+        "text_full": "Stock In History",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Stock-in/screenshots/step_6.jpg"
+    }
+]

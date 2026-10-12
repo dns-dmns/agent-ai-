@@ -1,0 +1,14 @@
+{
+    "schema_version": 1,
+    "flow_name": "Master/Production/Production Machines",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+    "timestamp": "2026-10-11 19:38:53",
+    "duration_seconds": 6,
+    "step_count": 17,
+    "source": "explorer",
+    "menu_path": [
+        "Master",
+        "Production",
+        "Production Machines"
+    ]
+}

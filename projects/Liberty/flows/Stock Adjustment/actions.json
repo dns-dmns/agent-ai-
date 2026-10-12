@@ -1,0 +1,98 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/stock-adjustment",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/stock-adjustment"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/stock-adjustment",
+        "screenshot": "/static/projects/Liberty/flows/Stock Adjustment/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Stock Adjustment",
+        "label": "",
+        "required": false,
+        "value": "Stock Adjustment",
+        "role": "listitem",
+        "accessible_name": "Stock Adjustment",
+        "text_full": "Stock Adjustment",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Stock Adjustment/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Stock Adjustment/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Adjust Stock\")",
+        "selectors": [
+            "button:has-text(\"Adjust Stock\")",
+            "text=\"Adjust Stock\"",
+            "div > div:nth-of-type(3) > div > div > app-stock-adjustment > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Adjust Stock",
+        "label": "",
+        "required": false,
+        "value": "Adjust Stock",
+        "role": "button",
+        "accessible_name": "Adjust Stock",
+        "text_full": "Adjust Stock",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Stock Adjustment/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Adjustment Log\")",
+        "selectors": [
+            "button:has-text(\"Adjustment Log\")",
+            "text=\"Adjustment Log\"",
+            "div > div:nth-of-type(3) > div > div > app-stock-adjustment > div > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Adjustment Log",
+        "label": "",
+        "required": false,
+        "value": "Adjustment Log",
+        "role": "button",
+        "accessible_name": "Adjustment Log",
+        "text_full": "Adjustment Log",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Stock Adjustment/screenshots/step_5.jpg"
+    }
+]

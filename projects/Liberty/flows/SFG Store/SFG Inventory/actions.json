@@ -1,0 +1,598 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store",
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Procurement",
+        "label": "",
+        "required": false,
+        "value": "Procurement",
+        "role": "listitem",
+        "accessible_name": "Procurement",
+        "text_full": "Procurement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "SFG Store",
+        "label": "",
+        "required": false,
+        "value": "SFG Store",
+        "role": "listitem",
+        "accessible_name": "SFG Store",
+        "text_full": "SFG Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "DEPARTMENT",
+        "label": "",
+        "required": false,
+        "value": "DEPARTMENT",
+        "role": "",
+        "accessible_name": "DEPARTMENT",
+        "text_full": "DEPARTMENT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SFG CODE",
+        "label": "",
+        "required": false,
+        "value": "SFG CODE",
+        "role": "",
+        "accessible_name": "SFG CODE",
+        "text_full": "SFG CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SFG DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SFG DESCRIPTION",
+        "role": "",
+        "accessible_name": "SFG DESCRIPTION",
+        "text_full": "SFG DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "DATE TIME",
+        "label": "",
+        "required": false,
+        "value": "DATE TIME",
+        "role": "",
+        "accessible_name": "DATE TIME",
+        "text_full": "DATE TIME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "BATCH ID",
+        "label": "",
+        "required": false,
+        "value": "BATCH ID",
+        "role": "",
+        "accessible_name": "BATCH ID",
+        "text_full": "BATCH ID",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDER NOS",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDER NOS",
+        "role": "",
+        "accessible_name": "JOB ORDER NOS",
+        "text_full": "JOB ORDER NOS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "PLANNED QTY (KG)",
+        "label": "",
+        "required": false,
+        "value": "PLANNED QTY (KG)",
+        "role": "",
+        "accessible_name": "PLANNED QTY (KG)",
+        "text_full": "PLANNED QTY (KG)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "RECEIVED QTY",
+        "label": "",
+        "required": false,
+        "value": "RECEIVED QTY",
+        "role": "",
+        "accessible_name": "RECEIVED QTY",
+        "text_full": "RECEIVED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "BALANCE QTY",
+        "label": "",
+        "required": false,
+        "value": "BALANCE QTY",
+        "role": "",
+        "accessible_name": "BALANCE QTY",
+        "text_full": "BALANCE QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "ISSUE QTY",
+        "label": "",
+        "required": false,
+        "value": "ISSUE QTY",
+        "role": "",
+        "accessible_name": "ISSUE QTY",
+        "text_full": "ISSUE QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > div > app-sfg-store > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"All\")",
+        "selectors": [
+            "button:has-text(\"All\")",
+            "text=\"All\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-store > div > div > button"
+        ],
+        "tag": "button",
+        "text": "All",
+        "label": "",
+        "required": false,
+        "value": "All",
+        "role": "tab",
+        "accessible_name": "All",
+        "text_full": "All",
+        "attrs": {
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Dipping\")",
+        "selectors": [
+            "button:has-text(\"Dipping\")",
+            "text=\"Dipping\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-store > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Dipping",
+        "label": "",
+        "required": false,
+        "value": "Dipping",
+        "role": "tab",
+        "accessible_name": "Dipping",
+        "text_full": "Dipping",
+        "attrs": {
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Flora\")",
+        "selectors": [
+            "button:has-text(\"Flora\")",
+            "text=\"Flora\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sfg-store > div > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "Flora",
+        "label": "",
+        "required": false,
+        "value": "Flora",
+        "role": "tab",
+        "accessible_name": "Flora",
+        "text_full": "Flora",
+        "attrs": {
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_20.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add\")",
+        "selectors": [
+            "button:has-text(\"Add\")",
+            "text=\"Add\"",
+            "div > app-sfg-store > div > div:nth-of-type(3) > table > tbody > tr:nth-of-type(8) > td:nth-of-type(13) > button"
+        ],
+        "tag": "button",
+        "text": "Add",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add",
+        "text_full": "Add",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_21.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store",
+            "messages": [
+                {
+                    "text": "Add SFG Weight \u2014 Flora",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nAdd",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "button.p-button.p-component.p-button-text"
+                },
+                {
+                    "text": "Add",
+                    "selector": "button.p-button.p-component.ng-star-inserted"
+                },
+                {
+                    "text": "No received entries for this SFG.",
+                    "selector": "div.history-empty.ng-star-inserted"
+                },
+                {
+                    "text": "Issued from Drying\n0 Kg \u2014 already added 0 Kg, can still add 0 Kg",
+                    "selector": "div.form-row.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sfg-store > div > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-sfg-store > div > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add SFG Weight \u2014 Flora",
+        "label": "",
+        "required": false,
+        "value": "Add SFG Weight \u2014 Flora",
+        "role": "",
+        "accessible_name": "Add SFG Weight \u2014 Flora",
+        "text_full": "Add SFG Weight \u2014 Flora",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SFG\"",
+        "selectors": [
+            "text=\"SFG\"",
+            "app-sfg-store > div > p-dialog > div > div > div:nth-of-type(3) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "SFG",
+        "label": "SFG",
+        "required": false,
+        "value": "SFG",
+        "role": "",
+        "accessible_name": "SFG",
+        "text_full": "SFG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Batch\"",
+        "selectors": [
+            "text=\"Batch\"",
+            "app-sfg-store > div > p-dialog > div > div > div:nth-of-type(3) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Batch",
+        "label": "Batch",
+        "required": false,
+        "value": "Batch",
+        "role": "",
+        "accessible_name": "Batch",
+        "text_full": "Batch",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Issued from Drying\"",
+        "selectors": [
+            "text=\"Issued from Drying\"",
+            "app-sfg-store > div > p-dialog > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Issued from Drying",
+        "label": "Issued from Drying",
+        "required": false,
+        "value": "Issued from Drying",
+        "role": "",
+        "accessible_name": "Issued from Drying",
+        "text_full": "Issued from Drying",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Output Weight (kg) *\"",
+        "selectors": [
+            "text=\"Output Weight (kg) *\"",
+            "app-sfg-store > div > p-dialog > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Output Weight (kg) *",
+        "label": "Output Weight (kg) *",
+        "required": false,
+        "value": "Output Weight (kg) *",
+        "role": "",
+        "accessible_name": "Output Weight (kg) *",
+        "text_full": "Output Weight (kg) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_26.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Output Weight (kg) *\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > div > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Output Weight (kg) *",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Output Weight (kg) *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_27.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Output Weight (kg) *\"]",
+            "div input[placeholder=\"0.000\"]",
+            "p-dialog > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > div > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Output Weight (kg) *",
+        "required": true,
+        "value": "0.001",
+        "role": "spinbutton",
+        "accessible_name": "Output Weight (kg) *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_29.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "div > div > app-sfg-store > div > p-dialog > div > div > div:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/SFG Store/SFG Inventory/screenshots/step_30.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/inventory/sfg-store",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header"
+            ]
+        }
+    }
+]

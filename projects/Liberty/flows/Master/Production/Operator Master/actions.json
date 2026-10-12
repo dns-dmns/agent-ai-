@@ -1,0 +1,635 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Operator Master",
+        "label": "",
+        "required": false,
+        "value": "Operator Master",
+        "role": "listitem",
+        "accessible_name": "Operator Master",
+        "text_full": "Operator Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "EMPLOYEE NAME",
+        "label": "",
+        "required": false,
+        "value": "EMPLOYEE NAME",
+        "role": "",
+        "accessible_name": "EMPLOYEE NAME",
+        "text_full": "EMPLOYEE NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DEPARTMENT",
+        "label": "",
+        "required": false,
+        "value": "DEPARTMENT",
+        "role": "",
+        "accessible_name": "DEPARTMENT",
+        "text_full": "DEPARTMENT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-operator-master-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Operator\")",
+        "selectors": [
+            "button:has-text(\"Add Operator\")",
+            "text=\"Add Operator\"",
+            "div > div:nth-of-type(3) > div > div > app-operator-master-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Operator",
+        "label": "",
+        "required": false,
+        "value": "Add Operator",
+        "role": "button",
+        "accessible_name": "Add Operator",
+        "text_full": "Add Operator",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Edit operator\"]",
+        "selectors": [
+            "[aria-label=\"Edit operator\"]",
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tGANGAMMA\tDIPPING\t\") [title=\"Edit\"]",
+            "div > app-operator-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(5) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit operator",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit",
+            "aria-label": "Edit operator"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Delete operator\"]",
+        "selectors": [
+            "[aria-label=\"Delete operator\"]",
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tGANGAMMA\tDIPPING\t\") [title=\"Delete\"]",
+            "div > app-operator-master-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(5) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete operator",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete",
+            "aria-label": "Delete operator"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Operator\")",
+        "selectors": [
+            "button:has-text(\"Add Operator\")",
+            "text=\"Add Operator\"",
+            "div > div:nth-of-type(3) > div > div > app-operator-master-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Operator",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Operator",
+        "text_full": "Add Operator",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_14.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "messages": [
+                {
+                    "text": "Add Operator\nEmployee Name *\nDepartment *\nSelect department\nActive\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-mask.p-overlay-mask"
+                },
+                {
+                    "text": "Employee Name *\nDepartment *\nSelect department\nActive\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Add Operator",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "op-name",
+                "pn_id_86",
+                "op-dept",
+                "op-active"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-operator-master-list > app-operator-master-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-operator-master-list > app-operator-master-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Operator",
+        "label": "",
+        "required": false,
+        "value": "Add Operator",
+        "role": "",
+        "accessible_name": "Add Operator",
+        "text_full": "Add Operator",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Employee Name *\"",
+        "selectors": [
+            "text=\"Employee Name *\"",
+            "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Employee Name *",
+        "label": "Employee Name *",
+        "required": false,
+        "value": "Employee Name *",
+        "role": "",
+        "accessible_name": "Employee Name *",
+        "text_full": "Employee Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Department *\"",
+        "selectors": [
+            "text=\"Department *\"",
+            "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Department *",
+        "label": "Department *",
+        "required": false,
+        "value": "Department *",
+        "role": "",
+        "accessible_name": "Department *",
+        "text_full": "Department *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_19.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "messages": [
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-7.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-7.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-7.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small",
+        "selectors": [
+            "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "This field is required.",
+        "label": "",
+        "required": false,
+        "value": "This field is required.",
+        "role": "",
+        "accessible_name": "This field is required.",
+        "text_full": "This field is required.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"employeeName\"]",
+        "selectors": [
+            "[formcontrolname=\"employeeName\"]",
+            "#op-name",
+            "input[formcontrolname=\"employeeName\"]",
+            "input[placeholder=\"e.g. GANGAMMA\"]",
+            "input[placeholder=\"Employee Name *\"]",
+            "div #op-name",
+            "div input[formcontrolname=\"employeeName\"]",
+            "div input[placeholder=\"e.g. GANGAMMA\"]",
+            "input#op-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Employee Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Employee Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. GANGAMMA",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"employeeName\"]",
+        "selectors": [
+            "[formcontrolname=\"employeeName\"]",
+            "#op-name",
+            "input[formcontrolname=\"employeeName\"]",
+            "input[placeholder=\"e.g. GANGAMMA\"]",
+            "input[placeholder=\"Employee Name *\"]",
+            "div #op-name",
+            "div input[formcontrolname=\"employeeName\"]",
+            "div input[placeholder=\"e.g. GANGAMMA\"]",
+            "input#op-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Employee Name *",
+        "required": true,
+        "value": "QA-AUTO Employee Name",
+        "role": "textbox",
+        "accessible_name": "Employee Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. GANGAMMA",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_24.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "messages": [
+                {
+                    "text": "DIPPING\nFLORA\nPACKING",
+                    "selector": "div.ng-tns-c1614365056-6.p-overlay.p-component"
+                },
+                {
+                    "text": "DIPPING",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "FLORA",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "PACKING",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1",
+                "pn_id_86_2"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"department\"]",
+        "selectors": [
+            "[formcontrolname=\"department\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Department *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_25.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"DIPPING\"]",
+        "selectors": [
+            "[aria-label=\"DIPPING\"]",
+            "text=\"DIPPING\"",
+            "#pn_id_86_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "DIPPING",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "DIPPING",
+        "text_full": "DIPPING",
+        "attrs": {
+            "aria-label": "DIPPING",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_25.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "messages": [
+                {
+                    "text": "DIPPING",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1",
+                "pn_id_86_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-operator-master-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Operator Master/screenshots/step_26.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/operator-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "op-name",
+                "pn_id_86",
+                "op-dept",
+                "op-active"
+            ]
+        }
+    }
+]

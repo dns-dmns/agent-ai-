@@ -1,0 +1,1592 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Sales & Distribution",
+        "label": "",
+        "required": false,
+        "value": "Sales & Distribution",
+        "role": "listitem",
+        "accessible_name": "Sales & Distribution",
+        "text_full": "Sales & Distribution",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Scheme Master",
+        "label": "",
+        "required": false,
+        "value": "Scheme Master",
+        "role": "listitem",
+        "accessible_name": "Scheme Master",
+        "text_full": "Scheme Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SCHEME NAME",
+        "label": "",
+        "required": false,
+        "value": "SCHEME NAME",
+        "role": "",
+        "accessible_name": "SCHEME NAME",
+        "text_full": "SCHEME NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "APPROVAL",
+        "label": "",
+        "required": false,
+        "value": "APPROVAL",
+        "role": "",
+        "accessible_name": "APPROVAL",
+        "text_full": "APPROVAL",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "STATES",
+        "label": "",
+        "required": false,
+        "value": "STATES",
+        "role": "",
+        "accessible_name": "STATES",
+        "text_full": "STATES",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "VALID FROM",
+        "label": "",
+        "required": false,
+        "value": "VALID FROM",
+        "role": "",
+        "accessible_name": "VALID FROM",
+        "text_full": "VALID FROM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "VALID TO",
+        "label": "",
+        "required": false,
+        "value": "VALID TO",
+        "role": "",
+        "accessible_name": "VALID TO",
+        "text_full": "VALID TO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "LINES",
+        "label": "",
+        "required": false,
+        "value": "LINES",
+        "role": "",
+        "accessible_name": "LINES",
+        "text_full": "LINES",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-scheme-document-list > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Create Scheme\")",
+        "selectors": [
+            "button:has-text(\"Create Scheme\")",
+            "text=\"Create Scheme\"",
+            "div:nth-of-type(3) > div > div > app-scheme-document-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Create Scheme",
+        "label": "",
+        "required": false,
+        "value": "Create Scheme",
+        "role": "button",
+        "accessible_name": "Create Scheme",
+        "text_full": "Create Scheme",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Clear\")",
+        "selectors": [
+            "button:has-text(\"Clear\")",
+            "text=\"Clear\"",
+            "div > div:nth-of-type(3) > div > div > app-scheme-document-list > div > div:nth-of-type(2) > div > button"
+        ],
+        "tag": "button",
+        "text": "Clear",
+        "label": "",
+        "required": false,
+        "value": "Clear",
+        "role": "button",
+        "accessible_name": "Clear all filters",
+        "text_full": "Clear",
+        "attrs": {
+            "title": "Clear all filters"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "div > app-scheme-document-list > div > div:nth-of-type(3) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-scheme-document-list > div > div:nth-of-type(3) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Set Inactive\"]",
+        "selectors": [
+            "button[title=\"Set Inactive\"]",
+            "[aria-label=\"Set Inactive\"]",
+            "button:has(i.pi-ban)",
+            "div > app-scheme-document-list > div > div:nth-of-type(3) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Set Inactive",
+        "text_full": "",
+        "attrs": {
+            "title": "Set Inactive"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Copy\"]",
+        "selectors": [
+            "button[title=\"Copy\"]",
+            "[aria-label=\"Copy\"]",
+            "button:has(i.pi-copy)",
+            "div > app-scheme-document-list > div > div:nth-of-type(3) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Copy",
+        "text_full": "",
+        "attrs": {
+            "title": "Copy"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Download PDF\"]",
+        "selectors": [
+            "button[title=\"Download PDF\"]",
+            "[aria-label=\"Download PDF\"]",
+            "button:has(i.pi-download)",
+            "div > app-scheme-document-list > div > div:nth-of-type(3) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Download PDF",
+        "text_full": "",
+        "attrs": {
+            "title": "Download PDF"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Create Scheme\")",
+        "selectors": [
+            "button:has-text(\"Create Scheme\")",
+            "text=\"Create Scheme\"",
+            "div:nth-of-type(3) > div > div > app-scheme-document-list > div > div > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Create Scheme",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Create Scheme",
+        "text_full": "Create Scheme",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_22.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Sales & Distribution",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Scheme Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Create Scheme",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Back to List",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Line 1",
+                    "selector": "span.line-number"
+                }
+            ],
+            "appeared": [
+                "pn_id_107",
+                "pn_id_110",
+                "pn_id_112",
+                "hideFreeDetail-0",
+                "allowFreeItemRemarks-0",
+                "articleEnabled-0",
+                "remainderEnabled-0",
+                "pn_id_114"
+            ],
+            "disappeared": [
+                "pn_id_12",
+                "pn_id_14",
+                "pn_id_16"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-scheme-form > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-scheme-form > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Create Scheme",
+        "label": "",
+        "required": false,
+        "value": "Create Scheme",
+        "role": "heading",
+        "accessible_name": "Create Scheme",
+        "text_full": "Create Scheme",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-scheme-form > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-scheme-form > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Document Information",
+        "label": "",
+        "required": false,
+        "value": "Document Information",
+        "role": "heading",
+        "accessible_name": "Document Information",
+        "text_full": "Document Information",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-scheme-form > div > form > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-scheme-form > div > form > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Scheme Lines",
+        "label": "",
+        "required": false,
+        "value": "Scheme Lines",
+        "role": "heading",
+        "accessible_name": "Scheme Lines",
+        "text_full": "Scheme Lines",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-scheme-form > div > form > div:nth-of-type(3) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-scheme-form > div > form > div:nth-of-type(3) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Terms & Conditions *",
+        "label": "",
+        "required": false,
+        "value": "Terms & Conditions *",
+        "role": "heading",
+        "accessible_name": "Terms & Conditions *",
+        "text_full": "Terms & Conditions *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Scheme Name *\"",
+        "selectors": [
+            "text=\"Scheme Name *\"",
+            "div > div > app-scheme-form > div > form > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Scheme Name *",
+        "label": "Scheme Name *",
+        "required": false,
+        "value": "Scheme Name *",
+        "role": "",
+        "accessible_name": "Scheme Name *",
+        "text_full": "Scheme Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Approval No. (Auto)\"",
+        "selectors": [
+            "text=\"Approval No. (Auto)\"",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Approval No. (Auto)",
+        "label": "Approval No. (Auto)",
+        "required": false,
+        "value": "Approval No. (Auto)",
+        "role": "",
+        "accessible_name": "Approval No. (Auto)",
+        "text_full": "Approval No. (Auto)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Reference\"",
+        "selectors": [
+            "text=\"Reference\"",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Reference",
+        "label": "Reference",
+        "required": false,
+        "value": "Reference",
+        "role": "",
+        "accessible_name": "Reference",
+        "text_full": "Reference",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Document Date *\"",
+        "selectors": [
+            "text=\"Document Date *\"",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Document Date *",
+        "label": "Document Date *",
+        "required": false,
+        "value": "Document Date *",
+        "role": "",
+        "accessible_name": "Document Date *",
+        "text_full": "Document Date *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Valid From *\"",
+        "selectors": [
+            "text=\"Valid From *\"",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Valid From *",
+        "label": "Valid From *",
+        "required": false,
+        "value": "Valid From *",
+        "role": "",
+        "accessible_name": "Valid From *",
+        "text_full": "Valid From *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Valid To *\"",
+        "selectors": [
+            "text=\"Valid To *\"",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Valid To *",
+        "label": "Valid To *",
+        "required": false,
+        "value": "Valid To *",
+        "role": "",
+        "accessible_name": "Valid To *",
+        "text_full": "Valid To *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Applicable States *\"",
+        "selectors": [
+            "text=\"Applicable States *\"",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Applicable States *",
+        "label": "Applicable States *",
+        "required": false,
+        "value": "Applicable States *",
+        "role": "",
+        "accessible_name": "Applicable States *",
+        "text_full": "Applicable States *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Product Category *\"",
+        "selectors": [
+            "text=\"Product Category *\"",
+            "app-scheme-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Product Category *",
+        "label": "Product Category *",
+        "required": false,
+        "value": "Product Category *",
+        "role": "",
+        "accessible_name": "Product Category *",
+        "text_full": "Product Category *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Doz/Carton *\"",
+        "selectors": [
+            "text=\"Doz/Carton *\"",
+            "app-scheme-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Doz/Carton *",
+        "label": "Doz/Carton *",
+        "required": false,
+        "value": "Doz/Carton *",
+        "role": "",
+        "accessible_name": "Doz/Carton *",
+        "text_full": "Doz/Carton *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Min. Cartons *\"",
+        "selectors": [
+            "text=\"Min. Cartons *\"",
+            "app-scheme-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Min. Cartons *",
+        "label": "Min. Cartons *",
+        "required": false,
+        "value": "Min. Cartons *",
+        "role": "",
+        "accessible_name": "Min. Cartons *",
+        "text_full": "Min. Cartons *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Purchase Qty (Doz) *\"",
+        "selectors": [
+            "text=\"Purchase Qty (Doz) *\"",
+            "app-scheme-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Purchase Qty (Doz) *",
+        "label": "Purchase Qty (Doz) *",
+        "required": false,
+        "value": "Purchase Qty (Doz) *",
+        "role": "",
+        "accessible_name": "Purchase Qty (Doz) *",
+        "text_full": "Purchase Qty (Doz) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Free Qty (Doz)\"",
+        "selectors": [
+            "text=\"Free Qty (Doz)\"",
+            "app-scheme-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Free Qty (Doz)",
+        "label": "Free Qty (Doz)",
+        "required": false,
+        "value": "Free Qty (Doz)",
+        "role": "",
+        "accessible_name": "Free Qty (Doz)",
+        "text_full": "Free Qty (Doz)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_39.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Hide Free Detail\"",
+        "selectors": [
+            "text=\"Hide Free Detail\"",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(3) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Hide Free Detail",
+        "label": "Hide Free Detail",
+        "required": false,
+        "value": "Hide Free Detail",
+        "role": "",
+        "accessible_name": "Hide Free Detail",
+        "text_full": "Hide Free Detail",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_40.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Add Remarks\"",
+        "selectors": [
+            "text=\"Add Remarks\"",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(4) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Add Remarks",
+        "label": "Add Remarks",
+        "required": false,
+        "value": "Add Remarks",
+        "role": "",
+        "accessible_name": "Add Remarks",
+        "text_full": "Add Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_41.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Article\"",
+        "selectors": [
+            "text=\"Article\"",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(5) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Article",
+        "label": "Article",
+        "required": false,
+        "value": "Article",
+        "role": "",
+        "accessible_name": "Article",
+        "text_full": "Article",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_42.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remainder Offer\"",
+        "selectors": [
+            "text=\"Remainder Offer\"",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(6) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Remainder Offer",
+        "label": "Remainder Offer",
+        "required": false,
+        "value": "Remainder Offer",
+        "role": "",
+        "accessible_name": "Remainder Offer",
+        "text_full": "Remainder Offer",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_43.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"schemeName\"]",
+        "selectors": [
+            "[formcontrolname=\"schemeName\"]",
+            "input[formcontrolname=\"schemeName\"]",
+            "input[placeholder=\"e.g. Special Scheme for New FY 2026\"]",
+            "div > div > app-scheme-form > div > form > div > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Special Scheme for New FY 2026",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_44.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"schemeName\"]",
+        "selectors": [
+            "[formcontrolname=\"schemeName\"]",
+            "input[formcontrolname=\"schemeName\"]",
+            "input[placeholder=\"e.g. Special Scheme for New FY 2026\"]",
+            "div > div > app-scheme-form > div > form > div > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Scheme Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Special Scheme for New FY 2026",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_46.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"reference\"]",
+        "selectors": [
+            "[formcontrolname=\"reference\"]",
+            "input[formcontrolname=\"reference\"]",
+            "input[placeholder=\"Optional reference\"]",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional reference",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_47.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"reference\"]",
+        "selectors": [
+            "[formcontrolname=\"reference\"]",
+            "input[formcontrolname=\"reference\"]",
+            "input[placeholder=\"Optional reference\"]",
+            "div > div > app-scheme-form > div > form > div > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Reference",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional reference",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_49.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "October",
+                    "selector": "button.p-ripple.p-datepicker-select-month.ng-tns-c2825477640-12"
+                },
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Arunachal Pradesh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Assam",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_107_list",
+                "pn_id_107_0",
+                "pn_id_107_1",
+                "pn_id_107_2",
+                "pn_id_107_3",
+                "pn_id_107_4",
+                "pn_id_107_5",
+                "pn_id_107_6",
+                "pn_id_107_7",
+                "pn_id_107_8",
+                "pn_id_107_9",
+                "pn_id_107_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"applicableStates\"]",
+        "selectors": [
+            "[formcontrolname=\"applicableStates\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "Applicable States *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_50.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_107_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_50.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "div.p-multiselect-label"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Arunachal Pradesh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Assam",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Chandigarh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_107_list",
+                "pn_id_107_0",
+                "pn_id_107_1",
+                "pn_id_107_2",
+                "pn_id_107_3",
+                "pn_id_107_4",
+                "pn_id_107_5",
+                "pn_id_107_6",
+                "pn_id_107_7",
+                "pn_id_107_8",
+                "pn_id_107_9",
+                "pn_id_107_10"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body",
+        "selectors": [
+            "html > body"
+        ],
+        "tag": "body",
+        "text": "Home\nDashboard\nMaster\nProduct Catalogue\nItem Maste",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Mast",
+        "text_full": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Master Patti Master Nurva Master Business Partners Customer Master Supplier Master Transporter Master Sales & Distribution Scheme Master Distributor Master Depot Master Field Operation Leave Types Weekly Off & Holidays Expense Types Official Work Types ASM - SR Mapping Production Production Machines Operator Master User & Access User Master Roles Master Permissions Sales Connect Dashboard Live Tracking Week Plan Attendance Approvals Give a Task Budgets Sales Report Work Report Au\u2026",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_51.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"productCategory\"]",
+        "selectors": [
+            "[formcontrolname=\"productCategory\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Product Category *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_52.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"250 GRAMS ROLL\"]",
+        "selectors": [
+            "[aria-label=\"250 GRAMS ROLL\"]",
+            "text=\"250 GRAMS ROLL\"",
+            "#pn_id_110_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "250 GRAMS ROLL",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "250 GRAMS ROLL",
+        "text_full": "250 GRAMS ROLL",
+        "attrs": {
+            "aria-label": "250 GRAMS ROLL",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_52.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "Select the Doz/Carton first \u2014 the product list shows only items packed that many dozen to a carton.",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "250 GRAMS ROLL",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_110_list",
+                "pn_id_110_0",
+                "pn_id_110_1",
+                "pn_id_110_2",
+                "pn_id_110_3",
+                "pn_id_110_4",
+                "pn_id_110_5",
+                "pn_id_110_6",
+                "pn_id_110_7",
+                "pn_id_110_8",
+                "pn_id_110_9",
+                "pn_id_110_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"dozensPerCarton\"]",
+        "selectors": [
+            "[formcontrolname=\"dozensPerCarton\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Doz/Carton *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_53.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"25 Doz/Carton\"]",
+        "selectors": [
+            "[aria-label=\"25 Doz/Carton\"]",
+            "text=\"25 Doz/Carton\"",
+            "#pn_id_112_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "25 Doz/Carton",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "25 Doz/Carton",
+        "text_full": "25 Doz/Carton",
+        "attrs": {
+            "aria-label": "25 Doz/Carton",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_53.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "25 Doz/Carton",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_112_list",
+                "pn_id_112_0"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"minimumCartons\"] input",
+        "selectors": [
+            "[formcontrolname=\"minimumCartons\"] input",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_54.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"minimumCartons\"] input",
+        "selectors": [
+            "[formcontrolname=\"minimumCartons\"] input",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_56.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"purchaseQtyDoz\"] input",
+        "selectors": [
+            "[formcontrolname=\"purchaseQtyDoz\"] input",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(4) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_57.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"purchaseQtyDoz\"] input",
+        "selectors": [
+            "[formcontrolname=\"purchaseQtyDoz\"] input",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(4) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_59.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"freeQtyDoz\"] input",
+        "selectors": [
+            "[formcontrolname=\"freeQtyDoz\"] input",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_60.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"freeQtyDoz\"] input",
+        "selectors": [
+            "[formcontrolname=\"freeQtyDoz\"] input",
+            "div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(5) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_62.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "Purchase + Free = 11 Doz is not a whole number of 25 Doz cartons. Adjust the quantities, or pick another Doz/Carton.",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Purchase + Free = 20 Doz is not a whole number of 25 Doz cartons. Adjust the quantities, or pick another Doz/Carton.",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "DFG 1025 - BLACK RAIN KG - MRP \u20b9145",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "DFG 1053 - BLUE BERRY KG - MRP \u20b9145",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "DFG 1203 - SANDALWOOD KG - MRP \u20b9145",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "DFG 1215 - SAPPHIRE KG - MRP \u20b9145",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_114_list",
+                "pn_id_114_0",
+                "pn_id_114_1",
+                "pn_id_114_2",
+                "pn_id_114_3",
+                "pn_id_114_4",
+                "pn_id_114_5"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"eligibleProducts\"]",
+        "selectors": [
+            "[formcontrolname=\"eligibleProducts\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_63.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"DFG 1025 - BLACK RAIN KG - MRP \u20b9145\"]",
+        "selectors": [
+            "[aria-label=\"DFG 1025 - BLACK RAIN KG - MRP \u20b9145\"]",
+            "text=\"DFG 1025 - BLACK RAIN KG - MRP \u20b9145\"",
+            "#pn_id_114_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "DFG 1025 - BLACK RAIN KG - MRP \u20b9145",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "DFG 1025 - BLACK RAIN KG - MRP \u20b9145",
+        "text_full": "DFG 1025 - BLACK RAIN KG - MRP \u20b9145",
+        "attrs": {
+            "aria-label": "DFG 1025 - BLACK RAIN KG - MRP \u20b9145",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_63.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "messages": [
+                {
+                    "text": "MRP \u20b9145",
+                    "selector": "span.line-mrp-badge.ng-star-inserted"
+                },
+                {
+                    "text": "1 SELECTED\nDFG 1025\nBLACK RAIN KG",
+                    "selector": "div.eligible-chips.ng-star-inserted"
+                },
+                {
+                    "text": "1 SELECTED",
+                    "selector": "span.eligible-chips-count"
+                },
+                {
+                    "text": "DFG 1025\nBLACK RAIN KG",
+                    "selector": "span.eligible-chip.ng-star-inserted"
+                },
+                {
+                    "text": "DFG 1025",
+                    "selector": "span.eligible-chip-code"
+                },
+                {
+                    "text": "BLACK RAIN KG",
+                    "selector": "span.eligible-chip-desc.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_114_list",
+                "pn_id_114_0",
+                "pn_id_114_1",
+                "pn_id_114_2",
+                "pn_id_114_3",
+                "pn_id_114_4",
+                "pn_id_114_5"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body",
+        "selectors": [
+            "html > body"
+        ],
+        "tag": "body",
+        "text": "Home\nDashboard\nMaster\nProduct Catalogue\nItem Maste",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Mast",
+        "text_full": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Master Patti Master Nurva Master Business Partners Customer Master Supplier Master Transporter Master Sales & Distribution Scheme Master Distributor Master Depot Master Field Operation Leave Types Weekly Off & Holidays Expense Types Official Work Types ASM - SR Mapping Production Production Machines Operator Master User & Access User Master Roles Master Permissions Sales Connect Dashboard Live Tracking Week Plan Attendance Approvals Give a Task Budgets Sales Report Work Report Au\u2026",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_64.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"termText\"]",
+        "selectors": [
+            "[formcontrolname=\"termText\"]",
+            "textarea[formcontrolname=\"termText\"]",
+            "textarea[placeholder=\"Enter term / condition\"]",
+            "div > div > app-scheme-form > div > form > div:nth-of-type(3) > div:nth-of-type(2) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter term / condition",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_65.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"termText\"]",
+        "selectors": [
+            "[formcontrolname=\"termText\"]",
+            "textarea[formcontrolname=\"termText\"]",
+            "textarea[placeholder=\"Enter term / condition\"]",
+            "div > div > app-scheme-form > div > form > div:nth-of-type(3) > div:nth-of-type(2) > div > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Enter term / condition",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter term / condition",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_66.jpg"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Scheme Master/screenshots/step_67.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+            "messages": [
+                {
+                    "text": "STATE\nMONTH\nYEAR\nClear\nSL.NO\tSCHEME NAME\tAPPROVAL\tSTATES\tVALID FROM\tVALID TO\tLINES\tSTATUS\tACTIONS",
+                    "selector": "app-scheme-document-list.ng-star-inserted"
+                },
+                {
+                    "text": "Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Sales & Distribution",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Scheme Master",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "All States",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                },
+                {
+                    "text": "Any Month",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_124",
+                "pn_id_126",
+                "pn_id_128"
+            ],
+            "disappeared": [
+                "pn_id_107",
+                "pn_id_110",
+                "pn_id_112",
+                "hideFreeDetail-0",
+                "allowFreeItemRemarks-0",
+                "articleEnabled-0",
+                "remainderEnabled-0",
+                "pn_id_114"
+            ]
+        }
+    }
+]

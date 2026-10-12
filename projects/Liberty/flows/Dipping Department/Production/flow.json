@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Dipping Department/Production",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/production",
+    "timestamp": "2026-10-11 19:40:43",
+    "duration_seconds": 2,
+    "step_count": 17,
+    "source": "explorer",
+    "menu_path": [
+        "Dipping Department",
+        "Production"
+    ]
+}

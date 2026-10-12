@@ -1,0 +1,330 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/give-task",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/give-task"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/give-task",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-give-task > div > section > h3",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-give-task > div > section > h3"
+        ],
+        "tag": "h3",
+        "text": "The team's work\n18 in total\nGive a task",
+        "label": "",
+        "required": false,
+        "value": "The team's work 18 in total Give a task",
+        "role": "heading",
+        "accessible_name": "The team's work 18 in total Give a task",
+        "text_full": "The team's work 18 in total Give a task",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Give a Task",
+        "label": "",
+        "required": false,
+        "value": "Give a Task",
+        "role": "listitem",
+        "accessible_name": "Give a Task",
+        "text_full": "Give a Task",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-give-task > div > section > div > table > thead > tr > th",
+        "selectors": [
+            "div > app-give-task > div > section > div > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "#",
+        "label": "",
+        "required": false,
+        "value": "#",
+        "role": "",
+        "accessible_name": "#",
+        "text_full": "#",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "TASK",
+        "label": "",
+        "required": false,
+        "value": "TASK",
+        "role": "",
+        "accessible_name": "TASK",
+        "text_full": "TASK",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "WHO",
+        "label": "",
+        "required": false,
+        "value": "WHO",
+        "role": "",
+        "accessible_name": "WHO",
+        "text_full": "WHO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "DEADLINE",
+        "label": "",
+        "required": false,
+        "value": "DEADLINE",
+        "role": "",
+        "accessible_name": "DEADLINE",
+        "text_full": "DEADLINE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-give-task > div > section > div > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "WHERE IT STANDS",
+        "label": "",
+        "required": false,
+        "value": "WHERE IT STANDS",
+        "role": "",
+        "accessible_name": "WHERE IT STANDS",
+        "text_full": "WHERE IT STANDS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Give a task\")",
+        "selectors": [
+            "button:has-text(\"Give a task\")",
+            "text=\"Give a task\"",
+            "div:nth-of-type(3) > div > div > app-give-task > div > section > h3 > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Give a task",
+        "label": "",
+        "required": false,
+        "value": "Give a task",
+        "role": "button",
+        "accessible_name": "Give a task",
+        "text_full": "Give a task",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"TASK\")",
+        "selectors": [
+            "button:has-text(\"TASK\")",
+            "text=\"TASK\"",
+            "app-give-task > div > section > div > table > thead > tr > th:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "TASK",
+        "label": "",
+        "required": false,
+        "value": "TASK",
+        "role": "button",
+        "accessible_name": "TASK",
+        "text_full": "TASK",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"WHO\")",
+        "selectors": [
+            "button:has-text(\"WHO\")",
+            "text=\"WHO\"",
+            "app-give-task > div > section > div > table > thead > tr > th:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "WHO",
+        "label": "",
+        "required": false,
+        "value": "WHO",
+        "role": "button",
+        "accessible_name": "WHO",
+        "text_full": "WHO",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"TYPE\")",
+        "selectors": [
+            "button:has-text(\"TYPE\")",
+            "text=\"TYPE\"",
+            "app-give-task > div > section > div > table > thead > tr > th:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "button",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"DEADLINE\")",
+        "selectors": [
+            "button:has-text(\"DEADLINE\")",
+            "text=\"DEADLINE\"",
+            "app-give-task > div > section > div > table > thead > tr > th:nth-of-type(5) > button"
+        ],
+        "tag": "button",
+        "text": "DEADLINE",
+        "label": "",
+        "required": false,
+        "value": "DEADLINE",
+        "role": "button",
+        "accessible_name": "DEADLINE",
+        "text_full": "DEADLINE",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"WHERE IT STANDS\")",
+        "selectors": [
+            "button:has-text(\"WHERE IT STANDS\")",
+            "text=\"WHERE IT STANDS\"",
+            "app-give-task > div > section > div > table > thead > tr > th:nth-of-type(6) > button"
+        ],
+        "tag": "button",
+        "text": "WHERE IT STANDS",
+        "label": "",
+        "required": false,
+        "value": "WHERE IT STANDS",
+        "role": "button",
+        "accessible_name": "WHERE IT STANDS",
+        "text_full": "WHERE IT STANDS",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Give a Task/screenshots/step_17.jpg"
+    }
+]

@@ -2,9 +2,9 @@
     "schema_version": 1,
     "flow_name": "Master/Product Catalogue/Category Master",
     "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
-    "timestamp": "2026-10-11 18:54:16",
+    "timestamp": "2026-10-11 19:37:18",
     "duration_seconds": 9,
-    "step_count": 32,
+    "step_count": 30,
     "source": "explorer",
     "menu_path": [
         "Master",

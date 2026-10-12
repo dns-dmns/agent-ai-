@@ -1,0 +1,144 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/management-dashboard/overview",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/management-dashboard/overview"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/management-dashboard/overview",
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-dashboard-shell > div > div > div > div:nth-of-type(2) > h1",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-dashboard-shell > div > div > div > div:nth-of-type(2) > h1"
+        ],
+        "tag": "h1",
+        "text": "Good evening, admin!",
+        "label": "",
+        "required": false,
+        "value": "Good evening, admin!",
+        "role": "heading",
+        "accessible_name": "Good evening, admin!",
+        "text_full": "Good evening, admin!",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-dashboard-shell > div > div:nth-of-type(2) > main > app-dashboard-overview > div > div > h2",
+        "selectors": [
+            "div > app-dashboard-shell > div > div:nth-of-type(2) > main > app-dashboard-overview > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Business Snapshot",
+        "label": "",
+        "required": false,
+        "value": "Business Snapshot",
+        "role": "heading",
+        "accessible_name": "Business Snapshot",
+        "text_full": "Business Snapshot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(2) > main > app-dashboard-overview > div > div:nth-of-type(3) > app-chart-panel > div > div > h3",
+        "selectors": [
+            "div:nth-of-type(2) > main > app-dashboard-overview > div > div:nth-of-type(3) > app-chart-panel > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Sales Trend",
+        "label": "",
+        "required": false,
+        "value": "Sales Trend",
+        "role": "heading",
+        "accessible_name": "Sales Trend",
+        "text_full": "Sales Trend",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(2) > main > app-dashboard-overview > div > div:nth-of-type(3) > app-chart-panel:nth-of-type(2) > div > div > h3",
+        "selectors": [
+            "div:nth-of-type(2) > main > app-dashboard-overview > div > div:nth-of-type(3) > app-chart-panel:nth-of-type(2) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Sales Contribution by Category",
+        "label": "",
+        "required": false,
+        "value": "Sales Contribution by Category",
+        "role": "heading",
+        "accessible_name": "Sales Contribution by Category",
+        "text_full": "Sales Contribution by Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Dashboard",
+        "label": "",
+        "required": false,
+        "value": "Dashboard",
+        "role": "listitem",
+        "accessible_name": "Dashboard",
+        "text_full": "Dashboard",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Overview",
+        "label": "",
+        "required": false,
+        "value": "Overview",
+        "role": "listitem",
+        "accessible_name": "Overview",
+        "text_full": "Overview",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Dashboard/screenshots/step_8.jpg"
+    }
+]

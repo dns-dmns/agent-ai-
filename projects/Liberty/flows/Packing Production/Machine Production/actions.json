@@ -1,0 +1,415 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/machine-production",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/machine-production"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/machine-production",
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Machine Production",
+        "label": "",
+        "required": false,
+        "value": "Machine Production",
+        "role": "listitem",
+        "accessible_name": "Machine Production",
+        "text_full": "Machine Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "JOB CARD NO.",
+        "label": "",
+        "required": false,
+        "value": "JOB CARD NO.",
+        "role": "",
+        "accessible_name": "JOB CARD NO.",
+        "text_full": "JOB CARD NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE",
+        "role": "",
+        "accessible_name": "SKU CODE",
+        "text_full": "SKU CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SKU DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SKU DESCRIPTION",
+        "role": "",
+        "accessible_name": "SKU DESCRIPTION",
+        "text_full": "SKU DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "GRAMS/STICK",
+        "label": "",
+        "required": false,
+        "value": "GRAMS/STICK",
+        "role": "",
+        "accessible_name": "GRAMS/STICK",
+        "text_full": "GRAMS/STICK",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "PLANNED\nQTY (PCS)",
+        "label": "",
+        "required": false,
+        "value": "PLANNED QTY (PCS)",
+        "role": "",
+        "accessible_name": "PLANNED QTY (PCS)",
+        "text_full": "PLANNED QTY (PCS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "PRODUCED\nQTY (PCS)",
+        "label": "",
+        "required": false,
+        "value": "PRODUCED QTY (PCS)",
+        "role": "",
+        "accessible_name": "PRODUCED QTY (PCS)",
+        "text_full": "PRODUCED QTY (PCS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "SFG/BOX",
+        "label": "",
+        "required": false,
+        "value": "SFG/BOX",
+        "role": "",
+        "accessible_name": "SFG/BOX",
+        "text_full": "SFG/BOX",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "TARGET QTY\n(CTNS)",
+        "label": "",
+        "required": false,
+        "value": "TARGET QTY (CTNS)",
+        "role": "",
+        "accessible_name": "TARGET QTY (CTNS)",
+        "text_full": "TARGET QTY (CTNS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "SFG QTY\n(KG)",
+        "label": "",
+        "required": false,
+        "value": "SFG QTY (KG)",
+        "role": "",
+        "accessible_name": "SFG QTY (KG)",
+        "text_full": "SFG QTY (KG)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(14)",
+        "selectors": [
+            "div > app-machine-production-list > div > div:nth-of-type(2) > div > table > thead > tr > th:nth-of-type(14)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Plan Production\")",
+        "selectors": [
+            "button:has-text(\"Plan Production\")",
+            "text=\"Plan Production\"",
+            "div > div:nth-of-type(3) > div > div > app-machine-production-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Plan Production",
+        "label": "",
+        "required": false,
+        "value": "Plan Production",
+        "role": "button",
+        "accessible_name": "Plan Production",
+        "text_full": "Plan Production",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Saved\"]",
+        "selectors": [
+            "button[title=\"Saved\"]",
+            "[aria-label=\"Saved\"]",
+            "button:has(i.pi-check-circle)",
+            "app-machine-production-list > div > div:nth-of-type(2) > div > table > tbody > tr > td:nth-of-type(14) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Saved",
+        "text_full": "",
+        "attrs": {
+            "title": "Saved"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "app-machine-production-list > div > div:nth-of-type(2) > div > table > tbody > tr > td:nth-of-type(14) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Open detail\"]",
+        "selectors": [
+            "button[title=\"Open detail\"]",
+            "[aria-label=\"Open detail\"]",
+            "button:has(i.pi-pencil)",
+            "app-machine-production-list > div > div:nth-of-type(2) > div > table > tbody > tr > td:nth-of-type(14) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Open detail",
+        "text_full": "",
+        "attrs": {
+            "title": "Open detail"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Machine Production/screenshots/step_22.jpg"
+    }
+]

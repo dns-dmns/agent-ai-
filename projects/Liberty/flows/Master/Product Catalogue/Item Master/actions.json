@@ -8,7 +8,7 @@
         "tag": "",
         "text": "",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_1.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -26,7 +26,7 @@
         "text_full": "Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_2.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -44,7 +44,7 @@
         "text_full": "Product Catalogue",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_3.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -62,7 +62,7 @@
         "text_full": "Item Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_4.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -80,7 +80,7 @@
         "text_full": "SL.NO",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_5.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -98,7 +98,7 @@
         "text_full": "CATEGORY",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_6.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -116,7 +116,7 @@
         "text_full": "TYPE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_7.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -134,7 +134,7 @@
         "text_full": "SKU CODE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_8.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -152,7 +152,7 @@
         "text_full": "IMAGES",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_9.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -170,7 +170,7 @@
         "text_full": "SKU DESCRIPTION",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_10.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -188,7 +188,7 @@
         "text_full": "UNIT PRICE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_11.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -206,7 +206,7 @@
         "text_full": "HSN",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_12.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -224,7 +224,7 @@
         "text_full": "UOM",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_13.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -242,7 +242,7 @@
         "text_full": "DOZ/CARTON",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_14.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -260,7 +260,7 @@
         "text_full": "GRAMS/STICK",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_15.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -278,7 +278,7 @@
         "text_full": "GROSS WT",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_16.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -296,7 +296,7 @@
         "text_full": "TARE WT",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_17.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -314,7 +314,7 @@
         "text_full": "NET WT",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_18.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -332,7 +332,7 @@
         "text_full": "L (CM)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_19.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -350,7 +350,7 @@
         "text_full": "W (CM)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_20.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -368,7 +368,7 @@
         "text_full": "H (CM)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_21.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -386,7 +386,7 @@
         "text_full": "CBM",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_22.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -404,7 +404,7 @@
         "text_full": "ACTIVE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_23.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -422,7 +422,7 @@
         "text_full": "BOM STATUS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_24.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -440,7 +440,7 @@
         "text_full": "ACTIONS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_25.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -463,7 +463,7 @@
             "aria-label": "Pending Approvals"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_26.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -485,7 +485,7 @@
             "type": "button"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_27.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -508,7 +508,7 @@
             "title": "View images"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_28.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -532,7 +532,7 @@
             "title": "Edit"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_29.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -556,7 +556,7 @@
             "title": "Delete"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_30.jpg"
     },
     {
         "action": "CLICK",
@@ -577,7 +577,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_31.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
@@ -602,10 +602,10 @@
     },
     {
         "action": "VERIFY_TEXT",
-        "selector": "#pn_id_10_header",
+        "selector": "div > div > app-item-list > app-item-form > p-dialog > div > div > div > span",
         "selectors": [
-            "#pn_id_10_header",
-            "div > div > app-item-list > app-item-form > p-dialog > div > div > div > span"
+            "div > div > app-item-list > app-item-form > p-dialog > div > div > div > span",
+            "#pn_id_10_header"
         ],
         "tag": "span",
         "text": "Add Item",
@@ -617,7 +617,7 @@
         "text_full": "Add Item",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_32.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -636,7 +636,7 @@
         "text_full": "SKU Code *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_33.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -655,7 +655,7 @@
         "text_full": "Type *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_34.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -674,7 +674,7 @@
         "text_full": "Category *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_35.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -693,7 +693,7 @@
         "text_full": "SKU Description *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_36.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -712,7 +712,7 @@
         "text_full": "Unit Price (INR) *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_37.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -731,7 +731,7 @@
         "text_full": "MRP (INR) *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_38.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -750,7 +750,7 @@
         "text_full": "SFG / Box *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_39.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -769,7 +769,7 @@
         "text_full": "HSN Code",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_40.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -788,7 +788,7 @@
         "text_full": "UOM *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_41.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -807,7 +807,7 @@
         "text_full": "Minimum Stock *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_42.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -826,7 +826,7 @@
         "text_full": "Dozens per Carton *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_43.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -845,7 +845,7 @@
         "text_full": "Grams / Stick *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_44.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -864,7 +864,7 @@
         "text_full": "Length (cm) *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_45.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -883,7 +883,7 @@
         "text_full": "Width (cm) *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_46.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -902,7 +902,7 @@
         "text_full": "Height (cm) *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_47.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -921,7 +921,7 @@
         "text_full": "Gross Wt (kg)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_48.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -940,7 +940,7 @@
         "text_full": "Tare Wt (kg)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_49.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -959,7 +959,7 @@
         "text_full": "Net Wt (kg)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_50.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -978,7 +978,7 @@
         "text_full": "CBM (m3)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_51.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -997,7 +997,7 @@
         "text_full": "Active",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_52.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1016,7 +1016,7 @@
         "text_full": "Product Images",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_53.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1035,7 +1035,7 @@
         "text_full": "Click to upload images JPG, JPEG or PNG \u00b7 multiple allowed",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_54.jpg"
     },
     {
         "action": "CLICK",
@@ -1056,7 +1056,7 @@
         "attrs": {
             "type": "submit"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_55.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
@@ -1106,7 +1106,7 @@
         "text_full": "Category is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_56.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1124,7 +1124,7 @@
         "text_full": "SKU Description is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_57.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1142,7 +1142,7 @@
         "text_full": "Unit Price is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_58.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1160,7 +1160,7 @@
         "text_full": "MRP is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_59.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1178,7 +1178,7 @@
         "text_full": "SFG / Box is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_60.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1196,7 +1196,7 @@
         "text_full": "UOM is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_61.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1214,7 +1214,7 @@
         "text_full": "Minimum Stock is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_62.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1232,7 +1232,7 @@
         "text_full": "Dozens per Carton is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_63.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1250,7 +1250,7 @@
         "text_full": "Grams / Stick is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_64.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1268,7 +1268,7 @@
         "text_full": "Length is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_65.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1286,7 +1286,7 @@
         "text_full": "Width is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_66.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1304,7 +1304,7 @@
         "text_full": "Height is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_67.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -1324,7 +1324,7 @@
             "role": "alert"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_68.jpg"
     },
     {
         "action": "CLICK",
@@ -1337,7 +1337,7 @@
         "value": "",
         "label": "Type *",
         "required": true,
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_69.jpg",
         "synthetic": "open dropdown"
     },
     {
@@ -1361,7 +1361,7 @@
             "aria-label": "Domestic",
             "role": "option"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_69.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
@@ -1386,7 +1386,7 @@
         "value": "",
         "label": "Category *",
         "required": true,
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_70.jpg",
         "synthetic": "open dropdown"
     },
     {
@@ -1410,7 +1410,7 @@
             "aria-label": "1 KG PACKETS",
             "role": "option"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_70.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
@@ -1461,7 +1461,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_71.jpg"
     },
     {
         "action": "TYPE",
@@ -1487,7 +1487,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_73.jpg"
     },
     {
         "action": "CLICK",
@@ -1512,7 +1512,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_74.jpg"
     },
     {
         "action": "TYPE",
@@ -1537,7 +1537,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_76.jpg"
     },
     {
         "action": "CLICK",
@@ -1562,7 +1562,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_77.jpg"
     },
     {
         "action": "TYPE",
@@ -1587,7 +1587,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_79.jpg"
     },
     {
         "action": "CLICK",
@@ -1612,7 +1612,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_80.jpg"
     },
     {
         "action": "TYPE",
@@ -1637,7 +1637,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_82.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
@@ -1689,7 +1689,7 @@
         "value": "",
         "label": "UOM *",
         "required": true,
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_83.jpg",
         "synthetic": "open dropdown"
     },
     {
@@ -1713,7 +1713,7 @@
             "aria-label": "Dozens",
             "role": "option"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_83.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
@@ -1757,7 +1757,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_84.jpg"
     },
     {
         "action": "TYPE",
@@ -1782,7 +1782,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_86.jpg"
     },
     {
         "action": "CLICK",
@@ -1807,7 +1807,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_87.jpg"
     },
     {
         "action": "TYPE",
@@ -1832,7 +1832,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_89.jpg"
     },
     {
         "action": "CLICK",
@@ -1857,7 +1857,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_90.jpg"
     },
     {
         "action": "TYPE",
@@ -1882,7 +1882,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_92.jpg"
     },
     {
         "action": "CLICK",
@@ -1907,7 +1907,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_93.jpg"
     },
     {
         "action": "TYPE",
@@ -1932,7 +1932,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_95.jpg"
     },
     {
         "action": "CLICK",
@@ -1957,7 +1957,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_96.jpg"
     },
     {
         "action": "TYPE",
@@ -1982,7 +1982,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_98.jpg"
     },
     {
         "action": "CLICK",
@@ -2007,7 +2007,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_99.jpg"
     },
     {
         "action": "TYPE",
@@ -2032,7 +2032,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_101.jpg"
     },
     {
         "action": "CLICK",
@@ -2057,7 +2057,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_102.jpg"
     },
     {
         "action": "TYPE",
@@ -2082,7 +2082,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_104.jpg"
     },
     {
         "action": "CLICK",
@@ -2107,7 +2107,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_105.jpg"
     },
     {
         "action": "TYPE",
@@ -2132,7 +2132,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_107.jpg"
     },
     {
         "action": "CLICK",
@@ -2157,7 +2157,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_108.jpg"
     },
     {
         "action": "TYPE",
@@ -2182,7 +2182,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_110.jpg"
     },
     {
         "action": "CLICK",
@@ -2203,7 +2203,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Item Master/screenshots/step_111.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/item-master/list",

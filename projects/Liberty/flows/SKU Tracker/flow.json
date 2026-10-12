@@ -1,0 +1,12 @@
+{
+    "schema_version": 1,
+    "flow_name": "SKU Tracker",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sku-tracker",
+    "timestamp": "2026-10-11 19:41:49",
+    "duration_seconds": 2,
+    "step_count": 6,
+    "source": "explorer",
+    "menu_path": [
+        "SKU Tracker"
+    ]
+}

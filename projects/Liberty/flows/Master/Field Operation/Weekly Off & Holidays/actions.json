@@ -1,0 +1,1128 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Field Operation",
+        "label": "",
+        "required": false,
+        "value": "Field Operation",
+        "role": "listitem",
+        "accessible_name": "Field Operation",
+        "text_full": "Field Operation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Weekly Off & Holidays",
+        "label": "",
+        "required": false,
+        "value": "Weekly Off & Holidays",
+        "role": "listitem",
+        "accessible_name": "Weekly Off & Holidays",
+        "text_full": "Weekly Off & Holidays",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CODE",
+        "label": "",
+        "required": false,
+        "value": "CODE",
+        "role": "",
+        "accessible_name": "CODE",
+        "text_full": "CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "NAME",
+        "label": "",
+        "required": false,
+        "value": "NAME",
+        "role": "",
+        "accessible_name": "NAME",
+        "text_full": "NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "DATE OR RULE",
+        "label": "",
+        "required": false,
+        "value": "DATE OR RULE",
+        "role": "",
+        "accessible_name": "DATE OR RULE",
+        "text_full": "DATE OR RULE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "APPLIES TO",
+        "label": "",
+        "required": false,
+        "value": "APPLIES TO",
+        "role": "",
+        "accessible_name": "APPLIES TO",
+        "text_full": "APPLIES TO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Calendar Entry\")",
+        "selectors": [
+            "button:has-text(\"Add Calendar Entry\")",
+            "text=\"Add Calendar Entry\"",
+            "div > div:nth-of-type(3) > div > div > app-holiday-calendar-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Calendar Entry",
+        "label": "",
+        "required": false,
+        "value": "Add Calendar Entry",
+        "role": "button",
+        "accessible_name": "Add Calendar Entry",
+        "text_full": "Add Calendar Entry",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Edit entry\"]",
+        "selectors": [
+            "[aria-label=\"Edit entry\"]",
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\t01\tSUN\t\") [title=\"Edit\"]",
+            "div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit entry",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit",
+            "aria-label": "Edit entry"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Delete entry\"]",
+        "selectors": [
+            "[aria-label=\"Delete entry\"]",
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\t01\tSUN\t\") [title=\"Delete\"]",
+            "div > app-holiday-calendar-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete entry",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete",
+            "aria-label": "Delete entry"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_16.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Calendar Entry\")",
+        "selectors": [
+            "button:has-text(\"Add Calendar Entry\")",
+            "text=\"Add Calendar Entry\"",
+            "div > div:nth-of-type(3) > div > div > app-holiday-calendar-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Calendar Entry",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Calendar Entry",
+        "text_full": "Add Calendar Entry",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_17.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [
+                {
+                    "text": "Add Calendar Entry",
+                    "selector": "div.ng-tns-c2196985156-6.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "h-code",
+                "h-name",
+                "pn_id_89",
+                "h-type",
+                "h-date",
+                "h-recur",
+                "pn_id_91",
+                "h-applies",
+                "pn_id_93",
+                "h-active"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-holiday-calendar-list > app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-holiday-calendar-list > app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Calendar Entry",
+        "label": "",
+        "required": false,
+        "value": "Add Calendar Entry",
+        "role": "",
+        "accessible_name": "Add Calendar Entry",
+        "text_full": "Add Calendar Entry",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Code *\"",
+        "selectors": [
+            "text=\"Code *\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Code *",
+        "label": "Code *",
+        "required": false,
+        "value": "Code *",
+        "role": "",
+        "accessible_name": "Code *",
+        "text_full": "Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Name *\"",
+        "selectors": [
+            "text=\"Name *\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Name *",
+        "label": "Name *",
+        "required": false,
+        "value": "Name *",
+        "role": "",
+        "accessible_name": "Name *",
+        "text_full": "Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Entry Type *\"",
+        "selectors": [
+            "text=\"Entry Type *\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Entry Type *",
+        "label": "Entry Type *",
+        "required": false,
+        "value": "Entry Type *",
+        "role": "",
+        "accessible_name": "Entry Type *",
+        "text_full": "Entry Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Holiday Date *\"",
+        "selectors": [
+            "text=\"Holiday Date *\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Holiday Date *",
+        "label": "Holiday Date *",
+        "required": false,
+        "value": "Holiday Date *",
+        "role": "",
+        "accessible_name": "Holiday Date *",
+        "text_full": "Holiday Date *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Same date every year\"",
+        "selectors": [
+            "text=\"Same date every year\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Same date every year",
+        "label": "Same date every year",
+        "required": false,
+        "value": "Same date every year",
+        "role": "",
+        "accessible_name": "Same date every year",
+        "text_full": "Same date every year",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Applies To *\"",
+        "selectors": [
+            "text=\"Applies To *\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Applies To *",
+        "label": "Applies To *",
+        "required": false,
+        "value": "Applies To *",
+        "role": "",
+        "accessible_name": "Applies To *",
+        "text_full": "Applies To *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State *\"",
+        "selectors": [
+            "text=\"State *\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "State *",
+        "label": "State *",
+        "required": false,
+        "value": "State *",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_26.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_27.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-11.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-11.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-11.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small",
+        "selectors": [
+            "app-holiday-calendar-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "This field is required.",
+        "label": "",
+        "required": false,
+        "value": "This field is required.",
+        "role": "",
+        "accessible_name": "This field is required.",
+        "text_full": "This field is required.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_29.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"code\"]",
+        "selectors": [
+            "[formcontrolname=\"code\"]",
+            "#h-code",
+            "input[formcontrolname=\"code\"]",
+            "input[placeholder=\"e.g. WO-SUN\"]",
+            "input[placeholder=\"Code *\"]",
+            "div #h-code",
+            "div input[formcontrolname=\"code\"]",
+            "div input[placeholder=\"e.g. WO-SUN\"]",
+            "input#h-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. WO-SUN",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_30.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"code\"]",
+        "selectors": [
+            "[formcontrolname=\"code\"]",
+            "#h-code",
+            "input[formcontrolname=\"code\"]",
+            "input[placeholder=\"e.g. WO-SUN\"]",
+            "input[placeholder=\"Code *\"]",
+            "div #h-code",
+            "div input[formcontrolname=\"code\"]",
+            "div input[placeholder=\"e.g. WO-SUN\"]",
+            "input#h-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Code *",
+        "required": true,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. WO-SUN",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_32.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"name\"]",
+        "selectors": [
+            "[formcontrolname=\"name\"]",
+            "#h-name",
+            "input[formcontrolname=\"name\"]",
+            "input[placeholder=\"e.g. Sunday weekly off\"]",
+            "input[placeholder=\"Name *\"]",
+            "div #h-name",
+            "div input[formcontrolname=\"name\"]",
+            "div input[placeholder=\"e.g. Sunday weekly off\"]",
+            "input#h-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Sunday weekly off",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_33.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"name\"]",
+        "selectors": [
+            "[formcontrolname=\"name\"]",
+            "#h-name",
+            "input[formcontrolname=\"name\"]",
+            "input[placeholder=\"e.g. Sunday weekly off\"]",
+            "input[placeholder=\"Name *\"]",
+            "div #h-name",
+            "div input[formcontrolname=\"name\"]",
+            "div input[placeholder=\"e.g. Sunday weekly off\"]",
+            "input#h-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Name *",
+        "required": true,
+        "value": "QA-AUTO Name",
+        "role": "textbox",
+        "accessible_name": "Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Sunday weekly off",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_35.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [
+                {
+                    "text": "Weekly Off\nPublic Holiday",
+                    "selector": "div.ng-tns-c1614365056-7.p-overlay.p-component"
+                },
+                {
+                    "text": "Weekly Off",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Public Holiday",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_89_list",
+                "pn_id_89_0",
+                "pn_id_89_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"entryType\"]",
+        "selectors": [
+            "[formcontrolname=\"entryType\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Entry Type *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_36.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Weekly Off\"]",
+        "selectors": [
+            "[aria-label=\"Weekly Off\"]",
+            "text=\"Weekly Off\"",
+            "#pn_id_89_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Weekly Off",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Weekly Off",
+        "text_full": "Weekly Off",
+        "attrs": {
+            "aria-label": "Weekly Off",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_36.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [
+                {
+                    "text": "Day of Week *\nSelect day\nThis field is required.",
+                    "selector": "div.form-field.is-invalid.ng-star-inserted"
+                },
+                {
+                    "text": "Which Weeks\nEvery week\ne.g. \"2nd and 4th\" for alternate Saturdays.",
+                    "selector": "div.form-field.ng-star-inserted"
+                },
+                {
+                    "text": "Select day",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                },
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Every week",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Weekly Off",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_95",
+                "h-day",
+                "pn_id_97",
+                "h-weeks"
+            ],
+            "disappeared": [
+                "h-date",
+                "h-recur",
+                "pn_id_89_list",
+                "pn_id_89_0",
+                "pn_id_89_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"appliesTo\"]",
+        "selectors": [
+            "[formcontrolname=\"appliesTo\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Applies To *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_37.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Everyone\"]",
+        "selectors": [
+            "[aria-label=\"Everyone\"]",
+            "text=\"Everyone\"",
+            "#pn_id_91_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Everyone",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Everyone",
+        "text_full": "Everyone",
+        "attrs": {
+            "aria-label": "Everyone",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_37.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_91_list",
+                "pn_id_91_0",
+                "pn_id_91_1",
+                "pn_id_91_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"applicableStates\"]",
+        "selectors": [
+            "[formcontrolname=\"applicableStates\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "State *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_38.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_93_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_38.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body",
+        "selectors": [
+            "html > body"
+        ],
+        "tag": "body",
+        "text": "Home\nDashboard\nMaster\nProduct Catalogue\nItem Maste",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Mast",
+        "text_full": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Master Patti Master Nurva Master Business Partners Customer Master Supplier Master Transporter Master Sales & Distribution Scheme Master Distributor Master Depot Master Field Operation Leave Types Weekly Off & Holidays Expense Types Official Work Types ASM - SR Mapping Production Production Machines Operator Master User & Access User Master Roles Master Permissions Sales Connect Dashboard Live Tracking Week Plan Attendance Approvals Give a Task Budgets Sales Report Work Report Au\u2026",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_39.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Search calendar entries\"]",
+        "selectors": [
+            "[aria-label=\"Search calendar entries\"]",
+            "input[placeholder=\"Search code or name\u2026\"]",
+            "div:nth-of-type(3) > div > div > app-holiday-calendar-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Search calendar entries",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search code or name\u2026",
+            "aria-label": "Search calendar entries",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_40.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[aria-label=\"Search calendar entries\"]",
+        "selectors": [
+            "[aria-label=\"Search calendar entries\"]",
+            "input[placeholder=\"Search code or name\u2026\"]",
+            "div:nth-of-type(3) > div > div > app-holiday-calendar-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "Search calendar entries",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search code or name\u2026",
+            "aria-label": "Search calendar entries",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_42.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [
+                {
+                    "text": "All types\nWeekly Off\nPublic Holiday",
+                    "selector": "div.ng-tns-c1614365056-4.p-overlay.p-component"
+                },
+                {
+                    "text": "All types",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Weekly Off",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Public Holiday",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1",
+                "pn_id_8_2"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All types\"]",
+        "selectors": [
+            "[aria-label=\"All types\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "All types",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_43.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All types\"]",
+        "selectors": [
+            "[aria-label=\"All types\"]",
+            "text=\"All types\"",
+            "#pn_id_8_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "All types",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "All types",
+        "text_full": "All types",
+        "attrs": {
+            "aria-label": "All types",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_43.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1",
+                "pn_id_8_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Status\"]",
+        "selectors": [
+            "[aria-label=\"Status\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Status",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_44.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All statuses\"]",
+        "selectors": [
+            "[aria-label=\"All statuses\"]",
+            "text=\"All statuses\"",
+            "#pn_id_11_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "All statuses",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "All statuses",
+        "text_full": "All statuses",
+        "attrs": {
+            "aria-label": "All statuses",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_44.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/holiday-calendar-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_11_list",
+                "pn_id_11_0",
+                "pn_id_11_1",
+                "pn_id_11_2"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[aria-label=\"All statuses\"]",
+        "selectors": [
+            "[aria-label=\"All statuses\"]",
+            "div:nth-of-type(3) > div > div > app-holiday-calendar-list > div > div > div:nth-of-type(2) > p-select:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "All statuses",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "combobox",
+        "accessible_name": "All statuses",
+        "text_full": "All statuses",
+        "attrs": {
+            "aria-label": "All statuses",
+            "role": "combobox"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Weekly Off & Holidays/screenshots/step_45.jpg"
+    }
+]

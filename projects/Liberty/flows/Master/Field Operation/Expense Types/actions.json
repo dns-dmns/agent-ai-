@@ -1,0 +1,1031 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Field Operation",
+        "label": "",
+        "required": false,
+        "value": "Field Operation",
+        "role": "listitem",
+        "accessible_name": "Field Operation",
+        "text_full": "Field Operation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Expense Types",
+        "label": "",
+        "required": false,
+        "value": "Expense Types",
+        "role": "listitem",
+        "accessible_name": "Expense Types",
+        "text_full": "Expense Types",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CODE",
+        "label": "",
+        "required": false,
+        "value": "CODE",
+        "role": "",
+        "accessible_name": "CODE",
+        "text_full": "CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "NAME",
+        "label": "",
+        "required": false,
+        "value": "NAME",
+        "role": "",
+        "accessible_name": "NAME",
+        "text_full": "NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "LIMIT",
+        "label": "",
+        "required": false,
+        "value": "LIMIT",
+        "role": "",
+        "accessible_name": "LIMIT",
+        "text_full": "LIMIT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "BILL NEEDED",
+        "label": "",
+        "required": false,
+        "value": "BILL NEEDED",
+        "role": "",
+        "accessible_name": "BILL NEEDED",
+        "text_full": "BILL NEEDED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "EXTRA FIELDS",
+        "label": "",
+        "required": false,
+        "value": "EXTRA FIELDS",
+        "role": "",
+        "accessible_name": "EXTRA FIELDS",
+        "text_full": "EXTRA FIELDS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "APPROVAL ROUTE",
+        "label": "",
+        "required": false,
+        "value": "APPROVAL ROUTE",
+        "role": "",
+        "accessible_name": "APPROVAL ROUTE",
+        "text_full": "APPROVAL ROUTE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-expense-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Expense Type\")",
+        "selectors": [
+            "button:has-text(\"Add Expense Type\")",
+            "text=\"Add Expense Type\"",
+            "div > div:nth-of-type(3) > div > div > app-expense-type-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Expense Type",
+        "label": "",
+        "required": false,
+        "value": "Add Expense Type",
+        "role": "button",
+        "accessible_name": "Add Expense Type",
+        "text_full": "Add Expense Type",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Edit expense type\"]",
+        "selectors": [
+            "[aria-label=\"Edit expense type\"]",
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tEXP-FOD\tFood\tNo limit\t\") [title=\"Edit\"]",
+            "div > app-expense-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit expense type",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit",
+            "aria-label": "Edit expense type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Delete expense type\"]",
+        "selectors": [
+            "[aria-label=\"Delete expense type\"]",
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tEXP-FOD\tFood\tNo limit\t\") [title=\"Delete\"]",
+            "div > app-expense-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete expense type",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete",
+            "aria-label": "Delete expense type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_17.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Expense Type\")",
+        "selectors": [
+            "button:has-text(\"Add Expense Type\")",
+            "text=\"Add Expense Type\"",
+            "div > div:nth-of-type(3) > div > div > app-expense-type-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Expense Type",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Expense Type",
+        "text_full": "Add Expense Type",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_18.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "messages": [
+                {
+                    "text": "Add Expense Type",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "e-code",
+                "e-name",
+                "e-limit",
+                "pn_id_86",
+                "e-per",
+                "e-extra",
+                "pn_id_88",
+                "e-route",
+                "e-bill",
+                "e-active"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-expense-type-list > app-expense-type-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-expense-type-list > app-expense-type-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Expense Type",
+        "label": "",
+        "required": false,
+        "value": "Add Expense Type",
+        "role": "",
+        "accessible_name": "Add Expense Type",
+        "text_full": "Add Expense Type",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Expense Code *\"",
+        "selectors": [
+            "text=\"Expense Code *\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Expense Code *",
+        "label": "Expense Code *",
+        "required": false,
+        "value": "Expense Code *",
+        "role": "",
+        "accessible_name": "Expense Code *",
+        "text_full": "Expense Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Expense Name *\"",
+        "selectors": [
+            "text=\"Expense Name *\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Expense Name *",
+        "label": "Expense Name *",
+        "required": false,
+        "value": "Expense Name *",
+        "role": "",
+        "accessible_name": "Expense Name *",
+        "text_full": "Expense Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Limit Amount\"",
+        "selectors": [
+            "text=\"Limit Amount\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Limit Amount",
+        "label": "Limit Amount",
+        "required": false,
+        "value": "Limit Amount",
+        "role": "",
+        "accessible_name": "Limit Amount",
+        "text_full": "Limit Amount",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Limit Is Per\"",
+        "selectors": [
+            "text=\"Limit Is Per\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Limit Is Per",
+        "label": "Limit Is Per",
+        "required": false,
+        "value": "Limit Is Per",
+        "role": "",
+        "accessible_name": "Limit Is Per",
+        "text_full": "Limit Is Per",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Extra Fields on the Claim Form\"",
+        "selectors": [
+            "text=\"Extra Fields on the Claim Form\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Extra Fields on the Claim Form",
+        "label": "Extra Fields on the Claim Form",
+        "required": false,
+        "value": "Extra Fields on the Claim Form",
+        "role": "",
+        "accessible_name": "Extra Fields on the Claim Form",
+        "text_full": "Extra Fields on the Claim Form",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Approval Route *\"",
+        "selectors": [
+            "text=\"Approval Route *\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Approval Route *",
+        "label": "Approval Route *",
+        "required": false,
+        "value": "Approval Route *",
+        "role": "",
+        "accessible_name": "Approval Route *",
+        "text_full": "Approval Route *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bill required\"",
+        "selectors": [
+            "text=\"Bill required\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Bill required",
+        "label": "Bill required",
+        "required": false,
+        "value": "Bill required",
+        "role": "",
+        "accessible_name": "Bill required",
+        "text_full": "Bill required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_27.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_28.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "messages": [
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-8.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-8.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-8.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small",
+        "selectors": [
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "This field is required.",
+        "label": "",
+        "required": false,
+        "value": "This field is required.",
+        "role": "",
+        "accessible_name": "This field is required.",
+        "text_full": "This field is required.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_30.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"expenseCode\"]",
+        "selectors": [
+            "[formcontrolname=\"expenseCode\"]",
+            "#e-code",
+            "input[formcontrolname=\"expenseCode\"]",
+            "input[placeholder=\"e.g. EXP-TRV\"]",
+            "input[placeholder=\"Expense Code *\"]",
+            "div #e-code",
+            "div input[formcontrolname=\"expenseCode\"]",
+            "div input[placeholder=\"e.g. EXP-TRV\"]",
+            "input#e-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Expense Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Expense Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. EXP-TRV",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_31.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"expenseCode\"]",
+        "selectors": [
+            "[formcontrolname=\"expenseCode\"]",
+            "#e-code",
+            "input[formcontrolname=\"expenseCode\"]",
+            "input[placeholder=\"e.g. EXP-TRV\"]",
+            "input[placeholder=\"Expense Code *\"]",
+            "div #e-code",
+            "div input[formcontrolname=\"expenseCode\"]",
+            "div input[placeholder=\"e.g. EXP-TRV\"]",
+            "input#e-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Expense Code *",
+        "required": true,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "Expense Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. EXP-TRV",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_33.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"expenseName\"]",
+        "selectors": [
+            "[formcontrolname=\"expenseName\"]",
+            "#e-name",
+            "input[formcontrolname=\"expenseName\"]",
+            "input[placeholder=\"e.g. Travel \u2014 bus or train\"]",
+            "input[placeholder=\"Expense Name *\"]",
+            "div #e-name",
+            "div input[formcontrolname=\"expenseName\"]",
+            "div input[placeholder=\"e.g. Travel \u2014 bus or train\"]",
+            "input#e-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Expense Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Expense Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Travel \u2014 bus or train",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_34.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"expenseName\"]",
+        "selectors": [
+            "[formcontrolname=\"expenseName\"]",
+            "#e-name",
+            "input[formcontrolname=\"expenseName\"]",
+            "input[placeholder=\"e.g. Travel \u2014 bus or train\"]",
+            "input[placeholder=\"Expense Name *\"]",
+            "div #e-name",
+            "div input[formcontrolname=\"expenseName\"]",
+            "div input[placeholder=\"e.g. Travel \u2014 bus or train\"]",
+            "input#e-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Expense Name *",
+        "required": true,
+        "value": "QA-AUTO Expense Name",
+        "role": "textbox",
+        "accessible_name": "Expense Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Travel \u2014 bus or train",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_36.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"limitAmount\"] input",
+        "selectors": [
+            "[formcontrolname=\"limitAmount\"] input",
+            "#e-limit",
+            "input[placeholder=\"Leave blank for no limit\"]",
+            "input[placeholder=\"Limit Amount\"]",
+            "div #e-limit",
+            "div input[placeholder=\"Leave blank for no limit\"]",
+            "input#e-limit"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Limit Amount",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Limit Amount",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Leave blank for no limit",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_37.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"limitAmount\"] input",
+        "selectors": [
+            "[formcontrolname=\"limitAmount\"] input",
+            "#e-limit",
+            "input[placeholder=\"Leave blank for no limit\"]",
+            "input[placeholder=\"Limit Amount\"]",
+            "div #e-limit",
+            "div input[placeholder=\"Leave blank for no limit\"]",
+            "input#e-limit"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Limit Amount",
+        "required": false,
+        "value": "\u20b910.00",
+        "role": "spinbutton",
+        "accessible_name": "Limit Amount",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Leave blank for no limit",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_39.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"extraFields\"]",
+        "selectors": [
+            "[formcontrolname=\"extraFields\"]",
+            "#e-extra",
+            "input[formcontrolname=\"extraFields\"]",
+            "input[placeholder=\"Comma separated, e.g. Litres, Odometer\"]",
+            "input[placeholder=\"Extra Fields on the Claim Form\"]",
+            "div #e-extra",
+            "div input[formcontrolname=\"extraFields\"]",
+            "div input[placeholder=\"Comma separated, e.g. Litres, Odometer\"]",
+            "input#e-extra"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Extra Fields on the Claim Form",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Extra Fields on the Claim Form",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Comma separated, e.g. Litres, Odometer",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_40.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"extraFields\"]",
+        "selectors": [
+            "[formcontrolname=\"extraFields\"]",
+            "#e-extra",
+            "input[formcontrolname=\"extraFields\"]",
+            "input[placeholder=\"Comma separated, e.g. Litres, Odometer\"]",
+            "input[placeholder=\"Extra Fields on the Claim Form\"]",
+            "div #e-extra",
+            "div input[formcontrolname=\"extraFields\"]",
+            "div input[placeholder=\"Comma separated, e.g. Litres, Odometer\"]",
+            "input#e-extra"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Extra Fields on the Claim Form",
+        "required": false,
+        "value": "QA-AUTO Extra Fields on the Claim Form",
+        "role": "textbox",
+        "accessible_name": "Extra Fields on the Claim Form",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Comma separated, e.g. Litres, Odometer",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_42.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "messages": [
+                {
+                    "text": "Area sales manager\nManager, then coordinator\nManager, coordinator, then partner\nAutomatic \u2014 no approval",
+                    "selector": "div.ng-tns-c1614365056-7.p-overlay.p-component"
+                },
+                {
+                    "text": "Area sales manager",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Manager, then coordinator",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Manager, coordinator, then partner",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Automatic \u2014 no approval",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2",
+                "pn_id_88_3"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"approvalRoute\"]",
+        "selectors": [
+            "[formcontrolname=\"approvalRoute\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Approval Route *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_43.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Area sales manager\"]",
+        "selectors": [
+            "[aria-label=\"Area sales manager\"]",
+            "text=\"Area sales manager\"",
+            "#pn_id_88_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Area sales manager",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Area sales manager",
+        "text_full": "Area sales manager",
+        "attrs": {
+            "aria-label": "Area sales manager",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_43.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2",
+                "pn_id_88_3"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"limitPer\"]",
+        "selectors": [
+            "[formcontrolname=\"limitPer\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Limit Is Per *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_44.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Per day\"]",
+        "selectors": [
+            "[aria-label=\"Per day\"]",
+            "text=\"Per day\"",
+            "#pn_id_86_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Per day",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Per day",
+        "text_full": "Per day",
+        "attrs": {
+            "aria-label": "Per day",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_44.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1",
+                "pn_id_86_2",
+                "pn_id_86_3",
+                "pn_id_86_4",
+                "pn_id_86_5"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-expense-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Expense Types/screenshots/step_45.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/expense-type-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "e-code",
+                "e-name",
+                "e-limit",
+                "pn_id_86",
+                "e-per",
+                "e-extra",
+                "pn_id_88",
+                "e-route",
+                "e-bill",
+                "e-active"
+            ]
+        }
+    }
+]

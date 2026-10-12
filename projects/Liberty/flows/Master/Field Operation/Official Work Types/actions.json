@@ -1,0 +1,783 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Field Operation",
+        "label": "",
+        "required": false,
+        "value": "Field Operation",
+        "role": "listitem",
+        "accessible_name": "Field Operation",
+        "text_full": "Field Operation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Official Work Types",
+        "label": "",
+        "required": false,
+        "value": "Official Work Types",
+        "role": "listitem",
+        "accessible_name": "Official Work Types",
+        "text_full": "Official Work Types",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CODE",
+        "label": "",
+        "required": false,
+        "value": "CODE",
+        "role": "",
+        "accessible_name": "CODE",
+        "text_full": "CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "NAME",
+        "label": "",
+        "required": false,
+        "value": "NAME",
+        "role": "",
+        "accessible_name": "NAME",
+        "text_full": "NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "PROOF",
+        "label": "",
+        "required": false,
+        "value": "PROOF",
+        "role": "",
+        "accessible_name": "PROOF",
+        "text_full": "PROOF",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "MANAGER MUST ACCEPT",
+        "label": "",
+        "required": false,
+        "value": "MANAGER MUST ACCEPT",
+        "role": "",
+        "accessible_name": "MANAGER MUST ACCEPT",
+        "text_full": "MANAGER MUST ACCEPT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-official-work-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Work Type\")",
+        "selectors": [
+            "button:has-text(\"Add Work Type\")",
+            "text=\"Add Work Type\"",
+            "div > div:nth-of-type(3) > div > div > app-official-work-type-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Work Type",
+        "label": "",
+        "required": false,
+        "value": "Add Work Type",
+        "role": "button",
+        "accessible_name": "Add Work Type",
+        "text_full": "Add Work Type",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"See this work type's work day by day\"]",
+        "selectors": [
+            "[aria-label=\"See this work type's work day by day\"]",
+            "button[title=\"Daily work\"]",
+            "[aria-label=\"Daily work\"]",
+            "button:has(i.pi-calendar)",
+            "div > app-official-work-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "See this work type's work day by day",
+        "text_full": "",
+        "attrs": {
+            "title": "Daily work",
+            "aria-label": "See this work type's work day by day"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Edit work type\"]",
+        "selectors": [
+            "[aria-label=\"Edit work type\"]",
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-official-work-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit work type",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit",
+            "aria-label": "Edit work type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Delete work type\"]",
+        "selectors": [
+            "[aria-label=\"Delete work type\"]",
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-official-work-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(7) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete work type",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete",
+            "aria-label": "Delete work type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_16.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Work Type\")",
+        "selectors": [
+            "button:has-text(\"Add Work Type\")",
+            "text=\"Add Work Type\"",
+            "div > div:nth-of-type(3) > div > div > app-official-work-type-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Work Type",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Work Type",
+        "text_full": "Add Work Type",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_17.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+            "messages": [
+                {
+                    "text": "Work Code *\nWork Name *\nManager must accept the task\nProof required (always, for every work type)\nProof Description *\nActive\nCancel\nSave",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-content.ng-star-inserted"
+                },
+                {
+                    "text": "Add Work Type",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "w-code",
+                "w-name",
+                "w-approve",
+                "w-proof",
+                "w-proof-desc",
+                "w-active"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-official-work-type-list > app-official-work-type-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-official-work-type-list > app-official-work-type-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Work Type",
+        "label": "",
+        "required": false,
+        "value": "Add Work Type",
+        "role": "",
+        "accessible_name": "Add Work Type",
+        "text_full": "Add Work Type",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Work Code *\"",
+        "selectors": [
+            "text=\"Work Code *\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Work Code *",
+        "label": "Work Code *",
+        "required": false,
+        "value": "Work Code *",
+        "role": "",
+        "accessible_name": "Work Code *",
+        "text_full": "Work Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Work Name *\"",
+        "selectors": [
+            "text=\"Work Name *\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Work Name *",
+        "label": "Work Name *",
+        "required": false,
+        "value": "Work Name *",
+        "role": "",
+        "accessible_name": "Work Name *",
+        "text_full": "Work Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Manager must accept the task\"",
+        "selectors": [
+            "text=\"Manager must accept the task\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Manager must accept the task",
+        "label": "Manager must accept the task",
+        "required": false,
+        "value": "Manager must accept the task",
+        "role": "",
+        "accessible_name": "Manager must accept the task",
+        "text_full": "Manager must accept the task",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(4) > label",
+        "selectors": [
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Proof required (always, for every work type)",
+        "label": "Proof required (always, for every work type)",
+        "required": false,
+        "value": "Proof required (always, for every work type)",
+        "role": "",
+        "accessible_name": "Proof required (always, for every work type)",
+        "text_full": "Proof required (always, for every work type)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Proof Description *\"",
+        "selectors": [
+            "text=\"Proof Description *\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Proof Description *",
+        "label": "Proof Description *",
+        "required": false,
+        "value": "Proof Description *",
+        "role": "",
+        "accessible_name": "Proof Description *",
+        "text_full": "Proof Description *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_24.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_25.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+            "messages": [
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-5.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-5.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-5.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small",
+        "selectors": [
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "This field is required.",
+        "label": "",
+        "required": false,
+        "value": "This field is required.",
+        "role": "",
+        "accessible_name": "This field is required.",
+        "text_full": "This field is required.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_27.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"workCode\"]",
+        "selectors": [
+            "[formcontrolname=\"workCode\"]",
+            "#w-code",
+            "input[formcontrolname=\"workCode\"]",
+            "input[placeholder=\"e.g. TSK-AUD\"]",
+            "input[placeholder=\"Work Code *\"]",
+            "div #w-code",
+            "div input[formcontrolname=\"workCode\"]",
+            "div input[placeholder=\"e.g. TSK-AUD\"]",
+            "input#w-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Work Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Work Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. TSK-AUD",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_28.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"workCode\"]",
+        "selectors": [
+            "[formcontrolname=\"workCode\"]",
+            "#w-code",
+            "input[formcontrolname=\"workCode\"]",
+            "input[placeholder=\"e.g. TSK-AUD\"]",
+            "input[placeholder=\"Work Code *\"]",
+            "div #w-code",
+            "div input[formcontrolname=\"workCode\"]",
+            "div input[placeholder=\"e.g. TSK-AUD\"]",
+            "input#w-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Work Code *",
+        "required": true,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "Work Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. TSK-AUD",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_30.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"workName\"]",
+        "selectors": [
+            "[formcontrolname=\"workName\"]",
+            "#w-name",
+            "input[formcontrolname=\"workName\"]",
+            "input[placeholder=\"e.g. Shop audit\"]",
+            "input[placeholder=\"Work Name *\"]",
+            "div #w-name",
+            "div input[formcontrolname=\"workName\"]",
+            "div input[placeholder=\"e.g. Shop audit\"]",
+            "input#w-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Work Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Work Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Shop audit",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_31.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"workName\"]",
+        "selectors": [
+            "[formcontrolname=\"workName\"]",
+            "#w-name",
+            "input[formcontrolname=\"workName\"]",
+            "input[placeholder=\"e.g. Shop audit\"]",
+            "input[placeholder=\"Work Name *\"]",
+            "div #w-name",
+            "div input[formcontrolname=\"workName\"]",
+            "div input[placeholder=\"e.g. Shop audit\"]",
+            "input#w-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Work Name *",
+        "required": true,
+        "value": "QA-AUTO Work Name",
+        "role": "textbox",
+        "accessible_name": "Work Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Shop audit",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_33.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"proofDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"proofDescription\"]",
+            "#w-proof-desc",
+            "input[formcontrolname=\"proofDescription\"]",
+            "input[placeholder=\"e.g. Before and after photos\"]",
+            "input[placeholder=\"Proof Description *\"]",
+            "div #w-proof-desc",
+            "div input[formcontrolname=\"proofDescription\"]",
+            "div input[placeholder=\"e.g. Before and after photos\"]",
+            "input#w-proof-desc"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Proof Description *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Proof Description *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Before and after photos",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_34.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"proofDescription\"]",
+        "selectors": [
+            "[formcontrolname=\"proofDescription\"]",
+            "#w-proof-desc",
+            "input[formcontrolname=\"proofDescription\"]",
+            "input[placeholder=\"e.g. Before and after photos\"]",
+            "input[placeholder=\"Proof Description *\"]",
+            "div #w-proof-desc",
+            "div input[formcontrolname=\"proofDescription\"]",
+            "div input[placeholder=\"e.g. Before and after photos\"]",
+            "input#w-proof-desc"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Proof Description *",
+        "required": true,
+        "value": "QA-AUTO Proof Description",
+        "role": "textbox",
+        "accessible_name": "Proof Description *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Before and after photos",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_36.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-official-work-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Official Work Types/screenshots/step_37.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/official-work-type-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "w-code",
+                "w-name",
+                "w-approve",
+                "w-proof",
+                "w-proof-desc",
+                "w-active"
+            ]
+        }
+    }
+]

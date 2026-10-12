@@ -1,0 +1,528 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/hod/approvals",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/hod/approvals"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/hod/approvals",
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div > div > h1",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div > div > h1"
+        ],
+        "tag": "h1",
+        "text": "HOD Approvals",
+        "label": "",
+        "required": false,
+        "value": "HOD Approvals",
+        "role": "heading",
+        "accessible_name": "HOD Approvals",
+        "text_full": "HOD Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div > div > h2",
+        "selectors": [
+            "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "QR Label Reprint Requests",
+        "label": "",
+        "required": false,
+        "value": "QR Label Reprint Requests",
+        "role": "heading",
+        "accessible_name": "QR Label Reprint Requests",
+        "text_full": "QR Label Reprint Requests",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "HOD Approvals",
+        "label": "",
+        "required": false,
+        "value": "HOD Approvals",
+        "role": "listitem",
+        "accessible_name": "HOD Approvals",
+        "text_full": "HOD Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Print Approvals",
+        "label": "",
+        "required": false,
+        "value": "Print Approvals",
+        "role": "listitem",
+        "accessible_name": "Print Approvals",
+        "text_full": "Print Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "#",
+        "label": "",
+        "required": false,
+        "value": "#",
+        "role": "",
+        "accessible_name": "#",
+        "text_full": "#",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CARTON ID",
+        "label": "",
+        "required": false,
+        "value": "CARTON ID",
+        "role": "",
+        "accessible_name": "CARTON ID",
+        "text_full": "CARTON ID",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE",
+        "role": "",
+        "accessible_name": "SKU CODE",
+        "text_full": "SKU CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "PRINT #",
+        "label": "",
+        "required": false,
+        "value": "PRINT #",
+        "role": "",
+        "accessible_name": "PRINT #",
+        "text_full": "PRINT #",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "REASON",
+        "label": "",
+        "required": false,
+        "value": "REASON",
+        "role": "",
+        "accessible_name": "REASON",
+        "text_full": "REASON",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "REQUESTED BY",
+        "label": "",
+        "required": false,
+        "value": "REQUESTED BY",
+        "role": "",
+        "accessible_name": "REQUESTED BY",
+        "text_full": "REQUESTED BY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "REQUESTED AT",
+        "label": "",
+        "required": false,
+        "value": "REQUESTED AT",
+        "role": "",
+        "accessible_name": "REQUESTED AT",
+        "text_full": "REQUESTED AT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "REMARK",
+        "label": "",
+        "required": false,
+        "value": "REMARK",
+        "role": "",
+        "accessible_name": "REMARK",
+        "text_full": "REMARK",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"QR Label Approvals\")",
+        "selectors": [
+            "button:has-text(\"QR Label Approvals\")",
+            "text=\"QR Label Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "QR Label Approvals",
+        "label": "",
+        "required": false,
+        "value": "QR Label Approvals",
+        "role": "button",
+        "accessible_name": "QR Label Approvals",
+        "text_full": "QR Label Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SKU Receive Approvals\")",
+        "selectors": [
+            "button:has-text(\"SKU Receive Approvals\")",
+            "text=\"SKU Receive Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "SKU Receive Approvals",
+        "label": "",
+        "required": false,
+        "value": "SKU Receive Approvals",
+        "role": "button",
+        "accessible_name": "SKU Receive Approvals",
+        "text_full": "SKU Receive Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"SKU Packing Approvals\")",
+        "selectors": [
+            "button:has-text(\"SKU Packing Approvals\")",
+            "text=\"SKU Packing Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "SKU Packing Approvals",
+        "label": "",
+        "required": false,
+        "value": "SKU Packing Approvals",
+        "role": "button",
+        "accessible_name": "SKU Packing Approvals",
+        "text_full": "SKU Packing Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"PO Approvals\")",
+        "selectors": [
+            "button:has-text(\"PO Approvals\")",
+            "text=\"PO Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "PO Approvals",
+        "label": "",
+        "required": false,
+        "value": "PO Approvals",
+        "role": "button",
+        "accessible_name": "PO Approvals",
+        "text_full": "PO Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Dispatch Approvals\")",
+        "selectors": [
+            "button:has-text(\"Dispatch Approvals\")",
+            "text=\"Dispatch Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "Dispatch Approvals\n1",
+        "label": "",
+        "required": false,
+        "value": "Dispatch Approvals 1",
+        "role": "button",
+        "accessible_name": "Dispatch Approvals 1",
+        "text_full": "Dispatch Approvals 1",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Export SO Approvals\")",
+        "selectors": [
+            "button:has-text(\"Export SO Approvals\")",
+            "text=\"Export SO Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button:nth-of-type(6)"
+        ],
+        "tag": "button",
+        "text": "Export SO Approvals\n2",
+        "label": "",
+        "required": false,
+        "value": "Export SO Approvals 2",
+        "role": "button",
+        "accessible_name": "Export SO Approvals 2",
+        "text_full": "Export SO Approvals 2",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Confirmation SO Approvals\")",
+        "selectors": [
+            "button:has-text(\"Confirmation SO Approvals\")",
+            "text=\"Confirmation SO Approvals\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-hod-approvals > div > div:nth-of-type(2) > button:nth-of-type(7)"
+        ],
+        "tag": "button",
+        "text": "Confirmation SO Approvals",
+        "label": "",
+        "required": false,
+        "value": "Confirmation SO Approvals",
+        "role": "button",
+        "accessible_name": "Confirmation SO Approvals",
+        "text_full": "Confirmation SO Approvals",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Pending\")",
+        "selectors": [
+            "button:has-text(\"Pending\")",
+            "text=\"Pending\"",
+            "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(2) > div > button"
+        ],
+        "tag": "button",
+        "text": "Pending",
+        "label": "",
+        "required": false,
+        "value": "Pending",
+        "role": "button",
+        "accessible_name": "Pending",
+        "text_full": "Pending",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Approved\")",
+        "selectors": [
+            "button:has-text(\"Approved\")",
+            "text=\"Approved\"",
+            "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(2) > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Approved",
+        "label": "",
+        "required": false,
+        "value": "Approved",
+        "role": "button",
+        "accessible_name": "Approved",
+        "text_full": "Approved",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Rejected\")",
+        "selectors": [
+            "button:has-text(\"Rejected\")",
+            "text=\"Rejected\"",
+            "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(2) > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "Rejected",
+        "label": "",
+        "required": false,
+        "value": "Rejected",
+        "role": "button",
+        "accessible_name": "Rejected",
+        "text_full": "Rejected",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Used\")",
+        "selectors": [
+            "button:has-text(\"Used\")",
+            "text=\"Used\"",
+            "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(2) > div > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "Used",
+        "label": "",
+        "required": false,
+        "value": "Used",
+        "role": "button",
+        "accessible_name": "Used",
+        "text_full": "Used",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"All\")",
+        "selectors": [
+            "button:has-text(\"All\")",
+            "text=\"All\"",
+            "div > app-hod-approvals > div > div:nth-of-type(3) > app-hod-qr-tab > div > div:nth-of-type(2) > div > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "All",
+        "label": "",
+        "required": false,
+        "value": "All",
+        "role": "button",
+        "accessible_name": "All",
+        "text_full": "All",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/HOD Approvals/screenshots/step_28.jpg"
+    }
+]

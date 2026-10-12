@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Planning/Domestic Orders",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/domestic-orders",
+    "timestamp": "2026-10-11 19:40:33",
+    "duration_seconds": 3,
+    "step_count": 17,
+    "source": "explorer",
+    "menu_path": [
+        "Planning",
+        "Domestic Orders"
+    ]
+}

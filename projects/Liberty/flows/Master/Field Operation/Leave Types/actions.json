@@ -1,0 +1,970 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Field Operation",
+        "label": "",
+        "required": false,
+        "value": "Field Operation",
+        "role": "listitem",
+        "accessible_name": "Field Operation",
+        "text_full": "Field Operation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Leave Types",
+        "label": "",
+        "required": false,
+        "value": "Leave Types",
+        "role": "listitem",
+        "accessible_name": "Leave Types",
+        "text_full": "Leave Types",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "CODE",
+        "label": "",
+        "required": false,
+        "value": "CODE",
+        "role": "",
+        "accessible_name": "CODE",
+        "text_full": "CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "NAME",
+        "label": "",
+        "required": false,
+        "value": "NAME",
+        "role": "",
+        "accessible_name": "NAME",
+        "text_full": "NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "DAYS A YEAR",
+        "label": "",
+        "required": false,
+        "value": "DAYS A YEAR",
+        "role": "",
+        "accessible_name": "DAYS A YEAR",
+        "text_full": "DAYS A YEAR",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "PAID LEAVE",
+        "label": "",
+        "required": false,
+        "value": "PAID LEAVE",
+        "role": "",
+        "accessible_name": "PAID LEAVE",
+        "text_full": "PAID LEAVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "CARRY FORWARD",
+        "label": "",
+        "required": false,
+        "value": "CARRY FORWARD",
+        "role": "",
+        "accessible_name": "CARRY FORWARD",
+        "text_full": "CARRY FORWARD",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "PROOF",
+        "label": "",
+        "required": false,
+        "value": "PROOF",
+        "role": "",
+        "accessible_name": "PROOF",
+        "text_full": "PROOF",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "NOTICE",
+        "label": "",
+        "required": false,
+        "value": "NOTICE",
+        "role": "",
+        "accessible_name": "NOTICE",
+        "text_full": "NOTICE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-leave-type-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Leave Type\")",
+        "selectors": [
+            "button:has-text(\"Add Leave Type\")",
+            "text=\"Add Leave Type\"",
+            "div > div:nth-of-type(3) > div > div > app-leave-type-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Leave Type",
+        "label": "",
+        "required": false,
+        "value": "Add Leave Type",
+        "role": "button",
+        "accessible_name": "Add Leave Type",
+        "text_full": "Add Leave Type",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Edit leave type\"]",
+        "selectors": [
+            "[aria-label=\"Edit leave type\"]",
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tLV-CL\tCasual leave\t12\t\") [title=\"Edit\"]",
+            "div > app-leave-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit leave type",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit",
+            "aria-label": "Edit leave type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Delete leave type\"]",
+        "selectors": [
+            "[aria-label=\"Delete leave type\"]",
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tLV-CL\tCasual leave\t12\t\") [title=\"Delete\"]",
+            "div > app-leave-type-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete leave type",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete",
+            "aria-label": "Delete leave type"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_18.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Leave Type\")",
+        "selectors": [
+            "button:has-text(\"Add Leave Type\")",
+            "text=\"Add Leave Type\"",
+            "div > div:nth-of-type(3) > div > div > app-leave-type-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Leave Type",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Leave Type",
+        "text_full": "Add Leave Type",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_19.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+            "messages": [
+                {
+                    "text": "Add Leave Type",
+                    "selector": "div.ng-tns-c2196985156-5.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "l-code",
+                "l-name",
+                "l-paid",
+                "l-days",
+                "l-cf",
+                "l-cf-limit",
+                "l-cf-exp",
+                "l-notice",
+                "l-proof",
+                "l-proof-desc",
+                "l-active"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-leave-type-list > app-leave-type-form > p-dialog > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-leave-type-list > app-leave-type-form > p-dialog > div > div > div:nth-of-type(2) > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Leave Type",
+        "label": "",
+        "required": false,
+        "value": "Add Leave Type",
+        "role": "",
+        "accessible_name": "Add Leave Type",
+        "text_full": "Add Leave Type",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Leave Code *\"",
+        "selectors": [
+            "text=\"Leave Code *\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Leave Code *",
+        "label": "Leave Code *",
+        "required": false,
+        "value": "Leave Code *",
+        "role": "",
+        "accessible_name": "Leave Code *",
+        "text_full": "Leave Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Leave Name *\"",
+        "selectors": [
+            "text=\"Leave Name *\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Leave Name *",
+        "label": "Leave Name *",
+        "required": false,
+        "value": "Leave Name *",
+        "role": "",
+        "accessible_name": "Leave Name *",
+        "text_full": "Leave Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Paid leave\"",
+        "selectors": [
+            "text=\"Paid leave\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Paid leave",
+        "label": "Paid leave",
+        "required": false,
+        "value": "Paid leave",
+        "role": "",
+        "accessible_name": "Paid leave",
+        "text_full": "Paid leave",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Days a Year\"",
+        "selectors": [
+            "text=\"Days a Year\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Days a Year",
+        "label": "Days a Year",
+        "required": false,
+        "value": "Days a Year",
+        "role": "",
+        "accessible_name": "Days a Year",
+        "text_full": "Days a Year",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Carries forward to next year\"",
+        "selectors": [
+            "text=\"Carries forward to next year\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Carries forward to next year",
+        "label": "Carries forward to next year",
+        "required": false,
+        "value": "Carries forward to next year",
+        "role": "",
+        "accessible_name": "Carries forward to next year",
+        "text_full": "Carries forward to next year",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Carry-Forward Limit\"",
+        "selectors": [
+            "text=\"Carry-Forward Limit\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Carry-Forward Limit",
+        "label": "Carry-Forward Limit",
+        "required": false,
+        "value": "Carry-Forward Limit",
+        "role": "",
+        "accessible_name": "Carry-Forward Limit",
+        "text_full": "Carry-Forward Limit",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Carried Balance Expires In (days)\"",
+        "selectors": [
+            "text=\"Carried Balance Expires In (days)\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Carried Balance Expires In (days)",
+        "label": "Carried Balance Expires In (days)",
+        "required": false,
+        "value": "Carried Balance Expires In (days)",
+        "role": "",
+        "accessible_name": "Carried Balance Expires In (days)",
+        "text_full": "Carried Balance Expires In (days)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Notice (days)\"",
+        "selectors": [
+            "text=\"Notice (days)\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Notice (days)",
+        "label": "Notice (days)",
+        "required": false,
+        "value": "Notice (days)",
+        "role": "",
+        "accessible_name": "Notice (days)",
+        "text_full": "Notice (days)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Proof required\"",
+        "selectors": [
+            "text=\"Proof required\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(9) > label"
+        ],
+        "tag": "label",
+        "text": "Proof required",
+        "label": "Proof required",
+        "required": false,
+        "value": "Proof required",
+        "role": "",
+        "accessible_name": "Proof required",
+        "text_full": "Proof required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Proof Description\"",
+        "selectors": [
+            "text=\"Proof Description\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(10) > label"
+        ],
+        "tag": "label",
+        "text": "Proof Description",
+        "label": "Proof Description",
+        "required": false,
+        "value": "Proof Description",
+        "role": "",
+        "accessible_name": "Proof Description",
+        "text_full": "Proof Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div:nth-of-type(11) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_31.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_32.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+            "messages": [
+                {
+                    "text": "This field is required.",
+                    "selector": "small.field-error.ng-star-inserted"
+                },
+                {
+                    "text": "Warning\nKindly fill out all the required fields.",
+                    "selector": "p-toastitem.ng-tns-c2572556178-6.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Warning",
+                    "selector": "div.ng-tns-c2572556178-6.p-toast-summary"
+                },
+                {
+                    "text": "Kindly fill out all the required fields.",
+                    "selector": "div.ng-tns-c2572556178-6.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small",
+        "selectors": [
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div > div > small"
+        ],
+        "tag": "small",
+        "text": "This field is required.",
+        "label": "",
+        "required": false,
+        "value": "This field is required.",
+        "role": "",
+        "accessible_name": "This field is required.",
+        "text_full": "This field is required.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_34.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"leaveCode\"]",
+        "selectors": [
+            "[formcontrolname=\"leaveCode\"]",
+            "#l-code",
+            "input[formcontrolname=\"leaveCode\"]",
+            "input[placeholder=\"e.g. LV-CL\"]",
+            "input[placeholder=\"Leave Code *\"]",
+            "div #l-code",
+            "div input[formcontrolname=\"leaveCode\"]",
+            "div input[placeholder=\"e.g. LV-CL\"]",
+            "input#l-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Leave Code *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Leave Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. LV-CL",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_35.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"leaveCode\"]",
+        "selectors": [
+            "[formcontrolname=\"leaveCode\"]",
+            "#l-code",
+            "input[formcontrolname=\"leaveCode\"]",
+            "input[placeholder=\"e.g. LV-CL\"]",
+            "input[placeholder=\"Leave Code *\"]",
+            "div #l-code",
+            "div input[formcontrolname=\"leaveCode\"]",
+            "div input[placeholder=\"e.g. LV-CL\"]",
+            "input#l-code"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Leave Code *",
+        "required": true,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "Leave Code *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. LV-CL",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_37.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"leaveName\"]",
+        "selectors": [
+            "[formcontrolname=\"leaveName\"]",
+            "#l-name",
+            "input[formcontrolname=\"leaveName\"]",
+            "input[placeholder=\"e.g. Casual leave\"]",
+            "input[placeholder=\"Leave Name *\"]",
+            "div #l-name",
+            "div input[formcontrolname=\"leaveName\"]",
+            "div input[placeholder=\"e.g. Casual leave\"]",
+            "input#l-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Leave Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Leave Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Casual leave",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_38.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"leaveName\"]",
+        "selectors": [
+            "[formcontrolname=\"leaveName\"]",
+            "#l-name",
+            "input[formcontrolname=\"leaveName\"]",
+            "input[placeholder=\"e.g. Casual leave\"]",
+            "input[placeholder=\"Leave Name *\"]",
+            "div #l-name",
+            "div input[formcontrolname=\"leaveName\"]",
+            "div input[placeholder=\"e.g. Casual leave\"]",
+            "input#l-name"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Leave Name *",
+        "required": true,
+        "value": "QA-AUTO Leave Name",
+        "role": "textbox",
+        "accessible_name": "Leave Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. Casual leave",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_40.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"daysPerYear\"] input",
+        "selectors": [
+            "[formcontrolname=\"daysPerYear\"] input",
+            "#l-days",
+            "input[placeholder=\"Leave blank if earned\"]",
+            "input[placeholder=\"Days a Year\"]",
+            "div #l-days",
+            "div input[placeholder=\"Leave blank if earned\"]",
+            "input#l-days"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Days a Year",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Days a Year",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Leave blank if earned",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_41.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"daysPerYear\"] input",
+        "selectors": [
+            "[formcontrolname=\"daysPerYear\"] input",
+            "#l-days",
+            "input[placeholder=\"Leave blank if earned\"]",
+            "input[placeholder=\"Days a Year\"]",
+            "div #l-days",
+            "div input[placeholder=\"Leave blank if earned\"]",
+            "input#l-days"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Days a Year",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "Days a Year",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Leave blank if earned",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_43.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"noticeDays\"] input",
+        "selectors": [
+            "[formcontrolname=\"noticeDays\"] input",
+            "#l-notice",
+            "input[placeholder=\"0 = same day, blank = from calendar\"]",
+            "input[placeholder=\"Notice (days)\"]",
+            "div #l-notice",
+            "div input[placeholder=\"0 = same day, blank = from calendar\"]",
+            "input#l-notice"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Notice (days)",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Notice (days)",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0 = same day, blank = from calendar",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_44.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"noticeDays\"] input",
+        "selectors": [
+            "[formcontrolname=\"noticeDays\"] input",
+            "#l-notice",
+            "input[placeholder=\"0 = same day, blank = from calendar\"]",
+            "input[placeholder=\"Notice (days)\"]",
+            "div #l-notice",
+            "div input[placeholder=\"0 = same day, blank = from calendar\"]",
+            "input#l-notice"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Notice (days)",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "Notice (days)",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0 = same day, blank = from calendar",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_46.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-leave-type-form > p-dialog > div > div > div:nth-of-type(3) > form > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Field Operation/Leave Types/screenshots/step_47.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/field-operation/leave-type-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "l-code",
+                "l-name",
+                "l-paid",
+                "l-days",
+                "l-cf",
+                "l-cf-limit",
+                "l-cf-exp",
+                "l-notice",
+                "l-proof",
+                "l-proof-desc",
+                "l-active"
+            ]
+        }
+    }
+]

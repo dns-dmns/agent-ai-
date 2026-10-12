@@ -1,0 +1,234 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/dashboard",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/dashboard"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/dashboard",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-field-dashboard > div > div:nth-of-type(2) > app-chart-panel > div > div > h3",
+        "selectors": [
+            "div > div > app-field-dashboard > div > div:nth-of-type(2) > app-chart-panel > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Live team map",
+        "label": "",
+        "required": false,
+        "value": "Live team map",
+        "role": "heading",
+        "accessible_name": "Live team map",
+        "text_full": "Live team map",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-field-dashboard > div > div:nth-of-type(2) > app-chart-panel:nth-of-type(2) > div > div > h3",
+        "selectors": [
+            "div > div > app-field-dashboard > div > div:nth-of-type(2) > app-chart-panel:nth-of-type(2) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Attendance",
+        "label": "",
+        "required": false,
+        "value": "Attendance",
+        "role": "heading",
+        "accessible_name": "Attendance",
+        "text_full": "Attendance",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-field-dashboard > div > div:nth-of-type(3) > app-chart-panel > div > div > h3",
+        "selectors": [
+            "div > div > app-field-dashboard > div > div:nth-of-type(3) > app-chart-panel > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Visits vs orders",
+        "label": "",
+        "required": false,
+        "value": "Visits vs orders",
+        "role": "heading",
+        "accessible_name": "Visits vs orders",
+        "text_full": "Visits vs orders",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-field-dashboard > div > div:nth-of-type(3) > app-chart-panel:nth-of-type(2) > div > div > h3",
+        "selectors": [
+            "div > div > app-field-dashboard > div > div:nth-of-type(3) > app-chart-panel:nth-of-type(2) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Sales trend",
+        "label": "",
+        "required": false,
+        "value": "Sales trend",
+        "role": "heading",
+        "accessible_name": "Sales trend",
+        "text_full": "Sales trend",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-field-dashboard > div > app-fa-compliance > div > app-chart-panel > div > div > h3",
+        "selectors": [
+            "div > app-field-dashboard > div > app-fa-compliance > div > app-chart-panel > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Geofence compliance",
+        "label": "",
+        "required": false,
+        "value": "Geofence compliance",
+        "role": "heading",
+        "accessible_name": "Geofence compliance",
+        "text_full": "Geofence compliance",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-field-dashboard > div > app-fa-compliance > div > app-chart-panel:nth-of-type(2) > div > div > h3",
+        "selectors": [
+            "div > app-field-dashboard > div > app-fa-compliance > div > app-chart-panel:nth-of-type(2) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Outlet coverage",
+        "label": "",
+        "required": false,
+        "value": "Outlet coverage",
+        "role": "heading",
+        "accessible_name": "Outlet coverage",
+        "text_full": "Outlet coverage",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-field-dashboard > div > app-fa-compliance > div > app-chart-panel:nth-of-type(3) > div > div > h3",
+        "selectors": [
+            "div > app-field-dashboard > div > app-fa-compliance > div > app-chart-panel:nth-of-type(3) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Time utilization",
+        "label": "",
+        "required": false,
+        "value": "Time utilization",
+        "role": "heading",
+        "accessible_name": "Time utilization",
+        "text_full": "Time utilization",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-field-dashboard > div > div:nth-of-type(4) > app-chart-panel > div > div > h3",
+        "selectors": [
+            "div > div > app-field-dashboard > div > div:nth-of-type(4) > app-chart-panel > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Product-wise secondary sales",
+        "label": "",
+        "required": false,
+        "value": "Product-wise secondary sales",
+        "role": "heading",
+        "accessible_name": "Product-wise secondary sales",
+        "text_full": "Product-wise secondary sales",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-field-dashboard > div > div:nth-of-type(4) > app-chart-panel:nth-of-type(2) > div > div > h3",
+        "selectors": [
+            "div > div > app-field-dashboard > div > div:nth-of-type(4) > app-chart-panel:nth-of-type(2) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Rep leaderboard \u00b7 secondary sales",
+        "label": "",
+        "required": false,
+        "value": "Rep leaderboard \u00b7 secondary sales",
+        "role": "heading",
+        "accessible_name": "Rep leaderboard \u00b7 secondary sales",
+        "text_full": "Rep leaderboard \u00b7 secondary sales",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Dashboard",
+        "label": "",
+        "required": false,
+        "value": "Dashboard",
+        "role": "listitem",
+        "accessible_name": "Dashboard",
+        "text_full": "Dashboard",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Dashboard/screenshots/step_13.jpg"
+    }
+]

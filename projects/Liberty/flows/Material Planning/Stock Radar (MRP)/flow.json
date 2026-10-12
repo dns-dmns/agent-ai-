@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Material Planning/Stock Radar (MRP)",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/stock-radar",
+    "timestamp": "2026-10-11 19:40:30",
+    "duration_seconds": 2,
+    "step_count": 19,
+    "source": "explorer",
+    "menu_path": [
+        "Material Planning",
+        "Stock Radar (MRP)"
+    ]
+}

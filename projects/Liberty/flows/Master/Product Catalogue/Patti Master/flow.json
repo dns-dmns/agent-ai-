@@ -2,7 +2,7 @@
     "schema_version": 1,
     "flow_name": "Master/Product Catalogue/Patti Master",
     "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
-    "timestamp": "2026-10-11 18:54:22",
+    "timestamp": "2026-10-11 19:37:31",
     "duration_seconds": 6,
     "step_count": 27,
     "source": "explorer",

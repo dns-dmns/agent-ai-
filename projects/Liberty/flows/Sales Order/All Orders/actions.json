@@ -1,0 +1,1450 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list",
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Order",
+        "label": "",
+        "required": false,
+        "value": "Sales Order",
+        "role": "listitem",
+        "accessible_name": "Sales Order",
+        "text_full": "Sales Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Sales Orders",
+        "label": "",
+        "required": false,
+        "value": "Sales Orders",
+        "role": "listitem",
+        "accessible_name": "Sales Orders",
+        "text_full": "Sales Orders",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SO NUMBER",
+        "label": "",
+        "required": false,
+        "value": "SO NUMBER",
+        "role": "",
+        "accessible_name": "SO NUMBER",
+        "text_full": "SO NUMBER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "ORDER DATE",
+        "label": "",
+        "required": false,
+        "value": "ORDER DATE",
+        "role": "",
+        "accessible_name": "ORDER DATE",
+        "text_full": "ORDER DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "CUSTOMER",
+        "label": "",
+        "required": false,
+        "value": "CUSTOMER",
+        "role": "",
+        "accessible_name": "CUSTOMER",
+        "text_full": "CUSTOMER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "DEPOT",
+        "label": "",
+        "required": false,
+        "value": "DEPOT",
+        "role": "",
+        "accessible_name": "DEPOT",
+        "text_full": "DEPOT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "GRAND TOTAL",
+        "label": "",
+        "required": false,
+        "value": "GRAND TOTAL",
+        "role": "",
+        "accessible_name": "GRAND TOTAL",
+        "text_full": "GRAND TOTAL",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-sales-order-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"New Order\")",
+        "selectors": [
+            "button:has-text(\"New Order\")",
+            "text=\"New Order\"",
+            "div > div:nth-of-type(3) > div > div > app-sales-order-list > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "New Order",
+        "label": "",
+        "required": false,
+        "value": "New Order",
+        "role": "button",
+        "accessible_name": "New Order",
+        "text_full": "New Order",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "div > app-sales-order-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Cancel Order\"]",
+        "selectors": [
+            "button[title=\"Cancel Order\"]",
+            "[aria-label=\"Cancel Order\"]",
+            "button:has(i.pi-times)",
+            "div > app-sales-order-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel Order",
+        "text_full": "",
+        "attrs": {
+            "title": "Cancel Order"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_16.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"New Order\")",
+        "selectors": [
+            "button:has-text(\"New Order\")",
+            "text=\"New Order\"",
+            "div > div:nth-of-type(3) > div > div > app-sales-order-list > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "New Order",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "New Order",
+        "text_full": "New Order",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_17.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "messages": [
+                {
+                    "text": "Order Information\nOrder Type *\nOrder Date *\nOrder Items\nRemarks",
+                    "selector": "app-sales-order-create"
+                },
+                {
+                    "text": "Create Sales Order\nSales Order\nCreate Order",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Create Sales Order",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Sales Order",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Create Order",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Domestic Order",
+                    "selector": "p-select.p-component.p-inputwrapper.p-inputwrapper-filled"
+                }
+            ],
+            "appeared": [
+                "pn_id_106",
+                "pn_id_109"
+            ],
+            "disappeared": [
+                "pn_id_8",
+                "pn_id_10",
+                "pn_id_12"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-sales-order-create > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sales-order-create > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Create Sales Order",
+        "label": "",
+        "required": false,
+        "value": "Create Sales Order",
+        "role": "heading",
+        "accessible_name": "Create Sales Order",
+        "text_full": "Create Sales Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Order Information",
+        "label": "",
+        "required": false,
+        "value": "Order Information",
+        "role": "heading",
+        "accessible_name": "Order Information",
+        "text_full": "Order Information",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(2) > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(2) > h3"
+        ],
+        "tag": "h3",
+        "text": "Consignee / Billing Details",
+        "label": "",
+        "required": false,
+        "value": "Consignee / Billing Details",
+        "role": "heading",
+        "accessible_name": "Consignee / Billing Details",
+        "text_full": "Consignee / Billing Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(3) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(3) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Order Items",
+        "label": "",
+        "required": false,
+        "value": "Order Items",
+        "role": "heading",
+        "accessible_name": "Order Items",
+        "text_full": "Order Items",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Order Type *\"",
+        "selectors": [
+            "text=\"Order Type *\"",
+            "div > div > app-sales-order-create > div > form > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Order Type *",
+        "label": "Order Type *",
+        "required": false,
+        "value": "Order Type *",
+        "role": "",
+        "accessible_name": "Order Type *",
+        "text_full": "Order Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Order Date *\"",
+        "selectors": [
+            "text=\"Order Date *\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Order Date *",
+        "label": "Order Date *",
+        "required": false,
+        "value": "Order Date *",
+        "role": "",
+        "accessible_name": "Order Date *",
+        "text_full": "Order Date *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Customer *\"",
+        "selectors": [
+            "text=\"Customer *\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Customer *",
+        "label": "Customer *",
+        "required": false,
+        "value": "Customer *",
+        "role": "",
+        "accessible_name": "Customer *",
+        "text_full": "Customer *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Registration\"",
+        "selectors": [
+            "text=\"Registration\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Registration",
+        "label": "Registration",
+        "required": false,
+        "value": "Registration",
+        "role": "",
+        "accessible_name": "Registration",
+        "text_full": "Registration",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"City\"",
+        "selectors": [
+            "text=\"City\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "City",
+        "label": "City",
+        "required": false,
+        "value": "City",
+        "role": "",
+        "accessible_name": "City",
+        "text_full": "City",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PAN No.\"",
+        "selectors": [
+            "text=\"PAN No.\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "PAN No.",
+        "label": "PAN No.",
+        "required": false,
+        "value": "PAN No.",
+        "role": "",
+        "accessible_name": "PAN No.",
+        "text_full": "PAN No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Aadhaar No.\"",
+        "selectors": [
+            "text=\"Aadhaar No.\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Aadhaar No.",
+        "label": "Aadhaar No.",
+        "required": false,
+        "value": "Aadhaar No.",
+        "role": "",
+        "accessible_name": "Aadhaar No.",
+        "text_full": "Aadhaar No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Depot *\"",
+        "selectors": [
+            "text=\"Depot *\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Depot *",
+        "label": "Depot *",
+        "required": false,
+        "value": "Depot *",
+        "role": "",
+        "accessible_name": "Depot *",
+        "text_full": "Depot *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Order for (Sales Person)\"",
+        "selectors": [
+            "text=\"Order for (Sales Person)\"",
+            "div > div > app-sales-order-create > div > form > div > div > div:nth-of-type(9) > label"
+        ],
+        "tag": "label",
+        "text": "Order for (Sales Person)",
+        "label": "Order for (Sales Person)",
+        "required": false,
+        "value": "Order for (Sales Person)",
+        "role": "",
+        "accessible_name": "Order for (Sales Person)",
+        "text_full": "Order for (Sales Person)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Consignee Name\"",
+        "selectors": [
+            "text=\"Consignee Name\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Consignee Name",
+        "label": "Consignee Name",
+        "required": false,
+        "value": "Consignee Name",
+        "role": "",
+        "accessible_name": "Consignee Name",
+        "text_full": "Consignee Name",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Consignee Address (Ship-To)\"",
+        "selectors": [
+            "text=\"Consignee Address (Ship-To)\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Consignee Address (Ship-To)",
+        "label": "Consignee Address (Ship-To)",
+        "required": false,
+        "value": "Consignee Address (Ship-To)",
+        "role": "",
+        "accessible_name": "Consignee Address (Ship-To)",
+        "text_full": "Consignee Address (Ship-To)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State\"",
+        "selectors": [
+            "text=\"State\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "State",
+        "label": "State",
+        "required": false,
+        "value": "State",
+        "role": "",
+        "accessible_name": "State",
+        "text_full": "State",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State Code\"",
+        "selectors": [
+            "text=\"State Code\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "State Code",
+        "label": "State Code",
+        "required": false,
+        "value": "State Code",
+        "role": "",
+        "accessible_name": "State Code",
+        "text_full": "State Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Buyer Address (Bill-To)\"",
+        "selectors": [
+            "text=\"Buyer Address (Bill-To)\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Buyer Address (Bill-To)",
+        "label": "Buyer Address (Bill-To)",
+        "required": false,
+        "value": "Buyer Address (Bill-To)",
+        "role": "",
+        "accessible_name": "Buyer Address (Bill-To)",
+        "text_full": "Buyer Address (Bill-To)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Buyer GSTIN\"",
+        "selectors": [
+            "text=\"Buyer GSTIN\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Buyer GSTIN",
+        "label": "Buyer GSTIN",
+        "required": false,
+        "value": "Buyer GSTIN",
+        "role": "",
+        "accessible_name": "Buyer GSTIN",
+        "text_full": "Buyer GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Discount %\"",
+        "selectors": [
+            "text=\"Discount %\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Discount %",
+        "label": "Discount %",
+        "required": false,
+        "value": "Discount %",
+        "role": "",
+        "accessible_name": "Discount %",
+        "text_full": "Discount %",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Cash Discount\"",
+        "selectors": [
+            "text=\"Cash Discount\"",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Cash Discount",
+        "label": "Cash Discount",
+        "required": false,
+        "value": "Cash Discount",
+        "role": "",
+        "accessible_name": "Cash Discount",
+        "text_full": "Cash Discount",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_39.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Terms Of Payment\"",
+        "selectors": [
+            "text=\"Terms Of Payment\"",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(4) > div > label"
+        ],
+        "tag": "label",
+        "text": "Terms Of Payment",
+        "label": "Terms Of Payment",
+        "required": false,
+        "value": "Terms Of Payment",
+        "role": "",
+        "accessible_name": "Terms Of Payment",
+        "text_full": "Terms Of Payment",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_40.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remarks\"",
+        "selectors": [
+            "text=\"Remarks\"",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(4) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Remarks",
+        "label": "Remarks",
+        "required": false,
+        "value": "Remarks",
+        "role": "",
+        "accessible_name": "Remarks",
+        "text_full": "Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_41.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"orderType\"]",
+        "selectors": [
+            "[formcontrolname=\"orderType\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Order Type *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_42.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Domestic Order\"]",
+        "selectors": [
+            "[aria-label=\"Domestic Order\"]",
+            "text=\"Domestic Order\"",
+            "#pn_id_106_0",
+            "p-select > p-overlay > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Domestic Order",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Domestic Order",
+        "text_full": "Domestic Order",
+        "attrs": {
+            "aria-label": "Domestic Order",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_42.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_106_list",
+                "pn_id_106_0",
+                "pn_id_106_1",
+                "pn_id_106_2",
+                "pn_id_106_3"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"depotId\"]",
+        "selectors": [
+            "[formcontrolname=\"depotId\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Depot *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_43.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"HQ (DP - 01)\"]",
+        "selectors": [
+            "[aria-label=\"HQ (DP - 01)\"]",
+            "text=\"HQ (DP - 01)\"",
+            "#pn_id_109_0",
+            "p-select > p-overlay > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "HQ (DP - 01)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "HQ (DP - 01)",
+        "text_full": "HQ (DP - 01)",
+        "attrs": {
+            "aria-label": "HQ (DP - 01)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_43.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_109_list",
+                "pn_id_109_0",
+                "pn_id_109_1",
+                "pn_id_109_2",
+                "pn_id_109_3",
+                "pn_id_109_4",
+                "pn_id_109_5",
+                "pn_id_109_6",
+                "pn_id_109_7",
+                "pn_id_109_8",
+                "pn_id_109_9",
+                "pn_id_109_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"salesPersonUserId\"]",
+        "selectors": [
+            "[formcontrolname=\"salesPersonUserId\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Order for (Sales Person)",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_44.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"admin (me)\"]",
+        "selectors": [
+            "[aria-label=\"admin (me)\"]",
+            "text=\"admin (me)\"",
+            "#pn_id_324_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "admin (me)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "admin (me)",
+        "text_full": "admin (me)",
+        "attrs": {
+            "aria-label": "admin (me)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_44.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_324_list",
+                "pn_id_324_0",
+                "pn_id_324_1",
+                "pn_id_324_2",
+                "pn_id_324_3",
+                "pn_id_324_4",
+                "pn_id_324_5",
+                "pn_id_324_6",
+                "pn_id_324_7",
+                "pn_id_324_8",
+                "pn_id_324_9",
+                "pn_id_324_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"consigneeName\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeName\"]",
+            "input[formcontrolname=\"consigneeName\"]",
+            "input[placeholder=\"Consignee name (defaults to customer)\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Consignee name (defaults to customer)",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_45.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"consigneeName\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeName\"]",
+            "input[formcontrolname=\"consigneeName\"]",
+            "input[placeholder=\"Consignee name (defaults to customer)\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Consignee Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Consignee name (defaults to customer)",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_47.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"consigneeAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeAddress\"]",
+            "textarea[formcontrolname=\"consigneeAddress\"]",
+            "textarea[placeholder=\"Shipping address\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Shipping address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_48.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"consigneeAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeAddress\"]",
+            "textarea[formcontrolname=\"consigneeAddress\"]",
+            "textarea[placeholder=\"Shipping address\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Consignee Address (Ship-To)",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Shipping address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_49.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"consigneeState\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeState\"]",
+            "input[formcontrolname=\"consigneeState\"]",
+            "input[placeholder=\"State\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "State",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_50.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"consigneeState\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeState\"]",
+            "input[formcontrolname=\"consigneeState\"]",
+            "input[placeholder=\"State\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(3) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO State",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "State",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_52.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"consigneeStateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeStateCode\"]",
+            "input[formcontrolname=\"consigneeStateCode\"]",
+            "input[placeholder=\"State Code\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "State Code",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_53.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"consigneeStateCode\"]",
+        "selectors": [
+            "[formcontrolname=\"consigneeStateCode\"]",
+            "input[formcontrolname=\"consigneeStateCode\"]",
+            "input[placeholder=\"State Code\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "State Code",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_55.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"buyerAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"buyerAddress\"]",
+            "textarea[formcontrolname=\"buyerAddress\"]",
+            "textarea[placeholder=\"Billing address\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(5) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Billing address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_56.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"buyerAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"buyerAddress\"]",
+            "textarea[formcontrolname=\"buyerAddress\"]",
+            "textarea[placeholder=\"Billing address\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(5) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Buyer Address (Bill-To)",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Billing address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_57.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"buyerGstin\"]",
+        "selectors": [
+            "[formcontrolname=\"buyerGstin\"]",
+            "input[formcontrolname=\"buyerGstin\"]",
+            "input[placeholder=\"GSTIN\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(6) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "GSTIN",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_58.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"buyerGstin\"]",
+        "selectors": [
+            "[formcontrolname=\"buyerGstin\"]",
+            "input[formcontrolname=\"buyerGstin\"]",
+            "input[placeholder=\"GSTIN\"]",
+            "div > div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(6) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "29ABCDE1234F1Z5",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "GSTIN",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_60.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"discountPercent\"] input",
+        "selectors": [
+            "[formcontrolname=\"discountPercent\"] input",
+            "div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_61.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"discountPercent\"] input",
+        "selectors": [
+            "[formcontrolname=\"discountPercent\"] input",
+            "div > app-sales-order-create > div > form > div:nth-of-type(2) > div > div:nth-of-type(7) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10%",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_63.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"paymentTerms\"]",
+        "selectors": [
+            "[formcontrolname=\"paymentTerms\"]",
+            "input[formcontrolname=\"paymentTerms\"]",
+            "input[placeholder=\"e.g. As per agreement\"]",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(4) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. As per agreement",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_64.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"paymentTerms\"]",
+        "selectors": [
+            "[formcontrolname=\"paymentTerms\"]",
+            "input[formcontrolname=\"paymentTerms\"]",
+            "input[placeholder=\"e.g. As per agreement\"]",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(4) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Terms Of Payment",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. As per agreement",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_66.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Any remarks...\"]",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(4) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Any remarks...",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_67.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Any remarks...\"]",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(4) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Remarks",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Any remarks...",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_68.jpg"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list",
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/All Orders/screenshots/step_69.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/list",
+            "messages": [
+                {
+                    "text": "SL NO.\tSO NUMBER \tORDER DATE \tTYPE\tCUSTOMER \tDEPOT\tGRAND TOTAL \tSTATUS\tACTIONS",
+                    "selector": "app-sales-order-list"
+                },
+                {
+                    "text": "Sales Orders\nSales Order\nSales Orders",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Sales Orders",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Sales Order",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "New Order",
+                    "selector": "p-button.ng-star-inserted"
+                },
+                {
+                    "text": "All Types",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_331",
+                "pn_id_333",
+                "pn_id_339"
+            ],
+            "disappeared": [
+                "pn_id_106",
+                "pn_id_109",
+                "pn_id_324",
+                "so-sales-person"
+            ]
+        }
+    }
+]

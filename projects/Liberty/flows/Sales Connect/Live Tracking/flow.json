@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Sales Connect/Live Tracking",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/live-tracking",
+    "timestamp": "2026-10-11 19:39:23",
+    "duration_seconds": 3,
+    "step_count": 45,
+    "source": "explorer",
+    "menu_path": [
+        "Sales Connect",
+        "Live Tracking"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Sales Connect/Approvals",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/approvals",
+    "timestamp": "2026-10-11 19:39:32",
+    "duration_seconds": 2,
+    "step_count": 23,
+    "source": "explorer",
+    "menu_path": [
+        "Sales Connect",
+        "Approvals"
+    ]
+}

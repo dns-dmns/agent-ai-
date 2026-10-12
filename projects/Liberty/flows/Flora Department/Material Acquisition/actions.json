@@ -1,0 +1,380 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/issue-request",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/issue-request"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/issue-request",
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-flora-department > app-material-acquisition > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-flora-department > app-material-acquisition > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Material Acquisition",
+        "label": "",
+        "required": false,
+        "value": "Material Acquisition",
+        "role": "heading",
+        "accessible_name": "Material Acquisition",
+        "text_full": "Material Acquisition",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Flora Department",
+        "label": "",
+        "required": false,
+        "value": "Flora Department",
+        "role": "listitem",
+        "accessible_name": "Flora Department",
+        "text_full": "Flora Department",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Material Acquisition",
+        "label": "",
+        "required": false,
+        "value": "Material Acquisition",
+        "role": "listitem",
+        "accessible_name": "Material Acquisition",
+        "text_full": "Material Acquisition",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "REQUEST NO",
+        "label": "",
+        "required": false,
+        "value": "REQUEST NO",
+        "role": "",
+        "accessible_name": "REQUEST NO",
+        "text_full": "REQUEST NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SFG CODE",
+        "label": "",
+        "required": false,
+        "value": "SFG CODE",
+        "role": "",
+        "accessible_name": "SFG CODE",
+        "text_full": "SFG CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SFG DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SFG DESCRIPTION",
+        "role": "",
+        "accessible_name": "SFG DESCRIPTION",
+        "text_full": "SFG DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDERS",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDERS",
+        "role": "",
+        "accessible_name": "JOB ORDERS",
+        "text_full": "JOB ORDERS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "TOTAL RM QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL RM QTY",
+        "role": "",
+        "accessible_name": "TOTAL RM QTY",
+        "text_full": "TOTAL RM QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "ISSUED",
+        "label": "",
+        "required": false,
+        "value": "ISSUED",
+        "role": "",
+        "accessible_name": "ISSUED",
+        "text_full": "ISSUED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "BALANCE",
+        "label": "",
+        "required": false,
+        "value": "BALANCE",
+        "role": "",
+        "accessible_name": "BALANCE",
+        "text_full": "BALANCE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > app-flora-department > app-material-acquisition > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Export CSV\")",
+        "selectors": [
+            "button:has-text(\"Export CSV\")",
+            "text=\"Export CSV\"",
+            "div > div > app-flora-department > app-material-acquisition > div > div:nth-of-type(3) > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Export CSV",
+        "label": "",
+        "required": false,
+        "value": "Export CSV",
+        "role": "button",
+        "accessible_name": "Export CSV",
+        "text_full": "Export CSV",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div > div > app-flora-department > app-material-acquisition > div > div:nth-of-type(3) > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View & Receive Materials\"]",
+        "selectors": [
+            "button[title=\"View & Receive Materials\"]",
+            "[aria-label=\"View & Receive Materials\"]",
+            "button:has(i.pi-eye)",
+            "tr:has-text(\"1\tMAR-0012\tFSFG 0076\tauto folra 003\t\") [title=\"View & Receive Materials\"]",
+            "app-material-acquisition > div > div:nth-of-type(4) > table > tbody > tr > td:nth-of-type(10) > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View & Receive Materials",
+        "text_full": "",
+        "attrs": {
+            "title": "View & Receive Materials"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tMAR-0012\tFSFG 0076\tauto folra 003\t\") [title=\"Delete\"]",
+            "app-material-acquisition > div > div:nth-of-type(4) > table > tbody > tr > td:nth-of-type(10) > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Flora Department/Material Acquisition/screenshots/step_20.jpg"
+    }
+]

@@ -8,7 +8,7 @@
         "tag": "",
         "text": "",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_1.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -26,7 +26,7 @@
         "text_full": "Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_2.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -44,7 +44,7 @@
         "text_full": "Product Catalogue",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_3.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -62,7 +62,7 @@
         "text_full": "Nurva Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_4.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -80,7 +80,7 @@
         "text_full": "SL.NO",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_5.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -98,7 +98,7 @@
         "text_full": "NM CODE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_6.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -116,7 +116,7 @@
         "text_full": "NM DESCRIPTION",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_7.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -134,7 +134,7 @@
         "text_full": "NM QTY (UNIT)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_8.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -152,7 +152,7 @@
         "text_full": "STATUS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_9.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -170,7 +170,7 @@
         "text_full": "ACTIONS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_10.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -193,7 +193,7 @@
             "aria-label": "Pending Approvals"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_11.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -215,7 +215,7 @@
             "type": "button"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_12.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -239,7 +239,7 @@
             "title": "View"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_13.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -263,7 +263,7 @@
             "title": "Edit"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_14.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -287,7 +287,7 @@
             "title": "Set Inactive"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_15.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -311,7 +311,7 @@
             "title": "Delete"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_16.jpg"
     },
     {
         "action": "CLICK",
@@ -332,7 +332,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_17.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
@@ -375,7 +375,7 @@
         "tag": "window",
         "text": "Liberty",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_18.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -394,7 +394,7 @@
         "text_full": "NM Code",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_19.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -413,7 +413,7 @@
         "text_full": "NM Description *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_20.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -432,7 +432,7 @@
         "text_full": "NM Qty (Unit)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_21.jpg"
     },
     {
         "action": "CLICK",
@@ -456,7 +456,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_22.jpg"
     },
     {
         "action": "TYPE",
@@ -480,7 +480,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_24.jpg"
     },
     {
         "action": "NAVIGATE",
@@ -491,7 +491,7 @@
         "tag": "window",
         "text": "Liberty",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Nurva Master/screenshots/step_25.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/add",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/nurva-master/list",

@@ -1,0 +1,13 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/domestic",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/domestic"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/domestic",
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Domestic Orders/screenshots/step_1.jpg"
+    }
+]

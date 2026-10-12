@@ -1,0 +1,51 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/plan-production",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/plan-production"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/plan-production",
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Daily Planning/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"From\"",
+        "selectors": [
+            "text=\"From\"",
+            "div:nth-of-type(3) > div > div > app-plan-production-list > div > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "From",
+        "label": "From",
+        "required": false,
+        "value": "From",
+        "role": "",
+        "accessible_name": "From",
+        "text_full": "From",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Daily Planning/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"To\"",
+        "selectors": [
+            "text=\"To\"",
+            "div:nth-of-type(3) > div > div > app-plan-production-list > div > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "To",
+        "label": "To",
+        "required": false,
+        "value": "To",
+        "role": "",
+        "accessible_name": "To",
+        "text_full": "To",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Production/Daily Planning/screenshots/step_3.jpg"
+    }
+]

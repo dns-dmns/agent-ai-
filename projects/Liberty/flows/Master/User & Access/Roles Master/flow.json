@@ -1,0 +1,14 @@
+{
+    "schema_version": 1,
+    "flow_name": "Master/User & Access/Roles Master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/roles-master/list",
+    "timestamp": "2026-10-11 19:39:13",
+    "duration_seconds": 6,
+    "step_count": 23,
+    "source": "explorer",
+    "menu_path": [
+        "Master",
+        "User & Access",
+        "Roles Master"
+    ]
+}

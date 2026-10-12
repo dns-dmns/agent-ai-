@@ -8,7 +8,7 @@
         "tag": "",
         "text": "",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_1.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -26,7 +26,7 @@
         "text_full": "Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_2.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -44,7 +44,7 @@
         "text_full": "Product Catalogue",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_3.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -62,7 +62,7 @@
         "text_full": "Patti Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_4.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -80,7 +80,7 @@
         "text_full": "SL.NO",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_5.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -98,7 +98,7 @@
         "text_full": "PM CODE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_6.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -116,7 +116,7 @@
         "text_full": "PM DESCRIPTION",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_7.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -134,7 +134,7 @@
         "text_full": "PM QTY (UNIT)",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_8.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -154,7 +154,7 @@
             "title": "The recipe priced at the RM stores' current weighted average cost"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_9.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -172,7 +172,7 @@
         "text_full": "STATUS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_10.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -190,7 +190,7 @@
         "text_full": "ACTIONS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_11.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -213,7 +213,7 @@
             "aria-label": "Pending Approvals"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_12.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -235,7 +235,7 @@
             "type": "button"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_13.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -258,7 +258,7 @@
             "title": "View"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_14.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -281,7 +281,7 @@
             "title": "Edit"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_15.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -304,7 +304,7 @@
             "title": "Set Inactive"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_16.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -327,7 +327,7 @@
             "title": "Delete"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_17.jpg"
     },
     {
         "action": "CLICK",
@@ -348,7 +348,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_18.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
@@ -391,7 +391,7 @@
         "tag": "window",
         "text": "Liberty",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_19.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -410,7 +410,7 @@
         "text_full": "PM Code",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_20.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -429,7 +429,7 @@
         "text_full": "PM Description *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_21.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -448,7 +448,7 @@
         "text_full": "PM Qty (Unit) *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_22.jpg"
     },
     {
         "action": "CLICK",
@@ -472,7 +472,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_23.jpg"
     },
     {
         "action": "TYPE",
@@ -496,7 +496,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_25.jpg"
     },
     {
         "action": "CLICK",
@@ -518,7 +518,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_26.jpg"
     },
     {
         "action": "TYPE",
@@ -540,7 +540,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_28.jpg"
     },
     {
         "action": "NAVIGATE",
@@ -551,7 +551,7 @@
         "tag": "window",
         "text": "Liberty",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Patti Master/screenshots/step_29.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/add",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/patti-master/list",

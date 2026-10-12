@@ -1,0 +1,297 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/job-orders",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/job-orders"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/job-orders",
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Planning",
+        "label": "",
+        "required": false,
+        "value": "Planning",
+        "role": "listitem",
+        "accessible_name": "Planning",
+        "text_full": "Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Job Orders",
+        "label": "",
+        "required": false,
+        "value": "Job Orders",
+        "role": "listitem",
+        "accessible_name": "Job Orders",
+        "text_full": "Job Orders",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDER NO.",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDER NO.",
+        "role": "",
+        "accessible_name": "JOB ORDER NO.",
+        "text_full": "JOB ORDER NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE",
+        "role": "",
+        "accessible_name": "SKU CODE",
+        "text_full": "SKU CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SKU DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SKU DESCRIPTION",
+        "role": "",
+        "accessible_name": "SKU DESCRIPTION",
+        "text_full": "SKU DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "TOTAL QTY (CTNS)",
+        "label": "",
+        "required": false,
+        "value": "TOTAL QTY (CTNS)",
+        "role": "",
+        "accessible_name": "TOTAL QTY (CTNS)",
+        "text_full": "TOTAL QTY (CTNS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "TOTAL QTY (DOZENS)",
+        "label": "",
+        "required": false,
+        "value": "TOTAL QTY (DOZENS)",
+        "role": "",
+        "accessible_name": "TOTAL QTY (DOZENS)",
+        "text_full": "TOTAL QTY (DOZENS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-job-orders > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Domestic\")",
+        "selectors": [
+            "button:has-text(\"Domestic\")",
+            "text=\"Domestic\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-job-orders > div > div > button"
+        ],
+        "tag": "button",
+        "text": "Domestic",
+        "label": "",
+        "required": false,
+        "value": "Domestic",
+        "role": "button",
+        "accessible_name": "Domestic",
+        "text_full": "Domestic",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Export\")",
+        "selectors": [
+            "button:has-text(\"Export\")",
+            "text=\"Export\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-job-orders > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Export",
+        "label": "",
+        "required": false,
+        "value": "Export",
+        "role": "button",
+        "accessible_name": "Export",
+        "text_full": "Export",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View department-wise status\"]",
+        "selectors": [
+            "button[title=\"View department-wise status\"]",
+            "[aria-label=\"View department-wise status\"]",
+            "button:has(i.pi-eye)",
+            "div > app-job-orders > div > div:nth-of-type(3) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View department-wise status",
+        "text_full": "",
+        "attrs": {
+            "title": "View department-wise status"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Job Orders/screenshots/step_16.jpg"
+    }
+]

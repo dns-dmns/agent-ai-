@@ -1,0 +1,306 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/domestic-orders",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/domestic-orders"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/domestic-orders",
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Planning",
+        "label": "",
+        "required": false,
+        "value": "Planning",
+        "role": "listitem",
+        "accessible_name": "Planning",
+        "text_full": "Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Domestic Orders",
+        "label": "",
+        "required": false,
+        "value": "Domestic Orders",
+        "role": "listitem",
+        "accessible_name": "Domestic Orders",
+        "text_full": "Domestic Orders",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SKU CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "SKU CATEGORY",
+        "role": "",
+        "accessible_name": "SKU CATEGORY",
+        "text_full": "SKU CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE",
+        "role": "",
+        "accessible_name": "SKU CODE",
+        "text_full": "SKU CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "SKU DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SKU DESCRIPTION",
+        "role": "",
+        "accessible_name": "SKU DESCRIPTION",
+        "text_full": "SKU DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "NO. OF SALES ORDERS",
+        "label": "",
+        "required": false,
+        "value": "NO. OF SALES ORDERS",
+        "role": "",
+        "accessible_name": "NO. OF SALES ORDERS",
+        "text_full": "NO. OF SALES ORDERS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "TOTAL ORDER QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL ORDER QTY",
+        "role": "",
+        "accessible_name": "TOTAL ORDER QTY",
+        "text_full": "TOTAL ORDER QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "TOTAL LIVE INVENTORY QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL LIVE INVENTORY QTY",
+        "role": "",
+        "accessible_name": "TOTAL LIVE INVENTORY QTY",
+        "text_full": "TOTAL LIVE INVENTORY QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "DIFFERENCE (LIVE \u2212 ORDERED)",
+        "label": "",
+        "required": false,
+        "value": "DIFFERENCE (LIVE \u2212 ORDERED)",
+        "role": "",
+        "accessible_name": "DIFFERENCE (LIVE \u2212 ORDERED)",
+        "text_full": "DIFFERENCE (LIVE \u2212 ORDERED)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "PLANNED (AWAITING JO)",
+        "label": "",
+        "required": false,
+        "value": "PLANNED (AWAITING JO)",
+        "role": "",
+        "accessible_name": "PLANNED (AWAITING JO)",
+        "text_full": "PLANNED (AWAITING JO)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDERED",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDERED",
+        "role": "",
+        "accessible_name": "JOB ORDERED",
+        "text_full": "JOB ORDERED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "REMAINING TO PLAN",
+        "label": "",
+        "required": false,
+        "value": "REMAINING TO PLAN",
+        "role": "",
+        "accessible_name": "REMAINING TO PLAN",
+        "text_full": "REMAINING TO PLAN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > div > app-domestic-orders > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Domestic Orders/screenshots/step_17.jpg"
+    }
+]

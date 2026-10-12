@@ -1,0 +1,202 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/pos-inventory",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/pos-inventory"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/pos-inventory",
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Warehouse",
+        "label": "",
+        "required": false,
+        "value": "Warehouse",
+        "role": "listitem",
+        "accessible_name": "Warehouse",
+        "text_full": "Warehouse",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "POS Inventory",
+        "label": "",
+        "required": false,
+        "value": "POS Inventory",
+        "role": "listitem",
+        "accessible_name": "POS Inventory",
+        "text_full": "POS Inventory",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SKU Code",
+        "label": "",
+        "required": false,
+        "value": "SKU Code",
+        "role": "",
+        "accessible_name": "SKU Code",
+        "text_full": "SKU Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SKU Description",
+        "label": "",
+        "required": false,
+        "value": "SKU Description",
+        "role": "",
+        "accessible_name": "SKU Description",
+        "text_full": "SKU Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "Category",
+        "label": "",
+        "required": false,
+        "value": "Category",
+        "role": "",
+        "accessible_name": "Category",
+        "text_full": "Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Pieces",
+        "label": "",
+        "required": false,
+        "value": "Pieces",
+        "role": "",
+        "accessible_name": "Pieces",
+        "text_full": "Pieces",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "Available Qty",
+        "label": "",
+        "required": false,
+        "value": "Available Qty",
+        "role": "",
+        "accessible_name": "Available Qty",
+        "text_full": "Available Qty",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-pos-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "Last Updated",
+        "label": "",
+        "required": false,
+        "value": "Last Updated",
+        "role": "",
+        "accessible_name": "Last Updated",
+        "text_full": "Last Updated",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Stock In\")",
+        "selectors": [
+            "button:has-text(\"Stock In\")",
+            "text=\"Stock In\"",
+            "div > div:nth-of-type(3) > div > div > app-pos-inventory > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Stock In",
+        "label": "",
+        "required": false,
+        "value": "Stock In",
+        "role": "button",
+        "accessible_name": "Stock In",
+        "text_full": "Stock In",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/POS Inventory/screenshots/step_11.jpg"
+    }
+]

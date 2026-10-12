@@ -1,0 +1,139 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/sales-report",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/sales-report"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/sales-report",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Sales Report",
+        "label": "",
+        "required": false,
+        "value": "Sales Report",
+        "role": "listitem",
+        "accessible_name": "Sales Report",
+        "text_full": "Sales Report",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "div > app-field-sales-report > div > header > div:nth-of-type(2) > span > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Show\")",
+        "selectors": [
+            "button:has-text(\"Show\")",
+            "text=\"Show\"",
+            "div:nth-of-type(3) > div > div > app-field-sales-report > div > header > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Show",
+        "label": "",
+        "required": false,
+        "value": "Show",
+        "role": "button",
+        "accessible_name": "Show",
+        "text_full": "Show",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Download report\")",
+        "selectors": [
+            "button:has-text(\"Download report\")",
+            "text=\"Download report\"",
+            "div:nth-of-type(3) > div > div > app-field-sales-report > div > header > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Download report",
+        "label": "",
+        "required": false,
+        "value": "Download report",
+        "role": "button",
+        "accessible_name": "Download report",
+        "text_full": "Download report",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Sales Report/screenshots/step_7.jpg"
+    }
+]

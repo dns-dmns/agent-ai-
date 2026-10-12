@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Depot/Arrival",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/arrival",
+    "timestamp": "2026-10-11 19:41:45",
+    "duration_seconds": 2,
+    "step_count": 14,
+    "source": "explorer",
+    "menu_path": [
+        "Depot",
+        "Arrival"
+    ]
+}

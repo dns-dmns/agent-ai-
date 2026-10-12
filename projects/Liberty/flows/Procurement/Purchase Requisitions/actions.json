@@ -1,0 +1,428 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-requisitions",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-requisitions"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/procurement/purchase-requisitions",
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(4) > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(4) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "All Purchase Requisitions",
+        "label": "",
+        "required": false,
+        "value": "All Purchase Requisitions",
+        "role": "heading",
+        "accessible_name": "All Purchase Requisitions",
+        "text_full": "All Purchase Requisitions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Procurement",
+        "label": "",
+        "required": false,
+        "value": "Procurement",
+        "role": "listitem",
+        "accessible_name": "Procurement",
+        "text_full": "Procurement",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Purchase Requisitions",
+        "label": "",
+        "required": false,
+        "value": "Purchase Requisitions",
+        "role": "listitem",
+        "accessible_name": "Purchase Requisitions",
+        "text_full": "Purchase Requisitions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "PR NUMBER",
+        "label": "",
+        "required": false,
+        "value": "PR NUMBER",
+        "role": "",
+        "accessible_name": "PR NUMBER",
+        "text_full": "PR NUMBER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SUPPLIER",
+        "label": "",
+        "required": false,
+        "value": "SUPPLIER",
+        "role": "",
+        "accessible_name": "SUPPLIER",
+        "text_full": "SUPPLIER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "RM ITEM",
+        "label": "",
+        "required": false,
+        "value": "RM ITEM",
+        "role": "",
+        "accessible_name": "RM ITEM",
+        "text_full": "RM ITEM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "REQ QTY",
+        "label": "",
+        "required": false,
+        "value": "REQ QTY",
+        "role": "",
+        "accessible_name": "REQ QTY",
+        "text_full": "REQ QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "PR VALUE",
+        "label": "",
+        "required": false,
+        "value": "PR VALUE",
+        "role": "",
+        "accessible_name": "PR VALUE",
+        "text_full": "PR VALUE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ORDER DEADLINE",
+        "label": "",
+        "required": false,
+        "value": "ORDER DEADLINE",
+        "role": "",
+        "accessible_name": "ORDER DEADLINE",
+        "text_full": "ORDER DEADLINE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > app-purchase-requisition-list > div > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Clear\")",
+        "selectors": [
+            "button:has-text(\"Clear\")",
+            "text=\"Clear\"",
+            "div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Clear",
+        "label": "",
+        "required": false,
+        "value": "Clear",
+        "role": "button",
+        "accessible_name": "Clear",
+        "text_full": "Clear",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"All\")",
+        "selectors": [
+            "button:has-text(\"All\")",
+            "text=\"All\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "All\n0",
+        "label": "",
+        "required": false,
+        "value": "All 0",
+        "role": "tab",
+        "accessible_name": "All 0",
+        "text_full": "All 0",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Open\")",
+        "selectors": [
+            "button:has-text(\"Open\")",
+            "text=\"Open\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Open\n0",
+        "label": "",
+        "required": false,
+        "value": "Open 0",
+        "role": "tab",
+        "accessible_name": "Open 0",
+        "text_full": "Open 0",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Cancelled\")",
+        "selectors": [
+            "button:has-text(\"Cancelled\")",
+            "text=\"Cancelled\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(2) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "Cancelled\n0",
+        "label": "",
+        "required": false,
+        "value": "Cancelled 0",
+        "role": "tab",
+        "accessible_name": "Cancelled 0",
+        "text_full": "Cancelled 0",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Converted to PO\")",
+        "selectors": [
+            "button:has-text(\"Converted to PO\")",
+            "text=\"Converted to PO\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(2) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "Converted to PO\n0",
+        "label": "",
+        "required": false,
+        "value": "Converted to PO 0",
+        "role": "tab",
+        "accessible_name": "Converted to PO 0",
+        "text_full": "Converted to PO 0",
+        "attrs": {
+            "type": "button",
+            "role": "tab"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Merge Selected\")",
+        "selectors": [
+            "button:has-text(\"Merge Selected\")",
+            "text=\"Merge Selected\"",
+            "div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(3) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Merge Selected",
+        "label": "",
+        "required": false,
+        "value": "Merge Selected",
+        "role": "button",
+        "accessible_name": "Merge Selected",
+        "text_full": "Merge Selected",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Convert to PO\")",
+        "selectors": [
+            "button:has-text(\"Convert to PO\")",
+            "text=\"Convert to PO\"",
+            "div:nth-of-type(3) > div > div > app-purchase-requisition-list > div > div:nth-of-type(3) > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Convert to PO",
+        "label": "",
+        "required": false,
+        "value": "Convert to PO",
+        "role": "button",
+        "accessible_name": "Convert to PO",
+        "text_full": "Convert to PO",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Procurement/Purchase Requisitions/screenshots/step_22.jpg"
+    }
+]

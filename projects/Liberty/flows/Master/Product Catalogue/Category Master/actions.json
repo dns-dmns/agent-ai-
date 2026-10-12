@@ -8,7 +8,7 @@
         "tag": "",
         "text": "",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_1.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -26,7 +26,7 @@
         "text_full": "Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_2.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -44,7 +44,7 @@
         "text_full": "Product Catalogue",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_3.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -62,7 +62,7 @@
         "text_full": "Category Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_4.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -80,7 +80,7 @@
         "text_full": "SL.NO",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_5.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -98,7 +98,7 @@
         "text_full": "CATEGORY NAME",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_6.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -116,7 +116,7 @@
         "text_full": "DESCRIPTION",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_7.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -134,7 +134,7 @@
         "text_full": "MASTER",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_8.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -152,7 +152,7 @@
         "text_full": "ACTIVE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_9.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -170,7 +170,7 @@
         "text_full": "ACTIONS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_10.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -193,7 +193,7 @@
             "aria-label": "Pending Approvals"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_11.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -215,55 +215,7 @@
             "type": "button"
         },
         "asserted": true,
-        "screenshot": null
-    },
-    {
-        "action": "VERIFY_VISIBLE",
-        "selector": "button[title=\"Edit\"]",
-        "selectors": [
-            "button[title=\"Edit\"]",
-            "[aria-label=\"Edit\"]",
-            "button:has(i.pi-pencil)",
-            "tr:has-text(\"1\tAUTO_CAT_RM_QUOTE 8\\\" TEST\t-\tRM Master\") [title=\"Edit\"]",
-            "div > app-category-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button"
-        ],
-        "tag": "button",
-        "text": "",
-        "label": "",
-        "required": false,
-        "value": "",
-        "role": "button",
-        "accessible_name": "Edit",
-        "text_full": "",
-        "attrs": {
-            "title": "Edit"
-        },
-        "asserted": true,
-        "screenshot": null
-    },
-    {
-        "action": "VERIFY_VISIBLE",
-        "selector": "button[title=\"Delete\"]",
-        "selectors": [
-            "button[title=\"Delete\"]",
-            "[aria-label=\"Delete\"]",
-            "button:has(i.pi-trash)",
-            "tr:has-text(\"1\tAUTO_CAT_RM_QUOTE 8\\\" TEST\t-\tRM Master\") [title=\"Delete\"]",
-            "div > app-category-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > button:nth-of-type(2)"
-        ],
-        "tag": "button",
-        "text": "",
-        "label": "",
-        "required": false,
-        "value": "",
-        "role": "button",
-        "accessible_name": "Delete",
-        "text_full": "",
-        "attrs": {
-            "title": "Delete"
-        },
-        "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_12.jpg"
     },
     {
         "action": "CLICK",
@@ -284,7 +236,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_13.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
@@ -313,10 +265,10 @@
     },
     {
         "action": "VERIFY_TEXT",
-        "selector": "#pn_id_6_header",
+        "selector": "div > div > app-category-list > app-category-form > p-dialog > div > div > div > span",
         "selectors": [
-            "#pn_id_6_header",
-            "div > div > app-category-list > app-category-form > p-dialog > div > div > div > span"
+            "div > div > app-category-list > app-category-form > p-dialog > div > div > div > span",
+            "#pn_id_6_header"
         ],
         "tag": "span",
         "text": "Add Category",
@@ -328,7 +280,7 @@
         "text_full": "Add Category",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_14.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -347,7 +299,7 @@
         "text_full": "Category Name *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_15.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -366,7 +318,7 @@
         "text_full": "Description",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_16.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -385,7 +337,7 @@
         "text_full": "Master *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_17.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -404,7 +356,7 @@
         "text_full": "RM Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_18.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -423,7 +375,7 @@
         "text_full": "Item Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_19.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -442,7 +394,7 @@
         "text_full": "Perfume RM Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_20.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -461,7 +413,7 @@
         "text_full": "Active",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_21.jpg"
     },
     {
         "action": "CLICK",
@@ -482,7 +434,7 @@
         "attrs": {
             "type": "submit"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_22.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
@@ -528,7 +480,7 @@
         "text_full": "Category name is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_23.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -546,7 +498,7 @@
         "text_full": "Please select a master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_24.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -566,7 +518,7 @@
             "role": "alert"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_25.jpg"
     },
     {
         "action": "CLICK",
@@ -593,7 +545,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_26.jpg"
     },
     {
         "action": "TYPE",
@@ -620,7 +572,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_28.jpg"
     },
     {
         "action": "CLICK",
@@ -647,7 +599,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_29.jpg"
     },
     {
         "action": "TYPE",
@@ -674,7 +626,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_30.jpg"
     },
     {
         "action": "CLICK",
@@ -695,7 +647,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/Category Master/screenshots/step_31.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/category-master/list",

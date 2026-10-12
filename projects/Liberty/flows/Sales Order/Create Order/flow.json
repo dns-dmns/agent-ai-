@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Sales Order/Create Order",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+    "timestamp": "2026-10-11 19:39:57",
+    "duration_seconds": 8,
+    "step_count": 20,
+    "source": "explorer",
+    "menu_path": [
+        "Sales Order",
+        "Create Order"
+    ]
+}

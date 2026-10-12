@@ -1,0 +1,1504 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Sales & Distribution",
+        "label": "",
+        "required": false,
+        "value": "Sales & Distribution",
+        "role": "listitem",
+        "accessible_name": "Sales & Distribution",
+        "text_full": "Sales & Distribution",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Depot Master",
+        "label": "",
+        "required": false,
+        "value": "Depot Master",
+        "role": "listitem",
+        "accessible_name": "Depot Master",
+        "text_full": "Depot Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "DEPOT CODE",
+        "label": "",
+        "required": false,
+        "value": "DEPOT CODE",
+        "role": "",
+        "accessible_name": "DEPOT CODE",
+        "text_full": "DEPOT CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DEPOT NAME",
+        "label": "",
+        "required": false,
+        "value": "DEPOT NAME",
+        "role": "",
+        "accessible_name": "DEPOT NAME",
+        "text_full": "DEPOT NAME",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "STATES",
+        "label": "",
+        "required": false,
+        "value": "STATES",
+        "role": "",
+        "accessible_name": "STATES",
+        "text_full": "STATES",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "HQ",
+        "label": "",
+        "required": false,
+        "value": "HQ",
+        "role": "",
+        "accessible_name": "HQ",
+        "text_full": "HQ",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "CONTACT",
+        "label": "",
+        "required": false,
+        "value": "CONTACT",
+        "role": "",
+        "accessible_name": "CONTACT",
+        "text_full": "CONTACT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "DISCOUNT %",
+        "label": "",
+        "required": false,
+        "value": "DISCOUNT %",
+        "role": "",
+        "accessible_name": "DISCOUNT %",
+        "text_full": "DISCOUNT %",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTIVE",
+        "label": "",
+        "required": false,
+        "value": "ACTIVE",
+        "role": "",
+        "accessible_name": "ACTIVE",
+        "text_full": "ACTIVE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-depot-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Depot\")",
+        "selectors": [
+            "button:has-text(\"Add Depot\")",
+            "text=\"Add Depot\"",
+            "div > div:nth-of-type(3) > div > div > app-depot-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Depot",
+        "label": "",
+        "required": false,
+        "value": "Add Depot",
+        "role": "button",
+        "accessible_name": "Add Depot",
+        "text_full": "Add Depot",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "tr:has-text(\"1\tap - depot\tap deport\t\") [title=\"Edit\"]",
+            "div > app-depot-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tap - depot\tap deport\t\") [title=\"Delete\"]",
+            "div > app-depot-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Depot\")",
+        "selectors": [
+            "button:has-text(\"Add Depot\")",
+            "text=\"Add Depot\"",
+            "div > div:nth-of-type(3) > div > div > app-depot-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Depot",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Depot",
+        "text_full": "Add Depot",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_18.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "messages": [
+                {
+                    "text": "Add Depot",
+                    "selector": "div.ng-tns-c2196985156-3.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_header",
+                "pn_id_86",
+                "pn_id_88",
+                "pn_id_89",
+                "pn_id_91",
+                "pn_id_93",
+                "depotIsHq",
+                "depotActive"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-list > app-depot-form > p-dialog > div > div > div > span",
+        "selectors": [
+            "div > div > app-depot-list > app-depot-form > p-dialog > div > div > div > span",
+            "#pn_id_6_header"
+        ],
+        "tag": "span",
+        "text": "Add Depot",
+        "label": "",
+        "required": false,
+        "value": "Add Depot",
+        "role": "",
+        "accessible_name": "Add Depot",
+        "text_full": "Add Depot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Depot Code *\"",
+        "selectors": [
+            "text=\"Depot Code *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Depot Code *",
+        "label": "Depot Code *",
+        "required": false,
+        "value": "Depot Code *",
+        "role": "",
+        "accessible_name": "Depot Code *",
+        "text_full": "Depot Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Depot Name *\"",
+        "selectors": [
+            "text=\"Depot Name *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Depot Name *",
+        "label": "Depot Name *",
+        "required": false,
+        "value": "Depot Name *",
+        "role": "",
+        "accessible_name": "Depot Name *",
+        "text_full": "Depot Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Contact Person\"",
+        "selectors": [
+            "text=\"Contact Person\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Contact Person",
+        "label": "Contact Person",
+        "required": false,
+        "value": "Contact Person",
+        "role": "",
+        "accessible_name": "Contact Person",
+        "text_full": "Contact Person",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Contact Phone\"",
+        "selectors": [
+            "text=\"Contact Phone\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Contact Phone",
+        "label": "Contact Phone",
+        "required": false,
+        "value": "Contact Phone",
+        "role": "",
+        "accessible_name": "Contact Phone",
+        "text_full": "Contact Phone",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Address\"",
+        "selectors": [
+            "text=\"Address\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Address",
+        "label": "Address",
+        "required": false,
+        "value": "Address",
+        "role": "",
+        "accessible_name": "Address",
+        "text_full": "Address",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"States Served *\"",
+        "selectors": [
+            "text=\"States Served *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "States Served *",
+        "label": "States Served *",
+        "required": false,
+        "value": "States Served *",
+        "role": "",
+        "accessible_name": "States Served *",
+        "text_full": "States Served *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bills From *\"",
+        "selectors": [
+            "text=\"Bills From *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Bills From *",
+        "label": "Bills From *",
+        "required": false,
+        "value": "Bills From *",
+        "role": "",
+        "accessible_name": "Bills From *",
+        "text_full": "Bills From *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State Code\"",
+        "selectors": [
+            "text=\"State Code\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "State Code",
+        "label": "State Code",
+        "required": false,
+        "value": "State Code",
+        "role": "",
+        "accessible_name": "State Code",
+        "text_full": "State Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"GSTIN\"",
+        "selectors": [
+            "text=\"GSTIN\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "GSTIN",
+        "label": "GSTIN",
+        "required": false,
+        "value": "GSTIN",
+        "role": "",
+        "accessible_name": "GSTIN",
+        "text_full": "GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Region\"",
+        "selectors": [
+            "text=\"Region\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Region",
+        "label": "Region",
+        "required": false,
+        "value": "Region",
+        "role": "",
+        "accessible_name": "Region",
+        "text_full": "Region",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bank Name *\"",
+        "selectors": [
+            "text=\"Bank Name *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Bank Name *",
+        "label": "Bank Name *",
+        "required": false,
+        "value": "Bank Name *",
+        "role": "",
+        "accessible_name": "Bank Name *",
+        "text_full": "Bank Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Account Holder Name *\"",
+        "selectors": [
+            "text=\"Account Holder Name *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Account Holder Name *",
+        "label": "Account Holder Name *",
+        "required": false,
+        "value": "Account Holder Name *",
+        "role": "",
+        "accessible_name": "Account Holder Name *",
+        "text_full": "Account Holder Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Bank Account Number *\"",
+        "selectors": [
+            "text=\"Bank Account Number *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Bank Account Number *",
+        "label": "Bank Account Number *",
+        "required": false,
+        "value": "Bank Account Number *",
+        "role": "",
+        "accessible_name": "Bank Account Number *",
+        "text_full": "Bank Account Number *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Nature of Account *\"",
+        "selectors": [
+            "text=\"Nature of Account *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Nature of Account *",
+        "label": "Nature of Account *",
+        "required": false,
+        "value": "Nature of Account *",
+        "role": "",
+        "accessible_name": "Nature of Account *",
+        "text_full": "Nature of Account *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Branch Name *\"",
+        "selectors": [
+            "text=\"Branch Name *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "Branch Name *",
+        "label": "Branch Name *",
+        "required": false,
+        "value": "Branch Name *",
+        "role": "",
+        "accessible_name": "Branch Name *",
+        "text_full": "Branch Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"IFSC / RTGS *\"",
+        "selectors": [
+            "text=\"IFSC / RTGS *\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "IFSC / RTGS *",
+        "label": "IFSC / RTGS *",
+        "required": false,
+        "value": "IFSC / RTGS *",
+        "role": "",
+        "accessible_name": "IFSC / RTGS *",
+        "text_full": "IFSC / RTGS *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Discount %\"",
+        "selectors": [
+            "text=\"Discount %\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(4) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Discount %",
+        "label": "Discount %",
+        "required": false,
+        "value": "Discount %",
+        "role": "",
+        "accessible_name": "Discount %",
+        "text_full": "Discount %",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Sales Representatives\"",
+        "selectors": [
+            "text=\"Sales Representatives\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(4) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Sales Representatives",
+        "label": "Sales Representatives",
+        "required": false,
+        "value": "Sales Representatives",
+        "role": "",
+        "accessible_name": "Sales Representatives",
+        "text_full": "Sales Representatives",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Head office (HQ)\"",
+        "selectors": [
+            "text=\"Head office (HQ)\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(4) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Head office (HQ)\nOnly one depot can be HQ",
+        "label": "Head office (HQ)\nOnly one depot can be HQ",
+        "required": false,
+        "value": "Head office (HQ) Only one depot can be HQ",
+        "role": "",
+        "accessible_name": "Head office (HQ)\nOnly one depot can be HQ",
+        "text_full": "Head office (HQ) Only one depot can be HQ",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Active\"",
+        "selectors": [
+            "text=\"Active\"",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(4) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Active",
+        "label": "Active",
+        "required": false,
+        "value": "Active",
+        "role": "",
+        "accessible_name": "Active",
+        "text_full": "Active",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_39.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-depot-form > p-dialog > div > div > div:nth-of-type(2) > form > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_40.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "messages": [
+                {
+                    "text": "Depot Code is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Depot Name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Pick at least one state",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Billing state is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Bank Name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Account Holder Name is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Depot Code is required",
+        "label": "",
+        "required": false,
+        "value": "Depot Code is required",
+        "role": "",
+        "accessible_name": "Depot Code is required",
+        "text_full": "Depot Code is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_41.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Depot Name is required",
+        "label": "",
+        "required": false,
+        "value": "Depot Name is required",
+        "role": "",
+        "accessible_name": "Depot Name is required",
+        "text_full": "Depot Name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_42.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(2) > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Billing state is required",
+        "label": "",
+        "required": false,
+        "value": "Billing state is required",
+        "role": "",
+        "accessible_name": "Billing state is required",
+        "text_full": "Billing state is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_43.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div > span"
+        ],
+        "tag": "span",
+        "text": "Bank Name is required",
+        "label": "",
+        "required": false,
+        "value": "Bank Name is required",
+        "role": "",
+        "accessible_name": "Bank Name is required",
+        "text_full": "Bank Name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_44.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Account Holder Name is required",
+        "label": "",
+        "required": false,
+        "value": "Account Holder Name is required",
+        "role": "",
+        "accessible_name": "Account Holder Name is required",
+        "text_full": "Account Holder Name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_45.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(3) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(3) > span"
+        ],
+        "tag": "span",
+        "text": "Bank Account Number is required",
+        "label": "",
+        "required": false,
+        "value": "Bank Account Number is required",
+        "role": "",
+        "accessible_name": "Bank Account Number is required",
+        "text_full": "Bank Account Number is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_46.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(4) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(4) > span"
+        ],
+        "tag": "span",
+        "text": "Nature of Account is required",
+        "label": "",
+        "required": false,
+        "value": "Nature of Account is required",
+        "role": "",
+        "accessible_name": "Nature of Account is required",
+        "text_full": "Nature of Account is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_47.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(5) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(5) > span"
+        ],
+        "tag": "span",
+        "text": "Branch Name is required",
+        "label": "",
+        "required": false,
+        "value": "Branch Name is required",
+        "role": "",
+        "accessible_name": "Branch Name is required",
+        "text_full": "Branch Name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_48.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(6) > span",
+        "selectors": [
+            "p-dialog > div > div > div:nth-of-type(2) > form > section:nth-of-type(3) > div > div:nth-of-type(6) > span"
+        ],
+        "tag": "span",
+        "text": "IFSC / RTGS is required",
+        "label": "",
+        "required": false,
+        "value": "IFSC / RTGS is required",
+        "role": "",
+        "accessible_name": "IFSC / RTGS is required",
+        "text_full": "IFSC / RTGS is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_49.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_50.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"depotCode\"]",
+        "selectors": [
+            "[formcontrolname=\"depotCode\"]",
+            "input[formcontrolname=\"depotCode\"]",
+            "input[placeholder=\"e.g. GOA-01\"]",
+            "div input[formcontrolname=\"depotCode\"]",
+            "div input[placeholder=\"e.g. GOA-01\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. GOA-01",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_51.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"depotCode\"]",
+        "selectors": [
+            "[formcontrolname=\"depotCode\"]",
+            "input[formcontrolname=\"depotCode\"]",
+            "input[placeholder=\"e.g. GOA-01\"]",
+            "div input[formcontrolname=\"depotCode\"]",
+            "div input[placeholder=\"e.g. GOA-01\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. GOA-01",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_53.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"depotName\"]",
+        "selectors": [
+            "[formcontrolname=\"depotName\"]",
+            "input[formcontrolname=\"depotName\"]",
+            "input[placeholder=\"Enter depot name\"]",
+            "div input[formcontrolname=\"depotName\"]",
+            "div input[placeholder=\"Enter depot name\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter depot name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_54.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"depotName\"]",
+        "selectors": [
+            "[formcontrolname=\"depotName\"]",
+            "input[formcontrolname=\"depotName\"]",
+            "input[placeholder=\"Enter depot name\"]",
+            "div input[formcontrolname=\"depotName\"]",
+            "div input[placeholder=\"Enter depot name\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Depot Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter depot name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_56.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "messages": [
+                {
+                    "text": "Umang Tandel (SVAW-E001)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Rajesh Kumar (E201)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Sathish Kumar (SVAW 1452)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "asm (asm1)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Brijesh (SD2004)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "ARUMUGAM A (SVAW 0626)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1",
+                "pn_id_86_2",
+                "pn_id_86_3",
+                "pn_id_86_4",
+                "pn_id_86_5",
+                "pn_id_86_6",
+                "pn_id_86_7",
+                "pn_id_86_8",
+                "pn_id_86_9",
+                "pn_id_86_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"contactPerson\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPerson\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Contact Person",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_57.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Umang Tandel (SVAW-E001)\"]",
+        "selectors": [
+            "[aria-label=\"Umang Tandel (SVAW-E001)\"]",
+            "text=\"Umang Tandel (SVAW-E001)\"",
+            "#pn_id_86_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Umang Tandel (SVAW-E001)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Umang Tandel (SVAW-E001)",
+        "text_full": "Umang Tandel (SVAW-E001)",
+        "attrs": {
+            "aria-label": "Umang Tandel (SVAW-E001)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_57.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "messages": [
+                {
+                    "text": "Umang Tandel (SVAW-E001)",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_86_list",
+                "pn_id_86_0",
+                "pn_id_86_1",
+                "pn_id_86_2",
+                "pn_id_86_3",
+                "pn_id_86_4",
+                "pn_id_86_5",
+                "pn_id_86_6",
+                "pn_id_86_7",
+                "pn_id_86_8",
+                "pn_id_86_9",
+                "pn_id_86_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"contactPhone\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPhone\"]",
+            "input[formcontrolname=\"contactPhone\"]",
+            "input[placeholder=\"Phone number\"]",
+            "div input[formcontrolname=\"contactPhone\"]",
+            "div input[placeholder=\"Phone number\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Phone number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_58.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"contactPhone\"]",
+        "selectors": [
+            "[formcontrolname=\"contactPhone\"]",
+            "input[formcontrolname=\"contactPhone\"]",
+            "input[placeholder=\"Phone number\"]",
+            "div input[formcontrolname=\"contactPhone\"]",
+            "div input[placeholder=\"Phone number\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "9876543210",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Phone number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_60.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"address\"]",
+        "selectors": [
+            "[formcontrolname=\"address\"]",
+            "input[formcontrolname=\"address\"]",
+            "input[placeholder=\"Full address\"]",
+            "div input[formcontrolname=\"address\"]",
+            "div input[placeholder=\"Full address\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Full address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_61.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"address\"]",
+        "selectors": [
+            "[formcontrolname=\"address\"]",
+            "input[formcontrolname=\"address\"]",
+            "input[placeholder=\"Full address\"]",
+            "div input[formcontrolname=\"address\"]",
+            "div input[placeholder=\"Full address\"]",
+            "p-dialog > div > div > div:nth-of-type(2) > form > section > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Address",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Full address",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_63.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Arunachal Pradesh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Assam",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                },
+                {
+                    "text": "Chandigarh",
+                    "selector": "p-multiselect-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2",
+                "pn_id_88_3",
+                "pn_id_88_4",
+                "pn_id_88_5",
+                "pn_id_88_6",
+                "pn_id_88_7",
+                "pn_id_88_8",
+                "pn_id_88_9",
+                "pn_id_88_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"states\"]",
+        "selectors": [
+            "[formcontrolname=\"states\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "States Served *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_64.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_88_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_64.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/depot-master/list",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "div.p-multiselect-chip-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_header",
+                "pn_id_86",
+                "pn_id_88",
+                "pn_id_89",
+                "pn_id_91",
+                "pn_id_93",
+                "depotIsHq",
+                "depotActive",
+                "pn_id_88_list",
+                "pn_id_88_0",
+                "pn_id_88_1",
+                "pn_id_88_2"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body",
+        "selectors": [
+            "html > body"
+        ],
+        "tag": "body",
+        "text": "Home\nDashboard\nMaster\nProduct Catalogue\nItem Maste",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Mast",
+        "text_full": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Master Patti Master Nurva Master Business Partners Customer Master Supplier Master Transporter Master Sales & Distribution Scheme Master Distributor Master Depot Master Field Operation Leave Types Weekly Off & Holidays Expense Types Official Work Types ASM - SR Mapping Production Production Machines Operator Master User & Access User Master Roles Master Permissions Sales Connect Dashboard Live Tracking Week Plan Attendance Approvals Give a Task Budgets Sales Report Work Report Au\u2026",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_65.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Search Depot\"]",
+        "selectors": [
+            "input[placeholder=\"Search Depot\"]",
+            "div:nth-of-type(3) > div > div > app-depot-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Depot",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_66.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Search Depot\"]",
+        "selectors": [
+            "input[placeholder=\"Search Depot\"]",
+            "div:nth-of-type(3) > div > div > app-depot-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Search Depot",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search Depot",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_68.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "button:has-text(\"Add Depot\")",
+        "selectors": [
+            "button:has-text(\"Add Depot\")",
+            "text=\"Add Depot\"",
+            "div > div:nth-of-type(3) > div > div > app-depot-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Depot",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "button",
+        "accessible_name": "Add Depot",
+        "text_full": "Add Depot",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Sales & Distribution/Depot Master/screenshots/step_69.jpg"
+    }
+]

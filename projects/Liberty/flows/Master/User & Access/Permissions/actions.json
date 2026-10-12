@@ -1,0 +1,170 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/permissions/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/permissions/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/permissions/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-permissions > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-permissions > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Permissions",
+        "label": "",
+        "required": false,
+        "value": "Permissions",
+        "role": "heading",
+        "accessible_name": "Permissions",
+        "text_full": "Permissions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "User & Access",
+        "label": "",
+        "required": false,
+        "value": "User & Access",
+        "role": "listitem",
+        "accessible_name": "User & Access",
+        "text_full": "User & Access",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Permissions",
+        "label": "",
+        "required": false,
+        "value": "Permissions",
+        "role": "listitem",
+        "accessible_name": "Permissions",
+        "text_full": "Permissions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Seed Defaults\")",
+        "selectors": [
+            "button:has-text(\"Seed Defaults\")",
+            "text=\"Seed Defaults\"",
+            "div > div:nth-of-type(3) > div > div > app-permissions > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Seed Defaults",
+        "label": "",
+        "required": false,
+        "value": "Seed Defaults",
+        "role": "button",
+        "accessible_name": "Seed Defaults",
+        "text_full": "Seed Defaults",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Role-Wise Permissions\")",
+        "selectors": [
+            "button:has-text(\"Role-Wise Permissions\")",
+            "text=\"Role-Wise Permissions\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-permissions > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Role-Wise Permissions",
+        "label": "",
+        "required": false,
+        "value": "Role-Wise Permissions",
+        "role": "button",
+        "accessible_name": "Role-Wise Permissions",
+        "text_full": "Role-Wise Permissions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"User-Wise Permissions\")",
+        "selectors": [
+            "button:has-text(\"User-Wise Permissions\")",
+            "text=\"User-Wise Permissions\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-permissions > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "User-Wise Permissions",
+        "label": "",
+        "required": false,
+        "value": "User-Wise Permissions",
+        "role": "button",
+        "accessible_name": "User-Wise Permissions",
+        "text_full": "User-Wise Permissions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/Permissions/screenshots/step_9.jpg"
+    }
+]

@@ -1,0 +1,292 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/receipt",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/receipt"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/receipt",
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-job-work-receipt > div > div:nth-of-type(2) > h3",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-job-work-receipt > div > div:nth-of-type(2) > h3"
+        ],
+        "tag": "h3",
+        "text": "Awaiting Receipt\nJob Works with material still lyi",
+        "label": "",
+        "required": false,
+        "value": "Awaiting Receipt Job Works with material still lying with the job worker",
+        "role": "heading",
+        "accessible_name": "Awaiting Receipt Job Works with material still lying with the job worker",
+        "text_full": "Awaiting Receipt Job Works with material still lying with the job worker",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-pages > div > div:nth-of-type(3) > div > div > app-job-work-receipt > div > h3",
+        "selectors": [
+            "app-root > app-pages > div > div:nth-of-type(3) > div > div > app-job-work-receipt > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Receipts",
+        "label": "",
+        "required": false,
+        "value": "Receipts",
+        "role": "heading",
+        "accessible_name": "Receipts",
+        "text_full": "Receipts",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Job Work",
+        "label": "",
+        "required": false,
+        "value": "Job Work",
+        "role": "listitem",
+        "accessible_name": "Job Work",
+        "text_full": "Job Work",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Job Work Receipt",
+        "label": "",
+        "required": false,
+        "value": "Job Work Receipt",
+        "role": "listitem",
+        "accessible_name": "Job Work Receipt",
+        "text_full": "Job Work Receipt",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "RECEIPT NO",
+        "label": "",
+        "required": false,
+        "value": "RECEIPT NO",
+        "role": "",
+        "accessible_name": "RECEIPT NO",
+        "text_full": "RECEIPT NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "JOB WORK NO",
+        "label": "",
+        "required": false,
+        "value": "JOB WORK NO",
+        "role": "",
+        "accessible_name": "JOB WORK NO",
+        "text_full": "JOB WORK NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "DATE",
+        "label": "",
+        "required": false,
+        "value": "DATE",
+        "role": "",
+        "accessible_name": "DATE",
+        "text_full": "DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SUPPLIER",
+        "label": "",
+        "required": false,
+        "value": "SUPPLIER",
+        "role": "",
+        "accessible_name": "SUPPLIER",
+        "text_full": "SUPPLIER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "CHALLAN NO",
+        "label": "",
+        "required": false,
+        "value": "CHALLAN NO",
+        "role": "",
+        "accessible_name": "CHALLAN NO",
+        "text_full": "CHALLAN NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "RECEIVED (KG)",
+        "label": "",
+        "required": false,
+        "value": "RECEIVED (KG)",
+        "role": "",
+        "accessible_name": "RECEIVED (KG)",
+        "text_full": "RECEIVED (KG)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "REJECTED (KG)",
+        "label": "",
+        "required": false,
+        "value": "REJECTED (KG)",
+        "role": "",
+        "accessible_name": "REJECTED (KG)",
+        "text_full": "REJECTED (KG)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-job-work-receipt > div > div:nth-of-type(3) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div > div:nth-of-type(3) > div > div > app-job-work-receipt > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Receipt/screenshots/step_16.jpg"
+    }
+]

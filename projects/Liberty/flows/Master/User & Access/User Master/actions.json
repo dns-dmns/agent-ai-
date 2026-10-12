@@ -1,0 +1,1571 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "User & Access",
+        "label": "",
+        "required": false,
+        "value": "User & Access",
+        "role": "listitem",
+        "accessible_name": "User & Access",
+        "text_full": "User & Access",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "User Master",
+        "label": "",
+        "required": false,
+        "value": "User Master",
+        "role": "listitem",
+        "accessible_name": "User Master",
+        "text_full": "User Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.No",
+        "label": "",
+        "required": false,
+        "value": "SL.No",
+        "role": "",
+        "accessible_name": "SL.No",
+        "text_full": "SL.No",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "User Name",
+        "label": "",
+        "required": false,
+        "value": "User Name",
+        "role": "",
+        "accessible_name": "User Name",
+        "text_full": "User Name",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "User Email",
+        "label": "",
+        "required": false,
+        "value": "User Email",
+        "role": "",
+        "accessible_name": "User Email",
+        "text_full": "User Email",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Employee Name",
+        "label": "",
+        "required": false,
+        "value": "Employee Name",
+        "role": "",
+        "accessible_name": "Employee Name",
+        "text_full": "Employee Name",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "Employee Code",
+        "label": "",
+        "required": false,
+        "value": "Employee Code",
+        "role": "",
+        "accessible_name": "Employee Code",
+        "text_full": "Employee Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "Depot",
+        "label": "",
+        "required": false,
+        "value": "Depot",
+        "role": "",
+        "accessible_name": "Depot",
+        "text_full": "Depot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "States",
+        "label": "",
+        "required": false,
+        "value": "States",
+        "role": "",
+        "accessible_name": "States",
+        "text_full": "States",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "Date of Joining",
+        "label": "",
+        "required": false,
+        "value": "Date of Joining",
+        "role": "",
+        "accessible_name": "Date of Joining",
+        "text_full": "Date of Joining",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "Role",
+        "label": "",
+        "required": false,
+        "value": "Role",
+        "role": "",
+        "accessible_name": "Role",
+        "text_full": "Role",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-user-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "Actions",
+        "label": "",
+        "required": false,
+        "value": "Actions",
+        "role": "",
+        "accessible_name": "Actions",
+        "text_full": "Actions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add User\")",
+        "selectors": [
+            "button:has-text(\"Add User\")",
+            "text=\"Add User\"",
+            "div > div:nth-of-type(3) > div > div > app-user-list > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add User",
+        "label": "",
+        "required": false,
+        "value": "Add User",
+        "role": "button",
+        "accessible_name": "Add User",
+        "text_full": "Add User",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-user-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-user-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(10) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add User\")",
+        "selectors": [
+            "button:has-text(\"Add User\")",
+            "text=\"Add User\"",
+            "div > div:nth-of-type(3) > div > div > app-user-list > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add User",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add User",
+        "text_full": "Add User",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_19.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "Add User",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header",
+                "pn_id_98",
+                "pn_id_100",
+                "pn_id_102"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-user-list > app-user-form-dialog > p-dialog > div > div > div > span",
+        "selectors": [
+            "div > div > app-user-list > app-user-form-dialog > p-dialog > div > div > div > span",
+            "#pn_id_8_header"
+        ],
+        "tag": "span",
+        "text": "Add User",
+        "label": "",
+        "required": false,
+        "value": "Add User",
+        "role": "",
+        "accessible_name": "Add User",
+        "text_full": "Add User",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"User Name *\"",
+        "selectors": [
+            "text=\"User Name *\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div > label"
+        ],
+        "tag": "label",
+        "text": "User Name *",
+        "label": "User Name *",
+        "required": false,
+        "value": "User Name *",
+        "role": "",
+        "accessible_name": "User Name *",
+        "text_full": "User Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"User Email *\"",
+        "selectors": [
+            "text=\"User Email *\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "User Email *",
+        "label": "User Email *",
+        "required": false,
+        "value": "User Email *",
+        "role": "",
+        "accessible_name": "User Email *",
+        "text_full": "User Email *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Password *\"",
+        "selectors": [
+            "text=\"Password *\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Password *",
+        "label": "Password *",
+        "required": false,
+        "value": "Password *",
+        "role": "",
+        "accessible_name": "Password *",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"User Role *\"",
+        "selectors": [
+            "text=\"User Role *\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "User Role *",
+        "label": "User Role *",
+        "required": false,
+        "value": "User Role *",
+        "role": "",
+        "accessible_name": "User Role *",
+        "text_full": "User Role *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Employee Name *\"",
+        "selectors": [
+            "text=\"Employee Name *\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > label"
+        ],
+        "tag": "label",
+        "text": "Employee Name *",
+        "label": "Employee Name *",
+        "required": false,
+        "value": "Employee Name *",
+        "role": "",
+        "accessible_name": "Employee Name *",
+        "text_full": "Employee Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Employee Code\"",
+        "selectors": [
+            "text=\"Employee Code\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Employee Code",
+        "label": "Employee Code",
+        "required": false,
+        "value": "Employee Code",
+        "role": "",
+        "accessible_name": "Employee Code",
+        "text_full": "Employee Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Depot *\"",
+        "selectors": [
+            "text=\"Depot *\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > label"
+        ],
+        "tag": "label",
+        "text": "Depot *",
+        "label": "Depot *",
+        "required": false,
+        "value": "Depot *",
+        "role": "",
+        "accessible_name": "Depot *",
+        "text_full": "Depot *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"States\"",
+        "selectors": [
+            "text=\"States\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "States",
+        "label": "States",
+        "required": false,
+        "value": "States",
+        "role": "",
+        "accessible_name": "States",
+        "text_full": "States",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Date of Joining\"",
+        "selectors": [
+            "text=\"Date of Joining\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div > label"
+        ],
+        "tag": "label",
+        "text": "Date of Joining",
+        "label": "Date of Joining",
+        "required": false,
+        "value": "Date of Joining",
+        "role": "",
+        "accessible_name": "Date of Joining",
+        "text_full": "Date of Joining",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Mobile No.\"",
+        "selectors": [
+            "text=\"Mobile No.\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(5) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Mobile No.",
+        "label": "Mobile No.",
+        "required": false,
+        "value": "Mobile No.",
+        "role": "",
+        "accessible_name": "Mobile No.",
+        "text_full": "Mobile No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Save\")",
+        "selectors": [
+            "button:has-text(\"Save\")",
+            "text=\"Save\"",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(6) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Save",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Save",
+        "text_full": "Save",
+        "attrs": {
+            "type": "submit"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_31.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "User Name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Role is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Employee Name is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Depot is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Email is required",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "Password is required",
+                    "selector": "span.error.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span",
+        "selectors": [
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div > span"
+        ],
+        "tag": "span",
+        "text": "User Name is required",
+        "label": "User Name *",
+        "required": false,
+        "value": "User Name is required",
+        "role": "",
+        "accessible_name": "User Name *",
+        "text_full": "User Name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Email is required",
+        "label": "User Name *",
+        "required": false,
+        "value": "Email is required",
+        "role": "",
+        "accessible_name": "User Name *",
+        "text_full": "Email is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span",
+        "selectors": [
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div > span"
+        ],
+        "tag": "span",
+        "text": "Password is required",
+        "label": "Password *",
+        "required": false,
+        "value": "Password is required",
+        "role": "",
+        "accessible_name": "Password *",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > span",
+        "selectors": [
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(2) > span"
+        ],
+        "tag": "span",
+        "text": "Role is required",
+        "label": "Password *",
+        "required": false,
+        "value": "Role is required",
+        "role": "",
+        "accessible_name": "Password *",
+        "text_full": "",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > span",
+        "selectors": [
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > span"
+        ],
+        "tag": "span",
+        "text": "Employee Name is required",
+        "label": "Employee Name *",
+        "required": false,
+        "value": "Employee Name is required",
+        "role": "",
+        "accessible_name": "Employee Name *",
+        "text_full": "Employee Name is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > span",
+        "selectors": [
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(4) > div > span"
+        ],
+        "tag": "span",
+        "text": "Depot is required",
+        "label": "Depot *",
+        "required": false,
+        "value": "Depot is required",
+        "role": "",
+        "accessible_name": "Depot *",
+        "text_full": "Depot is required",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "html > body > app-root > p-toast > div > p-toastitem > div",
+        "selectors": [
+            "html > body > app-root > p-toast > div > p-toastitem > div"
+        ],
+        "tag": "div",
+        "text": "Warning\nKindly fill out all the required fields.",
+        "label": "",
+        "required": false,
+        "value": "Warning Kindly fill out all the required fields.",
+        "role": "alert",
+        "accessible_name": "Warning Kindly fill out all the required fields.",
+        "text_full": "Warning Kindly fill out all the required fields.",
+        "attrs": {
+            "role": "alert"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_38.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"username\"]",
+        "selectors": [
+            "[formcontrolname=\"username\"]",
+            "input[formcontrolname=\"username\"]",
+            "input[placeholder=\"Enter user name\"]",
+            "input[placeholder=\"User Name *\"]",
+            "div input[formcontrolname=\"username\"]",
+            "div input[placeholder=\"Enter user name\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "User Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "User Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter user name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_39.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"username\"]",
+        "selectors": [
+            "[formcontrolname=\"username\"]",
+            "input[formcontrolname=\"username\"]",
+            "input[placeholder=\"Enter user name\"]",
+            "input[placeholder=\"User Name *\"]",
+            "div input[formcontrolname=\"username\"]",
+            "div input[placeholder=\"Enter user name\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "User Name *",
+        "required": true,
+        "value": "QA-AUTO User Name",
+        "role": "textbox",
+        "accessible_name": "User Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter user name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_41.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"Enter email\"]",
+            "input[placeholder=\"User Name *\"]",
+            "div input[formcontrolname=\"email\"]",
+            "div input[placeholder=\"Enter email\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "User Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "User Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter email",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_42.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"Enter email\"]",
+            "input[placeholder=\"User Name *\"]",
+            "div input[formcontrolname=\"email\"]",
+            "div input[placeholder=\"Enter email\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "User Name *",
+        "required": true,
+        "value": "qa.auto@example.com",
+        "role": "textbox",
+        "accessible_name": "User Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter email",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_44.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "Email not valid",
+                    "selector": "span.error.ng-star-inserted"
+                },
+                {
+                    "text": "luci",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "WEST BENGAL GODOWN MANAGER",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "TELANGANA GODOWN MANAGER",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "TAMIL NADU GODOWN MANAGER",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "POS",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_98_list",
+                "pn_id_98_0",
+                "pn_id_98_1",
+                "pn_id_98_2",
+                "pn_id_98_3",
+                "pn_id_98_4",
+                "pn_id_98_5",
+                "pn_id_98_6",
+                "pn_id_98_7",
+                "pn_id_98_8",
+                "pn_id_98_9",
+                "pn_id_98_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"userRole\"]",
+        "selectors": [
+            "[formcontrolname=\"userRole\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "User Role *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_45.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"luci\"]",
+        "selectors": [
+            "[aria-label=\"luci\"]",
+            "text=\"luci\"",
+            "#pn_id_98_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "luci",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "luci",
+        "text_full": "luci",
+        "attrs": {
+            "aria-label": "luci",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_45.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "luci",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_98_list",
+                "pn_id_98_0",
+                "pn_id_98_1",
+                "pn_id_98_2",
+                "pn_id_98_3",
+                "pn_id_98_4",
+                "pn_id_98_5",
+                "pn_id_98_6",
+                "pn_id_98_7",
+                "pn_id_98_8",
+                "pn_id_98_9",
+                "pn_id_98_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"employeeName\"]",
+        "selectors": [
+            "[formcontrolname=\"employeeName\"]",
+            "input[formcontrolname=\"employeeName\"]",
+            "input[placeholder=\"Enter employee name\"]",
+            "input[placeholder=\"Employee Name *\"]",
+            "div input[formcontrolname=\"employeeName\"]",
+            "div input[placeholder=\"Enter employee name\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Employee Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Employee Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter employee name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_46.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"employeeName\"]",
+        "selectors": [
+            "[formcontrolname=\"employeeName\"]",
+            "input[formcontrolname=\"employeeName\"]",
+            "input[placeholder=\"Enter employee name\"]",
+            "input[placeholder=\"Employee Name *\"]",
+            "div input[formcontrolname=\"employeeName\"]",
+            "div input[placeholder=\"Enter employee name\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Employee Name *",
+        "required": true,
+        "value": "QA-AUTO Employee Name",
+        "role": "textbox",
+        "accessible_name": "Employee Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Enter employee name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_48.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"employeeCode\"]",
+        "selectors": [
+            "[formcontrolname=\"employeeCode\"]",
+            "input[formcontrolname=\"employeeCode\"]",
+            "input[placeholder=\"SVAW-XXXX\"]",
+            "input[placeholder=\"Employee Name *\"]",
+            "div input[formcontrolname=\"employeeCode\"]",
+            "div input[placeholder=\"SVAW-XXXX\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Employee Name *",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "Employee Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "SVAW-XXXX",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_49.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"employeeCode\"]",
+        "selectors": [
+            "[formcontrolname=\"employeeCode\"]",
+            "input[formcontrolname=\"employeeCode\"]",
+            "input[placeholder=\"SVAW-XXXX\"]",
+            "input[placeholder=\"Employee Name *\"]",
+            "div input[formcontrolname=\"employeeCode\"]",
+            "div input[placeholder=\"SVAW-XXXX\"]",
+            "app-user-form-dialog > p-dialog > div > div > div:nth-of-type(2) > form > div:nth-of-type(3) > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Employee Name *",
+        "required": true,
+        "value": "SVAW-QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "Employee Name *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "SVAW-XXXX",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_51.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "HQ",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar Depot",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Telangana Depot",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bhubaneshwar",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "West Bengal Depot",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Ambala Depot",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_100_list",
+                "pn_id_100_0",
+                "pn_id_100_1",
+                "pn_id_100_2",
+                "pn_id_100_3",
+                "pn_id_100_4",
+                "pn_id_100_5",
+                "pn_id_100_6",
+                "pn_id_100_7",
+                "pn_id_100_8",
+                "pn_id_100_9",
+                "pn_id_100_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"assignedDepotId\"]",
+        "selectors": [
+            "[formcontrolname=\"assignedDepotId\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Depot *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_52.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"HQ\"]",
+        "selectors": [
+            "[aria-label=\"HQ\"]",
+            "text=\"HQ\"",
+            "#pn_id_100_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "HQ",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "HQ",
+        "text_full": "HQ",
+        "attrs": {
+            "aria-label": "HQ",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_52.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "Only the states this depot covers. Limits which distributors they see; empty falls back to their depot.",
+                    "selector": "span.hint.ng-star-inserted"
+                },
+                {
+                    "text": "HQ",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "Select states",
+                    "selector": "div.p-multiselect-label.p-placeholder"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_100_list",
+                "pn_id_100_0",
+                "pn_id_100_1",
+                "pn_id_100_2",
+                "pn_id_100_3",
+                "pn_id_100_4",
+                "pn_id_100_5",
+                "pn_id_100_6",
+                "pn_id_100_7",
+                "pn_id_100_8",
+                "pn_id_100_9",
+                "pn_id_100_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"assignedStates\"]",
+        "selectors": [
+            "[formcontrolname=\"assignedStates\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "States",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_53.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Karnataka\"]",
+        "selectors": [
+            "[aria-label=\"Karnataka\"]",
+            "text=\"Karnataka\"",
+            "#pn_id_102_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "Karnataka",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Karnataka",
+        "text_full": "Karnataka",
+        "attrs": {
+            "aria-label": "Karnataka",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_53.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "Karnataka",
+                    "selector": "div.p-multiselect-chip-item.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header",
+                "pn_id_98",
+                "pn_id_100",
+                "pn_id_102",
+                "pn_id_102_list",
+                "pn_id_102_0",
+                "pn_id_102_1"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body",
+        "selectors": [
+            "html > body"
+        ],
+        "tag": "body",
+        "text": "Home\nDashboard\nMaster\nProduct Catalogue\nItem Maste",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Mast",
+        "text_full": "Home Dashboard Master Product Catalogue Item Master RM Item Master Perfume RM Master Category Master BOM Master SFG Master Patti Master Nurva Master Business Partners Customer Master Supplier Master Transporter Master Sales & Distribution Scheme Master Distributor Master Depot Master Field Operation Leave Types Weekly Off & Holidays Expense Types Official Work Types ASM - SR Mapping Production Production Machines Operator Master User & Access User Master Roles Master Permissions Sales Connect Dashboard Live Tracking Week Plan Attendance Approvals Give a Task Budgets Sales Report Work Report Au\u2026",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_54.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Search User\"]",
+        "selectors": [
+            "input[placeholder=\"Search User\"]",
+            "div:nth-of-type(3) > div > div > app-user-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search User",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_55.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Search User\"]",
+        "selectors": [
+            "input[placeholder=\"Search User\"]",
+            "div:nth-of-type(3) > div > div > app-user-list > div > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Search User",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search User",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_57.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "All Roles",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "luci",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "WEST BENGAL GODOWN MANAGER",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "TELANGANA GODOWN MANAGER",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "TAMIL NADU GODOWN MANAGER",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "POS",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_10_list",
+                "pn_id_10_0",
+                "pn_id_10_1",
+                "pn_id_10_2",
+                "pn_id_10_3",
+                "pn_id_10_4",
+                "pn_id_10_5",
+                "pn_id_10_6",
+                "pn_id_10_7",
+                "pn_id_10_8",
+                "pn_id_10_9",
+                "pn_id_10_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Role\"]",
+        "selectors": [
+            "[aria-label=\"Role\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Role",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_58.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"All Roles\"]",
+        "selectors": [
+            "[aria-label=\"All Roles\"]",
+            "text=\"All Roles\"",
+            "#pn_id_10_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "All Roles",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "All Roles",
+        "text_full": "All Roles",
+        "attrs": {
+            "aria-label": "All Roles",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_58.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_10_list",
+                "pn_id_10_0",
+                "pn_id_10_1",
+                "pn_id_10_2",
+                "pn_id_10_3",
+                "pn_id_10_4",
+                "pn_id_10_5",
+                "pn_id_10_6",
+                "pn_id_10_7",
+                "pn_id_10_8",
+                "pn_id_10_9",
+                "pn_id_10_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Depot\"]",
+        "selectors": [
+            "[aria-label=\"Depot\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Depot",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_59.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Ambala Depot\"]",
+        "selectors": [
+            "[aria-label=\"Ambala Depot\"]",
+            "text=\"Ambala Depot\"",
+            "#pn_id_12_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Ambala Depot",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Ambala Depot",
+        "text_full": "Ambala Depot",
+        "attrs": {
+            "aria-label": "Ambala Depot",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_59.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "Ambala Depot",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_12_list",
+                "pn_id_12_0",
+                "pn_id_12_1",
+                "pn_id_12_2",
+                "pn_id_12_3",
+                "pn_id_12_4",
+                "pn_id_12_5",
+                "pn_id_12_6",
+                "pn_id_12_7",
+                "pn_id_12_8",
+                "pn_id_12_9",
+                "pn_id_12_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"State\"]",
+        "selectors": [
+            "[aria-label=\"State\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "State",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_60.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_14_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_60.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/user-access/user-master/list",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_14_list",
+                "pn_id_14_0",
+                "pn_id_14_1",
+                "pn_id_14_2",
+                "pn_id_14_3",
+                "pn_id_14_4",
+                "pn_id_14_5",
+                "pn_id_14_6",
+                "pn_id_14_7",
+                "pn_id_14_8",
+                "pn_id_14_9",
+                "pn_id_14_10"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "div > div > app-user-list > div > div > div:nth-of-type(2) > div:nth-of-type(3) > p-select > span"
+        ],
+        "tag": "span",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "combobox",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "combobox"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/User & Access/User Master/screenshots/step_61.jpg"
+    }
+]

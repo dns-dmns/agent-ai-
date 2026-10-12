@@ -2,9 +2,9 @@
     "schema_version": 1,
     "flow_name": "Master/Product Catalogue/Perfume RM Master",
     "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/perfume-rm-master/list",
-    "timestamp": "2026-10-11 18:54:07",
+    "timestamp": "2026-10-11 19:37:24",
     "duration_seconds": 15,
-    "step_count": 22,
+    "step_count": 40,
     "source": "explorer",
     "menu_path": [
         "Master",

@@ -1,0 +1,962 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Perfumary",
+        "label": "",
+        "required": false,
+        "value": "Perfumary",
+        "role": "listitem",
+        "accessible_name": "Perfumary",
+        "text_full": "Perfumary",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Formulation Master",
+        "label": "",
+        "required": false,
+        "value": "Formulation Master",
+        "role": "listitem",
+        "accessible_name": "Formulation Master",
+        "text_full": "Formulation Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "FORMULATION CODE",
+        "label": "",
+        "required": false,
+        "value": "FORMULATION CODE",
+        "role": "",
+        "accessible_name": "FORMULATION CODE",
+        "text_full": "FORMULATION CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "CPC CODE",
+        "label": "",
+        "required": false,
+        "value": "CPC CODE",
+        "role": "",
+        "accessible_name": "CPC CODE",
+        "text_full": "CPC CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CPC DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "CPC DESCRIPTION",
+        "role": "",
+        "accessible_name": "CPC DESCRIPTION",
+        "text_full": "CPC DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "TOTAL CHEMICALS",
+        "label": "",
+        "required": false,
+        "value": "TOTAL CHEMICALS",
+        "role": "",
+        "accessible_name": "TOTAL CHEMICALS",
+        "text_full": "TOTAL CHEMICALS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "COST / KG",
+        "label": "",
+        "required": false,
+        "value": "COST / KG",
+        "role": "",
+        "accessible_name": "COST / KG",
+        "text_full": "COST / KG",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "VERSION",
+        "label": "",
+        "required": false,
+        "value": "VERSION",
+        "role": "",
+        "accessible_name": "VERSION",
+        "text_full": "VERSION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-formulation-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"New Formulation\")",
+        "selectors": [
+            "button:has-text(\"New Formulation\")",
+            "text=\"New Formulation\"",
+            "div > div:nth-of-type(3) > div > div > app-formulation-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "New Formulation",
+        "label": "",
+        "required": false,
+        "value": "New Formulation",
+        "role": "button",
+        "accessible_name": "New Formulation",
+        "text_full": "New Formulation",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "div > app-formulation-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Clone to another CPC\"]",
+        "selectors": [
+            "button[title=\"Clone to another CPC\"]",
+            "[aria-label=\"Clone to another CPC\"]",
+            "button:has(i.pi-copy)",
+            "div > app-formulation-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Clone to another CPC",
+        "text_full": "",
+        "attrs": {
+            "title": "Clone to another CPC"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Edit\"]",
+        "selectors": [
+            "button[title=\"Edit\"]",
+            "[aria-label=\"Edit\"]",
+            "button:has(i.pi-pencil)",
+            "div > app-formulation-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Edit",
+        "text_full": "",
+        "attrs": {
+            "title": "Edit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Activate\"]",
+        "selectors": [
+            "button[title=\"Activate\"]",
+            "[aria-label=\"Activate\"]",
+            "button:has(i.pi-check-circle)",
+            "div > app-formulation-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Activate",
+        "text_full": "",
+        "attrs": {
+            "title": "Activate"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "div > app-formulation-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(9) > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_19.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"New Formulation\")",
+        "selectors": [
+            "button:has-text(\"New Formulation\")",
+            "text=\"New Formulation\"",
+            "div > div:nth-of-type(3) > div > div > app-formulation-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "New Formulation",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "New Formulation",
+        "text_full": "New Formulation",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_20.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "messages": [
+                {
+                    "text": "Add Formulation\nPerfumary\nAdd Formulation",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Add Formulation",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Perfumary",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "Create Formulation",
+                    "selector": "h2.page-heading"
+                },
+                {
+                    "text": "Back to Formulations",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Select CPC",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_98",
+                "pn_id_100",
+                "pn_id_102"
+            ],
+            "disappeared": [
+                "pn_id_8"
+            ]
+        }
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-formulation-form > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-formulation-form > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Create Formulation",
+        "label": "",
+        "required": false,
+        "value": "Create Formulation",
+        "role": "heading",
+        "accessible_name": "Create Formulation",
+        "text_full": "Create Formulation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-formulation-form > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-formulation-form > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Formulation Details",
+        "label": "",
+        "required": false,
+        "value": "Formulation Details",
+        "role": "heading",
+        "accessible_name": "Formulation Details",
+        "text_full": "Formulation Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-formulation-form > div > form > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-formulation-form > div > form > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Raw Materials",
+        "label": "",
+        "required": false,
+        "value": "Raw Materials",
+        "role": "heading",
+        "accessible_name": "Raw Materials",
+        "text_full": "Raw Materials",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"CPC (Perfume) *\"",
+        "selectors": [
+            "text=\"CPC (Perfume) *\"",
+            "div > div > app-formulation-form > div > form > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "CPC (Perfume) *",
+        "label": "CPC (Perfume) *",
+        "required": false,
+        "value": "CPC (Perfume) *",
+        "role": "",
+        "accessible_name": "CPC (Perfume) *",
+        "text_full": "CPC (Perfume) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"CPC Description\"",
+        "selectors": [
+            "text=\"CPC Description\"",
+            "div > div > app-formulation-form > div > form > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "CPC Description",
+        "label": "CPC Description",
+        "required": false,
+        "value": "CPC Description",
+        "role": "",
+        "accessible_name": "CPC Description",
+        "text_full": "CPC Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Batch Size (KG) *\"",
+        "selectors": [
+            "text=\"Batch Size (KG) *\"",
+            "div > div > app-formulation-form > div > form > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Batch Size (KG) *",
+        "label": "Batch Size (KG) *",
+        "required": false,
+        "value": "Batch Size (KG) *",
+        "role": "",
+        "accessible_name": "Batch Size (KG) *",
+        "text_full": "Batch Size (KG) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Remarks\"",
+        "selectors": [
+            "text=\"Remarks\"",
+            "div:nth-of-type(3) > div > div > app-formulation-form > div > form > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Remarks",
+        "label": "Remarks",
+        "required": false,
+        "value": "Remarks",
+        "role": "",
+        "accessible_name": "Remarks",
+        "text_full": "Remarks",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Category\"",
+        "selectors": [
+            "text=\"Category\"",
+            "div > div > app-formulation-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Category",
+        "label": "Category",
+        "required": false,
+        "value": "Category",
+        "role": "",
+        "accessible_name": "Category",
+        "text_full": "Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Add RM\"",
+        "selectors": [
+            "text=\"Add RM\"",
+            "div > div > app-formulation-form > div > form > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Add RM",
+        "label": "Add RM",
+        "required": false,
+        "value": "Add RM",
+        "role": "",
+        "accessible_name": "Add RM",
+        "text_full": "Add RM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_30.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"cpcCode\"]",
+        "selectors": [
+            "[formcontrolname=\"cpcCode\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "CPC (Perfume) *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_31.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"CPC 6182 - ATOZ\"]",
+        "selectors": [
+            "[aria-label=\"CPC 6182 - ATOZ\"]",
+            "text=\"CPC 6182 - ATOZ\"",
+            "#pn_id_98_0",
+            "div > div > div > div:nth-of-type(2) > p-scroller > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "CPC 6182 - ATOZ",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "CPC 6182 - ATOZ",
+        "text_full": "CPC 6182 - ATOZ",
+        "attrs": {
+            "aria-label": "CPC 6182 - ATOZ",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_31.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "messages": [
+                {
+                    "text": "CPC 6182 - ATOZ",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_98_list",
+                "pn_id_98_0",
+                "pn_id_98_1",
+                "pn_id_98_2",
+                "pn_id_98_3",
+                "pn_id_98_4",
+                "pn_id_98_5",
+                "pn_id_98_6",
+                "pn_id_98_7",
+                "pn_id_98_8",
+                "pn_id_98_9",
+                "pn_id_98_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"batchSizeKg\"] input",
+        "selectors": [
+            "[formcontrolname=\"batchSizeKg\"] input",
+            "input[placeholder=\"e.g. 100\"]",
+            "div > app-formulation-form > div > form > div > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 100",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_32.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"batchSizeKg\"] input",
+        "selectors": [
+            "[formcontrolname=\"batchSizeKg\"] input",
+            "input[placeholder=\"e.g. 100\"]",
+            "div > app-formulation-form > div > form > div > div > div:nth-of-type(3) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 100",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_34.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Optional notes about this formulation\"]",
+            "div:nth-of-type(3) > div > div > app-formulation-form > div > form > div > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional notes about this formulation",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_35.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"remarks\"]",
+        "selectors": [
+            "[formcontrolname=\"remarks\"]",
+            "textarea[formcontrolname=\"remarks\"]",
+            "textarea[placeholder=\"Optional notes about this formulation\"]",
+            "div:nth-of-type(3) > div > div > app-formulation-form > div > form > div > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Remarks",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Optional notes about this formulation",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_36.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "messages": [
+                {
+                    "text": "POWDER-CP\nCHEMICALS -CP\nPERFUME -CP",
+                    "selector": "div.ng-tns-c1614365056-8.p-overlay.p-component"
+                },
+                {
+                    "text": "POWDER-CP",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "CHEMICALS -CP",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "PERFUME -CP",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_100_list",
+                "pn_id_100_0",
+                "pn_id_100_1",
+                "pn_id_100_2"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Category\"]",
+        "selectors": [
+            "[aria-label=\"Category\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Category",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_37.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"POWDER-CP\"]",
+        "selectors": [
+            "[aria-label=\"POWDER-CP\"]",
+            "text=\"POWDER-CP\"",
+            "#pn_id_100_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "POWDER-CP",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "POWDER-CP",
+        "text_full": "POWDER-CP",
+        "attrs": {
+            "aria-label": "POWDER-CP",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_37.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "messages": [
+                {
+                    "text": "POWDER-CP",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_100_list",
+                "pn_id_100_0",
+                "pn_id_100_1",
+                "pn_id_100_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Add RM\"]",
+        "selectors": [
+            "[aria-label=\"Add RM\"]"
+        ],
+        "tag": "multiselect",
+        "text": "",
+        "value": "",
+        "label": "Add RM",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_38.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"CP 5001 - JASMINE POWDER (PAA)\"]",
+        "selectors": [
+            "[aria-label=\"CP 5001 - JASMINE POWDER (PAA)\"]",
+            "text=\"CP 5001 - JASMINE POWDER (PAA)\"",
+            "#pn_id_102_0",
+            "div > div > div > div:nth-of-type(2) > p-scroller > div > ul > p-multiselect-item > li"
+        ],
+        "tag": "li",
+        "text": "CP 5001 - JASMINE POWDER (PAA)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "CP 5001 - JASMINE POWDER (PAA)",
+        "text_full": "CP 5001 - JASMINE POWDER (PAA)",
+        "attrs": {
+            "aria-label": "CP 5001 - JASMINE POWDER (PAA)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_38.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master/add",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+            "messages": [
+                {
+                    "text": "CP 5001 - JASMINE POWDER (PAA)",
+                    "selector": "div.p-multiselect-label"
+                },
+                {
+                    "text": "SL NO.\tFORMULATION CODE \tCPC CODE \tCPC DESCRIPTION\tTOTAL CHEMICALS\tCOST / KG\tVERSION\tSTATUS\tACTIONS",
+                    "selector": "app-formulation-list"
+                },
+                {
+                    "text": "Formulation Master\nPerfumary\nFormulation Master",
+                    "selector": "app-title.ng-star-inserted"
+                },
+                {
+                    "text": "Formulation Master",
+                    "selector": "span.title-text"
+                },
+                {
+                    "text": "Perfumary",
+                    "selector": "li.p-breadcrumb-item.ng-star-inserted"
+                },
+                {
+                    "text": "All Statuses",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_109"
+            ],
+            "disappeared": [
+                "pn_id_98",
+                "pn_id_100",
+                "pn_id_102",
+                "pn_id_102_list",
+                "pn_id_102_0",
+                "pn_id_102_1",
+                "pn_id_102_2",
+                "pn_id_102_3",
+                "pn_id_102_4",
+                "pn_id_102_5",
+                "pn_id_102_6",
+                "pn_id_102_7"
+            ]
+        }
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "html > body > div > div > div > div:nth-of-type(2) > p-scroller > div",
+        "selectors": [
+            "html > body > div > div > div > div:nth-of-type(2) > p-scroller > div"
+        ],
+        "tag": "div",
+        "text": "CP 5001 - JASMINE POWDER (PAA)\nCP 5002 - MUSK AMBR",
+        "label": "",
+        "required": false,
+        "value": "Escape",
+        "role": "",
+        "accessible_name": "CP 5001 - JASMINE POWDER (PAA) CP 5002 - MUSK AMBRETTE CP 5003 - TONALID CP 5004 - INDOLE CP 5005 - YARA YARA CP 5006 - ",
+        "text_full": "CP 5001 - JASMINE POWDER (PAA) CP 5002 - MUSK AMBRETTE CP 5003 - TONALID CP 5004 - INDOLE CP 5005 - YARA YARA CP 5006 - MUSK KETONE CP 5007 - MUSK XYLOL CP 5008 - ROSE CRYSTALS CP 5009 - CAMPHOR /ISO BORNEOL FLAKES CP 5010 - MALTOL CP 5011 - RASPBERRY KETONE CP 5012 - BENZOPHENONE",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_39.jpg"
+    },
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master"
+        ],
+        "tag": "window",
+        "text": "Liberty",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Formulation Master/screenshots/step_40.jpg"
+    }
+]

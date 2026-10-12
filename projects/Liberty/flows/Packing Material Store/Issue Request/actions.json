@@ -1,0 +1,404 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/packing-material-store/issue-request",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/packing-material-store/issue-request"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/packing-material-store/issue-request",
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-packing-issue-request > div > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-packing-issue-request > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Issue Request",
+        "label": "",
+        "required": false,
+        "value": "Issue Request",
+        "role": "heading",
+        "accessible_name": "Issue Request",
+        "text_full": "Issue Request",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Packing Material Store",
+        "label": "",
+        "required": false,
+        "value": "Packing Material Store",
+        "role": "listitem",
+        "accessible_name": "Packing Material Store",
+        "text_full": "Packing Material Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Issue Request",
+        "label": "",
+        "required": false,
+        "value": "Issue Request",
+        "role": "listitem",
+        "accessible_name": "Issue Request",
+        "text_full": "Issue Request",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "#",
+        "label": "",
+        "required": false,
+        "value": "#",
+        "role": "",
+        "accessible_name": "#",
+        "text_full": "#",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "JOB ORDER NO",
+        "label": "",
+        "required": false,
+        "value": "JOB ORDER NO",
+        "role": "",
+        "accessible_name": "JOB ORDER NO",
+        "text_full": "JOB ORDER NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SKU CODE / DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "SKU CODE / DESCRIPTION",
+        "role": "",
+        "accessible_name": "SKU CODE / DESCRIPTION",
+        "text_full": "SKU CODE / DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "TEAM",
+        "label": "",
+        "required": false,
+        "value": "TEAM",
+        "role": "",
+        "accessible_name": "TEAM",
+        "text_full": "TEAM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "REQUESTED DATE",
+        "label": "",
+        "required": false,
+        "value": "REQUESTED DATE",
+        "role": "",
+        "accessible_name": "REQUESTED DATE",
+        "text_full": "REQUESTED DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "ISSUE REQ NO",
+        "label": "",
+        "required": false,
+        "value": "ISSUE REQ NO",
+        "role": "",
+        "accessible_name": "ISSUE REQ NO",
+        "text_full": "ISSUE REQ NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "MATERIALS",
+        "label": "",
+        "required": false,
+        "value": "MATERIALS",
+        "role": "",
+        "accessible_name": "MATERIALS",
+        "text_full": "MATERIALS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "TOTAL REQUESTED QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL REQUESTED QTY",
+        "role": "",
+        "accessible_name": "TOTAL REQUESTED QTY",
+        "text_full": "TOTAL REQUESTED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "TOTAL ISSUED QTY",
+        "label": "",
+        "required": false,
+        "value": "TOTAL ISSUED QTY",
+        "role": "",
+        "accessible_name": "TOTAL ISSUED QTY",
+        "text_full": "TOTAL ISSUED QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "PENDING QTY",
+        "label": "",
+        "required": false,
+        "value": "PENDING QTY",
+        "role": "",
+        "accessible_name": "PENDING QTY",
+        "text_full": "PENDING QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "EXCESS ISSUED",
+        "label": "",
+        "required": false,
+        "value": "EXCESS ISSUED",
+        "role": "",
+        "accessible_name": "EXCESS ISSUED",
+        "text_full": "EXCESS ISSUED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(12)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(12)"
+        ],
+        "tag": "th",
+        "text": "RETURNED",
+        "label": "",
+        "required": false,
+        "value": "RETURNED",
+        "role": "",
+        "accessible_name": "RETURNED",
+        "text_full": "RETURNED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(13)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(13)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(14)",
+        "selectors": [
+            "div > div > app-packing-issue-request > div > div:nth-of-type(4) > table > thead > tr > th:nth-of-type(14)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Export CSV\")",
+        "selectors": [
+            "button:has-text(\"Export CSV\")",
+            "text=\"Export CSV\"",
+            "div > div:nth-of-type(3) > div > div > app-packing-issue-request > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Export CSV",
+        "label": "",
+        "required": false,
+        "value": "Export CSV",
+        "role": "button",
+        "accessible_name": "Export CSV",
+        "text_full": "Export CSV",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div > div:nth-of-type(3) > div > div > app-packing-issue-request > div > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Filters\")",
+        "selectors": [
+            "button:has-text(\"Filters\")",
+            "text=\"Filters\"",
+            "div:nth-of-type(3) > div > div > app-packing-issue-request > div > div:nth-of-type(3) > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Filters",
+        "label": "",
+        "required": false,
+        "value": "Filters",
+        "role": "button",
+        "accessible_name": "Filters",
+        "text_full": "Filters",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Packing Material Store/Issue Request/screenshots/step_22.jpg"
+    }
+]

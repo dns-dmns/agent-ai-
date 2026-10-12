@@ -1,0 +1,352 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-dipping-machine-list > div > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-dipping-machine-list > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Production Machines",
+        "label": "",
+        "required": false,
+        "value": "Production Machines",
+        "role": "heading",
+        "accessible_name": "Production Machines",
+        "text_full": "Production Machines",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Master",
+        "label": "",
+        "required": false,
+        "value": "Master",
+        "role": "listitem",
+        "accessible_name": "Master",
+        "text_full": "Master",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Production",
+        "label": "",
+        "required": false,
+        "value": "Production",
+        "role": "listitem",
+        "accessible_name": "Production",
+        "text_full": "Production",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(7)"
+        ],
+        "tag": "li",
+        "text": "Production Machines",
+        "label": "",
+        "required": false,
+        "value": "Production Machines",
+        "role": "listitem",
+        "accessible_name": "Production Machines",
+        "text_full": "Production Machines",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL.NO",
+        "label": "",
+        "required": false,
+        "value": "SL.NO",
+        "role": "",
+        "accessible_name": "SL.NO",
+        "text_full": "SL.NO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "MACHINE",
+        "label": "",
+        "required": false,
+        "value": "MACHINE",
+        "role": "",
+        "accessible_name": "MACHINE",
+        "text_full": "MACHINE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DEPARTMENT",
+        "label": "",
+        "required": false,
+        "value": "DEPARTMENT",
+        "role": "",
+        "accessible_name": "DEPARTMENT",
+        "text_full": "DEPARTMENT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-dipping-machine-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "ACTIONS",
+        "label": "",
+        "required": false,
+        "value": "ACTIONS",
+        "role": "",
+        "accessible_name": "ACTIONS",
+        "text_full": "ACTIONS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Machine\")",
+        "selectors": [
+            "button:has-text(\"Add Machine\")",
+            "text=\"Add Machine\"",
+            "div > div:nth-of-type(3) > div > div > app-dipping-machine-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Machine",
+        "label": "",
+        "required": false,
+        "value": "Add Machine",
+        "role": "button",
+        "accessible_name": "Add Machine",
+        "text_full": "Add Machine",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Delete\"]",
+        "selectors": [
+            "button[title=\"Delete\"]",
+            "[aria-label=\"Delete\"]",
+            "button:has(i.pi-trash)",
+            "tr:has-text(\"1\tMachine 1\tDIPPING\t\") [title=\"Delete\"]",
+            "div > app-dipping-machine-list > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(5) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Delete",
+        "text_full": "",
+        "attrs": {
+            "title": "Delete"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_13.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Machine\")",
+        "selectors": [
+            "button:has-text(\"Add Machine\")",
+            "text=\"Add Machine\"",
+            "div > div:nth-of-type(3) > div > div > app-dipping-machine-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Machine",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Machine",
+        "text_full": "Add Machine",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_14.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+            "messages": [
+                {
+                    "text": "Success\nMachine 16 added to DIPPING",
+                    "selector": "p-toastitem.ng-tns-c2572556178-4.ng-trigger.ng-trigger-toastAnimation"
+                },
+                {
+                    "text": "Success",
+                    "selector": "div.ng-tns-c2572556178-4.p-toast-summary"
+                },
+                {
+                    "text": "Machine 16 added to DIPPING",
+                    "selector": "div.ng-tns-c2572556178-4.p-toast-detail"
+                }
+            ],
+            "appeared": [],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-dipping-machine-list > div > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-dipping-machine-list > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Production Machines",
+        "label": "",
+        "required": false,
+        "value": "Production Machines",
+        "role": "heading",
+        "accessible_name": "Production Machines",
+        "text_full": "Production Machines",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_15.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Department\"]",
+        "selectors": [
+            "[aria-label=\"Department\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Department",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_16.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"DIPPING\"]",
+        "selectors": [
+            "[aria-label=\"DIPPING\"]",
+            "text=\"DIPPING\"",
+            "#pn_id_6_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "DIPPING",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "DIPPING",
+        "text_full": "DIPPING",
+        "attrs": {
+            "aria-label": "DIPPING",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Master/Production/Production Machines/screenshots/step_16.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/production/dipping-machine/list",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_list",
+                "pn_id_6_0",
+                "pn_id_6_1",
+                "pn_id_6_2"
+            ]
+        }
+    }
+]

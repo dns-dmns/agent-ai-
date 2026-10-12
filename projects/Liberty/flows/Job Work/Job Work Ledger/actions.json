@@ -1,0 +1,215 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/ledger",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/ledger"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/job-work/ledger",
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Job Work",
+        "label": "",
+        "required": false,
+        "value": "Job Work",
+        "role": "listitem",
+        "accessible_name": "Job Work",
+        "text_full": "Job Work",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Job Work Ledger",
+        "label": "",
+        "required": false,
+        "value": "Job Work Ledger",
+        "role": "listitem",
+        "accessible_name": "Job Work Ledger",
+        "text_full": "Job Work Ledger",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "div > app-job-work-ledger > div > div > div > div:nth-of-type(3) > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Apply\")",
+        "selectors": [
+            "button:has-text(\"Apply\")",
+            "text=\"Apply\"",
+            "div > div > app-job-work-ledger > div > div > div > div:nth-of-type(5) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Apply",
+        "label": "",
+        "required": false,
+        "value": "Apply",
+        "role": "button",
+        "accessible_name": "Apply",
+        "text_full": "Apply",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Reset\")",
+        "selectors": [
+            "button:has-text(\"Reset\")",
+            "text=\"Reset\"",
+            "div > div > app-job-work-ledger > div > div > div > div:nth-of-type(5) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Reset",
+        "label": "",
+        "required": false,
+        "value": "Reset",
+        "role": "button",
+        "accessible_name": "Reset",
+        "text_full": "Reset",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"JOB WORK\"",
+        "selectors": [
+            "text=\"JOB WORK\"",
+            "div:nth-of-type(3) > div > div > app-job-work-ledger > div > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "JOB WORK",
+        "label": "JOB WORK",
+        "required": false,
+        "value": "JOB WORK",
+        "role": "",
+        "accessible_name": "JOB WORK",
+        "text_full": "JOB WORK",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"SUPPLIER\"",
+        "selectors": [
+            "text=\"SUPPLIER\"",
+            "div:nth-of-type(3) > div > div > app-job-work-ledger > div > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "SUPPLIER",
+        "label": "SUPPLIER",
+        "required": false,
+        "value": "SUPPLIER",
+        "role": "",
+        "accessible_name": "SUPPLIER",
+        "text_full": "SUPPLIER",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"FROM\"",
+        "selectors": [
+            "text=\"FROM\"",
+            "div:nth-of-type(3) > div > div > app-job-work-ledger > div > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "FROM",
+        "label": "FROM",
+        "required": false,
+        "value": "FROM",
+        "role": "",
+        "accessible_name": "FROM",
+        "text_full": "FROM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"TO\"",
+        "selectors": [
+            "text=\"TO\"",
+            "div:nth-of-type(3) > div > div > app-job-work-ledger > div > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "TO",
+        "label": "TO",
+        "required": false,
+        "value": "TO",
+        "role": "",
+        "accessible_name": "TO",
+        "text_full": "TO",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Job Work/Job Work Ledger/screenshots/step_11.jpg"
+    }
+]

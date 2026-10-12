@@ -1,0 +1,267 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/arrival",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/arrival"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/depot/arrival",
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-root > app-pages > div > div:nth-of-type(3) > div > div > app-depot-arrival > div > h2",
+        "selectors": [
+            "app-root > app-pages > div > div:nth-of-type(3) > div > div > app-depot-arrival > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Depot Arrivals \u2014 Sales Orders Inbound",
+        "label": "",
+        "required": false,
+        "value": "Depot Arrivals \u2014 Sales Orders Inbound",
+        "role": "heading",
+        "accessible_name": "Depot Arrivals \u2014 Sales Orders Inbound",
+        "text_full": "Depot Arrivals \u2014 Sales Orders Inbound",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Depot",
+        "label": "",
+        "required": false,
+        "value": "Depot",
+        "role": "listitem",
+        "accessible_name": "Depot",
+        "text_full": "Depot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Arrival",
+        "label": "",
+        "required": false,
+        "value": "Arrival",
+        "role": "listitem",
+        "accessible_name": "Arrival",
+        "text_full": "Arrival",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "Dispatch Date",
+        "label": "",
+        "required": false,
+        "value": "Dispatch Date",
+        "role": "",
+        "accessible_name": "Dispatch Date",
+        "text_full": "Dispatch Date",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SO No.",
+        "label": "",
+        "required": false,
+        "value": "SO No.",
+        "role": "",
+        "accessible_name": "SO No.",
+        "text_full": "SO No.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "No. of SKU's",
+        "label": "",
+        "required": false,
+        "value": "No. of SKU's",
+        "role": "",
+        "accessible_name": "No. of SKU's",
+        "text_full": "No. of SKU's",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Total Cartons",
+        "label": "",
+        "required": false,
+        "value": "Total Cartons",
+        "role": "",
+        "accessible_name": "Total Cartons",
+        "text_full": "Total Cartons",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "Status",
+        "label": "",
+        "required": false,
+        "value": "Status",
+        "role": "",
+        "accessible_name": "Status",
+        "text_full": "Status",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-depot-arrival > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "Actions",
+        "label": "",
+        "required": false,
+        "value": "Actions",
+        "role": "",
+        "accessible_name": "Actions",
+        "text_full": "Actions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Refresh\"]",
+        "selectors": [
+            "button[title=\"Refresh\"]",
+            "[aria-label=\"Refresh\"]",
+            "button:has(i.pi-refresh)",
+            "div > div:nth-of-type(3) > div > div > app-depot-arrival > div > div > div:nth-of-type(3) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "",
+        "attrs": {
+            "title": "Refresh"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View\"]",
+        "selectors": [
+            "button[title=\"View\"]",
+            "[aria-label=\"View\"]",
+            "button:has(i.pi-eye)",
+            "tr:has-text(\"26/09/2026\tSO-202609-0085\t4\t\") [title=\"View\"]",
+            "app-depot-arrival > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View",
+        "text_full": "",
+        "attrs": {
+            "title": "View"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Scan\")",
+        "selectors": [
+            "button:has-text(\"Scan\")",
+            "text=\"Scan\"",
+            "app-depot-arrival > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(6) > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Scan",
+        "label": "",
+        "required": false,
+        "value": "Scan",
+        "role": "button",
+        "accessible_name": "All cartons received",
+        "text_full": "Scan",
+        "attrs": {
+            "title": "All cartons received"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Depot/Arrival/screenshots/step_14.jpg"
+    }
+]

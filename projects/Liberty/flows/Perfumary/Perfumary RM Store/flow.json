@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Perfumary/Perfumary RM Store",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+    "timestamp": "2026-10-11 19:41:42",
+    "duration_seconds": 37,
+    "step_count": 21,
+    "source": "explorer",
+    "menu_path": [
+        "Perfumary",
+        "Perfumary RM Store"
+    ]
+}

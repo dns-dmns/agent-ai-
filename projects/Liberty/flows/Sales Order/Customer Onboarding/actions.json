@@ -1,0 +1,2297 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Distributor / Customer Onboarding",
+        "label": "",
+        "required": false,
+        "value": "Distributor / Customer Onboarding",
+        "role": "heading",
+        "accessible_name": "Distributor / Customer Onboarding",
+        "text_full": "Distributor / Customer Onboarding",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Applicant & Business Details",
+        "label": "",
+        "required": false,
+        "value": "Applicant & Business Details",
+        "role": "heading",
+        "accessible_name": "Applicant & Business Details",
+        "text_full": "Applicant & Business Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Principal Partners / Directors / Proprietor",
+        "label": "",
+        "required": false,
+        "value": "Principal Partners / Directors / Proprietor",
+        "role": "heading",
+        "accessible_name": "Principal Partners / Directors / Proprietor",
+        "text_full": "Principal Partners / Directors / Proprietor",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(3) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(3) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Business Association",
+        "label": "",
+        "required": false,
+        "value": "Business Association",
+        "role": "heading",
+        "accessible_name": "Business Association",
+        "text_full": "Business Association",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Territory (District / Areas / Towns applied for)",
+        "label": "",
+        "required": false,
+        "value": "Territory (District / Areas / Towns applied for)",
+        "role": "heading",
+        "accessible_name": "Territory (District / Areas / Towns applied for)",
+        "text_full": "Territory (District / Areas / Towns applied for)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(5) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(5) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Documents *",
+        "label": "",
+        "required": false,
+        "value": "Documents *",
+        "role": "heading",
+        "accessible_name": "Documents *",
+        "text_full": "Documents *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > h3"
+        ],
+        "tag": "h3",
+        "text": "Declaration *",
+        "label": "",
+        "required": false,
+        "value": "Declaration *",
+        "role": "heading",
+        "accessible_name": "Declaration *",
+        "text_full": "Declaration *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Order",
+        "label": "",
+        "required": false,
+        "value": "Sales Order",
+        "role": "listitem",
+        "accessible_name": "Sales Order",
+        "text_full": "Sales Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Customer Onboarding",
+        "label": "",
+        "required": false,
+        "value": "Customer Onboarding",
+        "role": "listitem",
+        "accessible_name": "Customer Onboarding",
+        "text_full": "Customer Onboarding",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "Name",
+        "label": "",
+        "required": false,
+        "value": "Name",
+        "role": "",
+        "accessible_name": "Name",
+        "text_full": "Name",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "Age",
+        "label": "",
+        "required": false,
+        "value": "Age",
+        "role": "",
+        "accessible_name": "Age",
+        "text_full": "Age",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "Residential Address & Tel",
+        "label": "",
+        "required": false,
+        "value": "Residential Address & Tel",
+        "role": "",
+        "accessible_name": "Residential Address & Tel",
+        "text_full": "Residential Address & Tel",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(2) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Tel Numbers",
+        "label": "",
+        "required": false,
+        "value": "Tel Numbers",
+        "role": "",
+        "accessible_name": "Tel Numbers",
+        "text_full": "Tel Numbers",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "Since (Year)",
+        "label": "",
+        "required": false,
+        "value": "Since (Year)",
+        "role": "",
+        "accessible_name": "Since (Year)",
+        "text_full": "Since (Year)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "Product",
+        "label": "",
+        "required": false,
+        "value": "Product",
+        "role": "",
+        "accessible_name": "Product",
+        "text_full": "Product",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Areas / Town Covered",
+        "label": "",
+        "required": false,
+        "value": "Areas / Town Covered",
+        "role": "",
+        "accessible_name": "Areas / Town Covered",
+        "text_full": "Areas / Town Covered",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "Turnover (Annual)",
+        "label": "",
+        "required": false,
+        "value": "Turnover (Annual)",
+        "role": "",
+        "accessible_name": "Turnover (Annual)",
+        "text_full": "Turnover (Annual)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "Outlets Avail.",
+        "label": "",
+        "required": false,
+        "value": "Outlets Avail.",
+        "role": "",
+        "accessible_name": "Outlets Avail.",
+        "text_full": "Outlets Avail.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "Outlets Covered",
+        "label": "",
+        "required": false,
+        "value": "Outlets Covered",
+        "role": "",
+        "accessible_name": "Outlets Covered",
+        "text_full": "Outlets Covered",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(3) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "No. of Routes",
+        "label": "",
+        "required": false,
+        "value": "No. of Routes",
+        "role": "",
+        "accessible_name": "No. of Routes",
+        "text_full": "No. of Routes",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "Areas / Towns",
+        "label": "",
+        "required": false,
+        "value": "Areas / Towns",
+        "role": "",
+        "accessible_name": "Areas / Towns",
+        "text_full": "Areas / Towns",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_22.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "Population",
+        "label": "",
+        "required": false,
+        "value": "Population",
+        "role": "",
+        "accessible_name": "Population",
+        "text_full": "Population",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_23.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "Approx. Outlets",
+        "label": "",
+        "required": false,
+        "value": "Approx. Outlets",
+        "role": "",
+        "accessible_name": "Approx. Outlets",
+        "text_full": "Approx. Outlets",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_24.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(5) > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(5) > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "Document Type",
+        "label": "",
+        "required": false,
+        "value": "Document Type",
+        "role": "",
+        "accessible_name": "Document Type",
+        "text_full": "Document Type",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_25.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-customer-onboarding > div > form > div:nth-of-type(5) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "app-customer-onboarding > div > form > div:nth-of-type(5) > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "File",
+        "label": "",
+        "required": false,
+        "value": "File",
+        "role": "",
+        "accessible_name": "File",
+        "text_full": "File",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_26.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_27.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "Cancel",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_28.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "app-customer-onboarding > div > form > div > div > div:nth-of-type(8) > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_29.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Row\")",
+        "selectors": [
+            "button:has-text(\"Add Row\")",
+            "text=\"Add Row\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(2) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Row",
+        "label": "",
+        "required": false,
+        "value": "Add Row",
+        "role": "button",
+        "accessible_name": "Add Row",
+        "text_full": "Add Row",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_30.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Document\")",
+        "selectors": [
+            "button:has-text(\"Add Document\")",
+            "text=\"Add Document\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(5) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Document",
+        "label": "",
+        "required": false,
+        "value": "Add Document",
+        "role": "button",
+        "accessible_name": "Add Document",
+        "text_full": "Add Document",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_31.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Submit for Coordinator Approval\")",
+        "selectors": [
+            "button:has-text(\"Submit for Coordinator Approval\")",
+            "text=\"Submit for Coordinator Approval\"",
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(7) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Submit for Coordinator Approval",
+        "label": "",
+        "required": false,
+        "value": "Submit for Coordinator Approval",
+        "role": "button",
+        "accessible_name": "Submit for Coordinator Approval",
+        "text_full": "Submit for Coordinator Approval",
+        "attrs": {
+            "type": "submit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_32.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Row\")",
+        "selectors": [
+            "button:has-text(\"Add Row\")",
+            "text=\"Add Row\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(2) > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Row",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Row",
+        "text_full": "Add Row",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_33.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Distributor / Customer Onboarding",
+        "label": "",
+        "required": false,
+        "value": "Distributor / Customer Onboarding",
+        "role": "heading",
+        "accessible_name": "Distributor / Customer Onboarding",
+        "text_full": "Distributor / Customer Onboarding",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_34.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Applicant & Business Details",
+        "label": "",
+        "required": false,
+        "value": "Applicant & Business Details",
+        "role": "heading",
+        "accessible_name": "Applicant & Business Details",
+        "text_full": "Applicant & Business Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_35.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(2) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(2) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Principal Partners / Directors / Proprietor",
+        "label": "",
+        "required": false,
+        "value": "Principal Partners / Directors / Proprietor",
+        "role": "heading",
+        "accessible_name": "Principal Partners / Directors / Proprietor",
+        "text_full": "Principal Partners / Directors / Proprietor",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_36.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(3) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(3) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Business Association",
+        "label": "",
+        "required": false,
+        "value": "Business Association",
+        "role": "heading",
+        "accessible_name": "Business Association",
+        "text_full": "Business Association",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_37.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Territory (District / Areas / Towns applied for)",
+        "label": "",
+        "required": false,
+        "value": "Territory (District / Areas / Towns applied for)",
+        "role": "heading",
+        "accessible_name": "Territory (District / Areas / Towns applied for)",
+        "text_full": "Territory (District / Areas / Towns applied for)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_38.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(5) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(5) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Documents *",
+        "label": "",
+        "required": false,
+        "value": "Documents *",
+        "role": "heading",
+        "accessible_name": "Documents *",
+        "text_full": "Documents *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_39.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > h3"
+        ],
+        "tag": "h3",
+        "text": "Declaration *",
+        "label": "",
+        "required": false,
+        "value": "Declaration *",
+        "role": "heading",
+        "accessible_name": "Declaration *",
+        "text_full": "Declaration *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_40.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Name of Applicant *\"",
+        "selectors": [
+            "text=\"Name of Applicant *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Name of Applicant *",
+        "label": "Name of Applicant *",
+        "required": false,
+        "value": "Name of Applicant *",
+        "role": "",
+        "accessible_name": "Name of Applicant *",
+        "text_full": "Name of Applicant *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_41.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Business Organization *\"",
+        "selectors": [
+            "text=\"Business Organization *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Business Organization *",
+        "label": "Business Organization *",
+        "required": false,
+        "value": "Business Organization *",
+        "role": "",
+        "accessible_name": "Business Organization *",
+        "text_full": "Business Organization *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_42.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Constitution *\"",
+        "selectors": [
+            "text=\"Constitution *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Constitution *",
+        "label": "Constitution *",
+        "required": false,
+        "value": "Constitution *",
+        "role": "",
+        "accessible_name": "Constitution *",
+        "text_full": "Constitution *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_43.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"PAN No. *\"",
+        "selectors": [
+            "text=\"PAN No. *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "PAN No. *",
+        "label": "PAN No. *",
+        "required": false,
+        "value": "PAN No. *",
+        "role": "",
+        "accessible_name": "PAN No. *",
+        "text_full": "PAN No. *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_44.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"GSTIN\"",
+        "selectors": [
+            "text=\"GSTIN\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(5) > label"
+        ],
+        "tag": "label",
+        "text": "GSTIN",
+        "label": "GSTIN",
+        "required": false,
+        "value": "GSTIN",
+        "role": "",
+        "accessible_name": "GSTIN",
+        "text_full": "GSTIN",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_45.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Aadhaar No. *\"",
+        "selectors": [
+            "text=\"Aadhaar No. *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(6) > label"
+        ],
+        "tag": "label",
+        "text": "Aadhaar No. *",
+        "label": "Aadhaar No. *",
+        "required": false,
+        "value": "Aadhaar No. *",
+        "role": "",
+        "accessible_name": "Aadhaar No. *",
+        "text_full": "Aadhaar No. *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_46.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Registration Type *\"",
+        "selectors": [
+            "text=\"Registration Type *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(7) > label"
+        ],
+        "tag": "label",
+        "text": "Registration Type *",
+        "label": "Registration Type *",
+        "required": false,
+        "value": "Registration Type *",
+        "role": "",
+        "accessible_name": "Registration Type *",
+        "text_full": "Registration Type *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_47.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Date of Registration / Incorporation\"",
+        "selectors": [
+            "text=\"Date of Registration / Incorporation\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(8) > label"
+        ],
+        "tag": "label",
+        "text": "Date of Registration / Incorporation",
+        "label": "Date of Registration / Incorporation",
+        "required": false,
+        "value": "Date of Registration / Incorporation",
+        "role": "",
+        "accessible_name": "Date of Registration / Incorporation",
+        "text_full": "Date of Registration / Incorporation",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_48.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Date of Commencement of Business\"",
+        "selectors": [
+            "text=\"Date of Commencement of Business\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(9) > label"
+        ],
+        "tag": "label",
+        "text": "Date of Commencement of Business",
+        "label": "Date of Commencement of Business",
+        "required": false,
+        "value": "Date of Commencement of Business",
+        "role": "",
+        "accessible_name": "Date of Commencement of Business",
+        "text_full": "Date of Commencement of Business",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_49.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Business Address *\"",
+        "selectors": [
+            "text=\"Business Address *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(10) > label"
+        ],
+        "tag": "label",
+        "text": "Business Address *",
+        "label": "Business Address *",
+        "required": false,
+        "value": "Business Address *",
+        "role": "",
+        "accessible_name": "Business Address *",
+        "text_full": "Business Address *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_50.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State *\"",
+        "selectors": [
+            "text=\"State *\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(11) > label"
+        ],
+        "tag": "label",
+        "text": "State *",
+        "label": "State *",
+        "required": false,
+        "value": "State *",
+        "role": "",
+        "accessible_name": "State *",
+        "text_full": "State *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_51.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"City\"",
+        "selectors": [
+            "text=\"City\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(12) > label"
+        ],
+        "tag": "label",
+        "text": "City",
+        "label": "City",
+        "required": false,
+        "value": "City",
+        "role": "",
+        "accessible_name": "City",
+        "text_full": "City",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_52.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"State Code\"",
+        "selectors": [
+            "text=\"State Code\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(13) > label"
+        ],
+        "tag": "label",
+        "text": "State Code",
+        "label": "State Code",
+        "required": false,
+        "value": "State Code",
+        "role": "",
+        "accessible_name": "State Code",
+        "text_full": "State Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_53.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Phone\"",
+        "selectors": [
+            "text=\"Phone\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(14) > label"
+        ],
+        "tag": "label",
+        "text": "Phone",
+        "label": "Phone",
+        "required": false,
+        "value": "Phone",
+        "role": "",
+        "accessible_name": "Phone",
+        "text_full": "Phone",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_54.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Email\"",
+        "selectors": [
+            "text=\"Email\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(15) > label"
+        ],
+        "tag": "label",
+        "text": "Email",
+        "label": "Email",
+        "required": false,
+        "value": "Email",
+        "role": "",
+        "accessible_name": "Email",
+        "text_full": "Email",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_55.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Assigned Depot\"",
+        "selectors": [
+            "text=\"Assigned Depot\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(16) > label"
+        ],
+        "tag": "label",
+        "text": "Assigned Depot",
+        "label": "Assigned Depot",
+        "required": false,
+        "value": "Assigned Depot",
+        "role": "",
+        "accessible_name": "Assigned Depot",
+        "text_full": "Assigned Depot",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_56.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Discount %\"",
+        "selectors": [
+            "text=\"Discount %\"",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(17) > label"
+        ],
+        "tag": "label",
+        "text": "Discount %",
+        "label": "Discount %",
+        "required": false,
+        "value": "Discount %",
+        "role": "",
+        "accessible_name": "Discount %",
+        "text_full": "Discount %",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_57.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Target (in Dozens)\"",
+        "selectors": [
+            "text=\"Target (in Dozens)\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div > label"
+        ],
+        "tag": "label",
+        "text": "Target (in Dozens)",
+        "label": "Target (in Dozens)",
+        "required": false,
+        "value": "Target (in Dozens)",
+        "role": "",
+        "accessible_name": "Target (in Dozens)",
+        "text_full": "Target (in Dozens)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_58.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div:nth-of-type(2) > label",
+        "selectors": [
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Competitor Products Available & Activities",
+        "label": "Competitor Products Available & Activities",
+        "required": false,
+        "value": "Competitor Products Available & Activities",
+        "role": "",
+        "accessible_name": "Competitor Products Available & Activities",
+        "text_full": "Competitor Products Available & Activities",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_59.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Declarant Name *\"",
+        "selectors": [
+            "text=\"Declarant Name *\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Declarant Name *",
+        "label": "Declarant Name *",
+        "required": false,
+        "value": "Declarant Name *",
+        "role": "",
+        "accessible_name": "Declarant Name *",
+        "text_full": "Declarant Name *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_60.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Place *\"",
+        "selectors": [
+            "text=\"Place *\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Place *",
+        "label": "Place *",
+        "required": false,
+        "value": "Place *",
+        "role": "",
+        "accessible_name": "Place *",
+        "text_full": "Place *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_61.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Date *\"",
+        "selectors": [
+            "text=\"Date *\"",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Date *",
+        "label": "Date *",
+        "required": false,
+        "value": "Date *",
+        "role": "",
+        "accessible_name": "Date *",
+        "text_full": "Date *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_62.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"applicantName\"]",
+        "selectors": [
+            "[formcontrolname=\"applicantName\"]",
+            "input[formcontrolname=\"applicantName\"]",
+            "input[placeholder=\"Applicant name\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Applicant name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_63.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"applicantName\"]",
+        "selectors": [
+            "[formcontrolname=\"applicantName\"]",
+            "input[formcontrolname=\"applicantName\"]",
+            "input[placeholder=\"Applicant name\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Name of Applicant",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Applicant name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_65.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"businessOrgName\"]",
+        "selectors": [
+            "[formcontrolname=\"businessOrgName\"]",
+            "input[formcontrolname=\"businessOrgName\"]",
+            "input[placeholder=\"Name of business organization\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Name of business organization",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_66.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"businessOrgName\"]",
+        "selectors": [
+            "[formcontrolname=\"businessOrgName\"]",
+            "input[formcontrolname=\"businessOrgName\"]",
+            "input[placeholder=\"Name of business organization\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Business Organization",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Name of business organization",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_68.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "Proprietorship\nPartnership\nOthers",
+                    "selector": "div.ng-tns-c1614365056-6.p-overlay.p-component"
+                },
+                {
+                    "text": "Proprietorship",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Partnership",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Others",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_6_list",
+                "pn_id_6_0",
+                "pn_id_6_1",
+                "pn_id_6_2"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"constitution\"]",
+        "selectors": [
+            "[formcontrolname=\"constitution\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Constitution *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_69.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Proprietorship\"]",
+        "selectors": [
+            "[aria-label=\"Proprietorship\"]",
+            "text=\"Proprietorship\"",
+            "#pn_id_6_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Proprietorship",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Proprietorship",
+        "text_full": "Proprietorship",
+        "attrs": {
+            "aria-label": "Proprietorship",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_69.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_6_list",
+                "pn_id_6_0",
+                "pn_id_6_1",
+                "pn_id_6_2"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"panNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panNo\"]",
+            "input[formcontrolname=\"panNo\"]",
+            "input[placeholder=\"e.g. ABCDE1234F\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. ABCDE1234F",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_70.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"panNo\"]",
+        "selectors": [
+            "[formcontrolname=\"panNo\"]",
+            "input[formcontrolname=\"panNo\"]",
+            "input[placeholder=\"e.g. ABCDE1234F\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(4) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "ABCDE1234F",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. ABCDE1234F",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_72.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29ABCDE1234F1Z5\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29ABCDE1234F1Z5",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_73.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29ABCDE1234F1Z5\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "29ABCDE1234F1Z5",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29ABCDE1234F1Z5",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_75.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"aadhaarNo\"]",
+        "selectors": [
+            "[formcontrolname=\"aadhaarNo\"]",
+            "input[formcontrolname=\"aadhaarNo\"]",
+            "input[placeholder=\"12-digit Aadhaar number\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(6) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "12-digit Aadhaar number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_76.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"aadhaarNo\"]",
+        "selectors": [
+            "[formcontrolname=\"aadhaarNo\"]",
+            "input[formcontrolname=\"aadhaarNo\"]",
+            "input[placeholder=\"12-digit Aadhaar number\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(6) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "12-digit Aadhaar number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_77.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "Aadhaar No. is required",
+                    "selector": "small.error-text.ng-star-inserted"
+                },
+                {
+                    "text": "Registered\nNon Registered",
+                    "selector": "div.ng-tns-c1614365056-7.p-overlay.p-component"
+                },
+                {
+                    "text": "Registered",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Non Registered",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"registrationType\"]",
+        "selectors": [
+            "[formcontrolname=\"registrationType\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Registration Type *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_78.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Registered\"]",
+        "selectors": [
+            "[aria-label=\"Registered\"]",
+            "text=\"Registered\"",
+            "#pn_id_8_0",
+            "html > body > div > div > div > div > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Registered",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Registered",
+        "text_full": "Registered",
+        "attrs": {
+            "aria-label": "Registered",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_78.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "*",
+                    "selector": "span.req.ng-star-inserted"
+                },
+                {
+                    "text": "Registered",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_list",
+                "pn_id_8_0",
+                "pn_id_8_1"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"businessAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"businessAddress\"]",
+            "textarea[formcontrolname=\"businessAddress\"]",
+            "textarea[placeholder=\"No, street name and city\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(10) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "No, street name and city",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_79.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"businessAddress\"]",
+        "selectors": [
+            "[formcontrolname=\"businessAddress\"]",
+            "textarea[formcontrolname=\"businessAddress\"]",
+            "textarea[placeholder=\"No, street name and city\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(10) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Business Address",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "No, street name and city",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_80.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Andhra Pradesh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Arunachal Pradesh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Assam",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Chandigarh",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_12_list",
+                "pn_id_12_0",
+                "pn_id_12_1",
+                "pn_id_12_2",
+                "pn_id_12_3",
+                "pn_id_12_4",
+                "pn_id_12_5",
+                "pn_id_12_6",
+                "pn_id_12_7",
+                "pn_id_12_8",
+                "pn_id_12_9",
+                "pn_id_12_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"state\"]",
+        "selectors": [
+            "[formcontrolname=\"state\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "State *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_81.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Andaman and Nicobar Islands\"]",
+        "selectors": [
+            "[aria-label=\"Andaman and Nicobar Islands\"]",
+            "text=\"Andaman and Nicobar Islands\"",
+            "#pn_id_12_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Andaman and Nicobar Islands",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Andaman and Nicobar Islands",
+        "text_full": "Andaman and Nicobar Islands",
+        "attrs": {
+            "aria-label": "Andaman and Nicobar Islands",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_81.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "Search city, town or village",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                },
+                {
+                    "text": "Andaman and Nicobar Islands",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                },
+                {
+                    "text": "GSTIN must start with the state code 35",
+                    "selector": "small.error-text.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_12_list",
+                "pn_id_12_0",
+                "pn_id_12_1",
+                "pn_id_12_2",
+                "pn_id_12_3",
+                "pn_id_12_4",
+                "pn_id_12_5",
+                "pn_id_12_6",
+                "pn_id_12_7",
+                "pn_id_12_8",
+                "pn_id_12_9",
+                "pn_id_12_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"city\"]",
+        "selectors": [
+            "[formcontrolname=\"city\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "City",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_82.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Car Nicobar\"]",
+        "selectors": [
+            "[aria-label=\"Car Nicobar\"]",
+            "text=\"Car Nicobar\"",
+            "#pn_id_15_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "Car Nicobar",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "Car Nicobar",
+        "text_full": "Car Nicobar",
+        "attrs": {
+            "aria-label": "Car Nicobar",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_82.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "Car Nicobar",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_15_list",
+                "pn_id_15_0",
+                "pn_id_15_1",
+                "pn_id_15_2",
+                "pn_id_15_3",
+                "pn_id_15_4",
+                "pn_id_15_5"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"phone\"]",
+        "selectors": [
+            "[formcontrolname=\"phone\"]",
+            "input[formcontrolname=\"phone\"]",
+            "input[placeholder=\"10-digit mobile number\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(14) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "10-digit mobile number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_83.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"phone\"]",
+        "selectors": [
+            "[formcontrolname=\"phone\"]",
+            "input[formcontrolname=\"phone\"]",
+            "input[placeholder=\"10-digit mobile number\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(14) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "9876543210",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "10-digit mobile number",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_85.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"name@domain.com\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(15) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "name@domain.com",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_86.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"email\"]",
+        "selectors": [
+            "[formcontrolname=\"email\"]",
+            "input[formcontrolname=\"email\"]",
+            "input[placeholder=\"name@domain.com\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(15) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "qa.auto@example.com",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "name@domain.com",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_88.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "HQ (DP - 01)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bihar Depot (DP-006)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Telangana Depot (DP-004)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Bhubaneshwar (DP-008)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "West Bengal Depot (DP - 07)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                },
+                {
+                    "text": "Ambala Depot (DP-005)",
+                    "selector": "p-selectitem.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_16_list",
+                "pn_id_16_0",
+                "pn_id_16_1",
+                "pn_id_16_2",
+                "pn_id_16_3",
+                "pn_id_16_4",
+                "pn_id_16_5",
+                "pn_id_16_6",
+                "pn_id_16_7",
+                "pn_id_16_8",
+                "pn_id_16_9",
+                "pn_id_16_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"assignedDepotId\"]",
+        "selectors": [
+            "[formcontrolname=\"assignedDepotId\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Assigned Depot",
+        "required": false,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_89.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"HQ (DP - 01)\"]",
+        "selectors": [
+            "[aria-label=\"HQ (DP - 01)\"]",
+            "text=\"HQ (DP - 01)\"",
+            "#pn_id_16_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-selectitem > li"
+        ],
+        "tag": "li",
+        "text": "HQ (DP - 01)",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "HQ (DP - 01)",
+        "text_full": "HQ (DP - 01)",
+        "attrs": {
+            "aria-label": "HQ (DP - 01)",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_89.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "HQ (DP - 01)",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_16_list",
+                "pn_id_16_0",
+                "pn_id_16_1",
+                "pn_id_16_2",
+                "pn_id_16_3",
+                "pn_id_16_4",
+                "pn_id_16_5",
+                "pn_id_16_6",
+                "pn_id_16_7",
+                "pn_id_16_8",
+                "pn_id_16_9",
+                "pn_id_16_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"discountPercent\"] input",
+        "selectors": [
+            "[formcontrolname=\"discountPercent\"] input",
+            "div > app-customer-onboarding > div > form > div > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_90.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"discountPercent\"] input",
+        "selectors": [
+            "[formcontrolname=\"discountPercent\"] input",
+            "div > app-customer-onboarding > div > form > div > div > div:nth-of-type(17) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_92.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"targetInDozens\"] input",
+        "selectors": [
+            "[formcontrolname=\"targetInDozens\"] input",
+            "input[placeholder=\"0\"]",
+            "div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_93.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"targetInDozens\"] input",
+        "selectors": [
+            "[formcontrolname=\"targetInDozens\"] input",
+            "input[placeholder=\"0\"]",
+            "div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "10",
+        "role": "spinbutton",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_95.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"competitorProducts\"]",
+        "selectors": [
+            "[formcontrolname=\"competitorProducts\"]",
+            "textarea[formcontrolname=\"competitorProducts\"]",
+            "textarea[placeholder=\"Competitor brands in the area and their schemes / activities\"]",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Competitor brands in the area and their schemes / activities",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_96.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"competitorProducts\"]",
+        "selectors": [
+            "[formcontrolname=\"competitorProducts\"]",
+            "textarea[formcontrolname=\"competitorProducts\"]",
+            "textarea[placeholder=\"Competitor brands in the area and their schemes / activities\"]",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(4) > div:nth-of-type(3) > div:nth-of-type(2) > textarea"
+        ],
+        "tag": "textarea",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QA-AUTO Competitor Products Available & ",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Competitor brands in the area and their schemes / activities",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_97.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"declarantName\"]",
+        "selectors": [
+            "[formcontrolname=\"declarantName\"]",
+            "input[formcontrolname=\"declarantName\"]",
+            "input[placeholder=\"Full name\"]",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Full name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_98.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"declarantName\"]",
+        "selectors": [
+            "[formcontrolname=\"declarantName\"]",
+            "input[formcontrolname=\"declarantName\"]",
+            "input[placeholder=\"Full name\"]",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Declarant Name",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Full name",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_100.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"declarationPlace\"]",
+        "selectors": [
+            "[formcontrolname=\"declarationPlace\"]",
+            "input[formcontrolname=\"declarationPlace\"]",
+            "input[placeholder=\"City / town\"]",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "City / town",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_101.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "[formcontrolname=\"declarationPlace\"]",
+        "selectors": [
+            "[formcontrolname=\"declarationPlace\"]",
+            "input[formcontrolname=\"declarationPlace\"]",
+            "input[placeholder=\"City / town\"]",
+            "div > div > app-customer-onboarding > div > form > div:nth-of-type(6) > div > div:nth-of-type(2) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": true,
+        "value": "QA-AUTO Place",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "City / town",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_103.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29ABCDE1234F1Z5\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29ABCDE1234F1Z5",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_104.jpg"
+    },
+    {
+        "action": "KEYPRESS",
+        "selector": "[formcontrolname=\"gstin\"]",
+        "selectors": [
+            "[formcontrolname=\"gstin\"]",
+            "input[formcontrolname=\"gstin\"]",
+            "input[placeholder=\"e.g. 29ABCDE1234F1Z5\"]",
+            "div > div > app-customer-onboarding > div > form > div > div > div:nth-of-type(5) > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "Tab",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "e.g. 29ABCDE1234F1Z5",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Customer Onboarding/screenshots/step_105.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/customer-onboarding",
+            "messages": [
+                {
+                    "text": "Date is required",
+                    "selector": "small.error-text.ng-star-inserted"
+                },
+                {
+                    "text": "GSTIN is required",
+                    "selector": "small.error-text.ng-star-inserted"
+                },
+                {
+                    "text": "GSTIN must be 15 characters, e.g. 29ABCDE1234F1Z5",
+                    "selector": "small.error-text.ng-star-inserted"
+                },
+                {
+                    "text": "GSTIN must start with the state code 35",
+                    "selector": "small.error-text.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_18_panel"
+            ]
+        }
+    }
+]

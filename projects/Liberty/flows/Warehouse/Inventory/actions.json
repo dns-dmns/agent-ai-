@@ -1,0 +1,388 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/inventory",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/inventory"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/warehouse/inventory",
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Warehouse",
+        "label": "",
+        "required": false,
+        "value": "Warehouse",
+        "role": "listitem",
+        "accessible_name": "Warehouse",
+        "text_full": "Warehouse",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Inventory",
+        "label": "",
+        "required": false,
+        "value": "Inventory",
+        "role": "listitem",
+        "accessible_name": "Inventory",
+        "text_full": "Inventory",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "Category",
+        "label": "",
+        "required": false,
+        "value": "Category",
+        "role": "",
+        "accessible_name": "Category",
+        "text_full": "Category",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "SKU Code",
+        "label": "",
+        "required": false,
+        "value": "SKU Code",
+        "role": "",
+        "accessible_name": "SKU Code",
+        "text_full": "SKU Code",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "SKU Description",
+        "label": "",
+        "required": false,
+        "value": "SKU Description",
+        "role": "",
+        "accessible_name": "SKU Description",
+        "text_full": "SKU Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "Type",
+        "label": "",
+        "required": false,
+        "value": "Type",
+        "role": "",
+        "accessible_name": "Type",
+        "text_full": "Type",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "Physical Qty",
+        "label": "",
+        "required": false,
+        "value": "Physical Qty",
+        "role": "",
+        "accessible_name": "Cartons physically in the warehouse, including those already scanned onto a dispatch",
+        "text_full": "Physical Qty",
+        "attrs": {
+            "title": "Cartons physically in the warehouse, including those already scanned onto a dispatch"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "Available Qty",
+        "label": "",
+        "required": false,
+        "value": "Available Qty",
+        "role": "",
+        "accessible_name": "Cartons free to sell \u2014 physical stock less what is loaded for a dispatch",
+        "text_full": "Available Qty",
+        "attrs": {
+            "title": "Cartons free to sell \u2014 physical stock less what is loaded for a dispatch"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "Reserved Qty",
+        "label": "",
+        "required": false,
+        "value": "Reserved Qty",
+        "role": "",
+        "accessible_name": "Cartons scanned onto a dispatch and waiting to leave",
+        "text_full": "Reserved Qty",
+        "attrs": {
+            "title": "Cartons scanned onto a dispatch and waiting to leave"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "Minimum Stock",
+        "label": "",
+        "required": false,
+        "value": "Minimum Stock",
+        "role": "",
+        "accessible_name": "((3 \u00d7 last month) + (2 \u00d7 month before) + (1 \u00d7 month before that)) \u00f7 6 of confirmed sales-order cartons, rounded up",
+        "text_full": "Minimum Stock",
+        "attrs": {
+            "title": "((3 \u00d7 last month) + (2 \u00d7 month before) + (1 \u00d7 month before that)) \u00f7 6 of confirmed sales-order cartons, rounded up"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(9)"
+        ],
+        "tag": "th",
+        "text": "Status",
+        "label": "",
+        "required": false,
+        "value": "Status",
+        "role": "",
+        "accessible_name": "Status",
+        "text_full": "Status",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(10)"
+        ],
+        "tag": "th",
+        "text": "Total Batches",
+        "label": "",
+        "required": false,
+        "value": "Total Batches",
+        "role": "",
+        "accessible_name": "Total Batches",
+        "text_full": "Total Batches",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)",
+        "selectors": [
+            "div > div > app-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(11)"
+        ],
+        "tag": "th",
+        "text": "Actions",
+        "label": "",
+        "required": false,
+        "value": "Actions",
+        "role": "",
+        "accessible_name": "Actions",
+        "text_full": "Actions",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Assorted / POS\")",
+        "selectors": [
+            "button:has-text(\"Assorted / POS\")",
+            "text=\"Assorted / POS\"",
+            "div > div:nth-of-type(3) > div > div > app-inventory > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Assorted / POS",
+        "label": "",
+        "required": false,
+        "value": "Assorted / POS",
+        "role": "button",
+        "accessible_name": "Assorted / POS",
+        "text_full": "Assorted / POS",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View Batches\"]",
+        "selectors": [
+            "button[title=\"View Batches\"]",
+            "[aria-label=\"View Batches\"]",
+            "button:has(i.pi-eye)",
+            "div > app-inventory > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(11) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View Batches",
+        "text_full": "",
+        "attrs": {
+            "title": "View Batches"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Movement History\"]",
+        "selectors": [
+            "button[title=\"Movement History\"]",
+            "[aria-label=\"Movement History\"]",
+            "button:has(i.pi-history)",
+            "div > app-inventory > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(11) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Movement History",
+        "text_full": "",
+        "attrs": {
+            "title": "Movement History"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"Deactivate SKU\"]",
+        "selectors": [
+            "button[title=\"Deactivate SKU\"]",
+            "[aria-label=\"Deactivate SKU\"]",
+            "button:has(i.pi-trash)",
+            "div > app-inventory > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(11) > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Deactivate SKU",
+        "text_full": "",
+        "attrs": {
+            "title": "Deactivate SKU"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Include inactive\"",
+        "selectors": [
+            "text=\"Include inactive\"",
+            "div:nth-of-type(3) > div > div > app-inventory > div > div > div:nth-of-type(2) > div:nth-of-type(4) > label:nth-of-type(2)"
+        ],
+        "tag": "label",
+        "text": "Include inactive",
+        "label": "Include inactive",
+        "required": false,
+        "value": "Include inactive",
+        "role": "",
+        "accessible_name": "Include inactive",
+        "text_full": "Include inactive",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Warehouse/Inventory/screenshots/step_20.jpg"
+    }
+]

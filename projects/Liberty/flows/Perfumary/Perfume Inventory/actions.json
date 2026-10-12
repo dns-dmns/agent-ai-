@@ -1,0 +1,427 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-perfumary-inventory > div > div > div > h2",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-perfumary-inventory > div > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Perfume Inventory",
+        "label": "",
+        "required": false,
+        "value": "Perfume Inventory",
+        "role": "heading",
+        "accessible_name": "Perfume Inventory",
+        "text_full": "Perfume Inventory",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Perfume\")",
+        "selectors": [
+            "button:has-text(\"Add Perfume\")",
+            "text=\"Add Perfume\"",
+            "div > div:nth-of-type(3) > div > div > app-perfumary-inventory > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Perfume",
+        "label": "",
+        "required": false,
+        "value": "Add Perfume",
+        "role": "button",
+        "accessible_name": "Add Perfume",
+        "text_full": "Add Perfume",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Refresh\")",
+        "selectors": [
+            "button:has-text(\"Refresh\")",
+            "text=\"Refresh\"",
+            "div > div:nth-of-type(3) > div > div > app-perfumary-inventory > div > div > div:nth-of-type(2) > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "Refresh",
+        "label": "",
+        "required": false,
+        "value": "Refresh",
+        "role": "button",
+        "accessible_name": "Refresh",
+        "text_full": "Refresh",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"View History\")",
+        "selectors": [
+            "button:has-text(\"View History\")",
+            "text=\"View History\"",
+            "div:nth-of-type(3) > div > div > app-perfumary-inventory > div > div:nth-of-type(4) > div > div:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "View History",
+        "label": "",
+        "required": false,
+        "value": "View History",
+        "role": "button",
+        "accessible_name": "View History",
+        "text_full": "View History",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_6.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Perfume\")",
+        "selectors": [
+            "button:has-text(\"Add Perfume\")",
+            "text=\"Add Perfume\"",
+            "div > div:nth-of-type(3) > div > div > app-perfumary-inventory > div > div > div:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Perfume",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Perfume",
+        "text_full": "Add Perfume",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_7.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "messages": [
+                {
+                    "text": "Add Perfume Stock",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nAdd Stock",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "button.p-button.p-component.p-button-text"
+                },
+                {
+                    "text": "Add Stock",
+                    "selector": "button.p-button.p-component.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header",
+                "pn_id_14"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > div > app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(2) > span",
+            "#pn_id_8_header"
+        ],
+        "tag": "span",
+        "text": "Add Perfume Stock",
+        "label": "",
+        "required": false,
+        "value": "Add Perfume Stock",
+        "role": "",
+        "accessible_name": "Add Perfume Stock",
+        "text_full": "Add Perfume Stock",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Perfume RM Item *\"",
+        "selectors": [
+            "text=\"Perfume RM Item *\"",
+            "app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Perfume RM Item *",
+        "label": "Perfume RM Item *",
+        "required": false,
+        "value": "Perfume RM Item *",
+        "role": "",
+        "accessible_name": "Perfume RM Item *",
+        "text_full": "Perfume RM Item *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Quantity (Kg) *\"",
+        "selectors": [
+            "text=\"Quantity (Kg) *\"",
+            "app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Quantity (Kg) *",
+        "label": "Quantity (Kg) *",
+        "required": false,
+        "value": "Quantity (Kg) *",
+        "role": "",
+        "accessible_name": "Quantity (Kg) *",
+        "text_full": "Quantity (Kg) *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_10.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"Perfume RM Item\"]",
+        "selectors": [
+            "[aria-label=\"Perfume RM Item\"]"
+        ],
+        "tag": "dropdown",
+        "text": "",
+        "value": "",
+        "label": "Perfume RM Item *",
+        "required": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_11.jpg",
+        "synthetic": "open dropdown"
+    },
+    {
+        "action": "CLICK",
+        "selector": "app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div > p-dropdown",
+        "selectors": [
+            "app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div > p-dropdown",
+            "#pn_id_14"
+        ],
+        "tag": "p-dropdown",
+        "text": "Select a perfume item",
+        "label": "Perfume RM Item *",
+        "required": true,
+        "value": "",
+        "role": "",
+        "accessible_name": "Perfume RM Item *",
+        "text_full": "Select a perfume item",
+        "attrs": {
+            "placeholder": "Select a perfume item"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_11.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "messages": [
+                {
+                    "text": "CPC 6182\n\u2014 ATOZ",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "CPC 6182",
+                    "selector": "strong.ng-star-inserted"
+                },
+                {
+                    "text": "CPC 6183\n\u2014 INTIMATE",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "CPC 6183",
+                    "selector": "strong.ng-star-inserted"
+                },
+                {
+                    "text": "CPC 6184\n\u2014 CHANDANA",
+                    "selector": "p-dropdownitem.ng-star-inserted"
+                },
+                {
+                    "text": "CPC 6184",
+                    "selector": "strong.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_14_list",
+                "pn_id_14_0",
+                "pn_id_14_1",
+                "pn_id_14_2",
+                "pn_id_14_3",
+                "pn_id_14_4",
+                "pn_id_14_5",
+                "pn_id_14_6",
+                "pn_id_14_7",
+                "pn_id_14_8",
+                "pn_id_14_9",
+                "pn_id_14_10"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "[aria-label=\"CPC 6182 \u2014 ATOZ \u00b7 PERFUME -CP\"]",
+        "selectors": [
+            "[aria-label=\"CPC 6182 \u2014 ATOZ \u00b7 PERFUME -CP\"]",
+            "text=\"CPC 6182\"",
+            "#pn_id_14_0",
+            "html > body > div > div > div > div:nth-of-type(2) > ul > p-dropdownitem > li"
+        ],
+        "tag": "li",
+        "text": "CPC 6182\n\u2014 ATOZ",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "option",
+        "accessible_name": "CPC 6182 \u2014 ATOZ \u00b7 PERFUME -CP",
+        "text_full": "CPC 6182 \u2014 ATOZ",
+        "attrs": {
+            "aria-label": "CPC 6182 \u2014 ATOZ \u00b7 PERFUME -CP",
+            "role": "option"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_12.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "messages": [
+                {
+                    "text": "CPC 6182",
+                    "selector": "strong.ng-star-inserted"
+                },
+                {
+                    "text": "CPC 6182 \u2014 ATOZ",
+                    "selector": "span.p-select-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_14_list",
+                "pn_id_14_0",
+                "pn_id_14_1",
+                "pn_id_14_2",
+                "pn_id_14_3",
+                "pn_id_14_4",
+                "pn_id_14_5",
+                "pn_id_14_6",
+                "pn_id_14_7",
+                "pn_id_14_8",
+                "pn_id_14_9",
+                "pn_id_14_10"
+            ]
+        }
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Quantity (Kg) *\"]",
+            "div input[placeholder=\"0.000\"]",
+            "div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(2) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Quantity (Kg) *",
+        "required": true,
+        "value": "",
+        "role": "spinbutton",
+        "accessible_name": "Quantity (Kg) *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_13.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"0.000\"]",
+        "selectors": [
+            "input[placeholder=\"0.000\"]",
+            "input[placeholder=\"Quantity (Kg) *\"]",
+            "div input[placeholder=\"0.000\"]",
+            "div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(2) > p-inputnumber > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "Quantity (Kg) *",
+        "required": true,
+        "value": "10.00",
+        "role": "spinbutton",
+        "accessible_name": "Quantity (Kg) *",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "0.000",
+            "role": "spinbutton",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_15.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "div > div > app-perfumary-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfume Inventory/screenshots/step_16.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/inventory",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header",
+                "pn_id_14"
+            ]
+        }
+    }
+]

@@ -1,0 +1,446 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Perfumary",
+        "label": "",
+        "required": false,
+        "value": "Perfumary",
+        "role": "listitem",
+        "accessible_name": "Perfumary",
+        "text_full": "Perfumary",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Perfumary RM Store",
+        "label": "",
+        "required": false,
+        "value": "Perfumary RM Store",
+        "role": "listitem",
+        "accessible_name": "Perfumary RM Store",
+        "text_full": "Perfumary RM Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "ITEM CODE",
+        "label": "",
+        "required": false,
+        "value": "ITEM CODE",
+        "role": "",
+        "accessible_name": "ITEM CODE",
+        "text_full": "ITEM CODE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "DESCRIPTION",
+        "label": "",
+        "required": false,
+        "value": "DESCRIPTION",
+        "role": "",
+        "accessible_name": "DESCRIPTION",
+        "text_full": "DESCRIPTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "CATEGORY",
+        "label": "",
+        "required": false,
+        "value": "CATEGORY",
+        "role": "",
+        "accessible_name": "CATEGORY",
+        "text_full": "CATEGORY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "AVAILABLE QTY",
+        "label": "",
+        "required": false,
+        "value": "AVAILABLE QTY",
+        "role": "",
+        "accessible_name": "AVAILABLE QTY",
+        "text_full": "AVAILABLE QTY",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "UOM",
+        "label": "",
+        "required": false,
+        "value": "UOM",
+        "role": "",
+        "accessible_name": "UOM",
+        "text_full": "UOM",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "WAC (\u20b9)",
+        "label": "",
+        "required": false,
+        "value": "WAC (\u20b9)",
+        "role": "",
+        "accessible_name": "WAC (\u20b9)",
+        "text_full": "WAC (\u20b9)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "ACTION",
+        "label": "",
+        "required": false,
+        "value": "ACTION",
+        "role": "",
+        "accessible_name": "ACTION",
+        "text_full": "ACTION",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Stock\")",
+        "selectors": [
+            "button:has-text(\"Add Stock\")",
+            "text=\"Add Stock\"",
+            "div:nth-of-type(3) > div > div > app-perfume-store > app-procurement-inventory > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Stock",
+        "label": "",
+        "required": false,
+        "value": "Add Stock",
+        "role": "button",
+        "accessible_name": "Add Stock",
+        "text_full": "Add Stock",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "button[title=\"View stock history\"]",
+        "selectors": [
+            "button[title=\"View stock history\"]",
+            "[aria-label=\"View stock history\"]",
+            "app-perfume-store > app-procurement-inventory > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(8) > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "View stock history",
+        "text_full": "",
+        "attrs": {
+            "title": "View stock history"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_14.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Stock\")",
+        "selectors": [
+            "button:has-text(\"Add Stock\")",
+            "text=\"Add Stock\"",
+            "div:nth-of-type(3) > div > div > app-perfume-store > app-procurement-inventory > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Add Stock",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Stock",
+        "text_full": "Add Stock",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_15.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+            "messages": [
+                {
+                    "text": "Add Stock \u2014 Perfumary RM Store",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel\nAdd Stock",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "button.p-button.p-component.p-button-text"
+                },
+                {
+                    "text": "Add Stock",
+                    "selector": "button.p-button.p-component.ng-star-inserted"
+                },
+                {
+                    "text": "Select a solvent, chemical or powder",
+                    "selector": "span.p-select-label.p-placeholder.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header",
+                "pn_id_18"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-perfume-store > app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div > app-perfume-store > app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(2) > span",
+            "#pn_id_8_header"
+        ],
+        "tag": "span",
+        "text": "Add Stock \u2014 Perfumary RM Store",
+        "label": "",
+        "required": false,
+        "value": "Add Stock \u2014 Perfumary RM Store",
+        "role": "",
+        "accessible_name": "Add Stock \u2014 Perfumary RM Store",
+        "text_full": "Add Stock \u2014 Perfumary RM Store",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Item Code *\"",
+        "selectors": [
+            "text=\"Item Code *\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div > label"
+        ],
+        "tag": "label",
+        "text": "Item Code *",
+        "label": "Item Code *",
+        "required": false,
+        "value": "Item Code *",
+        "role": "",
+        "accessible_name": "Item Code *",
+        "text_full": "Item Code *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Description\"",
+        "selectors": [
+            "text=\"Description\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(2) > label"
+        ],
+        "tag": "label",
+        "text": "Description",
+        "label": "Description",
+        "required": false,
+        "value": "Description",
+        "role": "",
+        "accessible_name": "Description",
+        "text_full": "Description",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Quantity *\"",
+        "selectors": [
+            "text=\"Quantity *\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Quantity *",
+        "label": "Quantity *",
+        "required": false,
+        "value": "Quantity *",
+        "role": "",
+        "accessible_name": "Quantity *",
+        "text_full": "Quantity *",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Rate (\u20b9 per UOM)\"",
+        "selectors": [
+            "text=\"Rate (\u20b9 per UOM)\"",
+            "app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(4) > label"
+        ],
+        "tag": "label",
+        "text": "Rate (\u20b9 per UOM)",
+        "label": "Rate (\u20b9 per UOM)",
+        "required": false,
+        "value": "Rate (\u20b9 per UOM)",
+        "role": "",
+        "accessible_name": "Rate (\u20b9 per UOM)",
+        "text_full": "Rate (\u20b9 per UOM)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_20.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "div > app-perfume-store > app-procurement-inventory > div > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(4) > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {},
+        "screenshot": "/static/projects/Liberty/flows/Perfumary/Perfumary RM Store/screenshots/step_21.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/rm-store",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header",
+                "pn_id_18",
+                "pn_id_18_list",
+                "pn_id_18_0",
+                "pn_id_18_1",
+                "pn_id_18_2",
+                "pn_id_18_3",
+                "pn_id_18_4",
+                "pn_id_18_5",
+                "pn_id_18_6",
+                "pn_id_18_7",
+                "pn_id_18_8"
+            ]
+        }
+    }
+]

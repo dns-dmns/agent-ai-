@@ -1,0 +1,14 @@
+{
+    "schema_version": 1,
+    "flow_name": "Master/Sales & Distribution/Scheme Master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/sales-distribution/scheme-master/list",
+    "timestamp": "2026-10-11 19:38:13",
+    "duration_seconds": 23,
+    "step_count": 66,
+    "source": "explorer",
+    "menu_path": [
+        "Master",
+        "Sales & Distribution",
+        "Scheme Master"
+    ]
+}

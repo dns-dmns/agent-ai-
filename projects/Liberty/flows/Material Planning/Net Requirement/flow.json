@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Material Planning/Net Requirement",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/mrp/net-requirement",
+    "timestamp": "2026-10-11 19:40:42",
+    "duration_seconds": 13,
+    "step_count": 34,
+    "source": "explorer",
+    "menu_path": [
+        "Material Planning",
+        "Net Requirement"
+    ]
+}

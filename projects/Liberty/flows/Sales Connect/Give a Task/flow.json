@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Sales Connect/Give a Task",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/give-task",
+    "timestamp": "2026-10-11 19:39:35",
+    "duration_seconds": 2,
+    "step_count": 17,
+    "source": "explorer",
+    "menu_path": [
+        "Sales Connect",
+        "Give a Task"
+    ]
+}

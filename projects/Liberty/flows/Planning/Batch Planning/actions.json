@@ -1,0 +1,345 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/batch-planning",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/batch-planning"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/batch-planning",
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Planning",
+        "label": "",
+        "required": false,
+        "value": "Planning",
+        "role": "listitem",
+        "accessible_name": "Planning",
+        "text_full": "Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Batch Planning",
+        "label": "",
+        "required": false,
+        "value": "Batch Planning",
+        "role": "listitem",
+        "accessible_name": "Batch Planning",
+        "text_full": "Batch Planning",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "SL NO.",
+        "label": "",
+        "required": false,
+        "value": "SL NO.",
+        "role": "",
+        "accessible_name": "SL NO.",
+        "text_full": "SL NO.",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "BATCH ID",
+        "label": "",
+        "required": false,
+        "value": "BATCH ID",
+        "role": "",
+        "accessible_name": "BATCH ID",
+        "text_full": "BATCH ID",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "PLANNED WEEK RANGE",
+        "label": "",
+        "required": false,
+        "value": "PLANNED WEEK RANGE",
+        "role": "",
+        "accessible_name": "PLANNED WEEK RANGE",
+        "text_full": "PLANNED WEEK RANGE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "PLANNED DATE",
+        "label": "",
+        "required": false,
+        "value": "PLANNED DATE",
+        "role": "",
+        "accessible_name": "PLANNED DATE",
+        "text_full": "PLANNED DATE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "NO. OF SKU'S",
+        "label": "",
+        "required": false,
+        "value": "NO. OF SKU'S",
+        "role": "",
+        "accessible_name": "NO. OF SKU'S",
+        "text_full": "NO. OF SKU'S",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "QUANTITY (CTNS)",
+        "label": "",
+        "required": false,
+        "value": "QUANTITY (CTNS)",
+        "role": "",
+        "accessible_name": "QUANTITY (CTNS)",
+        "text_full": "QUANTITY (CTNS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)",
+        "selectors": [
+            "div > div > app-batch-planning-list > div > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(8)"
+        ],
+        "tag": "th",
+        "text": "QUANTITY (DZS)",
+        "label": "",
+        "required": false,
+        "value": "QUANTITY (DZS)",
+        "role": "",
+        "accessible_name": "QUANTITY (DZS)",
+        "text_full": "QUANTITY (DZS)",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "div:nth-of-type(3) > div > div > app-batch-planning-list > div > div > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Create New Batch\")",
+        "selectors": [
+            "button:has-text(\"Create New Batch\")",
+            "text=\"Create New Batch\"",
+            "div > div:nth-of-type(3) > div > div > app-batch-planning-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Create New Batch",
+        "label": "",
+        "required": false,
+        "value": "Create New Batch",
+        "role": "button",
+        "accessible_name": "Create New Batch",
+        "text_full": "Create New Batch",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_14.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Create New Batch\")",
+        "selectors": [
+            "button:has-text(\"Create New Batch\")",
+            "text=\"Create New Batch\"",
+            "div > div:nth-of-type(3) > div > div > app-batch-planning-list > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Create New Batch",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Create New Batch",
+        "text_full": "Create New Batch",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_15.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/batch-planning",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/planning/batch-planning",
+            "messages": [
+                {
+                    "text": "Week: 05 Oct 2026 \u2013 10 Oct 2026 (Mon \u2013 Sat)",
+                    "selector": "small.week-range-info.ng-star-inserted"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Create",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "October",
+                    "selector": "button.p-ripple.p-datepicker-select-month.ng-tns-c2825477640-5"
+                }
+            ],
+            "appeared": [
+                "pn_id_82_panel"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-batch-planning-list > div > div:nth-of-type(4) > div > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-batch-planning-list > div > div:nth-of-type(4) > div > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Create New Batch",
+        "label": "",
+        "required": false,
+        "value": "Create New Batch",
+        "role": "heading",
+        "accessible_name": "Create New Batch",
+        "text_full": "Create New Batch",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Select any date within the desired week\"",
+        "selectors": [
+            "text=\"Select any date within the desired week\"",
+            "div > div > app-batch-planning-list > div > div:nth-of-type(4) > div > div:nth-of-type(2) > div > label"
+        ],
+        "tag": "label",
+        "text": "Select any date within the desired week",
+        "label": "Select any date within the desired week",
+        "required": false,
+        "value": "Select any date within the desired week",
+        "role": "",
+        "accessible_name": "Select any date within the desired week",
+        "text_full": "Select any date within the desired week",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Planning/Batch Planning/screenshots/step_17.jpg"
+    }
+]

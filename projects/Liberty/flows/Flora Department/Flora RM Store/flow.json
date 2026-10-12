@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Flora Department/Flora RM Store",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/flora/rm-store",
+    "timestamp": "2026-10-11 19:41:05",
+    "duration_seconds": 12,
+    "step_count": 32,
+    "source": "explorer",
+    "menu_path": [
+        "Flora Department",
+        "Flora RM Store"
+    ]
+}

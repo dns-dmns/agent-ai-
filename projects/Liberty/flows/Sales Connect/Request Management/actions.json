@@ -1,0 +1,442 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/requests",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/requests"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/field-assist/requests",
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Connect",
+        "label": "",
+        "required": false,
+        "value": "Sales Connect",
+        "role": "listitem",
+        "accessible_name": "Sales Connect",
+        "text_full": "Sales Connect",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Request Management",
+        "label": "",
+        "required": false,
+        "value": "Request Management",
+        "role": "listitem",
+        "accessible_name": "Request Management",
+        "text_full": "Request Management",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th"
+        ],
+        "tag": "th",
+        "text": "DETAIL",
+        "label": "",
+        "required": false,
+        "value": "DETAIL",
+        "role": "",
+        "accessible_name": "DETAIL",
+        "text_full": "DETAIL",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(2)"
+        ],
+        "tag": "th",
+        "text": "WHO ASKED",
+        "label": "",
+        "required": false,
+        "value": "WHO ASKED",
+        "role": "",
+        "accessible_name": "WHO ASKED",
+        "text_full": "WHO ASKED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(3)"
+        ],
+        "tag": "th",
+        "text": "TYPE",
+        "label": "",
+        "required": false,
+        "value": "TYPE",
+        "role": "",
+        "accessible_name": "TYPE",
+        "text_full": "TYPE",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(4)"
+        ],
+        "tag": "th",
+        "text": "REQUEST",
+        "label": "",
+        "required": false,
+        "value": "REQUEST",
+        "role": "",
+        "accessible_name": "REQUEST",
+        "text_full": "REQUEST",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(5)"
+        ],
+        "tag": "th",
+        "text": "SUBMITTED",
+        "label": "",
+        "required": false,
+        "value": "SUBMITTED",
+        "role": "",
+        "accessible_name": "SUBMITTED",
+        "text_full": "SUBMITTED",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(6)"
+        ],
+        "tag": "th",
+        "text": "AMOUNT",
+        "label": "",
+        "required": false,
+        "value": "AMOUNT",
+        "role": "",
+        "accessible_name": "AMOUNT",
+        "text_full": "AMOUNT",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)",
+        "selectors": [
+            "div > app-request-management > div > section > div:nth-of-type(2) > table > thead > tr > th:nth-of-type(7)"
+        ],
+        "tag": "th",
+        "text": "STATUS",
+        "label": "",
+        "required": false,
+        "value": "STATUS",
+        "role": "",
+        "accessible_name": "STATUS",
+        "text_full": "STATUS",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "div > app-request-management > div > header > div:nth-of-type(2) > span > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"35\")",
+        "selectors": [
+            "button:has-text(\"35\")",
+            "text=\"35\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button"
+        ],
+        "tag": "button",
+        "text": "35\nAll",
+        "label": "",
+        "required": false,
+        "value": "35 All",
+        "role": "button",
+        "accessible_name": "35 All",
+        "text_full": "35 All",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"5\")",
+        "selectors": [
+            "button:has-text(\"5\")",
+            "text=\"5\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(2)"
+        ],
+        "tag": "button",
+        "text": "5\nLeave",
+        "label": "",
+        "required": false,
+        "value": "5 Leave",
+        "role": "button",
+        "accessible_name": "5 Leave",
+        "text_full": "5 Leave",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_14.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"4\")",
+        "selectors": [
+            "button:has-text(\"4\")",
+            "text=\"4\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(3)"
+        ],
+        "tag": "button",
+        "text": "4\nExpenses",
+        "label": "",
+        "required": false,
+        "value": "4 Expenses",
+        "role": "button",
+        "accessible_name": "4 Expenses",
+        "text_full": "4 Expenses",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_15.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"2\")",
+        "selectors": [
+            "button:has-text(\"2\")",
+            "text=\"2\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(4)"
+        ],
+        "tag": "button",
+        "text": "2\nDistributors",
+        "label": "",
+        "required": false,
+        "value": "2 Distributors",
+        "role": "button",
+        "accessible_name": "2 Distributors",
+        "text_full": "2 Distributors",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"12\")",
+        "selectors": [
+            "button:has-text(\"12\")",
+            "text=\"12\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(5)"
+        ],
+        "tag": "button",
+        "text": "12\nNew shops",
+        "label": "",
+        "required": false,
+        "value": "12 New shops",
+        "role": "button",
+        "accessible_name": "12 New shops",
+        "text_full": "12 New shops",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_17.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"9\")",
+        "selectors": [
+            "button:has-text(\"9\")",
+            "text=\"9\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(6)"
+        ],
+        "tag": "button",
+        "text": "9\nPin moves",
+        "label": "",
+        "required": false,
+        "value": "9 Pin moves",
+        "role": "button",
+        "accessible_name": "9 Pin moves",
+        "text_full": "9 Pin moves",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_18.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"1\")",
+        "selectors": [
+            "button:has-text(\"1\")",
+            "text=\"1\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(7)"
+        ],
+        "tag": "button",
+        "text": "1\nOfficial work",
+        "label": "",
+        "required": false,
+        "value": "1 Official work",
+        "role": "button",
+        "accessible_name": "1 Official work",
+        "text_full": "1 Official work",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_19.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"2\")",
+        "selectors": [
+            "button:has-text(\"2\")",
+            "text=\"2\"",
+            "app-pages > div > div:nth-of-type(3) > div > div > app-request-management > div > div > button:nth-of-type(8)"
+        ],
+        "tag": "button",
+        "text": "2\nTarget changes",
+        "label": "",
+        "required": false,
+        "value": "2 Target changes",
+        "role": "button",
+        "accessible_name": "2 Target changes",
+        "text_full": "2 Target changes",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_20.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Show the detail of New shop Test Stores\"]",
+        "selectors": [
+            "[aria-label=\"Show the detail of New shop Test Stores\"]",
+            "button[title=\"Show the detail of New shop Test Stores\"]",
+            "button:has(i.fa-solid)",
+            "button:has(i.fa-chevron-right)",
+            "tr:has-text(\"NV\") [title=\"Show the detail of New shop Test Stores\"]",
+            "app-request-management > div > section > div:nth-of-type(2) > table > tbody > tr > td > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Show the detail of New shop Test Stores",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Show the detail of New shop Test Stores",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_21.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Rows\"",
+        "selectors": [
+            "text=\"Rows\"",
+            "div > div > app-request-management > div > section > div:nth-of-type(2) > app-fa-table-pager > nav > label"
+        ],
+        "tag": "label",
+        "text": "Rows\n10\n25\n50\n100",
+        "label": "Rows\n10\n25\n50\n100",
+        "required": false,
+        "value": "Rows 10 25 50 100",
+        "role": "",
+        "accessible_name": "Rows\n10\n25\n50\n100",
+        "text_full": "Rows 10 25 50 100",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Connect/Request Management/screenshots/step_22.jpg"
+    }
+]

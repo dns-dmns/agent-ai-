@@ -1,0 +1,444 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "app-pages > div > div:nth-of-type(3) > div > div > app-sales-order-create > div > div > h2",
+        "selectors": [
+            "app-pages > div > div:nth-of-type(3) > div > div > app-sales-order-create > div > div > h2"
+        ],
+        "tag": "h2",
+        "text": "Create Sales Order",
+        "label": "",
+        "required": false,
+        "value": "Create Sales Order",
+        "role": "heading",
+        "accessible_name": "Create Sales Order",
+        "text_full": "Create Sales Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Order Information",
+        "label": "",
+        "required": false,
+        "value": "Order Information",
+        "role": "heading",
+        "accessible_name": "Order Information",
+        "text_full": "Order Information",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(2) > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(2) > h3"
+        ],
+        "tag": "h3",
+        "text": "Consignee / Billing Details",
+        "label": "",
+        "required": false,
+        "value": "Consignee / Billing Details",
+        "role": "heading",
+        "accessible_name": "Consignee / Billing Details",
+        "text_full": "Consignee / Billing Details",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(3) > div > h3",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(3) > div > h3"
+        ],
+        "tag": "h3",
+        "text": "Order Items",
+        "label": "",
+        "required": false,
+        "value": "Order Items",
+        "role": "heading",
+        "accessible_name": "Order Items",
+        "text_full": "Order Items",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "Sales Order",
+        "label": "",
+        "required": false,
+        "value": "Sales Order",
+        "role": "listitem",
+        "accessible_name": "Sales Order",
+        "text_full": "Sales Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_6.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(5)"
+        ],
+        "tag": "li",
+        "text": "Create Order",
+        "label": "",
+        "required": false,
+        "value": "Create Order",
+        "role": "listitem",
+        "accessible_name": "Create Order",
+        "text_full": "Create Order",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_7.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_8.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Back to Orders\")",
+        "selectors": [
+            "button:has-text(\"Back to Orders\")",
+            "text=\"Back to Orders\"",
+            "div > div:nth-of-type(3) > div > div > app-sales-order-create > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Back to Orders",
+        "label": "",
+        "required": false,
+        "value": "Back to Orders",
+        "role": "button",
+        "accessible_name": "Back to Orders",
+        "text_full": "Back to Orders",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_9.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Choose Date\"]",
+        "selectors": [
+            "[aria-label=\"Choose Date\"]",
+            "button[title=\"Choose Date\"]",
+            "app-sales-order-create > div > form > div > div > div:nth-of-type(2) > p-datepicker > span > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Choose Date",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Choose Date",
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_10.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Check Stock\")",
+        "selectors": [
+            "button:has-text(\"Check Stock\")",
+            "text=\"Check Stock\"",
+            "div > app-sales-order-create > div > form > div:nth-of-type(3) > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Check Stock",
+        "label": "",
+        "required": false,
+        "value": "Check Stock",
+        "role": "button",
+        "accessible_name": "Check Stock",
+        "text_full": "Check Stock",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_11.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Add Item\")",
+        "selectors": [
+            "button:has-text(\"Add Item\")",
+            "text=\"Add Item\"",
+            "div > app-sales-order-create > div > form > div:nth-of-type(3) > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "Add Item",
+        "role": "button",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_12.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(5) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "Cancel",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_13.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Create Order\")",
+        "selectors": [
+            "button:has-text(\"Create Order\")",
+            "text=\"Create Order\"",
+            "div:nth-of-type(3) > div > div > app-sales-order-create > div > form > div:nth-of-type(5) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Create Order",
+        "label": "",
+        "required": false,
+        "value": "Create Order",
+        "role": "button",
+        "accessible_name": "Create Order",
+        "text_full": "Create Order",
+        "attrs": {
+            "type": "submit"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_14.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Add Item\")",
+        "selectors": [
+            "button:has-text(\"Add Item\")",
+            "text=\"Add Item\"",
+            "div > app-sales-order-create > div > form > div:nth-of-type(3) > div > div > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Add Item",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Add Item",
+        "text_full": "Add Item",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_15.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "messages": [
+                {
+                    "text": "Select SKU",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-header.ng-star-inserted"
+                },
+                {
+                    "text": "0 SKUs selected\nCancel\nAdd to Order",
+                    "selector": "div.ng-tns-c2196985156-4.p-dialog-footer.ng-star-inserted"
+                },
+                {
+                    "text": "0 SKUs selected",
+                    "selector": "span.sku-dialog-count"
+                },
+                {
+                    "text": "Cancel",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                },
+                {
+                    "text": "Add to Order",
+                    "selector": "span.p-button-label.ng-star-inserted"
+                }
+            ],
+            "appeared": [
+                "pn_id_8_header"
+            ],
+            "disappeared": []
+        }
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > div > app-sales-order-create > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(2) > span",
+        "selectors": [
+            "div:nth-of-type(3) > div > div > app-sales-order-create > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(2) > span",
+            "#pn_id_8_header"
+        ],
+        "tag": "span",
+        "text": "Select SKU",
+        "label": "",
+        "required": false,
+        "value": "Select SKU",
+        "role": "",
+        "accessible_name": "Select SKU",
+        "text_full": "Select SKU",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_16.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "text=\"Select all visible\"",
+        "selectors": [
+            "text=\"Select all visible\"",
+            "div > app-sales-order-create > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > label"
+        ],
+        "tag": "label",
+        "text": "Select all visible",
+        "label": "Select all visible",
+        "required": false,
+        "value": "Select all visible",
+        "role": "",
+        "accessible_name": "Select all visible",
+        "text_full": "Select all visible",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_17.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "input[placeholder=\"Search by SKU code, description or category\u2026\"]",
+        "selectors": [
+            "input[placeholder=\"Search by SKU code, description or category\u2026\"]",
+            "div input[placeholder=\"Search by SKU code, description or category\u2026\"]",
+            "app-sales-order-create > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search by SKU code, description or category\u2026",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_18.jpg"
+    },
+    {
+        "action": "TYPE",
+        "selector": "input[placeholder=\"Search by SKU code, description or category\u2026\"]",
+        "selectors": [
+            "input[placeholder=\"Search by SKU code, description or category\u2026\"]",
+            "div input[placeholder=\"Search by SKU code, description or category\u2026\"]",
+            "app-sales-order-create > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(3) > div > div > span > input"
+        ],
+        "tag": "input",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "QAAUTO01",
+        "role": "textbox",
+        "accessible_name": "",
+        "text_full": "",
+        "attrs": {
+            "placeholder": "Search by SKU code, description or category\u2026",
+            "type": "text",
+            "disabled": "false",
+            "readonly": "false"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_20.jpg"
+    },
+    {
+        "action": "CLICK",
+        "selector": "button:has-text(\"Cancel\")",
+        "selectors": [
+            "button:has-text(\"Cancel\")",
+            "text=\"Cancel\"",
+            "app-sales-order-create > p-dialog:nth-of-type(2) > div > div > div:nth-of-type(4) > div > div > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Cancel",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Cancel",
+        "text_full": "Cancel",
+        "attrs": {
+            "type": "button"
+        },
+        "screenshot": "/static/projects/Liberty/flows/Sales Order/Create Order/screenshots/step_21.jpg",
+        "effect": {
+            "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sales-order/create",
+            "messages": [],
+            "appeared": [],
+            "disappeared": [
+                "pn_id_8_header"
+            ]
+        }
+    }
+]

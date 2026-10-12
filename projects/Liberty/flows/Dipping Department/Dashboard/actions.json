@@ -1,0 +1,13 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/dashboard",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/dashboard"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/dipping/dashboard",
+        "screenshot": "/static/projects/Liberty/flows/Dipping Department/Dashboard/screenshots/step_1.jpg"
+    }
+]

@@ -1,0 +1,14 @@
+{
+    "schema_version": 1,
+    "flow_name": "Master/Business Partners/Customer Master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/business-partners/customer-master/list",
+    "timestamp": "2026-10-11 19:38:10",
+    "duration_seconds": 37,
+    "step_count": 99,
+    "source": "explorer",
+    "menu_path": [
+        "Master",
+        "Business Partners",
+        "Customer Master"
+    ]
+}

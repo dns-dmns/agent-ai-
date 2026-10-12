@@ -8,7 +8,7 @@
         "tag": "",
         "text": "",
         "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_1.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -26,7 +26,7 @@
         "text_full": "Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_2.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -44,7 +44,7 @@
         "text_full": "Product Catalogue",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_3.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -62,7 +62,7 @@
         "text_full": "BOM Master",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_4.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -80,7 +80,7 @@
         "text_full": "SL.NO",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_5.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -98,7 +98,7 @@
         "text_full": "TYPE",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_6.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -116,7 +116,7 @@
         "text_full": "CATEGORY",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_7.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -134,7 +134,7 @@
         "text_full": "SKU",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_8.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -152,7 +152,7 @@
         "text_full": "NO. OF VERSIONS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_9.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -170,7 +170,7 @@
         "text_full": "ACTIVE VERSION",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_10.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -188,7 +188,7 @@
         "text_full": "STATUS",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_11.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -206,7 +206,7 @@
         "text_full": "ACTION",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_12.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -229,7 +229,7 @@
             "aria-label": "Pending Approvals"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_13.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -251,7 +251,7 @@
             "type": "button"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_14.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -275,7 +275,7 @@
             "title": "View"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_15.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -299,7 +299,7 @@
             "title": "Edit"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_16.jpg"
     },
     {
         "action": "VERIFY_VISIBLE",
@@ -323,7 +323,7 @@
             "title": "Delete"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_17.jpg"
     },
     {
         "action": "CLICK",
@@ -344,7 +344,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_18.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -390,7 +390,7 @@
         "text_full": "Sections",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_19.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -409,7 +409,7 @@
         "text_full": "Type *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_20.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -428,7 +428,7 @@
         "text_full": "Category *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_21.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -447,7 +447,7 @@
         "text_full": "SKU Code *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_22.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -466,7 +466,7 @@
         "text_full": "SKU Description *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_23.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -485,7 +485,7 @@
         "text_full": "No. of Versions *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_24.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -504,7 +504,7 @@
         "text_full": "Active Version *",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_25.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -523,7 +523,7 @@
         "text_full": "Sticks / Kg",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_26.jpg"
     },
     {
         "action": "CLICK",
@@ -544,7 +544,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_27.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -594,7 +594,7 @@
         "text_full": "Type is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_28.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -612,7 +612,7 @@
         "text_full": "Category is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_29.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -630,7 +630,7 @@
         "text_full": "SKU Code is required",
         "attrs": {},
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_30.jpg"
     },
     {
         "action": "VERIFY_TEXT",
@@ -650,7 +650,7 @@
             "role": "alert"
         },
         "asserted": true,
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_31.jpg"
     },
     {
         "action": "CLICK",
@@ -663,7 +663,7 @@
         "value": "",
         "label": "Type *",
         "required": true,
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_32.jpg",
         "synthetic": "open dropdown"
     },
     {
@@ -686,7 +686,7 @@
         "attrs": {
             "placeholder": "Select Type"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_32.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -733,7 +733,7 @@
             "aria-label": "Domestic",
             "role": "option"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_33.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -762,7 +762,7 @@
         "value": "",
         "label": "Category *",
         "required": true,
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_34.jpg",
         "synthetic": "open dropdown"
     },
     {
@@ -785,7 +785,7 @@
         "attrs": {
             "placeholder": "Select Category"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_34.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -853,7 +853,7 @@
             "aria-label": "1 KG PACKETS",
             "role": "option"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_35.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -891,7 +891,7 @@
         "value": "",
         "label": "SKU Code *",
         "required": true,
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_36.jpg",
         "synthetic": "open dropdown"
     },
     {
@@ -914,7 +914,7 @@
         "attrs": {
             "placeholder": "Search & Select SKU"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_36.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
@@ -948,7 +948,7 @@
         "attrs": {
             "role": "option"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_37.jpg"
     },
     {
         "action": "CLICK",
@@ -973,7 +973,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_38.jpg"
     },
     {
         "action": "TYPE",
@@ -998,7 +998,7 @@
             "disabled": "false",
             "readonly": "false"
         },
-        "screenshot": null
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_40.jpg"
     },
     {
         "action": "CLICK",
@@ -1019,7 +1019,7 @@
         "attrs": {
             "type": "button"
         },
-        "screenshot": null,
+        "screenshot": "/static/projects/Liberty/flows/Master/Product Catalogue/BOM Master/screenshots/step_41.jpg",
         "effect": {
             "url_before": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",
             "url_after": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/master/product-catalogue/bom-master/list",

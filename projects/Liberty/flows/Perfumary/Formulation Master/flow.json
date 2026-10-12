@@ -1,0 +1,13 @@
+{
+    "schema_version": 1,
+    "flow_name": "Perfumary/Formulation Master",
+    "target_url": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/production/perfumary/formulation-master",
+    "timestamp": "2026-10-11 19:41:23",
+    "duration_seconds": 14,
+    "step_count": 42,
+    "source": "explorer",
+    "menu_path": [
+        "Perfumary",
+        "Formulation Master"
+    ]
+}

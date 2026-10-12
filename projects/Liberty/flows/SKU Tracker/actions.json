@@ -1,0 +1,116 @@
+[
+    {
+        "action": "NAVIGATE",
+        "selector": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sku-tracker",
+        "selectors": [
+            "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sku-tracker"
+        ],
+        "tag": "",
+        "text": "",
+        "value": "https://gc-dev.centralindia.cloudapp.azure.com/liberty/pages/sku-tracker",
+        "screenshot": "/static/projects/Liberty/flows/SKU Tracker/screenshots/step_1.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div > div:nth-of-type(3) > div > div > app-sku-tracker > div > section > div > h3",
+        "selectors": [
+            "div > div:nth-of-type(3) > div > div > app-sku-tracker > div > section > div > h3"
+        ],
+        "tag": "h3",
+        "text": "SKU Overview",
+        "label": "",
+        "required": false,
+        "value": "SKU Overview",
+        "role": "heading",
+        "accessible_name": "SKU Overview",
+        "text_full": "SKU Overview",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SKU Tracker/screenshots/step_2.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)",
+        "selectors": [
+            "div:nth-of-type(3) > div > app-title > div > div > p-breadcrumb > nav > ol > li:nth-of-type(3)"
+        ],
+        "tag": "li",
+        "text": "SKU Tracker",
+        "label": "",
+        "required": false,
+        "value": "SKU Tracker",
+        "role": "listitem",
+        "accessible_name": "SKU Tracker",
+        "text_full": "SKU Tracker",
+        "attrs": {},
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SKU Tracker/screenshots/step_3.jpg"
+    },
+    {
+        "action": "VERIFY_VISIBLE",
+        "selector": "[aria-label=\"Pending Approvals\"]",
+        "selectors": [
+            "[aria-label=\"Pending Approvals\"]",
+            "button[title=\"Pending Approvals\"]",
+            "button:has(i.pi-bell)",
+            "app-pages > div > div:nth-of-type(3) > app-header > header > div > div > div > button"
+        ],
+        "tag": "button",
+        "text": "",
+        "label": "",
+        "required": false,
+        "value": "",
+        "role": "button",
+        "accessible_name": "Pending Approvals",
+        "text_full": "",
+        "attrs": {
+            "aria-label": "Pending Approvals"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SKU Tracker/screenshots/step_4.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Track\")",
+        "selectors": [
+            "button:has-text(\"Track\")",
+            "text=\"Track\"",
+            "div:nth-of-type(3) > div > div > app-sku-tracker > div > section > div:nth-of-type(2) > p-button > button"
+        ],
+        "tag": "button",
+        "text": "Track",
+        "label": "",
+        "required": false,
+        "value": "Track",
+        "role": "button",
+        "accessible_name": "Track",
+        "text_full": "Track",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SKU Tracker/screenshots/step_5.jpg"
+    },
+    {
+        "action": "VERIFY_TEXT",
+        "selector": "button:has-text(\"Scan with Camera\")",
+        "selectors": [
+            "button:has-text(\"Scan with Camera\")",
+            "text=\"Scan with Camera\"",
+            "div:nth-of-type(3) > div > div > app-sku-tracker > div > section > div:nth-of-type(2) > p-button:nth-of-type(2) > button"
+        ],
+        "tag": "button",
+        "text": "Scan with Camera",
+        "label": "",
+        "required": false,
+        "value": "Scan with Camera",
+        "role": "button",
+        "accessible_name": "Scan with Camera",
+        "text_full": "Scan with Camera",
+        "attrs": {
+            "type": "button"
+        },
+        "asserted": true,
+        "screenshot": "/static/projects/Liberty/flows/SKU Tracker/screenshots/step_6.jpg"
+    }
+]
